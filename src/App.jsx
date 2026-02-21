@@ -12,7 +12,7 @@ import { Pie } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title);
 
-const apiKey = ''; // ⚠ 在这里填入你的 Gemini API Key
+const apiKey = '';
 
 const CURRENCIES = {
   CNY: { code: 'CNY', flag: '🇨🇳', symbol: '¥', name: '人民币', rate: 1 },
