@@ -29,7 +29,13 @@
 }
 
 body {
-  background-color: #FAFAFA;
+  background-color: #0B0B11;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #F8FAFC;
+}
+
+.font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
 }
 
 /* ================================ */

@@ -74,6 +74,14 @@ const translations = {
     // Footer
     footer: 'Bill Vampire - Make every dollar visible',
 
+    // Savings
+    monthlySaved: 'You saved:',
+    savingsTitle: 'Vampires Slain',
+    savedMonthly: 'Monthly savings',
+    savedYearly: 'Yearly savings',
+    subsKilled: 'subscriptions killed',
+    noSavingsYet: 'Delete a subscription to start saving',
+
     // Days of week
     sun: 'Sun', mon: 'Mon', tue: 'Tue', wed: 'Wed', thu: 'Thu', fri: 'Fri', sat: 'Sat',
   },
@@ -141,6 +149,13 @@ const translations = {
     shareTagline: '来 billvampire.com 查查你的',
 
     footer: 'Bill Vampire · 让每一分钱都被看见',
+
+    monthlySaved: '已省下：',
+    savingsTitle: '已消灭的吸血鬼',
+    savedMonthly: '每月节省',
+    savedYearly: '年度节省',
+    subsKilled: '个订阅已被消灭',
+    noSavingsYet: '删除订阅，开始省钱',
 
     sun: '日', mon: '一', tue: '二', wed: '三', thu: '四', fri: '五', sat: '六',
   },
