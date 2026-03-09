@@ -204,9 +204,7 @@ export default function App() {
           </div>
 
           <header className="flex flex-col items-center mb-8 border-b border-slate-100 pb-8">
-            <div className="w-16 h-16 bg-gradient-to-br from-rose-50 to-orange-50 rounded-2xl flex items-center justify-center mb-4 shadow-sm text-3xl">
-              🧛
-            </div>
+            <img src="/icons/icon.svg" alt="Bill Vampire" className="w-16 h-16 rounded-2xl shadow-sm mb-4" />
             <h1 className="text-xl font-medium tracking-widest text-slate-800">{_('appName')}</h1>
             <p className="text-xs text-slate-400 mt-2 font-light tracking-wider">{_('tagline')}</p>
             <div className="mt-5 bg-gradient-to-r from-rose-50 to-indigo-50 px-6 py-3 rounded-2xl w-full text-center">

@@ -11,7 +11,7 @@ export default function Landing({ onEnterApp, lang }) {
         <div className="absolute top-8 left-10 w-56 h-56 bg-rose-200/30 rounded-full blur-3xl -z-10" />
         <div className="absolute top-32 right-0 w-72 h-72 bg-indigo-200/20 rounded-full blur-3xl -z-10" />
 
-        <div className="text-6xl mb-6">🧛</div>
+        <img src="/icons/icon.svg" alt="Bill Vampire" className="w-24 h-24 mx-auto mb-6 rounded-2xl shadow-lg" />
         <h1 className="text-3xl sm:text-4xl font-bold text-slate-800 tracking-tight leading-tight mb-4">
           {isZh ? (
             <>你的订阅，正在<span className="text-rose-500">吸你的血</span></>
@@ -129,7 +129,7 @@ export default function Landing({ onEnterApp, lang }) {
       {/* Footer */}
       <footer className="w-full py-8 text-center border-t border-slate-100">
         <p className="text-[10px] text-slate-400">
-          Bill Vampire — {isZh ? '让每一分钱都被看见' : 'Make every dollar visible'} 🧛
+          Bill Vampire — {isZh ? '让每一分钱都被看见' : 'Make every dollar visible'}
         </p>
       </footer>
     </div>
