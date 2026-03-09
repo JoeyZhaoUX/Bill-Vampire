@@ -3,7 +3,7 @@ import {
   Plus, Trash2, Ghost, Zap, PieChart as PieIcon,
   CheckCircle2, Download, MessageSquareQuote,
   Loader2, Sparkles, Receipt, Search, Coffee,
-  Share2, Crown, Heart, Globe, Lock, ExternalLink,
+  Share2, Crown, Heart, Globe, Lock, ExternalLink, ChevronRight,
 } from 'lucide-react';
 import {
   Chart as ChartJS, ArcElement, Tooltip, Legend,
@@ -403,21 +403,33 @@ export default function App() {
               </div>
             )}
           </main>
-        </div>
 
-        {/* Bottom actions */}
-        <div className="mt-8 flex gap-3 print:hidden">
-          <button onClick={exportPDF} className="flex-1 py-4 bg-slate-800 text-white text-xs font-medium rounded-2xl hover:bg-slate-700 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-slate-200">
-            <Download size={16} /> {_('exportPdf')}
-          </button>
-          {!isPro() && (
-            <button onClick={() => setShowProModal(true)} className="py-4 px-5 bg-gradient-to-r from-amber-400 to-rose-400 text-white text-xs font-bold rounded-2xl hover:from-amber-500 hover:to-rose-500 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-rose-200">
-              <Crown size={16} /> PRO
+          {/* In-card footer actions */}
+          <div className="mt-6 pt-5 border-t border-slate-100 space-y-3 print:hidden">
+            {/* Export button - secondary, contextual */}
+            <button onClick={exportPDF}
+              className="w-full flex items-center justify-center gap-2 py-3 text-xs font-medium text-slate-500 bg-slate-50 hover:bg-slate-100 rounded-xl transition-colors cursor-pointer min-h-[44px]">
+              <Download size={14} /> {_('exportPdf')}
             </button>
-          )}
+
+            {/* Pro upgrade banner - soft inline upsell */}
+            {!isPro() && (
+              <button onClick={() => setShowProModal(true)}
+                className="w-full flex items-center gap-3 p-3 bg-gradient-to-r from-amber-50 to-rose-50 rounded-xl border border-amber-100/60 hover:from-amber-100/80 hover:to-rose-100/80 transition-all cursor-pointer min-h-[44px] group">
+                <div className="w-8 h-8 bg-gradient-to-br from-amber-400 to-rose-400 rounded-lg flex items-center justify-center shrink-0 shadow-sm">
+                  <Crown size={14} className="text-white" />
+                </div>
+                <div className="flex-1 text-left">
+                  <span className="text-xs font-semibold text-slate-700 block leading-tight">{_('upgradeTitle')}</span>
+                  <span className="text-[10px] text-slate-400">{_('upgradePrice')}</span>
+                </div>
+                <ChevronRight size={14} className="text-slate-300 group-hover:text-slate-500 group-hover:translate-x-0.5 transition-all shrink-0" />
+              </button>
+            )}
+          </div>
         </div>
 
-        <footer className="mt-8 text-center text-[10px] text-slate-400 font-light tracking-wider">
+        <footer className="mt-8 text-center text-[10px] text-slate-400 font-light tracking-wider print:hidden">
           {_('footer')}
         </footer>
       </div>
@@ -469,7 +481,7 @@ export default function App() {
 
       {/* === PRO MODAL === */}
       {showProModal && (
-        <div className="fixed inset-0 bg-slate-900/20 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowProModal(false)}>
+        <div className="fixed inset-0 bg-slate-900/20 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-4" onClick={() => setShowProModal(false)}>
           <div className="bg-white/95 backdrop-blur-xl w-full max-w-xs p-8 rounded-[2rem] shadow-2xl animate-in zoom-in-95 fade-in duration-200" onClick={e => e.stopPropagation()}>
             <div className="text-center mb-6">
               <div className="w-14 h-14 bg-gradient-to-br from-amber-100 to-rose-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -490,11 +502,11 @@ export default function App() {
               ))}
             </div>
             <button onClick={() => { openCheckout(); setShowProModal(false); }}
-              className="w-full py-3.5 bg-gradient-to-r from-amber-400 to-rose-400 text-white text-xs font-bold rounded-2xl hover:from-amber-500 hover:to-rose-500 transition-colors shadow-lg shadow-rose-100 mb-2">
+              className="w-full py-3.5 bg-gradient-to-r from-amber-400 to-rose-400 text-white text-xs font-bold rounded-2xl hover:from-amber-500 hover:to-rose-500 transition-colors shadow-lg shadow-rose-100 mb-2 cursor-pointer min-h-[44px]">
               {_('upgradeCta')} — {_('upgradePrice')}
             </button>
             <button onClick={() => setShowProModal(false)}
-              className="w-full py-2 text-xs text-slate-400 hover:text-slate-600 transition-colors">
+              className="w-full py-2 text-xs text-slate-400 hover:text-slate-600 transition-colors cursor-pointer min-h-[44px]">
               {_('cancel')}
             </button>
           </div>
