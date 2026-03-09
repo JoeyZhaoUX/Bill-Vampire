@@ -11,7 +11,7 @@ export default function Landing({ onEnterApp, lang }) {
         <div className="absolute top-8 left-10 w-56 h-56 bg-rose-200/30 rounded-full blur-3xl -z-10" />
         <div className="absolute top-32 right-0 w-72 h-72 bg-indigo-200/20 rounded-full blur-3xl -z-10" />
 
-        <img src="/icons/icon.svg" alt="Bill Vampire" className="w-24 h-24 mx-auto mb-6 rounded-2xl shadow-lg" />
+        <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="Bill Vampire" className="w-24 h-24 mx-auto mb-6 rounded-2xl shadow-lg" />
         <h1 className="text-3xl sm:text-4xl font-bold text-slate-800 tracking-tight leading-tight mb-4">
           {isZh ? (
             <>你的订阅，正在<span className="text-rose-500">吸你的血</span></>

@@ -14,6 +14,7 @@ import { t, getDefaultLang, SUPPORTED_LANGS } from './i18n';
 import { isPro, canUseAi, incrementAiUsage, aiUsesRemaining, openCheckout, openTip } from './pro';
 import { injectAffiliateLinks } from './affiliates';
 import ShareCard from './ShareCard';
+import PrintReport from './PrintReport';
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title);
 
@@ -186,7 +187,8 @@ export default function App() {
   const remaining = aiUsesRemaining();
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] flex flex-col items-center justify-start py-12 px-4">
+    <>
+    <div className="app-screen min-h-screen bg-[#FAFAFA] flex flex-col items-center justify-start py-12 px-4">
       <div className="max-w-md w-full relative">
         <div className="absolute top-0 left-10 w-48 h-48 bg-rose-200/40 rounded-full blur-3xl -z-10" />
         <div className="absolute top-40 right-0 w-64 h-64 bg-indigo-200/30 rounded-full blur-3xl -z-10" />
@@ -204,7 +206,7 @@ export default function App() {
           </div>
 
           <header className="flex flex-col items-center mb-8 border-b border-slate-100 pb-8">
-            <img src="/icons/icon.svg" alt="Bill Vampire" className="w-16 h-16 rounded-2xl shadow-sm mb-4" />
+            <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="Bill Vampire" className="w-16 h-16 rounded-2xl shadow-sm mb-4" />
             <h1 className="text-xl font-medium tracking-widest text-slate-800">{_('appName')}</h1>
             <p className="text-xs text-slate-400 mt-2 font-light tracking-wider">{_('tagline')}</p>
             <div className="mt-5 bg-gradient-to-r from-rose-50 to-indigo-50 px-6 py-3 rounded-2xl w-full text-center">
@@ -510,5 +512,19 @@ export default function App() {
         />
       )}
     </div>
+
+    <PrintReport
+      subscriptions={subscriptions}
+      noSpendDays={noSpendDays}
+      monthlyTotal={monthlyTotal}
+      currency={displayCurrency}
+      lang={lang}
+      currentYear={currentYear}
+      currentMonth={currentMonth}
+      currentDay={currentDay}
+      daysInMonth={daysInMonth}
+      firstDayOfWeek={firstDayOfWeek}
+    />
+    </>
   );
 }
