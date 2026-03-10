@@ -1,5 +1,6 @@
 import React, { useRef, useCallback } from 'react';
-import { Share2, Download } from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShareNodes } from '@fortawesome/free-solid-svg-icons';
 
 export default function ShareCard({ monthlyTotal, subscriptions, currency, t, onClose }) {
   const cardRef = useRef(null);
@@ -61,7 +62,7 @@ export default function ShareCard({ monthlyTotal, subscriptions, currency, t, on
           </button>
           <button onClick={handleShare}
             className="flex-1 py-3 text-xs font-medium text-white bg-rose-600 rounded-2xl hover:bg-rose-500 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-rose-900/30 cursor-pointer min-h-[44px]">
-            <Share2 size={14} /> Share
+            <FontAwesomeIcon icon={faShareNodes} className="w-3.5 h-3.5" /> Share
           </button>
         </div>
       </div>

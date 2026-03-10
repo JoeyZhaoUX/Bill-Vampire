@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  Plus, Trash2, Ghost, Zap, PieChart as PieIcon,
-  CheckCircle2, Download, MessageSquareQuote,
-  Loader2, Sparkles, Receipt, Search, Coffee,
-  Share2, Crown, Heart, Globe, Lock, ExternalLink, ChevronRight, Skull,
-} from 'lucide-react';
+  faPlus, faTrash, faGhost, faBolt, faChartPie,
+  faCircleCheck, faDownload, faQuoteLeft,
+  faSpinner, faWandMagicSparkles, faReceipt, faMagnifyingGlass, faMugHot,
+  faShareNodes, faCrown, faHeart, faGlobe, faLock, faArrowUpRightFromSquare, faChevronRight, faSkull,
+} from '@fortawesome/free-solid-svg-icons';
 import {
   Chart as ChartJS, ArcElement, Tooltip, Legend,
   CategoryScale, LinearScale, BarElement, Title,
@@ -21,17 +22,17 @@ ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarEle
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY || '';
 
 const CURRENCIES = {
-  USD: { code: 'USD', flag: '🇺🇸', symbol: '$', rate: 1 },
-  CNY: { code: 'CNY', flag: '🇨🇳', symbol: '¥', rate: 0.14 },
-  EUR: { code: 'EUR', flag: '🇪🇺', symbol: '€', rate: 1.08 },
-  GBP: { code: 'GBP', flag: '🇬🇧', symbol: '£', rate: 1.26 },
-  JPY: { code: 'JPY', flag: '🇯🇵', symbol: '¥', rate: 0.0067 },
-  HKD: { code: 'HKD', flag: '🇭🇰', symbol: 'HK$', rate: 0.128 },
+  USD: { code: 'USD', flag: '\u{1F1FA}\u{1F1F8}', symbol: '$', rate: 1 },
+  CNY: { code: 'CNY', flag: '\u{1F1E8}\u{1F1F3}', symbol: '\u00A5', rate: 0.14 },
+  EUR: { code: 'EUR', flag: '\u{1F1EA}\u{1F1FA}', symbol: '\u20AC', rate: 1.08 },
+  GBP: { code: 'GBP', flag: '\u{1F1EC}\u{1F1E7}', symbol: '\u00A3', rate: 1.26 },
+  JPY: { code: 'JPY', flag: '\u{1F1EF}\u{1F1F5}', symbol: '\u00A5', rate: 0.0067 },
+  HKD: { code: 'HKD', flag: '\u{1F1ED}\u{1F1F0}', symbol: 'HK$', rate: 0.128 },
 };
 
 const CATEGORY_KEYS = ['catEntertainment', 'catProductivity', 'catLifestyle', 'catOther'];
 const CATEGORY_VALUES = ['Entertainment', 'Productivity', 'Lifestyle', 'Other'];
-const CATEGORY_ICONS = { 'Entertainment': '🎮', 'Productivity': '⚡', 'Lifestyle': '🌿', 'Other': '📦' };
+const CATEGORY_ICONS = { 'Entertainment': '\u{1F3AE}', 'Productivity': '\u26A1', 'Lifestyle': '\u{1F33F}', 'Other': '\u{1F4E6}' };
 
 export default function App() {
   const [lang, setLang] = useState(getDefaultLang);
@@ -112,7 +113,7 @@ export default function App() {
   };
 
   const callGeminiAPI = async (userPrompt, systemPrompt) => {
-    if (!apiKey) return lang === 'zh' ? '（API Key 未配置）' : '(API Key not configured)';
+    if (!apiKey) return lang === 'zh' ? '\uFF08API Key \u672A\u914D\u7F6E\uFF09' : '(API Key not configured)';
     if (!canUseAi()) {
       setShowProModal(true);
       return _('aiLimitReached');
@@ -125,8 +126,8 @@ export default function App() {
         body: JSON.stringify({ contents: [{ parts: [{ text: userPrompt }] }], systemInstruction: { parts: [{ text: systemPrompt }] } }),
       });
       const data = await res.json();
-      return data.candidates?.[0]?.content?.parts?.[0]?.text || (lang === 'zh' ? 'AI 似乎在打盹。' : 'AI seems to be napping.');
-    } catch (err) { console.error(err); return lang === 'zh' ? 'AI 暂时断网了。' : 'AI is offline. Probably saving electricity for you.'; }
+      return data.candidates?.[0]?.content?.parts?.[0]?.text || (lang === 'zh' ? 'AI \u4F3C\u4E4E\u5728\u6253\u76F9\u3002' : 'AI seems to be napping.');
+    } catch (err) { console.error(err); return lang === 'zh' ? 'AI \u6682\u65F6\u65AD\u7F51\u4E86\u3002' : 'AI is offline. Probably saving electricity for you.'; }
   };
 
   const getAiAdvice = async () => {
@@ -134,7 +135,7 @@ export default function App() {
     setIsAiLoading(true);
     const list = subscriptions.map(s => `${s.name}($${(parseFloat(s.price) * (CURRENCIES[s.currency]?.rate || 1)).toFixed(2)}/${s.cycle === 'monthly' ? 'mo' : 'yr'})`).join(', ');
     const systemPrompt = lang === 'zh'
-      ? '你是一个嘴欠、毒舌但心善的财务顾问。用幽默讽刺但最终带着暖意的语气，给出3点犀利点评和1个实用节省建议。不超过150字。'
+      ? '\u4F60\u662F\u4E00\u4E2A\u5634\u6B20\u3001\u6BD2\u820C\u4F46\u5FC3\u5584\u7684\u8D22\u52A1\u987E\u95EE\u3002\u7528\u5E7D\u9ED8\u8BBD\u523A\u4F46\u6700\u7EC8\u5E26\u7740\u6696\u610F\u7684\u8BED\u6C14\uFF0C\u7ED9\u51FA3\u70B9\u72AC\u5229\u70B9\u8BC4\u548C1\u4E2A\u5B9E\u7528\u8282\u7701\u5EFA\u8BAE\u3002\u4E0D\u8D85\u8FC7150\u5B57\u3002'
       : 'You are a snarky, brutally honest but well-meaning financial advisor. Give 3 sharp roasts about the user\'s subscriptions and 1 practical saving tip. Keep it under 150 words. Be funny.';
     const result = await callGeminiAPI(
       `My subscriptions: ${list}. Monthly total: $${monthlyTotal.toFixed(2)}. Roast me.`,
@@ -148,7 +149,7 @@ export default function App() {
     setIsAlternativesLoading(true);
     const list = subscriptions.map(s => s.name).join(', ');
     const systemPrompt = lang === 'zh'
-      ? '你是一个精通互联网工具的省钱极客。针对用户订阅列表，给出2-3个免费或更便宜的替代方案，格式简洁用bullet point，每条不超过30字。'
+      ? '\u4F60\u662F\u4E00\u4E2A\u7CBE\u901A\u4E92\u8054\u7F51\u5DE5\u5177\u7684\u7701\u94B1\u6781\u5BA2\u3002\u9488\u5BF9\u7528\u6237\u8BA2\u9605\u5217\u8868\uFF0C\u7ED9\u51FA2-3\u4E2A\u514D\u8D39\u6216\u66F4\u4FBF\u5B9C\u7684\u66FF\u4EE3\u65B9\u6848\uFF0C\u683C\u5F0F\u7B80\u6D01\u7528bullet point\uFF0C\u6BCF\u6761\u4E0D\u8D85\u8FC730\u5B57\u3002'
       : 'You are a savvy deal-finder who knows every free/cheap alternative to popular services. Give 2-3 free or cheaper alternatives for each subscription. Use bullet points, keep each under 30 words.';
     const rawResult = await callGeminiAPI(
       `I'm paying for: ${list}. Find me free or cheaper alternatives!`,
@@ -163,7 +164,7 @@ export default function App() {
   const getAiDailyQuote = async () => {
     setIsQuoteLoading(true);
     const systemPrompt = lang === 'zh'
-      ? '你是一个傲娇、毒舌的AI情绪伴侣。如果不消费天数少于5天要嘲讽但带鼓励；5天以上要夸奖但语气傲娇。回复限制在60字以内，可以用emoji。'
+      ? '\u4F60\u662F\u4E00\u4E2A\u50B2\u5A07\u3001\u6BD2\u820C\u7684AI\u60C5\u7EEA\u4F34\u4FA3\u3002\u5982\u679C\u4E0D\u6D88\u8D39\u5929\u6570\u5C11\u4E8E5\u5929\u8981\u5632\u8BBD\u4F46\u5E26\u9F13\u52B1\uFF1B5\u5929\u4EE5\u4E0A\u8981\u5938\u5956\u4F46\u8BED\u6C14\u50B2\u5A07\u3002\u56DE\u590D\u9650\u5236\u572860\u5B57\u4EE5\u5185\uFF0C\u53EF\u4EE5\u7528emoji\u3002'
       : 'You are a snarky, tsundere AI companion. If no-spend days < 5, tease but encourage. If >= 5, praise but act like you don\'t care. Max 60 words. Use emojis.';
     const result = await callGeminiAPI(
       `This month has ${daysInMonth} days. I've had ${currentStreak} no-spend days. Today is day ${currentDay}. Give me motivation (or roast me).`,
@@ -193,9 +194,9 @@ export default function App() {
   const pieOptions = { plugins: { legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 10, color: '#94A3B8' } } }, maintainAspectRatio: false };
 
   const tabs = [
-    { id: 'subs', label: _('tabBills'), icon: Ghost },
-    { id: 'no-spend', label: _('tabCheckin'), icon: CheckCircle2 },
-    { id: 'stats', label: _('tabStats'), icon: PieIcon },
+    { id: 'subs', label: _('tabBills'), icon: faGhost },
+    { id: 'no-spend', label: _('tabCheckin'), icon: faCircleCheck },
+    { id: 'stats', label: _('tabStats'), icon: faChartPie },
   ];
 
   const weekDays = [_('sun'), _('mon'), _('tue'), _('wed'), _('thu'), _('fri'), _('sat')];
@@ -236,13 +237,13 @@ export default function App() {
             {/* AI uses remaining badge */}
             {!isPro() && (
               <div className="mt-3 flex items-center gap-1.5 text-[10px] text-slate-500">
-                <Sparkles size={10} />
+                <FontAwesomeIcon icon={faWandMagicSparkles} className="w-2.5 h-2.5" />
                 <span>{remaining} {_('aiUsesLeft')}</span>
               </div>
             )}
             {isPro() && (
               <div className="mt-3 flex items-center gap-1.5 text-[10px] text-amber-400 font-medium">
-                <Crown size={10} />
+                <FontAwesomeIcon icon={faCrown} className="w-2.5 h-2.5" />
                 <span>{_('proBadge')}</span>
               </div>
             )}
@@ -252,7 +253,7 @@ export default function App() {
             {tabs.map(tab => (
               <button key={tab.id} onClick={() => setActiveTab(tab.id)}
                 className={`flex-1 flex flex-col items-center gap-1 py-2.5 rounded-xl text-xs font-medium transition-all duration-200 cursor-pointer ${activeTab === tab.id ? 'bg-[#1C1C2A] shadow-sm text-slate-200' : 'text-slate-600 hover:text-slate-400'}`}>
-                <tab.icon size={16} strokeWidth={activeTab === tab.id ? 2 : 1.5} />
+                <FontAwesomeIcon icon={tab.icon} className="w-4 h-4" />
                 <span className="text-xs">{tab.label}</span>
               </button>
             ))}
@@ -264,11 +265,11 @@ export default function App() {
               <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
                 <div className="flex justify-between items-center mb-4 px-2">
                   <span className="text-xs font-medium text-slate-500 tracking-widest uppercase">{_('subList')}</span>
-                  <button onClick={() => setShowAddModal(true)} className="p-2 bg-rose-950/40 text-rose-400 rounded-xl hover:bg-rose-950/60 transition-colors cursor-pointer"><Plus size={16} strokeWidth={2} /></button>
+                  <button onClick={() => setShowAddModal(true)} className="p-2 bg-rose-950/40 text-rose-400 rounded-xl hover:bg-rose-950/60 transition-colors cursor-pointer"><FontAwesomeIcon icon={faPlus} className="w-4 h-4" /></button>
                 </div>
                 {subscriptions.length === 0 && (
                   <div className="flex flex-col items-center justify-center py-12 text-slate-600">
-                    <Ghost size={48} strokeWidth={1} className="mb-4" />
+                    <FontAwesomeIcon icon={faGhost} className="w-12 h-12 mb-4" />
                     <p className="text-sm font-light">{_('noSubs')}</p>
                   </div>
                 )}
@@ -276,7 +277,7 @@ export default function App() {
                   {subscriptions.map(sub => (
                     <div key={sub.id} className="flex justify-between items-center p-3 rounded-2xl hover:bg-[#1C1C2A]/60 transition-colors group">
                       <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-xl bg-[#1C1C2A] flex items-center justify-center text-lg">{CATEGORY_ICONS[sub.category] || '📦'}</div>
+                        <div className="w-10 h-10 rounded-xl bg-[#1C1C2A] flex items-center justify-center text-lg">{CATEGORY_ICONS[sub.category] || '\u{1F4E6}'}</div>
                         <div>
                           <h4 className="font-medium text-sm text-slate-200">{sub.name}</h4>
                           <div className="text-[10px] text-slate-500 mt-1 flex items-center gap-1.5">
@@ -288,7 +289,7 @@ export default function App() {
                       </div>
                       <div className="flex items-center gap-3">
                         <span className="font-bold text-slate-200">{CURRENCIES[sub.currency || 'USD']?.symbol}{sub.price}</span>
-                        <button onClick={() => deleteSub(sub.id)} className="text-rose-700 hover:text-rose-400 opacity-0 group-hover:opacity-100 transition-all p-1 cursor-pointer"><Trash2 size={14} /></button>
+                        <button onClick={() => deleteSub(sub.id)} className="text-rose-700 hover:text-rose-400 opacity-0 group-hover:opacity-100 transition-all p-1 cursor-pointer"><FontAwesomeIcon icon={faTrash} className="w-3.5 h-3.5" /></button>
                       </div>
                     </div>
                   ))}
@@ -298,12 +299,12 @@ export default function App() {
                     {!aiAlternatives ? (
                       <button onClick={getAiAlternatives} disabled={isAlternativesLoading}
                         className="w-full flex items-center justify-center gap-2 py-3 text-xs font-medium text-violet-400 bg-violet-950/30 hover:bg-violet-950/50 rounded-2xl transition-colors border border-violet-800/30 cursor-pointer min-h-[44px]">
-                        {isAlternativesLoading ? <Loader2 size={14} className="animate-spin" /> : <Search size={14} />}
+                        {isAlternativesLoading ? <FontAwesomeIcon icon={faSpinner} className="w-3.5 h-3.5 animate-spin" /> : <FontAwesomeIcon icon={faMagnifyingGlass} className="w-3.5 h-3.5" />}
                         {isAlternativesLoading ? _('findingAlternatives') : _('findAlternatives')}
                       </button>
                     ) : (
                       <div className="bg-violet-950/30 p-4 rounded-2xl border border-violet-800/30">
-                        <h4 className="text-xs font-bold text-violet-300 mb-2 flex items-center gap-1.5"><Sparkles size={12} /> {_('aiAlternatives')}</h4>
+                        <h4 className="text-xs font-bold text-violet-300 mb-2 flex items-center gap-1.5"><FontAwesomeIcon icon={faWandMagicSparkles} className="w-3 h-3" /> {_('aiAlternatives')}</h4>
                         <p className="text-xs leading-relaxed text-violet-200/80 whitespace-pre-wrap">{aiAlternatives}</p>
                         {/* Affiliate links */}
                         {alternativeLinks.length > 0 && (
@@ -311,7 +312,7 @@ export default function App() {
                             {alternativeLinks.map(link => (
                               <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer"
                                 className="inline-flex items-center gap-1 text-[10px] bg-[#1C1C2A]/80 text-violet-300 px-2.5 py-1 rounded-lg border border-violet-800/30 hover:bg-violet-950/50 transition-colors">
-                                <ExternalLink size={9} /> {link.label}
+                                <FontAwesomeIcon icon={faArrowUpRightFromSquare} style={{width: 9, height: 9}} /> {link.label}
                               </a>
                             ))}
                           </div>
@@ -321,7 +322,7 @@ export default function App() {
                     {/* Share button */}
                     <button onClick={() => setShowShareCard(true)}
                       className="w-full flex items-center justify-center gap-2 py-3 text-xs font-medium text-rose-400 bg-rose-950/30 hover:bg-rose-950/50 rounded-2xl transition-colors border border-rose-800/30 cursor-pointer min-h-[44px]">
-                      <Share2 size={14} /> {_('shareCard')}
+                      <FontAwesomeIcon icon={faShareNodes} className="w-3.5 h-3.5" /> {_('shareCard')}
                     </button>
                   </div>
                 )}
@@ -334,7 +335,7 @@ export default function App() {
                 <div className="text-center mb-8">
                   <h3 className="text-sm font-medium text-slate-200 mb-2">{_('noSpendTitle')}</h3>
                   <div className="inline-flex items-center gap-2 bg-emerald-950/40 px-4 py-2 rounded-full border border-emerald-800/30">
-                    <CheckCircle2 size={14} className="text-emerald-400" />
+                    <FontAwesomeIcon icon={faCircleCheck} className="w-3.5 h-3.5 text-emerald-400" />
                     <span className="text-xs text-emerald-300 font-medium">{currentStreak} {_('noSpendStreak')}</span>
                   </div>
                 </div>
@@ -358,7 +359,7 @@ export default function App() {
                           !isToday && !isChecked && !isFuture ? 'bg-[#1C1C2A] text-slate-400 hover:bg-[#252536]' : '',
                           isFuture ? 'text-slate-700 cursor-not-allowed' : 'cursor-pointer',
                         ].join(' ')}>
-                        {isChecked ? '✓' : dayNum}
+                        {isChecked ? '\u2713' : dayNum}
                       </button>
                     );
                   })}
@@ -367,7 +368,7 @@ export default function App() {
                   {!aiDailyQuote ? (
                     <button onClick={getAiDailyQuote} disabled={isQuoteLoading}
                       className="w-full flex items-center justify-center gap-2 py-3 text-xs font-medium text-emerald-400 bg-emerald-950/30 hover:bg-emerald-950/50 rounded-2xl transition-colors border border-emerald-800/30 cursor-pointer min-h-[44px]">
-                      {isQuoteLoading ? <Loader2 size={14} className="animate-spin" /> : <Coffee size={14} />}
+                      {isQuoteLoading ? <FontAwesomeIcon icon={faSpinner} className="w-3.5 h-3.5 animate-spin" /> : <FontAwesomeIcon icon={faMugHot} className="w-3.5 h-3.5" />}
                       {isQuoteLoading ? _('aiThinking') : _('getMotivation')}
                     </button>
                   ) : (
@@ -383,12 +384,12 @@ export default function App() {
             {activeTab === 'stats' && (
               <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-300">
                 <div className="bg-gradient-to-br from-violet-950/40 to-rose-950/40 p-5 rounded-2xl border border-slate-800/50 relative overflow-hidden">
-                  <div className="absolute -right-4 -top-4 text-rose-900/30"><MessageSquareQuote size={80} strokeWidth={1} /></div>
+                  <div className="absolute -right-4 -top-4 text-rose-900/30"><FontAwesomeIcon icon={faQuoteLeft} className="w-20 h-20" /></div>
                   <div className="flex items-center justify-between mb-4 relative z-10">
-                    <span className="text-xs font-bold text-slate-200 flex items-center gap-1.5"><Sparkles size={12} className="text-rose-400" /> {_('aiAdvisor')}</span>
+                    <span className="text-xs font-bold text-slate-200 flex items-center gap-1.5"><FontAwesomeIcon icon={faWandMagicSparkles} className="w-3 h-3 text-rose-400" /> {_('aiAdvisor')}</span>
                     <button onClick={getAiAdvice} disabled={isAiLoading || !subscriptions.length}
                       className="text-[10px] bg-[#1C1C2A]/70 text-slate-300 px-3 py-1.5 rounded-xl hover:bg-[#252536] transition-colors flex items-center gap-1 shadow-sm disabled:opacity-50 cursor-pointer">
-                      {isAiLoading ? <Loader2 size={12} className="animate-spin text-rose-400" /> : <Zap size={12} className="text-rose-400" />}
+                      {isAiLoading ? <FontAwesomeIcon icon={faSpinner} className="w-3 h-3 animate-spin text-rose-400" /> : <FontAwesomeIcon icon={faBolt} className="w-3 h-3 text-rose-400" />}
                       {isAiLoading ? _('analyzing') : _('startAnalysis')}
                     </button>
                   </div>
@@ -400,7 +401,7 @@ export default function App() {
                 </div>
                 {subscriptions.length > 0
                   ? <div className="h-44 flex justify-center"><Pie data={pieData} options={pieOptions} /></div>
-                  : <div className="h-44 flex items-center justify-center text-slate-700"><Ghost size={48} strokeWidth={1} /></div>}
+                  : <div className="h-44 flex items-center justify-center text-slate-700"><FontAwesomeIcon icon={faGhost} className="w-12 h-12" /></div>}
                 <div className="bg-[#1C1C2A] p-4 rounded-2xl space-y-3 print:bg-transparent border border-slate-800/40">
                   <div className="flex justify-between items-center text-xs"><span className="text-slate-500">{_('monthlySpend')}</span><span className="font-bold text-slate-200">{displayCurrency}{monthlyTotal.toFixed(2)}</span></div>
                   <div className="w-full h-px bg-slate-800/60 print:bg-slate-300" />
@@ -411,7 +412,7 @@ export default function App() {
 
                 {/* Savings card */}
                 <div className="bg-gradient-to-r from-emerald-950/30 to-teal-950/30 p-4 rounded-2xl border border-emerald-800/20">
-                  <p className="text-xs font-bold text-emerald-300 mb-3 flex items-center gap-1.5"><Skull size={12} /> {_('savingsTitle')}</p>
+                  <p className="text-xs font-bold text-emerald-300 mb-3 flex items-center gap-1.5"><FontAwesomeIcon icon={faSkull} className="w-3 h-3" /> {_('savingsTitle')}</p>
                   {monthlySaved > 0 ? (
                     <div className="space-y-2">
                       <div className="flex justify-between items-center text-xs"><span className="text-slate-500">{_('savedMonthly')}</span><span className="font-bold text-emerald-400">-{displayCurrency}{monthlySaved.toFixed(2)}</span></div>
@@ -426,7 +427,7 @@ export default function App() {
 
                 {/* Tip jar */}
                 <div className="bg-gradient-to-r from-amber-950/30 to-rose-950/30 p-4 rounded-2xl border border-amber-800/20 print:hidden">
-                  <p className="text-xs font-medium text-slate-300 mb-3 flex items-center gap-1.5"><Heart size={12} className="text-rose-400" /> {_('tipTitle')}</p>
+                  <p className="text-xs font-medium text-slate-300 mb-3 flex items-center gap-1.5"><FontAwesomeIcon icon={faHeart} className="w-3 h-3 text-rose-400" /> {_('tipTitle')}</p>
                   <div className="flex gap-2">
                     {[1, 3, 5].map(amt => (
                       <button key={amt} onClick={() => openTip(amt)}
@@ -445,7 +446,7 @@ export default function App() {
             {/* Export button */}
             <button onClick={exportPDF}
               className="w-full flex items-center justify-center gap-2 py-3 text-xs font-medium text-slate-400 bg-[#1C1C2A] hover:bg-[#252536] rounded-xl transition-colors cursor-pointer min-h-[44px] border border-slate-800/40">
-              <Download size={14} /> {_('exportPdf')}
+              <FontAwesomeIcon icon={faDownload} className="w-3.5 h-3.5" /> {_('exportPdf')}
             </button>
 
             {/* Pro upgrade banner */}
@@ -453,13 +454,13 @@ export default function App() {
               <button onClick={() => setShowProModal(true)}
                 className="w-full flex items-center gap-3 p-3 bg-gradient-to-r from-amber-950/40 to-rose-950/40 rounded-xl border border-amber-700/30 hover:from-amber-950/60 hover:to-rose-950/60 transition-all cursor-pointer min-h-[44px] group">
                 <div className="w-8 h-8 bg-gradient-to-br from-amber-500 to-rose-500 rounded-lg flex items-center justify-center shrink-0 shadow-sm shadow-amber-900/30">
-                  <Crown size={14} className="text-white" />
+                  <FontAwesomeIcon icon={faCrown} className="w-3.5 h-3.5 text-white" />
                 </div>
                 <div className="flex-1 text-left">
                   <span className="text-xs font-semibold text-slate-200 block leading-tight">{_('upgradeTitle')}</span>
                   <span className="text-[10px] text-slate-500">{_('upgradePrice')}</span>
                 </div>
-                <ChevronRight size={14} className="text-slate-600 group-hover:text-slate-400 group-hover:translate-x-0.5 transition-all shrink-0" />
+                <FontAwesomeIcon icon={faChevronRight} className="w-3.5 h-3.5 text-slate-600 group-hover:text-slate-400 group-hover:translate-x-0.5 transition-all shrink-0" />
               </button>
             )}
           </div>
@@ -521,19 +522,19 @@ export default function App() {
           <div className="bg-[#141420]/95 backdrop-blur-xl w-full max-w-xs p-8 rounded-[2rem] shadow-2xl animate-in zoom-in-95 fade-in duration-200 border border-slate-800/50" onClick={e => e.stopPropagation()}>
             <div className="text-center mb-6">
               <div className="w-14 h-14 bg-gradient-to-br from-amber-900/60 to-rose-900/60 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-amber-700/30">
-                <Crown size={28} className="text-amber-400" />
+                <FontAwesomeIcon icon={faCrown} className="w-7 h-7 text-amber-400" />
               </div>
               <h3 className="text-sm font-bold text-slate-100 mb-1">{_('upgradeTitle')}</h3>
               <p className="text-xs text-slate-500 leading-relaxed">{_('upgradeDesc')}</p>
             </div>
             <div className="space-y-3 mb-6">
               {[
-                { icon: Sparkles, text: lang === 'zh' ? 'AI 无限使用' : 'Unlimited AI analysis' },
-                { icon: Globe, text: lang === 'zh' ? '云端同步（即将推出）' : 'Cloud sync (coming soon)' },
-                { icon: Lock, text: lang === 'zh' ? '永不收订阅费' : 'No subscription. Ever.' },
-              ].map(({ icon: Icon, text }) => (
+                { icon: faWandMagicSparkles, text: lang === 'zh' ? 'AI \u65E0\u9650\u4F7F\u7528' : 'Unlimited AI analysis' },
+                { icon: faGlobe, text: lang === 'zh' ? '\u4E91\u7AEF\u540C\u6B65\uFF08\u5373\u5C06\u63A8\u51FA\uFF09' : 'Cloud sync (coming soon)' },
+                { icon: faLock, text: lang === 'zh' ? '\u6C38\u4E0D\u6536\u8BA2\u9605\u8D39' : 'No subscription. Ever.' },
+              ].map(({ icon, text }) => (
                 <div key={text} className="flex items-center gap-3 text-xs text-slate-300">
-                  <Icon size={14} className="text-amber-400 shrink-0" /> {text}
+                  <FontAwesomeIcon icon={icon} className="w-3.5 h-3.5 text-amber-400 shrink-0" /> {text}
                 </div>
               ))}
             </div>

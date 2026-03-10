@@ -1,5 +1,6 @@
 import React from 'react';
-import { Ghost, Sparkles, Shield, Zap, Heart, ChevronRight, Star } from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGhost, faWandMagicSparkles, faShieldHalved, faBolt, faChevronRight, faStar } from '@fortawesome/free-solid-svg-icons';
 
 export default function Landing({ onEnterApp, lang }) {
   const isZh = lang === 'zh';
@@ -27,7 +28,7 @@ export default function Landing({ onEnterApp, lang }) {
 
         <button onClick={onEnterApp}
           className="inline-flex items-center gap-2 px-8 py-4 bg-rose-600 text-white text-sm font-medium rounded-2xl hover:bg-rose-500 transition-all shadow-xl shadow-rose-900/30 group cursor-pointer">
-          {isZh ? '开始使用' : 'Start Slaying'} <ChevronRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+          {isZh ? '开始使用' : 'Start Slaying'} <FontAwesomeIcon icon={faChevronRight} className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
         </button>
         <p className="text-[11px] text-slate-500 mt-3">
           {isZh ? '免费使用 · 无需注册 · 数据存在你本地' : 'Free · No signup · Your data stays on your device'}
@@ -37,7 +38,7 @@ export default function Landing({ onEnterApp, lang }) {
       {/* Anti-subscription badge */}
       <div className="mb-12 px-6">
         <div className="inline-flex items-center gap-2 bg-rose-950/40 border border-rose-800/30 px-5 py-2.5 rounded-full">
-          <Shield size={14} className="text-rose-400" />
+          <FontAwesomeIcon icon={faShieldHalved} className="w-3.5 h-3.5 text-rose-400" />
           <span className="text-xs font-medium text-rose-300">
             {isZh
               ? '唯一一个不收订阅费的订阅管理工具'
@@ -51,29 +52,29 @@ export default function Landing({ onEnterApp, lang }) {
         <div className="grid gap-4">
           {[
             {
-              icon: Ghost,
+              icon: faGhost,
               title: isZh ? '追踪隐形订阅' : 'Track Hidden Subscriptions',
               desc: isZh ? '多币种支持，一眼看清每月被吸了多少血' : 'Multi-currency support. See exactly how much is being drained monthly.',
             },
             {
-              icon: Sparkles,
+              icon: faWandMagicSparkles,
               title: isZh ? 'AI 毒舌顾问' : 'AI Roast Advisor',
               desc: isZh ? 'AI 分析你的消费，帮你找平替，还会嘲讽你' : 'AI analyzes your spending, finds alternatives, and roasts you for fun.',
             },
             {
-              icon: Star,
+              icon: faStar,
               title: isZh ? '不消费打卡' : 'No-Spend Streak',
               desc: isZh ? '每日打卡养成省钱习惯，AI 给你情绪支持' : 'Daily check-ins build saving habits. AI cheers (or mocks) your progress.',
             },
             {
-              icon: Zap,
+              icon: faBolt,
               title: isZh ? '分享你的吸血鬼报告' : 'Share Your Vampire Report',
               desc: isZh ? '生成好看的消费报告分享到社交媒体，让朋友也来查查' : 'Generate a shareable spending card. Let your friends find their vampires too.',
             },
-          ].map(({ icon: Icon, title, desc }) => (
+          ].map(({ icon, title, desc }) => (
             <div key={title} className="bg-[#141420]/80 backdrop-blur-sm rounded-2xl p-5 border border-slate-800/60 flex items-start gap-4 hover:border-rose-800/30 transition-colors cursor-pointer">
               <div className="w-10 h-10 bg-[#1C1C2A] rounded-xl flex items-center justify-center shrink-0">
-                <Icon size={18} className="text-rose-400" strokeWidth={1.5} />
+                <FontAwesomeIcon icon={icon} className="w-[18px] h-[18px] text-rose-400" />
               </div>
               <div>
                 <h3 className="text-sm font-medium text-slate-200 mb-1">{title}</h3>
@@ -94,10 +95,10 @@ export default function Landing({ onEnterApp, lang }) {
             <p className="text-xs text-slate-500 uppercase tracking-widest mb-2">{isZh ? '免费版' : 'Free'}</p>
             <p className="text-2xl font-bold text-slate-100 mb-4">$0</p>
             <ul className="text-xs text-slate-400 space-y-2 text-left">
-              <li>{isZh ? '✓ 无限订阅追踪' : '✓ Unlimited subscription tracking'}</li>
-              <li>{isZh ? '✓ 不消费打卡日历' : '✓ No-spend calendar'}</li>
-              <li>{isZh ? '✓ 统计图表' : '✓ Statistics & charts'}</li>
-              <li>{isZh ? '✓ AI 每天 3 次' : '✓ 3 AI analyses per day'}</li>
+              <li>{isZh ? '\u2713 无限订阅追踪' : '\u2713 Unlimited subscription tracking'}</li>
+              <li>{isZh ? '\u2713 不消费打卡日历' : '\u2713 No-spend calendar'}</li>
+              <li>{isZh ? '\u2713 统计图表' : '\u2713 Statistics & charts'}</li>
+              <li>{isZh ? '\u2713 AI 每天 3 次' : '\u2713 3 AI analyses per day'}</li>
             </ul>
           </div>
           <div className="bg-gradient-to-br from-amber-950/40 to-rose-950/40 rounded-2xl p-6 border border-amber-700/30 text-center relative overflow-hidden">
@@ -108,10 +109,10 @@ export default function Landing({ onEnterApp, lang }) {
             <p className="text-2xl font-bold text-slate-100 mb-1">$4.99</p>
             <p className="text-[10px] text-slate-500 mb-4">{isZh ? '买断，永不订阅' : 'Once. Forever. No subscription.'}</p>
             <ul className="text-xs text-slate-300 space-y-2 text-left">
-              <li>{isZh ? '✓ 一切免费版功能' : '✓ Everything in Free'}</li>
-              <li>{isZh ? '✓ AI 无限使用' : '✓ Unlimited AI analyses'}</li>
-              <li>{isZh ? '✓ 云端同步（即将推出）' : '✓ Cloud sync (coming soon)'}</li>
-              <li>{isZh ? '✓ 续费提醒（即将推出）' : '✓ Renewal reminders (soon)'}</li>
+              <li>{isZh ? '\u2713 一切免费版功能' : '\u2713 Everything in Free'}</li>
+              <li>{isZh ? '\u2713 AI 无限使用' : '\u2713 Unlimited AI analyses'}</li>
+              <li>{isZh ? '\u2713 云端同步（即将推出）' : '\u2713 Cloud sync (coming soon)'}</li>
+              <li>{isZh ? '\u2713 续费提醒（即将推出）' : '\u2713 Renewal reminders (soon)'}</li>
             </ul>
           </div>
         </div>
@@ -122,7 +123,7 @@ export default function Landing({ onEnterApp, lang }) {
         <button onClick={onEnterApp}
           className="inline-flex items-center gap-2 px-8 py-4 bg-rose-600 text-white text-sm font-medium rounded-2xl hover:bg-rose-500 transition-all shadow-xl shadow-rose-900/30 group cursor-pointer">
           {isZh ? '立即开始，免费' : 'Get Started — It\'s Free'}
-          <ChevronRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+          <FontAwesomeIcon icon={faChevronRight} className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
         </button>
       </div>
 
