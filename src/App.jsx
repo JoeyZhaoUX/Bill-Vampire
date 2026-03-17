@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faPlus, faTrash, faGhost, faBolt, faChartPie,
   faCircleCheck, faDownload, faQuoteLeft,
-  faSpinner, faWandMagicSparkles, faReceipt, faMagnifyingGlass, faMugHot,
+  faSpinner, faWandMagicSparkles, faMagnifyingGlass, faMugHot,
   faShareNodes, faCrown, faHeart, faGlobe, faLock, faArrowUpRightFromSquare, faChevronRight, faSkull,
 } from '@fortawesome/free-solid-svg-icons';
 import {
