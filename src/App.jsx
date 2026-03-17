@@ -34,7 +34,7 @@ const CATEGORY_KEYS = ['catEntertainment', 'catProductivity', 'catLifestyle', 'c
 const CATEGORY_VALUES = ['Entertainment', 'Productivity', 'Lifestyle', 'Other'];
 const CATEGORY_ICONS = { 'Entertainment': '\u{1F3AE}', 'Productivity': '\u26A1', 'Lifestyle': '\u{1F33F}', 'Other': '\u{1F4E6}' };
 
-export default function App() {
+export default function App({ onLegal }) {
   const [lang, setLang] = useState(getDefaultLang);
   const [activeTab, setActiveTab] = useState('subs');
   const [subscriptions, setSubscriptions] = useState([]);
@@ -466,8 +466,13 @@ export default function App() {
           </div>
         </div>
 
-        <footer className="mt-8 text-center text-[10px] text-slate-600 font-light tracking-wider print:hidden">
-          {_('footer')}
+        <footer className="mt-8 text-center print:hidden">
+          <p className="text-[10px] text-slate-600 font-light tracking-wider mb-2">{_('footer')}</p>
+          <div className="flex justify-center gap-3">
+            <button onClick={() => onLegal('terms')} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer">Terms</button>
+            <button onClick={() => onLegal('privacy')} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer">Privacy</button>
+            <button onClick={() => onLegal('refund')} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer">Refund</button>
+          </div>
         </footer>
       </div>
 

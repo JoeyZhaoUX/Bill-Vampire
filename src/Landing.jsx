@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGhost, faWandMagicSparkles, faShieldHalved, faBolt, faChevronRight, faStar } from '@fortawesome/free-solid-svg-icons';
 
-export default function Landing({ onEnterApp, lang }) {
+export default function Landing({ onEnterApp, onLegal, lang }) {
   const isZh = lang === 'zh';
 
   return (
@@ -128,10 +128,21 @@ export default function Landing({ onEnterApp, lang }) {
       </div>
 
       {/* Footer */}
-      <footer className="w-full py-8 text-center border-t border-slate-800/50">
-        <p className="text-[10px] text-slate-600">
+      <footer className="w-full py-8 border-t border-slate-800/50">
+        <p className="text-[10px] text-slate-600 text-center mb-3">
           Bill Vampire — {isZh ? '让每一分钱都被看见' : 'Make every dollar visible'}
         </p>
+        <div className="flex justify-center gap-4">
+          <button onClick={() => onLegal('terms')} className="text-[10px] text-slate-600 hover:text-slate-400 transition-colors cursor-pointer">
+            {isZh ? '服务条款' : 'Terms of Service'}
+          </button>
+          <button onClick={() => onLegal('privacy')} className="text-[10px] text-slate-600 hover:text-slate-400 transition-colors cursor-pointer">
+            {isZh ? '隐私政策' : 'Privacy Policy'}
+          </button>
+          <button onClick={() => onLegal('refund')} className="text-[10px] text-slate-600 hover:text-slate-400 transition-colors cursor-pointer">
+            {isZh ? '退款政策' : 'Refund Policy'}
+          </button>
+        </div>
       </footer>
     </div>
   );
