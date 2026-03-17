@@ -106,7 +106,7 @@ export default function Landing({ onEnterApp, onLegal, lang }) {
               {isZh ? '一次性' : 'ONE TIME'}
             </div>
             <p className="text-xs text-amber-400 uppercase tracking-widest mb-2">Pro</p>
-            <p className="text-2xl font-bold text-slate-100 mb-1">$4.99</p>
+            <p className="text-2xl font-bold text-slate-100 mb-1">$6.99</p>
             <p className="text-[10px] text-slate-500 mb-4">{isZh ? '买断，永不订阅' : 'Once. Forever. No subscription.'}</p>
             <ul className="text-xs text-slate-300 space-y-2 text-left">
               <li>{isZh ? '\u2713 一切免费版功能' : '\u2713 Everything in Free'}</li>
