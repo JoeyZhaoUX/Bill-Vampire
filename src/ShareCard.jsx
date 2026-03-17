@@ -19,14 +19,14 @@ export default function ShareCard({ monthlyTotal, subscriptions, currency, t, on
     if (navigator.share) {
       try {
         await navigator.share({ title: t('shareTitle'), text: shareText });
-      } catch (e) {
+      } catch {
         // User cancelled sharing
       }
     } else {
       await navigator.clipboard.writeText(shareText);
       alert('Copied to clipboard!');
     }
-  }, [monthlyTotal, subscriptions, currency, t, biggest]);
+  }, [monthlyTotal, currency, t, biggest]);
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
