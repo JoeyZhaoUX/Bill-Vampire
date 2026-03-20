@@ -7,7 +7,12 @@ import {
 import { openCheckout } from './pro';
 import { SUPPORTED_LANGS } from './i18n';
 
-const ICONS8 = 'https://img.icons8.com/3d-fluency/94';
+const emojiSvg = (e) => `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="94" height="94" viewBox="0 0 94 94"><text x="47" y="62" font-size="52" text-anchor="middle" dominant-baseline="central">${e}</text></svg>`)}`;
+const ICON = {
+  ghost: emojiSvg('👻'), robot: emojiSvg('🤖'), scanner: emojiSvg('📷'),
+  calendar: emojiSvg('📅'), megaphone: emojiSvg('📣'), lock: emojiSvg('🔒'),
+  add: emojiSvg('➕'), bot: emojiSvg('🤖'), money: emojiSvg('💰'),
+};
 
 export default function Landing({ onEnterApp, onLegal, lang, setLang }) {
   const isZh = lang === 'zh';
@@ -20,33 +25,33 @@ export default function Landing({ onEnterApp, onLegal, lang, setLang }) {
 
   const features = [
     {
-      icon: `${ICONS8}/ghost.png`,
+      icon: ICON.ghost,
       title: isZh ? '追踪隐形订阅' : 'Track Hidden Subscriptions',
       desc: isZh ? '多币种支持（USD/CNY/EUR/GBP/JPY/HKD），一眼看清每月被吸了多少血。可视化图表展示消费分布。' : 'Multi-currency support (USD/CNY/EUR/GBP/JPY/HKD). See exactly how much is being drained monthly with visual charts.',
     },
     {
-      icon: `${ICONS8}/robot-2.png`,
+      icon: ICON.robot,
       title: isZh ? 'AI 毒舌顾问' : 'AI Roast Advisor',
       desc: isZh ? 'AI 分析你的消费习惯，一针见血地指出问题，帮你找到更便宜的平替方案。' : 'AI analyzes your spending habits, gives brutally honest advice, and finds cheaper alternatives.',
     },
     {
-      icon: `${ICONS8}/scanner.png`,
+      icon: ICON.scanner,
       title: isZh ? '智能导入账单' : 'Smart Import',
       desc: isZh ? '粘贴扣款通知文本，或上传截图/PDF，AI 自动识别并提取订阅信息，一键添加。' : 'Paste billing text or upload screenshots/PDFs. AI extracts subscription info and adds them automatically.',
       isNew: true,
     },
     {
-      icon: `${ICONS8}/calendar--v2.png`,
+      icon: ICON.calendar,
       title: isZh ? '不消费打卡' : 'No-Spend Streak',
       desc: isZh ? '每日打卡养成省钱习惯，AI 傲娇地给你情绪支持，让你不知不觉存更多钱。' : 'Daily check-ins build saving habits. Your AI companion cheers or mocks your progress.',
     },
     {
-      icon: `${ICONS8}/megaphone.png`,
+      icon: ICON.megaphone,
       title: isZh ? '分享吸血鬼报告' : 'Share Vampire Report',
       desc: isZh ? '生成精美的消费分析卡片，分享到社交媒体，让朋友也来查查自己的吸血鬼。' : 'Generate a beautiful spending card. Share it on social media and let friends find their vampires.',
     },
     {
-      icon: `${ICONS8}/lock.png`,
+      icon: ICON.lock,
       title: isZh ? '隐私优先' : 'Privacy First',
       desc: isZh ? '数据存在你的设备上，不上传任何服务器。没有账号、没有追踪、没有广告。' : 'Your data stays on your device. No accounts, no tracking, no ads. Your finances, your business.',
     },
@@ -55,19 +60,19 @@ export default function Landing({ onEnterApp, onLegal, lang, setLang }) {
   const steps = [
     {
       num: '01',
-      icon: `${ICONS8}/add.png`,
+      icon: ICON.add,
       title: isZh ? '添加你的订阅' : 'Add Your Subscriptions',
       desc: isZh ? '手动添加或使用智能导入，拍照/截图即可自动识别' : 'Add manually or use Smart Import — snap a photo or paste text and AI does the rest',
     },
     {
       num: '02',
-      icon: `${ICONS8}/bot.png`,
+      icon: ICON.bot,
       title: isZh ? 'AI 分析你的消费' : 'AI Analyzes Your Spending',
       desc: isZh ? 'AI 毒舌你的消费习惯，找到更便宜的替代方案' : 'AI roasts your habits and finds cheaper alternatives you didn\'t know existed',
     },
     {
       num: '03',
-      icon: `${ICONS8}/money-bag.png`,
+      icon: ICON.money,
       title: isZh ? '省钱，就这么简单' : 'Save Money. That Simple.',
       desc: isZh ? '追踪你的节省成果，养成每日省钱打卡的习惯' : 'Track your savings, build daily no-spend streaks, and watch your money grow',
     },
@@ -340,7 +345,7 @@ export default function Landing({ onEnterApp, onLegal, lang, setLang }) {
             {/* Mock Smart Import UI */}
             <div className="bg-[#141420]/80 rounded-2xl border border-slate-800/40 p-6 shadow-xl">
               <div className="flex items-center gap-2 mb-4">
-                <img src={`${ICONS8}/scanner.png`} alt="" className="w-6 h-6" />
+                <img src={ICON.scanner} alt="" className="w-6 h-6" />
                 <span className="text-xs font-bold text-slate-200 uppercase tracking-wider">{isZh ? '智能导入' : 'Smart Import'}</span>
               </div>
               <div className="bg-[#1C1C2A] rounded-xl p-4 mb-4 border border-slate-700/30">
