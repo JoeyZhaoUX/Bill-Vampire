@@ -47,9 +47,12 @@ function getSuccessUrl() {
   return encodeURIComponent(base + '#payment-success');
 }
 
+export function getCheckoutUrl() {
+  return `${CREEM_CHECKOUT_URL}?success_url=${getSuccessUrl()}`;
+}
+
 export function openCheckout() {
-  const url = `${CREEM_CHECKOUT_URL}?success_url=${getSuccessUrl()}`;
-  window.open(url, '_blank');
+  window.open(getCheckoutUrl(), '_blank');
 }
 
 // Check if the user just completed a payment (redirected back from Creem.io)

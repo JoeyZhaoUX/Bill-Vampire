@@ -12,7 +12,7 @@ import {
 } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import { t, getDefaultLang, SUPPORTED_LANGS } from './i18n';
-import { isPro, canUseAi, incrementAiUsage, aiUsesRemaining, openCheckout, openTip } from './pro';
+import { isPro, canUseAi, incrementAiUsage, aiUsesRemaining, openCheckout, getCheckoutUrl, openTip } from './pro';
 import { injectAffiliateLinks } from './affiliates';
 import ShareCard from './ShareCard';
 import PrintReport from './PrintReport';
@@ -400,9 +400,9 @@ export default function App({ onLegal }) {
 
               {/* Legal links */}
               <div className="flex gap-3 pt-2">
-                <button onClick={() => onLegal('terms')} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer">Terms</button>
-                <button onClick={() => onLegal('privacy')} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer">Privacy</button>
-                <button onClick={() => onLegal('refund')} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer">Refund</button>
+                <a href={`${import.meta.env.BASE_URL}terms.html`} onClick={(e) => { e.preventDefault(); onLegal('terms'); }} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer no-underline">Terms</a>
+                <a href={`${import.meta.env.BASE_URL}privacy.html`} onClick={(e) => { e.preventDefault(); onLegal('privacy'); }} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer no-underline">Privacy</a>
+                <a href={`${import.meta.env.BASE_URL}refund.html`} onClick={(e) => { e.preventDefault(); onLegal('refund'); }} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer no-underline">Refund</a>
               </div>
               <p className="text-[9px] text-slate-700 font-light tracking-wider">{_('footer')}</p>
             </div>
@@ -638,9 +638,9 @@ export default function App({ onLegal }) {
               <footer className="mt-6 text-center">
                 <p className="text-[10px] text-slate-600 font-light tracking-wider mb-2">{_('footer')}</p>
                 <div className="flex justify-center gap-3">
-                  <button onClick={() => onLegal('terms')} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer">Terms</button>
-                  <button onClick={() => onLegal('privacy')} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer">Privacy</button>
-                  <button onClick={() => onLegal('refund')} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer">Refund</button>
+                  <a href={`${import.meta.env.BASE_URL}terms.html`} onClick={(e) => { e.preventDefault(); onLegal('terms'); }} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer no-underline">Terms</a>
+                  <a href={`${import.meta.env.BASE_URL}privacy.html`} onClick={(e) => { e.preventDefault(); onLegal('privacy'); }} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer no-underline">Privacy</a>
+                  <a href={`${import.meta.env.BASE_URL}refund.html`} onClick={(e) => { e.preventDefault(); onLegal('refund'); }} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer no-underline">Refund</a>
                 </div>
               </footer>
             </div>
@@ -715,10 +715,10 @@ export default function App({ onLegal }) {
                 </div>
               ))}
             </div>
-            <button onClick={() => { openCheckout(); setShowProModal(false); }}
-              className="w-full py-3.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-2xl hover:from-amber-400 hover:to-rose-400 transition-colors shadow-lg shadow-rose-900/30 mb-2 cursor-pointer min-h-[44px]">
+            <a href={getCheckoutUrl()} target="_blank" rel="noopener noreferrer" onClick={() => setShowProModal(false)}
+              className="w-full py-3.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-2xl hover:from-amber-400 hover:to-rose-400 transition-colors shadow-lg shadow-rose-900/30 mb-2 cursor-pointer min-h-[44px] flex items-center justify-center no-underline">
               {_('upgradeCta')} — {_('upgradePrice')}
-            </button>
+            </a>
             <button onClick={() => setShowProModal(false)}
               className="w-full py-2 text-xs text-slate-500 hover:text-slate-300 transition-colors cursor-pointer min-h-[44px]">
               {_('cancel')}

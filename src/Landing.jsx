@@ -4,7 +4,7 @@ import {
   faChevronRight, faCrown, faChevronDown,
   faShieldHalved, faArrowRight,
 } from '@fortawesome/free-solid-svg-icons';
-import { openCheckout } from './pro';
+import { openCheckout, getCheckoutUrl } from './pro';
 import { SUPPORTED_LANGS } from './i18n';
 
 const emojiSvg = (e) => `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="94" height="94" viewBox="0 0 94 94"><text x="47" y="62" font-size="52" text-anchor="middle" dominant-baseline="central">${e}</text></svg>`)}`;
@@ -93,7 +93,7 @@ export default function Landing({ onEnterApp, onLegal, lang, setLang }) {
     },
     {
       q: isZh ? 'AI 分析用的什么技术？' : 'What AI powers the analysis?',
-      a: isZh ? '我们使用 Google Gemini 2.5 Flash 模型。所有 API 调用通过我们的安全后端代理，你的 AI 对话数据不会被存储。' : 'We use Google Gemini 2.5 Flash. All API calls go through our secure backend proxy. Your AI conversation data is never stored.',
+      a: isZh ? '我们使用 Google Gemini 2.5 Flash 模型。所有 API 调用通过我们的安全后端代理，你的 AI 对话数据不会被存储。Bill Vampire 是独立产品，与 Google 没有关联或背书关系。AI 生成的建议仅供参考和娱乐，不构成专业财务建议。' : 'We use Google Gemini 2.5 Flash. All API calls go through our secure backend proxy. Your AI conversation data is never stored. Bill Vampire is an independent product, not affiliated with or endorsed by Google. AI-generated advice is for informational and entertainment purposes only — not professional financial advice.',
     },
     {
       q: isZh ? '支持哪些货币？' : 'What currencies are supported?',
@@ -128,10 +128,10 @@ export default function Landing({ onEnterApp, onLegal, lang, setLang }) {
                 </button>
               ))}
             </div>
-            <button onClick={() => openCheckout()}
-              className="hidden sm:flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-amber-300 hover:text-amber-200 transition-colors cursor-pointer">
+            <a href={getCheckoutUrl()} target="_blank" rel="noopener noreferrer"
+              className="hidden sm:flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-amber-300 hover:text-amber-200 transition-colors cursor-pointer no-underline">
               <FontAwesomeIcon icon={faCrown} className="w-3 h-3" /> {isZh ? '升级 Pro' : 'Get Pro'}
-            </button>
+            </a>
             <button onClick={onEnterApp}
               className="flex items-center gap-1.5 px-5 py-2.5 bg-rose-600 text-white text-xs font-medium rounded-xl hover:bg-rose-500 transition-colors cursor-pointer">
               {isZh ? '打开应用' : 'Open App'} <FontAwesomeIcon icon={faArrowRight} className="w-3 h-3" />
@@ -466,11 +466,11 @@ export default function Landing({ onEnterApp, onLegal, lang, setLang }) {
                   </li>
                 ))}
               </ul>
-              <button onClick={openCheckout}
-                className="w-full py-3 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all shadow-lg shadow-rose-900/30 cursor-pointer flex items-center justify-center gap-1.5">
+              <a href={getCheckoutUrl()} target="_blank" rel="noopener noreferrer"
+                className="w-full py-3 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all shadow-lg shadow-rose-900/30 cursor-pointer flex items-center justify-center gap-1.5 no-underline">
                 <FontAwesomeIcon icon={faCrown} className="w-3 h-3" />
                 {isZh ? '立即购买' : 'Get Pro'}
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -535,18 +535,21 @@ export default function Landing({ onEnterApp, onLegal, lang, setLang }) {
               <span className="text-[10px] text-slate-700 ml-1">{isZh ? '让每一分钱都被看见' : 'Make every dollar visible'}</span>
             </div>
             <div className="flex items-center gap-5">
-              <button onClick={() => onLegal('terms')} className="text-[11px] text-slate-600 hover:text-slate-400 transition-colors cursor-pointer">
+              <a href={`${import.meta.env.BASE_URL}terms.html`} onClick={(e) => { e.preventDefault(); onLegal('terms'); }} className="text-[11px] text-slate-600 hover:text-slate-400 transition-colors cursor-pointer no-underline">
                 {isZh ? '服务条款' : 'Terms'}
-              </button>
-              <button onClick={() => onLegal('privacy')} className="text-[11px] text-slate-600 hover:text-slate-400 transition-colors cursor-pointer">
+              </a>
+              <a href={`${import.meta.env.BASE_URL}privacy.html`} onClick={(e) => { e.preventDefault(); onLegal('privacy'); }} className="text-[11px] text-slate-600 hover:text-slate-400 transition-colors cursor-pointer no-underline">
                 {isZh ? '隐私政策' : 'Privacy'}
-              </button>
-              <button onClick={() => onLegal('refund')} className="text-[11px] text-slate-600 hover:text-slate-400 transition-colors cursor-pointer">
+              </a>
+              <a href={`${import.meta.env.BASE_URL}refund.html`} onClick={(e) => { e.preventDefault(); onLegal('refund'); }} className="text-[11px] text-slate-600 hover:text-slate-400 transition-colors cursor-pointer no-underline">
                 {isZh ? '退款政策' : 'Refund'}
-              </button>
+              </a>
             </div>
           </div>
-          <p className="text-center text-[10px] text-slate-800 mt-6">&copy; {new Date().getFullYear()} Bill Vampire. All rights reserved.</p>
+          <div className="text-center mt-6">
+            <a href="mailto:hello@billvampire.com" className="text-[11px] text-slate-600 hover:text-slate-400 transition-colors no-underline">hello@billvampire.com</a>
+            <p className="text-[10px] text-slate-800 mt-2">&copy; {new Date().getFullYear()} Bill Vampire. All rights reserved.</p>
+          </div>
         </div>
       </footer>
     </div>

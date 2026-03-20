@@ -26,10 +26,10 @@ function TermsOfService() {
         <p>Bill Vampire stores your subscription data locally on your device using browser local storage. We do not collect, transmit, or store your subscription information on our servers. You are responsible for backing up your own data.</p>
       </Section>
       <Section title="4. AI Features">
-        <p>The Service includes AI-powered analysis features provided through third-party APIs (Google Gemini). AI-generated advice, roasts, and alternative suggestions are for informational and entertainment purposes only and should not be considered professional financial advice.</p>
+        <p>The Service includes AI-powered analysis features provided through third-party APIs (Google Gemini). AI-generated advice, roasts, and alternative suggestions are for informational and entertainment purposes only and should not be considered professional financial advice. Bill Vampire is an independent product and is not affiliated with or endorsed by Google.</p>
       </Section>
-      <Section title="5. Pro Upgrade">
-        <p>The Pro upgrade is a one-time purchase processed through Creem. By purchasing Pro, you receive a permanent license to use Pro features. Pro status is stored locally on your device.</p>
+      <Section title="5. Pro Upgrade & Payment Processing">
+        <p>The Pro upgrade is a one-time purchase of 9.99 USD processed through <a href="https://www.creem.io" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">Creem</a>, our merchant of record and payment processor. By purchasing Pro, you receive a permanent license to use Pro features. Creem handles all payment processing, sales tax, and billing. Pro status is stored locally on your device.</p>
       </Section>
       <Section title="6. Acceptable Use">
         <p>You agree not to misuse the Service, attempt to reverse-engineer it, or use it for any unlawful purpose. We reserve the right to terminate access for users who violate these terms.</p>
