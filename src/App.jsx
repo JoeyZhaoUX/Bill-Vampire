@@ -125,10 +125,13 @@ export default function App({ onLegal }) {
         body: JSON.stringify({ contents: [{ parts: [{ text: userPrompt }] }], systemInstruction: { parts: [{ text: systemPrompt }] } }),
       });
       const data = await res.json();
-      if (data.error) {
-        const msg = typeof data.error === 'string' ? data.error : data.error?.message || JSON.stringify(data.error);
+      if (!res.ok || data.error) {
+        const msg = typeof data.error === 'string' ? data.error : data.error?.message || 'Unknown error';
         console.error('Gemini API error:', msg);
-        return lang === 'zh' ? '\uFF08\u670D\u52A1\u5668\u9519\u8BEF\uFF09' : '(AI service temporarily unavailable)';
+        if (msg.includes('quota') || msg.includes('rate') || res.status === 429) {
+          return lang === 'zh' ? 'AI \u6682\u65F6\u7E41\u5FD9\uFF0C\u8BF7\u7A0D\u540E\u518D\u8BD5\u3002' : 'AI is busy right now. Please try again in a minute.';
+        }
+        return lang === 'zh' ? 'AI \u670D\u52A1\u6682\u65F6\u4E0D\u53EF\u7528\u3002' : 'AI service temporarily unavailable.';
       }
       return data.candidates?.[0]?.content?.parts?.[0]?.text || (lang === 'zh' ? 'AI \u4F3C\u4E4E\u5728\u6253\u76F9\u3002' : 'AI seems to be napping.');
     } catch (err) { console.error(err); return lang === 'zh' ? 'AI \u6682\u65F6\u65AD\u7F51\u4E86\u3002' : 'AI is offline. Probably saving electricity for you.'; }
