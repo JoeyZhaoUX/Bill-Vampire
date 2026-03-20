@@ -30,6 +30,20 @@
     0%, 100% { opacity: 0.15; }
     50% { opacity: 0.25; }
   }
+
+  /* Landing page fade-in animations */
+  .landing-fade-in {
+    animation: landingFadeUp 0.8s ease-out both;
+  }
+  .landing-delay-1 { animation-delay: 0.1s; }
+  .landing-delay-2 { animation-delay: 0.2s; }
+  .landing-delay-3 { animation-delay: 0.3s; }
+  .landing-delay-4 { animation-delay: 0.5s; }
+
+  @keyframes landingFadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 }
 
 body {
