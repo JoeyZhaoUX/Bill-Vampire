@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGhost, faWandMagicSparkles, faShieldHalved, faBolt, faChevronRight, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faGhost, faWandMagicSparkles, faShieldHalved, faBolt, faChevronRight, faStar, faCrown } from '@fortawesome/free-solid-svg-icons';
+import { openCheckout } from './pro';
 
 export default function Landing({ onEnterApp, onLegal, lang }) {
   const isZh = lang === 'zh';
@@ -108,12 +109,17 @@ export default function Landing({ onEnterApp, onLegal, lang }) {
             <p className="text-xs text-amber-400 uppercase tracking-widest mb-2">Pro</p>
             <p className="text-2xl font-bold text-slate-100 mb-1">$6.99</p>
             <p className="text-[10px] text-slate-500 mb-4">{isZh ? '买断，永不订阅' : 'Once. Forever. No subscription.'}</p>
-            <ul className="text-xs text-slate-300 space-y-2 text-left">
+            <ul className="text-xs text-slate-300 space-y-2 text-left mb-4">
               <li>{isZh ? '\u2713 一切免费版功能' : '\u2713 Everything in Free'}</li>
               <li>{isZh ? '\u2713 AI 无限使用' : '\u2713 Unlimited AI analyses'}</li>
               <li>{isZh ? '\u2713 云端同步（即将推出）' : '\u2713 Cloud sync (coming soon)'}</li>
               <li>{isZh ? '\u2713 续费提醒（即将推出）' : '\u2713 Renewal reminders (soon)'}</li>
             </ul>
+            <button onClick={openCheckout}
+              className="w-full py-2.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:from-amber-400 hover:to-rose-400 transition-colors shadow-lg shadow-rose-900/30 cursor-pointer flex items-center justify-center gap-1.5">
+              <FontAwesomeIcon icon={faCrown} className="w-3 h-3" />
+              {isZh ? '立即购买' : 'Get Pro'}
+            </button>
           </div>
         </div>
       </div>

@@ -39,20 +39,32 @@ export function aiUsesRemaining() {
   return Math.max(0, AI_DAILY_LIMIT - getAiUsageToday());
 }
 
-// LemonSqueezy checkout URL - replace with your actual product URL
-const LEMONSQUEEZY_URL = 'https://your-store.lemonsqueezy.com/checkout/buy/your-product-id';
+// Creem.io checkout URL
+const CREEM_CHECKOUT_URL = 'https://www.creem.io/payment/prod_1pw0aIvQW2CzNzfMLrgGAY';
 
-export function openCheckout() {
-  window.open(LEMONSQUEEZY_URL, '_blank');
+function getSuccessUrl() {
+  const base = window.location.origin + window.location.pathname;
+  return encodeURIComponent(base + '#payment-success');
 }
 
-// Tip jar URLs
-const TIP_URLS = {
-  1: 'https://your-store.lemonsqueezy.com/checkout/buy/tip-1',
-  3: 'https://your-store.lemonsqueezy.com/checkout/buy/tip-3',
-  5: 'https://your-store.lemonsqueezy.com/checkout/buy/tip-5',
-};
+export function openCheckout() {
+  const url = `${CREEM_CHECKOUT_URL}?success_url=${getSuccessUrl()}`;
+  window.open(url, '_blank');
+}
 
-export function openTip(amount) {
-  window.open(TIP_URLS[amount] || TIP_URLS[3], '_blank');
+// Check if the user just completed a payment (redirected back from Creem.io)
+export function checkPaymentSuccess() {
+  const hash = window.location.hash;
+  if (hash === '#payment-success') {
+    activatePro();
+    // Clean up the hash
+    window.location.hash = '';
+    return true;
+  }
+  return false;
+}
+
+// Tip jar - using same Creem.io checkout (users can adjust amount)
+export function openTip() {
+  window.open(CREEM_CHECKOUT_URL, '_blank');
 }
