@@ -4,7 +4,7 @@ import {
   faPlus, faTrash, faGhost, faBolt, faChartPie,
   faCircleCheck, faDownload, faQuoteLeft,
   faSpinner, faWandMagicSparkles, faReceipt, faMagnifyingGlass, faMugHot,
-  faShareNodes, faCrown, faHeart, faGlobe, faLock, faArrowUpRightFromSquare, faChevronRight, faSkull,
+  faShareNodes, faCrown, faHeart, faGlobe, faLock, faArrowUpRightFromSquare, faChevronRight, faSkull, faFileImport, faXmark, faCheck,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   Chart as ChartJS, ArcElement, Tooltip, Legend,
@@ -51,6 +51,12 @@ export default function App({ onLegal }) {
   const [aiDailyQuote, setAiDailyQuote] = useState('');
   const [isQuoteLoading, setIsQuoteLoading] = useState(false);
   const [cancelledSubs, setCancelledSubs] = useState([]);
+  const [showImportModal, setShowImportModal] = useState(false);
+  const [importText, setImportText] = useState('');
+  const [importFile, setImportFile] = useState(null);
+  const [importFileName, setImportFileName] = useState('');
+  const [isExtracting, setIsExtracting] = useState(false);
+  const [extractedBills, setExtractedBills] = useState(null);
 
   const _ = (key) => t(lang, key);
 
@@ -178,6 +184,99 @@ export default function App({ onLegal }) {
       systemPrompt,
     );
     setAiDailyQuote(result); setIsQuoteLoading(false);
+  };
+
+  const fileToBase64 = (file) => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+
+  const handleImportFile = (file) => {
+    if (!file) return;
+    const validTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'application/pdf'];
+    if (!validTypes.includes(file.type)) return;
+    setImportFile(file);
+    setImportFileName(file.name);
+  };
+
+  const extractBills = async () => {
+    if (!importText.trim() && !importFile) return;
+    if (!canUseAi()) { setShowProModal(true); return; }
+    incrementAiUsage();
+    setIsExtracting(true);
+    setExtractedBills(null);
+
+    const systemPrompt = lang === 'zh'
+      ? '你是一个账单提取专家。从用户提供的文本或图片中提取所有订阅/扣款信息。返回JSON数组，每个元素包含：name（服务名称）、price（数字金额）、currency（USD/CNY/EUR/GBP/JPY/HKD之一）、cycle（monthly或yearly）、category（Entertainment/Productivity/Lifestyle/Other之一）。如果无法确定某个字段，使用合理的默认值。只返回JSON数组，不要其他文本。'
+      : 'You are a bill extraction expert. Extract all subscription/billing info from the user\'s text or image. Return a JSON array where each element has: name (service name), price (numeric amount), currency (one of USD/CNY/EUR/GBP/JPY/HKD), cycle (monthly or yearly), category (one of Entertainment/Productivity/Lifestyle/Other). Use reasonable defaults for uncertain fields. Return ONLY the JSON array, no other text.';
+
+    try {
+      const parts = [];
+      if (importText.trim()) {
+        parts.push({ text: importText.trim() });
+      }
+      if (importFile) {
+        const base64 = await fileToBase64(importFile);
+        parts.push({ inline_data: { mime_type: importFile.type, data: base64 } });
+      }
+      if (parts.every(p => !p.text)) {
+        parts.unshift({ text: 'Extract subscription/billing information from this image or document.' });
+      }
+
+      const res = await fetch(API_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts }],
+          systemInstruction: { parts: [{ text: systemPrompt }] },
+          generationConfig: { responseMimeType: 'application/json' },
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || data.error) {
+        const msg = typeof data.error === 'string' ? data.error : data.error?.message || 'Unknown error';
+        console.error('Extract error:', msg);
+        setExtractedBills([]);
+        setIsExtracting(false);
+        return;
+      }
+      const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '[]';
+      const parsed = JSON.parse(text);
+      const bills = (Array.isArray(parsed) ? parsed : [parsed]).map(b => ({
+        name: b.name || 'Unknown',
+        price: String(parseFloat(b.price) || 0),
+        currency: CURRENCIES[b.currency] ? b.currency : 'USD',
+        cycle: b.cycle === 'yearly' ? 'yearly' : 'monthly',
+        category: CATEGORY_VALUES.includes(b.category) ? b.category : 'Other',
+      })).filter(b => b.name !== 'Unknown' || parseFloat(b.price) > 0);
+      setExtractedBills(bills.length > 0 ? bills : []);
+    } catch (err) {
+      console.error('Extract error:', err);
+      setExtractedBills([]);
+    }
+    setIsExtracting(false);
+  };
+
+  const addExtractedBills = () => {
+    if (!extractedBills?.length) return;
+    const newSubs = extractedBills.map(b => ({ ...b, id: Date.now() + Math.random() }));
+    setSubscriptions(prev => [...prev, ...newSubs]);
+    setShowImportModal(false);
+    setImportText('');
+    setImportFile(null);
+    setImportFileName('');
+    setExtractedBills(null);
+  };
+
+  const resetImportModal = () => {
+    setShowImportModal(false);
+    setImportText('');
+    setImportFile(null);
+    setImportFileName('');
+    setExtractedBills(null);
+    setIsExtracting(false);
   };
 
   const exportPDF = () => window.print();
@@ -330,7 +429,13 @@ export default function App({ onLegal }) {
               <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
                 <div className="flex justify-between items-center mb-5 px-1">
                   <span className="text-sm font-medium text-slate-500 tracking-widest uppercase">{_('subList')}</span>
-                  <button onClick={() => setShowAddModal(true)} className="p-2.5 bg-rose-950/40 text-rose-400 rounded-xl hover:bg-rose-950/60 transition-colors cursor-pointer"><FontAwesomeIcon icon={faPlus} className="w-4 h-4" /></button>
+                  <div className="flex gap-2">
+                    <button onClick={() => setShowImportModal(true)}
+                      className="flex items-center gap-1.5 px-3 py-2.5 bg-violet-950/40 text-violet-400 rounded-xl hover:bg-violet-950/60 transition-colors cursor-pointer text-xs font-medium">
+                      <FontAwesomeIcon icon={faFileImport} className="w-3.5 h-3.5" /> {_('smartImport')}
+                    </button>
+                    <button onClick={() => setShowAddModal(true)} className="p-2.5 bg-rose-950/40 text-rose-400 rounded-xl hover:bg-rose-950/60 transition-colors cursor-pointer"><FontAwesomeIcon icon={faPlus} className="w-4 h-4" /></button>
+                  </div>
                 </div>
                 {subscriptions.length === 0 && (
                   <div className="flex flex-col items-center justify-center py-20 text-slate-600">
@@ -618,6 +723,101 @@ export default function App({ onLegal }) {
               className="w-full py-2 text-xs text-slate-500 hover:text-slate-300 transition-colors cursor-pointer min-h-[44px]">
               {_('cancel')}
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* === SMART IMPORT MODAL === */}
+      {showImportModal && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end justify-center p-4 sm:items-center" onClick={resetImportModal}>
+          <div className="bg-[#141420]/95 backdrop-blur-xl w-full max-w-lg p-8 rounded-[2rem] shadow-2xl animate-in zoom-in-95 fade-in duration-200 border border-slate-800/50 max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-sm font-bold tracking-widest text-slate-100 uppercase flex items-center gap-2">
+                <FontAwesomeIcon icon={faFileImport} className="w-4 h-4 text-violet-400" /> {_('smartImport')}
+              </h3>
+              <button onClick={resetImportModal} className="text-slate-600 hover:text-slate-300 transition-colors cursor-pointer p-1">
+                <FontAwesomeIcon icon={faXmark} className="w-4 h-4" />
+              </button>
+            </div>
+            <p className="text-xs text-slate-500 mb-6 leading-relaxed">{_('smartImportDesc')}</p>
+
+            {!extractedBills ? (
+              <>
+                {/* Text input */}
+                <textarea
+                  className="w-full bg-[#1C1C2A] rounded-xl border border-slate-700/50 px-4 py-3 text-sm text-slate-200 placeholder-slate-600 outline-none resize-none h-32 mb-4 focus:border-violet-700/50 transition-colors"
+                  placeholder={_('pasteText')}
+                  value={importText}
+                  onChange={e => setImportText(e.target.value)}
+                />
+
+                {/* File upload */}
+                <p className="text-xs text-slate-500 mb-2">{_('orUploadFile')}</p>
+                {!importFile ? (
+                  <label className="block w-full border-2 border-dashed border-slate-700/50 rounded-xl p-6 text-center cursor-pointer hover:border-violet-700/50 hover:bg-violet-950/10 transition-all">
+                    <input type="file" accept="image/jpeg,image/png,image/webp,image/gif,application/pdf" className="hidden"
+                      onChange={e => handleImportFile(e.target.files?.[0])} />
+                    <FontAwesomeIcon icon={faFileImport} className="w-8 h-8 text-slate-600 mb-2" />
+                    <p className="text-xs text-slate-400 font-medium">{_('dropOrClick')}</p>
+                    <p className="text-[10px] text-slate-600 mt-1">{_('supportedFormats')}</p>
+                  </label>
+                ) : (
+                  <div className="flex items-center gap-3 bg-[#1C1C2A] rounded-xl border border-violet-700/30 px-4 py-3">
+                    <FontAwesomeIcon icon={faCheck} className="w-3.5 h-3.5 text-violet-400 shrink-0" />
+                    <span className="text-xs text-slate-300 truncate flex-1">{importFileName}</span>
+                    <button onClick={() => { setImportFile(null); setImportFileName(''); }}
+                      className="text-[10px] text-rose-400 hover:text-rose-300 cursor-pointer shrink-0">{_('removeFile')}</button>
+                  </div>
+                )}
+
+                {/* Extract button */}
+                <div className="flex gap-3 mt-6">
+                  <button onClick={resetImportModal} className="flex-1 py-3 text-xs font-medium text-slate-400 bg-[#1C1C2A] rounded-2xl hover:bg-[#252536] transition-colors cursor-pointer min-h-[44px]">{_('cancel')}</button>
+                  <button onClick={extractBills} disabled={isExtracting || (!importText.trim() && !importFile)}
+                    className="flex-1 py-3 text-xs font-medium text-white bg-violet-600 rounded-2xl hover:bg-violet-500 transition-colors shadow-md shadow-violet-900/30 cursor-pointer min-h-[44px] disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                    {isExtracting ? <FontAwesomeIcon icon={faSpinner} className="w-3.5 h-3.5 animate-spin" /> : <FontAwesomeIcon icon={faWandMagicSparkles} className="w-3.5 h-3.5" />}
+                    {isExtracting ? _('extracting') : _('extractBills')}
+                  </button>
+                </div>
+              </>
+            ) : extractedBills.length === 0 ? (
+              /* No results */
+              <div className="text-center py-8">
+                <FontAwesomeIcon icon={faGhost} className="w-12 h-12 text-slate-700 mb-3" />
+                <p className="text-sm text-slate-500">{_('noExtracted')}</p>
+                <button onClick={() => setExtractedBills(null)}
+                  className="mt-4 px-6 py-2.5 text-xs font-medium text-violet-400 bg-violet-950/30 rounded-xl hover:bg-violet-950/50 transition-colors cursor-pointer">
+                  {_('cancel')}
+                </button>
+              </div>
+            ) : (
+              /* Results preview */
+              <div>
+                <p className="text-xs font-medium text-slate-400 mb-3 uppercase tracking-wider">{_('extractedBills')}</p>
+                <div className="space-y-2 mb-6 max-h-60 overflow-y-auto">
+                  {extractedBills.map((bill, i) => (
+                    <div key={i} className="flex justify-between items-center p-3 bg-[#1C1C2A] rounded-xl border border-slate-700/30">
+                      <div className="flex items-center gap-3">
+                        <span className="text-lg">{CATEGORY_ICONS[bill.category] || '\u{1F4E6}'}</span>
+                        <div>
+                          <p className="text-sm font-medium text-slate-200">{bill.name}</p>
+                          <p className="text-[10px] text-slate-500">{_(CATEGORY_KEYS[CATEGORY_VALUES.indexOf(bill.category)] || 'catOther')} / {bill.cycle === 'monthly' ? _('monthly') : _('yearly')}</p>
+                        </div>
+                      </div>
+                      <span className="text-sm font-bold text-slate-200">{CURRENCIES[bill.currency]?.symbol}{bill.price}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex gap-3">
+                  <button onClick={() => setExtractedBills(null)}
+                    className="flex-1 py-3 text-xs font-medium text-slate-400 bg-[#1C1C2A] rounded-2xl hover:bg-[#252536] transition-colors cursor-pointer min-h-[44px]">{_('cancel')}</button>
+                  <button onClick={addExtractedBills}
+                    className="flex-1 py-3 text-xs font-medium text-white bg-emerald-600 rounded-2xl hover:bg-emerald-500 transition-colors shadow-md shadow-emerald-900/30 cursor-pointer min-h-[44px] flex items-center justify-center gap-2">
+                    <FontAwesomeIcon icon={faCheck} className="w-3.5 h-3.5" /> {_('addSelected')} ({extractedBills.length})
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}

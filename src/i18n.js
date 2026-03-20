@@ -82,6 +82,21 @@ const translations = {
     subsKilled: 'subscriptions killed',
     noSavingsYet: 'Delete a subscription to start saving',
 
+    // Smart Import
+    smartImport: 'Smart Import',
+    smartImportDesc: 'Paste billing text, or upload a screenshot / PDF. AI will extract your subscriptions.',
+    pasteText: 'Paste billing email or notification text here...',
+    orUploadFile: 'Or upload an image / PDF',
+    dropOrClick: 'Drop file here or click to browse',
+    supportedFormats: 'JPG, PNG, PDF supported',
+    extracting: 'Extracting...',
+    extractBills: 'Extract Bills',
+    extractedBills: 'Extracted Bills',
+    addSelected: 'Add All',
+    noExtracted: 'No subscriptions found. Try different text or a clearer image.',
+    importSuccess: 'bills added successfully!',
+    removeFile: 'Remove',
+
     // Days of week
     sun: 'Sun', mon: 'Mon', tue: 'Tue', wed: 'Wed', thu: 'Thu', fri: 'Fri', sat: 'Sat',
   },
@@ -156,6 +171,21 @@ const translations = {
     savedYearly: '年度节省',
     subsKilled: '个订阅已被消灭',
     noSavingsYet: '删除订阅，开始省钱',
+
+    // Smart Import
+    smartImport: '智能导入',
+    smartImportDesc: '粘贴扣款通知文本，或上传截图/PDF，AI 自动提取订阅信息。',
+    pasteText: '粘贴扣款邮件或通知文本...',
+    orUploadFile: '或上传图片 / PDF',
+    dropOrClick: '拖拽文件到这里，或点击选择',
+    supportedFormats: '支持 JPG、PNG、PDF',
+    extracting: '提取中...',
+    extractBills: '提取账单',
+    extractedBills: '已提取的账单',
+    addSelected: '全部添加',
+    noExtracted: '未识别到订阅信息，请尝试不同的文本或更清晰的图片。',
+    importSuccess: '个账单已添加！',
+    removeFile: '移除',
 
     sun: '日', mon: '一', tue: '二', wed: '三', thu: '四', fri: '五', sat: '六',
   },

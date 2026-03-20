@@ -21,7 +21,7 @@ export async function onRequestPost(context) {
 
   try {
     const body = await context.request.json();
-    const { contents, systemInstruction } = body;
+    const { contents, systemInstruction, generationConfig } = body;
 
     if (!contents) {
       return new Response(JSON.stringify({ error: 'Missing contents' }), {
@@ -32,10 +32,13 @@ export async function onRequestPost(context) {
 
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 
+    const payload = { contents, systemInstruction };
+    if (generationConfig) payload.generationConfig = generationConfig;
+
     const res = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ contents, systemInstruction }),
+      body: JSON.stringify(payload),
     });
 
     const data = await res.json();
