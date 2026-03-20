@@ -19,7 +19,7 @@ import PrintReport from './PrintReport';
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title);
 
-const apiKey = import.meta.env.VITE_GEMINI_API_KEY || '';
+const API_ENDPOINT = '/api/gemini';
 
 const CURRENCIES = {
   USD: { code: 'USD', flag: '\u{1F1FA}\u{1F1F8}', symbol: '$', rate: 1 },
@@ -113,19 +113,19 @@ export default function App({ onLegal }) {
   };
 
   const callGeminiAPI = async (userPrompt, systemPrompt) => {
-    if (!apiKey) return lang === 'zh' ? '\uFF08API Key \u672A\u914D\u7F6E\uFF09' : '(API Key not configured)';
     if (!canUseAi()) {
       setShowProModal(true);
       return _('aiLimitReached');
     }
     incrementAiUsage();
     try {
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
+      const res = await fetch(API_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ contents: [{ parts: [{ text: userPrompt }] }], systemInstruction: { parts: [{ text: systemPrompt }] } }),
       });
       const data = await res.json();
+      if (data.error) return lang === 'zh' ? '\uFF08\u670D\u52A1\u5668\u9519\u8BEF\uFF09' : `(Server error: ${data.error})`;
       return data.candidates?.[0]?.content?.parts?.[0]?.text || (lang === 'zh' ? 'AI \u4F3C\u4E4E\u5728\u6253\u76F9\u3002' : 'AI seems to be napping.');
     } catch (err) { console.error(err); return lang === 'zh' ? 'AI \u6682\u65F6\u65AD\u7F51\u4E86\u3002' : 'AI is offline. Probably saving electricity for you.'; }
   };
