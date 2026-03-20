@@ -97,7 +97,7 @@ function RefundPolicy() {
       <Section title="1. Free Tier">
         <p>Bill Vampire's core features are free to use and require no payment. No refund applies to the free tier.</p>
       </Section>
-      <Section title="2. Pro Upgrade ($6.99 One-Time)">
+      <Section title="2. Pro Upgrade (9.99 USD One-Time)">
         <p>The Pro upgrade is a one-time digital purchase. Because of the immediate nature of digital goods delivery, we generally do not offer refunds after purchase.</p>
         <p>However, we want you to be satisfied. If you experience any of the following, we will issue a full refund:</p>
         <ul className="list-disc list-inside space-y-1 pl-2">

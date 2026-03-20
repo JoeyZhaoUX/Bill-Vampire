@@ -18,7 +18,7 @@ function Root() {
     if (['terms', 'privacy', 'refund'].includes(hash)) return hash;
     return localStorage.getItem('vampire_visited') ? 'app' : 'landing';
   });
-  const [lang] = useState(getDefaultLang);
+  const [lang, setLang] = useState(getDefaultLang);
 
   const enterApp = () => {
     localStorage.setItem('vampire_visited', 'true');
@@ -46,7 +46,7 @@ function Root() {
   }
 
   if (view === 'landing') {
-    return <Landing onEnterApp={enterApp} onLegal={goToLegal} lang={lang} />;
+    return <Landing onEnterApp={enterApp} onLegal={goToLegal} lang={lang} setLang={setLang} />;
   }
   return <App onLegal={goToLegal} />;
 }

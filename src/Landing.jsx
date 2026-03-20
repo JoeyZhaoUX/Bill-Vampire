@@ -5,12 +5,18 @@ import {
   faShieldHalved, faArrowRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { openCheckout } from './pro';
+import { SUPPORTED_LANGS } from './i18n';
 
 const ICONS8 = 'https://img.icons8.com/3d-fluency/94';
 
-export default function Landing({ onEnterApp, onLegal, lang }) {
+export default function Landing({ onEnterApp, onLegal, lang, setLang }) {
   const isZh = lang === 'zh';
   const [openFaq, setOpenFaq] = useState(null);
+
+  const switchLang = (code) => {
+    setLang(code);
+    localStorage.setItem('vampire_lang', code);
+  };
 
   const features = [
     {
@@ -24,7 +30,7 @@ export default function Landing({ onEnterApp, onLegal, lang }) {
       desc: isZh ? 'AI 分析你的消费习惯，一针见血地指出问题，帮你找到更便宜的平替方案。' : 'AI analyzes your spending habits, gives brutally honest advice, and finds cheaper alternatives.',
     },
     {
-      icon: `${ICONS8}/document-scanner.png`,
+      icon: `${ICONS8}/scanner.png`,
       title: isZh ? '智能导入账单' : 'Smart Import',
       desc: isZh ? '粘贴扣款通知文本，或上传截图/PDF，AI 自动识别并提取订阅信息，一键添加。' : 'Paste billing text or upload screenshots/PDFs. AI extracts subscription info and adds them automatically.',
       isNew: true,
@@ -35,12 +41,12 @@ export default function Landing({ onEnterApp, onLegal, lang }) {
       desc: isZh ? '每日打卡养成省钱习惯，AI 傲娇地给你情绪支持，让你不知不觉存更多钱。' : 'Daily check-ins build saving habits. Your AI companion cheers or mocks your progress.',
     },
     {
-      icon: `${ICONS8}/share--v2.png`,
+      icon: `${ICONS8}/megaphone.png`,
       title: isZh ? '分享吸血鬼报告' : 'Share Vampire Report',
       desc: isZh ? '生成精美的消费分析卡片，分享到社交媒体，让朋友也来查查自己的吸血鬼。' : 'Generate a beautiful spending card. Share it on social media and let friends find their vampires.',
     },
     {
-      icon: `${ICONS8}/shield-done.png`,
+      icon: `${ICONS8}/lock.png`,
       title: isZh ? '隐私优先' : 'Privacy First',
       desc: isZh ? '数据存在你的设备上，不上传任何服务器。没有账号、没有追踪、没有广告。' : 'Your data stays on your device. No accounts, no tracking, no ads. Your finances, your business.',
     },
@@ -70,7 +76,7 @@ export default function Landing({ onEnterApp, onLegal, lang }) {
   const faqs = [
     {
       q: isZh ? 'Bill Vampire 真的免费吗？' : 'Is Bill Vampire really free?',
-      a: isZh ? '是的！核心功能完全免费，包括无限订阅追踪、不消费打卡、统计图表。免费版每天可用 3 次 AI 分析。Pro 版解锁无限 AI，只需一次性支付 $6.99，永远不收订阅费。' : 'Yes! Core features are completely free — unlimited subscription tracking, no-spend calendar, stats & charts. Free tier includes 3 AI analyses per day. Pro unlocks unlimited AI for a one-time $6.99 payment. No subscription, ever.',
+      a: isZh ? '是的！核心功能完全免费，包括无限订阅追踪、不消费打卡、统计图表。免费版每天可用 3 次 AI 分析。Pro 版解锁无限 AI，只需一次性支付 9.99 USD，永远不收订阅费。' : 'Yes! Core features are completely free — unlimited subscription tracking, no-spend calendar, stats & charts. Free tier includes 3 AI analyses per day. Pro unlocks unlimited AI for a one-time 9.99 USD payment. No subscription, ever.',
     },
     {
       q: isZh ? '我的数据安全吗？' : 'Is my data safe?',
@@ -107,7 +113,16 @@ export default function Landing({ onEnterApp, onLegal, lang }) {
             <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="Bill Vampire" className="w-8 h-8 rounded-lg" />
             <span className="font-gothic text-lg font-bold text-slate-100 hidden sm:block">Bill Vampire</span>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            {/* Language switcher */}
+            <div className="flex gap-0.5 mr-1">
+              {SUPPORTED_LANGS.map(l => (
+                <button key={l.code} onClick={() => switchLang(l.code)}
+                  className={`text-[10px] px-2 py-1 rounded-lg transition-colors cursor-pointer ${lang === l.code ? 'bg-slate-700/60 text-slate-200' : 'text-slate-600 hover:text-slate-400'}`}>
+                  {l.label}
+                </button>
+              ))}
+            </div>
             <button onClick={() => openCheckout()}
               className="hidden sm:flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-amber-300 hover:text-amber-200 transition-colors cursor-pointer">
               <FontAwesomeIcon icon={faCrown} className="w-3 h-3" /> {isZh ? '升级 Pro' : 'Get Pro'}
@@ -325,7 +340,7 @@ export default function Landing({ onEnterApp, onLegal, lang }) {
             {/* Mock Smart Import UI */}
             <div className="bg-[#141420]/80 rounded-2xl border border-slate-800/40 p-6 shadow-xl">
               <div className="flex items-center gap-2 mb-4">
-                <img src={`${ICONS8}/document-scanner.png`} alt="" className="w-6 h-6" />
+                <img src={`${ICONS8}/scanner.png`} alt="" className="w-6 h-6" />
                 <span className="text-xs font-bold text-slate-200 uppercase tracking-wider">{isZh ? '智能导入' : 'Smart Import'}</span>
               </div>
               <div className="bg-[#1C1C2A] rounded-xl p-4 mb-4 border border-slate-700/30">
@@ -422,7 +437,7 @@ export default function Landing({ onEnterApp, onLegal, lang }) {
               </div>
               <p className="text-xs text-amber-400 uppercase tracking-widest mb-1 mt-2">Pro</p>
               <div className="flex items-baseline gap-1 mb-1">
-                <span className="text-4xl font-bold text-slate-100">$6.99</span>
+                <span className="text-4xl font-bold text-slate-100">9.99 USD</span>
               </div>
               <p className="text-[11px] text-slate-500 mb-6">{isZh ? '一次购买，永久使用' : 'Pay once, use forever'}</p>
               <ul className="text-xs text-slate-300 space-y-3 mb-8 flex-1">
