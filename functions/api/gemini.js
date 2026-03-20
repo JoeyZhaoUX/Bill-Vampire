@@ -1,10 +1,21 @@
+const HEADERS = {
+  'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+};
+
+export async function onRequestOptions() {
+  return new Response(null, { status: 204, headers: HEADERS });
+}
+
 export async function onRequestPost(context) {
   const GEMINI_API_KEY = context.env.GEMINI_API_KEY;
 
   if (!GEMINI_API_KEY) {
-    return new Response(JSON.stringify({ error: 'API key not configured' }), {
+    return new Response(JSON.stringify({ error: 'API key not configured on server' }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers: HEADERS,
     });
   }
 
@@ -15,7 +26,7 @@ export async function onRequestPost(context) {
     if (!contents) {
       return new Response(JSON.stringify({ error: 'Missing contents' }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
+        headers: HEADERS,
       });
     }
 
@@ -29,14 +40,22 @@ export async function onRequestPost(context) {
 
     const data = await res.json();
 
+    if (!res.ok) {
+      const errMsg = data?.error?.message || `Google API returned ${res.status}`;
+      return new Response(JSON.stringify({ error: errMsg }), {
+        status: res.status,
+        headers: HEADERS,
+      });
+    }
+
     return new Response(JSON.stringify(data), {
-      status: res.status,
-      headers: { 'Content-Type': 'application/json' },
+      status: 200,
+      headers: HEADERS,
     });
   } catch (err) {
     return new Response(JSON.stringify({ error: 'Internal server error' }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers: HEADERS,
     });
   }
 }

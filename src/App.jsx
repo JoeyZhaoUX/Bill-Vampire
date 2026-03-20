@@ -125,7 +125,11 @@ export default function App({ onLegal }) {
         body: JSON.stringify({ contents: [{ parts: [{ text: userPrompt }] }], systemInstruction: { parts: [{ text: systemPrompt }] } }),
       });
       const data = await res.json();
-      if (data.error) return lang === 'zh' ? '\uFF08\u670D\u52A1\u5668\u9519\u8BEF\uFF09' : `(Server error: ${data.error})`;
+      if (data.error) {
+        const msg = typeof data.error === 'string' ? data.error : data.error?.message || JSON.stringify(data.error);
+        console.error('Gemini API error:', msg);
+        return lang === 'zh' ? '\uFF08\u670D\u52A1\u5668\u9519\u8BEF\uFF09' : '(AI service temporarily unavailable)';
+      }
       return data.candidates?.[0]?.content?.parts?.[0]?.text || (lang === 'zh' ? 'AI \u4F3C\u4E4E\u5728\u6253\u76F9\u3002' : 'AI seems to be napping.');
     } catch (err) { console.error(err); return lang === 'zh' ? 'AI \u6682\u65F6\u65AD\u7F51\u4E86\u3002' : 'AI is offline. Probably saving electricity for you.'; }
   };
