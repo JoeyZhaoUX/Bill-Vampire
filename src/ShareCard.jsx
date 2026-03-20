@@ -35,7 +35,7 @@ export default function ShareCard({ monthlyTotal, subscriptions, currency, t, on
           className="bg-gradient-to-br from-[#1C1C2A] via-[#141420] to-[#1A1028] p-8 rounded-3xl shadow-2xl border border-slate-700/40">
           <div className="text-center mb-6">
             <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="Bill Vampire" className="w-16 h-16 mx-auto mb-3 rounded-xl" />
-            <h2 className="text-lg font-bold text-slate-100 tracking-wide font-serif">{t('shareTitle')}</h2>
+            <h2 className="text-lg font-bold text-slate-100 tracking-wide font-gothic">{t('shareTitle')}</h2>
           </div>
 
           <div className="bg-[#0B0B11]/60 backdrop-blur rounded-2xl p-5 mb-4 text-center border border-rose-800/20">

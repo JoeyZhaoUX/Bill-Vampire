@@ -14,7 +14,7 @@ export default function Landing({ onEnterApp, onLegal, lang }) {
         <div className="absolute top-32 right-0 w-72 h-72 bg-violet-900/15 rounded-full blur-3xl -z-10" />
 
         <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="Bill Vampire" className="w-24 h-24 mx-auto mb-6 rounded-2xl shadow-lg shadow-rose-900/20" />
-        <h1 className="font-serif text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight leading-tight mb-4">
+        <h1 className="font-gothic text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight leading-tight mb-4">
           {isZh ? (
             <>你的订阅，正在<span className="text-rose-500">吸你的血</span></>
           ) : (
@@ -116,7 +116,7 @@ export default function Landing({ onEnterApp, onLegal, lang }) {
               <li>{isZh ? '\u2713 续费提醒（即将推出）' : '\u2713 Renewal reminders (soon)'}</li>
             </ul>
             <button onClick={openCheckout}
-              className="w-full py-2.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:from-amber-400 hover:to-rose-400 transition-colors shadow-lg shadow-rose-900/30 cursor-pointer flex items-center justify-center gap-1.5">
+              className="w-full py-2.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all shadow-lg shadow-rose-900/30 cursor-pointer flex items-center justify-center gap-1.5">
               <FontAwesomeIcon icon={faCrown} className="w-3 h-3" />
               {isZh ? '立即购买' : 'Get Pro'}
             </button>
@@ -136,7 +136,7 @@ export default function Landing({ onEnterApp, onLegal, lang }) {
       {/* Footer */}
       <footer className="w-full py-8 border-t border-slate-800/50">
         <p className="text-[10px] text-slate-600 text-center mb-3">
-          Bill Vampire — {isZh ? '让每一分钱都被看见' : 'Make every dollar visible'}
+          <span className="font-gothic">Bill Vampire</span> — {isZh ? '让每一分钱都被看见' : 'Make every dollar visible'}
         </p>
         <div className="flex justify-center gap-4">
           <button onClick={() => onLegal('terms')} className="text-[10px] text-slate-600 hover:text-slate-400 transition-colors cursor-pointer">

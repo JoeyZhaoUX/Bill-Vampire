@@ -191,7 +191,7 @@ export default function App({ onLegal }) {
       borderWidth: 2, borderColor: '#141420', hoverOffset: 6,
     }],
   };
-  const pieOptions = { plugins: { legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 10, color: '#94A3B8' } } }, maintainAspectRatio: false };
+  const pieOptions = { plugins: { legend: { position: 'bottom', labels: { font: { size: 13 }, padding: 14, color: '#94A3B8' } } }, maintainAspectRatio: false };
 
   const tabs = [
     { id: 'subs', label: _('tabBills'), icon: faGhost },
@@ -205,108 +205,165 @@ export default function App({ onLegal }) {
 
   return (
     <>
-    <div className="app-screen min-h-screen bg-[#0B0B11] flex flex-col items-center justify-start py-12 px-4">
-      <div className="max-w-md w-full relative">
-        <div className="absolute top-0 left-10 w-48 h-48 bg-rose-900/20 rounded-full blur-3xl -z-10" />
-        <div className="absolute top-40 right-0 w-64 h-64 bg-violet-900/15 rounded-full blur-3xl -z-10" />
+    <div className="app-screen min-h-screen bg-gothic-pattern">
+      <div className="min-h-screen flex flex-col lg:flex-row">
 
-        <div className="bg-[#141420]/90 backdrop-blur-xl rounded-[2.5rem] shadow-[0_20px_60px_-10px_rgba(0,0,0,0.5)] p-8 border border-slate-800/40">
+        {/* ========== SIDEBAR ========== */}
+        <aside className="w-full lg:w-72 xl:w-80 lg:min-h-screen lg:sticky lg:top-0 shrink-0 bg-[#0D0D15]/80 lg:bg-[#0D0D15]/60 backdrop-blur-xl lg:border-r lg:border-slate-800/30 sidebar-glow">
+          <div className="p-6 lg:p-8 lg:flex lg:flex-col lg:h-screen">
 
-          {/* Language switcher */}
-          <div className="flex justify-end mb-2 gap-1">
-            {SUPPORTED_LANGS.map(l => (
-              <button key={l.code} onClick={() => setLang(l.code)}
-                className={`text-[10px] px-2 py-1 rounded-lg transition-colors cursor-pointer ${lang === l.code ? 'bg-slate-700 text-slate-200' : 'text-slate-600 hover:text-slate-400'}`}>
-                {l.label}
-              </button>
-            ))}
-          </div>
-
-          <header className="flex flex-col items-center mb-8 border-b border-slate-800/50 pb-8">
-            <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="Bill Vampire" className="w-16 h-16 rounded-2xl shadow-sm mb-4" />
-            <h1 className="text-xl font-medium tracking-widest text-slate-100 font-serif">{_('appName')}</h1>
-            <p className="text-xs text-slate-500 mt-2 font-light tracking-wider">{_('tagline')}</p>
-            <div className="mt-5 bg-gradient-to-r from-rose-950/40 to-violet-950/40 px-6 py-3 rounded-2xl w-full text-center border border-rose-800/20">
-              <span className="text-sm font-medium text-slate-400">{_('monthlyLoss')}<span className="text-rose-400 font-bold text-lg ml-1">{displayCurrency}{monthlyTotal.toFixed(2)}</span></span>
+            {/* Language switcher */}
+            <div className="flex justify-end lg:justify-start mb-4 gap-1">
+              {SUPPORTED_LANGS.map(l => (
+                <button key={l.code} onClick={() => setLang(l.code)}
+                  className={`text-[10px] px-2.5 py-1 rounded-lg transition-colors cursor-pointer ${lang === l.code ? 'bg-slate-700/60 text-slate-200' : 'text-slate-600 hover:text-slate-400'}`}>
+                  {l.label}
+                </button>
+              ))}
             </div>
+
+            {/* Branding */}
+            <div className="flex flex-col items-center lg:items-start mb-6">
+              <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="Bill Vampire" className="w-14 h-14 lg:w-12 lg:h-12 rounded-2xl shadow-sm mb-3" />
+              <h1 className="font-gothic text-2xl lg:text-xl font-bold tracking-wider text-slate-100 mb-1">{_('appName')}</h1>
+              <p className="text-[11px] text-slate-500 font-light tracking-wider">{_('tagline')}</p>
+            </div>
+
+            <div className="blood-accent mb-6" />
+
+            {/* Monthly drain */}
+            <div className="bg-gradient-to-r from-rose-950/50 to-violet-950/40 px-5 py-4 rounded-2xl border border-rose-800/20 mb-3">
+              <span className="text-[10px] uppercase tracking-widest text-slate-500 block mb-1">{_('monthlyLoss')}</span>
+              <span className="text-rose-400 font-bold text-2xl">{displayCurrency}{monthlyTotal.toFixed(2)}</span>
+            </div>
+
+            {/* Saved */}
             {monthlySaved > 0 && (
-              <div className="mt-2 bg-gradient-to-r from-emerald-950/40 to-teal-950/40 px-6 py-3 rounded-2xl w-full text-center border border-emerald-800/20">
-                <span className="text-sm font-medium text-slate-400">{_('monthlySaved')}<span className="text-emerald-400 font-bold text-lg ml-1">{displayCurrency}{monthlySaved.toFixed(2)}</span></span>
+              <div className="bg-gradient-to-r from-emerald-950/40 to-teal-950/40 px-5 py-4 rounded-2xl border border-emerald-800/20 mb-3">
+                <span className="text-[10px] uppercase tracking-widest text-slate-500 block mb-1">{_('monthlySaved')}</span>
+                <span className="text-emerald-400 font-bold text-2xl">{displayCurrency}{monthlySaved.toFixed(2)}</span>
               </div>
             )}
-            {/* AI uses remaining badge */}
-            {!isPro() && (
-              <div className="mt-3 flex items-center gap-1.5 text-[10px] text-slate-500">
+
+            {/* AI / Pro badge */}
+            {!isPro() ? (
+              <div className="flex items-center gap-1.5 text-[10px] text-slate-500 mb-6 lg:mb-4">
                 <FontAwesomeIcon icon={faWandMagicSparkles} className="w-2.5 h-2.5" />
                 <span>{remaining} {_('aiUsesLeft')}</span>
               </div>
-            )}
-            {isPro() && (
-              <div className="mt-3 flex items-center gap-1.5 text-[10px] text-amber-400 font-medium">
+            ) : (
+              <div className="flex items-center gap-1.5 text-[10px] text-amber-400 font-medium mb-6 lg:mb-4">
                 <FontAwesomeIcon icon={faCrown} className="w-2.5 h-2.5" />
                 <span>{_('proBadge')}</span>
               </div>
             )}
-          </header>
 
-          <nav className="flex p-1.5 bg-[#0B0B11]/80 rounded-2xl mb-8 border border-slate-800/50 gap-1">
-            {tabs.map(tab => (
-              <button key={tab.id} onClick={() => setActiveTab(tab.id)}
-                className={`flex-1 flex flex-col items-center gap-1 py-2.5 rounded-xl text-xs font-medium transition-all duration-200 cursor-pointer ${activeTab === tab.id ? 'bg-[#1C1C2A] shadow-sm text-slate-200' : 'text-slate-600 hover:text-slate-400'}`}>
-                <FontAwesomeIcon icon={tab.icon} className="w-4 h-4" />
-                <span className="text-xs">{tab.label}</span>
+            {/* Desktop-only sidebar actions */}
+            <div className="hidden lg:block space-y-3 mt-auto">
+              <div className="blood-accent mb-4" />
+
+              {/* Export */}
+              <button onClick={exportPDF}
+                className="w-full flex items-center gap-2.5 px-4 py-2.5 text-xs font-medium text-slate-400 bg-[#141420]/60 hover:bg-[#1C1C2A] rounded-xl transition-colors cursor-pointer border border-slate-800/30">
+                <FontAwesomeIcon icon={faDownload} className="w-3.5 h-3.5" /> {_('exportPdf')}
               </button>
-            ))}
-          </nav>
 
-          <main className="min-h-[360px] relative">
+              {/* Pro upgrade */}
+              {!isPro() && (
+                <button onClick={() => setShowProModal(true)}
+                  className="w-full flex items-center gap-3 p-3 bg-gradient-to-r from-amber-950/40 to-rose-950/40 rounded-xl border border-amber-700/30 hover:from-amber-950/60 hover:to-rose-950/60 transition-all cursor-pointer group">
+                  <div className="w-8 h-8 bg-gradient-to-br from-amber-500 to-rose-500 rounded-lg flex items-center justify-center shrink-0 shadow-sm shadow-amber-900/30">
+                    <FontAwesomeIcon icon={faCrown} className="w-3.5 h-3.5 text-white" />
+                  </div>
+                  <div className="flex-1 text-left">
+                    <span className="text-xs font-semibold text-slate-200 block leading-tight">{_('upgradeTitle')}</span>
+                    <span className="text-[10px] text-slate-500">{_('upgradePrice')}</span>
+                  </div>
+                  <FontAwesomeIcon icon={faChevronRight} className="w-3 h-3 text-slate-600 group-hover:text-slate-400 group-hover:translate-x-0.5 transition-all shrink-0" />
+                </button>
+              )}
+
+              {/* Tip */}
+              <div className="bg-[#141420]/40 p-3 rounded-xl border border-slate-800/20">
+                <p className="text-[10px] text-slate-500 mb-2 flex items-center gap-1.5"><FontAwesomeIcon icon={faHeart} className="w-2.5 h-2.5 text-rose-400/60" /> {_('tipTitle')}</p>
+                <button onClick={openTip}
+                  className="w-full py-2 text-[10px] font-medium text-amber-300/80 bg-[#1C1C2A]/50 rounded-lg hover:bg-[#252536] transition-colors border border-amber-800/10 cursor-pointer">
+                  {lang === 'zh' ? '\u652F\u6301\u4E00\u4E0B' : 'Support Us'}
+                </button>
+              </div>
+
+              {/* Legal links */}
+              <div className="flex gap-3 pt-2">
+                <button onClick={() => onLegal('terms')} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer">Terms</button>
+                <button onClick={() => onLegal('privacy')} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer">Privacy</button>
+                <button onClick={() => onLegal('refund')} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer">Refund</button>
+              </div>
+              <p className="text-[9px] text-slate-700 font-light tracking-wider">{_('footer')}</p>
+            </div>
+          </div>
+        </aside>
+
+        {/* ========== MAIN CONTENT ========== */}
+        <main className="flex-1 min-h-screen">
+          <div className="max-w-5xl mx-auto p-4 sm:p-6 lg:p-10">
+
+            {/* Tabs */}
+            <nav className="flex p-1.5 bg-[#141420]/70 backdrop-blur rounded-2xl mb-8 border border-slate-800/40 gap-1 max-w-md lg:max-w-md">
+              {tabs.map(tab => (
+                <button key={tab.id} onClick={() => setActiveTab(tab.id)}
+                  className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer ${activeTab === tab.id ? 'bg-[#1C1C2A] shadow-sm text-slate-200' : 'text-slate-600 hover:text-slate-400'}`}>
+                  <FontAwesomeIcon icon={tab.icon} className="w-4 h-4" />
+                  <span>{tab.label}</span>
+                </button>
+              ))}
+            </nav>
+
             {/* === SUBS TAB === */}
             {activeTab === 'subs' && (
               <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
-                <div className="flex justify-between items-center mb-4 px-2">
-                  <span className="text-xs font-medium text-slate-500 tracking-widest uppercase">{_('subList')}</span>
-                  <button onClick={() => setShowAddModal(true)} className="p-2 bg-rose-950/40 text-rose-400 rounded-xl hover:bg-rose-950/60 transition-colors cursor-pointer"><FontAwesomeIcon icon={faPlus} className="w-4 h-4" /></button>
+                <div className="flex justify-between items-center mb-5 px-1">
+                  <span className="text-sm font-medium text-slate-500 tracking-widest uppercase">{_('subList')}</span>
+                  <button onClick={() => setShowAddModal(true)} className="p-2.5 bg-rose-950/40 text-rose-400 rounded-xl hover:bg-rose-950/60 transition-colors cursor-pointer"><FontAwesomeIcon icon={faPlus} className="w-4 h-4" /></button>
                 </div>
                 {subscriptions.length === 0 && (
-                  <div className="flex flex-col items-center justify-center py-12 text-slate-600">
-                    <FontAwesomeIcon icon={faGhost} className="w-12 h-12 mb-4" />
-                    <p className="text-sm font-light">{_('noSubs')}</p>
+                  <div className="flex flex-col items-center justify-center py-20 text-slate-600">
+                    <FontAwesomeIcon icon={faGhost} className="w-20 h-20 mb-5 opacity-20" />
+                    <p className="text-base font-light">{_('noSubs')}</p>
                   </div>
                 )}
-                <div className="space-y-2">
+                <div className="space-y-1">
                   {subscriptions.map(sub => (
-                    <div key={sub.id} className="flex justify-between items-center p-3 rounded-2xl hover:bg-[#1C1C2A]/60 transition-colors group">
+                    <div key={sub.id} className="flex justify-between items-center p-4 rounded-2xl hover:bg-[#141420]/60 transition-colors group">
                       <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-xl bg-[#1C1C2A] flex items-center justify-center text-lg">{CATEGORY_ICONS[sub.category] || '\u{1F4E6}'}</div>
+                        <div className="w-12 h-12 rounded-xl bg-[#141420] border border-slate-800/30 flex items-center justify-center text-xl">{CATEGORY_ICONS[sub.category] || '\u{1F4E6}'}</div>
                         <div>
-                          <h4 className="font-medium text-sm text-slate-200">{sub.name}</h4>
-                          <div className="text-[10px] text-slate-500 mt-1 flex items-center gap-1.5">
-                            <span className="bg-[#252536] px-1.5 py-0.5 rounded-md">{_(CATEGORY_KEYS[CATEGORY_VALUES.indexOf(sub.category)] || 'catOther')}</span>
-                            <span>·</span>
+                          <h4 className="font-medium text-base text-slate-200">{sub.name}</h4>
+                          <div className="text-xs text-slate-500 mt-1 flex items-center gap-2">
+                            <span className="bg-[#1C1C2A] px-2 py-0.5 rounded-md border border-slate-800/20">{_(CATEGORY_KEYS[CATEGORY_VALUES.indexOf(sub.category)] || 'catOther')}</span>
+                            <span className="text-slate-700">/</span>
                             <span>{sub.cycle === 'monthly' ? _('monthly') : _('yearly')}</span>
                           </div>
                         </div>
                       </div>
-                      <div className="flex items-center gap-3">
-                        <span className="font-bold text-slate-200">{CURRENCIES[sub.currency || 'USD']?.symbol}{sub.price}</span>
-                        <button onClick={() => deleteSub(sub.id)} className="text-rose-700 hover:text-rose-400 opacity-0 group-hover:opacity-100 transition-all p-1 cursor-pointer"><FontAwesomeIcon icon={faTrash} className="w-3.5 h-3.5" /></button>
+                      <div className="flex items-center gap-4">
+                        <span className="font-bold text-slate-200 text-lg">{CURRENCIES[sub.currency || 'USD']?.symbol}{sub.price}</span>
+                        <button onClick={() => deleteSub(sub.id)} className="text-rose-700 hover:text-rose-400 opacity-0 group-hover:opacity-100 transition-all p-1.5 cursor-pointer"><FontAwesomeIcon icon={faTrash} className="w-4 h-4" /></button>
                       </div>
                     </div>
                   ))}
                 </div>
                 {subscriptions.length > 0 && (
-                  <div className="mt-6 border-t border-slate-800/50 pt-4 print:hidden space-y-3">
+                  <div className="mt-6 pt-5 border-t border-slate-800/30 print:hidden space-y-3">
                     {!aiAlternatives ? (
                       <button onClick={getAiAlternatives} disabled={isAlternativesLoading}
-                        className="w-full flex items-center justify-center gap-2 py-3 text-xs font-medium text-violet-400 bg-violet-950/30 hover:bg-violet-950/50 rounded-2xl transition-colors border border-violet-800/30 cursor-pointer min-h-[44px]">
-                        {isAlternativesLoading ? <FontAwesomeIcon icon={faSpinner} className="w-3.5 h-3.5 animate-spin" /> : <FontAwesomeIcon icon={faMagnifyingGlass} className="w-3.5 h-3.5" />}
+                        className="w-full flex items-center justify-center gap-2 py-3.5 text-sm font-medium text-violet-400 bg-violet-950/30 hover:bg-violet-950/50 rounded-2xl transition-colors border border-violet-800/30 cursor-pointer min-h-[48px]">
+                        {isAlternativesLoading ? <FontAwesomeIcon icon={faSpinner} className="w-4 h-4 animate-spin" /> : <FontAwesomeIcon icon={faMagnifyingGlass} className="w-4 h-4" />}
                         {isAlternativesLoading ? _('findingAlternatives') : _('findAlternatives')}
                       </button>
                     ) : (
-                      <div className="bg-violet-950/30 p-4 rounded-2xl border border-violet-800/30">
-                        <h4 className="text-xs font-bold text-violet-300 mb-2 flex items-center gap-1.5"><FontAwesomeIcon icon={faWandMagicSparkles} className="w-3 h-3" /> {_('aiAlternatives')}</h4>
-                        <p className="text-xs leading-relaxed text-violet-200/80 whitespace-pre-wrap">{aiAlternatives}</p>
-                        {/* Affiliate links */}
+                      <div className="bg-violet-950/30 p-5 rounded-2xl border border-violet-800/30">
+                        <h4 className="text-sm font-bold text-violet-300 mb-2 flex items-center gap-2"><FontAwesomeIcon icon={faWandMagicSparkles} className="w-4 h-4" /> {_('aiAlternatives')}</h4>
+                        <p className="text-sm leading-relaxed text-violet-200/80 whitespace-pre-wrap">{aiAlternatives}</p>
                         {alternativeLinks.length > 0 && (
                           <div className="mt-3 flex flex-wrap gap-2">
                             {alternativeLinks.map(link => (
@@ -319,10 +376,9 @@ export default function App({ onLegal }) {
                         )}
                       </div>
                     )}
-                    {/* Share button */}
                     <button onClick={() => setShowShareCard(true)}
-                      className="w-full flex items-center justify-center gap-2 py-3 text-xs font-medium text-rose-400 bg-rose-950/30 hover:bg-rose-950/50 rounded-2xl transition-colors border border-rose-800/30 cursor-pointer min-h-[44px]">
-                      <FontAwesomeIcon icon={faShareNodes} className="w-3.5 h-3.5" /> {_('shareCard')}
+                      className="w-full flex items-center justify-center gap-2 py-3.5 text-sm font-medium text-rose-400 bg-rose-950/30 hover:bg-rose-950/50 rounded-2xl transition-colors border border-rose-800/30 cursor-pointer min-h-[48px]">
+                      <FontAwesomeIcon icon={faShareNodes} className="w-4 h-4" /> {_('shareCard')}
                     </button>
                   </div>
                 )}
@@ -331,17 +387,17 @@ export default function App({ onLegal }) {
 
             {/* === NO-SPEND TAB === */}
             {activeTab === 'no-spend' && (
-              <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
+              <div className="animate-in fade-in slide-in-from-bottom-4 duration-300 max-w-2xl">
                 <div className="text-center mb-8">
-                  <h3 className="text-sm font-medium text-slate-200 mb-2">{_('noSpendTitle')}</h3>
-                  <div className="inline-flex items-center gap-2 bg-emerald-950/40 px-4 py-2 rounded-full border border-emerald-800/30">
-                    <FontAwesomeIcon icon={faCircleCheck} className="w-3.5 h-3.5 text-emerald-400" />
-                    <span className="text-xs text-emerald-300 font-medium">{currentStreak} {_('noSpendStreak')}</span>
+                  <h3 className="text-base lg:text-lg font-medium text-slate-200 mb-3">{_('noSpendTitle')}</h3>
+                  <div className="inline-flex items-center gap-2.5 bg-emerald-950/40 px-5 py-2.5 rounded-full border border-emerald-800/30">
+                    <FontAwesomeIcon icon={faCircleCheck} className="w-4 h-4 text-emerald-400" />
+                    <span className="text-sm text-emerald-300 font-medium">{currentStreak} {_('noSpendStreak')}</span>
                   </div>
                 </div>
-                <div className="grid grid-cols-7 gap-1.5 mb-8">
+                <div className="grid grid-cols-7 gap-2 lg:gap-3 mb-8">
                   {weekDays.map(day => (
-                    <div key={day} className="text-center text-[9px] font-medium text-slate-600 py-1">{day}</div>
+                    <div key={day} className="text-center text-xs lg:text-sm font-medium text-slate-600 py-1">{day}</div>
                   ))}
                   {[...Array(firstDayOfWeek)].map((_, i) => <div key={`e-${i}`} />)}
                   {[...Array(daysInMonth)].map((_, i) => {
@@ -353,9 +409,9 @@ export default function App({ onLegal }) {
                     return (
                       <button key={i} onClick={() => toggleNoSpend(date)} disabled={isFuture}
                         className={[
-                          'aspect-square rounded-xl text-xs font-medium transition-all duration-200 flex items-center justify-center',
+                          'aspect-square rounded-xl text-sm lg:text-base font-medium transition-all duration-200 flex items-center justify-center',
                           isChecked ? 'bg-emerald-600 text-white shadow-sm shadow-emerald-900/30' : '',
-                          isToday && !isChecked ? 'bg-[#1C1C2A] text-slate-200 ring-2 ring-rose-500/50 ring-offset-1 ring-offset-[#141420]' : '',
+                          isToday && !isChecked ? 'bg-[#1C1C2A] text-slate-200 ring-2 ring-rose-500/50 ring-offset-1 ring-offset-[#0B0B11]' : '',
                           !isToday && !isChecked && !isFuture ? 'bg-[#1C1C2A] text-slate-400 hover:bg-[#252536]' : '',
                           isFuture ? 'text-slate-700 cursor-not-allowed' : 'cursor-pointer',
                         ].join(' ')}>
@@ -367,13 +423,13 @@ export default function App({ onLegal }) {
                 <div className="print:hidden">
                   {!aiDailyQuote ? (
                     <button onClick={getAiDailyQuote} disabled={isQuoteLoading}
-                      className="w-full flex items-center justify-center gap-2 py-3 text-xs font-medium text-emerald-400 bg-emerald-950/30 hover:bg-emerald-950/50 rounded-2xl transition-colors border border-emerald-800/30 cursor-pointer min-h-[44px]">
-                      {isQuoteLoading ? <FontAwesomeIcon icon={faSpinner} className="w-3.5 h-3.5 animate-spin" /> : <FontAwesomeIcon icon={faMugHot} className="w-3.5 h-3.5" />}
+                      className="w-full flex items-center justify-center gap-2 py-3.5 text-sm font-medium text-emerald-400 bg-emerald-950/30 hover:bg-emerald-950/50 rounded-2xl transition-colors border border-emerald-800/30 cursor-pointer min-h-[48px]">
+                      {isQuoteLoading ? <FontAwesomeIcon icon={faSpinner} className="w-4 h-4 animate-spin" /> : <FontAwesomeIcon icon={faMugHot} className="w-4 h-4" />}
                       {isQuoteLoading ? _('aiThinking') : _('getMotivation')}
                     </button>
                   ) : (
-                    <div className="bg-emerald-950/30 p-4 rounded-2xl border border-emerald-800/30">
-                      <p className="text-xs leading-relaxed text-emerald-200 italic">"{aiDailyQuote}"</p>
+                    <div className="bg-emerald-950/30 p-5 rounded-2xl border border-emerald-800/30">
+                      <p className="text-sm leading-relaxed text-emerald-200 italic">"{aiDailyQuote}"</p>
                     </div>
                   )}
                 </div>
@@ -382,100 +438,108 @@ export default function App({ onLegal }) {
 
             {/* === STATS TAB === */}
             {activeTab === 'stats' && (
-              <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-300">
-                <div className="bg-gradient-to-br from-violet-950/40 to-rose-950/40 p-5 rounded-2xl border border-slate-800/50 relative overflow-hidden">
-                  <div className="absolute -right-4 -top-4 text-rose-900/30"><FontAwesomeIcon icon={faQuoteLeft} className="w-20 h-20" /></div>
-                  <div className="flex items-center justify-between mb-4 relative z-10">
-                    <span className="text-xs font-bold text-slate-200 flex items-center gap-1.5"><FontAwesomeIcon icon={faWandMagicSparkles} className="w-3 h-3 text-rose-400" /> {_('aiAdvisor')}</span>
+              <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
+                {/* AI Advisor - full width */}
+                <div className="bg-gradient-to-br from-violet-950/40 to-rose-950/40 p-6 lg:p-8 rounded-2xl border border-slate-800/50 relative overflow-hidden mb-6">
+                  <div className="absolute -right-4 -top-4 text-rose-900/30"><FontAwesomeIcon icon={faQuoteLeft} className="w-24 h-24" /></div>
+                  <div className="flex items-center justify-between mb-5 relative z-10">
+                    <span className="text-sm lg:text-base font-bold text-slate-200 flex items-center gap-2"><FontAwesomeIcon icon={faWandMagicSparkles} className="w-4 h-4 text-rose-400" /> {_('aiAdvisor')}</span>
                     <button onClick={getAiAdvice} disabled={isAiLoading || !subscriptions.length}
-                      className="text-[10px] bg-[#1C1C2A]/70 text-slate-300 px-3 py-1.5 rounded-xl hover:bg-[#252536] transition-colors flex items-center gap-1 shadow-sm disabled:opacity-50 cursor-pointer">
-                      {isAiLoading ? <FontAwesomeIcon icon={faSpinner} className="w-3 h-3 animate-spin text-rose-400" /> : <FontAwesomeIcon icon={faBolt} className="w-3 h-3 text-rose-400" />}
+                      className="text-xs bg-[#1C1C2A]/70 text-slate-300 px-4 py-2 rounded-xl hover:bg-[#252536] transition-colors flex items-center gap-1.5 shadow-sm disabled:opacity-50 cursor-pointer">
+                      {isAiLoading ? <FontAwesomeIcon icon={faSpinner} className="w-3.5 h-3.5 animate-spin text-rose-400" /> : <FontAwesomeIcon icon={faBolt} className="w-3.5 h-3.5 text-rose-400" />}
                       {isAiLoading ? _('analyzing') : _('startAnalysis')}
                     </button>
                   </div>
-                  <div className="relative z-10 bg-[#0B0B11]/40 backdrop-blur-sm rounded-xl p-3 min-h-[60px] flex items-center border border-slate-800/30">
+                  <div className="relative z-10 bg-[#0B0B11]/40 backdrop-blur-sm rounded-xl p-4 min-h-[70px] flex items-center border border-slate-800/30">
                     {aiAdvice
-                      ? <p className="text-xs leading-relaxed text-slate-300 whitespace-pre-wrap">{aiAdvice}</p>
-                      : <p className="text-xs text-slate-600 font-light italic w-full text-center">{_('aiPlaceholder')}</p>}
+                      ? <p className="text-sm leading-relaxed text-slate-300 whitespace-pre-wrap">{aiAdvice}</p>
+                      : <p className="text-sm text-slate-600 font-light italic w-full text-center">{_('aiPlaceholder')}</p>}
                   </div>
                 </div>
-                {subscriptions.length > 0
-                  ? <div className="h-44 flex justify-center"><Pie data={pieData} options={pieOptions} /></div>
-                  : <div className="h-44 flex items-center justify-center text-slate-700"><FontAwesomeIcon icon={faGhost} className="w-12 h-12" /></div>}
-                <div className="bg-[#1C1C2A] p-4 rounded-2xl space-y-3 print:bg-transparent border border-slate-800/40">
-                  <div className="flex justify-between items-center text-xs"><span className="text-slate-500">{_('monthlySpend')}</span><span className="font-bold text-slate-200">{displayCurrency}{monthlyTotal.toFixed(2)}</span></div>
-                  <div className="w-full h-px bg-slate-800/60 print:bg-slate-300" />
-                  <div className="flex justify-between items-center text-xs"><span className="text-slate-500">{_('yearlyForecast')}</span><span className="font-bold text-rose-400">{displayCurrency}{(monthlyTotal * 12).toFixed(2)}</span></div>
-                  <div className="w-full h-px bg-slate-800/60" />
-                  <div className="flex justify-between items-center text-xs"><span className="text-slate-500">{_('dailyCost')}</span><span className="font-bold text-slate-200">{displayCurrency}{(monthlyTotal / 30).toFixed(2)}</span></div>
-                </div>
 
-                {/* Savings card */}
-                <div className="bg-gradient-to-r from-emerald-950/30 to-teal-950/30 p-4 rounded-2xl border border-emerald-800/20">
-                  <p className="text-xs font-bold text-emerald-300 mb-3 flex items-center gap-1.5"><FontAwesomeIcon icon={faSkull} className="w-3 h-3" /> {_('savingsTitle')}</p>
-                  {monthlySaved > 0 ? (
-                    <div className="space-y-2">
-                      <div className="flex justify-between items-center text-xs"><span className="text-slate-500">{_('savedMonthly')}</span><span className="font-bold text-emerald-400">-{displayCurrency}{monthlySaved.toFixed(2)}</span></div>
-                      <div className="w-full h-px bg-emerald-800/30" />
-                      <div className="flex justify-between items-center text-xs"><span className="text-slate-500">{_('savedYearly')}</span><span className="font-bold text-emerald-400">-{displayCurrency}{(monthlySaved * 12).toFixed(2)}</span></div>
-                      <div className="mt-2 text-[10px] text-emerald-400/60">{cancelledSubs.length} {_('subsKilled')}</div>
-                    </div>
-                  ) : (
-                    <p className="text-xs text-slate-500 italic">{_('noSavingsYet')}</p>
-                  )}
-                </div>
+                {/* 2-column grid on desktop */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                  {/* Chart */}
+                  <div className="bg-[#141420]/60 p-6 rounded-2xl border border-slate-800/30">
+                    {subscriptions.length > 0
+                      ? <div className="h-64 flex justify-center"><Pie data={pieData} options={pieOptions} /></div>
+                      : <div className="h-64 flex items-center justify-center text-slate-700"><FontAwesomeIcon icon={faGhost} className="w-16 h-16" /></div>}
+                  </div>
 
-                {/* Tip jar */}
-                <div className="bg-gradient-to-r from-amber-950/30 to-rose-950/30 p-4 rounded-2xl border border-amber-800/20 print:hidden">
-                  <p className="text-xs font-medium text-slate-300 mb-3 flex items-center gap-1.5"><FontAwesomeIcon icon={faHeart} className="w-3 h-3 text-rose-400" /> {_('tipTitle')}</p>
-                  <button onClick={openTip}
-                    className="w-full py-2.5 text-xs font-medium text-amber-300 bg-[#1C1C2A]/70 rounded-xl hover:bg-[#252536] transition-colors border border-amber-800/20 cursor-pointer">
-                    {lang === 'zh' ? '支持一下' : 'Support Us'}
-                  </button>
+                  {/* Breakdown */}
+                  <div className="bg-[#141420]/60 p-6 rounded-2xl space-y-5 border border-slate-800/30 flex flex-col justify-center">
+                    <div className="flex justify-between items-center"><span className="text-sm text-slate-500">{_('monthlySpend')}</span><span className="font-bold text-lg text-slate-200">{displayCurrency}{monthlyTotal.toFixed(2)}</span></div>
+                    <div className="w-full h-px bg-slate-800/60" />
+                    <div className="flex justify-between items-center"><span className="text-sm text-slate-500">{_('yearlyForecast')}</span><span className="font-bold text-lg text-rose-400">{displayCurrency}{(monthlyTotal * 12).toFixed(2)}</span></div>
+                    <div className="w-full h-px bg-slate-800/60" />
+                    <div className="flex justify-between items-center"><span className="text-sm text-slate-500">{_('dailyCost')}</span><span className="font-bold text-lg text-slate-200">{displayCurrency}{(monthlyTotal / 30).toFixed(2)}</span></div>
+                  </div>
+
+                  {/* Savings */}
+                  <div className="bg-gradient-to-r from-emerald-950/30 to-teal-950/30 p-6 rounded-2xl border border-emerald-800/20">
+                    <p className="text-sm font-bold text-emerald-300 mb-4 flex items-center gap-2"><FontAwesomeIcon icon={faSkull} className="w-4 h-4" /> {_('savingsTitle')}</p>
+                    {monthlySaved > 0 ? (
+                      <div className="space-y-3">
+                        <div className="flex justify-between items-center text-sm"><span className="text-slate-500">{_('savedMonthly')}</span><span className="font-bold text-emerald-400">-{displayCurrency}{monthlySaved.toFixed(2)}</span></div>
+                        <div className="w-full h-px bg-emerald-800/30" />
+                        <div className="flex justify-between items-center text-sm"><span className="text-slate-500">{_('savedYearly')}</span><span className="font-bold text-emerald-400">-{displayCurrency}{(monthlySaved * 12).toFixed(2)}</span></div>
+                        <div className="mt-2 text-xs text-emerald-400/60">{cancelledSubs.length} {_('subsKilled')}</div>
+                      </div>
+                    ) : (
+                      <p className="text-sm text-slate-500 italic">{_('noSavingsYet')}</p>
+                    )}
+                  </div>
+
+                  {/* Tip jar */}
+                  <div className="bg-gradient-to-r from-amber-950/30 to-rose-950/30 p-6 rounded-2xl border border-amber-800/20 print:hidden">
+                    <p className="text-sm font-medium text-slate-300 mb-4 flex items-center gap-2"><FontAwesomeIcon icon={faHeart} className="w-4 h-4 text-rose-400" /> {_('tipTitle')}</p>
+                    <button onClick={openTip}
+                      className="w-full py-3 text-sm font-medium text-amber-300 bg-[#1C1C2A]/70 rounded-xl hover:bg-[#252536] transition-colors border border-amber-800/20 cursor-pointer">
+                      {lang === 'zh' ? '\u652F\u6301\u4E00\u4E0B' : 'Support Us'}
+                    </button>
+                  </div>
                 </div>
               </div>
             )}
-          </main>
 
-          {/* In-card footer actions */}
-          <div className="mt-6 pt-5 border-t border-slate-800/50 space-y-3 print:hidden">
-            {/* Export button */}
-            <button onClick={exportPDF}
-              className="w-full flex items-center justify-center gap-2 py-3 text-xs font-medium text-slate-400 bg-[#1C1C2A] hover:bg-[#252536] rounded-xl transition-colors cursor-pointer min-h-[44px] border border-slate-800/40">
-              <FontAwesomeIcon icon={faDownload} className="w-3.5 h-3.5" /> {_('exportPdf')}
-            </button>
-
-            {/* Pro upgrade banner */}
-            {!isPro() && (
-              <button onClick={() => setShowProModal(true)}
-                className="w-full flex items-center gap-3 p-3 bg-gradient-to-r from-amber-950/40 to-rose-950/40 rounded-xl border border-amber-700/30 hover:from-amber-950/60 hover:to-rose-950/60 transition-all cursor-pointer min-h-[44px] group">
-                <div className="w-8 h-8 bg-gradient-to-br from-amber-500 to-rose-500 rounded-lg flex items-center justify-center shrink-0 shadow-sm shadow-amber-900/30">
-                  <FontAwesomeIcon icon={faCrown} className="w-3.5 h-3.5 text-white" />
-                </div>
-                <div className="flex-1 text-left">
-                  <span className="text-xs font-semibold text-slate-200 block leading-tight">{_('upgradeTitle')}</span>
-                  <span className="text-[10px] text-slate-500">{_('upgradePrice')}</span>
-                </div>
-                <FontAwesomeIcon icon={faChevronRight} className="w-3.5 h-3.5 text-slate-600 group-hover:text-slate-400 group-hover:translate-x-0.5 transition-all shrink-0" />
+            {/* Mobile-only footer actions */}
+            <div className="lg:hidden mt-8 pt-5 border-t border-slate-800/30 space-y-3 print:hidden">
+              <button onClick={exportPDF}
+                className="w-full flex items-center justify-center gap-2 py-3 text-xs font-medium text-slate-400 bg-[#141420]/60 hover:bg-[#1C1C2A] rounded-xl transition-colors cursor-pointer min-h-[44px] border border-slate-800/30">
+                <FontAwesomeIcon icon={faDownload} className="w-3.5 h-3.5" /> {_('exportPdf')}
               </button>
-            )}
-          </div>
-        </div>
 
-        <footer className="mt-8 text-center print:hidden">
-          <p className="text-[10px] text-slate-600 font-light tracking-wider mb-2">{_('footer')}</p>
-          <div className="flex justify-center gap-3">
-            <button onClick={() => onLegal('terms')} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer">Terms</button>
-            <button onClick={() => onLegal('privacy')} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer">Privacy</button>
-            <button onClick={() => onLegal('refund')} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer">Refund</button>
+              {!isPro() && (
+                <button onClick={() => setShowProModal(true)}
+                  className="w-full flex items-center gap-3 p-3 bg-gradient-to-r from-amber-950/40 to-rose-950/40 rounded-xl border border-amber-700/30 hover:from-amber-950/60 hover:to-rose-950/60 transition-all cursor-pointer min-h-[44px] group">
+                  <div className="w-8 h-8 bg-gradient-to-br from-amber-500 to-rose-500 rounded-lg flex items-center justify-center shrink-0 shadow-sm shadow-amber-900/30">
+                    <FontAwesomeIcon icon={faCrown} className="w-3.5 h-3.5 text-white" />
+                  </div>
+                  <div className="flex-1 text-left">
+                    <span className="text-xs font-semibold text-slate-200 block leading-tight">{_('upgradeTitle')}</span>
+                    <span className="text-[10px] text-slate-500">{_('upgradePrice')}</span>
+                  </div>
+                  <FontAwesomeIcon icon={faChevronRight} className="w-3.5 h-3.5 text-slate-600 group-hover:text-slate-400 group-hover:translate-x-0.5 transition-all shrink-0" />
+                </button>
+              )}
+
+              <footer className="mt-6 text-center">
+                <p className="text-[10px] text-slate-600 font-light tracking-wider mb-2">{_('footer')}</p>
+                <div className="flex justify-center gap-3">
+                  <button onClick={() => onLegal('terms')} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer">Terms</button>
+                  <button onClick={() => onLegal('privacy')} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer">Privacy</button>
+                  <button onClick={() => onLegal('refund')} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer">Refund</button>
+                </div>
+              </footer>
+            </div>
           </div>
-        </footer>
+        </main>
       </div>
 
       {/* === ADD MODAL === */}
       {showAddModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end justify-center p-4 sm:items-center">
-          <div className="bg-[#141420]/95 backdrop-blur-xl w-full max-w-xs p-8 rounded-[2rem] shadow-2xl animate-in zoom-in-95 fade-in duration-200 border border-slate-800/50">
+          <div className="bg-[#141420]/95 backdrop-blur-xl w-full max-w-sm p-8 rounded-[2rem] shadow-2xl animate-in zoom-in-95 fade-in duration-200 border border-slate-800/50">
             <h3 className="text-sm font-bold mb-6 tracking-widest text-slate-100 uppercase">{_('addSub')}</h3>
             <div className="space-y-4">
               <div className="bg-[#1C1C2A] rounded-xl p-1 border border-slate-700/50">
@@ -520,7 +584,7 @@ export default function App({ onLegal }) {
       {/* === PRO MODAL === */}
       {showProModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-4" onClick={() => setShowProModal(false)}>
-          <div className="bg-[#141420]/95 backdrop-blur-xl w-full max-w-xs p-8 rounded-[2rem] shadow-2xl animate-in zoom-in-95 fade-in duration-200 border border-slate-800/50" onClick={e => e.stopPropagation()}>
+          <div className="bg-[#141420]/95 backdrop-blur-xl w-full max-w-sm p-8 rounded-[2rem] shadow-2xl animate-in zoom-in-95 fade-in duration-200 border border-slate-800/50" onClick={e => e.stopPropagation()}>
             <div className="text-center mb-6">
               <div className="w-14 h-14 bg-gradient-to-br from-amber-900/60 to-rose-900/60 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-amber-700/30">
                 <FontAwesomeIcon icon={faCrown} className="w-7 h-7 text-amber-400" />
