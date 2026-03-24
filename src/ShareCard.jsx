@@ -1,9 +1,14 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShareNodes } from '@fortawesome/free-solid-svg-icons';
+import { faShareNodes, faDownload, faCopy, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faXTwitter, faFacebook, faWhatsapp, faWeixin } from '@fortawesome/free-brands-svg-icons';
+import { toPng } from 'html-to-image';
 
 export default function ShareCard({ monthlyTotal, subscriptions, currency, t, onClose }) {
   const cardRef = useRef(null);
+  const [step, setStep] = useState('preview'); // 'preview' | 'sharing'
+  const [copied, setCopied] = useState(false);
+  const [imageUrl, setImageUrl] = useState(null);
 
   const biggest = subscriptions.reduce((max, sub) => {
     const price = parseFloat(sub.price) || 0;
@@ -11,60 +16,190 @@ export default function ShareCard({ monthlyTotal, subscriptions, currency, t, on
     return price > maxPrice ? sub : max;
   }, subscriptions[0] || { name: '-', price: 0 });
 
+  const amountStr = `${currency}${monthlyTotal.toFixed(2)}`;
+  const viralText = t('shareViralText').replace('${amount}', amountStr);
+  const shareText = `${viralText}\n\n${t('shareTagline')}`;
+  const shareUrl = 'https://billvampire.com';
+
+  const generateImage = useCallback(async () => {
+    if (!cardRef.current) return null;
+    await toPng(cardRef.current, { pixelRatio: 2, cacheBust: true });
+    const dataUrl = await toPng(cardRef.current, { pixelRatio: 2, cacheBust: true });
+    return dataUrl;
+  }, []);
+
+  const dataUrlToBlob = (dataUrl) => {
+    const [header, base64] = dataUrl.split(',');
+    const mime = header.match(/:(.*?);/)[1];
+    const binary = atob(base64);
+    const array = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) array[i] = binary.charCodeAt(i);
+    return new Blob([array], { type: mime });
+  };
+
   const handleShare = useCallback(async () => {
-    if (!cardRef.current) return;
+    const dataUrl = await generateImage();
+    if (!dataUrl) return;
 
-    const shareText = `${t('shareTitle')}\n${currency}${monthlyTotal.toFixed(2)} ${t('shareMonthly')}\n${t('shareBiggest')} ${biggest.name}\n\n${t('shareTagline')}`;
-
-    if (navigator.share) {
+    if (navigator.share && navigator.canShare) {
       try {
-        await navigator.share({ title: t('shareTitle'), text: shareText });
+        const blob = dataUrlToBlob(dataUrl);
+        const file = new File([blob], 'vampire-report.png', { type: 'image/png' });
+        if (navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            title: t('shareTitle'),
+            text: shareText,
+            files: [file],
+          });
+          return;
+        }
       } catch (e) {
-        // User cancelled sharing
+        if (e.name === 'AbortError') return;
       }
-    } else {
-      await navigator.clipboard.writeText(shareText);
-      alert('Copied to clipboard!');
     }
-  }, [monthlyTotal, subscriptions, currency, t, biggest]);
+
+    setImageUrl(dataUrl);
+    setStep('sharing');
+  }, [generateImage, shareText, t]);
+
+  const handleDownload = useCallback(() => {
+    if (!imageUrl) return;
+    const link = document.createElement('a');
+    link.download = 'vampire-report.png';
+    link.href = imageUrl;
+    link.click();
+  }, [imageUrl]);
+
+  const handleCopy = useCallback(async () => {
+    if (!imageUrl) return;
+    try {
+      const blob = dataUrlToBlob(imageUrl);
+      await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      await navigator.clipboard.writeText(shareText);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  }, [imageUrl, shareText]);
+
+  const openTwitter = () => {
+    window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(shareText + '\n' + shareUrl)}`, '_blank', 'noopener');
+  };
+
+  const openFacebook = () => {
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(shareText)}`, '_blank', 'noopener');
+  };
+
+  const openWhatsapp = () => {
+    window.open(`https://wa.me/?text=${encodeURIComponent(shareText + '\n' + shareUrl)}`, '_blank', 'noopener');
+  };
+
+  const handleWechat = useCallback(() => {
+    if (!imageUrl) return;
+    // Download the image, then prompt user to share via WeChat from album
+    const link = document.createElement('a');
+    link.download = 'vampire-report.png';
+    link.href = imageUrl;
+    link.click();
+    alert(t('shareWechatTip'));
+  }, [imageUrl, t]);
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
       <div className="w-full max-w-xs" onClick={e => e.stopPropagation()}>
+        {/* Card for image generation */}
         <div ref={cardRef}
           className="bg-gradient-to-br from-[#1C1C2A] via-[#141420] to-[#1A1028] p-8 rounded-3xl shadow-2xl border border-slate-700/40">
           <div className="text-center mb-6">
-            <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="Bill Vampire" className="w-16 h-16 mx-auto mb-3 rounded-xl" />
+            <img src={`${import.meta.env.BASE_URL}icons/icon-192x192.png`} alt="Bill Vampire" className="w-16 h-16 mx-auto mb-3 rounded-xl" crossOrigin="anonymous" />
             <h2 className="text-lg font-bold text-slate-100 tracking-wide font-gothic">{t('shareTitle')}</h2>
           </div>
 
+          {/* Viral headline */}
           <div className="bg-[#0B0B11]/60 backdrop-blur rounded-2xl p-5 mb-4 text-center border border-rose-800/20">
             <div className="text-3xl font-black text-rose-500 mb-1">
-              {currency}{monthlyTotal.toFixed(2)}
+              {amountStr}
             </div>
             <p className="text-xs text-slate-500">{t('shareMonthly')}</p>
           </div>
 
-          <div className="bg-[#0B0B11]/60 backdrop-blur rounded-2xl p-4 mb-4 border border-slate-700/30">
+          <div className="bg-[#0B0B11]/60 backdrop-blur rounded-2xl p-4 mb-5 border border-slate-700/30">
             <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-2">{t('shareBiggest')}</p>
             <p className="text-sm font-bold text-slate-200">{biggest.name} — {biggest.price}/{biggest.cycle === 'monthly' ? 'mo' : 'yr'}</p>
           </div>
 
-          <div className="text-center">
-            <p className="text-[10px] text-slate-600 tracking-wider">{t('shareTagline')}</p>
+          {/* Watermark */}
+          <div className="text-center pt-2 border-t border-slate-700/20">
+            <p className="text-[10px] text-slate-600 tracking-wider mb-1">{t('shareTagline')}</p>
+            <p className="text-[9px] text-slate-700 tracking-widest uppercase">{t('shareMadeWith')}</p>
           </div>
         </div>
 
-        <div className="flex gap-3 mt-4">
-          <button onClick={onClose}
-            className="flex-1 py-3 text-xs font-medium text-slate-400 bg-[#141420]/80 backdrop-blur rounded-2xl hover:bg-[#1C1C2A] transition-colors cursor-pointer min-h-[44px]">
-            {t('cancel')}
-          </button>
-          <button onClick={handleShare}
-            className="flex-1 py-3 text-xs font-medium text-white bg-rose-600 rounded-2xl hover:bg-rose-500 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-rose-900/30 cursor-pointer min-h-[44px]">
-            <FontAwesomeIcon icon={faShareNodes} className="w-3.5 h-3.5" /> Share
-          </button>
-        </div>
+        {step === 'preview' ? (
+          <div className="flex gap-3 mt-4">
+            <button onClick={onClose}
+              className="flex-1 py-3 text-xs font-medium text-slate-400 bg-[#141420]/80 backdrop-blur rounded-2xl hover:bg-[#1C1C2A] transition-colors cursor-pointer min-h-[44px]">
+              {t('cancel')}
+            </button>
+            <button onClick={handleShare}
+              className="flex-1 py-3 text-xs font-medium text-white bg-rose-600 rounded-2xl hover:bg-rose-500 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-rose-900/30 cursor-pointer min-h-[44px]">
+              <FontAwesomeIcon icon={faShareNodes} className="w-3.5 h-3.5" /> Share
+            </button>
+          </div>
+        ) : (
+          <div className="mt-4 space-y-3">
+            {imageUrl && (
+              <div className="rounded-xl overflow-hidden border border-slate-700/30">
+                <img src={imageUrl} alt="Preview" className="w-full" />
+              </div>
+            )}
+
+            {/* Social share buttons */}
+            <div className="grid grid-cols-4 gap-2">
+              <button onClick={openTwitter}
+                className="py-3 bg-[#141420]/80 rounded-2xl hover:bg-[#1C1C2A] transition-colors flex flex-col items-center justify-center gap-1 cursor-pointer min-h-[44px]">
+                <FontAwesomeIcon icon={faXTwitter} className="w-4 h-4 text-white" />
+                <span className="text-[10px] text-slate-400">X</span>
+              </button>
+              <button onClick={openFacebook}
+                className="py-3 bg-[#141420]/80 rounded-2xl hover:bg-[#1C1C2A] transition-colors flex flex-col items-center justify-center gap-1 cursor-pointer min-h-[44px]">
+                <FontAwesomeIcon icon={faFacebook} className="w-4 h-4 text-[#1877F2]" />
+                <span className="text-[10px] text-slate-400">Facebook</span>
+              </button>
+              <button onClick={openWhatsapp}
+                className="py-3 bg-[#141420]/80 rounded-2xl hover:bg-[#1C1C2A] transition-colors flex flex-col items-center justify-center gap-1 cursor-pointer min-h-[44px]">
+                <FontAwesomeIcon icon={faWhatsapp} className="w-4 h-4 text-[#25D366]" />
+                <span className="text-[10px] text-slate-400">WhatsApp</span>
+              </button>
+              <button onClick={handleWechat}
+                className="py-3 bg-[#141420]/80 rounded-2xl hover:bg-[#1C1C2A] transition-colors flex flex-col items-center justify-center gap-1 cursor-pointer min-h-[44px]">
+                <FontAwesomeIcon icon={faWeixin} className="w-4 h-4 text-[#07C160]" />
+                <span className="text-[10px] text-slate-400">WeChat</span>
+              </button>
+            </div>
+
+            {/* Download & Copy */}
+            <div className="flex gap-2">
+              <button onClick={handleDownload}
+                className="flex-1 py-3 bg-rose-600 rounded-2xl hover:bg-rose-500 transition-colors flex items-center justify-center gap-2 cursor-pointer min-h-[44px]">
+                <FontAwesomeIcon icon={faDownload} className="w-3.5 h-3.5 text-white" />
+                <span className="text-xs font-medium text-white">Download</span>
+              </button>
+              <button onClick={handleCopy}
+                className="flex-1 py-3 bg-[#141420]/80 rounded-2xl hover:bg-[#1C1C2A] transition-colors flex items-center justify-center gap-2 cursor-pointer min-h-[44px]">
+                <FontAwesomeIcon icon={copied ? faCheck : faCopy} className={`w-3.5 h-3.5 ${copied ? 'text-green-400' : 'text-slate-400'}`} />
+                <span className="text-xs font-medium text-slate-300">{copied ? 'Copied!' : 'Copy'}</span>
+              </button>
+            </div>
+
+            <button onClick={() => { setStep('preview'); setImageUrl(null); }}
+              className="w-full py-3 text-xs font-medium text-slate-500 hover:text-slate-300 transition-colors cursor-pointer min-h-[44px]">
+              {t('cancel')}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -70,6 +70,9 @@ const translations = {
     shareMonthly: '/month being drained',
     shareBiggest: 'Biggest vampire:',
     shareTagline: 'Track yours at billvampire.com',
+    shareMadeWith: 'Made with Bill Vampire',
+    shareViralText: 'I\'m being drained ${amount}/month on subscriptions... how about you?',
+    shareWechatTip: 'Image saved! Open WeChat and share from album',
 
     // Footer
     footer: 'Bill Vampire - Make every dollar visible',
@@ -162,6 +165,9 @@ const translations = {
     shareMonthly: '/月 正在被吸血',
     shareBiggest: '最贵的吸血鬼：',
     shareTagline: '来 billvampire.com 查查你的',
+    shareMadeWith: 'Made with Bill Vampire',
+    shareViralText: '我每月被吸了 ${amount} 血... 你呢？',
+    shareWechatTip: '图片已保存，打开微信从相册分享吧',
 
     footer: 'Bill Vampire · 让每一分钱都被看见',
 
