@@ -1,14 +1,14 @@
-import React, { useRef, useCallback, useState } from 'react';
+import React, { useRef, useCallback, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShareNodes, faDownload, faCopy, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faShareNodes, faDownload, faCopy, faCheck, faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { faXTwitter, faFacebook, faWhatsapp, faWeixin } from '@fortawesome/free-brands-svg-icons';
 import { toPng } from 'html-to-image';
 
 export default function ShareCard({ monthlyTotal, subscriptions, currency, t, onClose }) {
   const cardRef = useRef(null);
-  const [step, setStep] = useState('preview'); // 'preview' | 'sharing'
   const [copied, setCopied] = useState(false);
   const [imageUrl, setImageUrl] = useState(null);
+  const [generating, setGenerating] = useState(true);
 
   const biggest = subscriptions.reduce((max, sub) => {
     const price = parseFloat(sub.price) || 0;
@@ -37,30 +37,32 @@ export default function ShareCard({ monthlyTotal, subscriptions, currency, t, on
     return new Blob([array], { type: mime });
   };
 
-  const handleShare = useCallback(async () => {
-    const dataUrl = await generateImage();
-    if (!dataUrl) return;
-
-    if (navigator.share && navigator.canShare) {
-      try {
-        const blob = dataUrlToBlob(dataUrl);
-        const file = new File([blob], 'vampire-report.png', { type: 'image/png' });
-        if (navigator.canShare({ files: [file] })) {
-          await navigator.share({
-            title: t('shareTitle'),
-            text: shareText,
-            files: [file],
-          });
-          return;
-        }
-      } catch (e) {
-        if (e.name === 'AbortError') return;
+  // Auto-generate image on mount
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const dataUrl = await generateImage();
+      if (!cancelled && dataUrl) {
+        setImageUrl(dataUrl);
+        setGenerating(false);
       }
-    }
+    })();
+    return () => { cancelled = true; };
+  }, [generateImage]);
 
-    setImageUrl(dataUrl);
-    setStep('sharing');
-  }, [generateImage, shareText, t]);
+  const handleNativeShare = useCallback(async () => {
+    if (!imageUrl || !navigator.share) return;
+    try {
+      const blob = dataUrlToBlob(imageUrl);
+      const file = new File([blob], 'vampire-report.png', { type: 'image/png' });
+      const data = { title: t('shareTitle'), text: shareText, files: [file] };
+      if (navigator.canShare && navigator.canShare(data)) {
+        await navigator.share(data);
+      } else {
+        await navigator.share({ title: t('shareTitle'), text: shareText });
+      }
+    } catch {}
+  }, [imageUrl, shareText, t]);
 
   const handleDownload = useCallback(() => {
     if (!imageUrl) return;
@@ -108,10 +110,10 @@ export default function ShareCard({ monthlyTotal, subscriptions, currency, t, on
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
-      <div className="w-full max-w-xs" onClick={e => e.stopPropagation()}>
-        {/* Card for image generation */}
+      <div className="w-full max-w-xs relative" onClick={e => e.stopPropagation()}>
+        {/* Card for image generation — hidden offscreen once image is captured */}
         <div ref={cardRef}
-          className="bg-gradient-to-br from-[#1C1C2A] via-[#141420] to-[#1A1028] p-8 rounded-3xl shadow-2xl border border-slate-700/40">
+          className={`bg-gradient-to-br from-[#1C1C2A] via-[#141420] to-[#1A1028] p-8 rounded-3xl shadow-2xl border border-slate-700/40${imageUrl ? ' absolute -left-[9999px]' : ''}`}>
           <div className="text-center mb-6">
             <img src={`${import.meta.env.BASE_URL}icons/icon-192x192.png`} alt="Bill Vampire" className="w-16 h-16 mx-auto mb-3 rounded-xl" crossOrigin="anonymous" />
             <h2 className="text-lg font-bold text-slate-100 tracking-wide font-gothic">{t('shareTitle')}</h2>
@@ -137,69 +139,70 @@ export default function ShareCard({ monthlyTotal, subscriptions, currency, t, on
           </div>
         </div>
 
-        {step === 'preview' ? (
-          <div className="flex gap-3 mt-4">
-            <button onClick={onClose}
-              className="flex-1 py-3 text-xs font-medium text-slate-400 bg-[#141420]/80 backdrop-blur rounded-2xl hover:bg-[#1C1C2A] transition-colors cursor-pointer min-h-[44px]">
-              {t('cancel')}
+        {/* Share panel */}
+        <div className="mt-4 space-y-3">
+          {/* Image preview or loading */}
+          {imageUrl ? (
+            <div className="rounded-xl overflow-hidden border border-slate-700/30">
+              <img src={imageUrl} alt="Preview" className="w-full" />
+            </div>
+          ) : (
+            <div className="flex items-center justify-center py-6">
+              <div className="w-5 h-5 border-2 border-rose-500 border-t-transparent rounded-full animate-spin" />
+              <span className="ml-2 text-xs text-slate-400">{t('generating')}</span>
+            </div>
+          )}
+
+          {/* Social share buttons */}
+          <div className="grid grid-cols-5 gap-2">
+            <button onClick={openTwitter} disabled={!imageUrl}
+              className="py-3 bg-[#141420]/80 rounded-2xl hover:bg-[#1C1C2A] transition-colors flex flex-col items-center justify-center gap-1 cursor-pointer min-h-[44px] disabled:opacity-40">
+              <FontAwesomeIcon icon={faXTwitter} className="w-4 h-4 text-white" />
+              <span className="text-[10px] text-slate-400">X</span>
             </button>
-            <button onClick={handleShare}
-              className="flex-1 py-3 text-xs font-medium text-white bg-rose-600 rounded-2xl hover:bg-rose-500 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-rose-900/30 cursor-pointer min-h-[44px]">
-              <FontAwesomeIcon icon={faShareNodes} className="w-3.5 h-3.5" /> Share
+            <button onClick={openFacebook} disabled={!imageUrl}
+              className="py-3 bg-[#141420]/80 rounded-2xl hover:bg-[#1C1C2A] transition-colors flex flex-col items-center justify-center gap-1 cursor-pointer min-h-[44px] disabled:opacity-40">
+              <FontAwesomeIcon icon={faFacebook} className="w-4 h-4 text-[#1877F2]" />
+              <span className="text-[10px] text-slate-400">Facebook</span>
             </button>
-          </div>
-        ) : (
-          <div className="mt-4 space-y-3">
-            {imageUrl && (
-              <div className="rounded-xl overflow-hidden border border-slate-700/30">
-                <img src={imageUrl} alt="Preview" className="w-full" />
-              </div>
+            <button onClick={openWhatsapp} disabled={!imageUrl}
+              className="py-3 bg-[#141420]/80 rounded-2xl hover:bg-[#1C1C2A] transition-colors flex flex-col items-center justify-center gap-1 cursor-pointer min-h-[44px] disabled:opacity-40">
+              <FontAwesomeIcon icon={faWhatsapp} className="w-4 h-4 text-[#25D366]" />
+              <span className="text-[10px] text-slate-400">WhatsApp</span>
+            </button>
+            <button onClick={handleWechat} disabled={!imageUrl}
+              className="py-3 bg-[#141420]/80 rounded-2xl hover:bg-[#1C1C2A] transition-colors flex flex-col items-center justify-center gap-1 cursor-pointer min-h-[44px] disabled:opacity-40">
+              <FontAwesomeIcon icon={faWeixin} className="w-4 h-4 text-[#07C160]" />
+              <span className="text-[10px] text-slate-400">WeChat</span>
+            </button>
+            {navigator.share && (
+              <button onClick={handleNativeShare} disabled={!imageUrl}
+                className="py-3 bg-[#141420]/80 rounded-2xl hover:bg-[#1C1C2A] transition-colors flex flex-col items-center justify-center gap-1 cursor-pointer min-h-[44px] disabled:opacity-40">
+                <FontAwesomeIcon icon={faEllipsis} className="w-4 h-4 text-slate-400" />
+                <span className="text-[10px] text-slate-400">More</span>
+              </button>
             )}
+          </div>
 
-            {/* Social share buttons */}
-            <div className="grid grid-cols-4 gap-2">
-              <button onClick={openTwitter}
-                className="py-3 bg-[#141420]/80 rounded-2xl hover:bg-[#1C1C2A] transition-colors flex flex-col items-center justify-center gap-1 cursor-pointer min-h-[44px]">
-                <FontAwesomeIcon icon={faXTwitter} className="w-4 h-4 text-white" />
-                <span className="text-[10px] text-slate-400">X</span>
-              </button>
-              <button onClick={openFacebook}
-                className="py-3 bg-[#141420]/80 rounded-2xl hover:bg-[#1C1C2A] transition-colors flex flex-col items-center justify-center gap-1 cursor-pointer min-h-[44px]">
-                <FontAwesomeIcon icon={faFacebook} className="w-4 h-4 text-[#1877F2]" />
-                <span className="text-[10px] text-slate-400">Facebook</span>
-              </button>
-              <button onClick={openWhatsapp}
-                className="py-3 bg-[#141420]/80 rounded-2xl hover:bg-[#1C1C2A] transition-colors flex flex-col items-center justify-center gap-1 cursor-pointer min-h-[44px]">
-                <FontAwesomeIcon icon={faWhatsapp} className="w-4 h-4 text-[#25D366]" />
-                <span className="text-[10px] text-slate-400">WhatsApp</span>
-              </button>
-              <button onClick={handleWechat}
-                className="py-3 bg-[#141420]/80 rounded-2xl hover:bg-[#1C1C2A] transition-colors flex flex-col items-center justify-center gap-1 cursor-pointer min-h-[44px]">
-                <FontAwesomeIcon icon={faWeixin} className="w-4 h-4 text-[#07C160]" />
-                <span className="text-[10px] text-slate-400">WeChat</span>
-              </button>
-            </div>
-
-            {/* Download & Copy */}
-            <div className="flex gap-2">
-              <button onClick={handleDownload}
-                className="flex-1 py-3 bg-rose-600 rounded-2xl hover:bg-rose-500 transition-colors flex items-center justify-center gap-2 cursor-pointer min-h-[44px]">
-                <FontAwesomeIcon icon={faDownload} className="w-3.5 h-3.5 text-white" />
-                <span className="text-xs font-medium text-white">Download</span>
-              </button>
-              <button onClick={handleCopy}
-                className="flex-1 py-3 bg-[#141420]/80 rounded-2xl hover:bg-[#1C1C2A] transition-colors flex items-center justify-center gap-2 cursor-pointer min-h-[44px]">
-                <FontAwesomeIcon icon={copied ? faCheck : faCopy} className={`w-3.5 h-3.5 ${copied ? 'text-green-400' : 'text-slate-400'}`} />
-                <span className="text-xs font-medium text-slate-300">{copied ? 'Copied!' : 'Copy'}</span>
-              </button>
-            </div>
-
-            <button onClick={() => { setStep('preview'); setImageUrl(null); }}
-              className="w-full py-3 text-xs font-medium text-slate-500 hover:text-slate-300 transition-colors cursor-pointer min-h-[44px]">
-              {t('cancel')}
+          {/* Download & Copy */}
+          <div className="flex gap-2">
+            <button onClick={handleDownload} disabled={!imageUrl}
+              className="flex-1 py-3 bg-rose-600 rounded-2xl hover:bg-rose-500 transition-colors flex items-center justify-center gap-2 cursor-pointer min-h-[44px] disabled:opacity-40">
+              <FontAwesomeIcon icon={faDownload} className="w-3.5 h-3.5 text-white" />
+              <span className="text-xs font-medium text-white">Download</span>
+            </button>
+            <button onClick={handleCopy} disabled={!imageUrl}
+              className="flex-1 py-3 bg-[#141420]/80 rounded-2xl hover:bg-[#1C1C2A] transition-colors flex items-center justify-center gap-2 cursor-pointer min-h-[44px] disabled:opacity-40">
+              <FontAwesomeIcon icon={copied ? faCheck : faCopy} className={`w-3.5 h-3.5 ${copied ? 'text-green-400' : 'text-slate-400'}`} />
+              <span className="text-xs font-medium text-slate-300">{copied ? 'Copied!' : 'Copy'}</span>
             </button>
           </div>
-        )}
+
+          <button onClick={onClose}
+            className="w-full py-3 text-xs font-medium text-slate-500 hover:text-slate-300 transition-colors cursor-pointer min-h-[44px]">
+            {t('cancel')}
+          </button>
+        </div>
       </div>
     </div>
   );
