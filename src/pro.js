@@ -67,7 +67,7 @@ export function checkPaymentSuccess() {
   return false;
 }
 
-// Tip jar - using same Creem.io checkout (users can adjust amount)
+// Tip jar - $2 tip via Creem.io
 export function openTip() {
-  window.open(CREEM_CHECKOUT_URL, '_blank');
+  window.open('https://www.creem.io/payment/prod_4jHrSY5B9kBakNLmI1GuLw', '_blank');
 }

@@ -394,7 +394,7 @@ export default function App({ onLegal }) {
                 <p className="text-[10px] text-slate-500 mb-2 flex items-center gap-1.5"><FontAwesomeIcon icon={faHeart} className="w-2.5 h-2.5 text-rose-400/60" /> {_('tipTitle')}</p>
                 <button onClick={openTip}
                   className="w-full py-2 text-[10px] font-medium text-amber-300/80 bg-[#1C1C2A]/50 rounded-lg hover:bg-[#252536] transition-colors border border-amber-800/10 cursor-pointer">
-                  {lang === 'zh' ? '\u652F\u6301\u4E00\u4E0B' : 'Support Us'}
+                  {lang === 'zh' ? '打赏 $2' : 'Tip $2'}
                 </button>
               </div>
 
@@ -607,7 +607,7 @@ export default function App({ onLegal }) {
                     <p className="text-sm font-medium text-slate-300 mb-4 flex items-center gap-2"><FontAwesomeIcon icon={faHeart} className="w-4 h-4 text-rose-400" /> {_('tipTitle')}</p>
                     <button onClick={openTip}
                       className="w-full py-3 text-sm font-medium text-amber-300 bg-[#1C1C2A]/70 rounded-xl hover:bg-[#252536] transition-colors border border-amber-800/20 cursor-pointer">
-                      {lang === 'zh' ? '\u652F\u6301\u4E00\u4E0B' : 'Support Us'}
+                      {lang === 'zh' ? '打赏 $2' : 'Tip $2'}
                     </button>
                   </div>
                 </div>
