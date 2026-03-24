@@ -199,7 +199,7 @@ export default function Landing({ onEnterApp, onLegal, lang, setLang }) {
                   {/* Mock sidebar */}
                   <div className="lg:w-48 shrink-0 space-y-4">
                     <div className="flex items-center gap-2">
-                      <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="" className="w-8 h-8 rounded-lg" />
+                      <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="Bill Vampire logo" className="w-8 h-8 rounded-lg" />
                       <span className="font-gothic text-sm text-slate-200">Bill Vampire</span>
                     </div>
                     <div className="bg-rose-950/40 rounded-xl p-3 border border-rose-800/20">
@@ -269,7 +269,7 @@ export default function Landing({ onEnterApp, onLegal, lang, setLang }) {
                 {f.isNew && (
                   <span className="absolute top-4 right-4 text-[9px] font-bold text-emerald-400 bg-emerald-950/50 border border-emerald-800/30 px-2 py-0.5 rounded-full">NEW</span>
                 )}
-                <img src={f.icon} alt="" className="w-12 h-12 mb-4" loading="lazy" />
+                <img src={f.icon} alt={f.title} className="w-12 h-12 mb-4" loading="lazy" />
                 <h3 className="text-sm font-semibold text-slate-200 mb-2">{f.title}</h3>
                 <p className="text-xs text-slate-500 leading-relaxed">{f.desc}</p>
               </div>
@@ -295,7 +295,7 @@ export default function Landing({ onEnterApp, onLegal, lang, setLang }) {
                   <div className="hidden lg:block absolute top-10 left-[calc(100%_-_16px)] w-[calc(100%_-_56px)] h-px bg-gradient-to-r from-slate-800 to-transparent z-0" />
                 )}
                 <div className="inline-flex items-center justify-center w-20 h-20 bg-[#141420] rounded-2xl border border-slate-800/40 mb-5 mx-auto lg:mx-0 relative z-10">
-                  <img src={step.icon} alt="" className="w-10 h-10" loading="lazy" />
+                  <img src={step.icon} alt={step.title} className="w-10 h-10" loading="lazy" />
                 </div>
                 <p className="text-[10px] font-bold text-violet-400 uppercase tracking-widest mb-2">{isZh ? `步骤 ${step.num}` : `Step ${step.num}`}</p>
                 <h3 className="text-base font-semibold text-slate-200 mb-2">{step.title}</h3>
@@ -345,7 +345,7 @@ export default function Landing({ onEnterApp, onLegal, lang, setLang }) {
             {/* Mock Smart Import UI */}
             <div className="bg-[#141420]/80 rounded-2xl border border-slate-800/40 p-6 shadow-xl">
               <div className="flex items-center gap-2 mb-4">
-                <img src={ICON.scanner} alt="" className="w-6 h-6" />
+                <img src={ICON.scanner} alt="Smart Import scanner" className="w-6 h-6" />
                 <span className="text-xs font-bold text-slate-200 uppercase tracking-wider">{isZh ? '智能导入' : 'Smart Import'}</span>
               </div>
               <div className="bg-[#1C1C2A] rounded-xl p-4 mb-4 border border-slate-700/30">
@@ -510,7 +510,7 @@ export default function Landing({ onEnterApp, onLegal, lang, setLang }) {
       <section className="py-20 lg:py-28 relative">
         <div className="absolute inset-0 bg-gradient-to-t from-rose-950/10 to-transparent -z-10" />
         <div className="max-w-2xl mx-auto px-6 text-center">
-          <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="" className="w-16 h-16 mx-auto mb-6 rounded-2xl shadow-lg shadow-rose-900/20" />
+          <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="Bill Vampire" className="w-16 h-16 mx-auto mb-6 rounded-2xl shadow-lg shadow-rose-900/20" />
           <h2 className="text-2xl lg:text-3xl font-bold text-slate-100 mb-4">
             {isZh ? '准备好消灭你的吸血鬼了吗？' : 'Ready to slay your vampires?'}
           </h2>
@@ -530,7 +530,7 @@ export default function Landing({ onEnterApp, onLegal, lang, setLang }) {
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-3">
-              <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="" className="w-7 h-7 rounded-lg" />
+              <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="Bill Vampire" className="w-7 h-7 rounded-lg" />
               <span className="font-gothic text-sm font-bold text-slate-400">Bill Vampire</span>
               <span className="text-[10px] text-slate-700 ml-1">{isZh ? '让每一分钱都被看见' : 'Make every dollar visible'}</span>
             </div>
