@@ -13,7 +13,7 @@ import {
 import { Pie } from 'react-chartjs-2';
 import { t, getDefaultLang, SUPPORTED_LANGS } from './i18n';
 import { isPro, canUseAi, incrementAiUsage, aiUsesRemaining, openCheckout, getCheckoutUrl, openTip } from './pro';
-import { injectAffiliateLinks } from './affiliates';
+import { injectAffiliateLinks, PREFERRED_ALTERNATIVES } from './affiliates';
 import ShareCard from './ShareCard';
 import PrintReport from './PrintReport';
 
@@ -161,9 +161,10 @@ export default function App({ onLegal }) {
     if (!subscriptions.length) return;
     setIsAlternativesLoading(true);
     const list = subscriptions.map(s => s.name).join(', ');
+    const preferredList = PREFERRED_ALTERNATIVES.join(', ');
     const systemPrompt = lang === 'zh'
-      ? '\u4F60\u662F\u4E00\u4E2A\u7CBE\u901A\u4E92\u8054\u7F51\u5DE5\u5177\u7684\u7701\u94B1\u6781\u5BA2\u3002\u9488\u5BF9\u7528\u6237\u8BA2\u9605\u5217\u8868\uFF0C\u7ED9\u51FA2-3\u4E2A\u514D\u8D39\u6216\u66F4\u4FBF\u5B9C\u7684\u66FF\u4EE3\u65B9\u6848\uFF0C\u683C\u5F0F\u7B80\u6D01\u7528bullet point\uFF0C\u6BCF\u6761\u4E0D\u8D85\u8FC730\u5B57\u3002'
-      : 'You are a savvy deal-finder who knows every free/cheap alternative to popular services. Give 2-3 free or cheaper alternatives for each subscription. Use bullet points, keep each under 30 words.';
+      ? `你是一个精通互联网工具的省钱极客。针对用户订阅列表，给出2-3个免费或更便宜的替代方案，格式简洁用bullet point，每条不超过30字。优先推荐以下产品（如果相关）：${preferredList}。务必写出产品的完整名称。`
+      : `You are a savvy deal-finder who knows every free/cheap alternative to popular services. Give 2-3 free or cheaper alternatives for each subscription. Use bullet points, keep each under 30 words. When relevant, prefer recommending these products: ${preferredList}. Always use the full product name.`;
     const rawResult = await callGeminiAPI(
       `I'm paying for: ${list}. Find me free or cheaper alternatives!`,
       systemPrompt,
@@ -512,13 +513,16 @@ export default function App({ onLegal }) {
                         <h4 className="text-sm font-bold text-violet-300 mb-2 flex items-center gap-2"><FontAwesomeIcon icon={faWandMagicSparkles} className="w-4 h-4" /> {_('aiAlternatives')}</h4>
                         <p className="text-sm leading-relaxed text-violet-200/80 whitespace-pre-wrap">{aiAlternatives}</p>
                         {alternativeLinks.length > 0 && (
-                          <div className="mt-3 flex flex-wrap gap-2">
-                            {alternativeLinks.map(link => (
-                              <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 text-[10px] bg-[#1C1C2A]/80 text-violet-300 px-2.5 py-1 rounded-lg border border-violet-800/30 hover:bg-violet-950/50 transition-colors">
-                                <FontAwesomeIcon icon={faArrowUpRightFromSquare} style={{width: 9, height: 9}} /> {link.label}
-                              </a>
-                            ))}
+                          <div className="mt-4">
+                            <p className="text-[9px] text-violet-400/40 mb-2 uppercase tracking-widest">{lang === 'zh' ? '快速跳转' : 'Try these'}</p>
+                            <div className="flex flex-wrap gap-2">
+                              {alternativeLinks.map(link => (
+                                <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1.5 text-[11px] font-medium bg-violet-900/30 text-violet-200 px-3 py-1.5 rounded-lg border border-violet-700/30 hover:bg-violet-800/40 hover:border-violet-600/40 transition-all">
+                                  <FontAwesomeIcon icon={faArrowUpRightFromSquare} style={{width: 10, height: 10}} /> {link.label}
+                                </a>
+                              ))}
+                            </div>
                           </div>
                         )}
                       </div>
