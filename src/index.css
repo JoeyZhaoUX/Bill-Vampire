@@ -105,6 +105,48 @@ body {
 }
 
 /* ================================ */
+/* Accessibility                    */
+/* ================================ */
+
+/* High-contrast focus ring (WCAG AAA) */
+:focus-visible {
+  outline: 2px solid #94A3B8;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Ensure focused links / buttons always show ring */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #94A3B8;
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #64748B;
+  outline-offset: 1px;
+  border-radius: 8px;
+}
+
+/* Mobile bottom nav safe area (iPhone notch / home bar) */
+.mobile-nav-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .animate-in,
+  .fade-in,
+  .slide-in-from-bottom-4,
+  .zoom-in-95 {
+    animation: none !important;
+  }
+}
+
+/* ================================ */
 /* Print Report Styles              */
 /* ================================ */
 
@@ -113,8 +155,16 @@ body {
 }
 
 @media print {
+  /* Ensure Google Fonts are embedded */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700;900&display=swap');
+
   /* Hide app UI, show report */
-  body { background: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    background: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
   .app-screen { display: none !important; }
   .print-report { display: block !important; padding: 0; margin: 0; }
 
@@ -144,19 +194,22 @@ body {
 
   .pr-title {
     font-size: 22px;
-    font-weight: 800;
+    font-weight: 700;
     color: #0f172a;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     margin: 0;
     line-height: 1.2;
+    font-family: 'Cinzel Decorative', 'Playfair Display', Georgia, serif;
   }
 
   .pr-subtitle {
-    font-size: 10px;
+    font-size: 9px;
     color: #94a3b8;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     margin: 2px 0 0 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 500;
   }
 
   .pr-header-right {
@@ -168,6 +221,7 @@ body {
     font-size: 14px;
     font-weight: 700;
     color: #334155;
+    font-family: 'Playfair Display', Georgia, serif;
   }
 
   .pr-date-sub {
@@ -175,6 +229,7 @@ body {
     font-size: 9px;
     color: #94a3b8;
     margin-top: 2px;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
   .pr-divider {
@@ -210,16 +265,18 @@ body {
     font-size: 9px;
     color: #64748b;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     margin-bottom: 6px;
     font-weight: 600;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
   .pr-metric-value {
     display: block;
     font-size: 20px;
-    font-weight: 800;
+    font-weight: 700;
     color: #0f172a;
+    font-family: 'Playfair Display', Georgia, serif;
   }
 
   .pr-metric-danger {
@@ -241,23 +298,25 @@ body {
   }
 
   .pr-section-title {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     color: #0f172a;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.15em;
     margin: 0 0 12px 0;
     padding-bottom: 6px;
     border-bottom: 1.5px solid #e2e8f0;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
   .pr-subsection-title {
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     color: #475569;
     margin: 0 0 8px 0;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
   /* Subscriptions table */
@@ -294,6 +353,7 @@ body {
   .pr-sub-name {
     font-weight: 600;
     color: #0f172a;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
   .pr-category-badge {
@@ -433,8 +493,9 @@ body {
 
   .pr-cal-streak {
     font-size: 18px;
-    font-weight: 800;
+    font-weight: 700;
     color: #16a34a;
+    font-family: 'Playfair Display', Georgia, serif;
   }
 
   .pr-cal-streak-label {
@@ -486,6 +547,7 @@ body {
     border-top: 1px solid #e2e8f0;
     font-size: 8px;
     color: #94a3b8;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 }

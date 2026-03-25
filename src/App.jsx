@@ -312,10 +312,41 @@ export default function App({ onLegal }) {
   return (
     <>
     <div className="app-screen min-h-screen bg-gothic-pattern">
+      {/* Skip navigation for keyboard users */}
+      <a href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-slate-100 focus:text-slate-900 focus:rounded-lg focus:text-sm focus:font-medium focus:shadow-lg">
+        Skip to main content
+      </a>
+
+      {/* ========== MOBILE TOP HEADER ========== */}
+      <header className="lg:hidden sticky top-0 z-40 bg-[#0D0D15]/95 backdrop-blur-xl border-b border-slate-800/40">
+        <div className="flex items-center justify-between px-4 py-2.5">
+          <div className="flex items-center gap-2.5">
+            <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="" aria-hidden="true" className="w-7 h-7 rounded-lg shadow-sm" />
+            <h1 className="font-gothic text-sm font-bold text-slate-100 tracking-wider">{_('appName')}</h1>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="text-right">
+              <p className="text-[9px] text-slate-500 uppercase tracking-wider leading-none mb-0.5" aria-hidden="true">drain</p>
+              <p className="text-rose-400 font-bold text-base leading-none" aria-label={`${_('monthlyLoss')} ${displayCurrency}${monthlyTotal.toFixed(2)}`}>{displayCurrency}{monthlyTotal.toFixed(2)}</p>
+            </div>
+            <div className="flex gap-0.5" role="group" aria-label="Language selector">
+              {SUPPORTED_LANGS.map(l => (
+                <button key={l.code} onClick={() => setLang(l.code)}
+                  aria-pressed={lang === l.code}
+                  className={`text-[9px] px-1.5 py-1 rounded-md transition-colors cursor-pointer ${lang === l.code ? 'bg-slate-700/70 text-slate-200' : 'text-slate-600 hover:text-slate-400'}`}>
+                  {l.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </header>
+
       <div className="min-h-screen flex flex-col lg:flex-row">
 
         {/* ========== SIDEBAR ========== */}
-        <aside className="w-full lg:w-72 xl:w-80 lg:min-h-screen lg:sticky lg:top-0 shrink-0 bg-[#0D0D15]/80 lg:bg-[#0D0D15]/60 backdrop-blur-xl lg:border-r lg:border-slate-800/30 sidebar-glow">
+        <aside className="hidden lg:block lg:w-72 xl:w-80 lg:min-h-screen lg:sticky lg:top-0 shrink-0 bg-[#0D0D15]/60 backdrop-blur-xl border-r border-slate-800/30 sidebar-glow" aria-label="Sidebar">
           <div className="p-6 lg:p-8 lg:flex lg:flex-col lg:h-screen">
 
             {/* Language switcher */}
@@ -410,15 +441,19 @@ export default function App({ onLegal }) {
         </aside>
 
         {/* ========== MAIN CONTENT ========== */}
-        <main className="flex-1 min-h-screen">
-          <div className="max-w-5xl mx-auto p-4 sm:p-6 lg:p-10">
+        <main id="main-content" className="flex-1 min-h-screen">
+          <div className="max-w-5xl mx-auto p-4 sm:p-6 lg:p-10 pb-24 sm:pb-6 lg:pb-10">
 
             {/* Tabs */}
-            <nav className="flex p-1.5 bg-[#141420]/70 backdrop-blur rounded-2xl mb-8 border border-slate-800/40 gap-1 max-w-md lg:max-w-md">
+            <nav aria-label="Main tabs" role="tablist" className="hidden lg:flex p-1.5 bg-[#141420]/70 backdrop-blur rounded-2xl mb-8 border border-slate-800/40 gap-1 max-w-md">
               {tabs.map(tab => (
                 <button key={tab.id} onClick={() => setActiveTab(tab.id)}
+                  role="tab"
+                  aria-selected={activeTab === tab.id}
+                  aria-controls={`tabpanel-${tab.id}`}
+                  id={`tab-${tab.id}`}
                   className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer ${activeTab === tab.id ? 'bg-[#1C1C2A] shadow-sm text-slate-200' : 'text-slate-600 hover:text-slate-400'}`}>
-                  <FontAwesomeIcon icon={tab.icon} className="w-4 h-4" />
+                  <FontAwesomeIcon icon={tab.icon} className="w-4 h-4" aria-hidden="true" />
                   <span>{tab.label}</span>
                 </button>
               ))}
@@ -426,7 +461,7 @@ export default function App({ onLegal }) {
 
             {/* === SUBS TAB === */}
             {activeTab === 'subs' && (
-              <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
+              <div id="tabpanel-subs" role="tabpanel" aria-labelledby="tab-subs" tabIndex={0} className="animate-in fade-in slide-in-from-bottom-4 duration-300">
                 <div className="flex justify-between items-center mb-5 px-1">
                   <span className="text-sm font-medium text-slate-500 tracking-widest uppercase">{_('subList')}</span>
                   <div className="flex gap-2">
@@ -434,7 +469,7 @@ export default function App({ onLegal }) {
                       className="flex items-center gap-1.5 px-3 py-2.5 bg-violet-950/40 text-violet-400 rounded-xl hover:bg-violet-950/60 transition-colors cursor-pointer text-xs font-medium">
                       <FontAwesomeIcon icon={faFileImport} className="w-3.5 h-3.5" /> {_('smartImport')}
                     </button>
-                    <button onClick={() => setShowAddModal(true)} className="p-2.5 bg-rose-950/40 text-rose-400 rounded-xl hover:bg-rose-950/60 transition-colors cursor-pointer"><FontAwesomeIcon icon={faPlus} className="w-4 h-4" /></button>
+                    <button onClick={() => setShowAddModal(true)} aria-label={_('addSub')} className="p-2.5 bg-rose-950/40 text-rose-400 rounded-xl hover:bg-rose-950/60 transition-colors cursor-pointer"><FontAwesomeIcon icon={faPlus} className="w-4 h-4" aria-hidden="true" /></button>
                   </div>
                 </div>
                 {subscriptions.length === 0 && (
@@ -459,7 +494,7 @@ export default function App({ onLegal }) {
                       </div>
                       <div className="flex items-center gap-4">
                         <span className="font-bold text-slate-200 text-lg">{CURRENCIES[sub.currency || 'USD']?.symbol}{sub.price}</span>
-                        <button onClick={() => deleteSub(sub.id)} className="text-rose-700 hover:text-rose-400 opacity-0 group-hover:opacity-100 transition-all p-1.5 cursor-pointer"><FontAwesomeIcon icon={faTrash} className="w-4 h-4" /></button>
+                        <button onClick={() => deleteSub(sub.id)} aria-label={`Remove ${sub.name}`} className="text-rose-700 hover:text-rose-400 opacity-0 group-hover:opacity-100 focus:opacity-100 transition-all p-1.5 cursor-pointer"><FontAwesomeIcon icon={faTrash} className="w-4 h-4" aria-hidden="true" /></button>
                       </div>
                     </div>
                   ))}
@@ -499,7 +534,7 @@ export default function App({ onLegal }) {
 
             {/* === NO-SPEND TAB === */}
             {activeTab === 'no-spend' && (
-              <div className="animate-in fade-in slide-in-from-bottom-4 duration-300 max-w-2xl">
+              <div id="tabpanel-no-spend" role="tabpanel" aria-labelledby="tab-no-spend" tabIndex={0} className="animate-in fade-in slide-in-from-bottom-4 duration-300 max-w-2xl">
                 <div className="text-center mb-8">
                   <h3 className="text-base lg:text-lg font-medium text-slate-200 mb-3">{_('noSpendTitle')}</h3>
                   <div className="inline-flex items-center gap-2.5 bg-emerald-950/40 px-5 py-2.5 rounded-full border border-emerald-800/30">
@@ -520,6 +555,8 @@ export default function App({ onLegal }) {
                     const isFuture = dayNum > currentDay;
                     return (
                       <button key={i} onClick={() => toggleNoSpend(date)} disabled={isFuture}
+                        aria-label={`${new Date(currentYear, currentMonth - 1, dayNum).toLocaleDateString(lang === 'zh' ? 'zh-CN' : 'en-US', { month: 'long', day: 'numeric' })}${isChecked ? ' — no-spend' : isToday ? ' — today' : ''}`}
+                        aria-pressed={isChecked}
                         className={[
                           'aspect-square rounded-xl text-sm lg:text-base font-medium transition-all duration-200 flex items-center justify-center',
                           isChecked ? 'bg-emerald-600 text-white shadow-sm shadow-emerald-900/30' : '',
@@ -550,19 +587,20 @@ export default function App({ onLegal }) {
 
             {/* === STATS TAB === */}
             {activeTab === 'stats' && (
-              <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
+              <div id="tabpanel-stats" role="tabpanel" aria-labelledby="tab-stats" tabIndex={0} className="animate-in fade-in slide-in-from-bottom-4 duration-300">
                 {/* AI Advisor - full width */}
                 <div className="bg-gradient-to-br from-violet-950/40 to-rose-950/40 p-6 lg:p-8 rounded-2xl border border-slate-800/50 relative overflow-hidden mb-6">
                   <div className="absolute -right-4 -top-4 text-rose-900/30"><FontAwesomeIcon icon={faQuoteLeft} className="w-24 h-24" /></div>
                   <div className="flex items-center justify-between mb-5 relative z-10">
                     <span className="text-sm lg:text-base font-bold text-slate-200 flex items-center gap-2"><FontAwesomeIcon icon={faWandMagicSparkles} className="w-4 h-4 text-rose-400" /> {_('aiAdvisor')}</span>
                     <button onClick={getAiAdvice} disabled={isAiLoading || !subscriptions.length}
+                      aria-busy={isAiLoading}
                       className="text-xs bg-[#1C1C2A]/70 text-slate-300 px-4 py-2 rounded-xl hover:bg-[#252536] transition-colors flex items-center gap-1.5 shadow-sm disabled:opacity-50 cursor-pointer">
                       {isAiLoading ? <FontAwesomeIcon icon={faSpinner} className="w-3.5 h-3.5 animate-spin text-rose-400" /> : <FontAwesomeIcon icon={faBolt} className="w-3.5 h-3.5 text-rose-400" />}
                       {isAiLoading ? _('analyzing') : _('startAnalysis')}
                     </button>
                   </div>
-                  <div className="relative z-10 bg-[#0B0B11]/40 backdrop-blur-sm rounded-xl p-4 min-h-[70px] flex items-center border border-slate-800/30">
+                  <div aria-live="polite" aria-atomic="true" className="relative z-10 bg-[#0B0B11]/40 backdrop-blur-sm rounded-xl p-4 min-h-[70px] flex items-center border border-slate-800/30">
                     {aiAdvice
                       ? <p className="text-sm leading-relaxed text-slate-300 whitespace-pre-wrap">{aiAdvice}</p>
                       : <p className="text-sm text-slate-600 font-light italic w-full text-center">{_('aiPlaceholder')}</p>}
@@ -648,30 +686,55 @@ export default function App({ onLegal }) {
         </main>
       </div>
 
+      {/* ========== MOBILE BOTTOM NAV ========== */}
+      <nav aria-label="Main navigation" className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#0D0D15]/95 backdrop-blur-xl border-t border-slate-800/40 mobile-nav-safe">
+        <div className="flex items-stretch">
+          {tabs.map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              aria-current={activeTab === tab.id ? 'page' : undefined}
+              className={[
+                'flex-1 flex flex-col items-center justify-center gap-1 py-3 px-2 transition-all duration-200 cursor-pointer relative',
+                activeTab === tab.id
+                  ? 'text-rose-400'
+                  : 'text-slate-600 hover:text-slate-400',
+              ].join(' ')}
+            >
+              {activeTab === tab.id && (
+                <span className="absolute top-0 inset-x-3 h-0.5 bg-rose-500 rounded-b-full" aria-hidden="true" />
+              )}
+              <FontAwesomeIcon icon={tab.icon} className="w-5 h-5" aria-hidden="true" />
+              <span className="text-[10px] font-medium tracking-wide">{tab.label}</span>
+            </button>
+          ))}
+        </div>
+      </nav>
+
       {/* === ADD MODAL === */}
       {showAddModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end justify-center p-4 sm:items-center">
-          <div className="bg-[#141420]/95 backdrop-blur-xl w-full max-w-sm p-8 rounded-[2rem] shadow-2xl animate-in zoom-in-95 fade-in duration-200 border border-slate-800/50">
-            <h3 className="text-sm font-bold mb-6 tracking-widest text-slate-100 uppercase">{_('addSub')}</h3>
+          <div role="dialog" aria-modal="true" aria-labelledby="add-modal-title" className="bg-[#141420]/95 backdrop-blur-xl w-full max-w-sm p-8 rounded-[2rem] shadow-2xl animate-in zoom-in-95 fade-in duration-200 border border-slate-800/50">
+            <h3 id="add-modal-title" className="text-sm font-bold mb-6 tracking-widest text-slate-100 uppercase">{_('addSub')}</h3>
             <div className="space-y-4">
               <div className="bg-[#1C1C2A] rounded-xl p-1 border border-slate-700/50">
-                <input className="w-full bg-transparent px-3 py-2 text-sm text-slate-200 placeholder-slate-600 outline-none"
+                <input aria-label={_('subName')} className="w-full bg-transparent px-3 py-2 text-sm text-slate-200 placeholder-slate-600 outline-none"
                   placeholder={_('subName')} value={newSub.name}
                   onChange={e => setNewSub({ ...newSub, name: e.target.value })} />
               </div>
               <div className="flex gap-2">
-                <select className="w-[110px] bg-[#1C1C2A] rounded-xl border border-slate-700/50 px-2 py-2.5 text-sm text-slate-300 outline-none"
+                <select aria-label="Currency" className="w-[110px] bg-[#1C1C2A] rounded-xl border border-slate-700/50 px-2 py-2.5 text-sm text-slate-300 outline-none"
                   value={newSub.currency} onChange={e => setNewSub({ ...newSub, currency: e.target.value })}>
                   {Object.values(CURRENCIES).map(c => <option key={c.code} value={c.code}>{c.flag} {c.code}</option>)}
                 </select>
                 <div className="flex-1 bg-[#1C1C2A] rounded-xl p-1 border border-slate-700/50">
-                  <input className="w-full bg-transparent px-3 py-2 text-sm text-slate-200 placeholder-slate-600 outline-none"
+                  <input aria-label={_('amount')} className="w-full bg-transparent px-3 py-2 text-sm text-slate-200 placeholder-slate-600 outline-none"
                     placeholder={_('amount')} type="number" value={newSub.price}
                     onChange={e => setNewSub({ ...newSub, price: e.target.value })} />
                 </div>
               </div>
               <div className="flex gap-2">
-                <select className="flex-1 bg-[#1C1C2A] rounded-xl border border-slate-700/50 px-3 py-2.5 text-sm text-slate-300 outline-none"
+                <select aria-label="Category" className="flex-1 bg-[#1C1C2A] rounded-xl border border-slate-700/50 px-3 py-2.5 text-sm text-slate-300 outline-none"
                   value={newSub.category} onChange={e => setNewSub({ ...newSub, category: e.target.value })}>
                   {CATEGORY_VALUES.map((c, i) => <option key={c} value={c}>{CATEGORY_ICONS[c]} {_(CATEGORY_KEYS[i])}</option>)}
                 </select>
@@ -696,12 +759,12 @@ export default function App({ onLegal }) {
       {/* === PRO MODAL === */}
       {showProModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-4" onClick={() => setShowProModal(false)}>
-          <div className="bg-[#141420]/95 backdrop-blur-xl w-full max-w-sm p-8 rounded-[2rem] shadow-2xl animate-in zoom-in-95 fade-in duration-200 border border-slate-800/50" onClick={e => e.stopPropagation()}>
+          <div role="dialog" aria-modal="true" aria-labelledby="pro-modal-title" className="bg-[#141420]/95 backdrop-blur-xl w-full max-w-sm p-8 rounded-[2rem] shadow-2xl animate-in zoom-in-95 fade-in duration-200 border border-slate-800/50" onClick={e => e.stopPropagation()}>
             <div className="text-center mb-6">
               <div className="w-14 h-14 bg-gradient-to-br from-amber-900/60 to-rose-900/60 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-amber-700/30">
-                <FontAwesomeIcon icon={faCrown} className="w-7 h-7 text-amber-400" />
+                <FontAwesomeIcon icon={faCrown} className="w-7 h-7 text-amber-400" aria-hidden="true" />
               </div>
-              <h3 className="text-sm font-bold text-slate-100 mb-1">{_('upgradeTitle')}</h3>
+              <h3 id="pro-modal-title" className="text-sm font-bold text-slate-100 mb-1">{_('upgradeTitle')}</h3>
               <p className="text-xs text-slate-500 leading-relaxed">{_('upgradeDesc')}</p>
             </div>
             <div className="space-y-3 mb-6">
@@ -730,13 +793,13 @@ export default function App({ onLegal }) {
       {/* === SMART IMPORT MODAL === */}
       {showImportModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end justify-center p-4 sm:items-center" onClick={resetImportModal}>
-          <div className="bg-[#141420]/95 backdrop-blur-xl w-full max-w-lg p-8 rounded-[2rem] shadow-2xl animate-in zoom-in-95 fade-in duration-200 border border-slate-800/50 max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+          <div role="dialog" aria-modal="true" aria-labelledby="import-modal-title" className="bg-[#141420]/95 backdrop-blur-xl w-full max-w-lg p-8 rounded-[2rem] shadow-2xl animate-in zoom-in-95 fade-in duration-200 border border-slate-800/50 max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-2">
-              <h3 className="text-sm font-bold tracking-widest text-slate-100 uppercase flex items-center gap-2">
-                <FontAwesomeIcon icon={faFileImport} className="w-4 h-4 text-violet-400" /> {_('smartImport')}
+              <h3 id="import-modal-title" className="text-sm font-bold tracking-widest text-slate-100 uppercase flex items-center gap-2">
+                <FontAwesomeIcon icon={faFileImport} className="w-4 h-4 text-violet-400" aria-hidden="true" /> {_('smartImport')}
               </h3>
-              <button onClick={resetImportModal} className="text-slate-600 hover:text-slate-300 transition-colors cursor-pointer p-1">
-                <FontAwesomeIcon icon={faXmark} className="w-4 h-4" />
+              <button onClick={resetImportModal} aria-label={_('cancel')} className="text-slate-600 hover:text-slate-300 transition-colors cursor-pointer p-1">
+                <FontAwesomeIcon icon={faXmark} className="w-4 h-4" aria-hidden="true" />
               </button>
             </div>
             <p className="text-xs text-slate-500 mb-6 leading-relaxed">{_('smartImportDesc')}</p>
@@ -745,6 +808,7 @@ export default function App({ onLegal }) {
               <>
                 {/* Text input */}
                 <textarea
+                  aria-label={_('pasteText')}
                   className="w-full bg-[#1C1C2A] rounded-xl border border-slate-700/50 px-4 py-3 text-sm text-slate-200 placeholder-slate-600 outline-none resize-none h-32 mb-4 focus:border-violet-700/50 transition-colors"
                   placeholder={_('pasteText')}
                   value={importText}
