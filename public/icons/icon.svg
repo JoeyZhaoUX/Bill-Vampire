@@ -1,194 +1,348 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700" width="600" height="700">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#fda4af"/>
-      <stop offset="50%" style="stop-color:#e11d48"/>
-      <stop offset="100%" style="stop-color:#9f1239"/>
+
+    <!-- Gold gradient -->
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0%"   stop-color="#F8E882"/>
+      <stop offset="40%"  stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#7A5A0A"/>
     </linearGradient>
-    <linearGradient id="cape" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#5b21b6"/>
-      <stop offset="100%" style="stop-color:#1e1b4b"/>
+
+    <!-- Crimson gradient for wings -->
+    <linearGradient id="crimson" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0%"   stop-color="#C01230"/>
+      <stop offset="100%" stop-color="#3E0008"/>
     </linearGradient>
-    <linearGradient id="capeInner" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#7c3aed"/>
-      <stop offset="100%" style="stop-color:#4c1d95"/>
-    </linearGradient>
-    <linearGradient id="skin" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" style="stop-color:#fefce8"/>
-      <stop offset="100%" style="stop-color:#fef08a"/>
-    </linearGradient>
-    <linearGradient id="hair" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" style="stop-color:#312e81"/>
-      <stop offset="100%" style="stop-color:#0f0a2e"/>
-    </linearGradient>
-    <linearGradient id="cup" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" style="stop-color:#ffffff"/>
-      <stop offset="100%" style="stop-color:#e2e8f0"/>
-    </linearGradient>
-    <linearGradient id="coffee" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" style="stop-color:#92400e"/>
-      <stop offset="100%" style="stop-color:#78350f"/>
-    </linearGradient>
-    <linearGradient id="sleeve" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" style="stop-color:#dc2626"/>
-      <stop offset="100%" style="stop-color:#991b1b"/>
-    </linearGradient>
-    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
-      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#00000033"/>
-    </filter>
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
+
+    <!-- Inner radial background -->
+    <radialGradient id="innerBg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%"   stop-color="#1C0A2E"/>
+      <stop offset="100%" stop-color="#050208"/>
+    </radialGradient>
+
+    <!-- Blood glow filter -->
+    <filter id="bloodGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <radialGradient id="eye-glow" cx="50%" cy="40%" r="50%">
-      <stop offset="0%" style="stop-color:#fca5a5"/>
-      <stop offset="60%" style="stop-color:#dc2626"/>
-      <stop offset="100%" style="stop-color:#7f1d1d"/>
-    </radialGradient>
+
+    <!-- Subtle eye glow -->
+    <filter id="eyeGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Gold shimmer filter -->
+    <filter id="goldShimmer" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Circular text path: center (300,308), radius 250 -->
+    <path id="topArc"    d="M 50,308 A 250,250 0 0 1 550,308"/>
+    <path id="bottomArc" d="M 550,308 A 250,250 0 0 1 50,308"/>
+
   </defs>
 
-  <!-- Background - rounded square matching original -->
-  <rect width="512" height="512" rx="108" fill="url(#bg)"/>
+  <!-- ═══════════════════════════════════ -->
+  <!--  BACKGROUND                        -->
+  <!-- ═══════════════════════════════════ -->
+  <rect width="600" height="700" fill="#04020A"/>
 
-  <!-- Cape outer - wide dramatic spread like original -->
-  <path d="M115 265 C95 310 80 395 76 470 L436 470 C432 395 417 310 397 265
-           C382 278 365 285 348 285 L164 285 C147 285 130 278 115 265 Z"
-        fill="url(#cape)" filter="url(#shadow)"/>
+  <!-- ═══════════════════════════════════ -->
+  <!--  OUTER SEAL RINGS                  -->
+  <!-- ═══════════════════════════════════ -->
+  <circle cx="300" cy="308" r="270" fill="none" stroke="#C9A84C" stroke-width="0.7" opacity="0.3"/>
+  <circle cx="300" cy="308" r="262" fill="none" stroke="#D4AF37" stroke-width="2.8"/>
+  <circle cx="300" cy="308" r="254" fill="none" stroke="#C9A84C" stroke-width="0.6" opacity="0.45"/>
 
-  <!-- Cape inner lining -->
-  <path d="M148 285 C136 325 122 400 118 460 L394 460 C390 400 376 325 364 285 Z"
-        fill="url(#capeInner)" opacity="0.5"/>
+  <!-- Cardinal point ornaments -->
+  <circle cx="300" cy="46"  r="5" fill="#C9A84C" filter="url(#goldShimmer)"/>
+  <circle cx="562" cy="308" r="5" fill="#C9A84C" filter="url(#goldShimmer)"/>
+  <circle cx="300" cy="570" r="5" fill="#C9A84C" filter="url(#goldShimmer)"/>
+  <circle cx="38"  cy="308" r="5" fill="#C9A84C" filter="url(#goldShimmer)"/>
+  <!-- Intercardinal diamonds -->
+  <path d="M 484,122 L 490,116 L 496,122 L 490,128 Z" fill="#C9A84C" opacity="0.65"/>
+  <path d="M 104,122 L 110,116 L 116,122 L 110,128 Z" fill="#C9A84C" opacity="0.65"/>
+  <path d="M 484,494 L 490,488 L 496,494 L 490,500 Z" fill="#C9A84C" opacity="0.65"/>
+  <path d="M 104,494 L 110,488 L 116,494 L 110,500 Z" fill="#C9A84C" opacity="0.65"/>
 
-  <!-- Shirt / chest area -->
-  <path d="M210 275 L218 355 L294 355 L302 275 Z" fill="#1e1b4b"/>
-  <line x1="256" y1="282" x2="256" y2="355" stroke="#312e81" stroke-width="2"/>
+  <!-- ═══════════════════════════════════ -->
+  <!--  CIRCULAR TEXT                     -->
+  <!-- ═══════════════════════════════════ -->
+  <text font-family="Palatino Linotype, Palatino, Garamond, serif"
+        font-size="13.5" fill="#C9A84C" letter-spacing="11" opacity="0.88">
+    <textPath href="#topArc" startOffset="5%">BILL VAMPIRE  ·  CRIMSON LEDGER  ·</textPath>
+  </text>
+  <text font-family="Palatino Linotype, Palatino, Garamond, serif"
+        font-size="12.5" fill="#C9A84C" letter-spacing="9" opacity="0.65">
+    <textPath href="#bottomArc" startOffset="18%">· · ·  BILLVAMPIRE.COM  · · ·</textPath>
+  </text>
 
-  <!-- Head - round, cute proportion like PNG -->
-  <ellipse cx="256" cy="185" rx="82" ry="88" fill="url(#skin)" filter="url(#shadow)"/>
+  <!-- Inner circle fill -->
+  <circle cx="300" cy="308" r="228" fill="url(#innerBg)"/>
+  <circle cx="300" cy="308" r="222" fill="none" stroke="#D4AF37" stroke-width="1.6"/>
 
-  <!-- Cheek blush - cute rosy cheeks -->
-  <ellipse cx="194" cy="212" rx="20" ry="12" fill="#fda4af" opacity="0.45"/>
-  <ellipse cx="318" cy="212" rx="20" ry="12" fill="#fda4af" opacity="0.45"/>
+  <!-- ═══════════════════════════════════ -->
+  <!--  BAT WINGS                         -->
+  <!-- ═══════════════════════════════════ -->
 
-  <!-- Hair - slicked back dark indigo -->
-  <path d="M174 185 C174 120 202 82 256 74 C310 82 338 120 338 185
-           C338 152 318 108 256 98 C194 108 174 152 174 185 Z"
-        fill="url(#hair)"/>
-  <!-- Widow's peak - V shape -->
-  <path d="M222 126 L256 165 L290 126 C276 104 236 104 222 126 Z" fill="url(#hair)"/>
-  <!-- Hair sides -->
-  <path d="M174 185 C168 168 166 150 174 132 L186 162 Z" fill="url(#hair)"/>
-  <path d="M338 185 C344 168 346 150 338 132 L326 162 Z" fill="url(#hair)"/>
+  <!-- LEFT WING – main membrane -->
+  <path d="
+    M 300,272
+    C 275,258 242,240 202,232
+    C 168,225 136,230 108,246
+    C 84,260 70,278 79,295
+    C 88,312 118,308 146,298
+    C 173,288 194,276 220,273
+    C 248,270 280,273 294,277
+    Z
+  " fill="url(#crimson)"/>
 
-  <!-- Pointed ears -->
-  <path d="M174 188 L146 145 L178 182" fill="url(#skin)"/>
-  <path d="M174 188 L153 156 L176 184" fill="#fde047" opacity="0.3"/>
-  <path d="M338 188 L366 145 L334 182" fill="url(#skin)"/>
-  <path d="M338 188 L359 156 L336 184" fill="#fde047" opacity="0.3"/>
+  <!-- Left wing finger bones / spines -->
+  <path d="M 108,246 C 88,238 68,228 56,220"
+        fill="none" stroke="#9A0018" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M 79,295 C 58,293 42,290 32,293"
+        fill="none" stroke="#9A0018" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M 146,298 C 132,311 128,324 133,336"
+        fill="none" stroke="#9A0018" stroke-width="2.0" stroke-linecap="round"/>
 
-  <!-- Eyebrows - arched -->
-  <path d="M204 165 Q224 150 248 162" stroke="#1e1b4b" stroke-width="5" fill="none" stroke-linecap="round"/>
-  <path d="M264 162 Q288 150 308 165" stroke="#1e1b4b" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <!-- Left wing claw tips -->
+  <path d="M 56,220 C 48,210 46,202 50,197 C 55,204 56,213 56,220 Z" fill="url(#crimson)"/>
+  <path d="M 32,293 C 22,290 18,283 21,278 C 27,282 29,288 32,293 Z" fill="url(#crimson)"/>
+  <path d="M 133,336 C 128,345 130,355 136,360 C 138,352 137,344 133,336 Z" fill="url(#crimson)"/>
 
-  <!-- Eyes - big, round, cute like PNG -->
-  <ellipse cx="224" cy="192" rx="22" ry="24" fill="white"/>
-  <ellipse cx="288" cy="192" rx="22" ry="24" fill="white"/>
-  <!-- Red irises -->
-  <ellipse cx="228" cy="194" rx="14" ry="16" fill="url(#eye-glow)"/>
-  <ellipse cx="292" cy="194" rx="14" ry="16" fill="url(#eye-glow)"/>
-  <!-- Pupils -->
-  <ellipse cx="230" cy="194" rx="5" ry="11" fill="#1e1b4b"/>
-  <ellipse cx="294" cy="194" rx="5" ry="11" fill="#1e1b4b"/>
-  <!-- Eye highlights -->
-  <ellipse cx="235" cy="188" rx="5" ry="4" fill="white" opacity="0.9"/>
-  <ellipse cx="299" cy="188" rx="5" ry="4" fill="white" opacity="0.9"/>
-  <ellipse cx="226" cy="200" rx="2.5" ry="2" fill="white" opacity="0.5"/>
-  <ellipse cx="290" cy="200" rx="2.5" ry="2" fill="white" opacity="0.5"/>
+  <!-- Left wing membrane veins -->
+  <path d="M 294,277 C 260,263 222,252 180,257" fill="none" stroke="#7A0010" stroke-width="1.3" opacity="0.55"/>
+  <path d="M 294,277 C 255,261 215,250 172,257" fill="none" stroke="#7A0010" stroke-width="1.0" opacity="0.38"/>
+  <path d="M 294,277 C 248,268 206,262 160,270" fill="none" stroke="#7A0010" stroke-width="0.7" opacity="0.25"/>
 
-  <!-- Nose -->
-  <path d="M252 214 Q256 220 260 214" stroke="#d4a574" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- RIGHT WING – mirror -->
+  <path d="
+    M 300,272
+    C 325,258 358,240 398,232
+    C 432,225 464,230 492,246
+    C 516,260 530,278 521,295
+    C 512,312 482,308 454,298
+    C 427,288 406,276 380,273
+    C 352,270 320,273 306,277
+    Z
+  " fill="url(#crimson)"/>
 
-  <!-- Mouth - happy smirk -->
-  <path d="M232 234 Q244 250 256 246 Q268 250 280 234" stroke="#1e1b4b" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M 492,246 C 512,238 532,228 544,220"
+        fill="none" stroke="#9A0018" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M 521,295 C 542,293 558,290 568,293"
+        fill="none" stroke="#9A0018" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M 454,298 C 468,311 472,324 467,336"
+        fill="none" stroke="#9A0018" stroke-width="2.0" stroke-linecap="round"/>
 
-  <!-- Fangs -->
-  <path d="M236 236 L230 258 L242 238" fill="white" filter="url(#glow)"/>
-  <path d="M276 236 L282 258 L270 238" fill="white" filter="url(#glow)"/>
+  <path d="M 544,220 C 552,210 554,202 550,197 C 545,204 544,213 544,220 Z" fill="url(#crimson)"/>
+  <path d="M 568,293 C 578,290 582,283 579,278 C 573,282 571,288 568,293 Z" fill="url(#crimson)"/>
+  <path d="M 467,336 C 472,345 470,355 464,360 C 462,352 463,344 467,336 Z" fill="url(#crimson)"/>
 
-  <!-- Bow tie -->
-  <path d="M234 264 L256 276 L278 264 L278 288 L256 276 L234 288 Z" fill="#dc2626"/>
-  <circle cx="256" cy="276" r="6" fill="#fbbf24"/>
-  <circle cx="256" cy="274" r="2" fill="#fef08a" opacity="0.6"/>
+  <path d="M 306,277 C 340,263 378,252 420,257" fill="none" stroke="#7A0010" stroke-width="1.3" opacity="0.55"/>
+  <path d="M 306,277 C 345,261 385,250 428,257" fill="none" stroke="#7A0010" stroke-width="1.0" opacity="0.38"/>
+  <path d="M 306,277 C 352,268 394,262 440,270" fill="none" stroke="#7A0010" stroke-width="0.7" opacity="0.25"/>
 
-  <!-- Arms reaching down to hold coffee cup -->
-  <path d="M192 310 C172 338 166 362 178 390 L196 385 C188 362 190 342 204 320 Z"
-        fill="url(#skin)"/>
-  <path d="M320 310 C340 338 346 362 334 390 L316 385 C324 362 322 342 308 320 Z"
-        fill="url(#skin)"/>
+  <!-- ═══════════════════════════════════ -->
+  <!--  VAMPIRE HEAD                      -->
+  <!-- ═══════════════════════════════════ -->
 
-  <!-- ===== COFFEE CUP ===== -->
-  <g filter="url(#shadow)">
-    <!-- Cup body - tapered -->
-    <path d="M196 365 L208 448 C210 456 236 462 256 462 C276 462 302 456 304 448 L316 365 Z"
-          fill="url(#cup)"/>
+  <!-- Neck -->
+  <rect x="280" y="344" width="40" height="22" rx="5" fill="#0E0720"/>
 
-    <!-- Lid - flat top -->
-    <rect x="188" y="352" width="136" height="16" rx="4" fill="#f1f5f9"/>
-    <!-- Lid rim -->
-    <rect x="184" y="362" width="144" height="8" rx="4" fill="#e2e8f0"/>
+  <!-- Head silhouette -->
+  <ellipse cx="300" cy="308" rx="57" ry="64" fill="#080414"/>
+  <!-- Subtle skin tone (deep violet-dark) -->
+  <ellipse cx="300" cy="306" rx="51" ry="57" fill="#140A22"/>
 
-    <!-- Lid sip hole -->
-    <ellipse cx="256" cy="358" rx="12" ry="4" fill="#94a3b8"/>
+  <!-- Widow's peak hairline -->
+  <path d="
+    M 244,280
+    C 252,267 267,272 276,282
+    C 280,272 290,266 300,268
+    C 310,266 320,272 324,282
+    C 333,272 348,267 356,280
+    C 346,291 331,289 320,286
+    C 314,280 308,277 300,278
+    C 292,277 286,280 280,286
+    C 269,289 254,291 244,280 Z
+  " fill="#04020A"/>
 
-    <!-- Red sleeve / band -->
-    <path d="M200 392 L204 420 C206 428 236 434 256 434 C276 434 306 428 308 420 L312 392
-             C308 400 278 406 256 406 C234 406 204 400 200 392 Z"
-          fill="url(#sleeve)"/>
+  <!-- Eyebrows -->
+  <path d="M 275,292 C 280,288 285,287 292,289" fill="none" stroke="#2A1440" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 308,289 C 315,287 320,288 325,292" fill="none" stroke="#2A1440" stroke-width="2.5" stroke-linecap="round"/>
 
-    <!-- Bat silhouette on sleeve -->
-    <path d="M238 410 L246 401 L250 405 L256 398 L262 405 L266 401 L274 410
-             L268 408 L264 412 L256 406 L248 412 L244 408 Z"
-          fill="#fbbf24" opacity="0.9"/>
+  <!-- Eyes outer -->
+  <ellipse cx="284" cy="302" rx="11" ry="8"   fill="#2E0008"/>
+  <ellipse cx="316" cy="302" rx="11" ry="8"   fill="#2E0008"/>
+  <!-- Eyes iris -->
+  <ellipse cx="284" cy="302" rx="7.5" ry="5.5" fill="#AA0820"/>
+  <ellipse cx="316" cy="302" rx="7.5" ry="5.5" fill="#AA0820"/>
+  <!-- Eyes pupil glow -->
+  <ellipse cx="284" cy="301" rx="3.8" ry="3" fill="#EE1030" filter="url(#eyeGlow)"/>
+  <ellipse cx="316" cy="301" rx="3.8" ry="3" fill="#EE1030" filter="url(#eyeGlow)"/>
+  <!-- Highlight spark -->
+  <circle cx="286" cy="299" r="1.2" fill="#FF8090" opacity="0.75"/>
+  <circle cx="318" cy="299" r="1.2" fill="#FF8090" opacity="0.75"/>
 
-    <!-- Cup handle - right side -->
-    <path d="M316 378 C342 380 350 404 342 424 C336 436 322 436 314 426"
-          stroke="#e2e8f0" stroke-width="14" fill="none" stroke-linecap="round"/>
-    <path d="M316 378 C336 380 342 400 336 418 C332 428 324 430 318 422"
-          stroke="#f8fafc" stroke-width="8" fill="none" stroke-linecap="round"/>
-  </g>
+  <!-- Mouth – barely visible, just thin lips -->
+  <path d="M 288,328 C 294,331 300,332 306,331 C 302,334 300,335 298,334 C 296,335 294,334 290,332 Z"
+        fill="#1A0828" stroke="#3A1040" stroke-width="0.5"/>
 
-  <!-- Left hand fingers gripping cup -->
-  <path d="M188 382 C182 388 184 402 192 404 C196 405 200 400 198 394 Z" fill="#fef08a"/>
-  <path d="M194 378 C188 384 190 398 198 400 C202 401 206 396 204 390 Z" fill="#fef08a"/>
-  <path d="M200 376 C194 381 196 394 204 396 C208 397 212 392 210 386 Z" fill="#fef08a"/>
+  <!-- Vampire cape collar -->
+  <path d="
+    M 244,350
+    C 260,340 275,344 284,352
+    L 300,342
+    L 316,352
+    C 325,344 340,340 356,350
+    L 348,374 C 334,384 318,390 300,390
+    C 282,390 266,384 252,374 Z
+  " fill="#07030E"/>
+  <!-- Gold trim on collar -->
+  <path d="M 284,352 L 300,342 L 316,352"
+        fill="none" stroke="#C9A84C" stroke-width="1.1" opacity="0.70"/>
 
-  <!-- Right hand fingers gripping cup -->
-  <path d="M324 382 C330 388 328 402 320 404 C316 405 312 400 314 394 Z" fill="#fef08a"/>
-  <path d="M318 378 C324 384 322 398 314 400 C310 401 306 396 308 390 Z" fill="#fef08a"/>
-  <path d="M312 376 C318 381 316 394 308 396 C304 397 300 392 302 386 Z" fill="#fef08a"/>
+  <!-- ═══════════════════════════════════ -->
+  <!--  FANGS                             -->
+  <!-- ═══════════════════════════════════ -->
 
-  <!-- Steam wisps from lid -->
-  <g opacity="0.55">
-    <path d="M240 345 C236 330 242 320 238 305" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.5">
-      <animate attributeName="d" dur="3s" repeatCount="indefinite"
-        values="M240 345 C236 330 242 320 238 305;
-                M240 345 C244 330 236 320 240 305;
-                M240 345 C236 330 242 320 238 305"/>
-      <animate attributeName="opacity" dur="3s" repeatCount="indefinite" values="0.5;0.2;0.5"/>
-    </path>
-    <path d="M256 343 C252 325 258 313 254 295" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.6">
-      <animate attributeName="d" dur="2.5s" repeatCount="indefinite"
-        values="M256 343 C252 325 258 313 254 295;
-                M256 343 C260 325 252 313 256 295;
-                M256 343 C252 325 258 313 254 295"/>
-      <animate attributeName="opacity" dur="2.5s" repeatCount="indefinite" values="0.6;0.25;0.6"/>
-    </path>
-    <path d="M272 345 C268 332 274 322 270 310" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.45">
-      <animate attributeName="d" dur="3.5s" repeatCount="indefinite"
-        values="M272 345 C268 332 274 322 270 310;
-                M272 345 C276 332 268 322 272 310;
-                M272 345 C268 332 274 322 270 310"/>
-      <animate attributeName="opacity" dur="3.5s" repeatCount="indefinite" values="0.45;0.15;0.45"/>
-    </path>
-  </g>
+  <!-- Left fang body -->
+  <path d="M 285,349 L 278,379 C 276,388 282,393 287,387 L 295,361 Z" fill="#F8F8F4"/>
+  <!-- Left fang highlight / ridge -->
+  <path d="M 287,351 L 281,373" fill="none" stroke="#FFFFFF" stroke-width="1.4" opacity="0.42"/>
+  <!-- Left fang shadow edge -->
+  <path d="M 292,352 L 288,376" fill="none" stroke="#C0C0BC" stroke-width="0.8" opacity="0.28"/>
+
+  <!-- Right fang body -->
+  <path d="M 315,349 L 322,379 C 324,388 318,393 313,387 L 305,361 Z" fill="#F8F8F4"/>
+  <!-- Right fang highlight -->
+  <path d="M 313,351 L 319,373" fill="none" stroke="#FFFFFF" stroke-width="1.4" opacity="0.42"/>
+  <!-- Right fang shadow -->
+  <path d="M 308,352 L 312,376" fill="none" stroke="#C0C0BC" stroke-width="0.8" opacity="0.28"/>
+
+  <!-- ═══════════════════════════════════ -->
+  <!--  BLOOD DRIP                        -->
+  <!-- ═══════════════════════════════════ -->
+
+  <!-- Fang tip blood drops -->
+  <circle cx="280" cy="392" r="6" fill="#CC001C" filter="url(#bloodGlow)"/>
+  <circle cx="320" cy="392" r="6" fill="#CC001C" filter="url(#bloodGlow)"/>
+
+  <!-- Left blood trail -->
+  <path d="M 280,388
+           C 279,396 278,405 279,413
+           C 280,421 277,427 279,434
+           C 280,440 279,446 280,450"
+        fill="none" stroke="#AA0014" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Right blood trail -->
+  <path d="M 320,388
+           C 321,396 322,405 321,413
+           C 320,421 323,427 321,434
+           C 320,440 321,446 320,450"
+        fill="none" stroke="#AA0014" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Blood pool drops at bottom -->
+  <ellipse cx="280" cy="454" rx="5" ry="6" fill="#CC001C" filter="url(#bloodGlow)"/>
+  <ellipse cx="320" cy="454" rx="5" ry="6" fill="#CC001C" filter="url(#bloodGlow)"/>
+
+  <!-- ═══════════════════════════════════ -->
+  <!--  BILL / RECEIPT ELEMENT            -->
+  <!-- ═══════════════════════════════════ -->
+
+  <!-- Receipt paper shadow -->
+  <rect x="236" y="422" width="136" height="92" rx="5" fill="#000000" opacity="0.5"/>
+
+  <!-- Receipt paper body -->
+  <rect x="232" y="418" width="136" height="92" rx="4" fill="#0E0C1C" stroke="#C9A84C" stroke-width="2"/>
+
+  <!-- Jagged top edge (torn receipt effect) -->
+  <path d="
+    M 232,424 L 236,418 L 240,424 L 244,418 L 248,424 L 252,418 L 256,424
+    L 260,418 L 264,424 L 268,418 L 272,424 L 276,418 L 280,424 L 284,418
+    L 288,424 L 292,418 L 296,424 L 300,418 L 304,424 L 308,418 L 312,424
+    L 316,418 L 320,424 L 324,418 L 328,424 L 332,418 L 336,424 L 340,418
+    L 344,424 L 348,418 L 352,424 L 356,418 L 360,424 L 364,418 L 368,424
+  " fill="#0E0C1C"/>
+
+  <!-- Bill header label line (thick gold) -->
+  <line x1="248" y1="434" x2="360" y2="434" stroke="#D4AF37" stroke-width="2.5" opacity="1"/>
+
+  <!-- Bill item lines -->
+  <line x1="248" y1="447" x2="330" y2="447" stroke="#C9A84C" stroke-width="1.3" opacity="0.75"/>
+  <line x1="248" y1="459" x2="342" y2="459" stroke="#C9A84C" stroke-width="1.3" opacity="0.75"/>
+  <line x1="248" y1="471" x2="318" y2="471" stroke="#C9A84C" stroke-width="1.3" opacity="0.75"/>
+
+  <!-- Subtotal divider -->
+  <line x1="248" y1="481" x2="360" y2="481" stroke="#C9A84C" stroke-width="0.8" opacity="0.55"/>
+
+  <!-- Total amount line (gold) -->
+  <line x1="248" y1="493" x2="360" y2="493" stroke="#D4AF37" stroke-width="2" opacity="0.95"/>
+
+  <!-- Amount in blood red -->
+  <text x="356" y="493"
+        font-family="Georgia, Palatino, serif"
+        font-size="14" fill="#CC001A" text-anchor="end"
+        font-weight="bold" filter="url(#bloodGlow)">$ ∞</text>
+
+  <!-- Small bat silhouette stamp on receipt (bottom-right corner) -->
+  <path d="
+    M 354,500 C 352,497 349,496 346,497 C 344,495 342,495 340,497
+    C 337,496 334,497 332,500 C 334,502 336,502 338,501
+    C 340,503 342,504 343,503 C 344,504 346,503 348,501
+    C 350,502 352,502 354,500 Z
+  " fill="#C9A84C" opacity="0.45"/>
+
+  <!-- ═══════════════════════════════════ -->
+  <!--  DECORATIVE DIVIDER                -->
+  <!-- ═══════════════════════════════════ -->
+
+  <!-- Horizontal rules -->
+  <line x1="82"  y1="532" x2="234" y2="532" stroke="#C9A84C" stroke-width="1.3" opacity="0.72"/>
+  <line x1="366" y1="532" x2="518" y2="532" stroke="#C9A84C" stroke-width="1.3" opacity="0.72"/>
+  <!-- Left small ornaments -->
+  <path d="M 238,532 L 244,526 L 250,532 L 244,538 Z" fill="#C9A84C" opacity="0.65"/>
+  <!-- Center main diamond -->
+  <path d="M 291,532 L 300,521 L 309,532 L 300,543 Z" fill="#C9A84C" filter="url(#goldShimmer)"/>
+  <!-- Right small ornaments -->
+  <path d="M 350,532 L 356,526 L 362,532 L 356,538 Z" fill="#C9A84C" opacity="0.65"/>
+
+  <!-- ═══════════════════════════════════ -->
+  <!--  MAIN BRAND TYPOGRAPHY             -->
+  <!-- ═══════════════════════════════════ -->
+
+  <!-- "BILL" -->
+  <text x="300" y="578"
+        font-family="Palatino Linotype, Palatino, Garamond, 'Times New Roman', serif"
+        font-size="60"
+        fill="url(#gold)"
+        text-anchor="middle"
+        letter-spacing="20"
+        font-weight="bold">BILL</text>
+
+  <!-- Thin rule between words -->
+  <line x1="148" y1="590" x2="452" y2="590" stroke="#C9A84C" stroke-width="0.7" opacity="0.40"/>
+
+  <!-- "VAMPIRE" -->
+  <text x="300" y="632"
+        font-family="Palatino Linotype, Palatino, Garamond, 'Times New Roman', serif"
+        font-size="46"
+        fill="url(#gold)"
+        text-anchor="middle"
+        letter-spacing="12">VAMPIRE</text>
+
+  <!-- ".COM" tag -->
+  <text x="300" y="658"
+        font-family="Palatino Linotype, Palatino, Garamond, 'Times New Roman', serif"
+        font-size="14"
+        fill="#C9A84C"
+        text-anchor="middle"
+        letter-spacing="8"
+        opacity="0.68">· · ·  .COM  · · ·</text>
+
+  <!-- Bottom finisher line -->
+  <line x1="140" y1="672" x2="460" y2="672" stroke="#C9A84C" stroke-width="0.8" opacity="0.38"/>
+
 </svg>
