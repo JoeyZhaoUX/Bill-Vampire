@@ -1,0 +1,194 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fda4af"/>
+      <stop offset="50%" style="stop-color:#e11d48"/>
+      <stop offset="100%" style="stop-color:#9f1239"/>
+    </linearGradient>
+    <linearGradient id="cape" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#5b21b6"/>
+      <stop offset="100%" style="stop-color:#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="capeInner" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed"/>
+      <stop offset="100%" style="stop-color:#4c1d95"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" style="stop-color:#fefce8"/>
+      <stop offset="100%" style="stop-color:#fef08a"/>
+    </linearGradient>
+    <linearGradient id="hair" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" style="stop-color:#312e81"/>
+      <stop offset="100%" style="stop-color:#0f0a2e"/>
+    </linearGradient>
+    <linearGradient id="cup" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="coffee" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" style="stop-color:#92400e"/>
+      <stop offset="100%" style="stop-color:#78350f"/>
+    </linearGradient>
+    <linearGradient id="sleeve" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" style="stop-color:#dc2626"/>
+      <stop offset="100%" style="stop-color:#991b1b"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#00000033"/>
+    </filter>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="eye-glow" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" style="stop-color:#fca5a5"/>
+      <stop offset="60%" style="stop-color:#dc2626"/>
+      <stop offset="100%" style="stop-color:#7f1d1d"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background - rounded square matching original -->
+  <rect width="512" height="512" rx="108" fill="url(#bg)"/>
+
+  <!-- Cape outer - wide dramatic spread like original -->
+  <path d="M115 265 C95 310 80 395 76 470 L436 470 C432 395 417 310 397 265
+           C382 278 365 285 348 285 L164 285 C147 285 130 278 115 265 Z"
+        fill="url(#cape)" filter="url(#shadow)"/>
+
+  <!-- Cape inner lining -->
+  <path d="M148 285 C136 325 122 400 118 460 L394 460 C390 400 376 325 364 285 Z"
+        fill="url(#capeInner)" opacity="0.5"/>
+
+  <!-- Shirt / chest area -->
+  <path d="M210 275 L218 355 L294 355 L302 275 Z" fill="#1e1b4b"/>
+  <line x1="256" y1="282" x2="256" y2="355" stroke="#312e81" stroke-width="2"/>
+
+  <!-- Head - round, cute proportion like PNG -->
+  <ellipse cx="256" cy="185" rx="82" ry="88" fill="url(#skin)" filter="url(#shadow)"/>
+
+  <!-- Cheek blush - cute rosy cheeks -->
+  <ellipse cx="194" cy="212" rx="20" ry="12" fill="#fda4af" opacity="0.45"/>
+  <ellipse cx="318" cy="212" rx="20" ry="12" fill="#fda4af" opacity="0.45"/>
+
+  <!-- Hair - slicked back dark indigo -->
+  <path d="M174 185 C174 120 202 82 256 74 C310 82 338 120 338 185
+           C338 152 318 108 256 98 C194 108 174 152 174 185 Z"
+        fill="url(#hair)"/>
+  <!-- Widow's peak - V shape -->
+  <path d="M222 126 L256 165 L290 126 C276 104 236 104 222 126 Z" fill="url(#hair)"/>
+  <!-- Hair sides -->
+  <path d="M174 185 C168 168 166 150 174 132 L186 162 Z" fill="url(#hair)"/>
+  <path d="M338 185 C344 168 346 150 338 132 L326 162 Z" fill="url(#hair)"/>
+
+  <!-- Pointed ears -->
+  <path d="M174 188 L146 145 L178 182" fill="url(#skin)"/>
+  <path d="M174 188 L153 156 L176 184" fill="#fde047" opacity="0.3"/>
+  <path d="M338 188 L366 145 L334 182" fill="url(#skin)"/>
+  <path d="M338 188 L359 156 L336 184" fill="#fde047" opacity="0.3"/>
+
+  <!-- Eyebrows - arched -->
+  <path d="M204 165 Q224 150 248 162" stroke="#1e1b4b" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M264 162 Q288 150 308 165" stroke="#1e1b4b" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+  <!-- Eyes - big, round, cute like PNG -->
+  <ellipse cx="224" cy="192" rx="22" ry="24" fill="white"/>
+  <ellipse cx="288" cy="192" rx="22" ry="24" fill="white"/>
+  <!-- Red irises -->
+  <ellipse cx="228" cy="194" rx="14" ry="16" fill="url(#eye-glow)"/>
+  <ellipse cx="292" cy="194" rx="14" ry="16" fill="url(#eye-glow)"/>
+  <!-- Pupils -->
+  <ellipse cx="230" cy="194" rx="5" ry="11" fill="#1e1b4b"/>
+  <ellipse cx="294" cy="194" rx="5" ry="11" fill="#1e1b4b"/>
+  <!-- Eye highlights -->
+  <ellipse cx="235" cy="188" rx="5" ry="4" fill="white" opacity="0.9"/>
+  <ellipse cx="299" cy="188" rx="5" ry="4" fill="white" opacity="0.9"/>
+  <ellipse cx="226" cy="200" rx="2.5" ry="2" fill="white" opacity="0.5"/>
+  <ellipse cx="290" cy="200" rx="2.5" ry="2" fill="white" opacity="0.5"/>
+
+  <!-- Nose -->
+  <path d="M252 214 Q256 220 260 214" stroke="#d4a574" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Mouth - happy smirk -->
+  <path d="M232 234 Q244 250 256 246 Q268 250 280 234" stroke="#1e1b4b" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- Fangs -->
+  <path d="M236 236 L230 258 L242 238" fill="white" filter="url(#glow)"/>
+  <path d="M276 236 L282 258 L270 238" fill="white" filter="url(#glow)"/>
+
+  <!-- Bow tie -->
+  <path d="M234 264 L256 276 L278 264 L278 288 L256 276 L234 288 Z" fill="#dc2626"/>
+  <circle cx="256" cy="276" r="6" fill="#fbbf24"/>
+  <circle cx="256" cy="274" r="2" fill="#fef08a" opacity="0.6"/>
+
+  <!-- Arms reaching down to hold coffee cup -->
+  <path d="M192 310 C172 338 166 362 178 390 L196 385 C188 362 190 342 204 320 Z"
+        fill="url(#skin)"/>
+  <path d="M320 310 C340 338 346 362 334 390 L316 385 C324 362 322 342 308 320 Z"
+        fill="url(#skin)"/>
+
+  <!-- ===== COFFEE CUP ===== -->
+  <g filter="url(#shadow)">
+    <!-- Cup body - tapered -->
+    <path d="M196 365 L208 448 C210 456 236 462 256 462 C276 462 302 456 304 448 L316 365 Z"
+          fill="url(#cup)"/>
+
+    <!-- Lid - flat top -->
+    <rect x="188" y="352" width="136" height="16" rx="4" fill="#f1f5f9"/>
+    <!-- Lid rim -->
+    <rect x="184" y="362" width="144" height="8" rx="4" fill="#e2e8f0"/>
+
+    <!-- Lid sip hole -->
+    <ellipse cx="256" cy="358" rx="12" ry="4" fill="#94a3b8"/>
+
+    <!-- Red sleeve / band -->
+    <path d="M200 392 L204 420 C206 428 236 434 256 434 C276 434 306 428 308 420 L312 392
+             C308 400 278 406 256 406 C234 406 204 400 200 392 Z"
+          fill="url(#sleeve)"/>
+
+    <!-- Bat silhouette on sleeve -->
+    <path d="M238 410 L246 401 L250 405 L256 398 L262 405 L266 401 L274 410
+             L268 408 L264 412 L256 406 L248 412 L244 408 Z"
+          fill="#fbbf24" opacity="0.9"/>
+
+    <!-- Cup handle - right side -->
+    <path d="M316 378 C342 380 350 404 342 424 C336 436 322 436 314 426"
+          stroke="#e2e8f0" stroke-width="14" fill="none" stroke-linecap="round"/>
+    <path d="M316 378 C336 380 342 400 336 418 C332 428 324 430 318 422"
+          stroke="#f8fafc" stroke-width="8" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Left hand fingers gripping cup -->
+  <path d="M188 382 C182 388 184 402 192 404 C196 405 200 400 198 394 Z" fill="#fef08a"/>
+  <path d="M194 378 C188 384 190 398 198 400 C202 401 206 396 204 390 Z" fill="#fef08a"/>
+  <path d="M200 376 C194 381 196 394 204 396 C208 397 212 392 210 386 Z" fill="#fef08a"/>
+
+  <!-- Right hand fingers gripping cup -->
+  <path d="M324 382 C330 388 328 402 320 404 C316 405 312 400 314 394 Z" fill="#fef08a"/>
+  <path d="M318 378 C324 384 322 398 314 400 C310 401 306 396 308 390 Z" fill="#fef08a"/>
+  <path d="M312 376 C318 381 316 394 308 396 C304 397 300 392 302 386 Z" fill="#fef08a"/>
+
+  <!-- Steam wisps from lid -->
+  <g opacity="0.55">
+    <path d="M240 345 C236 330 242 320 238 305" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.5">
+      <animate attributeName="d" dur="3s" repeatCount="indefinite"
+        values="M240 345 C236 330 242 320 238 305;
+                M240 345 C244 330 236 320 240 305;
+                M240 345 C236 330 242 320 238 305"/>
+      <animate attributeName="opacity" dur="3s" repeatCount="indefinite" values="0.5;0.2;0.5"/>
+    </path>
+    <path d="M256 343 C252 325 258 313 254 295" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.6">
+      <animate attributeName="d" dur="2.5s" repeatCount="indefinite"
+        values="M256 343 C252 325 258 313 254 295;
+                M256 343 C260 325 252 313 256 295;
+                M256 343 C252 325 258 313 254 295"/>
+      <animate attributeName="opacity" dur="2.5s" repeatCount="indefinite" values="0.6;0.25;0.6"/>
+    </path>
+    <path d="M272 345 C268 332 274 322 270 310" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.45">
+      <animate attributeName="d" dur="3.5s" repeatCount="indefinite"
+        values="M272 345 C268 332 274 322 270 310;
+                M272 345 C276 332 268 322 272 310;
+                M272 345 C268 332 274 322 270 310"/>
+      <animate attributeName="opacity" dur="3.5s" repeatCount="indefinite" values="0.45;0.15;0.45"/>
+    </path>
+  </g>
+</svg>

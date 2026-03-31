@@ -323,8 +323,8 @@ export default function App({ onLegal }) {
       <header className="lg:hidden sticky top-0 z-40 bg-[#0D0D15]/95 backdrop-blur-xl border-b border-slate-800/40">
         <div className="flex items-center justify-between px-4 py-2.5">
           <div className="flex items-center gap-2.5">
-            <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="" aria-hidden="true" className="w-7 h-7 rounded-lg shadow-sm" />
-            <h1 className="font-gothic text-sm font-bold text-slate-100 tracking-wider">{_('appName')}</h1>
+            <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="Bill Vampire logo" className="w-7 h-7 rounded-lg shadow-sm" />
+            <div className="font-gothic text-sm font-bold text-slate-100 tracking-wider">{_('appName')}</div>
           </div>
           <div className="flex items-center gap-3">
             <div className="text-right">
@@ -362,7 +362,7 @@ export default function App({ onLegal }) {
 
             {/* Branding */}
             <div className="flex flex-col items-center lg:items-start mb-6">
-              <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="Bill Vampire" className="w-14 h-14 lg:w-12 lg:h-12 rounded-2xl shadow-sm mb-3" />
+              <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="Bill Vampire - Subscription tracker mascot holding coffee" className="w-14 h-14 lg:w-12 lg:h-12 rounded-2xl shadow-sm mb-3" />
               <h1 className="font-gothic text-2xl lg:text-xl font-bold tracking-wider text-slate-100 mb-1">{_('appName')}</h1>
               <p className="text-[11px] text-slate-500 font-light tracking-wider">{_('tagline')}</p>
             </div>
