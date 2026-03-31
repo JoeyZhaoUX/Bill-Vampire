@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, lazy, Suspense } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faPlus, faTrash, faGhost, faBolt, faChartPie,
@@ -6,18 +6,14 @@ import {
   faSpinner, faWandMagicSparkles, faReceipt, faMagnifyingGlass, faMugHot,
   faShareNodes, faCrown, faHeart, faGlobe, faLock, faArrowUpRightFromSquare, faChevronRight, faSkull, faFileImport, faXmark, faCheck,
 } from '@fortawesome/free-solid-svg-icons';
-import {
-  Chart as ChartJS, ArcElement, Tooltip, Legend,
-  CategoryScale, LinearScale, BarElement, Title,
-} from 'chart.js';
-import { Pie } from 'react-chartjs-2';
 import { t, getDefaultLang, SUPPORTED_LANGS } from './i18n';
 import { isPro, canUseAi, incrementAiUsage, aiUsesRemaining, openCheckout, getCheckoutUrl, openTip } from './pro';
 import { injectAffiliateLinks, PREFERRED_ALTERNATIVES } from './affiliates';
-import ShareCard from './ShareCard';
-import PrintReport from './PrintReport';
 
-ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title);
+// Lazy load heavy components
+const LazyChart = lazy(() => import('./components/LazyChart'));
+const ShareCard = lazy(() => import('./ShareCard'));
+const PrintReport = lazy(() => import('./PrintReport'));
 
 const API_ENDPOINT = '/api/gemini';
 
@@ -616,7 +612,7 @@ export default function App({ onLegal }) {
                   {/* Chart */}
                   <div className="bg-[#141420]/60 p-6 rounded-2xl border border-slate-800/30">
                     {subscriptions.length > 0
-                      ? <div className="h-64 flex justify-center"><Pie data={pieData} options={pieOptions} /></div>
+                      ? <LazyChart data={pieData} options={pieOptions} />
                       : <div className="h-64 flex items-center justify-center text-slate-700"><FontAwesomeIcon icon={faGhost} className="w-16 h-16" /></div>}
                   </div>
 
@@ -892,28 +888,32 @@ export default function App({ onLegal }) {
 
       {/* === SHARE CARD === */}
       {showShareCard && (
-        <ShareCard
-          monthlyTotal={monthlyTotal}
-          subscriptions={subscriptions}
-          currency={displayCurrency}
-          t={_}
-          onClose={() => setShowShareCard(false)}
-        />
+        <Suspense fallback={<div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center"><FontAwesomeIcon icon={faSpinner} className="w-8 h-8 text-rose-400 animate-spin" /></div>}>
+          <ShareCard
+            monthlyTotal={monthlyTotal}
+            subscriptions={subscriptions}
+            currency={displayCurrency}
+            t={_}
+            onClose={() => setShowShareCard(false)}
+          />
+        </Suspense>
       )}
     </div>
 
-    <PrintReport
-      subscriptions={subscriptions}
-      noSpendDays={noSpendDays}
-      monthlyTotal={monthlyTotal}
-      currency={displayCurrency}
-      lang={lang}
-      currentYear={currentYear}
-      currentMonth={currentMonth}
-      currentDay={currentDay}
-      daysInMonth={daysInMonth}
-      firstDayOfWeek={firstDayOfWeek}
-    />
+    <Suspense fallback={null}>
+      <PrintReport
+        subscriptions={subscriptions}
+        noSpendDays={noSpendDays}
+        monthlyTotal={monthlyTotal}
+        currency={displayCurrency}
+        lang={lang}
+        currentYear={currentYear}
+        currentMonth={currentMonth}
+        currentDay={currentDay}
+        daysInMonth={daysInMonth}
+        firstDayOfWeek={firstDayOfWeek}
+      />
+    </Suspense>
     </>
   );
 }

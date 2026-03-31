@@ -17,4 +17,25 @@ export default defineConfig({
       },
     }),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // React core
+          'react-vendor': ['react', 'react-dom'],
+          // Chart library (large, lazy-loaded)
+          'chart': ['chart.js', 'react-chartjs-2'],
+          // FontAwesome icons (large)
+          'icons': [
+            '@fortawesome/fontawesome-svg-core',
+            '@fortawesome/free-solid-svg-icons',
+            '@fortawesome/react-fontawesome'
+          ],
+          // Utilities
+          'utils': ['html-to-image']
+        }
+      }
+    },
+    chunkSizeWarningLimit: 600
+  }
 })
