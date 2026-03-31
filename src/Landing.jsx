@@ -115,7 +115,7 @@ export default function Landing({ onEnterApp, onLegal, lang, setLang }) {
       <nav className="sticky top-0 z-50 bg-[#0B0B11]/80 backdrop-blur-xl border-b border-slate-800/30">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="Bill Vampire" className="w-8 h-8 rounded-lg" />
+            <img src={`${import.meta.env.BASE_URL}icons/icon.png`} alt="Bill Vampire" className="w-8 h-8 rounded-lg" />
             <span className="font-gothic text-lg font-bold text-slate-100 hidden sm:block">Bill Vampire</span>
           </div>
           <div className="flex items-center gap-2">
@@ -199,7 +199,7 @@ export default function Landing({ onEnterApp, onLegal, lang, setLang }) {
                   {/* Mock sidebar */}
                   <div className="lg:w-48 shrink-0 space-y-4">
                     <div className="flex items-center gap-2">
-                      <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="Bill Vampire logo" className="w-8 h-8 rounded-lg" />
+                      <img src={`${import.meta.env.BASE_URL}icons/icon.png`} alt="Bill Vampire logo" className="w-8 h-8 rounded-lg" />
                       <span className="font-gothic text-sm text-slate-200">Bill Vampire</span>
                     </div>
                     <div className="bg-rose-950/40 rounded-xl p-3 border border-rose-800/20">
@@ -510,7 +510,7 @@ export default function Landing({ onEnterApp, onLegal, lang, setLang }) {
       <section className="py-20 lg:py-28 relative">
         <div className="absolute inset-0 bg-gradient-to-t from-rose-950/10 to-transparent -z-10" />
         <div className="max-w-2xl mx-auto px-6 text-center">
-          <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="Bill Vampire" className="w-16 h-16 mx-auto mb-6 rounded-2xl shadow-lg shadow-rose-900/20" />
+          <img src={`${import.meta.env.BASE_URL}icons/icon.png`} alt="Bill Vampire" className="w-16 h-16 mx-auto mb-6 rounded-2xl shadow-lg shadow-rose-900/20" />
           <h2 className="text-2xl lg:text-3xl font-bold text-slate-100 mb-4">
             {isZh ? '准备好消灭你的吸血鬼了吗？' : 'Ready to slay your vampires?'}
           </h2>
@@ -530,7 +530,7 @@ export default function Landing({ onEnterApp, onLegal, lang, setLang }) {
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-3">
-              <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="Bill Vampire" className="w-7 h-7 rounded-lg" />
+              <img src={`${import.meta.env.BASE_URL}icons/icon.png`} alt="Bill Vampire" className="w-7 h-7 rounded-lg" />
               <span className="font-gothic text-sm font-bold text-slate-400">Bill Vampire</span>
               <span className="text-[10px] text-slate-700 ml-1">{isZh ? '让每一分钱都被看见' : 'Make every dollar visible'}</span>
             </div>

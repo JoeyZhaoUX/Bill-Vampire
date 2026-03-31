@@ -31,7 +31,7 @@ export default function PrintReport({ subscriptions, noSpendDays, monthlyTotal, 
       {/* Header with branding */}
       <div className="pr-header">
         <div className="pr-header-left">
-          <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="Bill Vampire" className="pr-logo" />
+          <img src={`${import.meta.env.BASE_URL}icons/icon.png`} alt="Bill Vampire" className="pr-logo" />
           <div>
             <h2 className="pr-title" style={{ fontFamily: "'Cinzel Decorative', Georgia, serif" }}>Bill Vampire</h2>
             <p className="pr-subtitle">{isZh ? '订阅追踪报告' : 'Subscription Report'}</p>
