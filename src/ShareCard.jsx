@@ -3,8 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShareNodes, faDownload, faCopy, faCheck, faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { faXTwitter, faFacebook, faWhatsapp, faWeixin } from '@fortawesome/free-brands-svg-icons';
 import { toPng } from 'html-to-image';
+import { isPro } from './pro';
 
 export default function ShareCard({ monthlyTotal, subscriptions, currency, t, onClose }) {
+  const pro = isPro();
   const cardRef = useRef(null);
   const [copied, setCopied] = useState(false);
   const [imageUrl, setImageUrl] = useState(null);
@@ -136,6 +138,11 @@ export default function ShareCard({ monthlyTotal, subscriptions, currency, t, on
           <div className="text-center pt-2 border-t border-slate-700/20">
             <p className="text-[10px] text-slate-600 tracking-wider mb-1">{t('shareTagline')}</p>
             <p className="text-[9px] text-slate-700 tracking-widest uppercase">{t('shareMadeWith')}</p>
+            {!pro && (
+              <p className="text-[10px] font-bold text-rose-500/80 tracking-[0.25em] uppercase mt-2">
+                billvampire.com
+              </p>
+            )}
           </div>
         </div>
 

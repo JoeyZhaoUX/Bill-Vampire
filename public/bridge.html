@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="robots" content="noindex" />
+  <title>Bill Vampire — Extension Bridge</title>
+  <style>body{background:#0B0B11;color:#94a3b8;font:12px -apple-system,BlinkMacSystemFont,sans-serif;padding:20px}</style>
+</head>
+<body>
+  <p>Bill Vampire extension bridge. This page exists only to hand off data from the Patrol extension to the web app.</p>
+  <script>
+    // Accepts postMessage from the Chrome extension via a hidden iframe.
+    // Payload shape: { type: 'vampire/subs', subs: [{ name, amountUsd, cycle, nextChargeAt, source }] }
+    // Writes into localStorage under key `vampire_subs`, merging by id/name.
+    (function () {
+      'use strict';
+      var ALLOWED = ['chrome-extension://', 'moz-extension://', 'https://billvampire.com', 'https://www.billvampire.com'];
+
+      function isAllowed(origin) {
+        return ALLOWED.some(function (a) { return origin.indexOf(a) === 0; });
+      }
+
+      function readSubs() {
+        try { return JSON.parse(localStorage.getItem('vampire_subs') || '[]'); }
+        catch (e) { return []; }
+      }
+
+      function upsert(existing, incoming) {
+        var byKey = Object.create(null);
+        existing.forEach(function (s) { byKey[(s.id || s.name || '').toLowerCase()] = s; });
+        incoming.forEach(function (s) {
+          if (!s || !s.name) return;
+          var key = (s.id || s.name).toLowerCase();
+          if (byKey[key]) {
+            byKey[key] = Object.assign({}, byKey[key], s);
+          } else {
+            byKey[key] = Object.assign({
+              id: 'ext_' + key + '_' + Date.now().toString(36),
+              source: 'patrol_extension',
+            }, s);
+          }
+        });
+        return Object.keys(byKey).map(function (k) { return byKey[k]; });
+      }
+
+      window.addEventListener('message', function (event) {
+        if (!isAllowed(event.origin)) return;
+        var data = event.data || {};
+        if (data.type !== 'vampire/subs' || !Array.isArray(data.subs)) return;
+        try {
+          var merged = upsert(readSubs(), data.subs);
+          localStorage.setItem('vampire_subs', JSON.stringify(merged));
+          event.source && event.source.postMessage({ type: 'vampire/subs/ack', count: merged.length }, event.origin);
+        } catch (e) {
+          event.source && event.source.postMessage({ type: 'vampire/subs/err', error: String(e) }, event.origin);
+        }
+      });
+
+      // Signal readiness so the extension knows it can post.
+      if (window.parent !== window) {
+        window.parent.postMessage({ type: 'vampire/bridge/ready' }, '*');
+      }
+    })();
+  </script>
+</body>
+</html>

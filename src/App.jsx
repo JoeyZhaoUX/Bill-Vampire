@@ -7,8 +7,18 @@ import {
   faShareNodes, faCrown, faHeart, faGlobe, faLock, faArrowUpRightFromSquare, faChevronRight, faSkull, faFileImport, faXmark, faCheck,
 } from '@fortawesome/free-solid-svg-icons';
 import { t, getDefaultLang, SUPPORTED_LANGS } from './i18n';
-import { isPro, canUseAi, incrementAiUsage, aiUsesRemaining, openCheckout, getCheckoutUrl, openTip } from './pro';
+import {
+  isPro, canAiRoast, incrementAiUsage, aiUsesRemaining,
+  canSmartImport, markSmartImportUsed,
+  canPrintReport, markPrintReportUsed,
+  openCheckout, getCheckoutUrl, openTip,
+} from './pro';
 import { injectAffiliateLinks, PREFERRED_ALTERNATIVES } from './affiliates';
+import { track } from './analytics';
+import {
+  fireChargeDateNotifications, pendingToasts, markToastDelivered,
+  notificationPermission, requestNotificationPermission, hasNotificationApi,
+} from './sw-notifications';
 
 // Lazy load heavy components
 const LazyChart = lazy(() => import('./components/LazyChart'));
@@ -53,6 +63,8 @@ export default function App({ onLegal }) {
   const [importFileName, setImportFileName] = useState('');
   const [isExtracting, setIsExtracting] = useState(false);
   const [extractedBills, setExtractedBills] = useState(null);
+  const [chargeToasts, setChargeToasts] = useState([]);
+  const [notifPromptShown, setNotifPromptShown] = useState(false);
 
   const _ = (key) => t(lang, key);
 
@@ -65,6 +77,26 @@ export default function App({ onLegal }) {
     if (savedCancelled) setCancelledSubs(JSON.parse(savedCancelled));
   }, []);
   useEffect(() => { localStorage.setItem('vampire_subs', JSON.stringify(subscriptions)); }, [subscriptions]);
+
+  // Charge-date push notifications (gated: only ask on 2nd+ visit).
+  useEffect(() => {
+    if (!hasNotificationApi()) return;
+    const perm = notificationPermission();
+    if (perm === 'granted') {
+      fireChargeDateNotifications().then(({ toasts }) => { if (toasts.length) setChargeToasts(toasts); });
+    } else if (perm === 'default') {
+      const visits = parseInt(localStorage.getItem('vampire_visits') || '0', 10) + 1;
+      localStorage.setItem('vampire_visits', String(visits));
+      if (visits >= 2 && !notifPromptShown) {
+        const upcoming = pendingToasts();
+        if (upcoming.length > 0) setNotifPromptShown(true);
+      }
+    } else {
+      const upcoming = pendingToasts();
+      if (upcoming.length) setChargeToasts(upcoming);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [subscriptions]);
   useEffect(() => { localStorage.setItem('vampire_no_spend', JSON.stringify(noSpendDays)); }, [noSpendDays]);
   useEffect(() => { localStorage.setItem('vampire_lang', lang); }, [lang]);
   useEffect(() => { localStorage.setItem('vampire_cancelled', JSON.stringify(cancelledSubs)); }, [cancelledSubs]);
@@ -115,7 +147,7 @@ export default function App({ onLegal }) {
   };
 
   const callGeminiAPI = async (userPrompt, systemPrompt) => {
-    if (!canUseAi()) {
+    if (!canAiRoast()) {
       setShowProModal(true);
       return _('aiLimitReached');
     }
@@ -200,8 +232,12 @@ export default function App({ onLegal }) {
 
   const extractBills = async () => {
     if (!importText.trim() && !importFile) return;
-    if (!canUseAi()) { setShowProModal(true); return; }
-    incrementAiUsage();
+    if (!canSmartImport()) {
+      track('import_blocked_paywall');
+      setShowProModal(true);
+      return;
+    }
+    markSmartImportUsed();
     setIsExtracting(true);
     setExtractedBills(null);
 
@@ -276,7 +312,22 @@ export default function App({ onLegal }) {
     setIsExtracting(false);
   };
 
-  const exportPDF = () => window.print();
+  const exportPDF = () => {
+    if (!canPrintReport()) {
+      track('print_blocked_paywall');
+      setShowProModal(true);
+      return;
+    }
+    markPrintReportUsed();
+    track('print_started');
+    window.print();
+  };
+
+  const rerunVerdict = () => {
+    track('rerun_verdict_clicked');
+    window.location.hash = 'verdict';
+    window.location.reload();
+  };
 
   const pieLabels = CATEGORY_KEYS.map(k => _(k));
   const pieData = {
@@ -306,9 +357,71 @@ export default function App({ onLegal }) {
 
   const remaining = aiUsesRemaining();
 
+  const enableChargeNotifs = async () => {
+    track('notif_permission_requested');
+    const result = await requestNotificationPermission();
+    track('notif_permission_result', { result });
+    setNotifPromptShown(false);
+    if (result === 'granted') {
+      const { toasts } = await fireChargeDateNotifications();
+      if (toasts.length) setChargeToasts(toasts);
+    } else {
+      setChargeToasts(pendingToasts());
+    }
+  };
+
+  const dismissToast = (id) => {
+    markToastDelivered(id);
+    setChargeToasts((prev) => prev.filter(t => t.id !== id));
+  };
+
   return (
     <>
     <div className="app-screen min-h-screen bg-gothic-pattern">
+      {notifPromptShown && (
+        <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[80] max-w-md w-[calc(100%-2rem)] bg-[#141420] border border-rose-700/40 rounded-2xl p-4 shadow-2xl shadow-rose-900/30">
+          <div className="flex items-start gap-3">
+            <div className="shrink-0 w-10 h-10 rounded-xl bg-rose-950/60 border border-rose-800/40 flex items-center justify-center">
+              <FontAwesomeIcon icon={faSkull} className="w-4 h-4 text-rose-400" />
+            </div>
+            <div className="flex-1">
+              <p className="text-sm font-semibold text-slate-100 mb-1">Want to know before a vampire bites?</p>
+              <p className="text-xs text-slate-400 mb-3 leading-relaxed">We\u2019ll ping you 24 hours before any subscription renews. No account, no spam.</p>
+              <div className="flex gap-2">
+                <button onClick={enableChargeNotifs}
+                  className="px-4 py-2 bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer">
+                  Turn on alerts
+                </button>
+                <button onClick={() => { setNotifPromptShown(false); track('notif_permission_dismissed'); }}
+                  className="px-4 py-2 text-xs font-medium text-slate-400 hover:text-slate-200 transition-colors cursor-pointer">
+                  Not now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {chargeToasts.length > 0 && (
+        <div className="fixed bottom-4 right-4 z-[80] flex flex-col gap-2 max-w-sm">
+          {chargeToasts.map(t => (
+            <div key={t.id} className="bg-[#141420] border border-rose-700/40 rounded-xl p-3 shadow-xl shadow-rose-900/20 flex items-start gap-3">
+              <div className="shrink-0 w-8 h-8 rounded-lg bg-rose-950/60 border border-rose-800/40 flex items-center justify-center">
+                <FontAwesomeIcon icon={faGhost} className="w-3.5 h-3.5 text-rose-400" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-xs font-semibold text-slate-100">{t.title}</p>
+                <p className="text-[11px] text-slate-400 mt-0.5 leading-relaxed">{t.body}</p>
+              </div>
+              <button onClick={() => dismissToast(t.id)} aria-label="Dismiss"
+                className="shrink-0 text-slate-600 hover:text-slate-300 cursor-pointer">
+                <FontAwesomeIcon icon={faXmark} className="w-3 h-3" />
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* Skip navigation for keyboard users */}
       <a href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-slate-100 focus:text-slate-900 focus:rounded-lg focus:text-sm focus:font-medium focus:shadow-lg">
@@ -523,10 +636,16 @@ export default function App({ onLegal }) {
                         )}
                       </div>
                     )}
-                    <button onClick={() => setShowShareCard(true)}
-                      className="w-full flex items-center justify-center gap-2 py-3.5 text-sm font-medium text-rose-400 bg-rose-950/30 hover:bg-rose-950/50 rounded-2xl transition-colors border border-rose-800/30 cursor-pointer min-h-[48px]">
-                      <FontAwesomeIcon icon={faShareNodes} className="w-4 h-4" /> {_('shareCard')}
-                    </button>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <button onClick={rerunVerdict}
+                        className="w-full flex items-center justify-center gap-2 py-3.5 text-sm font-medium text-amber-300 bg-amber-950/30 hover:bg-amber-950/50 rounded-2xl transition-colors border border-amber-800/30 cursor-pointer min-h-[48px]">
+                        <FontAwesomeIcon icon={faSkull} className="w-4 h-4" /> {lang === 'zh' ? '重新审判' : 'Re-run the verdict'}
+                      </button>
+                      <button onClick={() => setShowShareCard(true)}
+                        className="w-full flex items-center justify-center gap-2 py-3.5 text-sm font-medium text-rose-400 bg-rose-950/30 hover:bg-rose-950/50 rounded-2xl transition-colors border border-rose-800/30 cursor-pointer min-h-[48px]">
+                        <FontAwesomeIcon icon={faShareNodes} className="w-4 h-4" /> {_('shareCard')}
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>
@@ -778,7 +897,7 @@ export default function App({ onLegal }) {
                 </div>
               ))}
             </div>
-            <a href={getCheckoutUrl()} target="_blank" rel="noopener noreferrer" onClick={() => setShowProModal(false)}
+            <a href={getCheckoutUrl('pro_modal')} target="_blank" rel="noopener noreferrer" onClick={() => { openCheckout('pro_modal'); setShowProModal(false); }}
               className="w-full py-3.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-2xl hover:from-amber-400 hover:to-rose-400 transition-colors shadow-lg shadow-rose-900/30 mb-2 cursor-pointer min-h-[44px] flex items-center justify-center no-underline">
               {_('upgradeCta')} — {_('upgradePrice')}
             </a>
