@@ -136,7 +136,7 @@ export default function Landing({ onEnterApp, onLegal }) {
   const price = getCurrentPrice();
   const showCountdown = isFoundingWindow();
   const remaining = showCountdown ? foundingWindowRemainingMs() : 0;
-  const { h, m } = useCountdown(remaining);
+  const { h, m, s } = useCountdown(remaining);
   const chromeAvailable = isChromeDesktop();
 
   useEffect(() => {
@@ -258,13 +258,18 @@ export default function Landing({ onEnterApp, onLegal }) {
             </div>
             <div className="flex items-center gap-3">
               <div className="text-center">
-                <p className="font-gothic text-2xl font-bold text-amber-300 tabular-nums">{String(h).padStart(2, '0')}</p>
+                <p key={`h-${h}`} className="font-gothic text-2xl font-bold text-amber-300 tabular-nums animate-tickPulse">{String(h).padStart(2, '0')}</p>
                 <p className="text-[9px] text-slate-500 uppercase tracking-widest">hours</p>
               </div>
-              <span className="text-amber-500">:</span>
+              <span className="text-amber-500 animate-pulse">:</span>
               <div className="text-center">
-                <p className="font-gothic text-2xl font-bold text-amber-300 tabular-nums">{String(m).padStart(2, '0')}</p>
+                <p key={`m-${m}`} className="font-gothic text-2xl font-bold text-amber-300 tabular-nums animate-tickPulse">{String(m).padStart(2, '0')}</p>
                 <p className="text-[9px] text-slate-500 uppercase tracking-widest">min</p>
+              </div>
+              <span className="text-amber-500 animate-pulse">:</span>
+              <div className="text-center">
+                <p key={`s-${s}`} className="font-gothic text-2xl font-bold text-rose-400 tabular-nums animate-tickPulse">{String(s).padStart(2, '0')}</p>
+                <p className="text-[9px] text-slate-500 uppercase tracking-widest">sec</p>
               </div>
               <button onClick={() => openCheckout('founding_banner')}
                 className="ml-4 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all cursor-pointer">
