@@ -4,7 +4,7 @@ compatibility_date = "2026-04-01"
 
 # Sunday 9:00 UTC.
 [triggers]
-crons = ["0 9 * * 0"]
+crons = ["0 9 * * SUN"]
 
 # Bind the same EMAIL_LIST KV namespace used by the Pages app.
 # Replace <paste-real-namespace-id> with the id you created under Workers KV.
