@@ -131,7 +131,9 @@ export default function App({ onLegal }) {
 
   const addSubscription = () => {
     if (!newSub.name || !newSub.price) return;
-    setSubscriptions([...subscriptions, { ...newSub, id: Date.now() }]);
+    const cycleDays = newSub.cycle === 'yearly' ? 365 : 30;
+    const nextChargeAt = Date.now() + cycleDays * 24 * 60 * 60 * 1000;
+    setSubscriptions([...subscriptions, { ...newSub, nextChargeAt, id: Date.now() }]);
     setNewSub({ name: '', price: '', currency: 'USD', cycle: 'monthly', category: 'Other' });
     setShowAddModal(false);
     setAiAdvice(''); setAiAlternatives(''); setAlternativeLinks([]);
