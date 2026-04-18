@@ -10,7 +10,7 @@ crons = ["0 9 * * 0"]
 # Replace <paste-real-namespace-id> with the id you created under Workers KV.
 [[kv_namespaces]]
 binding = "EMAIL_LIST"
-id = "REPLACE_WITH_EMAIL_LIST_NAMESPACE_ID"
+id = "006bcf18eaaf4ce9b7ac06a864d22d48"
 
 # Non-secret vars. Secrets (RESEND_API_KEY) go in via `wrangler secret put`.
 [vars]
