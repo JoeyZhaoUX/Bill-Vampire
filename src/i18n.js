@@ -52,9 +52,9 @@ const translations = {
 
     // Pro
     proBadge: 'PRO',
-    upgradeTitle: 'Go Pro - One Time',
-    upgradeDesc: 'Unlimited AI analysis, cloud sync, reminders. No subscription, ever.',
-    upgradePrice: '9.99 USD once, forever',
+    upgradeTitle: 'Unlock Pro',
+    upgradeDesc: 'Unlimited AI roasts, unlimited scans, watermark-free share cards. Pay once, keep forever.',
+    upgradePrice: 'one-time',
     upgradeCta: 'Unlock Pro',
     aiLimitReached: 'Free AI limit reached (3/day). Upgrade to Pro for unlimited.',
     aiUsesLeft: 'free AI uses left today',
@@ -149,9 +149,9 @@ const translations = {
     generating: '生成中...',
 
     proBadge: 'PRO',
-    upgradeTitle: '升级 Pro - 一次性买断',
-    upgradeDesc: '无限 AI 分析、云同步、续费提醒。永不收订阅费。',
-    upgradePrice: '9.99 USD 一次买断',
+    upgradeTitle: '解锁 Pro',
+    upgradeDesc: '无限 AI 毒舌、无限账单扫描、无水印分享卡。一次买断，永久使用。',
+    upgradePrice: '一次性买断',
     upgradeCta: '解锁 Pro',
     aiLimitReached: '今日免费 AI 次数已用完 (3/日)。升级 Pro 无限使用。',
     aiUsesLeft: '次免费 AI（今日剩余）',

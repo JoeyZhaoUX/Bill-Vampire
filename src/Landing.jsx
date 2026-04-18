@@ -14,12 +14,12 @@ import { track } from './analytics';
 import ZhBanner from './ZhBanner';
 
 const WALL_OF_VERDICTS = [
-  { amount: 14320, quip: '\u201cAdobe + Notion + Spotify. I thought I was being cheap.\u201d', tag: 'Designer, NYC' },
-  { amount: 8640, quip: '\u201cI forgot I had three video services.\u201d', tag: 'Parent of 2, Austin' },
-  { amount: 23100, quip: '\u201cThe ChatGPT Plus alone is a used Civic.\u201d', tag: 'Solo founder, SF' },
-  { amount: 6780, quip: '\u201cIt\u2019s just $9.99, I said. For every app.\u201d', tag: 'Grad student' },
-  { amount: 31420, quip: '\u201cIndie maker stack. Ouch.\u201d', tag: 'Maker, Berlin' },
-  { amount: 11200, quip: '\u201cCancelled four. Kept Netflix. I\u2019m not a monster.\u201d', tag: 'PM, Toronto' },
+  { amount: 14320, quip: '“Adobe + Notion + Spotify. I thought I was being cheap.”', tag: 'Designer, NYC' },
+  { amount: 8640, quip: '“I forgot I had three video services.”', tag: 'Parent of 2, Austin' },
+  { amount: 23100, quip: '“The ChatGPT Plus alone is a used Civic.”', tag: 'Solo founder, SF' },
+  { amount: 6780, quip: '“It’s just $9.99, I said. For every app.”', tag: 'Grad student' },
+  { amount: 31420, quip: '“Indie maker stack. Ouch.”', tag: 'Maker, Berlin' },
+  { amount: 11200, quip: '“Cancelled four. Kept Netflix. I’m not a monster.”', tag: 'PM, Toronto' },
 ];
 
 const TESTIMONIALS = [
@@ -29,7 +29,7 @@ const TESTIMONIALS = [
     role: 'Product Hunt comment',
   },
   {
-    quote: 'Paid nine bucks once and saved hundreds. Best ROI of any app I\u2019ve bought this year.',
+    quote: 'Paid nine bucks once and saved hundreds. Best ROI of any app I’ve bought this year.',
     name: 'Early user',
     role: 'Twitter / X',
   },
@@ -153,20 +153,20 @@ export default function Landing({ onEnterApp, onLegal }) {
 
   const faqs = [
     {
-      q: 'What\u2019s one-time and what\u2019s monthly?',
-      a: `The web tracker is one-time ${price.label} forever — pay once, own it. The Chrome Patrol extension is $4.99/mo because it literally reads your Gmail every day on your behalf. You\u2019re only charged monthly for work we\u2019re actually doing for you — and you can cancel Patrol any month in one click.`,
+      q: 'What’s one-time and what’s monthly?',
+      a: `The web tracker is one-time ${price.label} forever — pay once, own it. The Chrome Patrol extension is $4.99/mo because it literally reads your Gmail every day on your behalf. You’re only charged monthly for work we’re actually doing for you — and you can cancel Patrol any month in one click.`,
     },
     {
       q: 'What data leaves my device?',
-      a: 'Web app: subscriptions live in your browser\u2019s localStorage. AI scans send the bill text/image to our proxy once and are not stored. Patrol extension: reads your Gmail via Google\u2019s read-only OAuth, matches against a local regex library, and only the matched recurring charges are synced \u2014 never the rest of your inbox.',
+      a: 'Web app: subscriptions live in your browser’s localStorage. AI scans send the bill text/image to our proxy once and are not stored. Patrol extension: reads your Gmail via Google’s read-only OAuth, matches against a local regex library, and only the matched recurring charges are synced — never the rest of your inbox.',
     },
     {
-      q: 'What\u2019s Bill Vampire vs Bill Vampire Patrol?',
-      a: 'Bill Vampire (web) is the one-time tracker \u2014 you drop a bill, get the verdict, manage subs, pay once. Patrol is the Chrome extension that sits in Gmail and catches new vampires the moment they send their first receipt. Buy either one; they work better together.',
+      q: 'What’s Bill Vampire vs Bill Vampire Patrol?',
+      a: 'Bill Vampire (web) is the one-time tracker — you drop a bill, get the verdict, manage subs, pay once. Patrol is the Chrome extension that sits in Gmail and catches new vampires the moment they send their first receipt. Buy either one; they work better together.',
     },
     {
       q: 'Which AI powers the verdict?',
-      a: 'Google Gemini 2.5 Flash via our secured backend proxy. Bill Vampire is independent and not affiliated with Google. The roast is entertainment \u2014 do not take it as professional financial advice.',
+      a: 'Google Gemini 2.5 Flash via our secured backend proxy. Bill Vampire is independent and not affiliated with Google. The roast is entertainment — do not take it as professional financial advice.',
     },
   ];
 
@@ -218,14 +218,14 @@ export default function Landing({ onEnterApp, onLegal }) {
             </h1>
 
             <p className="text-base lg:text-lg text-slate-400 max-w-xl mx-auto mb-8 leading-relaxed landing-fade-in landing-delay-2">
-              Drop a bill. We\u2019ll show you \u2014 with numbers, a receipt-by-receipt leaderboard, and an AI verdict you\u2019ll want to screenshot.
+              Drop a bill. We’ll show you — with numbers, a receipt-by-receipt leaderboard, and an AI verdict you’ll want to screenshot.
             </p>
 
             <div className="flex flex-col items-center gap-4 landing-fade-in landing-delay-3">
               <div className="flex flex-col sm:flex-row items-center gap-3">
                 <button onClick={() => handleEnter('hero')}
                   className="inline-flex items-center gap-2 px-10 py-4 bg-rose-600 text-white text-sm font-semibold rounded-2xl hover:bg-rose-500 transition-all shadow-xl shadow-rose-900/30 group cursor-pointer">
-                  Get my verdict \u2014 free
+                  Get my verdict — free
                   <FontAwesomeIcon icon={faChevronRight} className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </button>
                 {chromeAvailable && (
@@ -237,7 +237,7 @@ export default function Landing({ onEnterApp, onLegal }) {
                   </a>
                 )}
               </div>
-              <span className="text-[11px] text-slate-600">No signup \u00b7 Data stays on your device</span>
+              <span className="text-[11px] text-slate-600">No signup · Data stays on your device</span>
               <LiveCounter />
             </div>
           </div>
@@ -253,7 +253,7 @@ export default function Landing({ onEnterApp, onLegal }) {
         <section className="py-8 border-y border-amber-800/30 bg-gradient-to-r from-amber-950/20 via-rose-950/20 to-amber-950/20">
           <div className="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-              <p className="text-xs font-bold text-amber-300 uppercase tracking-[0.2em] mb-1">Founding Vampire \u00b7 limited window</p>
+              <p className="text-xs font-bold text-amber-300 uppercase tracking-[0.2em] mb-1">Founding Vampire · limited window</p>
               <p className="text-sm text-slate-200">Pro is <strong className="text-amber-300">$6.99 one-time</strong> for new visitors. Bumps to $9.99 after the window closes.</p>
             </div>
             <div className="flex items-center gap-3">
@@ -300,7 +300,7 @@ export default function Landing({ onEnterApp, onLegal }) {
               },
               {
                 icon: faBolt, title: 'Kill',
-                desc: 'Pick the vampires you\u2019re cancelling. We track the savings and gamify your no-spend streak.',
+                desc: 'Pick the vampires you’re cancelling. We track the savings and gamify your no-spend streak.',
                 step: '03',
               },
             ].map(s => (
@@ -323,13 +323,13 @@ export default function Landing({ onEnterApp, onLegal }) {
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 bg-violet-950/40 border border-violet-800/30 px-4 py-1.5 rounded-full mb-5">
               <FontAwesomeIcon icon={faChrome} className="w-3 h-3 text-violet-400" />
-              <span className="text-[11px] font-medium text-violet-300">New \u00b7 Bill Vampire Patrol</span>
+              <span className="text-[11px] font-medium text-violet-300">New · Bill Vampire Patrol</span>
             </div>
             <h2 className="font-gothic text-2xl lg:text-4xl font-bold text-slate-100 mb-4">
               Your bodyguard, living in Gmail.
             </h2>
             <p className="text-sm text-slate-400 max-w-xl mx-auto leading-relaxed">
-              The tracker catches what you remember. The Patrol catches what you forgot \u2014 the renewal you didn\u2019t read, the trial that turned into a subscription, the 6th streaming service you didn\u2019t authorise.
+              The tracker catches what you remember. The Patrol catches what you forgot — the renewal you didn’t read, the trial that turned into a subscription, the 6th streaming service you didn’t authorise.
             </p>
           </div>
 
@@ -337,7 +337,7 @@ export default function Landing({ onEnterApp, onLegal }) {
             {[
               {
                 icon: faChrome, title: 'Scans Gmail daily',
-                desc: 'Read-only OAuth. Local regex matches ~150 billers on device. Only matched charges sync \u2014 never your inbox.',
+                desc: 'Read-only OAuth. Local regex matches ~150 billers on device. Only matched charges sync — never your inbox.',
               },
               {
                 icon: faBell, title: 'Charge-date alerts',
@@ -360,7 +360,7 @@ export default function Landing({ onEnterApp, onLegal }) {
 
           <div className="bg-gradient-to-br from-violet-950/30 to-rose-950/20 rounded-2xl p-6 sm:p-8 border border-violet-800/30 flex flex-col sm:flex-row items-center gap-6 justify-between">
             <div className="text-center sm:text-left">
-              <p className="text-xs font-bold text-violet-300 uppercase tracking-[0.2em] mb-1">$4.99 / month \u00b7 cancel any time</p>
+              <p className="text-xs font-bold text-violet-300 uppercase tracking-[0.2em] mb-1">$4.99 / month · cancel any time</p>
               <p className="text-sm text-slate-300 leading-relaxed">
                 Your tracker is one-time. The Patrol earns its keep every day it runs.
               </p>
@@ -370,12 +370,12 @@ export default function Landing({ onEnterApp, onLegal }) {
                 onClick={() => track('extension_install_clicked', { source: 'patrol_section' })}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#141420] border border-slate-700/50 text-slate-200 text-xs font-semibold rounded-xl hover:bg-[#1C1C2A] transition-all cursor-pointer no-underline">
                 <FontAwesomeIcon icon={faChrome} className="w-3.5 h-3.5 text-violet-400" />
-                Install free \u2014 detect up to 5
+                Install free — detect up to 5
               </a>
               <button onClick={() => openPatrolCheckout('monthly', 'patrol_section')}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all shadow-lg shadow-violet-900/30 cursor-pointer">
                 <FontAwesomeIcon icon={faShieldHalved} className="w-3.5 h-3.5" />
-                Upgrade to Patrol \u2014 $4.99/mo
+                Upgrade to Patrol — $4.99/mo
               </button>
             </div>
           </div>
@@ -411,14 +411,14 @@ export default function Landing({ onEnterApp, onLegal }) {
           <div className="text-center mb-12">
             <p className="text-xs font-medium text-amber-400 uppercase tracking-widest mb-3">Early voices</p>
             <h2 className="text-2xl lg:text-3xl font-bold text-slate-100 mb-3">From people who already got the verdict</h2>
-            <p className="text-xs text-slate-600">More reviews coming \u2014 send yours to <a href="mailto:hello@billvampire.com" className="text-rose-400 no-underline">hello@billvampire.com</a></p>
+            <p className="text-xs text-slate-600">More reviews coming — send yours to <a href="mailto:hello@billvampire.com" className="text-rose-400 no-underline">hello@billvampire.com</a></p>
           </div>
           <div className="grid md:grid-cols-3 gap-4">
             {TESTIMONIALS.map((t, i) => (
               <figure key={i} className="bg-[#141420]/70 rounded-2xl p-6 border border-slate-800/40">
-                <blockquote className="text-sm text-slate-300 leading-relaxed mb-4 italic">\u201c{t.quote}\u201d</blockquote>
+                <blockquote className="text-sm text-slate-300 leading-relaxed mb-4 italic">“{t.quote}”</blockquote>
                 <figcaption className="text-[11px] text-slate-500">
-                  <strong className="text-slate-400 not-italic">{t.name}</strong> \u00b7 {t.role}
+                  <strong className="text-slate-400 not-italic">{t.name}</strong> · {t.role}
                 </figcaption>
               </figure>
             ))}
@@ -432,7 +432,7 @@ export default function Landing({ onEnterApp, onLegal }) {
           <div className="text-center mb-12">
             <p className="text-xs font-medium text-amber-400 uppercase tracking-widest mb-3">Pricing</p>
             <h2 className="text-2xl lg:text-3xl font-bold text-slate-100 mb-3">Pay for what actually works.</h2>
-            <p className="text-sm text-slate-500 max-w-lg mx-auto">One-time for the tracker that sits there. Monthly for the bodyguard that doesn\u2019t.</p>
+            <p className="text-sm text-slate-500 max-w-lg mx-auto">One-time for the tracker that sits there. Monthly for the bodyguard that doesn’t.</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-5">
@@ -465,14 +465,14 @@ export default function Landing({ onEnterApp, onLegal }) {
             {/* PRO one-time */}
             <div className="relative bg-gradient-to-br from-amber-950/30 to-rose-950/30 rounded-2xl p-7 border border-amber-700/30 flex flex-col shadow-lg shadow-amber-950/10">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-[9px] font-bold px-4 py-1 rounded-full shadow-lg whitespace-nowrap">
-                ONE-TIME \u00b7 PAY ONCE
+                ONE-TIME · PAY ONCE
               </div>
               <p className="text-xs text-amber-400 uppercase tracking-widest mb-1 mt-2">Pro (web)</p>
               <div className="flex items-baseline gap-2 mb-1">
                 <span className="text-4xl font-bold text-slate-100">{price.label}</span>
                 {showCountdown && <span className="text-sm text-slate-500 line-through">$9.99</span>}
               </div>
-              <p className="text-[11px] text-slate-500 mb-6">{showCountdown ? 'Founding Vampire window \u2014 expires soon' : 'Pay once. Lifetime access.'}</p>
+              <p className="text-[11px] text-slate-500 mb-6">{showCountdown ? 'Founding Vampire window — expires soon' : 'Pay once. Lifetime access.'}</p>
               <ul className="text-xs text-slate-300 space-y-3 mb-8 flex-1">
                 {[
                   'Everything in Free',
@@ -492,18 +492,18 @@ export default function Landing({ onEnterApp, onLegal }) {
                 onClick={() => track('checkout_clicked', { source: 'pricing' })}
                 className="w-full py-3 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all shadow-lg shadow-rose-900/30 cursor-pointer flex items-center justify-center gap-1.5 no-underline">
                 <FontAwesomeIcon icon={faCrown} className="w-3 h-3" />
-                Unlock Pro \u2014 {price.label}
+                Unlock Pro — {price.label}
               </a>
               <p className="text-[10px] text-slate-600 text-center mt-3">
                 <FontAwesomeIcon icon={faLock} className="w-2.5 h-2.5 mr-1" />
-                Secured by Creem \u00b7 3-day refund
+                Secured by Creem · 3-day refund
               </p>
             </div>
 
             {/* PATROL monthly */}
             <div className="relative bg-gradient-to-br from-violet-950/40 to-rose-950/20 rounded-2xl p-7 border border-violet-700/40 flex flex-col shadow-lg shadow-violet-950/10">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-violet-500 to-rose-500 text-white text-[9px] font-bold px-4 py-1 rounded-full shadow-lg whitespace-nowrap">
-                CHROME PATROL \u00b7 MONTHLY
+                CHROME PATROL · MONTHLY
               </div>
               <p className="text-xs text-violet-300 uppercase tracking-widest mb-1 mt-2">Patrol</p>
               <div className="flex items-baseline gap-2 mb-1">
@@ -518,7 +518,7 @@ export default function Landing({ onEnterApp, onLegal }) {
               </p>
               <ul className="text-xs text-slate-300 space-y-3 mb-8 flex-1">
                 {[
-                  'Gmail scan \u2014 unlimited detections',
+                  'Gmail scan — unlimited detections',
                   'Daily background poll',
                   'In-Gmail toast for new vampires',
                   'Charge-date push alerts',
@@ -534,11 +534,11 @@ export default function Landing({ onEnterApp, onLegal }) {
               <button onClick={() => openPatrolCheckout('monthly', 'pricing')}
                 className="w-full py-3 bg-gradient-to-r from-violet-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all shadow-lg shadow-violet-900/30 cursor-pointer flex items-center justify-center gap-1.5">
                 <FontAwesomeIcon icon={faShieldHalved} className="w-3 h-3" />
-                Start Patrol \u2014 $4.99/mo
+                Start Patrol — $4.99/mo
               </button>
               <p className="text-[10px] text-slate-600 text-center mt-3">
                 <FontAwesomeIcon icon={faChrome} className="w-2.5 h-2.5 mr-1" />
-                Chrome & Edge \u00b7 cancel anytime
+                Chrome & Edge · cancel anytime
               </p>
             </div>
           </div>
@@ -599,11 +599,11 @@ export default function Landing({ onEnterApp, onLegal }) {
           </div>
           <div className="flex-1">
             <p className="text-sm text-slate-300 leading-relaxed mb-2">
-              Built in the open by one indie maker who got tired of $9.99 line items. The web tracker is one-time, forever. The Patrol is monthly because it actually works for you every day \u2014 and you can cancel it in one click. That\u2019s a pinky promise you can enforce with a refund.
+              Built in the open by one indie maker who got tired of $9.99 line items. The web tracker is one-time, forever. The Patrol is monthly because it actually works for you every day — and you can cancel it in one click. That’s a pinky promise you can enforce with a refund.
             </p>
             <div className="flex items-center gap-3 justify-center sm:justify-start text-[11px]">
               <a href="mailto:hello@billvampire.com" className="text-slate-500 hover:text-slate-300 no-underline">hello@billvampire.com</a>
-              <span className="text-slate-700">\u00b7</span>
+              <span className="text-slate-700">·</span>
               <a href="https://x.com/search?q=billvampire" target="_blank" rel="noopener noreferrer"
                 className="text-slate-500 hover:text-slate-300 no-underline inline-flex items-center gap-1">
                 <FontAwesomeIcon icon={faXTwitter} className="w-2.5 h-2.5" /> @billvampire

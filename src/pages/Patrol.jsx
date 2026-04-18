@@ -47,7 +47,7 @@ export default function Patrol({ onEnterApp }) {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="inline-flex items-center gap-2 bg-violet-950/40 border border-violet-800/30 px-4 py-1.5 rounded-full mb-6">
             <FontAwesomeIcon icon={faShieldHalved} className="w-3 h-3 text-violet-400" />
-            <span className="text-[11px] font-medium text-violet-300">Bill Vampire Patrol \u00b7 Chrome extension</span>
+            <span className="text-[11px] font-medium text-violet-300">Bill Vampire Patrol · Chrome extension</span>
           </div>
 
           <h1 className="font-gothic text-4xl sm:text-5xl lg:text-[3.6rem] font-bold leading-[1.1] mb-6">
@@ -58,7 +58,7 @@ export default function Patrol({ onEnterApp }) {
           </h1>
 
           <p className="text-base lg:text-lg text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed">
-            Patrol quietly reads your inbox every day. When a new subscription sneaks in, you see a rose toast \u2014 and one tap cancels or tracks it.
+            Patrol quietly reads your inbox every day. When a new subscription sneaks in, you see a rose toast — and one tap cancels or tracks it.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">
@@ -66,15 +66,15 @@ export default function Patrol({ onEnterApp }) {
               onClick={() => track('extension_install_clicked', { source: 'patrol_hero' })}
               className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-violet-500 to-rose-500 text-white text-sm font-bold rounded-2xl hover:brightness-110 transition-all shadow-xl shadow-violet-900/30 cursor-pointer no-underline">
               <FontAwesomeIcon icon={faChrome} className="w-4 h-4" />
-              Install free \u2014 detect up to 5
+              Install free — detect up to 5
             </a>
             <button onClick={() => openPatrolCheckout('monthly', 'patrol_hero')}
               className="inline-flex items-center gap-2 px-8 py-4 bg-[#141420] border border-slate-700/50 text-slate-200 text-sm font-semibold rounded-2xl hover:bg-[#1C1C2A] transition-all cursor-pointer">
               <FontAwesomeIcon icon={faShieldHalved} className="w-4 h-4 text-violet-400" />
-              Start Patrol \u2014 {PATROL_PRICE_MONTHLY.label}
+              Start Patrol — {PATROL_PRICE_MONTHLY.label}
             </button>
           </div>
-          <p className="text-[11px] text-slate-600">Cancel any month \u00b7 read-only Gmail access \u00b7 your data never leaves Cloudflare</p>
+          <p className="text-[11px] text-slate-600">Cancel any month · read-only Gmail access · your data never leaves Cloudflare</p>
         </div>
       </section>
 
@@ -89,7 +89,7 @@ export default function Patrol({ onEnterApp }) {
             {[
               {
                 icon: faEye, title: 'Scans Gmail every day',
-                desc: 'Google read-only OAuth. ~150 known billers matched locally by regex. Only matched charges sync to Bill Vampire \u2014 never your inbox.',
+                desc: 'Google read-only OAuth. ~150 known billers matched locally by regex. Only matched charges sync to Bill Vampire — never your inbox.',
               },
               {
                 icon: faBell, title: 'Charge-date alerts',
@@ -117,7 +117,7 @@ export default function Patrol({ onEnterApp }) {
           <div className="text-center mb-12">
             <p className="text-xs font-medium text-violet-400 uppercase tracking-widest mb-3">Pricing</p>
             <h2 className="text-2xl lg:text-3xl font-bold text-slate-100 mb-3">Fair trade.</h2>
-            <p className="text-sm text-slate-500 max-w-md mx-auto">Patrol works every day. That\u2019s what the monthly fee pays for.</p>
+            <p className="text-sm text-slate-500 max-w-md mx-auto">Patrol works every day. That’s what the monthly fee pays for.</p>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-5">
@@ -143,14 +143,14 @@ export default function Patrol({ onEnterApp }) {
 
             <div className="relative bg-gradient-to-br from-violet-950/40 to-rose-950/20 rounded-2xl p-7 border border-violet-700/40 flex flex-col shadow-lg shadow-violet-950/10">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-violet-500 to-rose-500 text-white text-[9px] font-bold px-4 py-1 rounded-full shadow-lg whitespace-nowrap">
-                PATROL \u00b7 MONTHLY
+                PATROL · MONTHLY
               </div>
               <p className="text-xs text-violet-300 uppercase tracking-widest mb-1 mt-2">Patrol</p>
               <div className="flex items-baseline gap-2 mb-1">
                 <span className="text-4xl font-bold text-slate-100">{PATROL_PRICE_MONTHLY.label}</span>
               </div>
               <p className="text-[11px] text-slate-500 mb-6">
-                or <strong className="text-violet-200">{PATROL_PRICE_ANNUAL.label}</strong> annually \u00b7 save 35%
+                or <strong className="text-violet-200">{PATROL_PRICE_ANNUAL.label}</strong> annually · save 35%
               </p>
               <ul className="text-xs text-slate-300 space-y-3 mb-8 flex-1">
                 {[
@@ -170,11 +170,11 @@ export default function Patrol({ onEnterApp }) {
               <button onClick={() => openPatrolCheckout('monthly', 'patrol_pricing')}
                 className="w-full py-3 bg-gradient-to-r from-violet-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all shadow-lg shadow-violet-900/30 cursor-pointer flex items-center justify-center gap-1.5">
                 <FontAwesomeIcon icon={faShieldHalved} className="w-3 h-3" />
-                Start Patrol \u2014 {PATROL_PRICE_MONTHLY.label}
+                Start Patrol — {PATROL_PRICE_MONTHLY.label}
               </button>
               <p className="text-[10px] text-slate-600 text-center mt-3">
                 <FontAwesomeIcon icon={faLock} className="w-2.5 h-2.5 mr-1" />
-                Secured by Creem \u00b7 cancel anytime
+                Secured by Creem · cancel anytime
               </p>
             </div>
           </div>
@@ -183,8 +183,8 @@ export default function Patrol({ onEnterApp }) {
 
       <section className="py-16 border-t border-slate-800/40">
         <div className="max-w-2xl mx-auto px-6 text-center">
-          <h2 className="text-xl lg:text-2xl font-bold text-slate-100 mb-3">Haven\u2019t scanned your bills yet?</h2>
-          <p className="text-sm text-slate-400 mb-6">Start with the web verdict \u2014 see your 10-year number, then let Patrol catch what comes next.</p>
+          <h2 className="text-xl lg:text-2xl font-bold text-slate-100 mb-3">Haven’t scanned your bills yet?</h2>
+          <p className="text-sm text-slate-400 mb-6">Start with the web verdict — see your 10-year number, then let Patrol catch what comes next.</p>
           <button onClick={onEnterApp}
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-rose-600 text-white text-sm font-semibold rounded-2xl hover:bg-rose-500 transition-all shadow-xl shadow-rose-900/30 cursor-pointer">
             Get my verdict first

@@ -28,7 +28,7 @@ function buildDigest({ appUrl, weeklyKills = 0, weeklySavingsUsd = 0, topKill = 
     : 'No kills confirmed yet. Pick one this Sunday.';
 
   const subjectLine = weeklyKills > 0
-    ? `${weeklyKills} vampire${weeklyKills === 1 ? '' : 's'} down this week — here\u2019s what you saved`
+    ? `${weeklyKills} vampire${weeklyKills === 1 ? '' : 's'} down this week — here’s what you saved`
     : 'Your weekly vampire check-in';
 
   const html = `<!doctype html>
@@ -42,10 +42,10 @@ function buildDigest({ appUrl, weeklyKills = 0, weeklySavingsUsd = 0, topKill = 
     ${tenYearTotal ? `<p style="font-size:13px;color:#94a3b8;margin:0 0 20px;">10-year waste tracked so far: <strong style="color:#fca5a5;">$${Math.round(tenYearTotal).toLocaleString()}</strong>.</p>` : ''}
     <div style="background:#141420;border:1px solid rgba(251,113,133,.25);border-radius:16px;padding:18px;margin:20px 0;">
       <p style="font-size:13px;color:#e2e8f0;margin:0 0 12px;">Missed one? Drop another bill and get a fresh verdict.</p>
-      <a href="${appUrl}/app" style="display:inline-block;padding:10px 18px;background:linear-gradient(90deg,#f43f5e,#f59e0b);color:#fff;font-size:12px;font-weight:700;border-radius:10px;text-decoration:none;">Re-run my verdict \u2192</a>
+      <a href="${appUrl}/app" style="display:inline-block;padding:10px 18px;background:linear-gradient(90deg,#f43f5e,#f59e0b);color:#fff;font-size:12px;font-weight:700;border-radius:10px;text-decoration:none;">Re-run my verdict →</a>
     </div>
     <p style="font-size:11px;color:#64748b;margin:24px 0 0;line-height:1.5;">
-      You\u2019re subscribed to the weekly digest. <a href="${appUrl}/api/email-subscribe?email=__EMAIL__" style="color:#94a3b8;">Unsubscribe</a>.
+      You’re subscribed to the weekly digest. <a href="${appUrl}/api/email-subscribe?email=__EMAIL__" style="color:#94a3b8;">Unsubscribe</a>.
     </p>
   </div>
 </body></html>`;

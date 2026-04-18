@@ -301,7 +301,7 @@ function EmailDigestCapture({ monthly, tenYear }) {
   const submit = async (e) => {
     e.preventDefault();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setError('That doesn\u2019t look like an email.');
+      setError('That doesn’t look like an email.');
       return;
     }
     setStatus('loading');
@@ -317,7 +317,7 @@ function EmailDigestCapture({ monthly, tenYear }) {
       track('digest_subscribed', { ten_year_usd: Math.round(tenYear || 0) });
       setStatus('done');
     } catch {
-      setError('Couldn\u2019t subscribe right now. Try again in a bit.');
+      setError('Couldn’t subscribe right now. Try again in a bit.');
       setStatus('idle');
     }
   };
@@ -339,7 +339,7 @@ function EmailDigestCapture({ monthly, tenYear }) {
           className="flex-1 px-4 py-2.5 bg-[#0B0B11] border border-slate-800/60 rounded-xl text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-rose-600/60" />
         <button type="submit" disabled={status === 'loading'}
           className="px-5 py-2.5 bg-rose-600 hover:bg-rose-500 disabled:opacity-60 text-white text-xs font-semibold rounded-xl transition-colors cursor-pointer whitespace-nowrap">
-          {status === 'loading' ? 'Sending\u2026' : 'Send me Sundays'}
+          {status === 'loading' ? 'Sending…' : 'Send me Sundays'}
         </button>
       </form>
       {error && <p className="text-[11px] text-rose-400 mt-2">{error}</p>}

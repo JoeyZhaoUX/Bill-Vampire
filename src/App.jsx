@@ -12,6 +12,8 @@ import {
   canSmartImport, markSmartImportUsed,
   canPrintReport, markPrintReportUsed,
   openCheckout, getCheckoutUrl, openTip,
+  getCurrentPrice, openPatrolCheckout, isPatrol,
+  PATROL_PRICE_MONTHLY,
 } from './pro';
 import { injectAffiliateLinks, PREFERRED_ALTERNATIVES } from './affiliates';
 import { track } from './analytics';
@@ -29,16 +31,16 @@ const API_ENDPOINT = '/api/gemini';
 
 const CURRENCIES = {
   USD: { code: 'USD', flag: '\u{1F1FA}\u{1F1F8}', symbol: '$', rate: 1 },
-  CNY: { code: 'CNY', flag: '\u{1F1E8}\u{1F1F3}', symbol: '\u00A5', rate: 0.14 },
-  EUR: { code: 'EUR', flag: '\u{1F1EA}\u{1F1FA}', symbol: '\u20AC', rate: 1.08 },
-  GBP: { code: 'GBP', flag: '\u{1F1EC}\u{1F1E7}', symbol: '\u00A3', rate: 1.26 },
-  JPY: { code: 'JPY', flag: '\u{1F1EF}\u{1F1F5}', symbol: '\u00A5', rate: 0.0067 },
+  CNY: { code: 'CNY', flag: '\u{1F1E8}\u{1F1F3}', symbol: '¥', rate: 0.14 },
+  EUR: { code: 'EUR', flag: '\u{1F1EA}\u{1F1FA}', symbol: '€', rate: 1.08 },
+  GBP: { code: 'GBP', flag: '\u{1F1EC}\u{1F1E7}', symbol: '£', rate: 1.26 },
+  JPY: { code: 'JPY', flag: '\u{1F1EF}\u{1F1F5}', symbol: '¥', rate: 0.0067 },
   HKD: { code: 'HKD', flag: '\u{1F1ED}\u{1F1F0}', symbol: 'HK$', rate: 0.128 },
 };
 
 const CATEGORY_KEYS = ['catEntertainment', 'catProductivity', 'catLifestyle', 'catOther'];
 const CATEGORY_VALUES = ['Entertainment', 'Productivity', 'Lifestyle', 'Other'];
-const CATEGORY_ICONS = { 'Entertainment': '\u{1F3AE}', 'Productivity': '\u26A1', 'Lifestyle': '\u{1F33F}', 'Other': '\u{1F4E6}' };
+const CATEGORY_ICONS = { 'Entertainment': '\u{1F3AE}', 'Productivity': '⚡', 'Lifestyle': '\u{1F33F}', 'Other': '\u{1F4E6}' };
 
 export default function App({ onLegal }) {
   const [lang, setLang] = useState(getDefaultLang);
@@ -163,12 +165,12 @@ export default function App({ onLegal }) {
         const msg = typeof data.error === 'string' ? data.error : data.error?.message || 'Unknown error';
         console.error('Gemini API error:', msg);
         if (msg.includes('quota') || msg.includes('rate') || res.status === 429) {
-          return lang === 'zh' ? 'AI \u6682\u65F6\u7E41\u5FD9\uFF0C\u8BF7\u7A0D\u540E\u518D\u8BD5\u3002' : 'AI is busy right now. Please try again in a minute.';
+          return lang === 'zh' ? 'AI 暂时繁忙，请稍后再试。' : 'AI is busy right now. Please try again in a minute.';
         }
-        return lang === 'zh' ? 'AI \u670D\u52A1\u6682\u65F6\u4E0D\u53EF\u7528\u3002' : 'AI service temporarily unavailable.';
+        return lang === 'zh' ? 'AI 服务暂时不可用。' : 'AI service temporarily unavailable.';
       }
-      return data.candidates?.[0]?.content?.parts?.[0]?.text || (lang === 'zh' ? 'AI \u4F3C\u4E4E\u5728\u6253\u76F9\u3002' : 'AI seems to be napping.');
-    } catch (err) { console.error(err); return lang === 'zh' ? 'AI \u6682\u65F6\u65AD\u7F51\u4E86\u3002' : 'AI is offline. Probably saving electricity for you.'; }
+      return data.candidates?.[0]?.content?.parts?.[0]?.text || (lang === 'zh' ? 'AI 似乎在打盹。' : 'AI seems to be napping.');
+    } catch (err) { console.error(err); return lang === 'zh' ? 'AI 暂时断网了。' : 'AI is offline. Probably saving electricity for you.'; }
   };
 
   const getAiAdvice = async () => {
@@ -176,7 +178,7 @@ export default function App({ onLegal }) {
     setIsAiLoading(true);
     const list = subscriptions.map(s => `${s.name}($${(parseFloat(s.price) * (CURRENCIES[s.currency]?.rate || 1)).toFixed(2)}/${s.cycle === 'monthly' ? 'mo' : 'yr'})`).join(', ');
     const systemPrompt = lang === 'zh'
-      ? '\u4F60\u662F\u4E00\u4E2A\u5634\u6B20\u3001\u6BD2\u820C\u4F46\u5FC3\u5584\u7684\u8D22\u52A1\u987E\u95EE\u3002\u7528\u5E7D\u9ED8\u8BBD\u523A\u4F46\u6700\u7EC8\u5E26\u7740\u6696\u610F\u7684\u8BED\u6C14\uFF0C\u7ED9\u51FA3\u70B9\u72AC\u5229\u70B9\u8BC4\u548C1\u4E2A\u5B9E\u7528\u8282\u7701\u5EFA\u8BAE\u3002\u4E0D\u8D85\u8FC7150\u5B57\u3002'
+      ? '你是一个嘴欠、毒舌但心善的财务顾问。用幽默讽刺但最终带着暖意的语气，给出3点犬利点评和1个实用节省建议。不超过150字。'
       : 'You are a snarky, brutally honest but well-meaning financial advisor. Give 3 sharp roasts about the user\'s subscriptions and 1 practical saving tip. Keep it under 150 words. Be funny.';
     const result = await callGeminiAPI(
       `My subscriptions: ${list}. Monthly total: $${monthlyTotal.toFixed(2)}. Roast me.`,
@@ -206,7 +208,7 @@ export default function App({ onLegal }) {
   const getAiDailyQuote = async () => {
     setIsQuoteLoading(true);
     const systemPrompt = lang === 'zh'
-      ? '\u4F60\u662F\u4E00\u4E2A\u50B2\u5A07\u3001\u6BD2\u820C\u7684AI\u60C5\u7EEA\u4F34\u4FA3\u3002\u5982\u679C\u4E0D\u6D88\u8D39\u5929\u6570\u5C11\u4E8E5\u5929\u8981\u5632\u8BBD\u4F46\u5E26\u9F13\u52B1\uFF1B5\u5929\u4EE5\u4E0A\u8981\u5938\u5956\u4F46\u8BED\u6C14\u50B2\u5A07\u3002\u56DE\u590D\u9650\u5236\u572860\u5B57\u4EE5\u5185\uFF0C\u53EF\u4EE5\u7528emoji\u3002'
+      ? '你是一个傲娇、毒舌的AI情绪伴侣。如果不消费天数少于5天要嘲讽但带鼓励；5天以上要夸奖但语气傲娇。回复限制在60字以内，可以用emoji。'
       : 'You are a snarky, tsundere AI companion. If no-spend days < 5, tease but encourage. If >= 5, praise but act like you don\'t care. Max 60 words. Use emojis.';
     const result = await callGeminiAPI(
       `This month has ${daysInMonth} days. I've had ${currentStreak} no-spend days. Today is day ${currentDay}. Give me motivation (or roast me).`,
@@ -386,7 +388,7 @@ export default function App({ onLegal }) {
             </div>
             <div className="flex-1">
               <p className="text-sm font-semibold text-slate-100 mb-1">Want to know before a vampire bites?</p>
-              <p className="text-xs text-slate-400 mb-3 leading-relaxed">We\u2019ll ping you 24 hours before any subscription renews. No account, no spam.</p>
+              <p className="text-xs text-slate-400 mb-3 leading-relaxed">We’ll ping you 24 hours before any subscription renews. No account, no spam.</p>
               <div className="flex gap-2">
                 <button onClick={enableChargeNotifs}
                   className="px-4 py-2 bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer">
@@ -524,7 +526,7 @@ export default function App({ onLegal }) {
                   </div>
                   <div className="flex-1 text-left">
                     <span className="text-xs font-semibold text-slate-200 block leading-tight">{_('upgradeTitle')}</span>
-                    <span className="text-[10px] text-slate-500">{_('upgradePrice')}</span>
+                    <span className="text-[10px] text-slate-500">{getCurrentPrice().label} {_('upgradePrice')}</span>
                   </div>
                   <FontAwesomeIcon icon={faChevronRight} className="w-3 h-3 text-slate-600 group-hover:text-slate-400 group-hover:translate-x-0.5 transition-all shrink-0" />
                 </button>
@@ -683,7 +685,7 @@ export default function App({ onLegal }) {
                           !isToday && !isChecked && !isFuture ? 'bg-[#1C1C2A] text-slate-400 hover:bg-[#252536]' : '',
                           isFuture ? 'text-slate-700 cursor-not-allowed' : 'cursor-pointer',
                         ].join(' ')}>
-                        {isChecked ? '\u2713' : dayNum}
+                        {isChecked ? '✓' : dayNum}
                       </button>
                     );
                   })}
@@ -786,7 +788,7 @@ export default function App({ onLegal }) {
                   </div>
                   <div className="flex-1 text-left">
                     <span className="text-xs font-semibold text-slate-200 block leading-tight">{_('upgradeTitle')}</span>
-                    <span className="text-[10px] text-slate-500">{_('upgradePrice')}</span>
+                    <span className="text-[10px] text-slate-500">{getCurrentPrice().label} {_('upgradePrice')}</span>
                   </div>
                   <FontAwesomeIcon icon={faChevronRight} className="w-3.5 h-3.5 text-slate-600 group-hover:text-slate-400 group-hover:translate-x-0.5 transition-all shrink-0" />
                 </button>
@@ -883,14 +885,14 @@ export default function App({ onLegal }) {
               <div className="w-14 h-14 bg-gradient-to-br from-amber-900/60 to-rose-900/60 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-amber-700/30">
                 <FontAwesomeIcon icon={faCrown} className="w-7 h-7 text-amber-400" aria-hidden="true" />
               </div>
-              <h3 id="pro-modal-title" className="text-sm font-bold text-slate-100 mb-1">{_('upgradeTitle')}</h3>
+              <h3 id="pro-modal-title" className="text-sm font-bold text-slate-100 mb-1">{_('upgradeTitle')} — {getCurrentPrice().label}</h3>
               <p className="text-xs text-slate-500 leading-relaxed">{_('upgradeDesc')}</p>
             </div>
             <div className="space-y-3 mb-6">
               {[
-                { icon: faWandMagicSparkles, text: lang === 'zh' ? 'AI \u65E0\u9650\u4F7F\u7528' : 'Unlimited AI analysis' },
-                { icon: faGlobe, text: lang === 'zh' ? '\u4E91\u7AEF\u540C\u6B65\uFF08\u5373\u5C06\u63A8\u51FA\uFF09' : 'Cloud sync (coming soon)' },
-                { icon: faLock, text: lang === 'zh' ? '\u6C38\u4E0D\u6536\u8BA2\u9605\u8D39' : 'No subscription. Ever.' },
+                { icon: faWandMagicSparkles, text: lang === 'zh' ? '无限 AI 毒舌与账单扫描' : 'Unlimited AI roasts & scans' },
+                { icon: faShareNodes, text: lang === 'zh' ? '无水印分享卡 · 无限 PDF 报告' : 'Watermark-free share card & PDF reports' },
+                { icon: faCrown, text: lang === 'zh' ? '一次买断 · 永久使用' : 'Pay once. Keep forever.' },
               ].map(({ icon, text }) => (
                 <div key={text} className="flex items-center gap-3 text-xs text-slate-300">
                   <FontAwesomeIcon icon={icon} className="w-3.5 h-3.5 text-amber-400 shrink-0" /> {text}
@@ -899,8 +901,15 @@ export default function App({ onLegal }) {
             </div>
             <a href={getCheckoutUrl('pro_modal')} target="_blank" rel="noopener noreferrer" onClick={() => { openCheckout('pro_modal'); setShowProModal(false); }}
               className="w-full py-3.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-2xl hover:from-amber-400 hover:to-rose-400 transition-colors shadow-lg shadow-rose-900/30 mb-2 cursor-pointer min-h-[44px] flex items-center justify-center no-underline">
-              {_('upgradeCta')} — {_('upgradePrice')}
+              {_('upgradeCta')} — {getCurrentPrice().label} {_('upgradePrice')}
             </a>
+            {!isPatrol() && (
+              <button onClick={() => { openPatrolCheckout('monthly', 'pro_modal'); setShowProModal(false); }}
+                className="w-full py-3 bg-[#1C1C2A] border border-violet-700/40 text-slate-200 text-xs font-semibold rounded-2xl hover:bg-[#252536] transition-colors cursor-pointer min-h-[44px] flex items-center justify-center gap-2 mb-2">
+                <FontAwesomeIcon icon={faLock} className="w-3 h-3 text-violet-300" />
+                {lang === 'zh' ? `或加装 Patrol — ${PATROL_PRICE_MONTHLY.label}` : `Or add Patrol — ${PATROL_PRICE_MONTHLY.label}`}
+              </button>
+            )}
             <button onClick={() => setShowProModal(false)}
               className="w-full py-2 text-xs text-slate-500 hover:text-slate-300 transition-colors cursor-pointer min-h-[44px]">
               {_('cancel')}
