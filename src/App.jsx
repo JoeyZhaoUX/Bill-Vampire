@@ -42,6 +42,47 @@ const CATEGORY_KEYS = ['catEntertainment', 'catProductivity', 'catLifestyle', 'c
 const CATEGORY_VALUES = ['Entertainment', 'Productivity', 'Lifestyle', 'Other'];
 const CATEGORY_ICONS = { 'Entertainment': '\u{1F3AE}', 'Productivity': '⚡', 'Lifestyle': '\u{1F33F}', 'Other': '\u{1F4E6}' };
 
+// Merge subs handed off from the Patrol extension via a base64-encoded hash
+// fragment (see public/bridge.html or the popup's "Open full verdict" link).
+// Shape: #ext_subs=<base64 JSON array>. Strips the fragment after import.
+function importSubsFromExtensionHash(existing) {
+  if (typeof window === 'undefined') return existing;
+  const hash = window.location.hash || '';
+  const m = hash.match(/ext_subs=([^&]+)/);
+  if (!m) return existing;
+  let incoming = [];
+  try {
+    const json = atob(decodeURIComponent(m[1]));
+    const parsed = JSON.parse(json);
+    if (Array.isArray(parsed)) incoming = parsed;
+  } catch { return existing; }
+  const byKey = Object.create(null);
+  existing.forEach(s => { byKey[String(s.id || s.name || '').toLowerCase()] = s; });
+  incoming.forEach(s => {
+    if (!s || !s.name) return;
+    const cycle = s.cycle === 'yearly' ? 'yearly' : 'monthly';
+    const price = String(parseFloat(s.price ?? s.amountUsd) || 0);
+    const nextChargeAt = Number.isFinite(Number(s.nextChargeAt)) ? Number(s.nextChargeAt)
+      : Date.now() + (cycle === 'yearly' ? 365 : 30) * 24 * 60 * 60 * 1000;
+    const key = String(s.id || s.name).toLowerCase();
+    byKey[key] = {
+      id: byKey[key]?.id || `ext_${key}_${Date.now().toString(36)}`,
+      name: s.name,
+      price,
+      currency: CURRENCIES[s.currency] ? s.currency : 'USD',
+      cycle,
+      category: CATEGORY_VALUES.includes(s.category) ? s.category : 'Other',
+      nextChargeAt,
+      source: 'patrol_extension',
+      ...byKey[key],
+    };
+  });
+  try {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+  } catch { /* non-fatal */ }
+  return Object.values(byKey);
+}
+
 export default function App({ onLegal }) {
   const [lang, setLang] = useState(getDefaultLang);
   const [activeTab, setActiveTab] = useState('subs');
@@ -74,7 +115,9 @@ export default function App({ onLegal }) {
     const savedSubs = localStorage.getItem('vampire_subs');
     const savedDays = localStorage.getItem('vampire_no_spend');
     const savedCancelled = localStorage.getItem('vampire_cancelled');
-    if (savedSubs) setSubscriptions(JSON.parse(savedSubs));
+    const existing = savedSubs ? JSON.parse(savedSubs) : [];
+    const merged = importSubsFromExtensionHash(existing);
+    setSubscriptions(merged);
     if (savedDays) setNoSpendDays(JSON.parse(savedDays));
     if (savedCancelled) setCancelledSubs(JSON.parse(savedCancelled));
   }, []);
