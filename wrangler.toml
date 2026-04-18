@@ -7,26 +7,19 @@ compatibility_date = "2026-04-01"
 pages_build_output_dir = "dist"
 
 # ------- Scheduled triggers -------
-# Sunday 9:00 UTC weekly digest. Fires functions/_scheduled/weekly-digest.js.
-[[triggers.crons]]
-cron = "0 9 * * 0"
+# Pages doesn't support cron triggers in wrangler.toml. The Sunday digest
+# runs as a separate Worker at workers/weekly-digest/ with its own cron.
 
 # ------- KV bindings -------
 # EMAIL_LIST stores { "sub:<email>": JSON } for Sunday digest subscribers.
-# Create the namespace once with:
-#   wrangler kv:namespace create EMAIL_LIST
-# Then paste the returned id below, and also create a preview id for local dev.
-[[kv_namespaces]]
-binding = "EMAIL_LIST"
-id = "REPLACE_WITH_REAL_NAMESPACE_ID"
-preview_id = "REPLACE_WITH_PREVIEW_NAMESPACE_ID"
+# Bound via the dashboard: Pages → Settings → Bindings → Add KV namespace.
+# The same namespace is also bound to workers/weekly-digest/.
 
-# ------- Env vars (set via `wrangler secret put` in production) -------
+# ------- Env vars (set via dashboard Variables & Secrets, or `wrangler secret put`) -------
 # GEMINI_API_KEY   — Google Gemini 2.5 Flash key, used by functions/api/gemini.js
-# RESEND_API_KEY   — Resend.com API key, used by weekly-digest.js
 # JWT_SIGNING_KEY  — 32+ byte random string, used by functions/api/pro-token.js
 #                    to sign the bv_pro cookie consumed by the Chrome extension
-# STATS_URL        — optional override of the /api/stats source for weekly-digest.js
+# RESEND_API_KEY lives on the weekly-digest Worker, not on Pages.
 
 [vars]
 # Public (non-secret) vars go here. Keep this section for documentation even if empty.

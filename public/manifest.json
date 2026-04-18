@@ -1,7 +1,7 @@
 {
   "name": "Bill Vampire - Subscription Tracker",
   "short_name": "Bill Vampire",
-  "description": "The only subscription tracker that doesn't charge you a subscription. Kill the vampires draining your wallet.",
+  "description": "Kill the subscription vampires draining your wallet. One-time $9.99 web tracker + optional $4.99/mo Patrol extension that watches Gmail.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0B0B11",

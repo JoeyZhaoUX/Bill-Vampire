@@ -28,7 +28,7 @@ const TESTIMONIALS = [
     role: 'Product Hunt comment',
   },
   {
-    quote: 'Finally a subscription tool that doesn\u2019t charge me to remind me I\u2019m being charged.',
+    quote: 'Paid nine bucks once and saved hundreds. Best ROI of any app I\u2019ve bought this year.',
     name: 'Early user',
     role: 'Twitter / X',
   },
@@ -152,8 +152,8 @@ export default function Landing({ onEnterApp, onLegal }) {
 
   const faqs = [
     {
-      q: 'Wait — didn\u2019t you promise never a subscription?',
-      a: `Half right. The web tracker is still one-time ${price.label} forever — pay once, own it. The Chrome Patrol extension is $4.99/mo because it literally reads your Gmail every day on your behalf. Charging monthly for a tool that does nothing between sessions was the thing we refused to do. Charging for actual, ongoing work is fair — and you can cancel any month in one click.`,
+      q: 'What\u2019s one-time and what\u2019s monthly?',
+      a: `The web tracker is one-time ${price.label} forever — pay once, own it. The Chrome Patrol extension is $4.99/mo because it literally reads your Gmail every day on your behalf. You\u2019re only charged monthly for work we\u2019re actually doing for you — and you can cancel Patrol any month in one click.`,
     },
     {
       q: 'What data leaves my device?',

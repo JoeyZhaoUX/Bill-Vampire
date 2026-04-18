@@ -145,7 +145,7 @@ export default function Scan({ onComplete, onSkipToManual }) {
             {scanBlocked && (
               <div className="mt-5 bg-amber-950/30 border border-amber-700/30 rounded-2xl p-4 text-center">
                 <p className="text-xs text-amber-200 mb-3">
-                  You've used your free scan. Unlock unlimited scans with Pro — <strong>{price.label} one-time</strong>, never a subscription.
+                  You've used your free scan. Unlock unlimited scans with Pro — <strong>{price.label} one-time</strong>. Pay once, keep forever.
                 </p>
                 <button onClick={() => openCheckout('scan_limit')}
                   className="px-6 py-2.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all cursor-pointer">
