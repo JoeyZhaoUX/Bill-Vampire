@@ -11,6 +11,7 @@ import {
   PATROL_PRICE_MONTHLY, PATROL_PRICE_ANNUAL,
 } from './pro';
 import { track } from './analytics';
+import ZhBanner from './ZhBanner';
 
 const WALL_OF_VERDICTS = [
   { amount: 14320, quip: '\u201cAdobe + Notion + Spotify. I thought I was being cheap.\u201d', tag: 'Designer, NYC' },
@@ -171,6 +172,8 @@ export default function Landing({ onEnterApp, onLegal }) {
 
   return (
     <div className="min-h-screen bg-[#0B0B11] text-slate-100 overflow-x-hidden">
+
+      <ZhBanner onEnterApp={() => handleEnter('zh_banner')} />
 
       {/* ===== NAVBAR ===== */}
       <nav className="sticky top-0 z-50 bg-[#0B0B11]/80 backdrop-blur-xl border-b border-slate-800/30">

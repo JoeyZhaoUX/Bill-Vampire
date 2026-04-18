@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSkull, faArrowRight, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { monthlyUsd } from './verdict';
 import { track } from '../analytics';
+import ZhBanner from '../ZhBanner';
 
 export default function Commit({ subscriptions, onDone }) {
   const [selected, setSelected] = useState(new Set());
@@ -27,6 +28,7 @@ export default function Commit({ subscriptions, onDone }) {
 
   return (
     <div className="min-h-screen bg-[#0B0B11] text-slate-100 relative overflow-hidden">
+      <ZhBanner />
       <header className="px-6 py-5 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <img src={`${import.meta.env.BASE_URL}icons/icon.png`} alt="Bill Vampire" className="w-8 h-8 rounded-lg" />

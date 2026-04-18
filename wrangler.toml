@@ -12,8 +12,13 @@ pages_build_output_dir = "dist"
 
 # ------- KV bindings -------
 # EMAIL_LIST stores { "sub:<email>": JSON } for Sunday digest subscribers.
-# Bound via the dashboard: Pages → Settings → Bindings → Add KV namespace.
-# The same namespace is also bound to workers/weekly-digest/.
+# Consumed by functions/api/email-subscribe.js. The same namespace is also
+# bound on workers/weekly-digest/ so the Sunday cron reads from the same list.
+# NOTE: the Pages dashboard shows "Bindings are managed through wrangler.toml"
+# — this block is what produces env.EMAIL_LIST at runtime.
+[[kv_namespaces]]
+binding = "EMAIL_LIST"
+id = "006bcf18eaaf4ce9b7ac06a864d22d48"
 
 # ------- Env vars (set via dashboard Variables & Secrets, or `wrangler secret put`) -------
 # GEMINI_API_KEY   — Google Gemini 2.5 Flash key, used by functions/api/gemini.js
