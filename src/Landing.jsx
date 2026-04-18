@@ -251,28 +251,28 @@ export default function Landing({ onEnterApp, onLegal }) {
       {/* ===== FOUNDING WINDOW BANNER ===== */}
       {showCountdown && (
         <section className="py-8 border-y border-amber-800/30 bg-gradient-to-r from-amber-950/20 via-rose-950/20 to-amber-950/20">
-          <div className="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 flex-wrap">
             <div>
               <p className="text-xs font-bold text-amber-300 uppercase tracking-[0.2em] mb-1">Founding Vampire · limited window</p>
               <p className="text-sm text-slate-200">Pro is <strong className="text-amber-300">$6.99 one-time</strong> for new visitors. Bumps to $9.99 after the window closes.</p>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="text-center">
+            <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center">
+              <div className="text-center min-w-[42px]">
                 <p key={`h-${h}`} className="font-gothic text-2xl font-bold text-amber-300 tabular-nums animate-tickPulse">{String(h).padStart(2, '0')}</p>
                 <p className="text-[9px] text-slate-500 uppercase tracking-widest">hours</p>
               </div>
-              <span className="text-amber-500 animate-pulse">:</span>
-              <div className="text-center">
+              <span className="text-amber-500 animate-pulse text-xl">:</span>
+              <div className="text-center min-w-[42px]">
                 <p key={`m-${m}`} className="font-gothic text-2xl font-bold text-amber-300 tabular-nums animate-tickPulse">{String(m).padStart(2, '0')}</p>
                 <p className="text-[9px] text-slate-500 uppercase tracking-widest">min</p>
               </div>
-              <span className="text-amber-500 animate-pulse">:</span>
-              <div className="text-center">
-                <p key={`s-${s}`} className="font-gothic text-2xl font-bold text-rose-400 tabular-nums animate-tickPulse">{String(s).padStart(2, '0')}</p>
-                <p className="text-[9px] text-slate-500 uppercase tracking-widest">sec</p>
+              <span className="text-rose-500 animate-pulse text-xl">:</span>
+              <div className="text-center min-w-[42px]">
+                <p key={`s-${s}`} className="font-gothic text-2xl font-bold text-rose-400 tabular-nums animate-tickPulse drop-shadow-[0_0_8px_rgba(244,63,94,0.6)]">{String(s).padStart(2, '0')}</p>
+                <p className="text-[9px] text-rose-500/70 uppercase tracking-widest">sec</p>
               </div>
               <button onClick={() => openCheckout('founding_banner')}
-                className="ml-4 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all cursor-pointer">
+                className="ml-2 sm:ml-4 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all cursor-pointer animate-subtleBeat">
                 Lock in $6.99
               </button>
             </div>

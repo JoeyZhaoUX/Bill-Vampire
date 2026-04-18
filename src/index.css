@@ -41,6 +41,15 @@
     100% { transform: translateY(0); opacity: 1; filter: drop-shadow(0 0 0 rgba(251, 191, 36, 0)); }
   }
 
+  /* Subtle heartbeat on Founding CTA — 1 beat per 1.6s so it's felt, not noisy */
+  .animate-subtleBeat {
+    animation: subtleBeat 1.6s ease-in-out infinite;
+  }
+  @keyframes subtleBeat {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.4); }
+    50%      { transform: scale(1.035); box-shadow: 0 0 18px 4px rgba(244, 63, 94, 0.18); }
+  }
+
   /* Landing page fade-in animations */
   .landing-fade-in {
     animation: landingFadeUp 0.8s ease-out both;
@@ -152,7 +161,8 @@ textarea:focus-visible {
   .fade-in,
   .slide-in-from-bottom-4,
   .zoom-in-95,
-  .animate-tickPulse {
+  .animate-tickPulse,
+  .animate-subtleBeat {
     animation: none !important;
   }
 }
