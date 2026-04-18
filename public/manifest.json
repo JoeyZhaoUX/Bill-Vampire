@@ -4,7 +4,7 @@
   "description": "The only subscription tracker that doesn't charge you a subscription. Kill the vampires draining your wallet.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FAFAFA",
+  "background_color": "#0B0B11",
   "theme_color": "#e11d48",
   "orientation": "portrait",
   "icons": [
