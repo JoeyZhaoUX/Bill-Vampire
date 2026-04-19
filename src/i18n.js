@@ -52,10 +52,10 @@ const translations = {
 
     // Pro
     proBadge: 'PRO',
-    upgradeTitle: 'Unlock Pro',
-    upgradeDesc: 'Unlimited AI roasts, unlimited scans, watermark-free share cards. Pay once, keep forever.',
+    upgradeTitle: 'Judge the past. Guard the future.',
+    upgradeDesc: 'Pro is a one-time verdict on subs you already have. Patrol is a monthly bodyguard that catches the ones you don\'t. Separate jobs, separate price tags.',
     upgradePrice: 'one-time',
-    upgradeCta: 'Unlock Pro',
+    upgradeCta: 'Get the Verdict',
     aiLimitReached: 'Free AI limit reached (3/day). Upgrade to Pro for unlimited.',
     aiUsesLeft: 'free AI uses left today',
 
@@ -149,8 +149,8 @@ const translations = {
     generating: '生成中...',
 
     proBadge: 'PRO',
-    upgradeTitle: '解锁 Pro',
-    upgradeDesc: '无限 AI 毒舌、无限账单扫描、无水印分享卡。一次买断，永久使用。',
+    upgradeTitle: '判决过去 · 守护未来',
+    upgradeDesc: 'Pro 一次性买断，帮你审判已有订阅的 10 年浪费。Patrol 按月订阅，扫 Gmail 拦下未来的新订阅。两个产品，两个时间轴，互不重叠。',
     upgradePrice: '一次性买断',
     upgradeCta: '解锁 Pro',
     aiLimitReached: '今日免费 AI 次数已用完 (3/日)。升级 Pro 无限使用。',

@@ -20,7 +20,7 @@ function TermsOfService() {
         <p>By accessing or using Bill Vampire ("the Service"), you agree to be bound by these Terms of Service. If you do not agree, please do not use the Service.</p>
       </Section>
       <Section title="2. Description of Service">
-        <p>Bill Vampire is a subscription tracking web application that helps users monitor their recurring payments. The Service offers a free tier and a one-time paid upgrade ("Pro") for additional features including unlimited AI analysis.</p>
+        <p>Bill Vampire offers two products: (a) the Bill Vampire web app, with a free tier and a one-time paid upgrade ("Pro") that delivers the full 10-year Verdict, unlimited AI bill parsing, unwatermarked share cards, and unlimited PDF exports; and (b) Bill Vampire Patrol, a separately-billed Chrome extension subscription that scans your Gmail for recurring charges and sends charge-date alerts.</p>
       </Section>
       <Section title="3. User Data & Local Storage">
         <p>Bill Vampire stores your subscription data locally on your device using browser local storage. We do not collect, transmit, or store your subscription information on our servers. You are responsible for backing up your own data.</p>
@@ -28,8 +28,10 @@ function TermsOfService() {
       <Section title="4. AI Features">
         <p>The Service includes AI-powered analysis features provided through third-party APIs (Google Gemini). AI-generated advice, roasts, and alternative suggestions are for informational and entertainment purposes only and should not be considered professional financial advice. Bill Vampire is an independent product and is not affiliated with or endorsed by Google.</p>
       </Section>
-      <Section title="5. Pro Upgrade & Payment Processing">
-        <p>The Pro upgrade is a one-time purchase of 9.99 USD processed through <a href="https://www.creem.io" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">Creem</a>, our merchant of record and payment processor. By purchasing Pro, you receive a permanent license to use Pro features. Creem handles all payment processing, sales tax, and billing. Pro status is stored locally on your device.</p>
+      <Section title="5. Paid Products & Payment Processing">
+        <p><strong>Pro (web app):</strong> a one-time purchase of 19 USD (12 USD during the Founding Vampire window for new visitors) processed through <a href="https://www.creem.io" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">Creem</a>. By purchasing Pro, you receive a permanent license to the Pro features listed in Section 2. Pro status is stored locally on your device.</p>
+        <p><strong>Patrol (Chrome extension):</strong> a recurring subscription billed at 4.99 USD per month or 39 USD per year via Creem. You may cancel any time in one click; billing stops at the end of the current period and Patrol features deactivate at that time. Pro and Patrol are separate products — purchasing one does not entitle you to the other.</p>
+        <p>Creem acts as our merchant of record and handles all payment processing, sales tax, and billing.</p>
       </Section>
       <Section title="6. Acceptable Use">
         <p>You agree not to misuse the Service, attempt to reverse-engineer it, or use it for any unlawful purpose. We reserve the right to terminate access for users who violate these terms.</p>
@@ -97,7 +99,7 @@ function RefundPolicy() {
       <Section title="1. Free Tier">
         <p>Bill Vampire's core features are free to use and require no payment. No refund applies to the free tier.</p>
       </Section>
-      <Section title="2. Pro Upgrade (9.99 USD One-Time)">
+      <Section title="2. Pro Upgrade (19 USD One-Time · 12 USD Founding)">
         <p>The Pro upgrade is a one-time digital purchase. Because of the immediate nature of digital goods delivery, we generally do not offer refunds after purchase.</p>
         <p>However, we want you to be satisfied. If you experience any of the following, we will issue a full refund:</p>
         <ul className="list-disc list-inside space-y-1 pl-2">
@@ -106,13 +108,20 @@ function RefundPolicy() {
           <li>You request a refund within 3 days of purchase and have not extensively used Pro features</li>
         </ul>
       </Section>
-      <Section title="3. Tips">
+      <Section title="3. Patrol Subscription (4.99 USD / month · 39 USD / year)">
+        <p>Patrol is billed recurring through Creem. You can cancel at any time from your Creem receipt or by emailing us; once cancelled we stop all future charges at the end of the current billing period. We do not pro-rate refunds for partial months already elapsed, with two exceptions:</p>
+        <ul className="list-disc list-inside space-y-1 pl-2">
+          <li>You were charged for a renewal but Patrol had already been uninstalled before the renewal date — we refund that renewal in full.</li>
+          <li>You were charged more than once in the same billing period due to a processing error.</li>
+        </ul>
+      </Section>
+      <Section title="4. Tips">
         <p>Tips are voluntary contributions to support the development of Bill Vampire. Tips are non-refundable, as they are not tied to any product or service delivery.</p>
       </Section>
-      <Section title="4. How to Request a Refund">
+      <Section title="5. How to Request a Refund">
         <p>To request a refund, email us at <a href={`mailto:${CONTACT_EMAIL}`} className="text-rose-400 hover:text-rose-300 underline">{CONTACT_EMAIL}</a> with your purchase receipt or Creem order number. We aim to respond within 2 business days.</p>
       </Section>
-      <Section title="5. Refund Processing">
+      <Section title="6. Refund Processing">
         <p>Approved refunds are processed through Creem and will be returned to your original payment method. Processing time depends on your payment provider, typically 5-10 business days.</p>
       </Section>
     </>

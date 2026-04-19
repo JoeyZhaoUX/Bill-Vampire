@@ -153,16 +153,16 @@ export default function Landing({ onEnterApp, onLegal }) {
 
   const faqs = [
     {
-      q: 'What’s one-time and what’s monthly?',
-      a: `The web tracker is one-time ${price.label} forever — pay once, own it. The Chrome Patrol extension is $4.99/mo because it literally reads your Gmail every day on your behalf. You’re only charged monthly for work we’re actually doing for you — and you can cancel Patrol any month in one click.`,
+      q: 'Why is Pro one-time and Patrol monthly?',
+      a: `Pro is a verdict on the past — you feed it your bills, it gives you the 10-year number, the roast, the PDF. You consume it once. It costs ${price.label} one-time. Patrol is live labour — it reads your Gmail every single day and pings you before new charges land. It earns its $4.99/mo because it's actually working while you sleep. Stop it any month and we stop charging. Fair is fair.`,
     },
     {
       q: 'What data leaves my device?',
       a: 'Web app: subscriptions live in your browser’s localStorage. AI scans send the bill text/image to our proxy once and are not stored. Patrol extension: reads your Gmail via Google’s read-only OAuth, matches against a local regex library, and only the matched recurring charges are synced — never the rest of your inbox.',
     },
     {
-      q: 'What’s Bill Vampire vs Bill Vampire Patrol?',
-      a: 'Bill Vampire (web) is the one-time tracker — you drop a bill, get the verdict, manage subs, pay once. Patrol is the Chrome extension that sits in Gmail and catches new vampires the moment they send their first receipt. Buy either one; they work better together.',
+      q: 'Pro vs Patrol — which one do I actually need?',
+      a: 'Different time zones of your wallet. Pro judges the past: drop bills, get the 10-year verdict, print the PDF. You already know your subs — you just want to see the damage. Patrol guards the future: it sits in Gmail, catches the next vampire the moment its first receipt arrives, pings you before each charge. You don\'t know what you don\'t remember signing up for. Most people end up buying both, but they solve totally separate problems.',
     },
     {
       q: 'Which AI powers the verdict?',
@@ -186,7 +186,7 @@ export default function Landing({ onEnterApp, onLegal }) {
             <a href={getCheckoutUrl('nav')} target="_blank" rel="noopener noreferrer"
               onClick={() => track('checkout_clicked', { source: 'nav' })}
               className="hidden sm:flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-amber-300 hover:text-amber-200 transition-colors cursor-pointer no-underline">
-              <FontAwesomeIcon icon={faCrown} className="w-3 h-3" /> Get Pro
+              <FontAwesomeIcon icon={faCrown} className="w-3 h-3" /> Get the Verdict
             </a>
             <button onClick={() => handleEnter('nav')}
               className="flex items-center gap-1.5 px-5 py-2.5 bg-rose-600 text-white text-xs font-semibold rounded-xl hover:bg-rose-500 transition-colors cursor-pointer">
@@ -206,7 +206,7 @@ export default function Landing({ onEnterApp, onLegal }) {
             <div className="inline-flex items-center gap-2 bg-rose-950/40 border border-rose-800/30 px-4 py-1.5 rounded-full mb-7 landing-fade-in">
               <FontAwesomeIcon icon={faShieldHalved} className="w-3 h-3 text-rose-400" />
               <span className="text-[11px] font-medium text-rose-300">
-                Your tracker is one-time. Your bodyguard is monthly. Fair is fair.
+                Pro judges the past. Patrol guards the future. Different time zones, different price tags.
               </span>
             </div>
 
@@ -254,7 +254,7 @@ export default function Landing({ onEnterApp, onLegal }) {
           <div className="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 flex-wrap">
             <div>
               <p className="text-xs font-bold text-amber-300 uppercase tracking-[0.2em] mb-1">Founding Vampire · limited window</p>
-              <p className="text-sm text-slate-200">Pro is <strong className="text-amber-300">$6.99 one-time</strong> for new visitors. Bumps to $9.99 after the window closes.</p>
+              <p className="text-sm text-slate-200">Pro is <strong className="text-amber-300">$12 one-time</strong> for new visitors. Goes back to $19 after the window closes.</p>
             </div>
             <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center">
               <div className="text-center min-w-[42px]">
@@ -273,7 +273,7 @@ export default function Landing({ onEnterApp, onLegal }) {
               </div>
               <button onClick={() => openCheckout('founding_banner')}
                 className="ml-2 sm:ml-4 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all cursor-pointer animate-subtleBeat">
-                Lock in $6.99
+                Lock in $12
               </button>
             </div>
           </div>
@@ -367,7 +367,7 @@ export default function Landing({ onEnterApp, onLegal }) {
             <div className="text-center sm:text-left">
               <p className="text-xs font-bold text-violet-300 uppercase tracking-[0.2em] mb-1">$4.99 / month · cancel any time</p>
               <p className="text-sm text-slate-300 leading-relaxed">
-                Your tracker is one-time. The Patrol earns its keep every day it runs.
+                The Verdict is a one-shot weapon. The Patrol is the night shift — working while you sleep, stopped the second you tell it to.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 shrink-0">
@@ -436,8 +436,12 @@ export default function Landing({ onEnterApp, onLegal }) {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
             <p className="text-xs font-medium text-amber-400 uppercase tracking-widest mb-3">Pricing</p>
-            <h2 className="text-2xl lg:text-3xl font-bold text-slate-100 mb-3">Pay for what actually works.</h2>
-            <p className="text-sm text-slate-500 max-w-lg mx-auto">One-time for the tracker that sits there. Monthly for the bodyguard that doesn’t.</p>
+            <h2 className="text-2xl lg:text-3xl font-bold text-slate-100 mb-3">
+              Judge the <span className="text-amber-400">past</span>. Guard the <span className="text-violet-300">future</span>.
+            </h2>
+            <p className="text-sm text-slate-500 max-w-lg mx-auto">
+              Pro is the one-time verdict on subs you already have. Patrol is the monthly bodyguard that catches the ones you don't know about yet. Separate jobs. Separate price tags.
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-5">
@@ -467,25 +471,25 @@ export default function Landing({ onEnterApp, onLegal }) {
               </button>
             </div>
 
-            {/* PRO one-time */}
+            {/* PRO one-time — THE VERDICT (past) */}
             <div className="relative bg-gradient-to-br from-amber-950/30 to-rose-950/30 rounded-2xl p-7 border border-amber-700/30 flex flex-col shadow-lg shadow-amber-950/10">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-[9px] font-bold px-4 py-1 rounded-full shadow-lg whitespace-nowrap">
-                ONE-TIME · PAY ONCE
+                THE VERDICT · ONE-TIME
               </div>
-              <p className="text-xs text-amber-400 uppercase tracking-widest mb-1 mt-2">Pro (web)</p>
+              <p className="text-xs text-amber-400 uppercase tracking-widest mb-1 mt-2">Pro · judge the past</p>
               <div className="flex items-baseline gap-2 mb-1">
                 <span className="text-4xl font-bold text-slate-100">{price.label}</span>
-                {showCountdown && <span className="text-sm text-slate-500 line-through">$9.99</span>}
+                {showCountdown && <span className="text-sm text-slate-500 line-through">$19</span>}
               </div>
-              <p className="text-[11px] text-slate-500 mb-6">{showCountdown ? 'Founding Vampire window — expires soon' : 'Pay once. Lifetime access.'}</p>
+              <p className="text-[11px] text-slate-500 mb-6">{showCountdown ? 'Founding Vampire window — expires soon' : 'Pay once. Keep the verdict forever.'}</p>
               <ul className="text-xs text-slate-300 space-y-3 mb-8 flex-1">
                 {[
                   'Everything in Free',
-                  'Unlimited AI bill scans',
-                  'Unlimited Verdict re-runs',
+                  'Unlimited AI bill parsing (paste / upload)',
+                  'Unlimited 10-year Verdict re-runs',
                   'Full uncensored AI roast',
                   'Unwatermarked share card',
-                  'Unlimited PDF reports',
+                  'Unlimited PDF export',
                   'Priority support',
                 ].map(item => (
                   <li key={item} className="flex items-start gap-2.5">
@@ -497,7 +501,7 @@ export default function Landing({ onEnterApp, onLegal }) {
                 onClick={() => track('checkout_clicked', { source: 'pricing' })}
                 className="w-full py-3 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all shadow-lg shadow-rose-900/30 cursor-pointer flex items-center justify-center gap-1.5 no-underline">
                 <FontAwesomeIcon icon={faCrown} className="w-3 h-3" />
-                Unlock Pro — {price.label}
+                Get the Verdict — {price.label}
               </a>
               <p className="text-[10px] text-slate-600 text-center mt-3">
                 <FontAwesomeIcon icon={faLock} className="w-2.5 h-2.5 mr-1" />
@@ -505,12 +509,12 @@ export default function Landing({ onEnterApp, onLegal }) {
               </p>
             </div>
 
-            {/* PATROL monthly */}
+            {/* PATROL monthly — THE BODYGUARD (future) */}
             <div className="relative bg-gradient-to-br from-violet-950/40 to-rose-950/20 rounded-2xl p-7 border border-violet-700/40 flex flex-col shadow-lg shadow-violet-950/10">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-violet-500 to-rose-500 text-white text-[9px] font-bold px-4 py-1 rounded-full shadow-lg whitespace-nowrap">
-                CHROME PATROL · MONTHLY
+                THE BODYGUARD · MONTHLY
               </div>
-              <p className="text-xs text-violet-300 uppercase tracking-widest mb-1 mt-2">Patrol</p>
+              <p className="text-xs text-violet-300 uppercase tracking-widest mb-1 mt-2">Patrol · guard the future</p>
               <div className="flex items-baseline gap-2 mb-1">
                 <span className="text-4xl font-bold text-slate-100">{PATROL_PRICE_MONTHLY.label}</span>
               </div>
@@ -604,7 +608,7 @@ export default function Landing({ onEnterApp, onLegal }) {
           </div>
           <div className="flex-1">
             <p className="text-sm text-slate-300 leading-relaxed mb-2">
-              Built in the open by one indie maker who got tired of $9.99 line items. The web tracker is one-time, forever. The Patrol is monthly because it actually works for you every day — and you can cancel it in one click. That’s a pinky promise you can enforce with a refund.
+              Built in the open by one indie maker who got tired of $9.99 line items. Pro is a one-time judgement of your past — buy it, keep it, print the PDF. Patrol is monthly because it’s actually doing new work every day — stop paying the second it stops catching stuff. Two products, two jobs, two honest price tags.
             </p>
             <div className="flex items-center gap-3 justify-center sm:justify-start text-[11px]">
               <a href="mailto:hello@billvampire.com" className="text-slate-500 hover:text-slate-300 no-underline">hello@billvampire.com</a>

@@ -215,8 +215,8 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
                       </div>
                       <p className="text-sm font-semibold text-slate-100 mb-1">The remaining {hiddenCount} roasts are brutal.</p>
                       <p className="text-xs text-slate-400 mb-5 max-w-sm mx-auto">
-                        Unlock the full verdict — plus unlimited scans, re-runs, and a watermark-free share card.
-                        <strong className="text-amber-300"> {price.label} one-time</strong>. Pay once, keep forever.
+                        Pro unlocks the full verdict on what you've <em>already</em> been billed — every uncensored line, the share card, the PDF.
+                        <strong className="text-amber-300"> {price.label} one-time.</strong> Keep the verdict forever.
                       </p>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl mx-auto">
@@ -224,17 +224,17 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
                           className="inline-flex flex-col items-center gap-1 px-5 py-3.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-2xl hover:brightness-110 transition-all shadow-lg shadow-rose-900/30 cursor-pointer">
                           <span className="flex items-center gap-2">
                             <FontAwesomeIcon icon={faCrown} className="w-3.5 h-3.5" />
-                            Unlock Pro — {price.label}
+                            Get the Verdict — {price.label}
                           </span>
-                          <span className="text-[9px] font-medium text-white/80 uppercase tracking-widest">one-time</span>
+                          <span className="text-[9px] font-medium text-white/80 uppercase tracking-widest">one-time · judges the past</span>
                         </button>
                         <button onClick={() => openPatrolCheckout('monthly', 'verdict_paywall')}
                           className="inline-flex flex-col items-center gap-1 px-5 py-3.5 bg-[#141420] border border-violet-700/50 text-slate-100 text-xs font-bold rounded-2xl hover:bg-[#1C1C2A] transition-all cursor-pointer">
                           <span className="flex items-center gap-2">
                             <FontAwesomeIcon icon={faShieldHalved} className="w-3.5 h-3.5 text-violet-300" />
-                            Add Patrol — $4.99/mo
+                            Start Patrol — $4.99/mo
                           </span>
-                          <span className="text-[9px] font-medium text-violet-300/80 uppercase tracking-widest">scans Gmail daily</span>
+                          <span className="text-[9px] font-medium text-violet-300/80 uppercase tracking-widest">monthly · guards the future</span>
                         </button>
                       </div>
 
