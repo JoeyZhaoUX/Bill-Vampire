@@ -15,9 +15,9 @@ const STORAGE_KEY_VERDICT_USED = 'vampire_free_verdict_used';
 
 const CREEM_PRO_URL_STANDARD = 'https://www.creem.io/payment/prod_1pw0aIvQW2CzNzfMLrgGAY';
 const CREEM_PRO_URL_FOUNDING = 'https://www.creem.io/payment/prod_1pw0aIvQW2CzNzfMLrgGAY';
-// TODO: replace with real Creem product IDs once the Patrol products are created.
-const CREEM_PATROL_MONTHLY_URL = 'https://www.creem.io/payment/prod_patrol_monthly_PLACEHOLDER';
-const CREEM_PATROL_ANNUAL_URL = 'https://www.creem.io/payment/prod_patrol_annual_PLACEHOLDER';
+const CREEM_PATROL_MONTHLY_URL = 'https://www.creem.io/payment/prod_3l1JRnKrbMvuYiWez8JDGw';
+// Temporary fallback until a dedicated annual checkout product is configured in Creem.
+const CREEM_PATROL_ANNUAL_URL = 'https://www.creem.io/payment/prod_3l1JRnKrbMvuYiWez8JDGw';
 const CREEM_TIP_URL = 'https://www.creem.io/payment/prod_4jHrSY5B9kBakNLmI1GuLw';
 
 export const PATROL_PRICE_MONTHLY = { amount: 4.99, label: '$4.99/mo', cycle: 'monthly' };
