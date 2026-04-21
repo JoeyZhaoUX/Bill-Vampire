@@ -84,7 +84,7 @@ function importSubsFromExtensionHash(existing) {
   return Object.values(byKey);
 }
 
-export default function App({ onLegal }) {
+export default function App({ onLegal, onGoToLanding }) {
   const [lang, setLang] = useState(getDefaultLang);
   const [activeTab, setActiveTab] = useState('subs');
   const [subscriptions, setSubscriptions] = useState([]);
@@ -479,10 +479,10 @@ export default function App({ onLegal }) {
       {/* ========== MOBILE TOP HEADER ========== */}
       <header className="lg:hidden sticky top-0 z-40 bg-[#0D0D15]/95 backdrop-blur-xl border-b border-slate-800/40">
         <div className="flex items-center justify-between px-4 py-2.5">
-          <div className="flex items-center gap-2.5">
+          <button onClick={onGoToLanding} className="flex items-center gap-2.5 cursor-pointer hover:opacity-80 transition-opacity bg-transparent border-0 p-0">
             <img src={`${import.meta.env.BASE_URL}icons/icon.png`} alt="Bill Vampire logo" className="w-7 h-7 rounded-lg shadow-sm" />
             <div className="font-gothic text-sm font-bold text-slate-100 tracking-wider">{_('appName')}</div>
-          </div>
+          </button>
           <div className="flex items-center gap-3">
             <div className="text-right">
               <p className="text-[9px] text-slate-500 uppercase tracking-wider leading-none mb-0.5" aria-hidden="true">drain</p>
@@ -518,11 +518,11 @@ export default function App({ onLegal }) {
             </div>
 
             {/* Branding */}
-            <div className="flex flex-col items-center lg:items-start mb-6">
+            <button onClick={onGoToLanding} className="flex flex-col items-center lg:items-start mb-6 cursor-pointer hover:opacity-80 transition-opacity bg-transparent border-0 p-0 text-left">
               <img src={`${import.meta.env.BASE_URL}icons/icon.png`} alt="Bill Vampire - Vampire mascot holding bill receipt" className="w-14 h-14 lg:w-12 lg:h-12 rounded-2xl shadow-sm mb-3" />
               <h1 className="font-gothic text-2xl lg:text-xl font-bold tracking-wider text-slate-100 mb-1">{_('appName')}</h1>
               <p className="text-[11px] text-slate-500 font-light tracking-wider">{_('tagline')}</p>
-            </div>
+            </button>
 
             <div className="blood-accent mb-6" />
 

@@ -75,6 +75,12 @@ function Root() {
     setView(page);
   };
 
+  const goToLanding = () => {
+    window.location.hash = '';
+    window.scrollTo(0, 0);
+    setView('landing');
+  };
+
   const goBack = (nextPage) => {
     if (nextPage && VALID_LEGAL.includes(nextPage)) {
       goToLegal(nextPage);
@@ -188,7 +194,7 @@ function Root() {
   if (view === 'landing') {
     return <Landing onEnterApp={startOnboarding} onLegal={goToLegal} lang={lang} setLang={setLang} />;
   }
-  return <App onLegal={goToLegal} />;
+  return <App onLegal={goToLegal} onGoToLanding={goToLanding} />;
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(
