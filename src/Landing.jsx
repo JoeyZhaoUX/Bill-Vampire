@@ -197,11 +197,44 @@ export default function Landing({ onEnterApp, onLegal }) {
       </nav>
 
       {/* ===== HERO ===== */}
-      <section className="relative pt-16 pb-20 lg:pt-24 lg:pb-28">
-        <div className="absolute top-12 left-[10%] w-72 h-72 bg-rose-900/20 rounded-full blur-[100px] -z-10" />
-        <div className="absolute top-40 right-[5%] w-96 h-96 bg-violet-900/15 rounded-full blur-[120px] -z-10" />
+      <section className="relative pt-16 pb-20 lg:pt-24 lg:pb-28 overflow-hidden">
+        {/* Background video — watermark cropped via clip-path */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute', inset: 0, zIndex: 0,
+            overflow: 'hidden',
+          }}
+        >
+          <video
+            src="/bg.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            style={{
+              position: 'absolute', inset: 0,
+              width: '100%', height: '100%',
+              objectFit: 'cover',
+              /* Scale + shift to crop the Kling watermark in the bottom-right */
+              transform: 'scale(1.12) translate(-2%, -3%)',
+              clipPath: 'inset(0 5% 12% 0)',
+              opacity: 0.35,
+              willChange: 'transform',
+            }}
+          />
+          {/* Dark gradient overlay — keeps text legible */}
+          <div style={{
+            position: 'absolute', inset: 0,
+            background: 'linear-gradient(to bottom, #0B0B11cc 0%, #0B0B1180 40%, #0B0B11cc 100%)',
+          }} />
+        </div>
 
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="absolute top-12 left-[10%] w-72 h-72 bg-rose-900/20 rounded-full blur-[100px]" style={{ zIndex: 1 }} />
+        <div className="absolute top-40 right-[5%] w-96 h-96 bg-violet-900/15 rounded-full blur-[120px]" style={{ zIndex: 1 }} />
+
+        <div className="max-w-5xl mx-auto px-6 relative" style={{ zIndex: 2 }}>
           <div className="max-w-3xl mx-auto text-center mb-12">
             <div className="inline-flex items-center gap-2 bg-rose-950/40 border border-rose-800/30 px-4 py-1.5 rounded-full mb-7 landing-fade-in">
               <FontAwesomeIcon icon={faShieldHalved} className="w-3 h-3 text-rose-400" />
