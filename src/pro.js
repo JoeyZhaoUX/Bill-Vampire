@@ -3,7 +3,6 @@ import { track } from './analytics';
 const AI_WEEKLY_LIMIT_FREE = 1;
 const FREE_SCAN_LIFETIME_LIMIT = 1;
 const FREE_PRINT_LIFETIME_LIMIT = 1;
-const FOUNDING_PRICE_WINDOW_MS = 72 * 60 * 60 * 1000;
 
 const STORAGE_KEY_PRO = 'vampire_pro';
 const STORAGE_KEY_PATROL = 'vampire_patrol';
@@ -13,8 +12,7 @@ const STORAGE_KEY_FREE_PRINTS = 'vampire_free_prints_used';
 const STORAGE_KEY_FIRST_SEEN = 'vampire_first_seen';
 const STORAGE_KEY_VERDICT_USED = 'vampire_free_verdict_used';
 
-const CREEM_PRO_URL_STANDARD = 'https://www.creem.io/payment/prod_1pw0aIvQW2CzNzfMLrgGAY';
-const CREEM_PRO_URL_FOUNDING = 'https://www.creem.io/payment/prod_1pw0aIvQW2CzNzfMLrgGAY';
+const CREEM_PRO_URL = 'https://www.creem.io/payment/prod_1pw0aIvQW2CzNzfMLrgGAY';
 const CREEM_PATROL_MONTHLY_URL = 'https://www.creem.io/payment/prod_3l1JRnKrbMvuYiWez8JDGw';
 // Temporary fallback until a dedicated annual checkout product is configured in Creem.
 const CREEM_PATROL_ANNUAL_URL = 'https://www.creem.io/payment/prod_3l1JRnKrbMvuYiWez8JDGw';
@@ -137,17 +135,6 @@ export function getFirstSeen() {
   return now;
 }
 
-export function isFoundingWindow() {
-  if (isPro()) return false;
-  const first = getFirstSeen();
-  return Date.now() - first < FOUNDING_PRICE_WINDOW_MS;
-}
-
-export function foundingWindowRemainingMs() {
-  const first = getFirstSeen();
-  return Math.max(0, FOUNDING_PRICE_WINDOW_MS - (Date.now() - first));
-}
-
 export const PRO_PRICE = { amount: 9.99, label: '$9.99', tier: 'standard' };
 export const PRO_PRICE_STANDARD = PRO_PRICE;
 export const PRO_PRICE_FOUNDING = PRO_PRICE;
@@ -162,9 +149,7 @@ function getSuccessUrl() {
 }
 
 export function getCheckoutUrl(source = 'unknown') {
-  const price = getCurrentPrice();
-  const base = price.tier === 'founding' ? CREEM_PRO_URL_FOUNDING : CREEM_PRO_URL_STANDARD;
-  return `${base}?success_url=${getSuccessUrl()}&ref=${encodeURIComponent(source)}`;
+  return `${CREEM_PRO_URL}?success_url=${getSuccessUrl()}&ref=${encodeURIComponent(source)}`;
 }
 
 export function openCheckout(source = 'unknown') {
