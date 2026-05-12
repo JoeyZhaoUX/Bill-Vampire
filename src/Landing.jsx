@@ -6,7 +6,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faXTwitter, faChrome } from '@fortawesome/free-brands-svg-icons';
 import {
-  getCheckoutUrl, getCurrentPrice, isFoundingWindow, foundingWindowRemainingMs,
+  getCheckoutUrl, getCurrentPrice,
   openCheckout, openPatrolCheckout, isPro,
 } from './pro';
 import { track } from './analytics';
@@ -44,18 +44,6 @@ function formatUsd(n) {
   return '$' + Math.floor(n).toLocaleString('en-US');
 }
 
-function useCountdown(ms) {
-  const [remaining, setRemaining] = useState(ms);
-  useEffect(() => {
-    if (!Number.isFinite(ms) || ms <= 0) return;
-    const i = setInterval(() => setRemaining((r) => Math.max(0, r - 1000)), 1000);
-    return () => clearInterval(i);
-  }, [ms]);
-  const h = Math.floor(remaining / 3_600_000);
-  const m = Math.floor((remaining % 3_600_000) / 60_000);
-  const s = Math.floor((remaining % 60_000) / 1000);
-  return { h, m, s, total: remaining };
-}
 
 function LiveCounter() {
   const [total, setTotal] = useState(null);
@@ -133,9 +121,6 @@ export default function Landing({ onEnterApp, onLegal }) {
   const [openFaq, setOpenFaq] = useState(null);
   const viewedRef = useRef(false);
   const price = getCurrentPrice();
-  const showCountdown = isFoundingWindow();
-  const remaining = showCountdown ? foundingWindowRemainingMs() : 0;
-  const { h, m, s } = useCountdown(remaining);
 
   useEffect(() => {
     if (viewedRef.current) return;
@@ -159,8 +144,8 @@ export default function Landing({ onEnterApp, onLegal }) {
       a: "Your subscription list lives in your browser's localStorage — nothing is uploaded to any server. When you scan a bill, the text/image is sent to our AI proxy once for extraction and is never stored. We have no account system, no cookies, and no tracking beyond anonymous analytics.",
     },
     {
-      q: 'Why $19 for a verdict?',
-      a: 'Because the verdict pays for itself in one cancelled subscription. The average user discovers $200+/month in waste they forgot about. Cancel even one — say a $15/mo service you forgot — and Pro has paid for itself in 38 days. Plus you keep the roasts forever.',
+      q: 'Why pay for a verdict?',
+      a: "Because it pays for itself in one cancelled subscription. The average user discovers $200+/month in waste they forgot about. Cancel even one forgotten $15/mo service and Pro has already paid for itself. Plus you keep the roasts forever.",
     },
     {
       q: 'Which AI powers the verdict?',
@@ -268,38 +253,6 @@ export default function Landing({ onEnterApp, onLegal }) {
           </div>
         </div>
       </section>
-
-      {/* ===== FOUNDING WINDOW BANNER ===== */}
-      {showCountdown && (
-        <section className="py-8 border-y border-amber-800/30 bg-gradient-to-r from-amber-950/20 via-rose-950/20 to-amber-950/20">
-          <div className="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 flex-wrap">
-            <div>
-              <p className="text-xs font-bold text-amber-300 uppercase tracking-[0.2em] mb-1">Founding Vampire · limited window</p>
-              <p className="text-sm text-slate-200">Pro is <strong className="text-amber-300">$12 one-time</strong> for new visitors. Goes back to $19 after the window closes.</p>
-            </div>
-            <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center">
-              <div className="text-center min-w-[42px]">
-                <p key={`h-${h}`} className="font-gothic text-2xl font-bold text-amber-300 tabular-nums animate-tickPulse">{String(h).padStart(2, '0')}</p>
-                <p className="text-[9px] text-slate-500 uppercase tracking-widest">hours</p>
-              </div>
-              <span className="text-amber-500 animate-pulse text-xl">:</span>
-              <div className="text-center min-w-[42px]">
-                <p key={`m-${m}`} className="font-gothic text-2xl font-bold text-amber-300 tabular-nums animate-tickPulse">{String(m).padStart(2, '0')}</p>
-                <p className="text-[9px] text-slate-500 uppercase tracking-widest">min</p>
-              </div>
-              <span className="text-rose-500 animate-pulse text-xl">:</span>
-              <div className="text-center min-w-[42px]">
-                <p key={`s-${s}`} className="font-gothic text-2xl font-bold text-rose-400 tabular-nums animate-tickPulse drop-shadow-[0_0_8px_rgba(244,63,94,0.6)]">{String(s).padStart(2, '0')}</p>
-                <p className="text-[9px] text-rose-500/70 uppercase tracking-widest">sec</p>
-              </div>
-              <button onClick={() => openCheckout('founding_banner')}
-                className="ml-2 sm:ml-4 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all cursor-pointer animate-subtleBeat">
-                Lock in $12
-              </button>
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* ===== HOW IT WORKS (3 acts) ===== */}
       <section className="py-20 lg:py-24 bg-gradient-to-b from-[#0B0B11] via-[#0F0F18] to-[#0B0B11]">
@@ -499,9 +452,8 @@ export default function Landing({ onEnterApp, onLegal }) {
               <p className="text-xs text-amber-400 uppercase tracking-widest mb-1 mt-2">Pro · The Full Verdict</p>
               <div className="flex items-baseline gap-2 mb-1">
                 <span className="text-4xl font-bold text-slate-100">{price.label}</span>
-                {showCountdown && <span className="text-sm text-slate-500 line-through">$19</span>}
               </div>
-              <p className="text-[11px] text-slate-500 mb-6">{showCountdown ? 'Founding Vampire window — expires soon' : 'Pay once. Keep the verdict forever.'}</p>
+              <p className="text-[11px] text-slate-500 mb-6">Pay once. Keep the verdict forever.</p>
               <ul className="text-xs text-slate-300 space-y-3 mb-8 flex-1">
                 {[
                   'The full 10-year waste number',

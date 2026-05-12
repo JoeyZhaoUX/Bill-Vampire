@@ -957,11 +957,6 @@ export default function App({ onLegal, onGoToLanding }) {
               <FontAwesomeIcon icon={faCrown} className="w-4 h-4" />
               {lang === 'zh' ? `解锁 Pro — ${getCurrentPrice().label}` : `Get the Verdict — ${getCurrentPrice().label}`}
             </a>
-            {getCurrentPrice().tier === 'founding' && (
-              <p className="text-[10px] text-amber-300/80 text-center mt-3 uppercase tracking-widest">
-                {lang === 'zh' ? 'Founding 窗口 · 72h 内有效' : 'Founding Vampire pricing — 72-hour window'}
-              </p>
-            )}
             <p className="text-[10px] text-slate-600 text-center mt-2">
               <FontAwesomeIcon icon={faLock} className="w-2.5 h-2.5 mr-1" />
               {lang === 'zh' ? '由 Creem 安全支付 · 3 天退款保障' : 'Secured by Creem · 3-day refund'}

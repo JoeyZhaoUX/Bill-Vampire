@@ -148,14 +148,12 @@ export function foundingWindowRemainingMs() {
   return Math.max(0, FOUNDING_PRICE_WINDOW_MS - (Date.now() - first));
 }
 
-// Standard $19 / Founding $12. The gap from Patrol ($4.99/mo) is intentional:
-// Pro's break-even vs. Patrol is ~4 months, which leaves room to market the
-// subscription as live, recurring work without cannibalising the one-time buy.
-export const PRO_PRICE_STANDARD = { amount: 19, label: '$19', tier: 'standard' };
-export const PRO_PRICE_FOUNDING = { amount: 12, label: '$12', tier: 'founding' };
+export const PRO_PRICE = { amount: 9.99, label: '$9.99', tier: 'standard' };
+export const PRO_PRICE_STANDARD = PRO_PRICE;
+export const PRO_PRICE_FOUNDING = PRO_PRICE;
 
 export function getCurrentPrice() {
-  return isFoundingWindow() ? PRO_PRICE_FOUNDING : PRO_PRICE_STANDARD;
+  return PRO_PRICE;
 }
 
 function getSuccessUrl() {
