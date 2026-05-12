@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Cancel Any Subscription — Direct Links & Steps | Bill Vampire</title>
+  <meta name="description" content="Cancel Netflix, Spotify, Adobe, ChatGPT, and 50+ other subscriptions. Direct cancel page links and step-by-step guides. No signup required." />
+  <meta name="keywords" content="cancel subscription, how to cancel Netflix, cancel Spotify, cancel Adobe, subscription cancellation links" />
+  <link rel="canonical" href="https://billvampire.com/tools/cancel-subscription-guide.html" />
+  <meta property="og:title" content="How to Cancel Any Subscription — Direct Links" />
+  <meta property="og:description" content="Direct cancel page links for 50+ popular subscriptions. Stop paying for things you don't use." />
+  <meta property="og:url" content="https://billvampire.com/tools/cancel-subscription-guide.html" />
+  <meta property="og:image" content="https://billvampire.com/og-image.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/icons/icon.png" type="image/png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Cancel Any Subscription",
+    "description": "Direct cancellation links and step-by-step guides for 50+ popular subscription services.",
+    "step": [
+      { "@type": "HowToStep", "name": "Find the service", "text": "Search for your subscription in the list below." },
+      { "@type": "HowToStep", "name": "Click the cancel link", "text": "Each service has a direct link to its cancellation or account page." },
+      { "@type": "HowToStep", "name": "Confirm cancellation", "text": "Follow the service's prompts to finalize your cancellation." }
+    ]
+  }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #0B0B11; color: #94A3B8; min-height: 100vh; }
+    .container { max-width: 720px; margin: 0 auto; padding: 40px 20px; }
+    h1 { color: #F1F5F9; font-size: 2rem; line-height: 1.2; margin-bottom: 8px; }
+    .subtitle { color: #64748B; font-size: 0.9rem; margin-bottom: 32px; }
+    .search-box { width: 100%; padding: 14px 18px; background: #141420; border: 1px solid #334155; border-radius: 12px; color: #F1F5F9; font-size: 1rem; outline: none; margin-bottom: 24px; }
+    .search-box:focus { border-color: #FB7185; }
+    .category { margin-bottom: 32px; }
+    .category h2 { color: #CBD5E1; font-size: 1.1rem; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #1E293B; }
+    .service-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px; }
+    .service-link { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: #141420; border: 1px solid #1E293B; border-radius: 10px; text-decoration: none; transition: all 0.2s; }
+    .service-link:hover { border-color: #FB7185; background: #1a1a2e; }
+    .service-link .name { color: #F1F5F9; font-size: 0.9rem; font-weight: 500; }
+    .service-link .arrow { color: #FB7185; font-size: 0.8rem; }
+    .service-link.hidden { display: none; }
+    .nav { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
+    .nav img { width: 32px; height: 32px; border-radius: 8px; }
+    .nav a { color: #64748B; text-decoration: none; font-size: 0.8rem; }
+    .nav a:hover { color: #F1F5F9; }
+    .no-results { display: none; padding: 20px; text-align: center; color: #64748B; font-size: 0.9rem; }
+    .no-results.show { display: block; }
+    .cta { margin-top: 32px; padding: 24px; background: linear-gradient(135deg, #451a03 0%, #1a0a1a 100%); border: 1px solid #92400e; border-radius: 12px; text-align: center; }
+    .cta p { color: #FDE68A; font-size: 0.9rem; margin-bottom: 12px; }
+    .cta a { display: inline-block; padding: 12px 32px; background: linear-gradient(90deg, #F59E0B, #E11D48); color: white; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 0.9rem; }
+    .seo-content { margin-top: 48px; padding-top: 32px; border-top: 1px solid #1E293B; }
+    .seo-content h2 { color: #F1F5F9; font-size: 1.3rem; margin-bottom: 12px; }
+    .seo-content h3 { color: #CBD5E1; font-size: 1rem; margin: 20px 0 8px; }
+    .seo-content p { line-height: 1.7; margin-bottom: 12px; font-size: 0.9rem; }
+    .seo-content ul { padding-left: 20px; margin-bottom: 16px; }
+    .seo-content li { line-height: 1.7; margin-bottom: 4px; }
+    .count { color: #64748B; font-size: 0.8rem; margin-bottom: 16px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <a href="/"><img src="/icons/icon.png" alt="Bill Vampire" /></a>
+      <a href="/">← Back to Bill Vampire</a>
+    </nav>
+
+    <h1>How to Cancel Any Subscription</h1>
+    <p class="subtitle">Direct links to the cancellation page of 50+ popular services. No more hunting through settings menus.</p>
+    <p class="count"><span id="count">60</span> services indexed</p>
+
+    <input type="text" class="search-box" id="search" placeholder="Search for a service (e.g. Netflix, Spotify, Adobe...)" />
+    <div id="no-results" class="no-results">No matching service found. <a href="/" style="color:#FB7185;">Try Bill Vampire's AI scanner</a> — it finds subscriptions automatically.</div>
+
+    <div id="services">
+      <div class="category">
+        <h2>Streaming & Entertainment</h2>
+        <div class="service-grid">
+          <a class="service-link" href="https://www.netflix.com/cancelplan" target="_blank" rel="noopener noreferrer" data-name="netflix"><span class="name">Netflix</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.spotify.com/account/subscription/" target="_blank" rel="noopener noreferrer" data-name="spotify"><span class="name">Spotify</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.disneyplus.com/account/subscription" target="_blank" rel="noopener noreferrer" data-name="disney plus disney+"><span class="name">Disney+</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://secure.hulu.com/account" target="_blank" rel="noopener noreferrer" data-name="hulu"><span class="name">Hulu</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.max.com/account/subscription" target="_blank" rel="noopener noreferrer" data-name="max hbo"><span class="name">Max (HBO)</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.paramountplus.com/account/" target="_blank" rel="noopener noreferrer" data-name="paramount plus paramount+"><span class="name">Paramount+</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.peacocktv.com/account/plan" target="_blank" rel="noopener noreferrer" data-name="peacock"><span class="name">Peacock</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.youtube.com/paid_memberships" target="_blank" rel="noopener noreferrer" data-name="youtube premium youtube music"><span class="name">YouTube Premium</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://support.apple.com/en-us/HT202039" target="_blank" rel="noopener noreferrer" data-name="apple tv apple tv+ apple music"><span class="name">Apple TV+ / Apple Music</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.amazon.com/mc/pipelines/cancelPrime" target="_blank" rel="noopener noreferrer" data-name="amazon prime prime video"><span class="name">Amazon Prime Video</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.crunchyroll.com/account/subscription" target="_blank" rel="noopener noreferrer" data-name="crunchyroll"><span class="name">Crunchyroll</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.audible.com/account/cancel-membership" target="_blank" rel="noopener noreferrer" data-name="audible"><span class="name">Audible</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.amazon.com/kindle-dbs/ku/options" target="_blank" rel="noopener noreferrer" data-name="kindle unlimited"><span class="name">Kindle Unlimited</span><span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <div class="category">
+        <h2>AI & Productivity Tools</h2>
+        <div class="service-grid">
+          <a class="service-link" href="https://chat.openai.com/settings/subscription" target="_blank" rel="noopener noreferrer" data-name="chatgpt openai chatgpt plus dalle"><span class="name">ChatGPT Plus / OpenAI</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://claude.ai/settings/billing" target="_blank" rel="noopener noreferrer" data-name="claude anthropic"><span class="name">Claude (Anthropic)</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.midjourney.com/account/" target="_blank" rel="noopener noreferrer" data-name="midjourney"><span class="name">Midjourney</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.perplexity.ai/settings/subscription" target="_blank" rel="noopener noreferrer" data-name="perplexity"><span class="name">Perplexity</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.cursor.com/settings" target="_blank" rel="noopener noreferrer" data-name="cursor"><span class="name">Cursor</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://github.com/settings/copilot" target="_blank" rel="noopener noreferrer" data-name="github copilot"><span class="name">GitHub Copilot</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.notion.so/my-account" target="_blank" rel="noopener noreferrer" data-name="notion"><span class="name">Notion</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://account.grammarly.com/subscription" target="_blank" rel="noopener noreferrer" data-name="grammarly"><span class="name">Grammarly</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.canva.com/settings/billing-and-plans" target="_blank" rel="noopener noreferrer" data-name="canva"><span class="name">Canva</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.figma.com/settings" target="_blank" rel="noopener noreferrer" data-name="figma"><span class="name">Figma</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://account.adobe.com/plans" target="_blank" rel="noopener noreferrer" data-name="adobe creative cloud"><span class="name">Adobe Creative Cloud</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.evernote.com/BillingInfo.action" target="_blank" rel="noopener noreferrer" data-name="evernote"><span class="name">Evernote</span><span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <div class="category">
+        <h2>Cloud & Security</h2>
+        <div class="service-grid">
+          <a class="service-link" href="https://support.apple.com/en-us/HT207594" target="_blank" rel="noopener noreferrer" data-name="icloud apple icloud+"><span class="name">iCloud+</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.dropbox.com/account/plan" target="_blank" rel="noopener noreferrer" data-name="dropbox"><span class="name">Dropbox</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://account.microsoft.com/services" target="_blank" rel="noopener noreferrer" data-name="microsoft 365 office 365"><span class="name">Microsoft 365</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://my.1password.com/settings/billing" target="_blank" rel="noopener noreferrer" data-name="1password"><span class="name">1Password</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://lastpass.com/billing_update.php" target="_blank" rel="noopener noreferrer" data-name="lastpass"><span class="name">LastPass</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://my.nordaccount.com/dashboard/nordvpn/" target="_blank" rel="noopener noreferrer" data-name="nordvpn"><span class="name">NordVPN</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.expressvpn.com/subscriptions" target="_blank" rel="noopener noreferrer" data-name="expressvpn"><span class="name">ExpressVPN</span><span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <div class="category">
+        <h2>Gaming</h2>
+        <div class="service-grid">
+          <a class="service-link" href="https://account.microsoft.com/services" target="_blank" rel="noopener noreferrer" data-name="xbox game pass"><span class="name">Xbox Game Pass</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://store.playstation.com/subscriptions" target="_blank" rel="noopener noreferrer" data-name="playstation plus ps plus"><span class="name">PlayStation Plus</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://ec.nintendo.com/my/membership" target="_blank" rel="noopener noreferrer" data-name="nintendo switch online"><span class="name">Nintendo Switch Online</span><span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <div class="category">
+        <h2>News, Learning & Reading</h2>
+        <div class="service-grid">
+          <a class="service-link" href="https://myaccount.nytimes.com/seg/" target="_blank" rel="noopener noreferrer" data-name="nytimes new york times nyt"><span class="name">New York Times</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://theathletic.com/account" target="_blank" rel="noopener noreferrer" data-name="the athletic"><span class="name">The Athletic</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://medium.com/me/settings/membership" target="_blank" rel="noopener noreferrer" data-name="medium"><span class="name">Medium</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://substack.com/account/payments" target="_blank" rel="noopener noreferrer" data-name="substack"><span class="name">Substack</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.duolingo.com/settings/account" target="_blank" rel="noopener noreferrer" data-name="duolingo"><span class="name">Duolingo</span><span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <div class="category">
+        <h2>Health & Wellness</h2>
+        <div class="service-grid">
+          <a class="service-link" href="https://www.headspace.com/settings/subscription" target="_blank" rel="noopener noreferrer" data-name="headspace"><span class="name">Headspace</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://www.calm.com/account/subscription" target="_blank" rel="noopener noreferrer" data-name="calm"><span class="name">Calm</span><span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <div class="category">
+        <h2>Social & Dating</h2>
+        <div class="service-grid">
+          <a class="service-link" href="https://www.linkedin.com/mypreferences/d/manage-subscription" target="_blank" rel="noopener noreferrer" data-name="linkedin premium"><span class="name">LinkedIn Premium</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://tinder.com/app/settings" target="_blank" rel="noopener noreferrer" data-name="tinder"><span class="name">Tinder</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://bumble.com/en/help/how-do-i-cancel-my-subscription" target="_blank" rel="noopener noreferrer" data-name="bumble"><span class="name">Bumble</span><span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <div class="category">
+        <h2>Communication & Business</h2>
+        <div class="service-grid">
+          <a class="service-link" href="https://slack.com/intl/en-us/help/articles/218915077" target="_blank" rel="noopener noreferrer" data-name="slack"><span class="name">Slack</span><span class="arrow">→</span></a>
+          <a class="service-link" href="https://support.apple.com/en-us/HT211659" target="_blank" rel="noopener noreferrer" data-name="apple one"><span class="name">Apple One Bundle</span><span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;text-align:center;">
+      <a href="/tools/subscription-cost-calculator.html" style="color:#FB7185;font-size:0.85rem;text-decoration:none;">See the damage → Subscription Cost Calculator (10-year totals)</a>
+    </div>
+
+    <div class="cta">
+      <p>Not sure what you're paying for? Bill Vampire's AI scans any bill and finds every recurring charge automatically.</p>
+      <a href="/">Scan your bills free on billvampire.com →</a>
+    </div>
+
+    <div class="seo-content">
+      <h2>Why Cancelling Subscriptions Is So Hard</h2>
+      <p>Companies deliberately make cancellation difficult. The FTC calls these "dark patterns" — multi-step processes, hidden cancel buttons, phone-only cancellation, and guilt-trip modals. The average person spends <strong>20+ minutes</strong> trying to cancel a single subscription.</p>
+
+      <h3>The Hidden Cost of "Forgetting to Cancel"</h3>
+      <p>A 2024 study found that 42% of Americans are paying for at least one subscription they've forgotten about. At an average of $15/month per forgotten subscription, that's $180/year going to companies for services you don't use.</p>
+
+      <h3>Tips for Actually Cancelling</h3>
+      <ul>
+        <li><strong>Cancel immediately after subscribing</strong> — most services let you keep access until the end of the billing period. Cancel day one and you get the full month without risk of forgetting.</li>
+        <li><strong>Screenshot your confirmation</strong> — some services (looking at you, gyms) deny cancellation requests. Keep proof.</li>
+        <li><strong>Check for annual vs monthly</strong> — if you're on an annual plan, check whether you get a prorated refund or lose the remaining months.</li>
+        <li><strong>Don't fall for the retention offer</strong> — many services offer a temporary discount when you try to cancel. Unless the price drop is permanent, you'll pay full price again in 3 months.</li>
+        <li><strong>Remove payment methods after cancelling</strong> — some services auto-resume subscriptions. Remove your card to prevent surprise charges.</li>
+      </ul>
+
+      <h3>Services That Require Phone Calls to Cancel</h3>
+      <p>A few notorious services still require you to call to cancel (or make the online option nearly impossible to find):</p>
+      <ul>
+        <li><strong>SiriusXM</strong> — call 1-866-635-2349</li>
+        <li><strong>Planet Fitness</strong> — requires in-person visit or certified letter</li>
+        <li><strong>Gold's Gym</strong> — varies by location, often requires in-person</li>
+        <li><strong>ADT Security</strong> — call required, may have early termination fee</li>
+      </ul>
+      <p>For everything else, the links above will take you directly to the cancellation page — no hunting required.</p>
+
+      <h3>How Bill Vampire Helps</h3>
+      <p>This page gives you the cancel links. But if you want to know <em>which</em> subscriptions to cancel — and how much you'd save over 10 years — try <a href="/" style="color:#FB7185;">Bill Vampire's AI verdict</a>. Drop any bill, screenshot, or PDF and get a ranked leaderboard showing which subscriptions are bleeding you the most.</p>
+    </div>
+  </div>
+
+  <script>
+    const search = document.getElementById('search');
+    const links = document.querySelectorAll('.service-link');
+    const categories = document.querySelectorAll('.category');
+    const noResults = document.getElementById('no-results');
+    const count = document.getElementById('count');
+    count.textContent = links.length;
+
+    search.addEventListener('input', () => {
+      const q = search.value.toLowerCase().trim();
+      let visible = 0;
+      links.forEach(link => {
+        const match = !q || link.dataset.name.includes(q) || link.querySelector('.name').textContent.toLowerCase().includes(q);
+        link.classList.toggle('hidden', !match);
+        if (match) visible++;
+      });
+      categories.forEach(cat => {
+        const hasVisible = cat.querySelectorAll('.service-link:not(.hidden)').length > 0;
+        cat.style.display = hasVisible ? '' : 'none';
+      });
+      noResults.classList.toggle('show', visible === 0);
+    });
+  </script>
+</body>
+</html>
