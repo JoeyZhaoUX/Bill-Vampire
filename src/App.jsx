@@ -3,18 +3,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faPlus, faTrash, faGhost, faBolt, faChartPie,
   faCircleCheck, faDownload, faQuoteLeft,
-  faSpinner, faWandMagicSparkles, faReceipt, faMagnifyingGlass, faMugHot,
-  faShareNodes, faCrown, faHeart, faGlobe, faLock, faArrowUpRightFromSquare, faChevronRight, faSkull, faFileImport, faXmark, faCheck,
-  faShieldHalved, faBell, faHourglassHalf, faClockRotateLeft,
+  faSpinner, faWandMagicSparkles, faMagnifyingGlass, faMugHot,
+  faShareNodes, faCrown, faHeart, faLock, faArrowUpRightFromSquare, faChevronRight, faSkull, faFileImport, faXmark, faCheck,
 } from '@fortawesome/free-solid-svg-icons';
-import { faChrome } from '@fortawesome/free-brands-svg-icons';
 import { t, getDefaultLang, SUPPORTED_LANGS } from './i18n';
 import {
   isPro, canAiRoast, incrementAiUsage, aiUsesRemaining,
   canSmartImport, markSmartImportUsed,
   canPrintReport, markPrintReportUsed,
   openCheckout, getCheckoutUrl, openTip,
-  getCurrentPrice, openPatrolCheckout, isPatrol,
+  getCurrentPrice,
 } from './pro';
 import { injectAffiliateLinks, PREFERRED_ALTERNATIVES } from './affiliates';
 import { track } from './analytics';
@@ -926,102 +924,51 @@ export default function App({ onLegal, onGoToLanding }) {
       {/* === PRO MODAL === */}
       {showProModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-4 overflow-y-auto" onClick={() => setShowProModal(false)}>
-          <div role="dialog" aria-modal="true" aria-labelledby="pro-modal-title" className="bg-[#141420]/95 backdrop-blur-xl w-full max-w-2xl p-6 sm:p-8 rounded-[2rem] shadow-2xl animate-in zoom-in-95 fade-in duration-200 border border-slate-800/50 my-8" onClick={e => e.stopPropagation()}>
-            <div className="text-center mb-5">
-              <p className="text-[10px] uppercase tracking-[0.25em] text-slate-500 mb-2">{lang === 'zh' ? '两种武器 · 按时间轴分' : 'Two weapons · split by time'}</p>
-              <h3 id="pro-modal-title" className="font-gothic text-xl sm:text-2xl font-bold text-slate-100 leading-tight">
-                {lang === 'zh'
-                  ? <>判决<span className="text-amber-400">过去</span>。守护<span className="text-violet-300">未来</span>。</>
-                  : <>Judge the <span className="text-amber-400">past</span>. Guard the <span className="text-violet-300">future</span>.</>}
+          <div role="dialog" aria-modal="true" aria-labelledby="pro-modal-title" className="bg-[#141420]/95 backdrop-blur-xl w-full max-w-md p-6 sm:p-8 rounded-[2rem] shadow-2xl animate-in zoom-in-95 fade-in duration-200 border border-slate-800/50 my-8" onClick={e => e.stopPropagation()}>
+            <div className="text-center mb-6">
+              <div className="inline-flex w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-rose-500 items-center justify-center mb-4 shadow-lg shadow-rose-900/30">
+                <FontAwesomeIcon icon={faCrown} className="w-6 h-6 text-white" />
+              </div>
+              <h3 id="pro-modal-title" className="font-gothic text-xl sm:text-2xl font-bold text-slate-100 leading-tight mb-2">
+                {lang === 'zh' ? '解锁完整判决' : 'Unlock the full verdict'}
               </h3>
-              <p className="text-xs text-slate-500 mt-2 max-w-md mx-auto leading-relaxed">
+              <p className="text-xs text-slate-400 max-w-sm mx-auto leading-relaxed">
                 {lang === 'zh'
-                  ? 'Pro 让你一次看清过去所有订阅的 10 年浪费。Patrol 每天扫 Gmail，新订阅还没扣款就先提醒你。'
-                  : 'Pro shows you every subscription you already have — the 10-year damage. Patrol scans Gmail every day so new ones never sneak in silently.'}
+                  ? '看到 10 年真实浪费数字、排行榜、5 条 AI 毒舌点评。付一次，永远能用。'
+                  : 'See the real 10-year waste number, the leaderboard of shame, and 5 AI roasts. Pay once, keep forever.'}
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-3 mb-5">
-              {/* VERDICT (Pro) */}
-              <div className="relative bg-gradient-to-br from-amber-950/40 to-rose-950/30 rounded-2xl p-5 border border-amber-700/30 flex flex-col">
-                <div className="absolute -top-2.5 left-4 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-[9px] font-bold px-3 py-0.5 rounded-full tracking-widest uppercase">
-                  {lang === 'zh' ? '一次买断' : 'One-time'}
-                </div>
-                <div className="flex items-center gap-2 mb-3 mt-1">
-                  <FontAwesomeIcon icon={faClockRotateLeft} className="w-3.5 h-3.5 text-amber-400" />
-                  <p className="text-[10px] font-bold text-amber-300 uppercase tracking-widest">{lang === 'zh' ? 'Pro · 审判过去' : 'Pro · The Verdict'}</p>
-                </div>
-                <div className="flex items-baseline gap-2 mb-1">
-                  <span className="font-gothic text-3xl font-black text-slate-100">{getCurrentPrice().label}</span>
-                  {getCurrentPrice().tier === 'founding' && <span className="text-xs text-slate-500 line-through">$19</span>}
-                </div>
-                <p className="text-[11px] text-slate-500 mb-4">
-                  {getCurrentPrice().tier === 'founding'
-                    ? (lang === 'zh' ? 'Founding 窗口 · 72h 内有效' : 'Founding window · 72h')
-                    : (lang === 'zh' ? '付一次，永远能用' : 'Pay once. Keep forever.')}
-                </p>
-                <ul className="text-xs text-slate-300 space-y-2.5 mb-5 flex-1">
-                  {[
-                    { icon: faWandMagicSparkles, text: lang === 'zh' ? '无限 AI 判决 + 账单解析' : 'Unlimited AI verdicts + bill parsing' },
-                    { icon: faReceipt, text: lang === 'zh' ? '10 年浪费报告 + PDF 打印' : '10-year waste report + PDF export' },
-                    { icon: faShareNodes, text: lang === 'zh' ? '无水印分享卡' : 'Watermark-free share card' },
-                  ].map(({ icon, text }) => (
-                    <li key={text} className="flex items-start gap-2">
-                      <FontAwesomeIcon icon={icon} className="w-3 h-3 text-amber-400 mt-0.5 shrink-0" />
-                      <span>{text}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a href={getCheckoutUrl('pro_modal')} target="_blank" rel="noopener noreferrer" onClick={() => { openCheckout('pro_modal'); setShowProModal(false); }}
-                  className="w-full py-3 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all shadow-lg shadow-rose-900/30 cursor-pointer flex items-center justify-center gap-2 no-underline min-h-[44px]">
-                  <FontAwesomeIcon icon={faCrown} className="w-3 h-3" />
-                  {lang === 'zh' ? `解锁 Pro — ${getCurrentPrice().label}` : `Unlock Pro — ${getCurrentPrice().label}`}
-                </a>
-              </div>
+            <ul className="text-xs text-slate-300 space-y-3 mb-6">
+              {[
+                { icon: faSkull, text: lang === 'zh' ? '完整 10 年浪费数字 + 逐项排行' : 'Full 10-year waste number + ranked leaderboard' },
+                { icon: faWandMagicSparkles, text: lang === 'zh' ? '5 条 AI 毒舌判决 + 无限账单解析' : '5 uncensored AI roasts + unlimited bill parsing' },
+                { icon: faShareNodes, text: lang === 'zh' ? '无水印分享卡 + 无限 PDF 导出' : 'Watermark-free share card + unlimited PDF export' },
+              ].map(({ icon, text }) => (
+                <li key={text} className="flex items-start gap-3">
+                  <FontAwesomeIcon icon={icon} className="w-3.5 h-3.5 text-amber-400 mt-0.5 shrink-0" />
+                  <span>{text}</span>
+                </li>
+              ))}
+            </ul>
 
-              {/* BODYGUARD (Patrol) */}
-              <div className="relative bg-gradient-to-br from-violet-950/50 to-rose-950/20 rounded-2xl p-5 border border-violet-700/40 flex flex-col">
-                <div className="absolute -top-2.5 left-4 bg-gradient-to-r from-violet-500 to-rose-500 text-white text-[9px] font-bold px-3 py-0.5 rounded-full tracking-widest uppercase">
-                  {lang === 'zh' ? '持续运行' : 'Always on'}
-                </div>
-                <div className="flex items-center gap-2 mb-3 mt-1">
-                  <FontAwesomeIcon icon={faShieldHalved} className="w-3.5 h-3.5 text-violet-300" />
-                  <p className="text-[10px] font-bold text-violet-300 uppercase tracking-widest">{lang === 'zh' ? 'Patrol · 守护未来' : 'Patrol · The Bodyguard'}</p>
-                </div>
-                <div className="flex items-baseline gap-2 mb-1">
-                  <span className="font-gothic text-3xl font-black text-slate-100">$4.99</span>
-                  <span className="text-[11px] text-slate-500">/{lang === 'zh' ? '月' : 'mo'}</span>
-                </div>
-                <p className="text-[11px] text-slate-500 mb-4">
-                  {lang === 'zh' ? '一键取消 · 停工即停费' : 'Cancel any month · we stop when it stops working'}
-                </p>
-                <ul className="text-xs text-slate-300 space-y-2.5 mb-5 flex-1">
-                  {[
-                    { icon: faChrome, text: lang === 'zh' ? '每天扫 Gmail · 发现新订阅' : 'Daily Gmail scan · catches new subs' },
-                    { icon: faBell, text: lang === 'zh' ? '扣款前 24h 推送提醒' : 'Charge-date alerts 24h before' },
-                    { icon: faHourglassHalf, text: lang === 'zh' ? '周日 AI 简报 + 取消链接库' : 'Sunday AI digest + cancel-URL library' },
-                  ].map(({ icon, text }) => (
-                    <li key={text} className="flex items-start gap-2">
-                      <FontAwesomeIcon icon={icon} className="w-3 h-3 text-violet-300 mt-0.5 shrink-0" />
-                      <span>{text}</span>
-                    </li>
-                  ))}
-                </ul>
-                <button onClick={() => { openPatrolCheckout('monthly', 'pro_modal'); setShowProModal(false); }}
-                  className="w-full py-3 bg-gradient-to-r from-violet-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all shadow-lg shadow-violet-900/30 cursor-pointer flex items-center justify-center gap-2 min-h-[44px]">
-                  <FontAwesomeIcon icon={faShieldHalved} className="w-3 h-3" />
-                  {lang === 'zh' ? '启动 Patrol — $4.99/月' : 'Start Patrol — $4.99/mo'}
-                </button>
-              </div>
-            </div>
-
-            <p className="text-[10px] text-slate-600 text-center leading-relaxed mb-3">
-              {lang === 'zh'
-                ? '两个产品管不同的时间段：Pro 买的是「判决书」，Patrol 租的是「守夜人」。互不重叠。'
-                : 'Different time zones of your wallet: Pro delivers the verdict (past). Patrol pulls the night shift (future). Zero overlap.'}
+            <a href={getCheckoutUrl('pro_modal')} target="_blank" rel="noopener noreferrer" onClick={() => { openCheckout('pro_modal'); setShowProModal(false); }}
+              className="w-full py-3.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-sm font-bold rounded-xl hover:brightness-110 transition-all shadow-lg shadow-rose-900/30 cursor-pointer flex items-center justify-center gap-2 no-underline min-h-[48px]">
+              <FontAwesomeIcon icon={faCrown} className="w-4 h-4" />
+              {lang === 'zh' ? `解锁 Pro — ${getCurrentPrice().label}` : `Get the Verdict — ${getCurrentPrice().label}`}
+            </a>
+            {getCurrentPrice().tier === 'founding' && (
+              <p className="text-[10px] text-amber-300/80 text-center mt-3 uppercase tracking-widest">
+                {lang === 'zh' ? 'Founding 窗口 · 72h 内有效' : 'Founding Vampire pricing — 72-hour window'}
+              </p>
+            )}
+            <p className="text-[10px] text-slate-600 text-center mt-2">
+              <FontAwesomeIcon icon={faLock} className="w-2.5 h-2.5 mr-1" />
+              {lang === 'zh' ? '由 Creem 安全支付 · 3 天退款保障' : 'Secured by Creem · 3-day refund'}
             </p>
+
             <button onClick={() => setShowProModal(false)}
-              className="w-full py-2 text-xs text-slate-500 hover:text-slate-300 transition-colors cursor-pointer min-h-[44px]">
+              className="w-full mt-4 py-2 text-xs text-slate-500 hover:text-slate-300 transition-colors cursor-pointer min-h-[44px]">
               {_('cancel')}
             </button>
           </div>

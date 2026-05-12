@@ -3,28 +3,27 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://billvampire.com/</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://billvampire.com/" />
-    <xhtml:link rel="alternate" hreflang="zh" href="https://billvampire.com/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://billvampire.com/" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://billvampire.com/terms.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://billvampire.com/privacy.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://billvampire.com/refund.html</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>

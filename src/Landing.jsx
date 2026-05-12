@@ -7,8 +7,7 @@ import {
 import { faXTwitter, faChrome } from '@fortawesome/free-brands-svg-icons';
 import {
   getCheckoutUrl, getCurrentPrice, isFoundingWindow, foundingWindowRemainingMs,
-  openCheckout, openPatrolCheckout, isPro, getPatrolCheckoutUrl,
-  PATROL_PRICE_MONTHLY, PATROL_PRICE_ANNUAL,
+  openCheckout, openPatrolCheckout, isPro,
 } from './pro';
 import { track } from './analytics';
 import ZhBanner from './ZhBanner';
@@ -137,7 +136,6 @@ export default function Landing({ onEnterApp, onLegal }) {
   const showCountdown = isFoundingWindow();
   const remaining = showCountdown ? foundingWindowRemainingMs() : 0;
   const { h, m, s } = useCountdown(remaining);
-  const chromeAvailable = isChromeDesktop();
 
   useEffect(() => {
     if (viewedRef.current) return;
@@ -153,16 +151,16 @@ export default function Landing({ onEnterApp, onLegal }) {
 
   const faqs = [
     {
-      q: 'Why is Pro one-time and Patrol monthly?',
-      a: `Pro is a verdict on the past — you feed it your bills, it gives you the 10-year number, the roast, the PDF. You consume it once. It costs ${price.label} one-time. Patrol is live labour — it reads your Gmail every single day and pings you before new charges land. It earns its $4.99/mo because it's actually working while you sleep. Stop it any month and we stop charging. Fair is fair.`,
+      q: 'What do I get for free vs Pro?',
+      a: `Free: scan one bill, see your monthly subscription bleed, track subscriptions manually. Pro (${price.label} one-time): the full 10-year waste number, the leaderboard of shame ranking every sub by damage, 5 uncensored AI roasts, unlimited bill parsing, unwatermarked share cards, and unlimited PDF exports. Pay once, keep forever.`,
     },
     {
       q: 'What data leaves my device?',
-      a: 'Web app: subscriptions live in your browser’s localStorage. AI scans send the bill text/image to our proxy once and are not stored. Patrol extension: reads your Gmail via Google’s read-only OAuth, matches against a local regex library, and only the matched recurring charges are synced — never the rest of your inbox.',
+      a: "Your subscription list lives in your browser's localStorage — nothing is uploaded to any server. When you scan a bill, the text/image is sent to our AI proxy once for extraction and is never stored. We have no account system, no cookies, and no tracking beyond anonymous analytics.",
     },
     {
-      q: 'Pro vs Patrol — which one do I actually need?',
-      a: 'Different time zones of your wallet. Pro judges the past: drop bills, get the 10-year verdict, print the PDF. You already know your subs — you just want to see the damage. Patrol guards the future: it sits in Gmail, catches the next vampire the moment its first receipt arrives, pings you before each charge. You don\'t know what you don\'t remember signing up for. Most people end up buying both, but they solve totally separate problems.',
+      q: 'Why $19 for a verdict?',
+      a: 'Because the verdict pays for itself in one cancelled subscription. The average user discovers $200+/month in waste they forgot about. Cancel even one — say a $15/mo service you forgot — and Pro has paid for itself in 38 days. Plus you keep the roasts forever.',
     },
     {
       q: 'Which AI powers the verdict?',
@@ -239,7 +237,7 @@ export default function Landing({ onEnterApp, onLegal }) {
             <div className="inline-flex items-center gap-2 bg-rose-950/40 border border-rose-800/30 px-4 py-1.5 rounded-full mb-7 landing-fade-in">
               <FontAwesomeIcon icon={faShieldHalved} className="w-3 h-3 text-rose-400" />
               <span className="text-[11px] font-medium text-rose-300">
-                Pro judges the past. Patrol guards the future. Different time zones, different price tags.
+                Drop a bill. See your monthly bleed for free. Unlock the 10-year verdict for {price.label}.
               </span>
             </div>
 
@@ -255,21 +253,11 @@ export default function Landing({ onEnterApp, onLegal }) {
             </p>
 
             <div className="flex flex-col items-center gap-4 landing-fade-in landing-delay-3">
-              <div className="flex flex-col sm:flex-row items-center gap-3">
-                <button onClick={() => handleEnter('hero')}
-                  className="inline-flex items-center gap-2 px-10 py-4 bg-rose-600 text-white text-sm font-semibold rounded-2xl hover:bg-rose-500 transition-all shadow-xl shadow-rose-900/30 group cursor-pointer">
-                  Get my verdict — free
-                  <FontAwesomeIcon icon={faChevronRight} className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </button>
-                {chromeAvailable && (
-                  <a href={CHROME_STORE_URL} target="_blank" rel="noopener noreferrer"
-                    onClick={() => track('extension_install_clicked', { source: 'hero' })}
-                    className="inline-flex items-center gap-2 px-6 py-4 bg-[#141420] border border-slate-700/50 text-slate-200 text-sm font-semibold rounded-2xl hover:bg-[#1C1C2A] transition-all cursor-pointer no-underline">
-                    <FontAwesomeIcon icon={faChrome} className="w-4 h-4 text-violet-400" />
-                    Install Patrol for Chrome
-                  </a>
-                )}
-              </div>
+              <button onClick={() => handleEnter('hero')}
+                className="inline-flex items-center gap-2 px-10 py-4 bg-rose-600 text-white text-sm font-semibold rounded-2xl hover:bg-rose-500 transition-all shadow-xl shadow-rose-900/30 group cursor-pointer">
+                Get my verdict — free
+                <FontAwesomeIcon icon={faChevronRight} className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </button>
               <span className="text-[11px] text-slate-600">No signup · Data stays on your device</span>
               <LiveCounter />
             </div>
@@ -470,14 +458,14 @@ export default function Landing({ onEnterApp, onLegal }) {
           <div className="text-center mb-12">
             <p className="text-xs font-medium text-amber-400 uppercase tracking-widest mb-3">Pricing</p>
             <h2 className="text-2xl lg:text-3xl font-bold text-slate-100 mb-3">
-              Judge the <span className="text-amber-400">past</span>. Guard the <span className="text-violet-300">future</span>.
+              One price. <span className="text-amber-400">The full picture.</span>
             </h2>
             <p className="text-sm text-slate-500 max-w-lg mx-auto">
-              Pro is the one-time verdict on subs you already have. Patrol is the monthly bodyguard that catches the ones you don't know about yet. Separate jobs. Separate price tags.
+              See your monthly bleed for free. Pay once to unlock the full 10-year damage report, leaderboard, and the roasts you'll screenshot.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-2 gap-5 max-w-3xl mx-auto">
             {/* FREE */}
             <div className="bg-[#141420]/80 rounded-2xl p-7 border border-slate-800/50 flex flex-col">
               <p className="text-xs text-slate-500 uppercase tracking-widest mb-1">Free</p>
@@ -489,9 +477,8 @@ export default function Landing({ onEnterApp, onLegal }) {
                 {[
                   'Unlimited manual subscription tracking',
                   'One free AI bill scan',
-                  'One free 10-year Verdict',
+                  'Monthly total revealed (10-year locked)',
                   'Watermarked share card',
-                  'First PDF report',
                 ].map(item => (
                   <li key={item} className="flex items-start gap-2.5">
                     <FontAwesomeIcon icon={faCheck} className="text-emerald-400 mt-0.5 shrink-0 w-3 h-3" /> {item}
@@ -504,12 +491,12 @@ export default function Landing({ onEnterApp, onLegal }) {
               </button>
             </div>
 
-            {/* PRO one-time — THE VERDICT (past) */}
+            {/* PRO one-time — THE VERDICT */}
             <div className="relative bg-gradient-to-br from-amber-950/30 to-rose-950/30 rounded-2xl p-7 border border-amber-700/30 flex flex-col shadow-lg shadow-amber-950/10">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-[9px] font-bold px-4 py-1 rounded-full shadow-lg whitespace-nowrap">
-                THE VERDICT · ONE-TIME
+                MOST POPULAR · ONE-TIME
               </div>
-              <p className="text-xs text-amber-400 uppercase tracking-widest mb-1 mt-2">Pro · judge the past</p>
+              <p className="text-xs text-amber-400 uppercase tracking-widest mb-1 mt-2">Pro · The Full Verdict</p>
               <div className="flex items-baseline gap-2 mb-1">
                 <span className="text-4xl font-bold text-slate-100">{price.label}</span>
                 {showCountdown && <span className="text-sm text-slate-500 line-through">$19</span>}
@@ -517,10 +504,10 @@ export default function Landing({ onEnterApp, onLegal }) {
               <p className="text-[11px] text-slate-500 mb-6">{showCountdown ? 'Founding Vampire window — expires soon' : 'Pay once. Keep the verdict forever.'}</p>
               <ul className="text-xs text-slate-300 space-y-3 mb-8 flex-1">
                 {[
-                  'Everything in Free',
+                  'The full 10-year waste number',
+                  'Leaderboard of shame (ranked by damage)',
                   'Unlimited AI bill parsing (paste / upload)',
-                  'Unlimited 10-year Verdict re-runs',
-                  'Full uncensored AI roast',
+                  '5 uncensored AI roasts per verdict',
                   'Unwatermarked share card',
                   'Unlimited PDF export',
                   'Priority support',
@@ -539,48 +526,6 @@ export default function Landing({ onEnterApp, onLegal }) {
               <p className="text-[10px] text-slate-600 text-center mt-3">
                 <FontAwesomeIcon icon={faLock} className="w-2.5 h-2.5 mr-1" />
                 Secured by Creem · 3-day refund
-              </p>
-            </div>
-
-            {/* PATROL monthly — THE BODYGUARD (future) */}
-            <div className="relative bg-gradient-to-br from-violet-950/40 to-rose-950/20 rounded-2xl p-7 border border-violet-700/40 flex flex-col shadow-lg shadow-violet-950/10">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-violet-500 to-rose-500 text-white text-[9px] font-bold px-4 py-1 rounded-full shadow-lg whitespace-nowrap">
-                THE BODYGUARD · MONTHLY
-              </div>
-              <p className="text-xs text-violet-300 uppercase tracking-widest mb-1 mt-2">Patrol · guard the future</p>
-              <div className="flex items-baseline gap-2 mb-1">
-                <span className="text-4xl font-bold text-slate-100">{PATROL_PRICE_MONTHLY.label}</span>
-              </div>
-              <p className="text-[11px] text-slate-500 mb-6">
-                or <a href={getPatrolCheckoutUrl('annual', 'pricing_annual_hint')} target="_blank" rel="noopener noreferrer"
-                  onClick={() => track('patrol_checkout_clicked', { source: 'pricing_annual_hint', cycle: 'annual' })}
-                  className="text-violet-300 hover:text-violet-200 no-underline">
-                  {PATROL_PRICE_ANNUAL.label} (save 35%)
-                </a>
-              </p>
-              <ul className="text-xs text-slate-300 space-y-3 mb-8 flex-1">
-                {[
-                  'Gmail scan — unlimited detections',
-                  'Daily background poll',
-                  'In-Gmail toast for new vampires',
-                  'Charge-date push alerts',
-                  'Weekly AI digest email',
-                  'Curated cancel-URL library',
-                  'Cancel any month, one click',
-                ].map(item => (
-                  <li key={item} className="flex items-start gap-2.5">
-                    <FontAwesomeIcon icon={faCheck} className="text-violet-300 mt-0.5 shrink-0 w-3 h-3" /> {item}
-                  </li>
-                ))}
-              </ul>
-              <button onClick={() => openPatrolCheckout('monthly', 'pricing')}
-                className="w-full py-3 bg-gradient-to-r from-violet-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all shadow-lg shadow-violet-900/30 cursor-pointer flex items-center justify-center gap-1.5">
-                <FontAwesomeIcon icon={faShieldHalved} className="w-3 h-3" />
-                Start Patrol — $4.99/mo
-              </button>
-              <p className="text-[10px] text-slate-600 text-center mt-3">
-                <FontAwesomeIcon icon={faChrome} className="w-2.5 h-2.5 mr-1" />
-                Chrome & Edge · cancel anytime
               </p>
             </div>
           </div>

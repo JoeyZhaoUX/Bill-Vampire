@@ -1,5 +1,22 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /bridge.html
+
+# AI crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
 
 Sitemap: https://billvampire.com/sitemap.xml

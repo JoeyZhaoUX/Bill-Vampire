@@ -8,7 +8,6 @@ import {
 } from './verdict';
 import {
   isPro, canAiRoast, incrementAiUsage, openCheckout, getCurrentPrice,
-  hasConsumedFreeVerdict, markFreeVerdictConsumed,
   openPatrolCheckout, isPatrol,
 } from '../pro';
 import { track } from '../analytics';
@@ -72,14 +71,7 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
     let cancelled = false;
     (async () => {
       if (!subscriptions.length) return;
-      const pro = isPro();
-      if (!pro) {
-        if (hasConsumedFreeVerdict() && !canAiRoast()) {
-          setVerdict({ headline: 'Unlock Pro to read the uncensored verdict.', roasts: [] });
-          return;
-        }
-        markFreeVerdictConsumed();
-      }
+      if (!isPro()) return;
       if (!canAiRoast()) {
         setVerdict({ headline: 'Unlock Pro to read the uncensored verdict.', roasts: [] });
         return;
@@ -97,16 +89,14 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
   }, []);
 
   const pro = isPro();
-  const visibleRoasts = pro ? verdict?.roasts || [] : (verdict?.roasts || []).slice(0, 2);
-  const hiddenCount = pro ? 0 : Math.max(0, (verdict?.roasts?.length || 0) - visibleRoasts.length);
   const price = getCurrentPrice();
 
   useEffect(() => {
-    if (!pro && visibleRoasts.length > 0) {
+    if (!pro) {
       track('paywall_seen', { ten_year_usd: Math.round(tenYear) });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visibleRoasts.length]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#0B0B11] text-slate-100 relative overflow-hidden">
@@ -137,139 +127,129 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
         <div className={`transition-opacity duration-700 ${phase !== 'monthly' ? 'opacity-100' : 'opacity-0'}`}>
           <section className="py-10 border-t border-slate-800/40 text-center">
             <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-[0.25em] mb-4">Over 10 years, that's</p>
-            <div className="font-gothic text-6xl sm:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-br from-rose-400 via-rose-500 to-rose-700 tabular-nums leading-none mb-4">
-              {formatUsd(tenYearAnim, 0)}
-            </div>
-            <p className="text-sm text-slate-400 max-w-md mx-auto">
-              That's a car. A year of rent. A down-payment on a house. You're paying it in $12 monthly slices.
-            </p>
+            {pro ? (
+              <>
+                <div className="font-gothic text-6xl sm:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-br from-rose-400 via-rose-500 to-rose-700 tabular-nums leading-none mb-4">
+                  {formatUsd(tenYearAnim, 0)}
+                </div>
+                <p className="text-sm text-slate-400 max-w-md mx-auto">
+                  That's a car. A year of rent. A down-payment on a house. You're paying it in $12 monthly slices.
+                </p>
+              </>
+            ) : (
+              <div className="relative">
+                <div className="font-gothic text-6xl sm:text-7xl lg:text-8xl font-black text-rose-500/20 tabular-nums leading-none mb-4 blur-lg select-none pointer-events-none" aria-hidden>
+                  $??,???
+                </div>
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <div className="inline-flex w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-rose-500 items-center justify-center mb-4 shadow-lg shadow-rose-900/30">
+                    <FontAwesomeIcon icon={faLock} className="w-6 h-6 text-white" />
+                  </div>
+                  <p className="text-base font-semibold text-slate-100 mb-2">The real number is worse than you think.</p>
+                  <p className="text-xs text-slate-400 mb-5 max-w-sm mx-auto leading-relaxed">
+                    Unlock the full 10-year verdict: the real total, the leaderboard of shame, and 5 AI roasts that'll make you cancel on the spot.
+                    <strong className="text-amber-300"> {price.label} one-time.</strong>
+                  </p>
+                  <button onClick={() => openCheckout('ten_year_paywall')}
+                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-sm font-bold rounded-2xl hover:brightness-110 transition-all shadow-lg shadow-rose-900/30 cursor-pointer">
+                    <FontAwesomeIcon icon={faCrown} className="w-4 h-4" />
+                    See the damage — {price.label}
+                  </button>
+                  {price.tier === 'founding' && (
+                    <p className="text-[10px] text-amber-300/80 mt-3 uppercase tracking-widest">
+                      Founding Vampire pricing — 72-hour window
+                    </p>
+                  )}
+                </div>
+              </div>
+            )}
           </section>
         </div>
 
         <div className={`transition-opacity duration-700 ${phase === 'roasts' ? 'opacity-100' : 'opacity-0'}`}>
 
-          <section className="py-10 border-t border-slate-800/40">
-            <h2 className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mb-5 flex items-center gap-2">
-              <FontAwesomeIcon icon={faSkull} className="w-3.5 h-3.5 text-rose-400" />
-              Leaderboard of Shame
-            </h2>
-            <div className="space-y-2.5">
-              {ranked.map((s, i) => {
-                const pct = Math.max(6, (s._tenYearUsd / maxTenYear) * 100);
-                return (
-                  <div key={s.id || i} className="bg-[#141420]/70 rounded-xl border border-slate-800/40 p-3.5">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-semibold text-slate-100">{i + 1}. {s.name}</span>
-                      <span className="text-xs font-bold text-rose-400 tabular-nums">{formatUsd(s._tenYearUsd, 0)}</span>
-                    </div>
-                    <div className="h-1.5 rounded-full bg-[#0B0B11] overflow-hidden">
-                      <div className="h-full bg-gradient-to-r from-rose-700 to-rose-500" style={{ width: `${pct}%` }} />
-                    </div>
-                    <p className="text-[10px] text-slate-600 mt-1.5">${s._monthlyUsd.toFixed(2)}/mo × 120 months</p>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
-
-          <section className="py-10 border-t border-slate-800/40">
-            <h2 className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mb-5">The Verdict</h2>
-            {!verdict && !verdictError && (
-              <div className="flex items-center gap-2 text-sm text-slate-500">
-                <FontAwesomeIcon icon={faSpinner} className="w-4 h-4 animate-spin text-rose-400" />
-                The vampire is composing your roast…
-              </div>
-            )}
-            {verdictError && (
-              <p className="text-sm text-rose-400">{verdictError}</p>
-            )}
-            {verdict && (
-              <>
-                <p className="font-gothic text-xl sm:text-2xl text-slate-100 leading-snug mb-6">
-                  "{verdict.headline}"
-                </p>
-                <ol className="space-y-3 mb-6">
-                  {visibleRoasts.map((r, i) => (
-                    <li key={i} className="flex gap-3 text-sm text-slate-300 leading-relaxed">
-                      <span className="text-rose-500 font-bold shrink-0">{i + 1}.</span>
-                      <span>{r}</span>
-                    </li>
-                  ))}
-                </ol>
-
-                {!pro && hiddenCount > 0 && (
-                  <div className="relative bg-[#141420]/70 rounded-2xl border border-amber-700/30 overflow-hidden">
-                    <div aria-hidden className="absolute inset-0 p-5 blur-md select-none pointer-events-none">
-                      <ol className="space-y-3">
-                        {Array.from({ length: hiddenCount }).map((_, i) => (
-                          <li key={i} className="flex gap-3 text-sm text-slate-400">
-                            <span className="text-rose-500 font-bold shrink-0">{visibleRoasts.length + i + 1}.</span>
-                            <span>████████ ███ ████████████ ████ ██████ ███ ██████████ ████████ ██████ ██████████ ██████████ ████████ ████.</span>
-                          </li>
-                        ))}
-                      </ol>
-                    </div>
-                    <div className="relative z-10 p-6 text-center">
-                      <div className="inline-flex w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500 to-rose-500 items-center justify-center mb-3 shadow-lg shadow-rose-900/30">
-                        <FontAwesomeIcon icon={faLock} className="w-5 h-5 text-white" />
+          {pro && (
+            <>
+              <section className="py-10 border-t border-slate-800/40">
+                <h2 className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mb-5 flex items-center gap-2">
+                  <FontAwesomeIcon icon={faSkull} className="w-3.5 h-3.5 text-rose-400" />
+                  Leaderboard of Shame
+                </h2>
+                <div className="space-y-2.5">
+                  {ranked.map((s, i) => {
+                    const pct = Math.max(6, (s._tenYearUsd / maxTenYear) * 100);
+                    return (
+                      <div key={s.id || i} className="bg-[#141420]/70 rounded-xl border border-slate-800/40 p-3.5">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-sm font-semibold text-slate-100">{i + 1}. {s.name}</span>
+                          <span className="text-xs font-bold text-rose-400 tabular-nums">{formatUsd(s._tenYearUsd, 0)}</span>
+                        </div>
+                        <div className="h-1.5 rounded-full bg-[#0B0B11] overflow-hidden">
+                          <div className="h-full bg-gradient-to-r from-rose-700 to-rose-500" style={{ width: `${pct}%` }} />
+                        </div>
+                        <p className="text-[10px] text-slate-600 mt-1.5">${s._monthlyUsd.toFixed(2)}/mo × 120 months</p>
                       </div>
-                      <p className="text-sm font-semibold text-slate-100 mb-1">The remaining {hiddenCount} roasts are brutal.</p>
-                      <p className="text-xs text-slate-400 mb-5 max-w-sm mx-auto">
-                        Pro unlocks the full verdict on what you've <em>already</em> been billed — every uncensored line, the share card, the PDF.
-                        <strong className="text-amber-300"> {price.label} one-time.</strong> Keep the verdict forever.
-                      </p>
+                    );
+                  })}
+                </div>
+              </section>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl mx-auto">
-                        <button onClick={() => openCheckout('verdict_paywall')}
-                          className="inline-flex flex-col items-center gap-1 px-5 py-3.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-2xl hover:brightness-110 transition-all shadow-lg shadow-rose-900/30 cursor-pointer">
-                          <span className="flex items-center gap-2">
-                            <FontAwesomeIcon icon={faCrown} className="w-3.5 h-3.5" />
-                            Get the Verdict — {price.label}
-                          </span>
-                          <span className="text-[9px] font-medium text-white/80 uppercase tracking-widest">one-time · judges the past</span>
-                        </button>
-                        <button onClick={() => openPatrolCheckout('monthly', 'verdict_paywall')}
-                          className="inline-flex flex-col items-center gap-1 px-5 py-3.5 bg-[#141420] border border-violet-700/50 text-slate-100 text-xs font-bold rounded-2xl hover:bg-[#1C1C2A] transition-all cursor-pointer">
-                          <span className="flex items-center gap-2">
-                            <FontAwesomeIcon icon={faShieldHalved} className="w-3.5 h-3.5 text-violet-300" />
-                            Start Patrol — $4.99/mo
-                          </span>
-                          <span className="text-[9px] font-medium text-violet-300/80 uppercase tracking-widest">monthly · guards the future</span>
-                        </button>
-                      </div>
-
-                      {price.tier === 'founding' && (
-                        <p className="text-[10px] text-amber-300/80 mt-3 uppercase tracking-widest">
-                          Founding Vampire pricing — 72-hour window
-                        </p>
-                      )}
-                    </div>
+              <section className="py-10 border-t border-slate-800/40">
+                <h2 className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mb-5">The Verdict</h2>
+                {!verdict && !verdictError && (
+                  <div className="flex items-center gap-2 text-sm text-slate-500">
+                    <FontAwesomeIcon icon={faSpinner} className="w-4 h-4 animate-spin text-rose-400" />
+                    The vampire is composing your roast…
                   </div>
                 )}
-
-                {pro && !isPatrol() && (
-                  <div className="mt-6 bg-gradient-to-br from-violet-950/40 to-rose-950/20 rounded-2xl border border-violet-700/30 p-5 flex flex-col sm:flex-row items-center gap-4 justify-between">
-                    <div className="flex items-start gap-3 text-left">
-                      <div className="inline-flex w-10 h-10 rounded-xl bg-violet-950/60 border border-violet-700/40 items-center justify-center shrink-0">
-                        <FontAwesomeIcon icon={faChrome} className="w-4 h-4 text-violet-300" />
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-slate-100 mb-0.5">Still seeing new vampires sneak in?</p>
-                        <p className="text-xs text-slate-400 leading-relaxed">Install the Patrol — it scans Gmail daily and catches them before the first charge clears.</p>
-                      </div>
-                    </div>
-                    <button onClick={() => openPatrolCheckout('monthly', 'verdict_pro_upsell')}
-                      className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-violet-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all shadow-lg shadow-violet-900/30 cursor-pointer">
-                      <FontAwesomeIcon icon={faShieldHalved} className="w-3 h-3" />
-                      Add Patrol — $4.99/mo
-                    </button>
-                  </div>
+                {verdictError && (
+                  <p className="text-sm text-rose-400">{verdictError}</p>
                 )}
+                {verdict && (
+                  <>
+                    <p className="font-gothic text-xl sm:text-2xl text-slate-100 leading-snug mb-6">
+                      "{verdict.headline}"
+                    </p>
+                    <ol className="space-y-3 mb-6">
+                      {(verdict.roasts || []).map((r, i) => (
+                        <li key={i} className="flex gap-3 text-sm text-slate-300 leading-relaxed">
+                          <span className="text-rose-500 font-bold shrink-0">{i + 1}.</span>
+                          <span>{r}</span>
+                        </li>
+                      ))}
+                    </ol>
 
-                <EmailDigestCapture monthly={monthly} tenYear={tenYear} />
-              </>
-            )}
-          </section>
+                    {!isPatrol() && (
+                      <div className="mt-6 bg-gradient-to-br from-violet-950/40 to-rose-950/20 rounded-2xl border border-violet-700/30 p-5 flex flex-col sm:flex-row items-center gap-4 justify-between">
+                        <div className="flex items-start gap-3 text-left">
+                          <div className="inline-flex w-10 h-10 rounded-xl bg-violet-950/60 border border-violet-700/40 items-center justify-center shrink-0">
+                            <FontAwesomeIcon icon={faChrome} className="w-4 h-4 text-violet-300" />
+                          </div>
+                          <div>
+                            <p className="text-sm font-semibold text-slate-100 mb-0.5">Still seeing new vampires sneak in?</p>
+                            <p className="text-xs text-slate-400 leading-relaxed">Install the Patrol — it scans Gmail daily and catches them before the first charge clears.</p>
+                          </div>
+                        </div>
+                        <button onClick={() => openPatrolCheckout('monthly', 'verdict_pro_upsell')}
+                          className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-violet-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all shadow-lg shadow-violet-900/30 cursor-pointer">
+                          <FontAwesomeIcon icon={faShieldHalved} className="w-3 h-3" />
+                          Add Patrol — $4.99/mo
+                        </button>
+                      </div>
+                    )}
+
+                    <EmailDigestCapture monthly={monthly} tenYear={tenYear} />
+                  </>
+                )}
+              </section>
+            </>
+          )}
+
+          {!pro && (
+            <section className="py-10 border-t border-slate-800/40">
+              <EmailDigestCapture monthly={monthly} tenYear={tenYear} />
+            </section>
+          )}
 
           <section className="py-10 border-t border-slate-800/40 flex flex-col sm:flex-row gap-3">
             <button onClick={onShare}
