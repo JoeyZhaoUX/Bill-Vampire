@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subscription Cost Calculator — See Your 10-Year Waste | Bill Vampire</title>
+  <meta name="description" content="Calculate how much your subscriptions cost over 10 years. Enter your monthly bills and see the shocking total. Free calculator, no signup required." />
+  <meta name="keywords" content="subscription cost calculator, 10 year subscription cost, how much do subscriptions cost, subscription spending calculator" />
+  <link rel="canonical" href="https://billvampire.com/tools/subscription-cost-calculator.html" />
+  <meta property="og:title" content="Subscription Cost Calculator — 10-Year Total" />
+  <meta property="og:description" content="Enter your subscriptions. See the 10-year damage. Free, no signup." />
+  <meta property="og:url" content="https://billvampire.com/tools/subscription-cost-calculator.html" />
+  <meta property="og:image" content="https://billvampire.com/og-image.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/icons/icon.png" type="image/png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Subscription Cost Calculator",
+    "url": "https://billvampire.com/tools/subscription-cost-calculator.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "Calculate how much your subscriptions will cost over 10 years. Enter monthly amounts and see the shocking total."
+  }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #0B0B11; color: #94A3B8; min-height: 100vh; }
+    .container { max-width: 640px; margin: 0 auto; padding: 40px 20px; }
+    h1 { color: #F1F5F9; font-size: 2rem; line-height: 1.2; margin-bottom: 8px; }
+    .subtitle { color: #64748B; font-size: 0.9rem; margin-bottom: 32px; }
+    .input-row { display: flex; gap: 8px; margin-bottom: 12px; }
+    .input-row input { flex: 1; padding: 12px 16px; background: #141420; border: 1px solid #334155; border-radius: 12px; color: #F1F5F9; font-size: 0.9rem; outline: none; }
+    .input-row input:focus { border-color: #FB7185; }
+    .input-row input[type="number"] { width: 120px; flex: none; }
+    .btn { padding: 12px 24px; background: #E11D48; color: white; border: none; border-radius: 12px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .btn:hover { background: #FB7185; }
+    .btn-add { background: #1C1C2A; color: #94A3B8; border: 1px solid #334155; }
+    .btn-add:hover { background: #252536; color: #F1F5F9; }
+    .results { margin-top: 32px; padding: 24px; background: linear-gradient(135deg, #1a0a1a 0%, #141420 100%); border: 1px solid #881337; border-radius: 16px; display: none; }
+    .results.show { display: block; }
+    .result-monthly { color: #FB7185; font-size: 1.5rem; font-weight: 800; margin-bottom: 4px; }
+    .result-10yr { color: #FB7185; font-size: 3rem; font-weight: 900; margin: 8px 0; }
+    .result-label { color: #64748B; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
+    .sub-list { list-style: none; margin: 16px 0; }
+    .sub-list li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #1E293B; font-size: 0.85rem; }
+    .sub-list li span:last-child { color: #FB7185; font-weight: 600; }
+    .cta { margin-top: 24px; padding: 20px; background: linear-gradient(135deg, #451a03 0%, #1a0a1a 100%); border: 1px solid #92400e; border-radius: 12px; text-align: center; }
+    .cta p { color: #FDE68A; font-size: 0.85rem; margin-bottom: 12px; }
+    .cta a { display: inline-block; padding: 12px 32px; background: linear-gradient(90deg, #F59E0B, #E11D48); color: white; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 0.9rem; }
+    .nav { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
+    .nav img { width: 32px; height: 32px; border-radius: 8px; }
+    .nav a { color: #64748B; text-decoration: none; font-size: 0.8rem; }
+    .nav a:hover { color: #F1F5F9; }
+    .seo-content { margin-top: 48px; padding-top: 32px; border-top: 1px solid #1E293B; }
+    .seo-content h2 { color: #F1F5F9; font-size: 1.3rem; margin-bottom: 12px; }
+    .seo-content h3 { color: #CBD5E1; font-size: 1rem; margin: 20px 0 8px; }
+    .seo-content p { line-height: 1.7; margin-bottom: 12px; font-size: 0.9rem; }
+    .seo-content ul { padding-left: 20px; margin-bottom: 16px; }
+    .seo-content li { line-height: 1.7; margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <a href="/"><img src="/icons/icon.png" alt="Bill Vampire" /></a>
+      <a href="/">← Back to Bill Vampire</a>
+    </nav>
+
+    <h1>Subscription Cost Calculator</h1>
+    <p class="subtitle">Enter your monthly subscriptions below. We'll show you the 10-year total.</p>
+
+    <div id="inputs">
+      <div class="input-row">
+        <input type="text" placeholder="Service name (e.g. Netflix)" class="name-input" />
+        <input type="number" placeholder="$/mo" min="0" step="0.01" class="price-input" />
+      </div>
+      <div class="input-row">
+        <input type="text" placeholder="Service name" class="name-input" />
+        <input type="number" placeholder="$/mo" min="0" step="0.01" class="price-input" />
+      </div>
+      <div class="input-row">
+        <input type="text" placeholder="Service name" class="name-input" />
+        <input type="number" placeholder="$/mo" min="0" step="0.01" class="price-input" />
+      </div>
+    </div>
+
+    <div style="display:flex;gap:8px;margin-top:12px;">
+      <button class="btn btn-add" onclick="addRow()">+ Add another</button>
+      <button class="btn" onclick="calculate()">Calculate 10-year cost</button>
+    </div>
+
+    <div class="results" id="results">
+      <p class="result-label">Monthly total</p>
+      <p class="result-monthly" id="monthly-total">$0</p>
+      <p class="result-label">Over 10 years, you'll spend</p>
+      <p class="result-10yr" id="ten-year-total">$0</p>
+      <ul class="sub-list" id="sub-list"></ul>
+      <div class="cta">
+        <p>Want the full AI verdict — leaderboard of shame, roasts, and a PDF report?</p>
+        <a href="/">Get the full verdict on billvampire.com →</a>
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>How Much Do Subscriptions Really Cost?</h2>
+      <p>The average American spends $219 per month on subscriptions — that's $2,628 per year and <strong>$26,280 over a decade</strong>. Most people underestimate their subscription spending by 2-3x because each individual charge feels small.</p>
+
+      <h3>The $9.99 Illusion</h3>
+      <p>A single $9.99/month subscription seems harmless. But over 10 years, that's $1,199. If you have 5 similar subscriptions, that's nearly $6,000 — enough for a vacation, an emergency fund, or a year of car payments.</p>
+
+      <h3>Common Subscription Costs Over 10 Years</h3>
+      <ul>
+        <li><strong>Netflix Premium ($22.99/mo)</strong> → $2,759 over 10 years</li>
+        <li><strong>Spotify Premium ($11.99/mo)</strong> → $1,439 over 10 years</li>
+        <li><strong>ChatGPT Plus ($20/mo)</strong> → $2,400 over 10 years</li>
+        <li><strong>Adobe Creative Cloud ($59.99/mo)</strong> → $7,199 over 10 years</li>
+        <li><strong>iCloud+ 2TB ($9.99/mo)</strong> → $1,199 over 10 years</li>
+        <li><strong>YouTube Premium ($13.99/mo)</strong> → $1,679 over 10 years</li>
+      </ul>
+
+      <h3>How to Use This Calculator</h3>
+      <p>Enter each subscription name and its monthly cost. Click "Calculate" to see your 10-year total. For a deeper analysis with AI-powered roasts and a ranked leaderboard showing which subscriptions are bleeding you the most, try <a href="/" style="color:#FB7185;">Bill Vampire's full verdict</a> — it also handles yearly subscriptions, multiple currencies, and bill scanning from screenshots or PDFs.</p>
+
+      <h3>Tips to Reduce Subscription Waste</h3>
+      <ul>
+        <li>Audit your subscriptions every 3 months — the ones you forgot about are the most expensive</li>
+        <li>Use the "cancel and see if you miss it" test — cancel anything you haven't used in 30 days</li>
+        <li>Watch for price increases — services regularly raise prices by $1-3/mo hoping you won't notice</li>
+        <li>Share family plans where possible — Netflix, Spotify, and Apple One all offer family tiers</li>
+        <li>Use free alternatives — many paid tools have capable free versions (Notion, Canva, etc.)</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    function addRow() {
+      const inputs = document.getElementById('inputs');
+      const row = document.createElement('div');
+      row.className = 'input-row';
+      row.innerHTML = '<input type="text" placeholder="Service name" class="name-input" /><input type="number" placeholder="$/mo" min="0" step="0.01" class="price-input" />';
+      inputs.appendChild(row);
+    }
+
+    function calculate() {
+      const names = document.querySelectorAll('.name-input');
+      const prices = document.querySelectorAll('.price-input');
+      const subs = [];
+      let total = 0;
+
+      for (let i = 0; i < names.length; i++) {
+        const name = names[i].value.trim();
+        const price = parseFloat(prices[i].value) || 0;
+        if (name && price > 0) {
+          subs.push({ name, price });
+          total += price;
+        }
+      }
+
+      if (subs.length === 0) return;
+
+      const tenYear = total * 12 * 10;
+      document.getElementById('monthly-total').textContent = '$' + total.toFixed(2);
+      document.getElementById('ten-year-total').textContent = '$' + Math.round(tenYear).toLocaleString();
+
+      const list = document.getElementById('sub-list');
+      list.innerHTML = subs
+        .sort((a, b) => b.price - a.price)
+        .map(s => `<li><span>${s.name}</span><span>$${(s.price * 120).toLocaleString()} over 10yr</span></li>`)
+        .join('');
+
+      document.getElementById('results').classList.add('show');
+    }
+  </script>
+</body>
+</html>

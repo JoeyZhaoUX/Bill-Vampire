@@ -9,12 +9,13 @@ import { track } from './analytics.js'
 import './index.css'
 
 const Scan = lazy(() => import('./onboarding/Scan.jsx'));
+const EmailGate = lazy(() => import('./onboarding/EmailGate.jsx'));
 const Verdict = lazy(() => import('./onboarding/Verdict.jsx'));
 const Commit = lazy(() => import('./onboarding/Commit.jsx'));
 const Patrol = lazy(() => import('./pages/Patrol.jsx'));
 
 const VALID_LEGAL = ['terms', 'privacy', 'refund'];
-const VALID_ONBOARDING = ['scan', 'verdict', 'commit'];
+const VALID_ONBOARDING = ['scan', 'email-gate', 'verdict', 'commit'];
 const VALID_PAGES = ['patrol'];
 
 function loadSubsFromStorage() {
@@ -95,8 +96,14 @@ function Root() {
     const merged = [...existing, ...bills];
     saveSubsToStorage(merged);
     setOnboardingSubs(merged);
-    window.location.hash = 'verdict';
-    setView('verdict');
+    const alreadyHasEmail = localStorage.getItem('vampire_email');
+    if (alreadyHasEmail) {
+      window.location.hash = 'verdict';
+      setView('verdict');
+    } else {
+      window.location.hash = 'email-gate';
+      setView('email-gate');
+    }
     window.scrollTo(0, 0);
   };
 
@@ -156,6 +163,19 @@ function Root() {
     return (
       <Suspense fallback={loader}>
         <Scan onComplete={handleScanComplete} onSkipToManual={handleScanSkipToManual} />
+      </Suspense>
+    );
+  }
+
+  if (view === 'email-gate') {
+    const subs = onboardingSubs.length ? onboardingSubs : loadSubsFromStorage();
+    return (
+      <Suspense fallback={loader}>
+        <EmailGate
+          subscriptionCount={subs.length}
+          onContinue={() => { window.location.hash = 'verdict'; setView('verdict'); window.scrollTo(0, 0); }}
+          onSkip={() => { window.location.hash = 'verdict'; setView('verdict'); window.scrollTo(0, 0); }}
+        />
       </Suspense>
     );
   }

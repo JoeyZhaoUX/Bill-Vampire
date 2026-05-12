@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSkull, faArrowRight, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { faSkull, faArrowRight, faCircleCheck, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { monthlyUsd } from './verdict';
+import { getCancelLink } from '../cancelLinks';
 import { track } from '../analytics';
 import ZhBanner from '../ZhBanner';
 
@@ -57,22 +58,35 @@ export default function Commit({ subscriptions, onDone }) {
             {subscriptions.map(s => {
               const picked = selected.has(s.id);
               const yearlyUsd = monthlyUsd(s) * 12;
+              const cancelUrl = getCancelLink(s.name);
               return (
-                <button key={s.id} onClick={() => toggle(s.id)}
-                  className={`w-full flex items-center gap-4 p-4 rounded-2xl border transition-all cursor-pointer text-left ${picked
-                    ? 'bg-emerald-950/30 border-emerald-700/50'
-                    : 'bg-[#141420]/60 border-slate-800/40 hover:border-slate-700/60'}`}>
-                  <div className={`w-6 h-6 rounded-md border-2 flex items-center justify-center shrink-0 ${picked
-                    ? 'bg-emerald-500 border-emerald-400'
-                    : 'border-slate-600'}`}>
-                    {picked && <FontAwesomeIcon icon={faCircleCheck} className="w-4 h-4 text-white" />}
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm font-semibold text-slate-100">{s.name}</p>
-                    <p className="text-[11px] text-slate-500">Saves ~${yearlyUsd.toFixed(0)}/year</p>
-                  </div>
-                  <span className="text-sm font-bold text-slate-300 tabular-nums">${monthlyUsd(s).toFixed(2)}/mo</span>
-                </button>
+                <div key={s.id} className={`rounded-2xl border transition-all ${picked
+                  ? 'bg-emerald-950/30 border-emerald-700/50'
+                  : 'bg-[#141420]/60 border-slate-800/40 hover:border-slate-700/60'}`}>
+                  <button onClick={() => toggle(s.id)}
+                    className="w-full flex items-center gap-4 p-4 cursor-pointer text-left">
+                    <div className={`w-6 h-6 rounded-md border-2 flex items-center justify-center shrink-0 ${picked
+                      ? 'bg-emerald-500 border-emerald-400'
+                      : 'border-slate-600'}`}>
+                      {picked && <FontAwesomeIcon icon={faCircleCheck} className="w-4 h-4 text-white" />}
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm font-semibold text-slate-100">{s.name}</p>
+                      <p className="text-[11px] text-slate-500">Saves ~${yearlyUsd.toFixed(0)}/year</p>
+                    </div>
+                    <span className="text-sm font-bold text-slate-300 tabular-nums">${monthlyUsd(s).toFixed(2)}/mo</span>
+                  </button>
+                  {picked && cancelUrl && (
+                    <div className="px-4 pb-3 pl-14">
+                      <a href={cancelUrl} target="_blank" rel="noopener noreferrer"
+                        onClick={() => track('cancel_link_clicked', { name: s.name })}
+                        className="inline-flex items-center gap-1.5 text-[11px] font-medium text-emerald-400 hover:text-emerald-300 transition-colors no-underline">
+                        <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="w-2.5 h-2.5" />
+                        Go to cancel page
+                      </a>
+                    </div>
+                  )}
+                </div>
               );
             })}
           </div>
