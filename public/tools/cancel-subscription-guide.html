@@ -16,13 +16,25 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": "How to Cancel Any Subscription",
-    "description": "Direct cancellation links and step-by-step guides for 50+ popular subscription services.",
-    "step": [
-      { "@type": "HowToStep", "name": "Find the service", "text": "Search for your subscription in the list below." },
-      { "@type": "HowToStep", "name": "Click the cancel link", "text": "Each service has a direct link to its cancellation or account page." },
-      { "@type": "HowToStep", "name": "Confirm cancellation", "text": "Follow the service's prompts to finalize your cancellation." }
+    "@graph": [
+      {
+        "@type": "HowTo",
+        "name": "How to Cancel Any Subscription",
+        "description": "Direct cancellation links and step-by-step guides for 50+ popular subscription services.",
+        "step": [
+          { "@type": "HowToStep", "name": "Find the service", "text": "Search for your subscription in the list below." },
+          { "@type": "HowToStep", "name": "Click the cancel link", "text": "Each service has a direct link to its cancellation or account page." },
+          { "@type": "HowToStep", "name": "Confirm cancellation", "text": "Follow the service's prompts to finalize your cancellation." }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Bill Vampire", "item": "https://billvampire.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Free Tools", "item": "https://billvampire.com/tools/" },
+          { "@type": "ListItem", "position": 3, "name": "How to Cancel Any Subscription" }
+        ]
+      }
     ]
   }
   </script>

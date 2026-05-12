@@ -16,13 +16,25 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Subscription Cost Calculator",
-    "url": "https://billvampire.com/tools/subscription-cost-calculator.html",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "Web",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "description": "Calculate how much your subscriptions will cost over 10 years. Enter monthly amounts and see the shocking total."
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Subscription Cost Calculator",
+        "url": "https://billvampire.com/tools/subscription-cost-calculator.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Calculate how much your subscriptions will cost over 10 years. Enter monthly amounts and see the shocking total."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Bill Vampire", "item": "https://billvampire.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Free Tools", "item": "https://billvampire.com/tools/" },
+          { "@type": "ListItem", "position": 3, "name": "Subscription Cost Calculator" }
+        ]
+      }
+    ]
   }
   </script>
   <style>
