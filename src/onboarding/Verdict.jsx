@@ -155,11 +155,6 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
                     <FontAwesomeIcon icon={faCrown} className="w-4 h-4" />
                     See the damage — {price.label}
                   </button>
-                  {price.tier === 'founding' && (
-                    <p className="text-[10px] text-amber-300/80 mt-3 uppercase tracking-widest">
-                      Founding Vampire pricing — 72-hour window
-                    </p>
-                  )}
                 </div>
               </div>
             )}
