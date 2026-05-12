@@ -610,6 +610,7 @@ export default function Landing({ onEnterApp, onLegal }) {
               <span className="text-[10px] text-slate-700 ml-1">Make every dollar visible</span>
             </div>
             <div className="flex items-center gap-5">
+              <a href="/tools/" className="text-[11px] text-slate-600 hover:text-slate-400 transition-colors no-underline">Free Tools</a>
               <a href={`${import.meta.env.BASE_URL}terms.html`} onClick={(e) => { e.preventDefault(); onLegal('terms'); }} className="text-[11px] text-slate-600 hover:text-slate-400 transition-colors cursor-pointer no-underline">Terms</a>
               <a href={`${import.meta.env.BASE_URL}privacy.html`} onClick={(e) => { e.preventDefault(); onLegal('privacy'); }} className="text-[11px] text-slate-600 hover:text-slate-400 transition-colors cursor-pointer no-underline">Privacy</a>
               <a href={`${import.meta.env.BASE_URL}refund.html`} onClick={(e) => { e.preventDefault(); onLegal('refund'); }} className="text-[11px] text-slate-600 hover:text-slate-400 transition-colors cursor-pointer no-underline">Refund</a>
