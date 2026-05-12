@@ -7,7 +7,7 @@ import {
 import { faXTwitter, faChrome } from '@fortawesome/free-brands-svg-icons';
 import {
   getCheckoutUrl, getCurrentPrice,
-  openCheckout, openPatrolCheckout, isPro,
+  openCheckout, isPro,
 } from './pro';
 import { track } from './analytics';
 import ZhBanner from './ZhBanner';
@@ -107,7 +107,6 @@ function VerdictMockup() {
   );
 }
 
-const CHROME_STORE_URL = 'https://chromewebstore.google.com/detail/bill-vampire-patrol/PLACEHOLDER_EXT_ID';
 
 function isChromeDesktop() {
   if (typeof navigator === 'undefined') return false;
@@ -339,22 +338,16 @@ export default function Landing({ onEnterApp, onLegal }) {
 
           <div className="bg-gradient-to-br from-violet-950/30 to-rose-950/20 rounded-2xl p-6 sm:p-8 border border-violet-800/30 flex flex-col sm:flex-row items-center gap-6 justify-between">
             <div className="text-center sm:text-left">
-              <p className="text-xs font-bold text-violet-300 uppercase tracking-[0.2em] mb-1">$4.99 / month · cancel any time</p>
+              <p className="text-xs font-bold text-violet-300 uppercase tracking-[0.2em] mb-1">Coming soon · $4.99 / month</p>
               <p className="text-sm text-slate-300 leading-relaxed">
                 The Verdict is a one-shot weapon. The Patrol is the night shift — working while you sleep, stopped the second you tell it to.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-              <a href={CHROME_STORE_URL} target="_blank" rel="noopener noreferrer"
-                onClick={() => track('extension_install_clicked', { source: 'patrol_section' })}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#141420] border border-slate-700/50 text-slate-200 text-xs font-semibold rounded-xl hover:bg-[#1C1C2A] transition-all cursor-pointer no-underline">
-                <FontAwesomeIcon icon={faChrome} className="w-3.5 h-3.5 text-violet-400" />
-                Install free — detect up to 5
-              </a>
-              <button onClick={() => openPatrolCheckout('monthly', 'patrol_section')}
+              <button onClick={() => { track('patrol_waitlist_clicked'); handleEnter('patrol_waitlist'); }}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all shadow-lg shadow-violet-900/30 cursor-pointer">
                 <FontAwesomeIcon icon={faShieldHalved} className="w-3.5 h-3.5" />
-                Upgrade to Patrol — $4.99/mo
+                Get the Verdict first — Patrol coming soon
               </button>
             </div>
           </div>
