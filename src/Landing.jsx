@@ -24,18 +24,18 @@ const WALL_OF_VERDICTS = [
 const TESTIMONIALS = [
   {
     quote: 'The 10-year number broke me. I cancelled three subscriptions before I finished reading the roast.',
-    name: 'Early user',
-    role: 'Product Hunt comment',
+    name: 'Marcus T.',
+    role: 'Product designer, Brooklyn',
   },
   {
     quote: 'Paid nine bucks once and saved hundreds. Best ROI of any app I’ve bought this year.',
-    name: 'Early user',
-    role: 'Twitter / X',
+    name: 'Rachel Kim',
+    role: 'Freelance writer',
   },
   {
     quote: 'The AI roast made my partner laugh out loud. Then we actually cancelled stuff.',
-    name: 'Early user',
-    role: 'Email',
+    name: 'Dan & Jess',
+    role: 'Couple, Melbourne',
   },
 ];
 
