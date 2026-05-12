@@ -1,14 +1,13 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock, faShareNodes, faArrowRight, faSkull, faSpinner, faCrown, faShieldHalved, faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { faChrome } from '@fortawesome/free-brands-svg-icons';
 import {
   totalMonthlyUsd, tenYearTotalUsd, rankByLifetimeWaste,
   generateVerdict, reportVerdictToStats,
 } from './verdict';
 import {
   isPro, canAiRoast, incrementAiUsage, openCheckout, getCurrentPrice,
-  openPatrolCheckout, isPatrol,
+  isPatrol,
 } from '../pro';
 import { track } from '../analytics';
 import ZhBanner from '../ZhBanner';
@@ -215,21 +214,14 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
                     </ol>
 
                     {!isPatrol() && (
-                      <div className="mt-6 bg-gradient-to-br from-violet-950/40 to-rose-950/20 rounded-2xl border border-violet-700/30 p-5 flex flex-col sm:flex-row items-center gap-4 justify-between">
-                        <div className="flex items-start gap-3 text-left">
-                          <div className="inline-flex w-10 h-10 rounded-xl bg-violet-950/60 border border-violet-700/40 items-center justify-center shrink-0">
-                            <FontAwesomeIcon icon={faChrome} className="w-4 h-4 text-violet-300" />
-                          </div>
-                          <div>
-                            <p className="text-sm font-semibold text-slate-100 mb-0.5">Still seeing new vampires sneak in?</p>
-                            <p className="text-xs text-slate-400 leading-relaxed">Install the Patrol — it scans Gmail daily and catches them before the first charge clears.</p>
-                          </div>
+                      <div className="mt-6 bg-gradient-to-br from-violet-950/40 to-rose-950/20 rounded-2xl border border-violet-700/30 p-5 flex items-start gap-3">
+                        <div className="inline-flex w-10 h-10 rounded-xl bg-violet-950/60 border border-violet-700/40 items-center justify-center shrink-0">
+                          <FontAwesomeIcon icon={faShieldHalved} className="w-4 h-4 text-violet-300" />
                         </div>
-                        <button onClick={() => openPatrolCheckout('monthly', 'verdict_pro_upsell')}
-                          className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-violet-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all shadow-lg shadow-violet-900/30 cursor-pointer">
-                          <FontAwesomeIcon icon={faShieldHalved} className="w-3 h-3" />
-                          Add Patrol — $4.99/mo
-                        </button>
+                        <div>
+                          <p className="text-sm font-semibold text-slate-100 mb-0.5">Patrol is coming soon</p>
+                          <p className="text-xs text-slate-400 leading-relaxed">A Chrome extension that scans Gmail daily and catches new vampires before the first charge clears. We'll notify you when it launches.</p>
+                        </div>
                       </div>
                     )}
 
