@@ -29,7 +29,7 @@ function TermsOfService() {
         <p>The Service includes AI-powered analysis features provided through third-party APIs (Google Gemini). AI-generated advice, roasts, and alternative suggestions are for informational and entertainment purposes only and should not be considered professional financial advice. Bill Vampire is an independent product and is not affiliated with or endorsed by Google.</p>
       </Section>
       <Section title="5. Paid Products & Payment Processing">
-        <p><strong>Pro (web app):</strong> a one-time purchase of 19 USD (12 USD during the Founding Vampire window for new visitors) processed through <a href="https://www.creem.io" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">Creem</a>. By purchasing Pro, you receive a permanent license to the Pro features listed in Section 2. Pro status is stored locally on your device.</p>
+        <p><strong>Pro (web app):</strong> a one-time purchase of 9.99 USD processed through <a href="https://www.creem.io" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">Creem</a>. By purchasing Pro, you receive a permanent license to the Pro features listed in Section 2. Pro status is stored locally on your device.</p>
         <p><strong>Patrol (Chrome extension):</strong> a recurring subscription billed at 4.99 USD per month or 39 USD per year via Creem. You may cancel any time in one click; billing stops at the end of the current period and Patrol features deactivate at that time. Pro and Patrol are separate products — purchasing one does not entitle you to the other.</p>
         <p>Creem acts as our merchant of record and handles all payment processing, sales tax, and billing.</p>
       </Section>
@@ -99,7 +99,7 @@ function RefundPolicy() {
       <Section title="1. Free Tier">
         <p>Bill Vampire's core features are free to use and require no payment. No refund applies to the free tier.</p>
       </Section>
-      <Section title="2. Pro Upgrade (19 USD One-Time · 12 USD Founding)">
+      <Section title="2. Pro Upgrade (9.99 USD One-Time)">
         <p>The Pro upgrade is a one-time digital purchase. Because of the immediate nature of digital goods delivery, we generally do not offer refunds after purchase.</p>
         <p>However, we want you to be satisfied. If you experience any of the following, we will issue a full refund:</p>
         <ul className="list-disc list-inside space-y-1 pl-2">

@@ -41,7 +41,7 @@
     100% { transform: translateY(0); opacity: 1; filter: drop-shadow(0 0 0 rgba(251, 191, 36, 0)); }
   }
 
-  /* Subtle heartbeat on Founding CTA — 1 beat per 1.6s so it's felt, not noisy */
+  /* Subtle heartbeat on CTA — 1 beat per 1.6s */
   .animate-subtleBeat {
     animation: subtleBeat 1.6s ease-in-out infinite;
   }
