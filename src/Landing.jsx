@@ -377,6 +377,82 @@ export default function Landing({ onEnterApp, onLegal }) {
         </div>
       </section>
 
+      {/* ===== WHY NOT CHATGPT ===== */}
+      <section className="py-20 lg:py-24 bg-gradient-to-b from-[#0B0B11] via-[#0F0F18] to-[#0B0B11]">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-14">
+            <p className="text-xs font-medium text-rose-400 uppercase tracking-widest mb-3">"Can't ChatGPT do this?"</p>
+            <h2 className="text-2xl lg:text-3xl font-bold text-slate-100 mb-4">
+              ChatGPT shows you data.{' '}
+              <span className="text-rose-400">We help you kill it.</span>
+            </h2>
+            <p className="text-sm text-slate-500 max-w-lg mx-auto">
+              Big AI finance tools want your bank login and $200/month. We want $9 once and for you to actually cancel something.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-0 max-w-4xl mx-auto rounded-2xl border border-slate-800/40 overflow-hidden">
+            {/* ChatGPT column */}
+            <div className="bg-[#141420]/40 p-7 border-b md:border-b-0 md:border-r border-slate-800/40">
+              <div className="flex items-center gap-2 mb-5">
+                <div className="w-8 h-8 rounded-lg bg-[#0D0D15] border border-slate-700/50 flex items-center justify-center text-sm">🤖</div>
+                <span className="text-sm font-semibold text-slate-400">ChatGPT Finance</span>
+              </div>
+              <ul className="space-y-3 text-xs text-slate-500">
+                {[
+                  { text: '$200/month (Pro plan required)', bad: true },
+                  { text: 'Must connect bank accounts', bad: true },
+                  { text: 'Shows all spending (overwhelming)', bad: false },
+                  { text: 'Data stored on OpenAI servers', bad: true },
+                  { text: 'Tells you where money went', bad: false },
+                  { text: 'No direct cancel links', bad: true },
+                  { text: 'No cancel scripts or negotiation help', bad: true },
+                  { text: 'No trial expiry tracking', bad: true },
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span className={`shrink-0 mt-0.5 ${item.bad ? 'text-rose-600' : 'text-slate-600'}`}>
+                      {item.bad ? '✗' : '~'}
+                    </span>
+                    <span>{item.text}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Bill Vampire column */}
+            <div className="bg-gradient-to-br from-rose-950/20 to-violet-950/10 p-7">
+              <div className="flex items-center gap-2 mb-5">
+                <img src={`${import.meta.env.BASE_URL}icons/icon.png`} alt="" className="w-8 h-8 rounded-lg" />
+                <span className="text-sm font-semibold text-slate-200">Bill Vampire</span>
+              </div>
+              <ul className="space-y-3 text-xs text-slate-300">
+                {[
+                  { text: `${price.label} one-time (no subscription!)`, good: true },
+                  { text: 'No bank connection needed', good: true },
+                  { text: 'Laser-focused on subscriptions only', good: true },
+                  { text: 'Data never leaves your browser', good: true },
+                  { text: 'Tells you what to kill + AI roasts you', good: true },
+                  { text: '60+ one-tap cancel links built in', good: true },
+                  { text: 'AI cancellation & negotiation scripts', good: true },
+                  { text: 'Free trial tracker with expiry alerts', good: true },
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span className="shrink-0 mt-0.5 text-emerald-400">✓</span>
+                    <span>{item.text}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="text-center mt-8">
+            <p className="text-xs text-slate-600 max-w-lg mx-auto leading-relaxed">
+              ChatGPT Finance is a <em>dashboard</em>. Bill Vampire is a <em>weapon</em>. You don't need another app showing you graphs — you need one that makes you cancel things.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ===== TESTIMONIALS ===== */}
       <section className="py-20 lg:py-24 bg-gradient-to-b from-[#0B0B11] via-[#0F0F18] to-[#0B0B11]">
         <div className="max-w-4xl mx-auto px-6">

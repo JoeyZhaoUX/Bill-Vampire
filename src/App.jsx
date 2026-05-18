@@ -25,6 +25,9 @@ import {
 const LazyChart = lazy(() => import('./components/LazyChart'));
 const ShareCard = lazy(() => import('./ShareCard'));
 const PrintReport = lazy(() => import('./PrintReport'));
+const CancelScript = lazy(() => import('./components/CancelScript'));
+const SubscriptionHealth = lazy(() => import('./components/SubscriptionHealth'));
+const TrialTracker = lazy(() => import('./components/TrialTracker'));
 
 const API_ENDPOINT = '/api/gemini';
 
@@ -107,6 +110,8 @@ export default function App({ onLegal, onGoToLanding }) {
   const [extractedBills, setExtractedBills] = useState(null);
   const [chargeToasts, setChargeToasts] = useState([]);
   const [notifPromptShown, setNotifPromptShown] = useState(false);
+  const [cancelScriptSub, setCancelScriptSub] = useState(null);
+  const [undoToast, setUndoToast] = useState(null); // { sub, timer }
 
   const _ = (key) => t(lang, key);
 
@@ -179,17 +184,38 @@ export default function App({ onLegal, onGoToLanding }) {
     setNewSub({ name: '', price: '', currency: 'USD', cycle: 'monthly', category: 'Other' });
     setShowAddModal(false);
     setAiAdvice(''); setAiAlternatives(''); setAlternativeLinks([]);
+    // Success haptic
+    if (navigator.vibrate) navigator.vibrate(10);
   };
   const deleteSub = (id) => {
     const sub = subscriptions.find(s => s.id === id);
-    if (sub) {
-      const price = parseFloat(sub.price) || 0;
-      const rate = CURRENCIES[sub.currency || 'USD']?.rate || 1;
-      const monthlyUSD = sub.cycle === 'yearly' ? (price * rate) / 12 : price * rate;
-      setCancelledSubs(prev => [...prev, { name: sub.name, monthlyUSD, cancelledAt: Date.now() }]);
-    }
-    setSubscriptions(subscriptions.filter(s => s.id !== id));
+    if (!sub) return;
+    const price = parseFloat(sub.price) || 0;
+    const rate = CURRENCIES[sub.currency || 'USD']?.rate || 1;
+    const monthlyUSD = sub.cycle === 'yearly' ? (price * rate) / 12 : price * rate;
+
+    // Remove immediately but allow undo for 5 seconds
+    setSubscriptions(prev => prev.filter(s => s.id !== id));
     setAiAdvice(''); setAiAlternatives(''); setAlternativeLinks([]);
+
+    // Clear previous undo timer if any
+    if (undoToast?.timer) clearTimeout(undoToast.timer);
+
+    const timer = setTimeout(() => {
+      // Commit the cancellation
+      setCancelledSubs(prev => [...prev, { name: sub.name, monthlyUSD, cancelledAt: Date.now() }]);
+      setUndoToast(null);
+    }, 5000);
+
+    setUndoToast({ sub: { ...sub, monthlyUSD }, timer });
+  };
+
+  const undoDelete = () => {
+    if (!undoToast) return;
+    clearTimeout(undoToast.timer);
+    setSubscriptions(prev => [...prev, undoToast.sub]);
+    setUndoToast(null);
+    if (navigator.vibrate) navigator.vibrate(10);
   };
 
   const callGeminiAPI = async (userPrompt, systemPrompt) => {
@@ -629,32 +655,79 @@ export default function App({ onLegal, onGoToLanding }) {
                   </div>
                 </div>
                 {subscriptions.length === 0 && (
-                  <div className="flex flex-col items-center justify-center py-20 text-slate-600">
-                    <FontAwesomeIcon icon={faGhost} className="w-20 h-20 mb-5 opacity-20" />
-                    <p className="text-base font-light">{_('noSubs')}</p>
+                  <div className="flex flex-col items-center justify-center py-16 text-slate-600">
+                    <div className="relative mb-6">
+                      <FontAwesomeIcon icon={faGhost} className="w-16 h-16 opacity-20" />
+                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500/20 rounded-full flex items-center justify-center">
+                        <span className="text-[8px]">💤</span>
+                      </div>
+                    </div>
+                    <p className="text-base font-light mb-2">{_('noSubs')}</p>
+                    <p className="text-xs text-slate-700 mb-5 max-w-xs text-center">
+                      {lang === 'zh' ? '添加你的订阅，让吸血鬼帮你守住钱包' : 'Add your subscriptions and let the vampire guard your wallet'}
+                    </p>
+                    <div className="flex gap-3">
+                      <button onClick={() => setShowAddModal(true)}
+                        className="flex items-center gap-2 px-5 py-2.5 bg-rose-950/50 text-rose-300 rounded-xl hover:bg-rose-950/70 transition-colors cursor-pointer text-sm font-medium border border-rose-800/30">
+                        <FontAwesomeIcon icon={faPlus} className="w-3.5 h-3.5" /> {lang === 'zh' ? '手动添加' : 'Add manually'}
+                      </button>
+                      <button onClick={() => setShowImportModal(true)}
+                        className="flex items-center gap-2 px-5 py-2.5 bg-violet-950/50 text-violet-300 rounded-xl hover:bg-violet-950/70 transition-colors cursor-pointer text-sm font-medium border border-violet-800/30">
+                        <FontAwesomeIcon icon={faFileImport} className="w-3.5 h-3.5" /> {lang === 'zh' ? '智能导入' : 'Smart import'}
+                      </button>
+                    </div>
                   </div>
                 )}
                 <div className="space-y-1">
-                  {subscriptions.map(sub => (
-                    <div key={sub.id} className="flex justify-between items-center p-4 rounded-2xl hover:bg-[#141420]/60 transition-colors group">
+                  {subscriptions.map((sub, idx) => {
+                    const daysUntilCharge = sub.nextChargeAt ? Math.ceil((sub.nextChargeAt - Date.now()) / (1000 * 60 * 60 * 24)) : null;
+                    const chargesSoon = daysUntilCharge !== null && daysUntilCharge <= 3 && daysUntilCharge > 0;
+                    const priceUsd = (parseFloat(sub.price) || 0) * (CURRENCIES[sub.currency || 'USD']?.rate || 1);
+                    const monthlyUsd = sub.cycle === 'yearly' ? priceUsd / 12 : priceUsd;
+                    return (
+                    <div key={sub.id} className={`flex justify-between items-center p-4 rounded-2xl hover:bg-[#141420]/60 transition-all group cursor-pointer sub-row-press ${chargesSoon ? 'ring-1 ring-rose-800/30 bg-rose-950/10' : ''}`}
+                      style={{ animation: `fadeSlideIn 0.3s ease both`, animationDelay: `${idx * 40}ms` }}
+                      onClick={() => setCancelScriptSub(sub)}
+                      role="button"
+                      aria-label={`${sub.name} — tap for actions`}>
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-xl bg-[#141420] border border-slate-800/30 flex items-center justify-center text-xl">{CATEGORY_ICONS[sub.category] || '\u{1F4E6}'}</div>
+                        <div className={`w-12 h-12 rounded-xl bg-[#141420] border flex items-center justify-center text-xl ${chargesSoon ? 'border-rose-800/40' : 'border-slate-800/30'}`}>{CATEGORY_ICONS[sub.category] || '\u{1F4E6}'}</div>
                         <div>
                           <h4 className="font-medium text-base text-slate-200">{sub.name}</h4>
-                          <div className="text-xs text-slate-500 mt-1 flex items-center gap-2">
+                          <div className="text-xs text-slate-500 mt-1 flex items-center gap-2 flex-wrap">
                             <span className="bg-[#1C1C2A] px-2 py-0.5 rounded-md border border-slate-800/20">{_(CATEGORY_KEYS[CATEGORY_VALUES.indexOf(sub.category)] || 'catOther')}</span>
                             <span className="text-slate-700">/</span>
                             <span>{sub.cycle === 'monthly' ? _('monthly') : _('yearly')}</span>
+                            {daysUntilCharge !== null && daysUntilCharge > 0 && daysUntilCharge <= 7 && (
+                              <span className={`${chargesSoon ? 'text-rose-400 font-medium' : 'text-slate-600'}`}>
+                                · {chargesSoon ? '⚡' : ''}{lang === 'zh' ? `${daysUntilCharge}天后扣费` : `charges in ${daysUntilCharge}d`}
+                              </span>
+                            )}
                           </div>
                         </div>
                       </div>
-                      <div className="flex items-center gap-4">
-                        <span className="font-bold text-slate-200 text-lg">{CURRENCIES[sub.currency || 'USD']?.symbol}{sub.price}</span>
-                        <button onClick={() => deleteSub(sub.id)} aria-label={`Remove ${sub.name}`} className="text-rose-700 hover:text-rose-400 opacity-0 group-hover:opacity-100 focus:opacity-100 transition-all p-1.5 cursor-pointer"><FontAwesomeIcon icon={faTrash} className="w-4 h-4" aria-hidden="true" /></button>
+                      <div className="flex items-center gap-3">
+                        <div className="text-right">
+                          <span className="font-bold text-slate-200 text-lg">{CURRENCIES[sub.currency || 'USD']?.symbol}{sub.price}</span>
+                          {monthlyUsd >= 30 && <span className="block text-[10px] text-rose-500/70 font-medium">{lang === 'zh' ? '高额' : 'expensive'}</span>}
+                        </div>
+                        <button onClick={(e) => { e.stopPropagation(); deleteSub(sub.id); }} aria-label={`Remove ${sub.name}`} className="text-rose-700 hover:text-rose-400 opacity-0 group-hover:opacity-100 focus:opacity-100 transition-all p-1.5 cursor-pointer"><FontAwesomeIcon icon={faTrash} className="w-4 h-4" aria-hidden="true" /></button>
                       </div>
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
+                {/* Tap hint for first-time users */}
+                {subscriptions.length > 0 && subscriptions.length <= 3 && !localStorage.getItem('vampire_tap_hint_dismissed') && (
+                  <div className="mt-3 mx-1 flex items-center gap-2 px-3 py-2 bg-violet-950/20 rounded-xl border border-violet-800/20">
+                    <span className="text-violet-400 text-xs">💡</span>
+                    <p className="text-[11px] text-violet-300/70 flex-1">
+                      {lang === 'zh' ? '点击任意订阅可获取 AI 取消话术和操作' : 'Tap any subscription for AI cancel scripts & actions'}
+                    </p>
+                    <button onClick={(e) => { e.stopPropagation(); localStorage.setItem('vampire_tap_hint_dismissed', '1'); e.target.closest('[class*="violet-950"]').remove(); }}
+                      className="text-violet-700 hover:text-violet-400 text-xs cursor-pointer p-1">✕</button>
+                  </div>
+                )}
                 {subscriptions.length > 0 && (
                   <div className="mt-6 pt-5 border-t border-slate-800/30 print:hidden space-y-3">
                     {!aiAlternatives ? (
@@ -813,6 +886,16 @@ export default function App({ onLegal, onGoToLanding }) {
                       {lang === 'zh' ? '打赏 $2' : 'Tip $2'}
                     </button>
                   </div>
+                </div>
+
+                {/* Subscription Health + Trial Tracker — full width below grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-5">
+                  <Suspense fallback={null}>
+                    <SubscriptionHealth subscriptions={subscriptions} cancelledSubs={cancelledSubs} lang={lang} />
+                  </Suspense>
+                  <Suspense fallback={null}>
+                    <TrialTracker lang={lang} />
+                  </Suspense>
                 </div>
               </div>
             )}
@@ -1077,6 +1160,33 @@ export default function App({ onLegal, onGoToLanding }) {
             onClose={() => setShowShareCard(false)}
           />
         </Suspense>
+      )}
+
+      {/* === CANCEL SCRIPT MODAL === */}
+      {cancelScriptSub && (
+        <Suspense fallback={null}>
+          <CancelScript
+            subscription={cancelScriptSub}
+            lang={lang}
+            onClose={() => setCancelScriptSub(null)}
+          />
+        </Suspense>
+      )}
+
+      {/* === UNDO DELETE TOAST === */}
+      {undoToast && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[85] toast-slide-in">
+          <div className="flex items-center gap-3 bg-[#1C1C2A] border border-slate-700/50 rounded-2xl px-5 py-3.5 shadow-2xl shadow-black/40 backdrop-blur-xl">
+            <FontAwesomeIcon icon={faSkull} className="w-4 h-4 text-emerald-400 shrink-0" />
+            <span className="text-sm text-slate-200">
+              <span className="font-semibold">{undoToast.sub.name}</span> {lang === 'zh' ? '已消灭' : 'slain'}
+            </span>
+            <button onClick={undoDelete}
+              className="ml-2 px-3 py-1.5 text-xs font-bold text-amber-300 bg-amber-950/50 hover:bg-amber-900/50 rounded-lg border border-amber-800/30 cursor-pointer transition-colors">
+              {lang === 'zh' ? '撤销' : 'Undo'}
+            </button>
+          </div>
+        </div>
       )}
     </div>
 

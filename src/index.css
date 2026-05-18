@@ -26,6 +26,62 @@
     from { transform: scale(0.95); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
   }
+  /* Modal slide-up entrance */
+  .modal-enter {
+    animation: modalEnter 0.3s cubic-bezier(0.32, 0.72, 0, 1) both;
+  }
+  @keyframes modalEnter {
+    from { transform: translateY(16px) scale(0.96); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+  }
+  .backdrop-enter {
+    animation: backdropEnter 0.25s ease-out both;
+  }
+  @keyframes backdropEnter {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  /* Undo toast slide-in */
+  .toast-slide-in {
+    animation: toastSlideIn 0.4s cubic-bezier(0.32, 0.72, 0, 1) both;
+  }
+  @keyframes toastSlideIn {
+    from { transform: translateY(100%) scale(0.9); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+  }
+  .toast-slide-out {
+    animation: toastSlideOut 0.3s ease-in both;
+  }
+  @keyframes toastSlideOut {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(100%); opacity: 0; }
+  }
+  /* Subscription row press effect */
+  .sub-row-press:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  /* Score ring draw animation */
+  .score-ring-animate {
+    animation: scoreRingDraw 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
+    --ring-full: 283;
+  }
+  @keyframes scoreRingDraw {
+    from { stroke-dashoffset: 283; opacity: 0.3; }
+    to { opacity: 1; }
+  }
+  /* Gentle pulse for urgent items */
+  .urgent-pulse {
+    animation: urgentPulse 2s ease-in-out infinite;
+  }
+  @keyframes urgentPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.2); }
+    50% { box-shadow: 0 0 12px 2px rgba(244, 63, 94, 0.15); }
+  }
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
   @keyframes bloodPulse {
     0%, 100% { opacity: 0.15; }
     50% { opacity: 0.25; }
@@ -162,8 +218,21 @@ textarea:focus-visible {
   .slide-in-from-bottom-4,
   .zoom-in-95,
   .animate-tickPulse,
-  .animate-subtleBeat {
+  .animate-subtleBeat,
+  .modal-enter,
+  .backdrop-enter,
+  .toast-slide-in,
+  .toast-slide-out,
+  .score-ring-animate,
+  .urgent-pulse {
     animation: none !important;
+  }
+  [style*="fadeSlideIn"] {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+  .sub-row-press:active {
+    transform: none !important;
   }
 }
 
