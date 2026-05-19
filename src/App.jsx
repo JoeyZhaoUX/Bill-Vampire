@@ -28,6 +28,7 @@ const PrintReport = lazy(() => import('./PrintReport'));
 const CancelScript = lazy(() => import('./components/CancelScript'));
 const SubscriptionHealth = lazy(() => import('./components/SubscriptionHealth'));
 const TrialTracker = lazy(() => import('./components/TrialTracker'));
+const AnnualAudit = lazy(() => import('./components/AnnualAudit'));
 
 const API_ENDPOINT = '/api/gemini';
 
@@ -43,6 +44,49 @@ const CURRENCIES = {
 const CATEGORY_KEYS = ['catEntertainment', 'catProductivity', 'catLifestyle', 'catOther'];
 const CATEGORY_VALUES = ['Entertainment', 'Productivity', 'Lifestyle', 'Other'];
 const CATEGORY_ICONS = { 'Entertainment': '\u{1F3AE}', 'Productivity': '⚡', 'Lifestyle': '\u{1F33F}', 'Other': '\u{1F4E6}' };
+
+// Price intelligence: avg monthly price + cheaper tier for popular US subscriptions
+const PRICE_INTEL = {
+  'Netflix': { avg: 15.49, low: 6.99, tier: 'Standard with Ads' },
+  'Spotify': { avg: 11.99, low: 0, tier: 'Free tier' },
+  'Spotify Family': { avg: 16.99, low: 11.99, tier: 'Duo plan' },
+  'Adobe Creative Cloud': { avg: 54.99, low: 22.99, tier: 'Photography plan' },
+  'Adobe': { avg: 54.99, low: 22.99, tier: 'Photography plan' },
+  'ChatGPT': { avg: 20, low: 0, tier: 'Free tier' },
+  'ChatGPT Plus': { avg: 20, low: 0, tier: 'Free tier' },
+  'Notion': { avg: 10, low: 0, tier: 'Free tier' },
+  'Disney+': { avg: 13.99, low: 7.99, tier: 'With Ads' },
+  'YouTube Premium': { avg: 13.99, low: 0, tier: 'Use free w/ ads' },
+  'Hulu': { avg: 17.99, low: 7.99, tier: 'With Ads' },
+  'iCloud+': { avg: 2.99, low: 0.99, tier: '50 GB' },
+  'Dropbox': { avg: 11.99, low: 0, tier: 'Free 2GB' },
+  'Figma': { avg: 15, low: 0, tier: 'Free (3 projects)' },
+  'Slack': { avg: 8.75, low: 0, tier: 'Free tier' },
+  'Zoom': { avg: 13.33, low: 0, tier: 'Free (40min)' },
+  'LinkedIn Premium': { avg: 29.99, low: 0, tier: 'Basic (free)' },
+  'Medium': { avg: 5, low: 0, tier: 'Free (3 articles/mo)' },
+  'Canva Pro': { avg: 12.99, low: 0, tier: 'Free tier' },
+  'Grammarly': { avg: 12, low: 0, tier: 'Free tier' },
+  'NordVPN': { avg: 12.99, low: 3.69, tier: '2-year plan' },
+  'Duolingo': { avg: 6.99, low: 0, tier: 'Free w/ ads' },
+  '1Password': { avg: 2.99, low: 0, tier: 'n/a' },
+  'Claude Pro': { avg: 20, low: 0, tier: 'Free tier' },
+  'Midjourney': { avg: 10, low: 10, tier: 'Basic plan' },
+  'GitHub Copilot': { avg: 10, low: 0, tier: 'Free tier' },
+  'HBO Max': { avg: 15.99, low: 9.99, tier: 'With Ads' },
+  'Max': { avg: 15.99, low: 9.99, tier: 'With Ads' },
+  'Amazon Prime': { avg: 14.99, low: 14.99, tier: 'Annual saves 17%' },
+  'Apple Music': { avg: 10.99, low: 5.99, tier: 'Voice plan' },
+  'Apple TV+': { avg: 9.99, low: 9.99, tier: 'n/a' },
+  'Paramount+': { avg: 11.99, low: 5.99, tier: 'Essential' },
+  'Peacock': { avg: 11.99, low: 5.99, tier: 'With Ads' },
+};
+
+function getPriceIntel(name) {
+  if (!name) return null;
+  const key = Object.keys(PRICE_INTEL).find(k => name.toLowerCase().includes(k.toLowerCase()));
+  return key ? PRICE_INTEL[key] : null;
+}
 
 // Merge subs handed off from the Patrol extension via a base64-encoded hash
 // fragment (see public/bridge.html or the popup's "Open full verdict" link).
@@ -684,6 +728,9 @@ export default function App({ onLegal, onGoToLanding }) {
                     const chargesSoon = daysUntilCharge !== null && daysUntilCharge <= 3 && daysUntilCharge > 0;
                     const priceUsd = (parseFloat(sub.price) || 0) * (CURRENCIES[sub.currency || 'USD']?.rate || 1);
                     const monthlyUsd = sub.cycle === 'yearly' ? priceUsd / 12 : priceUsd;
+                    const intel = getPriceIntel(sub.name);
+                    const overpaying = intel && monthlyUsd > intel.avg * 1.1;
+                    const saveable = intel && intel.low < monthlyUsd ? (monthlyUsd - intel.low) : 0;
                     return (
                     <div key={sub.id} className={`flex justify-between items-center p-4 rounded-2xl hover:bg-[#141420]/60 transition-all group cursor-pointer sub-row-press ${chargesSoon ? 'ring-1 ring-rose-800/30 bg-rose-950/10' : ''}`}
                       style={{ animation: `fadeSlideIn 0.3s ease both`, animationDelay: `${idx * 40}ms` }}
@@ -703,13 +750,19 @@ export default function App({ onLegal, onGoToLanding }) {
                                 · {chargesSoon ? '⚡' : ''}{lang === 'zh' ? `${daysUntilCharge}天后扣费` : `charges in ${daysUntilCharge}d`}
                               </span>
                             )}
+                            {intel && saveable > 0 && (
+                              <span className="text-emerald-500/80 font-medium">
+                                · Save ${saveable.toFixed(0)}/mo → {intel.tier}
+                              </span>
+                            )}
                           </div>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
                         <div className="text-right">
                           <span className="font-bold text-slate-200 text-lg">{CURRENCIES[sub.currency || 'USD']?.symbol}{sub.price}</span>
-                          {monthlyUsd >= 30 && <span className="block text-[10px] text-rose-500/70 font-medium">{lang === 'zh' ? '高额' : 'expensive'}</span>}
+                          {overpaying && <span className="block text-[10px] text-amber-500/80 font-medium">{lang === 'zh' ? '高于均价' : 'above avg'}</span>}
+                          {!overpaying && monthlyUsd >= 30 && <span className="block text-[10px] text-rose-500/70 font-medium">{lang === 'zh' ? '高额' : 'expensive'}</span>}
                         </div>
                         <button onClick={(e) => { e.stopPropagation(); deleteSub(sub.id); }} aria-label={`Remove ${sub.name}`} className="text-rose-700 hover:text-rose-400 opacity-0 group-hover:opacity-100 focus:opacity-100 transition-all p-1.5 cursor-pointer"><FontAwesomeIcon icon={faTrash} className="w-4 h-4" aria-hidden="true" /></button>
                       </div>
@@ -872,13 +925,55 @@ export default function App({ onLegal, onGoToLanding }) {
                         <div className="w-full h-px bg-emerald-800/30" />
                         <div className="flex justify-between items-center text-sm"><span className="text-slate-500">{_('savedYearly')}</span><span className="font-bold text-emerald-400">-{displayCurrency}{(monthlySaved * 12).toFixed(2)}</span></div>
                         <div className="mt-2 text-xs text-emerald-400/60">{cancelledSubs.length} {_('subsKilled')}</div>
+                        {/* Savings milestones */}
+                        {monthlySaved * 12 >= 100 && (
+                          <div className="mt-3 pt-3 border-t border-emerald-800/20">
+                            <p className="text-[10px] uppercase tracking-widest text-emerald-500/60 mb-2">{lang === 'zh' ? '相当于' : 'That\'s equal to'}</p>
+                            <div className="flex flex-wrap gap-2">
+                              {monthlySaved * 12 >= 100 && <span className="text-[10px] bg-emerald-950/40 border border-emerald-800/20 px-2 py-1 rounded-lg text-emerald-400">☕ {Math.floor(monthlySaved * 12 / 5)} coffees</span>}
+                              {monthlySaved * 12 >= 500 && <span className="text-[10px] bg-emerald-950/40 border border-emerald-800/20 px-2 py-1 rounded-lg text-emerald-400">✈️ {Math.floor(monthlySaved * 12 / 300)} flights</span>}
+                              {monthlySaved * 12 >= 1000 && <span className="text-[10px] bg-emerald-950/40 border border-emerald-800/20 px-2 py-1 rounded-lg text-emerald-400">💰 {Math.floor(monthlySaved * 12 / 1000)}k invested</span>}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     ) : (
                       <p className="text-sm text-slate-500 italic">{_('noSavingsYet')}</p>
                     )}
                   </div>
 
-                  {/* Tip jar */}
+                  {/* Category Insights */}
+                  <div className="bg-[#141420]/60 p-6 rounded-2xl border border-slate-800/30">
+                    <p className="text-sm font-bold text-slate-200 mb-4 flex items-center gap-2">📊 {lang === 'zh' ? '分类洞察' : 'Category Insights'}</p>
+                    {subscriptions.length > 0 ? (
+                      <div className="space-y-3">
+                        {(() => {
+                          const catCounts = {};
+                          subscriptions.forEach(s => { catCounts[s.category] = (catCounts[s.category] || 0) + 1; });
+                          const insights = [];
+                          Object.entries(catCounts).forEach(([cat, count]) => {
+                            if (count >= 3) insights.push({ text: lang === 'zh' ? `你有 ${count} 个${cat}类订阅 — 试着合并？` : `You have ${count} ${cat} subs — consolidate?`, type: 'warn' });
+                            else if (count >= 2) insights.push({ text: lang === 'zh' ? `${count} 个${cat}类订阅` : `${count} ${cat} subscriptions`, type: 'info' });
+                          });
+                          const totalPossibleSavings = subscriptions.reduce((sum, s) => {
+                            const intel = getPriceIntel(s.name);
+                            const mUsd = (parseFloat(s.price) || 0) * (CURRENCIES[s.currency || 'USD']?.rate || 1);
+                            return sum + (intel && intel.low < mUsd ? mUsd - intel.low : 0);
+                          }, 0);
+                          if (totalPossibleSavings > 5) insights.push({ text: lang === 'zh' ? `可能节省 $${totalPossibleSavings.toFixed(0)}/月 通过降级` : `Potential $${totalPossibleSavings.toFixed(0)}/mo savings by downgrading`, type: 'save' });
+                          if (insights.length === 0) insights.push({ text: lang === 'zh' ? '你的订阅组合看起来很健康' : 'Your subscription mix looks healthy', type: 'ok' });
+                          return insights.map((ins, i) => (
+                            <div key={i} className={`flex items-start gap-2.5 text-xs ${ins.type === 'warn' ? 'text-amber-400' : ins.type === 'save' ? 'text-emerald-400' : 'text-slate-500'}`}>
+                              <span className="mt-0.5">{ins.type === 'warn' ? '⚠️' : ins.type === 'save' ? '💡' : ins.type === 'ok' ? '✓' : '→'}</span>
+                              <span>{ins.text}</span>
+                            </div>
+                          ));
+                        })()}
+                      </div>
+                    ) : (
+                      <p className="text-sm text-slate-600 italic">{lang === 'zh' ? '添加订阅后查看洞察' : 'Add subscriptions to see insights'}</p>
+                    )}
+                  </div>
                   <div className="bg-gradient-to-r from-amber-950/30 to-rose-950/30 p-6 rounded-2xl border border-amber-800/20 print:hidden">
                     <p className="text-sm font-medium text-slate-300 mb-4 flex items-center gap-2"><FontAwesomeIcon icon={faHeart} className="w-4 h-4 text-rose-400" /> {_('tipTitle')}</p>
                     <button onClick={openTip}
@@ -895,6 +990,13 @@ export default function App({ onLegal, onGoToLanding }) {
                   </Suspense>
                   <Suspense fallback={null}>
                     <TrialTracker lang={lang} />
+                  </Suspense>
+                </div>
+
+                {/* Annual Audit — Pro feature */}
+                <div className="mt-5">
+                  <Suspense fallback={null}>
+                    <AnnualAudit subscriptions={subscriptions} cancelledSubs={cancelledSubs} lang={lang} />
                   </Suspense>
                 </div>
               </div>

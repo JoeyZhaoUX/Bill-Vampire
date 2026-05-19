@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rocket Money Alternative Without Bank Login | Bill Vampire</title>
+  <meta name="description" content="Need help with one subscription without connecting a bank account? Build a cancel/refund kit for a specific charge." />
+  <link rel="canonical" href="https://billvampire.com/tools/rocket-money-alternative-no-bank-login.html" />
+  <link rel="icon" href="/icons/icon.png" type="image/png" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { min-height: 100vh; background: #0B0B11; color: #CBD5E1; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 36px 20px 64px; }
+    nav { display: flex; align-items: center; gap: 12px; margin-bottom: 44px; }
+    nav img { width: 34px; height: 34px; border-radius: 9px; }
+    nav a { color: #64748B; text-decoration: none; font-size: 13px; }
+    h1 { color: #F8FAFC; font-size: clamp(34px, 6vw, 58px); line-height: 1.02; letter-spacing: -0.02em; margin-bottom: 18px; }
+    .lead { color: #94A3B8; font-size: 17px; line-height: 1.65; max-width: 620px; margin-bottom: 28px; }
+    .panel { background: linear-gradient(145deg, rgba(20,20,32,.95), rgba(13,13,21,.95)); border: 1px solid rgba(251,113,133,.22); border-radius: 20px; padding: 22px; box-shadow: 0 24px 80px rgba(0,0,0,.28); }
+    textarea { width: 100%; min-height: 150px; resize: vertical; background: #0B0B11; border: 1px solid #334155; border-radius: 14px; color: #F8FAFC; padding: 16px; font: inherit; line-height: 1.5; outline: none; }
+    textarea:focus { border-color: #FB7185; }
+    button { width: 100%; margin-top: 14px; border: 0; border-radius: 14px; padding: 15px 18px; color: white; font-weight: 800; background: linear-gradient(90deg, #F59E0B, #E11D48); cursor: pointer; }
+    table { width: 100%; border-collapse: collapse; margin-top: 28px; overflow: hidden; border-radius: 16px; }
+    th, td { border: 1px solid #1E293B; padding: 14px; text-align: left; font-size: 14px; line-height: 1.45; }
+    th { color: #F8FAFC; background: #141420; }
+    td { color: #94A3B8; background: #111827; }
+    .fine { color: #64748B; font-size: 12px; line-height: 1.5; margin-top: 14px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav>
+      <a href="/"><img src="/icons/icon.png" alt="Bill Vampire" /></a>
+      <a href="/tools/">Free tools</a>
+    </nav>
+    <h1>A Rocket Money alternative for one urgent charge.</h1>
+    <p class="lead">Rocket Money is useful when you want ongoing account-connected subscription management. Bill Vampire is for a narrower moment: one subscription charge, no bank login, and an immediate cancel/refund kit.</p>
+    <section class="panel">
+      <textarea id="input" placeholder="Example: I was charged by Grammarly for $139.95 annual renewal and want to cancel, request a refund, and set proof reminders."></textarea>
+      <button onclick="startKit()">Build my no-bank-login preview</button>
+      <p class="fine">The Emergency Kit is $4.99 after the free preview. It is consumer communication assistance, not legal or financial advice.</p>
+    </section>
+    <table>
+      <tr><th>Rocket Money style</th><th>Bill Vampire style</th></tr>
+      <tr><td>Ongoing account connection</td><td>No bank login for one charge</td></tr>
+      <tr><td>Subscription overview and concierge options</td><td>Cancel/refund scripts and evidence checklist</td></tr>
+      <tr><td>Best for recurring management</td><td>Best for trial surprise, renewal risk, hard cancel</td></tr>
+    </table>
+  </main>
+  <script>
+    function startKit() {
+      localStorage.setItem('vampire_issue_type', 'surprise_charge');
+      localStorage.setItem('vampire_tool_prefill', document.getElementById('input').value || '');
+      location.href = '/#scan';
+    }
+  </script>
+</body>
+</html>

@@ -13,6 +13,7 @@ const STORAGE_KEY_FIRST_SEEN = 'vampire_first_seen';
 const STORAGE_KEY_VERDICT_USED = 'vampire_free_verdict_used';
 
 const CREEM_PRO_URL = 'https://www.creem.io/payment/prod_1pw0aIvQW2CzNzfMLrgGAY';
+const CREEM_EMERGENCY_KIT_URL = import.meta.env.VITE_CREEM_EMERGENCY_KIT_URL || 'https://www.creem.io/payment/prod_5nLkYvnA8LPlZp49NvjXKZ';
 const CREEM_PATROL_MONTHLY_URL = 'https://www.creem.io/payment/prod_3l1JRnKrbMvuYiWez8JDGw';
 // Temporary fallback until a dedicated annual checkout product is configured in Creem.
 const CREEM_PATROL_ANNUAL_URL = 'https://www.creem.io/payment/prod_3l1JRnKrbMvuYiWez8JDGw';
@@ -20,13 +21,22 @@ const CREEM_TIP_URL = 'https://www.creem.io/payment/prod_4jHrSY5B9kBakNLmI1GuLw'
 
 export const PATROL_PRICE_MONTHLY = { amount: 4.99, label: '$4.99/mo', cycle: 'monthly' };
 export const PATROL_PRICE_ANNUAL = { amount: 39, label: '$39/yr', cycle: 'annual', monthlyEquivalent: 3.25 };
+export const EMERGENCY_KIT_PRICE = { amount: 4.99, label: '$4.99', tier: 'emergency_kit' };
 
 export function isPro() {
   return localStorage.getItem(STORAGE_KEY_PRO) === 'true';
 }
 
+export function isEmergencyKitUnlocked() {
+  return isPro() || localStorage.getItem('vampire_emergency_kit') === 'true';
+}
+
 export function activatePro() {
   localStorage.setItem(STORAGE_KEY_PRO, 'true');
+}
+
+export function activateEmergencyKit() {
+  localStorage.setItem('vampire_emergency_kit', 'true');
 }
 
 function readPatrolRecord() {
@@ -158,6 +168,25 @@ export function openCheckout(source = 'unknown') {
   window.open(getCheckoutUrl(source), '_blank');
 }
 
+function getEmergencyKitSuccessUrl() {
+  const base = window.location.origin + window.location.pathname;
+  return encodeURIComponent(base + '#emergency-kit-success');
+}
+
+export function getEmergencyKitCheckoutUrl(source = 'unknown') {
+  return `${CREEM_EMERGENCY_KIT_URL}?success_url=${getEmergencyKitSuccessUrl()}&ref=${encodeURIComponent(source)}`;
+}
+
+export function openEmergencyKitCheckout(source = 'unknown') {
+  track('emergency_kit_checkout_clicked', {
+    source,
+    price: EMERGENCY_KIT_PRICE.amount,
+    tier: EMERGENCY_KIT_PRICE.tier,
+    needs_product_url: CREEM_EMERGENCY_KIT_URL.includes('REPLACE_WITH'),
+  });
+  window.open(getEmergencyKitCheckoutUrl(source), '_blank');
+}
+
 function getPatrolSuccessUrl(tier) {
   const base = window.location.origin + window.location.pathname;
   return encodeURIComponent(`${base}#patrol-success-${tier}`);
@@ -181,6 +210,12 @@ export function checkPaymentSuccess() {
     activatePro();
     window.location.hash = '';
     track('checkout_succeeded');
+    return true;
+  }
+  if (hash === '#emergency-kit-success') {
+    activateEmergencyKit();
+    window.location.hash = '';
+    track('emergency_kit_checkout_succeeded');
     return true;
   }
   if (hash === '#patrol-success-patrol') {

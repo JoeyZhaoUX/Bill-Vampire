@@ -1,21 +1,52 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileImport, faSpinner, faCheck, faXmark, faWandMagicSparkles, faArrowRight, faPen } from '@fortawesome/free-solid-svg-icons';
+import {
+  faFileImport, faSpinner, faCheck, faXmark, faWandMagicSparkles,
+  faArrowRight, faPen, faMicrophone, faStop, faBolt,
+} from '@fortawesome/free-solid-svg-icons';
 import { extractBills } from './verdict';
-import { canSmartImport, markSmartImportUsed, isPro, getCurrentPrice, openCheckout } from '../pro';
+import { ISSUE_TYPES, getIssueType } from './emergencyKit';
+import {
+  canSmartImport, markSmartImportUsed, isPro, EMERGENCY_KIT_PRICE,
+  openEmergencyKitCheckout,
+} from '../pro';
 import { track } from '../analytics';
 import ZhBanner from '../ZhBanner';
 
 const ACCEPT = 'image/jpeg,image/png,image/webp,image/gif,application/pdf';
 
 export default function Scan({ onComplete, onSkipToManual }) {
-  const [text, setText] = useState('');
+  const [text, setText] = useState(() => (
+    typeof localStorage !== 'undefined' ? localStorage.getItem('vampire_tool_prefill') || '' : ''
+  ));
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState('');
   const [isExtracting, setIsExtracting] = useState(false);
+  const [issueType, setIssueType] = useState(() => (
+    typeof localStorage !== 'undefined'
+      ? localStorage.getItem('vampire_issue_type') || 'surprise_charge'
+      : 'surprise_charge'
+  ));
+  const [isListening, setIsListening] = useState(false);
+  const [speechSupported] = useState(() => (
+    typeof window !== 'undefined' && !!(window.SpeechRecognition || window.webkitSpeechRecognition)
+  ));
   const [error, setError] = useState('');
   const inputRef = useRef(null);
   const textareaRef = useRef(null);
+  const recognitionRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      try { recognitionRef.current?.stop(); } catch { /* ignore stop errors */ }
+    };
+  }, []);
+
+  const selectIssueType = (id) => {
+    setIssueType(id);
+    localStorage.setItem('vampire_issue_type', id);
+    track('scan_issue_selected', { issue_type: id });
+  };
 
   const handleFile = (f) => {
     if (!f) return;
@@ -33,7 +64,7 @@ export default function Scan({ onComplete, onSkipToManual }) {
   const run = async () => {
     if (!canSmartImport()) {
       track('scan_blocked_paywall');
-      openCheckout('scan_limit');
+      openEmergencyKitCheckout('scan_limit');
       return;
     }
     if (!text.trim() && !file) {
@@ -42,7 +73,7 @@ export default function Scan({ onComplete, onSkipToManual }) {
     }
     setIsExtracting(true);
     setError('');
-    track('scan_started', { has_text: !!text.trim(), has_file: !!file });
+    track('scan_started', { has_text: !!text.trim(), has_file: !!file, issue_type: issueType });
     const startedAt = Date.now();
     try {
       const bills = await extractBills({ text, file });
@@ -50,8 +81,9 @@ export default function Scan({ onComplete, onSkipToManual }) {
       const elapsed = Date.now() - startedAt;
       // Let the user feel the AI work for at least 1.8s — snap-fast reads as fake.
       if (elapsed < 1800) await new Promise(r => setTimeout(r, 1800 - elapsed));
-      track('scan_succeeded', { count: bills.length });
-      onComplete(bills);
+      localStorage.removeItem('vampire_tool_prefill');
+      track('scan_succeeded', { count: bills.length, issue_type: issueType });
+      onComplete(bills, { issueType, rawText: text });
     } catch (err) {
       track('scan_failed', { message: String(err?.message || err).slice(0, 120) });
       setError('The AI got confused. Try clearer text or a sharper screenshot.');
@@ -59,7 +91,49 @@ export default function Scan({ onComplete, onSkipToManual }) {
     }
   };
 
-  const price = getCurrentPrice();
+  const startVoice = () => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      setError('Voice input is not supported in this browser. You can still type or paste the bill.');
+      return;
+    }
+    try {
+      const recognition = new SpeechRecognition();
+      recognition.lang = 'en-US';
+      recognition.interimResults = true;
+      recognition.continuous = false;
+      recognition.onstart = () => {
+        setIsListening(true);
+        setError('');
+        track('voice_input_started', { issue_type: issueType });
+      };
+      recognition.onresult = (event) => {
+        const transcript = Array.from(event.results)
+          .map(result => result[0]?.transcript || '')
+          .join(' ')
+          .trim();
+        if (transcript) setText(transcript);
+      };
+      recognition.onerror = () => {
+        setError('Voice input stopped. Try again, or type the bill details.');
+        setIsListening(false);
+      };
+      recognition.onend = () => setIsListening(false);
+      recognitionRef.current = recognition;
+      recognition.start();
+    } catch {
+      setError('Voice input could not start. You can still type or paste the bill.');
+      setIsListening(false);
+    }
+  };
+
+  const stopVoice = () => {
+    try { recognitionRef.current?.stop(); } catch { /* ignore stop errors */ }
+    setIsListening(false);
+  };
+
+  const currentIssue = getIssueType(issueType);
+  const price = EMERGENCY_KIT_PRICE;
   const scanBlocked = !isPro() && !canSmartImport();
 
   return (
@@ -83,17 +157,29 @@ export default function Scan({ onComplete, onSkipToManual }) {
       <main className="relative z-10 flex-1 flex items-center justify-center px-6 py-12">
         <div className="w-full max-w-2xl">
           <div className="text-center mb-10">
-            <span className="inline-block text-[10px] font-bold text-rose-400 uppercase tracking-[0.2em] mb-4">Step 1 of 3 — Scan</span>
+            <span className="inline-block text-[10px] font-bold text-rose-400 uppercase tracking-[0.2em] mb-4">Step 1 of 3 — Pick the emergency</span>
             <h1 className="font-gothic text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-5">
-              Drop any bill.<br />
+              Stop the next charge.<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-rose-600">
-                We'll find every vampire hiding in it.
+                Build a cancel and refund kit.
               </span>
             </h1>
             <p className="text-sm text-slate-400 max-w-lg mx-auto leading-relaxed">
-              Credit-card statement PDF, Apple subscription email, bank export, screenshot of your iPhone's Subscriptions screen — anything.
-              The AI reads it, pulls out every recurring charge, and hands you a verdict.
+              Choose the situation, paste a billing email or say it out loud. Bill Vampire extracts the service and gives you the first move before you pay.
             </p>
+          </div>
+
+          <div className="grid sm:grid-cols-3 gap-3 mb-5">
+            {ISSUE_TYPES.map(issue => (
+              <button key={issue.id} onClick={() => selectIssueType(issue.id)}
+                className={`text-left rounded-2xl border p-4 transition-all cursor-pointer ${issueType === issue.id ? 'bg-rose-950/40 border-rose-600/50 shadow-lg shadow-rose-950/20' : 'bg-[#141420]/60 border-slate-800/50 hover:border-slate-700'}`}>
+                <div className="flex items-center gap-2 mb-2">
+                  <FontAwesomeIcon icon={faBolt} className={`w-3.5 h-3.5 ${issueType === issue.id ? 'text-rose-300' : 'text-slate-600'}`} />
+                  <p className="text-sm font-semibold text-slate-100">{issue.title}</p>
+                </div>
+                <p className="text-[11px] text-slate-500 leading-relaxed">{issue.headline}</p>
+              </button>
+            ))}
           </div>
 
           <div
@@ -128,7 +214,7 @@ export default function Scan({ onComplete, onSkipToManual }) {
 
             <div className="flex items-center gap-3 mb-5">
               <div className="flex-1 h-px bg-slate-800/50" />
-              <span className="text-[9px] text-slate-600 uppercase tracking-[0.2em]">or paste text</span>
+              <span className="text-[9px] text-slate-600 uppercase tracking-[0.2em]">or paste / speak</span>
               <div className="flex-1 h-px bg-slate-800/50" />
             </div>
 
@@ -136,9 +222,22 @@ export default function Scan({ onComplete, onSkipToManual }) {
               ref={textareaRef}
               value={text}
               onChange={e => setText(e.target.value)}
-              placeholder="Paste your billing email, SMS notification, or credit-card statement here…"
+              placeholder={currentIssue.prompt}
               className="w-full bg-[#1C1C2A] rounded-xl border border-slate-700/50 px-4 py-3 text-sm text-slate-200 placeholder-slate-600 outline-none resize-none h-28 focus:border-rose-700/50 transition-colors"
             />
+
+            <div className="mt-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <p className="text-[11px] text-slate-600">
+                Example: "I started a Canva trial and it renews next Tuesday for $119."
+              </p>
+              <button type="button"
+                onClick={isListening ? stopVoice : startVoice}
+                disabled={!speechSupported}
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-colors ${speechSupported ? 'cursor-pointer' : 'cursor-not-allowed opacity-50'} ${isListening ? 'bg-rose-600 text-white' : 'bg-[#0D0D15] border border-slate-800/70 text-slate-300 hover:bg-[#1C1C2A]'}`}>
+                <FontAwesomeIcon icon={isListening ? faStop : faMicrophone} className="w-3 h-3" />
+                {isListening ? 'Stop listening' : 'Speak it'}
+              </button>
+            </div>
 
             {error && (
               <p className="text-xs text-rose-400 mt-3 text-center">{error}</p>
@@ -147,11 +246,11 @@ export default function Scan({ onComplete, onSkipToManual }) {
             {scanBlocked && (
               <div className="mt-5 bg-amber-950/30 border border-amber-700/30 rounded-2xl p-4 text-center">
                 <p className="text-xs text-amber-200 mb-3">
-                  You've used your free parse. Pro unlocks unlimited bill parsing + the full Verdict — <strong>{price.label} one-time</strong>. Judge every subscription you've ever signed for.
+                  You've used your free parse. Unlock the Vampire Emergency Kit for <strong>{price.label}</strong>: refund script, cancel path, chargeback checklist, and reminder copy.
                 </p>
-                <button onClick={() => openCheckout('scan_limit')}
+                <button onClick={() => openEmergencyKitCheckout('scan_limit')}
                   className="px-6 py-2.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all cursor-pointer">
-                  Get the Verdict — {price.label}
+                  Unlock Emergency Kit — {price.label}
                 </button>
               </div>
             )}
@@ -168,7 +267,7 @@ export default function Scan({ onComplete, onSkipToManual }) {
               ) : (
                 <>
                   <FontAwesomeIcon icon={faWandMagicSparkles} className="w-4 h-4" />
-                  Deliver my verdict
+                  Build my free preview
                   <FontAwesomeIcon icon={faArrowRight} className="w-3.5 h-3.5" />
                 </>
               )}

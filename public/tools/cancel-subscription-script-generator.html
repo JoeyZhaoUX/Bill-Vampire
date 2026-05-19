@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cancel Subscription Script Generator | Bill Vampire</title>
+  <meta name="description" content="Generate a cancel email and support chat script for a hard-to-cancel subscription. No bank login required." />
+  <link rel="canonical" href="https://billvampire.com/tools/cancel-subscription-script-generator.html" />
+  <link rel="icon" href="/icons/icon.png" type="image/png" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { min-height: 100vh; background: #0B0B11; color: #CBD5E1; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 36px 20px 64px; }
+    nav { display: flex; align-items: center; gap: 12px; margin-bottom: 44px; }
+    nav img { width: 34px; height: 34px; border-radius: 9px; }
+    nav a { color: #64748B; text-decoration: none; font-size: 13px; }
+    h1 { color: #F8FAFC; font-size: clamp(34px, 6vw, 58px); line-height: 1.02; letter-spacing: -0.02em; margin-bottom: 18px; }
+    .lead { color: #94A3B8; font-size: 17px; line-height: 1.65; max-width: 620px; margin-bottom: 28px; }
+    .panel { background: linear-gradient(145deg, rgba(20,20,32,.95), rgba(13,13,21,.95)); border: 1px solid rgba(251,113,133,.22); border-radius: 20px; padding: 22px; box-shadow: 0 24px 80px rgba(0,0,0,.28); }
+    textarea { width: 100%; min-height: 150px; resize: vertical; background: #0B0B11; border: 1px solid #334155; border-radius: 14px; color: #F8FAFC; padding: 16px; font: inherit; line-height: 1.5; outline: none; }
+    textarea:focus { border-color: #FB7185; }
+    button { width: 100%; margin-top: 14px; border: 0; border-radius: 14px; padding: 15px 18px; color: white; font-weight: 800; background: linear-gradient(90deg, #F59E0B, #E11D48); cursor: pointer; }
+    .grid { display: grid; gap: 14px; margin-top: 26px; }
+    .item { border: 1px solid #1E293B; background: #111827; border-radius: 16px; padding: 16px; }
+    .item b { display: block; color: #F8FAFC; margin-bottom: 6px; }
+    .fine { color: #64748B; font-size: 12px; line-height: 1.5; margin-top: 14px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav>
+      <a href="/"><img src="/icons/icon.png" alt="Bill Vampire" /></a>
+      <a href="/tools/">Free tools</a>
+    </nav>
+    <h1>Subscription hard to cancel?</h1>
+    <p class="lead">Describe the service, amount, and what blocks you. Bill Vampire will open a free preview and then offer a $4.99 Emergency Kit with cancel email, support chat, and proof checklist.</p>
+    <section class="panel">
+      <textarea id="input" placeholder="Example: Adobe charges $54.99/month and keeps showing plan-change screens instead of cancel. I want a firm support script and proof checklist."></textarea>
+      <button onclick="startKit()">Build my cancel script preview</button>
+      <p class="fine">Use the script as a starting point for customer support. Keep screenshots and confirmation numbers.</p>
+    </section>
+    <div class="grid">
+      <div class="item"><b>Best for</b>Hidden cancel pages, retention loops, email-only cancellation, unclear billing descriptors, or services that keep billing after cancellation.</div>
+      <div class="item"><b>Free preview</b>Detected service, amount, next risk, and known cancel link when available.</div>
+      <div class="item"><b>Paid kit</b>Refund/cancel copy, support chat phrasing, chargeback checklist, and reminder text.</div>
+    </div>
+  </main>
+  <script>
+    function startKit() {
+      localStorage.setItem('vampire_issue_type', 'hard_cancel');
+      localStorage.setItem('vampire_tool_prefill', document.getElementById('input').value || '');
+      location.href = '/#scan';
+    }
+  </script>
+</body>
+</html>

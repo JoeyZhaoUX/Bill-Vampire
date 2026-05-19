@@ -6,9 +6,10 @@ import {
   generateVerdict, reportVerdictToStats,
 } from './verdict';
 import {
-  isPro, canAiRoast, incrementAiUsage, openCheckout, getCurrentPrice,
-  isPatrol,
+  isPro, canAiRoast, incrementAiUsage,
+  isPatrol, isEmergencyKitUnlocked, openEmergencyKitCheckout, EMERGENCY_KIT_PRICE,
 } from '../pro';
+import { generateEmergencyKit } from './emergencyKit';
 import { track } from '../analytics';
 import ZhBanner from '../ZhBanner';
 
@@ -45,9 +46,17 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
   const [phase, setPhase] = useState('monthly');
   const [verdict, setVerdict] = useState(null);
   const [verdictError, setVerdictError] = useState('');
+  const [copied, setCopied] = useState('');
 
   const monthlyAnim = useDigitRoll(monthly, 1400, true);
   const tenYearAnim = useDigitRoll(tenYear, 2200, phase !== 'monthly');
+  const issueType = useMemo(() => (
+    typeof localStorage !== 'undefined' ? localStorage.getItem('vampire_issue_type') || 'surprise_charge' : 'surprise_charge'
+  ), []);
+  const rawText = useMemo(() => (
+    typeof localStorage !== 'undefined' ? localStorage.getItem('vampire_last_raw_input') || '' : ''
+  ), []);
+  const emergencyKit = useMemo(() => generateEmergencyKit({ subscriptions, issueType, rawText }), [subscriptions, issueType, rawText]);
 
   useEffect(() => {
     const t1 = setTimeout(() => setPhase('tenyear'), 1600);
@@ -88,14 +97,62 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
   }, []);
 
   const pro = isPro();
-  const price = getCurrentPrice();
+  const kitUnlocked = isEmergencyKitUnlocked();
 
   useEffect(() => {
     if (!pro) {
-      track('paywall_seen', { ten_year_usd: Math.round(tenYear) });
+      track('kit_preview_seen', {
+        ten_year_usd: Math.round(tenYear),
+        issue_type: issueType,
+        service: emergencyKit.service,
+      });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const copyText = async (label, text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(label);
+      track('kit_text_copied', { label, issue_type: issueType });
+      setTimeout(() => setCopied(''), 1800);
+    } catch {
+      setCopied('');
+    }
+  };
+
+  const downloadKit = () => {
+    const lines = [
+      `Bill Vampire Emergency Kit: ${emergencyKit.service}`,
+      '',
+      emergencyKit.riskLine,
+      '',
+      'Cancel script:',
+      emergencyKit.cancelScript,
+      '',
+      'Refund script:',
+      emergencyKit.refundScript,
+      '',
+      'Support chat script:',
+      emergencyKit.chatScript,
+      '',
+      'Chargeback checklist:',
+      ...emergencyKit.chargebackChecklist.map(i => `- ${i}`),
+      '',
+      'Evidence checklist:',
+      ...emergencyKit.evidenceChecklist.map(i => `- ${i}`),
+      '',
+      emergencyKit.disclaimer,
+    ].join('\n');
+    const blob = new Blob([lines], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `bill-vampire-${emergencyKit.service.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}-emergency-kit.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+    track('kit_downloaded', { issue_type: issueType });
+  };
 
   return (
     <div className="min-h-screen bg-[#0B0B11] text-slate-100 relative overflow-hidden">
@@ -110,7 +167,7 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
           <img src={`${import.meta.env.BASE_URL}icons/icon.png`} alt="Bill Vampire" className="w-8 h-8 rounded-lg" />
           <span className="font-gothic text-sm font-bold tracking-wider">Bill Vampire</span>
         </div>
-        <span className="text-[10px] font-bold text-rose-400 uppercase tracking-[0.2em]">Step 2 of 3 — The Verdict</span>
+        <span className="text-[10px] font-bold text-rose-400 uppercase tracking-[0.2em]">Step 2 of 3 — Emergency Kit</span>
       </header>
 
       <main className="relative z-10 max-w-3xl mx-auto px-6 pb-16">
@@ -138,21 +195,21 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
             ) : (
               <div className="relative">
                 <div className="font-gothic text-6xl sm:text-7xl lg:text-8xl font-black text-rose-500/20 tabular-nums leading-none mb-4 blur-lg select-none pointer-events-none" aria-hidden>
-                  $??,???
+                  {formatUsd(tenYear, 0)}
                 </div>
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <div className="absolute inset-0 flex flex-col items-center justify-center px-2">
                   <div className="inline-flex w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-rose-500 items-center justify-center mb-4 shadow-lg shadow-rose-900/30">
                     <FontAwesomeIcon icon={faLock} className="w-6 h-6 text-white" />
                   </div>
-                  <p className="text-base font-semibold text-slate-100 mb-2">The real number is worse than you think.</p>
+                  <p className="text-base font-semibold text-slate-100 mb-2">The real fix is action, not another chart.</p>
                   <p className="text-xs text-slate-400 mb-5 max-w-sm mx-auto leading-relaxed">
-                    Unlock the full 10-year verdict: the real total, the leaderboard of shame, and 5 AI roasts that'll make you cancel on the spot.
-                    <strong className="text-amber-300"> {price.label} one-time.</strong>
+                    Your decade number is the warning. The Emergency Kit gives you the refund script, cancel path, chargeback checklist, and reminder copy.
+                    <strong className="text-amber-300"> {EMERGENCY_KIT_PRICE.label} one-time.</strong>
                   </p>
-                  <button onClick={() => openCheckout('ten_year_paywall')}
+                  <button onClick={() => openEmergencyKitCheckout('ten_year_paywall')}
                     className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-sm font-bold rounded-2xl hover:brightness-110 transition-all shadow-lg shadow-rose-900/30 cursor-pointer">
                     <FontAwesomeIcon icon={faCrown} className="w-4 h-4" />
-                    See the damage — {price.label}
+                    Unlock the kit — {EMERGENCY_KIT_PRICE.label}
                   </button>
                 </div>
               </div>
@@ -161,6 +218,15 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
         </div>
 
         <div className={`transition-opacity duration-700 ${phase === 'roasts' ? 'opacity-100' : 'opacity-0'}`}>
+
+          <EmergencyKitSection
+            kit={emergencyKit}
+            unlocked={kitUnlocked}
+            copied={copied}
+            onCopy={copyText}
+            onDownload={downloadKit}
+            onUnlock={() => openEmergencyKitCheckout('kit_paywall')}
+          />
 
           {pro && (
             <>
@@ -193,7 +259,7 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
                 {!verdict && !verdictError && (
                   <div className="flex items-center gap-2 text-sm text-slate-500">
                     <FontAwesomeIcon icon={faSpinner} className="w-4 h-4 animate-spin text-rose-400" />
-                    The vampire is composing your roast…
+                    The vampire is writing the optional roast…
                   </div>
                 )}
                 {verdictError && (
@@ -252,6 +318,115 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
           </section>
         </div>
       </main>
+    </div>
+  );
+}
+
+function EmergencyKitSection({ kit, unlocked, copied, onCopy, onDownload, onUnlock }) {
+  return (
+    <section className="py-10 border-t border-slate-800/40">
+      <div className="bg-gradient-to-br from-amber-950/30 via-rose-950/20 to-violet-950/20 rounded-3xl border border-amber-800/30 p-5 sm:p-6">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-5">
+          <div>
+            <p className="text-[10px] font-bold text-amber-300 uppercase tracking-[0.2em] mb-2">Vampire Emergency Kit</p>
+            <h2 className="text-2xl font-bold text-slate-100 leading-tight">{kit.service}</h2>
+            <p className="text-sm text-slate-400 mt-2 max-w-xl">{kit.riskLine}</p>
+          </div>
+          <div className="shrink-0 text-left sm:text-right">
+            <p className="text-[10px] text-slate-600 uppercase tracking-widest">Detected amount</p>
+            <p className="text-2xl font-black text-rose-400 tabular-nums">{kit.amount}</p>
+          </div>
+        </div>
+
+        <div className="grid sm:grid-cols-3 gap-3 mb-5">
+          {kit.previewSteps.map((step, i) => (
+            <div key={step} className="bg-[#0B0B11]/50 rounded-2xl border border-slate-800/50 p-4">
+              <p className="text-[10px] text-rose-400 font-bold uppercase tracking-widest mb-2">Move {i + 1}</p>
+              <p className="text-xs text-slate-300 leading-relaxed">{step}</p>
+            </div>
+          ))}
+        </div>
+
+        {kit.cancelUrl && (
+          <a href={kit.cancelUrl} target="_blank" rel="noopener noreferrer"
+            onClick={() => track('kit_cancel_link_clicked', { service: kit.service })}
+            className="mb-5 flex items-center justify-between gap-3 bg-[#0B0B11]/60 border border-emerald-800/30 rounded-2xl px-4 py-3 no-underline hover:border-emerald-600/50 transition-colors">
+            <div>
+              <p className="text-sm font-semibold text-emerald-300">Open known cancel page</p>
+              <p className="text-[11px] text-slate-500 truncate">{kit.cancelUrl}</p>
+            </div>
+            <FontAwesomeIcon icon={faArrowRight} className="w-3.5 h-3.5 text-emerald-300 shrink-0" />
+          </a>
+        )}
+
+        {!unlocked ? (
+          <div className="rounded-2xl border border-amber-700/30 bg-[#0B0B11]/70 p-5 text-center">
+            <FontAwesomeIcon icon={faLock} className="w-5 h-5 text-amber-300 mb-3" />
+            <p className="text-sm font-semibold text-slate-100 mb-2">Unlock the full cancel/refund kit for {EMERGENCY_KIT_PRICE.label}</p>
+            <p className="text-xs text-slate-400 max-w-lg mx-auto mb-4 leading-relaxed">
+              Includes refund email, support chat script, chargeback checklist, evidence checklist, and downloadable action plan. If it helps avoid one $19.99 renewal, it pays for itself 4x.
+            </p>
+            <button onClick={onUnlock}
+              className="inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-sm font-bold rounded-2xl hover:brightness-110 transition-all cursor-pointer">
+              <FontAwesomeIcon icon={faCrown} className="w-4 h-4" />
+              Unlock Emergency Kit — {EMERGENCY_KIT_PRICE.label}
+            </button>
+            <p className="text-[10px] text-slate-600 mt-3">{kit.disclaimer}</p>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {[
+              ['Refund email', kit.refundScript],
+              ['Cancel email', kit.cancelScript],
+              ['Support chat script', kit.chatScript],
+            ].map(([label, text]) => (
+              <div key={label} className="bg-[#0B0B11]/60 rounded-2xl border border-slate-800/50 p-4">
+                <div className="flex items-center justify-between gap-3 mb-3">
+                  <p className="text-sm font-semibold text-slate-100">{label}</p>
+                  <button onClick={() => onCopy(label, text)}
+                    className="px-3 py-1.5 rounded-lg bg-[#1C1C2A] text-[11px] font-semibold text-slate-300 hover:bg-[#252536] transition-colors cursor-pointer">
+                    {copied === label ? 'Copied' : 'Copy'}
+                  </button>
+                </div>
+                <p className="text-xs text-slate-400 leading-relaxed whitespace-pre-wrap">{text}</p>
+              </div>
+            ))}
+
+            <div className="grid sm:grid-cols-2 gap-4">
+              <Checklist title="Chargeback checklist" items={kit.chargebackChecklist} />
+              <Checklist title="Evidence checklist" items={kit.evidenceChecklist} />
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button onClick={() => onCopy('Reminder', kit.reminderText)}
+                className="flex-1 py-3 bg-[#141420] hover:bg-[#1C1C2A] rounded-2xl text-sm font-semibold text-slate-200 border border-slate-800/50 transition-colors cursor-pointer">
+                {copied === 'Reminder' ? 'Reminder copied' : 'Copy reminder text'}
+              </button>
+              <button onClick={onDownload}
+                className="flex-1 py-3 bg-rose-600 hover:bg-rose-500 rounded-2xl text-sm font-semibold text-white shadow-lg shadow-rose-900/30 transition-colors cursor-pointer">
+                Download kit
+              </button>
+            </div>
+            <p className="text-[10px] text-slate-600 text-center">{kit.disclaimer}</p>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function Checklist({ title, items }) {
+  return (
+    <div className="bg-[#0B0B11]/60 rounded-2xl border border-slate-800/50 p-4">
+      <p className="text-sm font-semibold text-slate-100 mb-3">{title}</p>
+      <ul className="space-y-2">
+        {items.map(item => (
+          <li key={item} className="flex gap-2 text-xs text-slate-400 leading-relaxed">
+            <span className="text-emerald-400 mt-0.5">✓</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

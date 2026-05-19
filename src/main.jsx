@@ -58,8 +58,13 @@ function Root() {
     return () => window.removeEventListener('hashchange', onHash);
   }, []);
 
-  const startOnboarding = () => {
-    track('onboarding_started');
+  const startOnboarding = (source = 'default') => {
+    const issueType = source === 'trial_ending' ? 'trial_ending'
+      : source === 'hard_cancel' ? 'hard_cancel'
+      : source === 'surprise_charge' ? 'surprise_charge'
+      : localStorage.getItem('vampire_issue_type') || 'surprise_charge';
+    localStorage.setItem('vampire_issue_type', issueType);
+    track('onboarding_started', { source, issue_type: issueType });
     window.location.hash = 'scan';
     setView('scan');
   };
@@ -91,19 +96,15 @@ function Root() {
     setView(localStorage.getItem('vampire_visited') ? 'app' : 'landing');
   };
 
-  const handleScanComplete = (bills) => {
+  const handleScanComplete = (bills, meta = {}) => {
     const existing = loadSubsFromStorage();
     const merged = [...existing, ...bills];
     saveSubsToStorage(merged);
     setOnboardingSubs(merged);
-    const alreadyHasEmail = localStorage.getItem('vampire_email');
-    if (alreadyHasEmail) {
-      window.location.hash = 'verdict';
-      setView('verdict');
-    } else {
-      window.location.hash = 'email-gate';
-      setView('email-gate');
-    }
+    if (meta.issueType) localStorage.setItem('vampire_issue_type', meta.issueType);
+    if (meta.rawText) localStorage.setItem('vampire_last_raw_input', meta.rawText.slice(0, 4000));
+    window.location.hash = 'verdict';
+    setView('verdict');
     window.scrollTo(0, 0);
   };
 
