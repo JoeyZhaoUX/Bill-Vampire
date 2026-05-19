@@ -192,7 +192,7 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B0B11] text-slate-100 relative overflow-hidden">
+    <div className="bv-brutal min-h-screen bg-[#0B0B11] text-slate-100 relative overflow-hidden">
       <ZhBanner />
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[140%] h-[60%] pointer-events-none"

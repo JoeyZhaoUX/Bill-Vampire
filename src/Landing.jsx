@@ -233,7 +233,7 @@ export default function Landing({ onEnterApp, onLegal }) {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0B0B11] text-slate-100 overflow-x-hidden">
+    <div className="bv-brutal min-h-screen bg-[#0B0B11] text-slate-100 overflow-x-hidden">
 
       <ZhBanner onEnterApp={() => handleEnter('zh_banner')} />
 

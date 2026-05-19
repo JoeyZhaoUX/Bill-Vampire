@@ -137,7 +137,7 @@ export default function Scan({ onComplete, onSkipToManual }) {
   const scanBlocked = !isPro() && !canSmartImport();
 
   return (
-    <div className="min-h-screen bg-[#0B0B11] text-slate-100 flex flex-col">
+    <div className="bv-brutal min-h-screen bg-[#0B0B11] text-slate-100 flex flex-col">
       <ZhBanner />
       <div className="absolute top-0 left-[10%] w-80 h-80 bg-rose-900/20 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute top-40 right-[5%] w-96 h-96 bg-violet-900/15 rounded-full blur-[140px] pointer-events-none" />

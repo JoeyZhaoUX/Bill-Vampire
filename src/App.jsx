@@ -493,7 +493,7 @@ export default function App({ onLegal, onGoToLanding }) {
 
   return (
     <>
-    <div className="app-screen min-h-screen bg-gothic-pattern">
+    <div className="app-screen bv-brutal min-h-screen bg-gothic-pattern">
       {notifPromptShown && (
         <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[80] max-w-md w-[calc(100%-2rem)] bg-[#141420] border border-rose-700/40 rounded-2xl p-4 shadow-2xl shadow-rose-900/30">
           <div className="flex items-start gap-3">
