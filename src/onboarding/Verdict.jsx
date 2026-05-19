@@ -210,23 +210,25 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
       <main className="relative z-10 max-w-3xl mx-auto px-6 pb-16">
 
         <section className="py-12 text-center">
-          <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-[0.25em] mb-4">You are bleeding</p>
+          <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-[0.25em] mb-4">Current emergency</p>
           <div className="font-gothic text-5xl sm:text-6xl font-black text-rose-500 tabular-nums mb-2">
-            {formatUsd(monthlyAnim, 2)}
+            {emergencyKit.amount}
           </div>
-          <p className="text-sm text-slate-500">per month — every month — on subscriptions</p>
+          <p className="text-sm text-slate-300 font-semibold">{emergencyKit.service}</p>
+          <p className="text-sm text-slate-500 max-w-lg mx-auto mt-2 leading-relaxed">{emergencyKit.riskLine}</p>
+          <p className="text-[11px] text-slate-700 mt-3">Detected recurring total: {formatUsd(monthlyAnim, 2)}/mo</p>
         </section>
 
         <div className={`transition-opacity duration-700 ${phase !== 'monthly' ? 'opacity-100' : 'opacity-0'}`}>
           <section className="py-10 border-t border-slate-800/40 text-center">
-            <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-[0.25em] mb-4">Over 10 years, that's</p>
+            <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-[0.25em] mb-4">If nothing changes, long-term exposure can become</p>
             {pro ? (
               <>
                 <div className="font-gothic text-6xl sm:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-br from-rose-400 via-rose-500 to-rose-700 tabular-nums leading-none mb-4">
                   {formatUsd(tenYearAnim, 0)}
                 </div>
                 <p className="text-sm text-slate-400 max-w-md mx-auto">
-                  That's a car. A year of rent. A down-payment on a house. You're paying it in $12 monthly slices.
+                  The useful question is not the chart. It is whether you cancel, refund, or document this charge today.
                 </p>
               </>
             ) : (
