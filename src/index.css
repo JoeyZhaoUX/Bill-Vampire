@@ -670,6 +670,36 @@ textarea:focus-visible {
   background: var(--bv-panel-2) !important;
 }
 
+.bv-brutal button.bg-rose-600,
+.bv-brutal a.bg-rose-600,
+.bv-brutal button[class*="from-amber-500"],
+.bv-brutal a[class*="from-amber-500"],
+.bv-brutal button[class*="from-violet-500"],
+.bv-brutal a[class*="from-violet-500"],
+.bv-brutal button[class*="to-rose-500"],
+.bv-brutal a[class*="to-rose-500"] {
+  background: var(--bv-peach) !important;
+  color: #14110f !important;
+}
+
+.bv-brutal button.bg-rose-600 *,
+.bv-brutal a.bg-rose-600 *,
+.bv-brutal button[class*="from-amber-500"] *,
+.bv-brutal a[class*="from-amber-500"] *,
+.bv-brutal button[class*="from-violet-500"] *,
+.bv-brutal a[class*="from-violet-500"] * {
+  color: #14110f !important;
+}
+
+.bv-brutal button.bg-gradient-to-r.from-amber-500.to-rose-500,
+.bv-brutal a.bg-gradient-to-r.from-amber-500.to-rose-500,
+.bv-brutal button.bg-gradient-to-r.from-violet-500.to-rose-500,
+.bv-brutal a.bg-gradient-to-r.from-violet-500.to-rose-500 {
+  background-color: var(--bv-peach) !important;
+  background-image: none !important;
+  color: #14110f !important;
+}
+
 .bv-brutal .border-rose-800\/30,
 .bv-brutal .border-violet-800\/30,
 .bv-brutal .border-amber-700\/30,
