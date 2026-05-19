@@ -47,6 +47,9 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
   const [verdict, setVerdict] = useState(null);
   const [verdictError, setVerdictError] = useState('');
   const [copied, setCopied] = useState('');
+  const [paymentSuccess, setPaymentSuccess] = useState(() => (
+    typeof localStorage !== 'undefined' && localStorage.getItem('vampire_payment_success_type') === 'emergency_kit'
+  ));
 
   const monthlyAnim = useDigitRoll(monthly, 1400, true);
   const tenYearAnim = useDigitRoll(tenYear, 2200, phase !== 'monthly');
@@ -63,6 +66,11 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
     const t2 = setTimeout(() => setPhase('roasts'), 4200);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
+
+  useEffect(() => {
+    if (!paymentSuccess) return;
+    localStorage.removeItem('vampire_payment_success_type');
+  }, [paymentSuccess]);
 
   useEffect(() => {
     track('verdict_rendered', {
@@ -154,6 +162,35 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
     track('kit_downloaded', { issue_type: issueType });
   };
 
+  const downloadReminder = () => {
+    const start = parseReminderDate(emergencyKit.renewalDate);
+    const end = new Date(start.getTime() + 30 * 60 * 1000);
+    const title = `Cancel ${emergencyKit.service}`;
+    const description = `${emergencyKit.reminderText}. ${emergencyKit.disclaimer}`;
+    const ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Bill Vampire//Emergency Kit//EN',
+      'BEGIN:VEVENT',
+      `UID:${Date.now()}@billvampire.com`,
+      `DTSTAMP:${toIcsDate(new Date())}`,
+      `DTSTART:${toIcsDate(start)}`,
+      `DTEND:${toIcsDate(end)}`,
+      `SUMMARY:${escapeIcs(title)}`,
+      `DESCRIPTION:${escapeIcs(description)}`,
+      'END:VEVENT',
+      'END:VCALENDAR',
+    ].join('\r\n');
+    const blob = new Blob([ics], { type: 'text/calendar' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `bill-vampire-${emergencyKit.service.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}-reminder.ics`;
+    a.click();
+    URL.revokeObjectURL(url);
+    track('kit_calendar_downloaded', { issue_type: issueType });
+  };
+
   return (
     <div className="min-h-screen bg-[#0B0B11] text-slate-100 relative overflow-hidden">
       <ZhBanner />
@@ -225,7 +262,10 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
             copied={copied}
             onCopy={copyText}
             onDownload={downloadKit}
+            onReminderDownload={downloadReminder}
             onUnlock={() => openEmergencyKitCheckout('kit_paywall')}
+            paymentSuccess={paymentSuccess}
+            onDismissSuccess={() => setPaymentSuccess(false)}
           />
 
           {pro && (
@@ -322,10 +362,48 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
   );
 }
 
-function EmergencyKitSection({ kit, unlocked, copied, onCopy, onDownload, onUnlock }) {
+function parseReminderDate(label) {
+  if (!label || label === 'the next renewal date') {
+    const fallback = new Date();
+    fallback.setDate(fallback.getDate() + 1);
+    fallback.setHours(9, 0, 0, 0);
+    return fallback;
+  }
+  const parsed = new Date(label);
+  if (Number.isNaN(parsed.getTime())) {
+    const fallback = new Date();
+    fallback.setDate(fallback.getDate() + 1);
+    fallback.setHours(9, 0, 0, 0);
+    return fallback;
+  }
+  parsed.setHours(9, 0, 0, 0);
+  return parsed;
+}
+
+function toIcsDate(date) {
+  return date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
+}
+
+function escapeIcs(value) {
+  return String(value).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
+}
+
+function EmergencyKitSection({ kit, unlocked, copied, onCopy, onDownload, onReminderDownload, onUnlock, paymentSuccess, onDismissSuccess }) {
   return (
     <section className="py-10 border-t border-slate-800/40">
       <div className="bg-gradient-to-br from-amber-950/30 via-rose-950/20 to-violet-950/20 rounded-3xl border border-amber-800/30 p-5 sm:p-6">
+        {paymentSuccess && (
+          <div className="mb-5 rounded-2xl border border-emerald-700/40 bg-emerald-950/30 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div>
+              <p className="text-sm font-semibold text-emerald-200">Emergency Kit unlocked</p>
+              <p className="text-xs text-emerald-100/70 mt-1">Your scripts, checklist, download, and calendar reminder are ready below.</p>
+            </div>
+            <button onClick={onDismissSuccess}
+              className="px-3 py-1.5 rounded-lg bg-emerald-900/40 text-[11px] font-semibold text-emerald-100 hover:bg-emerald-900/70 transition-colors cursor-pointer">
+              Got it
+            </button>
+          </div>
+        )}
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-5">
           <div>
             <p className="text-[10px] font-bold text-amber-300 uppercase tracking-[0.2em] mb-2">Vampire Emergency Kit</p>
@@ -401,6 +479,10 @@ function EmergencyKitSection({ kit, unlocked, copied, onCopy, onDownload, onUnlo
               <button onClick={() => onCopy('Reminder', kit.reminderText)}
                 className="flex-1 py-3 bg-[#141420] hover:bg-[#1C1C2A] rounded-2xl text-sm font-semibold text-slate-200 border border-slate-800/50 transition-colors cursor-pointer">
                 {copied === 'Reminder' ? 'Reminder copied' : 'Copy reminder text'}
+              </button>
+              <button onClick={onReminderDownload}
+                className="flex-1 py-3 bg-[#141420] hover:bg-[#1C1C2A] rounded-2xl text-sm font-semibold text-slate-200 border border-slate-800/50 transition-colors cursor-pointer">
+                Add calendar reminder
               </button>
               <button onClick={onDownload}
                 className="flex-1 py-3 bg-rose-600 hover:bg-rose-500 rounded-2xl text-sm font-semibold text-white shadow-lg shadow-rose-900/30 transition-colors cursor-pointer">

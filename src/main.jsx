@@ -35,8 +35,11 @@ function saveSubsToStorage(subs) {
 
 function Root() {
   const [view, setView] = useState(() => {
-    if (checkPaymentSuccess()) {
+    const paymentSuccess = checkPaymentSuccess();
+    if (paymentSuccess) {
       localStorage.setItem('vampire_visited', 'true');
+      if (paymentSuccess === 'emergency_kit' && loadSubsFromStorage().length) return 'verdict';
+      if (paymentSuccess === 'patrol' || paymentSuccess === 'patrol_annual') return 'patrol';
       return 'app';
     }
     const hash = window.location.hash.replace('#', '');

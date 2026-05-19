@@ -11,6 +11,7 @@ const STORAGE_KEY_FREE_SCANS = 'vampire_free_scans_used';
 const STORAGE_KEY_FREE_PRINTS = 'vampire_free_prints_used';
 const STORAGE_KEY_FIRST_SEEN = 'vampire_first_seen';
 const STORAGE_KEY_VERDICT_USED = 'vampire_free_verdict_used';
+const STORAGE_KEY_PAYMENT_SUCCESS = 'vampire_payment_success_type';
 
 const CREEM_PRO_URL = 'https://www.creem.io/payment/prod_1pw0aIvQW2CzNzfMLrgGAY';
 const CREEM_EMERGENCY_KIT_URL = import.meta.env.VITE_CREEM_EMERGENCY_KIT_URL || 'https://www.creem.io/payment/prod_5nLkYvnA8LPlZp49NvjXKZ';
@@ -37,6 +38,10 @@ export function activatePro() {
 
 export function activateEmergencyKit() {
   localStorage.setItem('vampire_emergency_kit', 'true');
+}
+
+function markPaymentSuccess(type) {
+  localStorage.setItem(STORAGE_KEY_PAYMENT_SUCCESS, type);
 }
 
 function readPatrolRecord() {
@@ -208,29 +213,33 @@ export function checkPaymentSuccess() {
   const hash = window.location.hash;
   if (hash === '#payment-success') {
     activatePro();
+    markPaymentSuccess('pro');
     window.location.hash = '';
     track('checkout_succeeded');
-    return true;
+    return 'pro';
   }
   if (hash === '#emergency-kit-success') {
     activateEmergencyKit();
+    markPaymentSuccess('emergency_kit');
     window.location.hash = '';
     track('emergency_kit_checkout_succeeded');
-    return true;
+    return 'emergency_kit';
   }
   if (hash === '#patrol-success-patrol') {
     activatePatrol('patrol');
+    markPaymentSuccess('patrol');
     window.location.hash = '';
     track('patrol_checkout_succeeded', { cycle: 'monthly' });
-    return true;
+    return 'patrol';
   }
   if (hash === '#patrol-success-patrol_annual') {
     activatePatrol('patrol_annual');
+    markPaymentSuccess('patrol_annual');
     window.location.hash = '';
     track('patrol_checkout_succeeded', { cycle: 'annual' });
-    return true;
+    return 'patrol_annual';
   }
-  return false;
+  return null;
 }
 
 export function openTip() {
