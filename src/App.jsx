@@ -16,6 +16,7 @@ import {
 } from './pro';
 import { injectAffiliateLinks, PREFERRED_ALTERNATIVES } from './affiliates';
 import { track } from './analytics';
+import { callAi, RateLimitError } from './aiClient';
 import {
   fireChargeDateNotifications, pendingToasts, markToastDelivered,
   notificationPermission, requestNotificationPermission, hasNotificationApi,
@@ -29,8 +30,6 @@ const CancelScript = lazy(() => import('./components/CancelScript'));
 const SubscriptionHealth = lazy(() => import('./components/SubscriptionHealth'));
 const TrialTracker = lazy(() => import('./components/TrialTracker'));
 const AnnualAudit = lazy(() => import('./components/AnnualAudit'));
-
-const API_ENDPOINT = '/api/gemini';
 
 const CURRENCIES = {
   USD: { code: 'USD', flag: '\u{1F1FA}\u{1F1F8}', symbol: '$', rate: 1 },
@@ -282,22 +281,19 @@ export default function App({ onLegal, onGoToLanding }) {
     }
     incrementAiUsage();
     try {
-      const res = await fetch(API_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents: [{ parts: [{ text: userPrompt }] }], systemInstruction: { parts: [{ text: systemPrompt }] } }),
+      const data = await callAi({
+        contents: [{ parts: [{ text: userPrompt }] }],
+        systemInstruction: { parts: [{ text: systemPrompt }] },
       });
-      const data = await res.json();
-      if (!res.ok || data.error) {
-        const msg = typeof data.error === 'string' ? data.error : data.error?.message || 'Unknown error';
-        console.error('Gemini API error:', msg);
-        if (msg.includes('quota') || msg.includes('rate') || res.status === 429) {
-          return lang === 'zh' ? 'AI 暂时繁忙，请稍后再试。' : 'AI is busy right now. Please try again in a minute.';
-        }
-        return lang === 'zh' ? 'AI 服务暂时不可用。' : 'AI service temporarily unavailable.';
-      }
       return data.candidates?.[0]?.content?.parts?.[0]?.text || (lang === 'zh' ? 'AI 似乎在打盹。' : 'AI seems to be napping.');
-    } catch (err) { console.error(err); return lang === 'zh' ? 'AI 暂时断网了。' : 'AI is offline. Probably saving electricity for you.'; }
+    } catch (err) {
+      if (err instanceof RateLimitError) {
+        setShowProModal(true);
+        return lang === 'zh' ? '今日免费次数已用完，升级 Pro 解锁无限 AI 分析。' : 'Daily free limit reached. Upgrade to Pro for unlimited AI analysis.';
+      }
+      console.error(err);
+      return lang === 'zh' ? 'AI 暂时断网了。' : 'AI is offline. Probably saving electricity for you.';
+    }
   };
 
   const getAiAdvice = async () => {
@@ -387,23 +383,11 @@ export default function App({ onLegal, onGoToLanding }) {
         parts.unshift({ text: 'Extract subscription/billing information from this image or document.' });
       }
 
-      const res = await fetch(API_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts }],
-          systemInstruction: { parts: [{ text: systemPrompt }] },
-          generationConfig: { responseMimeType: 'application/json' },
-        }),
+      const data = await callAi({
+        contents: [{ parts }],
+        systemInstruction: { parts: [{ text: systemPrompt }] },
+        generationConfig: { responseMimeType: 'application/json' },
       });
-      const data = await res.json();
-      if (!res.ok || data.error) {
-        const msg = typeof data.error === 'string' ? data.error : data.error?.message || 'Unknown error';
-        console.error('Extract error:', msg);
-        setExtractedBills([]);
-        setIsExtracting(false);
-        return;
-      }
       const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '[]';
       const parsed = JSON.parse(text);
       const bills = (Array.isArray(parsed) ? parsed : [parsed]).map(b => ({
@@ -415,7 +399,8 @@ export default function App({ onLegal, onGoToLanding }) {
       })).filter(b => b.name !== 'Unknown' || parseFloat(b.price) > 0);
       setExtractedBills(bills.length > 0 ? bills : []);
     } catch (err) {
-      console.error('Extract error:', err);
+      if (err instanceof RateLimitError) setShowProModal(true);
+      else console.error('Extract error:', err);
       setExtractedBills([]);
     }
     setIsExtracting(false);

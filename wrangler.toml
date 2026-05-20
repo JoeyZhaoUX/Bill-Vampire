@@ -20,6 +20,13 @@ pages_build_output_dir = "dist"
 binding = "EMAIL_LIST"
 id = "006bcf18eaaf4ce9b7ac06a864d22d48"
 
+# Optional: bind a RATE_LIMIT KV namespace to enable IP-based free AI limits
+# in functions/api/gemini.js. Keep this commented until the real namespace id
+# exists, otherwise Pages deploys can fail on the placeholder value.
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT"
+# id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
 # ------- Env vars (set via dashboard Variables & Secrets, or `wrangler secret put`) -------
 # GEMINI_API_KEY   — Google Gemini 2.5 Flash key, used by functions/api/gemini.js
 # JWT_SIGNING_KEY  — 32+ byte random string, used by functions/api/pro-token.js

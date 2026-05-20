@@ -7,8 +7,7 @@ import {
 import { isPro, openCheckout } from '../pro';
 import { track } from '../analytics';
 import { getCancelLink } from '../cancelLinks';
-
-const API_ENDPOINT = '/api/gemini';
+import { callAi } from '../aiClient';
 
 const SCRIPT_TYPES = {
   en: [
@@ -89,24 +88,17 @@ Keep it factual and under 200 words.`,
     const p = prompts[type];
 
     try {
-      const res = await fetch(API_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: p.user }] }],
-          systemInstruction: { parts: [{ text: p.system }] },
-        }),
+      const data = await callAi({
+        contents: [{ parts: [{ text: p.user }] }],
+        systemInstruction: { parts: [{ text: p.system }] },
       });
-      const data = await res.json();
-      if (!res.ok || data.error) {
-        setScript('Something went wrong. Try again in a moment.');
-      } else {
-        const text = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No script generated.';
-        setScript(text);
-        track('cancel_script_generated', { type, service: subscription.name });
-      }
-    } catch {
-      setScript('AI is temporarily unavailable. Try again shortly.');
+      const text = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No script generated.';
+      setScript(text);
+      track('cancel_script_generated', { type, service: subscription.name });
+    } catch (err) {
+      setScript(err.name === 'RateLimitError'
+        ? 'Daily limit reached. Upgrade to Pro for unlimited access.'
+        : 'AI is temporarily unavailable. Try again shortly.');
     }
     setIsLoading(false);
   };

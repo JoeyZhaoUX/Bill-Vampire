@@ -1,7 +1,5 @@
-// Verdict logic: shared between Scan (extract bills) and Verdict (roast + math).
-// Reuses the existing /api/gemini proxy — no server changes required.
-
-const API_ENDPOINT = '/api/gemini';
+import { callAi, RateLimitError } from '../aiClient';
+export { RateLimitError };
 
 const CURRENCIES = {
   USD: { rate: 1 }, CNY: { rate: 0.14 }, EUR: { rate: 1.08 },
@@ -53,17 +51,11 @@ export async function extractBills({ text, file }) {
   if (parts.every(p => !p.text)) {
     parts.unshift({ text: 'Extract subscription / billing information from this image or document.' });
   }
-  const res = await fetch(API_ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ parts }],
-      systemInstruction: { parts: [{ text: EXTRACT_SYSTEM_PROMPT }] },
-      generationConfig: { responseMimeType: 'application/json' },
-    }),
+  const data = await callAi({
+    contents: [{ parts }],
+    systemInstruction: { parts: [{ text: EXTRACT_SYSTEM_PROMPT }] },
+    generationConfig: { responseMimeType: 'application/json' },
   });
-  const data = await res.json();
-  if (!res.ok || data.error) throw new Error(data?.error?.message || data?.error || 'extract_failed');
   const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || '[]';
   const parsed = JSON.parse(raw);
   const bills = (Array.isArray(parsed) ? parsed : [parsed])
@@ -98,17 +90,11 @@ export async function generateVerdict(subs) {
   const lines = ranked.map(s => `${s.name}: $${s._monthlyUsd.toFixed(2)}/mo → $${s._tenYearUsd.toFixed(0)} over 10 years`).join('\n');
   const total10 = tenYearTotalUsd(subs);
   const userPrompt = `My subscriptions and their 10-year lifetime cost:\n${lines}\n\nTotal 10-year waste: $${total10.toFixed(0)}. Deliver the verdict.`;
-  const res = await fetch(API_ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: userPrompt }] }],
-      systemInstruction: { parts: [{ text: VERDICT_SYSTEM_PROMPT }] },
-      generationConfig: { responseMimeType: 'application/json' },
-    }),
+  const data = await callAi({
+    contents: [{ parts: [{ text: userPrompt }] }],
+    systemInstruction: { parts: [{ text: VERDICT_SYSTEM_PROMPT }] },
+    generationConfig: { responseMimeType: 'application/json' },
   });
-  const data = await res.json();
-  if (!res.ok || data.error) throw new Error(data?.error?.message || data?.error || 'verdict_failed');
   const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
   const parsed = JSON.parse(raw);
   return {
