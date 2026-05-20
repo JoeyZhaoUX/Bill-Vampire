@@ -10,13 +10,30 @@ function redirectError(url, error) {
   });
 }
 
+function googleRedirectUri(env, url) {
+  return env.GOOGLE_REDIRECT_URI || `${url.protocol}//billvampire.com/api/auth/google/callback`;
+}
+
 export async function onRequestGet(context) {
   const url = new URL(context.request.url);
   const clientId = context.env.GOOGLE_CLIENT_ID;
   if (!clientId) return redirectError(url, 'google_unconfigured');
 
+  const redirectUri = googleRedirectUri(context.env, url);
+  const redirectOrigin = new URL(redirectUri).origin;
+  if (url.origin !== redirectOrigin) {
+    const canonicalStart = new URL(`${redirectOrigin}/api/auth/google/start`);
+    for (const [key, value] of url.searchParams.entries()) canonicalStart.searchParams.set(key, value);
+    return new Response(null, {
+      status: 302,
+      headers: {
+        Location: canonicalStart.toString(),
+        'Cache-Control': 'no-store',
+      },
+    });
+  }
+
   const state = createToken(24);
-  const redirectUri = `${url.origin}/api/auth/google/callback`;
   const params = new URLSearchParams({
     client_id: clientId,
     redirect_uri: redirectUri,

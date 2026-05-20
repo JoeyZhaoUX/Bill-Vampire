@@ -13,6 +13,10 @@ function redirectError(url, error) {
   return redirect(url, `auth-error=${encodeURIComponent(error)}`, ['bv_google_state=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax']);
 }
 
+function googleRedirectUri(env, url) {
+  return env.GOOGLE_REDIRECT_URI || `${url.protocol}//billvampire.com/api/auth/google/callback`;
+}
+
 async function getOrCreateUser(db, email) {
   let user = await db.prepare('SELECT id, email FROM users WHERE email = ?').bind(email).first();
   if (user) return user;
@@ -37,7 +41,7 @@ export async function onRequestGet(context) {
   if (!code || !state || !expectedState || state !== expectedState) return redirectError(url, 'google_failed');
 
   try {
-    const redirectUri = `${url.origin}/api/auth/google/callback`;
+    const redirectUri = googleRedirectUri(context.env, url);
     const tokenRes = await fetch('https://oauth2.googleapis.com/token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
