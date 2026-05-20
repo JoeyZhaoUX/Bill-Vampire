@@ -5,7 +5,7 @@ import {
   faCircleCheck, faDownload, faQuoteLeft,
   faSpinner, faWandMagicSparkles, faMagnifyingGlass, faMugHot,
   faShareNodes, faCrown, faHeart, faLock, faArrowUpRightFromSquare, faChevronRight, faSkull, faFileImport, faXmark, faCheck,
-  faFolderOpen, faCopy, faRightFromBracket, faGear,
+  faFolderOpen, faCopy, faRightFromBracket, faGear, faArrowsRotate,
 } from '@fortawesome/free-solid-svg-icons';
 import { t, getDefaultLang, SUPPORTED_LANGS } from './i18n';
 import {
@@ -231,11 +231,12 @@ function importSubsFromExtensionHash(existing) {
   return Object.values(byKey);
 }
 
-function AccountMenu({ user, onLogout, compact }) {
+function AccountMenu({ user, onLogout, onSync, syncStatus, compact }) {
   const [open, setOpen] = useState(false);
   const ref = React.useRef(null);
   const email = user?.email || '';
   const initial = email.charAt(0).toUpperCase();
+  const syncLabel = syncStatus === 'synced' ? 'Synced' : syncStatus === 'syncing' ? 'Syncing…' : 'Sync issue';
 
   useEffect(() => {
     if (!open) return;
@@ -243,6 +244,32 @@ function AccountMenu({ user, onLogout, compact }) {
     document.addEventListener('pointerdown', handler);
     return () => document.removeEventListener('pointerdown', handler);
   }, [open]);
+
+  const dropdown = (
+    <>
+      <div className="px-4 py-3 border-b border-slate-800/30">
+        <p className="text-[10px] text-slate-500 uppercase tracking-wider">Account</p>
+        <p className="text-xs text-slate-300 truncate mt-1">{email}</p>
+      </div>
+      <button
+        onClick={() => { setOpen(false); onSync?.(); }}
+        className="w-full flex items-center justify-between px-4 py-3 text-xs text-slate-300 hover:bg-slate-800/30 transition-colors cursor-pointer border-b border-slate-800/30"
+      >
+        <span className="flex items-center gap-2.5">
+          <FontAwesomeIcon icon={faArrowsRotate} className={`w-3.5 h-3.5 ${syncStatus === 'syncing' ? 'animate-spin' : ''}`} />
+          Sync now
+        </span>
+        <span className={`text-[10px] ${syncStatus === 'synced' ? 'text-emerald-400' : 'text-amber-400'}`}>{syncLabel}</span>
+      </button>
+      <button
+        onClick={() => { setOpen(false); onLogout(); }}
+        className="w-full flex items-center gap-2.5 px-4 py-3 text-xs text-rose-400 hover:bg-rose-950/30 transition-colors cursor-pointer"
+      >
+        <FontAwesomeIcon icon={faRightFromBracket} className="w-3.5 h-3.5" />
+        Sign out
+      </button>
+    </>
+  );
 
   if (compact) {
     return (
@@ -255,18 +282,8 @@ function AccountMenu({ user, onLogout, compact }) {
           {initial}
         </button>
         {open && (
-          <div className="absolute right-0 top-full mt-2 w-52 bg-[#141420] border border-slate-800/40 rounded-xl shadow-xl shadow-black/40 z-50 overflow-hidden">
-            <div className="px-4 py-3 border-b border-slate-800/30">
-              <p className="text-[10px] text-slate-500 uppercase tracking-wider">Account</p>
-              <p className="text-xs text-slate-300 truncate mt-1">{email}</p>
-            </div>
-            <button
-              onClick={() => { setOpen(false); onLogout(); }}
-              className="w-full flex items-center gap-2.5 px-4 py-3 text-xs text-rose-400 hover:bg-rose-950/30 transition-colors cursor-pointer"
-            >
-              <FontAwesomeIcon icon={faRightFromBracket} className="w-3.5 h-3.5" />
-              Sign out
-            </button>
+          <div className="absolute right-0 top-full mt-2 w-56 bg-[#141420] border border-slate-800/40 rounded-xl shadow-xl shadow-black/40 z-50 overflow-hidden">
+            {dropdown}
           </div>
         )}
       </div>
@@ -284,24 +301,14 @@ function AccountMenu({ user, onLogout, compact }) {
         </div>
         <div className="flex-1 text-left min-w-0">
           <p className="text-[11px] text-slate-300 font-medium truncate">{email}</p>
-          <p className="text-[9px] text-slate-600">Signed in</p>
+          <p className={`text-[9px] ${syncStatus === 'synced' ? 'text-emerald-500' : 'text-amber-500'}`}>{syncLabel}</p>
         </div>
         <FontAwesomeIcon icon={faGear} className="w-3 h-3 text-slate-600" />
       </button>
 
       {open && (
         <div className="absolute left-0 right-0 top-full mt-1 bg-[#141420] border border-slate-800/40 rounded-xl shadow-xl shadow-black/40 z-50 overflow-hidden">
-          <div className="px-4 py-3 border-b border-slate-800/30">
-            <p className="text-[10px] text-slate-500 uppercase tracking-wider">Account</p>
-            <p className="text-xs text-slate-300 truncate mt-1">{email}</p>
-          </div>
-          <button
-            onClick={() => { setOpen(false); onLogout(); }}
-            className="w-full flex items-center gap-2.5 px-4 py-3 text-xs text-rose-400 hover:bg-rose-950/30 transition-colors cursor-pointer"
-          >
-            <FontAwesomeIcon icon={faRightFromBracket} className="w-3.5 h-3.5" />
-            Sign out
-          </button>
+          {dropdown}
         </div>
       )}
     </div>
@@ -765,7 +772,7 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
               ))}
             </div>
             {auth.status === 'authenticated' && auth.user && (
-              <AccountMenu compact user={auth.user} onLogout={async () => { await logout(); onAuthRefresh(); }} />
+              <AccountMenu compact user={auth.user} syncStatus={auth.sync} onSync={onAuthRefresh} onLogout={async () => { await logout(); onAuthRefresh(); }} />
             )}
           </div>
         </div>
@@ -789,7 +796,7 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
 
             {/* Account menu */}
             {auth.status === 'authenticated' && auth.user && (
-              <AccountMenu user={auth.user} onLogout={async () => { await logout(); onAuthRefresh(); }} />
+              <AccountMenu user={auth.user} syncStatus={auth.sync} onSync={onAuthRefresh} onLogout={async () => { await logout(); onAuthRefresh(); }} />
             )}
 
             {/* Branding */}
@@ -902,29 +909,19 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
               </div>
             </section>
 
-            <section className="bv-sync-card mb-8">
-              <div>
-                <p className="text-[10px] font-bold uppercase text-amber-300 mb-1">
-                  {auth?.status === 'authenticated' ? 'Cloud sync active' : 'Guest mode'}
-                </p>
-                <p className="text-sm text-slate-300">
-                  {auth?.status === 'authenticated'
-                    ? `${auth.user?.email || 'Account'} · ${auth.sync === 'synced' ? 'Synced' : auth.sync === 'syncing' ? 'Syncing…' : 'Sync issue'}`
-                    : 'See results without signup. Create an account to save subscriptions, reminders, and paid kits across devices.'}
-                </p>
-              </div>
-              <div className="flex gap-2 shrink-0">
-                {auth?.status === 'authenticated' ? (
-                  <button onClick={() => onAuthRefresh?.()} className="px-4 py-2 rounded-xl text-xs font-bold text-slate-200 bg-[#171217] border border-white/10 cursor-pointer">
-                    Sync now
-                  </button>
-                ) : (
+            {auth?.status !== 'authenticated' && (
+              <section className="bv-sync-card mb-8">
+                <div>
+                  <p className="text-[10px] font-bold uppercase text-amber-300 mb-1">Guest mode</p>
+                  <p className="text-sm text-slate-300">See results without signup. Create an account to save subscriptions, reminders, and paid kits across devices.</p>
+                </div>
+                <div className="flex gap-2 shrink-0">
                   <button onClick={() => onAuthRequest?.('app_sync')} className="px-4 py-2 rounded-xl text-xs font-bold text-[#F7EFE6] bg-[#8E1D2C] cursor-pointer">
                     Save with account
                   </button>
-                )}
-              </div>
-            </section>
+                </div>
+              </section>
+            )}
 
             <CaseFileVault
               cases={caseFiles}
