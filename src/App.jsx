@@ -45,6 +45,19 @@ const CATEGORY_KEYS = ['catEntertainment', 'catProductivity', 'catLifestyle', 'c
 const CATEGORY_VALUES = ['Entertainment', 'Productivity', 'Lifestyle', 'Other'];
 const CATEGORY_ICONS = { 'Entertainment': '\u{1F3AE}', 'Productivity': '⚡', 'Lifestyle': '\u{1F33F}', 'Other': '\u{1F4E6}' };
 
+function BrandReceiptMark({ className = '' }) {
+  return (
+    <svg viewBox="0 0 140 140" className={className} role="img" aria-label="Bill Vampire receipt mark">
+      <path d="M30 16h72l12 14v92l-11-7-11 7-11-7-11 7-11-7-11 7-18-10V16Z" fill="currentColor" stroke="#050605" strokeWidth="7" />
+      <path d="M47 42h43M47 58h31M47 74h43" stroke="#fff7f2" strokeWidth="7" strokeLinecap="round" />
+      <path d="M48 96c8 9 15 14 23 14s15-5 23-14" fill="none" stroke="#050605" strokeWidth="7" strokeLinecap="round" />
+      <path d="M58 94l8 25 8-25M80 94l8 25 8-25" fill="#fff7f2" stroke="#050605" strokeWidth="5" strokeLinejoin="round" />
+      <circle cx="48" cy="30" r="5" fill="#050605" />
+      <circle cx="92" cy="30" r="5" fill="#050605" />
+    </svg>
+  );
+}
+
 // Price intelligence: avg monthly price + cheaper tier for popular US subscriptions
 const PRICE_INTEL = {
   'Netflix': { avg: 15.49, low: 6.99, tier: 'Standard with Ads' },
@@ -670,6 +683,27 @@ export default function App({ onLegal, onGoToLanding }) {
         <main id="main-content" className="flex-1 min-h-screen">
           <div className="max-w-5xl mx-auto p-4 sm:p-6 lg:p-10 pb-24 sm:pb-6 lg:pb-10">
 
+            <section className="bv-app-command-card mb-8">
+              <div className="bv-app-command-mark" aria-hidden="true">
+                <BrandReceiptMark className="w-24 h-24" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-[10px] font-bold uppercase text-rose-400 mb-2">Bill Vampire command desk</p>
+                <h2 className="text-2xl sm:text-3xl font-black text-slate-100 leading-tight mb-4">
+                  Turn recurring charges into cancel, refund, and reminder actions.
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {['Cancel paths', 'Refund scripts', 'Renewal alerts'].map(label => (
+                    <span key={label} className="bv-command-chip">{label}</span>
+                  ))}
+                </div>
+              </div>
+              <div className="bv-app-command-meter">
+                <span>monthly drain</span>
+                <strong>{displayCurrency}{monthlyTotal.toFixed(2)}</strong>
+              </div>
+            </section>
+
             {/* Tabs */}
             <nav aria-label="Main tabs" role="tablist" className="hidden lg:flex p-1.5 bg-[#141420]/70 backdrop-blur rounded-2xl mb-8 border border-slate-800/40 gap-1 max-w-md">
               {tabs.map(tab => (
@@ -834,8 +868,8 @@ export default function App({ onLegal, onGoToLanding }) {
                   </div>
                 </div>
                 <div className="grid grid-cols-7 gap-2 lg:gap-3 mb-8">
-                  {weekDays.map(day => (
-                    <div key={day} className="text-center text-xs lg:text-sm font-medium text-slate-600 py-1">{day}</div>
+                  {weekDays.map((day, i) => (
+                    <div key={`${day}-${i}`} className="text-center text-xs lg:text-sm font-medium text-slate-600 py-1">{day}</div>
                   ))}
                   {[...Array(firstDayOfWeek)].map((_, i) => <div key={`e-${i}`} />)}
                   {[...Array(daysInMonth)].map((_, i) => {

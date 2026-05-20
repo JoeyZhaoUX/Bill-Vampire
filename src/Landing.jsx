@@ -129,6 +129,93 @@ function LogoTicker() {
   );
 }
 
+function BillVampireGlyph({ className = '' }) {
+  return (
+    <svg viewBox="0 0 220 220" className={`bv-bill-sigil ${className}`} role="img" aria-label="Bill Vampire receipt mark">
+      <path d="M54 28h112l18 20v146l-18-10-18 10-18-10-18 10-18-10-18 10-22-12V28Z" fill="currentColor" stroke="#050605" strokeWidth="8" />
+      <path d="M76 64h70M76 88h52M76 112h70" stroke="#fff7f2" strokeWidth="10" strokeLinecap="round" />
+      <path d="M77 145c12 16 24 24 36 24s24-8 36-24" fill="none" stroke="#050605" strokeWidth="10" strokeLinecap="round" />
+      <path d="M91 142l12 34 12-34M127 142l12 34 12-34" fill="#fff7f2" stroke="#050605" strokeWidth="6" strokeLinejoin="round" />
+      <circle cx="76" cy="48" r="8" fill="#050605" />
+      <circle cx="144" cy="48" r="8" fill="#050605" />
+    </svg>
+  );
+}
+
+function HeroBrandVisual() {
+  return (
+    <div className="bv-brand-visual">
+      <div className="absolute inset-x-0 top-10 flex justify-center">
+        <BillVampireGlyph className="w-56 h-56 sm:w-64 sm:h-64" />
+      </div>
+      <div className="bv-floating-proof bv-proof-a">
+        <strong>$119.99</strong>
+        <span>surprise charge found</span>
+      </div>
+      <div className="bv-floating-proof bv-proof-b">
+        <strong>REFUND</strong>
+        <span>email script ready</span>
+      </div>
+      <div className="bv-floating-proof bv-proof-c">
+        <strong>CANCEL</strong>
+        <span>proof checklist locked</span>
+      </div>
+      <div className="absolute right-8 top-6 hidden sm:block">
+        <span className="bv-red-stamp">Subscription Bloodline</span>
+      </div>
+    </div>
+  );
+}
+
+function ActionIcon({ type }) {
+  if (type === 'refund') {
+    return (
+      <svg viewBox="0 0 96 96" aria-hidden="true">
+        <path d="M18 28h60v42H18z" fill="currentColor" stroke="#050605" strokeWidth="6" />
+        <path d="M28 42h26M28 56h16" stroke="#fff7f2" strokeWidth="7" strokeLinecap="round" />
+        <path d="M64 38l12 10-12 10" fill="none" stroke="#050605" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M74 48H52" stroke="#050605" strokeWidth="7" strokeLinecap="round" />
+      </svg>
+    );
+  }
+  if (type === 'cancel') {
+    return (
+      <svg viewBox="0 0 96 96" aria-hidden="true">
+        <path d="M24 24h48v48H24z" fill="currentColor" stroke="#050605" strokeWidth="6" />
+        <path d="M34 34l28 28M62 34L34 62" stroke="#fff7f2" strokeWidth="8" strokeLinecap="round" />
+        <path d="M20 78h56" stroke="#050605" strokeWidth="7" strokeLinecap="round" />
+      </svg>
+    );
+  }
+  return (
+    <svg viewBox="0 0 96 96" aria-hidden="true">
+      <path d="M30 12h26l16 16v56H30z" fill="currentColor" stroke="#050605" strokeWidth="6" />
+      <path d="M56 14v18h18" fill="#fff7f2" stroke="#050605" strokeWidth="6" strokeLinejoin="round" />
+      <path d="M40 46h22M40 60h22M40 74h14" stroke="#fff7f2" strokeWidth="7" strokeLinecap="round" />
+      <path d="M20 28l10-10M19 50h10M20 72l10 10" stroke="#050605" strokeWidth="6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function BrandActionMap() {
+  const nodes = [
+    { type: 'cancel', label: 'Cancel path', body: 'Open the exact billing route before the next renewal screen traps you.' },
+    { type: 'refund', label: 'Refund script', body: 'Send a specific, polite request with amount, date, and cancellation intent.' },
+    { type: 'evidence', label: 'Evidence file', body: 'Keep screenshots, support replies, and confirmation numbers in one checklist.' },
+  ];
+  return (
+    <div className="bv-action-map">
+      {nodes.map(node => (
+        <div key={node.label} className="bv-action-node">
+          <ActionIcon type={node.type} />
+          <h3 className="text-lg font-bold text-slate-100 mb-2">{node.label}</h3>
+          <p className="text-sm text-slate-500 leading-relaxed">{node.body}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function VerdictMockup() {
   return (
     <div className="relative bg-gradient-to-b from-[#141420] to-[#0D0D15] rounded-2xl border border-slate-800/40 p-1 shadow-2xl shadow-black/50">
@@ -278,24 +365,38 @@ export default function Landing({ onEnterApp, onLegal }) {
         <div className="absolute top-40 right-[5%] w-[500px] h-[500px] bg-violet-900/10 rounded-full blur-[160px]" />
 
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-rose-950/40 border border-rose-800/30 px-4 py-1.5 rounded-full mb-8 landing-fade-in">
-              <FontAwesomeIcon icon={faFireFlameCurved} className="w-3 h-3 text-rose-400" />
-              <span className="text-[11px] font-medium text-rose-300">
-                {EMERGENCY_KIT_PRICE.label} one-time · No bank login · Cancel and refund scripts
-              </span>
+          <div className="grid lg:grid-cols-[1.08fr_0.92fr] gap-10 lg:gap-14 items-center mb-12">
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 bg-rose-950/40 border border-rose-800/30 px-4 py-1.5 rounded-full mb-8 landing-fade-in">
+                <FontAwesomeIcon icon={faFireFlameCurved} className="w-3 h-3 text-rose-400" />
+                <span className="text-[11px] font-medium text-rose-300">
+                  {EMERGENCY_KIT_PRICE.label} one-time · No bank login · Cancel and refund scripts
+                </span>
+              </div>
+
+              <h1 className="tracking-display text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-100 leading-[1.05] mb-7 landing-fade-in landing-delay-1">
+                Stop your next<br className="hidden sm:block" />{' '}
+                <span className="text-shimmer">surprise subscription charge.</span>
+              </h1>
+
+              <p className="text-lg lg:text-xl text-slate-400 max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed landing-fade-in landing-delay-2">
+                Paste a billing email, upload a screenshot, or say the trial out loud. Bill Vampire builds a cancel/refund plan before the next renewal bites.
+              </p>
+
+              <div className="landing-fade-in landing-delay-3 flex flex-col items-center lg:items-start gap-3">
+                <LiveCounter />
+                <p className="text-[10px] text-slate-700 flex items-center gap-1.5">
+                  <FontAwesomeIcon icon={faLock} className="w-2.5 h-2.5" />
+                  No signup before results · No bank connection · Consumer-assistance templates, not legal advice
+                </p>
+              </div>
             </div>
 
-            <h1 className="tracking-display text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-100 leading-[1.05] mb-7 landing-fade-in landing-delay-1">
-              Stop your next<br className="hidden sm:block" />{' '}
-              <span className="text-shimmer">surprise subscription charge.</span>
-            </h1>
+            <HeroBrandVisual />
+          </div>
 
-            <p className="text-lg lg:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed landing-fade-in landing-delay-2">
-              Paste a billing email, upload a screenshot, or say the trial out loud. Bill Vampire builds a cancel/refund plan before the next renewal bites.
-            </p>
-
-            <div className="grid sm:grid-cols-3 gap-3 landing-fade-in landing-delay-3 max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <div className="grid sm:grid-cols-3 gap-3 landing-fade-in landing-delay-3 mx-auto">
               {EMERGENCY_CHOICES.map(choice => (
                 <button key={choice.id} onClick={() => handleEnter(choice.id)}
                   className="text-left glass-card glass-card-hover rounded-2xl p-5 transition-all hover:scale-[1.02] cursor-pointer">
@@ -307,18 +408,10 @@ export default function Landing({ onEnterApp, onLegal }) {
                 </button>
               ))}
             </div>
-
-            <div className="mt-8 landing-fade-in landing-delay-4 flex flex-col items-center gap-3">
-              <LiveCounter />
-              <p className="text-[10px] text-slate-700 flex items-center gap-1.5">
-                <FontAwesomeIcon icon={faLock} className="w-2.5 h-2.5" />
-                No signup before results · No bank connection · Consumer-assistance templates, not legal advice
-              </p>
-            </div>
           </div>
 
-          {/* Floating mockup with glow */}
-          <div className="max-w-2xl mx-auto landing-fade-in landing-delay-4 animate-float">
+          {/* Branded visual system */}
+          <div className="max-w-4xl mx-auto landing-fade-in landing-delay-4">
             <div className="relative">
               <div className="absolute -inset-10 bg-rose-500/[0.04] rounded-3xl blur-3xl" aria-hidden />
               <VerdictMockup />
@@ -387,6 +480,10 @@ export default function Landing({ onEnterApp, onLegal }) {
                 <p className="text-sm text-slate-500 leading-relaxed">{s.desc}</p>
               </div>
             ))}
+          </div>
+
+          <div className="mt-12">
+            <BrandActionMap />
           </div>
 
           {/* Mini interactive demo */}
@@ -577,6 +674,9 @@ export default function Landing({ onEnterApp, onLegal }) {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 scroll-reveal-stagger">
             {EMERGENCY_SCENARIOS.map((v, i) => (
               <div key={i} className="scroll-reveal glass-card glass-card-hover rounded-2xl p-6 transition-all hover:scale-[1.02]">
+                <div className="bv-symbol-tile mb-5">
+                  <ActionIcon type={i % 3 === 0 ? 'refund' : i % 3 === 1 ? 'cancel' : 'evidence'} />
+                </div>
                 <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-[0.25em] mb-2">{v.tag}</p>
                 <p className="text-sm font-bold text-slate-100 mb-1">{v.service}</p>
                 <p className="font-gothic text-3xl font-black text-rose-500 tabular-nums mb-3">{v.amount}</p>
