@@ -313,7 +313,6 @@ function AccountMenu({ user, onLogout, onSync, syncStatus, compact }) {
           <p className="text-[11px] text-slate-300 font-medium truncate">{email}</p>
           <p className={`text-[9px] ${syncStatus === 'synced' ? 'text-emerald-500' : 'text-amber-500'}`}>{syncLabel}</p>
         </div>
-        <FontAwesomeIcon icon={faGear} className="w-3 h-3 text-slate-600" />
       </button>
 
       {open && (
@@ -810,10 +809,16 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
             )}
 
             {/* Branding */}
-            <button onClick={onGoToLanding} className="flex flex-col items-center lg:items-start mb-6 cursor-pointer hover:opacity-80 transition-opacity bg-transparent border-0 p-0 text-left">
+            <button onClick={onGoToLanding} className="flex flex-col items-center lg:items-start mb-4 cursor-pointer hover:opacity-80 transition-opacity bg-transparent border-0 p-0 text-left">
               <img src={`${import.meta.env.BASE_URL}icons/icon.png`} alt="Bill Vampire - Vampire mascot holding bill receipt" className="w-14 h-14 lg:w-12 lg:h-12 rounded-2xl shadow-sm mb-3" />
               <h1 className="font-gothic text-2xl lg:text-xl font-bold tracking-wider text-slate-100 mb-1">{_('appName')}</h1>
               <p className="text-[11px] text-slate-500 font-light tracking-wider">{_('tagline')}</p>
+            </button>
+
+            {/* Settings */}
+            <button className="flex items-center gap-2 px-3 py-2 rounded-lg text-[11px] text-slate-500 hover:text-slate-300 hover:bg-slate-800/30 transition-colors cursor-pointer bg-transparent border-0 mb-4">
+              <FontAwesomeIcon icon={faGear} className="w-3 h-3" />
+              Settings
             </button>
 
             <div className="blood-accent mb-6" />
