@@ -81,7 +81,7 @@ function useScrollReveal() {
     if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) { el.classList.add('revealed'); obs.unobserve(el); } },
-      { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
+      { threshold: 0.05 }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -308,7 +308,7 @@ export default function Landing({ onEnterApp, onLegal }) {
       </nav>
 
       {/* ===== HERO ===== */}
-      <section ref={heroRef} className="relative pt-20 pb-24 lg:pt-32 lg:pb-36 overflow-hidden">
+      <section ref={heroRef} className="relative pt-10 pb-12 lg:pt-32 lg:pb-36 overflow-hidden">
         {/* Background video */}
         <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
           <video
@@ -324,7 +324,7 @@ export default function Landing({ onEnterApp, onLegal }) {
         <div className="absolute top-40 right-[5%] w-[500px] h-[500px] bg-violet-900/10 rounded-full blur-[160px]" />
 
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-[1.08fr_0.92fr] gap-10 lg:gap-14 items-center mb-12">
+          <div className="grid lg:grid-cols-[1.08fr_0.92fr] gap-6 lg:gap-14 items-center mb-8 lg:mb-12">
             <div className="text-center lg:text-left">
               <div className="inline-flex items-center gap-2 bg-rose-950/40 border border-rose-800/30 px-4 py-1.5 rounded-full mb-8 landing-fade-in">
                 <FontAwesomeIcon icon={faFireFlameCurved} className="w-3 h-3 text-rose-400" />
@@ -354,7 +354,7 @@ export default function Landing({ onEnterApp, onLegal }) {
             <HeroArtPanel />
           </div>
 
-          <div className="max-w-4xl mx-auto text-center mb-12">
+          <div className="max-w-4xl mx-auto text-center mb-6 lg:mb-12">
             <div className="grid sm:grid-cols-3 gap-3 landing-fade-in landing-delay-3 mx-auto">
               {EMERGENCY_CHOICES.map(choice => (
                 <button key={choice.id} onClick={() => handleEnter(choice.id)}
@@ -369,8 +369,8 @@ export default function Landing({ onEnterApp, onLegal }) {
             </div>
           </div>
 
-          {/* Branded visual system */}
-          <div className="max-w-4xl mx-auto landing-fade-in landing-delay-4">
+          {/* Branded visual system — hidden on mobile to reduce scroll depth */}
+          <div className="hidden md:block max-w-4xl mx-auto landing-fade-in landing-delay-4">
             <div className="relative">
               <div className="absolute -inset-10 bg-rose-500/[0.04] rounded-3xl blur-3xl" aria-hidden />
               <VerdictMockup />

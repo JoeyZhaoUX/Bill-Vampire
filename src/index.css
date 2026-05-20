@@ -200,6 +200,12 @@ body {
   transform: translateY(0);
 }
 
+/* When a parent section is revealed, also reveal stagger children */
+.scroll-reveal.revealed .scroll-reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Stagger children */
 .scroll-reveal-stagger > .scroll-reveal:nth-child(1) { transition-delay: 0ms; }
 .scroll-reveal-stagger > .scroll-reveal:nth-child(2) { transition-delay: 80ms; }
@@ -927,8 +933,9 @@ textarea:focus-visible {
 
 @media (max-width: 768px) {
   .bv-hero-art {
-    min-height: 340px;
-    margin: 4px 0 20px;
+    min-height: 220px;
+    max-height: 280px;
+    margin: 4px 0 12px;
   }
 
   .bv-evidence-suite {
@@ -958,6 +965,22 @@ textarea:focus-visible {
 
   .bv-app-command-meter {
     width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .bv-brutal section.py-20,
+  .bv-brutal section.py-24 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  .bv-brutal section[class*="pt-20"] {
+    padding-top: 3rem !important;
+  }
+
+  .bv-brutal section[class*="pb-24"] {
+    padding-bottom: 3rem !important;
   }
 }
 
