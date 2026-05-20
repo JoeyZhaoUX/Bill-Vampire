@@ -231,6 +231,26 @@ function importSubsFromExtensionHash(existing) {
   return Object.values(byKey);
 }
 
+function VampireIcon({ className = 'w-16 h-16' }) {
+  return (
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      <path d="M32 4C18 4 8 14 8 28c0 8 4 15 10 19v9c0 1.5 1.5 2.5 3 2l5-3 6 1 6-1 5 3c1.5.5 3-.5 3-2v-9c6-4 10-11 10-19C56 14 46 4 32 4z" fill="url(#vamp-g)" />
+      <defs><linearGradient id="vamp-g" x1="8" y1="4" x2="56" y2="58" gradientUnits="userSpaceOnUse"><stop stopColor="#9f1239"/><stop offset="1" stopColor="#5b21b6"/></linearGradient></defs>
+      <ellipse cx="24" cy="28" rx="3" ry="4" fill="#fecdd3" opacity="0.9"/>
+      <ellipse cx="40" cy="28" rx="3" ry="4" fill="#fecdd3" opacity="0.9"/>
+      <ellipse cx="24" cy="29" rx="1.5" ry="2" fill="#1c1c2a"/>
+      <ellipse cx="40" cy="29" rx="1.5" ry="2" fill="#1c1c2a"/>
+      <path d="M26 38c0 0 3 3 6 3s6-3 6-3" stroke="#fecdd3" strokeWidth="1.5" strokeLinecap="round" opacity="0.7"/>
+      <path d="M29 38l-1 5" stroke="#fecdd3" strokeWidth="1.5" strokeLinecap="round" opacity="0.8"/>
+      <path d="M35 38l1 5" stroke="#fecdd3" strokeWidth="1.5" strokeLinecap="round" opacity="0.8"/>
+      <path d="M14 12c-2-4 0-8 3-8s4 3 4 6" stroke="url(#vamp-g)" strokeWidth="1.5" fill="none" opacity="0.5"/>
+      <path d="M50 12c2-4 0-8-3-8s-4 3-4 6" stroke="url(#vamp-g)" strokeWidth="1.5" fill="none" opacity="0.5"/>
+      <path d="M20 17c2-2 5-1 5 1" stroke="#7c3aed" strokeWidth="1" strokeLinecap="round" opacity="0.4"/>
+      <path d="M44 17c-2-2-5-1-5 1" stroke="#7c3aed" strokeWidth="1" strokeLinecap="round" opacity="0.4"/>
+    </svg>
+  );
+}
+
 function AccountMenu({ user, onLogout, onSync, syncStatus, compact }) {
   const [open, setOpen] = useState(false);
   const ref = React.useRef(null);
@@ -963,9 +983,9 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
                 {subscriptions.length === 0 && (
                   <div className="flex flex-col items-center justify-center py-16 text-slate-600">
                     <div className="relative mb-6">
-                      <FontAwesomeIcon icon={faGhost} className="w-16 h-16 opacity-20" />
-                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500/20 rounded-full flex items-center justify-center">
-                        <span className="text-[8px]">💤</span>
+                      <VampireIcon className="w-16 h-16 opacity-40" />
+                      <div className="absolute -top-1 -right-1 w-5 h-5 bg-rose-500/10 rounded-full flex items-center justify-center border border-rose-500/20">
+                        <span className="text-[9px]">z</span>
                       </div>
                     </div>
                     <p className="text-base font-light mb-2">{_('noSubs')}</p>
@@ -1166,7 +1186,7 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
                   <div className="bg-[#141420]/60 p-6 rounded-2xl border border-slate-800/30">
                     {subscriptions.length > 0
                       ? <LazyChart data={pieData} options={pieOptions} />
-                      : <div className="h-64 flex items-center justify-center text-slate-700"><FontAwesomeIcon icon={faGhost} className="w-16 h-16" /></div>}
+                      : <div className="h-64 flex items-center justify-center"><VampireIcon className="w-16 h-16 opacity-20" /></div>}
                   </div>
 
                   {/* Breakdown */}
@@ -1474,7 +1494,7 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
             ) : extractedBills.length === 0 ? (
               /* No results */
               <div className="text-center py-8">
-                <FontAwesomeIcon icon={faGhost} className="w-12 h-12 text-slate-700 mb-3" />
+                <VampireIcon className="w-12 h-12 opacity-20 mb-3" />
                 <p className="text-sm text-slate-500">{_('noExtracted')}</p>
                 <button onClick={() => setExtractedBills(null)}
                   className="mt-4 px-6 py-2.5 text-xs font-medium text-violet-400 bg-violet-950/30 rounded-xl hover:bg-violet-950/50 transition-colors cursor-pointer">
