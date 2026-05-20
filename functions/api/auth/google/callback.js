@@ -1,16 +1,16 @@
 import { getCookie, isValidEmail, requireDb, sessionSecret, setSessionCookie, signSession, uuid } from '../../../_shared/auth.js';
 
-function redirect(url, hash, cookie = '') {
-  const headers = {
+function redirect(url, hash, cookies = []) {
+  const headers = new Headers({
     Location: `${url.origin}/#${hash}`,
     'Cache-Control': 'no-store',
-  };
-  if (cookie) headers['Set-Cookie'] = cookie;
+  });
+  cookies.filter(Boolean).forEach((cookie) => headers.append('Set-Cookie', cookie));
   return new Response(null, { status: 302, headers });
 }
 
 function redirectError(url, error) {
-  return redirect(url, `auth-error=${encodeURIComponent(error)}`, 'bv_google_state=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax');
+  return redirect(url, `auth-error=${encodeURIComponent(error)}`, ['bv_google_state=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax']);
 }
 
 async function getOrCreateUser(db, email) {
@@ -72,7 +72,7 @@ export async function onRequestGet(context) {
       exp: now + 60 * 60 * 24 * 90,
     }, secret);
     const clearState = `bv_google_state=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax${url.protocol === 'https:' ? '; Secure' : ''}`;
-    return redirect(url, 'auth-success', `${setSessionCookie(context.request, session)}, ${clearState}`);
+    return redirect(url, 'auth-success', [setSessionCookie(context.request, session), clearState]);
   } catch {
     return redirectError(url, 'google_failed');
   }
