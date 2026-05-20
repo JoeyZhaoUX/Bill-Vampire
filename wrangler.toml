@@ -20,23 +20,16 @@ pages_build_output_dir = "dist"
 binding = "EMAIL_LIST"
 id = "006bcf18eaaf4ce9b7ac06a864d22d48"
 
-# Optional: bind a RATE_LIMIT KV namespace to enable IP-based free AI limits
-# in functions/api/gemini.js. Keep this commented until the real namespace id
-# exists, otherwise Pages deploys can fail on the placeholder value.
-# [[kv_namespaces]]
-# binding = "RATE_LIMIT"
-# id = "REPLACE_WITH_KV_NAMESPACE_ID"
+# RATE_LIMIT stores IP-based free AI parsing counters.
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "37bdf258b09c437f8857b008d7d35779"
 
 # ------- D1 bindings -------
-# Create this with:
-#   wrangler d1 create bill-vampire-prod
-#   wrangler d1 migrations apply bill-vampire-prod --remote
-# Then uncomment and paste the returned database_id. Functions degrade to
-# guest/sync-paused mode until BV_DB is bound.
-# [[d1_databases]]
-# binding = "BV_DB"
-# database_name = "bill-vampire-prod"
-# database_id = "REPLACE_WITH_D1_DATABASE_ID"
+[[d1_databases]]
+binding = "BV_DB"
+database_name = "bill-vampire-prod"
+database_id = "05775d4c-7c3c-4606-af64-58a6a97ce423"
 
 # ------- Env vars (set via dashboard Variables & Secrets, or `wrangler secret put`) -------
 # GEMINI_API_KEY   — Google Gemini 2.5 Flash key, used by functions/api/gemini.js
@@ -52,4 +45,7 @@ id = "006bcf18eaaf4ce9b7ac06a864d22d48"
 # The weekly-digest Worker has its own RESEND_API_KEY binding.
 
 [vars]
-# Public (non-secret) vars go here. Keep this section for documentation even if empty.
+AUTH_EMAIL_FROM = "Bill Vampire <hello@billvampire.com>"
+CREEM_EMERGENCY_KIT_PRODUCT_ID = "prod_5nLkYvnA8LPlZp49NvjXKZ"
+CREEM_PRO_PRODUCT_ID = "prod_1pw0aIvQW2CzNzfMLrgGAY"
+CREEM_PATROL_MONTHLY_PRODUCT_ID = "prod_3l1JRnKrbMvuYiWez8JDGw"
