@@ -68,6 +68,8 @@ function customerEmail(event) {
   return String(
     obj?.customer?.email
     || obj?.customer_email
+    || obj?.order?.customer?.email
+    || obj?.checkout?.customer?.email
     || event?.customer?.email
     || event?.email
     || '',
@@ -76,7 +78,21 @@ function customerEmail(event) {
 
 function creemReference(event) {
   const obj = eventObject(event);
-  return event?.id || obj?.order?.id || obj?.id || obj?.request_id || null;
+  return event?.id || obj?.request_id || obj?.order?.id || obj?.id || null;
+}
+
+function metadata(event) {
+  const obj = eventObject(event);
+  return obj?.metadata
+    || obj?.checkout?.metadata
+    || obj?.subscription?.metadata
+    || event?.metadata
+    || {};
+}
+
+function metadataUserId(event) {
+  const meta = metadata(event);
+  return String(meta?.userId || meta?.user_id || meta?.referenceId || '').trim();
 }
 
 async function getOrCreateUser(db, email) {
@@ -85,6 +101,16 @@ async function getOrCreateUser(db, email) {
   const id = uuid();
   await db.prepare('INSERT INTO users (id, email) VALUES (?, ?)').bind(id, email).run();
   return { id, email };
+}
+
+async function resolveUser(db, event, email) {
+  const userId = metadataUserId(event);
+  if (userId) {
+    const user = await db.prepare('SELECT id, email FROM users WHERE id = ?').bind(userId).first();
+    if (user) return user;
+  }
+  if (!isValidEmail(email)) return null;
+  return getOrCreateUser(db, email);
 }
 
 async function grantEntitlement(db, userId, type, reference) {
@@ -126,9 +152,9 @@ export async function onRequestPost(context) {
   const entitlement = productMap(context.env)[productId(event)];
 
   if (!entitlement) return json({ ok: true, ignored: 'unknown_product', eventType: type });
-  if (!isValidEmail(email)) return json({ ok: true, ignored: 'missing_customer_email', eventType: type });
+  const user = await resolveUser(db, event, email);
+  if (!user) return json({ ok: true, ignored: 'missing_customer', eventType: type });
 
-  const user = await getOrCreateUser(db, email);
   const grantEvents = new Set(['checkout.completed', 'subscription.active', 'subscription.paid', 'subscription.trialing']);
   const revokeEvents = new Set(['refund.created', 'dispute.created', 'subscription.canceled', 'subscription.expired']);
 
