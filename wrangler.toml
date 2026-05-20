@@ -45,6 +45,10 @@ id = "006bcf18eaaf4ce9b7ac06a864d22d48"
 # AUTH_SESSION_SECRET — 32+ byte random string for web app auth sessions.
 # RESEND_API_KEY      — optional on Pages; sends magic links from auth/start.
 # AUTH_EMAIL_FROM     — optional; defaults to Bill Vampire <hello@billvampire.com>.
+# CREEM_WEBHOOK_SECRET — required for /api/creem/webhook signature verification.
+# CREEM_EMERGENCY_KIT_PRODUCT_ID — optional override; defaults to prod_5nLkYvnA8LPlZp49NvjXKZ.
+# CREEM_PRO_PRODUCT_ID, CREEM_PATROL_MONTHLY_PRODUCT_ID, CREEM_PATROL_ANNUAL_PRODUCT_ID
+#                    — optional product-id overrides for entitlement sync.
 # The weekly-digest Worker has its own RESEND_API_KEY binding.
 
 [vars]

@@ -19,7 +19,8 @@ function TermsOfService() {
         <p>By accessing or using Bill Vampire ("the Service"), you agree to be bound by these Terms of Service. If you do not agree, please do not use the Service.</p>
       </Section>
       <Section title="2. Description of Service">
-        <p>Bill Vampire offers two products: (a) the Bill Vampire web app, with a free tier and a one-time paid upgrade ("Pro") that delivers the full 10-year Verdict, unlimited AI bill parsing, unwatermarked share cards, and unlimited PDF exports; and (b) Bill Vampire Patrol, a separately-billed Chrome extension subscription that scans your Gmail for recurring charges and sends charge-date alerts.</p>
+        <p>Bill Vampire is a no-bank-login subscription emergency assistant. The free flow lets you paste, upload, or speak one subscription problem and see a basic result. The paid Emergency Kit is a 4.99 USD one-time digital purchase that unlocks refund email, cancellation email, support chat script, chargeback checklist, evidence checklist, reminder text, and a downloadable action plan.</p>
+        <p>Bill Vampire may also offer optional Pro or Patrol features. These are separate products and are not required to use the Emergency Kit.</p>
       </Section>
       <Section title="3. User Data, Accounts & Local Storage">
         <p>You can see results without creating an account. If you choose to create an email account, Bill Vampire stores your subscriptions, cancelled items, reminders, Emergency Kit case files, and purchase entitlements so you can recover them after cache clears or on another device.</p>
@@ -29,8 +30,8 @@ function TermsOfService() {
         <p>The Service includes AI-powered analysis features provided through third-party APIs (Google Gemini). AI-generated advice, roasts, and alternative suggestions are for informational and entertainment purposes only and should not be considered professional financial advice. Bill Vampire is an independent product and is not affiliated with or endorsed by Google.</p>
       </Section>
       <Section title="5. Paid Products & Payment Processing">
-        <p><strong>Pro (web app):</strong> a one-time purchase of 9.99 USD processed through <a href="https://www.creem.io" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">Creem</a>. By purchasing Pro, you receive a permanent license to the Pro features listed in Section 2. Pro status may be stored locally and, if you sign in, synced to your account.</p>
-        <p><strong>Patrol (Chrome extension):</strong> a recurring subscription billed at 4.99 USD per month or 39 USD per year via Creem. You may cancel any time in one click; billing stops at the end of the current period and Patrol features deactivate at that time. Pro and Patrol are separate products — purchasing one does not entitle you to the other.</p>
+        <p><strong>Emergency Kit:</strong> a one-time purchase of 4.99 USD processed through <a href="https://www.creem.io" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">Creem</a>. By purchasing the Emergency Kit, you receive access to the generated consumer communication templates and action checklist for your case.</p>
+        <p><strong>Optional Pro or Patrol features:</strong> if offered, these are separate products with their own pricing shown at checkout. Purchasing one product does not automatically entitle you to another unless explicitly stated.</p>
         <p>Creem acts as our merchant of record and handles all payment processing, sales tax, and billing.</p>
       </Section>
       <Section title="6. Acceptable Use">
@@ -99,17 +100,17 @@ function RefundPolicy() {
       <Section title="1. Free Tier">
         <p>Bill Vampire's core features are free to use and require no payment. No refund applies to the free tier.</p>
       </Section>
-      <Section title="2. Pro Upgrade (9.99 USD One-Time)">
-        <p>The Pro upgrade is a one-time digital purchase. Because of the immediate nature of digital goods delivery, we generally do not offer refunds after purchase.</p>
+      <Section title="2. Emergency Kit (4.99 USD One-Time)">
+        <p>The Emergency Kit is a one-time digital purchase. Because the generated scripts and checklist are delivered immediately, we generally do not offer refunds after purchase.</p>
         <p>However, we want you to be satisfied. If you experience any of the following, we will issue a full refund:</p>
         <ul className="list-disc list-inside space-y-1 pl-2">
-          <li>You were charged but Pro features did not activate</li>
+          <li>You were charged but Emergency Kit access did not activate</li>
           <li>You were charged multiple times for the same purchase</li>
-          <li>You request a refund within 3 days of purchase and have not extensively used Pro features</li>
+          <li>The generated kit is unavailable due to a technical failure on our side</li>
         </ul>
       </Section>
-      <Section title="3. Patrol Subscription (4.99 USD / month · 39 USD / year)">
-        <p>Patrol is billed recurring through Creem. You can cancel at any time from your Creem receipt or by emailing us; once cancelled we stop all future charges at the end of the current billing period. We do not pro-rate refunds for partial months already elapsed, with two exceptions:</p>
+      <Section title="3. Optional Patrol Subscription">
+        <p>If Patrol is offered, it is billed recurring through Creem. You can cancel at any time from your Creem receipt or by emailing us; once cancelled we stop future charges at the end of the current billing period. We do not pro-rate refunds for partial periods already elapsed, with two exceptions:</p>
         <ul className="list-disc list-inside space-y-1 pl-2">
           <li>You were charged for a renewal but Patrol had already been uninstalled before the renewal date — we refund that renewal in full.</li>
           <li>You were charged more than once in the same billing period due to a processing error.</li>
