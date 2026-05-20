@@ -5,7 +5,7 @@ import {
   faCircleCheck, faDownload, faQuoteLeft,
   faSpinner, faWandMagicSparkles, faMagnifyingGlass, faMugHot,
   faShareNodes, faCrown, faHeart, faLock, faArrowUpRightFromSquare, faChevronRight, faSkull, faFileImport, faXmark, faCheck,
-  faFolderOpen, faCopy,
+  faFolderOpen, faCopy, faRightFromBracket, faGear,
 } from '@fortawesome/free-solid-svg-icons';
 import { t, getDefaultLang, SUPPORTED_LANGS } from './i18n';
 import {
@@ -18,6 +18,7 @@ import {
 import { injectAffiliateLinks, PREFERRED_ALTERNATIVES } from './affiliates';
 import { track } from './analytics';
 import { callAi, RateLimitError } from './aiClient';
+import { logout } from './auth';
 import {
   fireChargeDateNotifications, pendingToasts, markToastDelivered,
   notificationPermission, requestNotificationPermission, hasNotificationApi,
@@ -228,6 +229,83 @@ function importSubsFromExtensionHash(existing) {
     history.replaceState(null, '', window.location.pathname + window.location.search);
   } catch { /* non-fatal */ }
   return Object.values(byKey);
+}
+
+function AccountMenu({ user, onLogout, compact }) {
+  const [open, setOpen] = useState(false);
+  const ref = React.useRef(null);
+  const email = user?.email || '';
+  const initial = email.charAt(0).toUpperCase();
+
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    document.addEventListener('pointerdown', handler);
+    return () => document.removeEventListener('pointerdown', handler);
+  }, [open]);
+
+  if (compact) {
+    return (
+      <div className="relative" ref={ref}>
+        <button
+          onClick={() => setOpen(!open)}
+          className="w-7 h-7 rounded-full bg-gradient-to-br from-rose-500 to-violet-600 flex items-center justify-center text-white text-[10px] font-bold cursor-pointer border-0"
+          title={email}
+        >
+          {initial}
+        </button>
+        {open && (
+          <div className="absolute right-0 top-full mt-2 w-52 bg-[#141420] border border-slate-800/40 rounded-xl shadow-xl shadow-black/40 z-50 overflow-hidden">
+            <div className="px-4 py-3 border-b border-slate-800/30">
+              <p className="text-[10px] text-slate-500 uppercase tracking-wider">Account</p>
+              <p className="text-xs text-slate-300 truncate mt-1">{email}</p>
+            </div>
+            <button
+              onClick={() => { setOpen(false); onLogout(); }}
+              className="w-full flex items-center gap-2.5 px-4 py-3 text-xs text-rose-400 hover:bg-rose-950/30 transition-colors cursor-pointer"
+            >
+              <FontAwesomeIcon icon={faRightFromBracket} className="w-3.5 h-3.5" />
+              Sign out
+            </button>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative mb-4" ref={ref}>
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl bg-[#141420]/60 hover:bg-[#1C1C2A] border border-slate-800/30 transition-colors cursor-pointer"
+      >
+        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-rose-500 to-violet-600 flex items-center justify-center shrink-0 text-white text-xs font-bold">
+          {initial}
+        </div>
+        <div className="flex-1 text-left min-w-0">
+          <p className="text-[11px] text-slate-300 font-medium truncate">{email}</p>
+          <p className="text-[9px] text-slate-600">Signed in</p>
+        </div>
+        <FontAwesomeIcon icon={faGear} className="w-3 h-3 text-slate-600" />
+      </button>
+
+      {open && (
+        <div className="absolute left-0 right-0 top-full mt-1 bg-[#141420] border border-slate-800/40 rounded-xl shadow-xl shadow-black/40 z-50 overflow-hidden">
+          <div className="px-4 py-3 border-b border-slate-800/30">
+            <p className="text-[10px] text-slate-500 uppercase tracking-wider">Account</p>
+            <p className="text-xs text-slate-300 truncate mt-1">{email}</p>
+          </div>
+          <button
+            onClick={() => { setOpen(false); onLogout(); }}
+            className="w-full flex items-center gap-2.5 px-4 py-3 text-xs text-rose-400 hover:bg-rose-950/30 transition-colors cursor-pointer"
+          >
+            <FontAwesomeIcon icon={faRightFromBracket} className="w-3.5 h-3.5" />
+            Sign out
+          </button>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAuthRefresh }) {
@@ -686,6 +764,9 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
                 </button>
               ))}
             </div>
+            {auth.status === 'authenticated' && auth.user && (
+              <AccountMenu compact user={auth.user} onLogout={async () => { await logout(); onAuthRefresh(); }} />
+            )}
           </div>
         </div>
       </header>
@@ -705,6 +786,11 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
                 </button>
               ))}
             </div>
+
+            {/* Account menu */}
+            {auth.status === 'authenticated' && auth.user && (
+              <AccountMenu user={auth.user} onLogout={async () => { await logout(); onAuthRefresh(); }} />
+            )}
 
             {/* Branding */}
             <button onClick={onGoToLanding} className="flex flex-col items-center lg:items-start mb-6 cursor-pointer hover:opacity-80 transition-opacity bg-transparent border-0 p-0 text-left">
