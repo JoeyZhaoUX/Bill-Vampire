@@ -1,4 +1,5 @@
 const CLOUD_SNAPSHOT_KEY = 'vampire_last_cloud_sync';
+const CASES_KEY = 'vampire_case_files';
 
 async function api(path, options = {}) {
   const res = await fetch(path, {
@@ -48,6 +49,7 @@ export function getLocalSnapshot() {
   return {
     subscriptions: readJson('vampire_subs', []),
     cancelled: readJson('vampire_cancelled', []),
+    cases: readJson(CASES_KEY, []),
     entitlements,
   };
 }
@@ -82,6 +84,17 @@ export function applyCloudSnapshot(snapshot) {
         writeJson('vampire_patrol', { tier: ent.type, exp, activatedAt: Date.now() });
       }
     }
+  }
+  if (Array.isArray(snapshot?.cases)) {
+    writeJson(CASES_KEY, snapshot.cases.map(c => ({
+      id: c.id,
+      issueType: c.issueType || c.issue_type || 'surprise_charge',
+      service: c.service || c.kit?.service || 'Subscription case',
+      amount: c.amount || c.kit?.amount || '',
+      rawInputExcerpt: c.rawInputExcerpt || c.raw_input_excerpt || '',
+      kit: c.kit || null,
+      createdAt: c.createdAt || c.created_at || new Date().toISOString(),
+    })).filter(c => c.kit));
   }
   localStorage.setItem(CLOUD_SNAPSHOT_KEY, new Date().toISOString());
   window.dispatchEvent(new CustomEvent('vampire-cloud-sync-applied', { detail: snapshot }));
@@ -119,8 +132,19 @@ export async function fetchCloudSnapshot() {
 }
 
 export async function saveEmergencyCase({ kit, issueType, rawInputExcerpt }) {
-  return api('/api/cases', {
+  const saved = await api('/api/cases', {
     method: 'POST',
     body: JSON.stringify({ kit, issueType, rawInputExcerpt }),
   });
+  const cases = readJson(CASES_KEY, []);
+  writeJson(CASES_KEY, [{
+    id: saved.id,
+    issueType,
+    service: kit?.service || 'Subscription case',
+    amount: kit?.amount || '',
+    rawInputExcerpt: rawInputExcerpt || '',
+    kit,
+    createdAt: new Date().toISOString(),
+  }, ...cases.filter(c => c.id !== saved.id)].slice(0, 20));
+  return saved;
 }

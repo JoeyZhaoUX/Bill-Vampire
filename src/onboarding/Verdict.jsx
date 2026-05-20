@@ -209,6 +209,15 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
     }
   };
 
+  useEffect(() => {
+    if (!paymentSuccess) return;
+    if (!kitUnlocked) return;
+    if (auth?.status !== 'authenticated') return;
+    if (caseSaveStatus !== 'idle') return;
+    saveCaseFile();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [paymentSuccess, kitUnlocked, auth?.status, caseSaveStatus]);
+
   return (
     <div className="bv-brutal min-h-screen bg-[#0B0B11] text-slate-100 relative overflow-hidden">
       <ZhBanner />

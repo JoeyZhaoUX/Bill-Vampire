@@ -5,6 +5,7 @@ import {
   faCircleCheck, faDownload, faQuoteLeft,
   faSpinner, faWandMagicSparkles, faMagnifyingGlass, faMugHot,
   faShareNodes, faCrown, faHeart, faLock, faArrowUpRightFromSquare, faChevronRight, faSkull, faFileImport, faXmark, faCheck,
+  faFolderOpen, faCopy,
 } from '@fortawesome/free-solid-svg-icons';
 import { t, getDefaultLang, SUPPORTED_LANGS } from './i18n';
 import {
@@ -43,6 +44,7 @@ const CURRENCIES = {
 const CATEGORY_KEYS = ['catEntertainment', 'catProductivity', 'catLifestyle', 'catOther'];
 const CATEGORY_VALUES = ['Entertainment', 'Productivity', 'Lifestyle', 'Other'];
 const CATEGORY_ICONS = { 'Entertainment': '\u{1F3AE}', 'Productivity': '⚡', 'Lifestyle': '\u{1F33F}', 'Other': '\u{1F4E6}' };
+const CASES_KEY = 'vampire_case_files';
 
 // Price intelligence: avg monthly price + cheaper tier for popular US subscriptions
 const PRICE_INTEL = {
@@ -85,6 +87,106 @@ function getPriceIntel(name) {
   if (!name) return null;
   const key = Object.keys(PRICE_INTEL).find(k => name.toLowerCase().includes(k.toLowerCase()));
   return key ? PRICE_INTEL[key] : null;
+}
+
+function formatCaseDate(value) {
+  const date = value ? new Date(value) : null;
+  if (!date || Number.isNaN(date.getTime())) return 'Saved case';
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+function CaseFileVault({ cases, auth, onAuthRequest, onSync, onCopy, copied }) {
+  const visibleCases = Array.isArray(cases) ? cases.filter(c => c?.kit).slice(0, 3) : [];
+  const signedIn = auth?.status === 'authenticated';
+
+  if (!visibleCases.length && !signedIn) {
+    return (
+      <section className="mb-8 rounded-3xl border border-[rgba(201,164,106,0.18)] bg-[#0D0B0E]/70 p-5 sm:p-6 flex flex-col lg:flex-row lg:items-center gap-4">
+        <div className="w-12 h-12 rounded-2xl bg-[#171217] border border-white/10 flex items-center justify-center shrink-0">
+          <FontAwesomeIcon icon={faFolderOpen} className="w-5 h-5 text-[#C9A46A]" />
+        </div>
+        <div className="flex-1">
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#C9A46A] mb-1">Case File Vault</p>
+          <h3 className="text-base font-bold text-slate-100 mb-1">Keep paid kits recoverable after cache clears.</h3>
+          <p className="text-xs text-slate-500 leading-relaxed">
+            Use guest mode first. Create an account after results to restore Emergency Kits, scripts, reminders, and subscriptions on any device.
+          </p>
+        </div>
+        <button onClick={() => onAuthRequest?.('case_file_vault')}
+          className="px-5 py-2.5 rounded-xl bg-[#8E1D2C] text-[#F7EFE6] text-xs font-bold cursor-pointer">
+          Save future kits
+        </button>
+      </section>
+    );
+  }
+
+  if (!visibleCases.length) {
+    return (
+      <section className="mb-8 rounded-3xl border border-slate-800/40 bg-[#141420]/50 p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-4">
+        <div className="w-12 h-12 rounded-2xl bg-[#0D0B0E] border border-white/10 flex items-center justify-center shrink-0">
+          <FontAwesomeIcon icon={faFolderOpen} className="w-5 h-5 text-slate-500" />
+        </div>
+        <div className="flex-1">
+          <p className="text-sm font-semibold text-slate-200">No saved case files yet</p>
+          <p className="text-xs text-slate-500 mt-1">Run a scan, unlock or save the Emergency Kit, and it will appear here.</p>
+        </div>
+        <button onClick={() => onSync?.()}
+          className="px-4 py-2 rounded-xl text-xs font-bold text-slate-200 bg-[#171217] border border-white/10 cursor-pointer">
+          Refresh vault
+        </button>
+      </section>
+    );
+  }
+
+  return (
+    <section className="mb-8 rounded-3xl border border-[rgba(201,164,106,0.22)] bg-gradient-to-br from-[#171217]/90 via-[#0D0B0E]/95 to-[#171217]/80 p-5 sm:p-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
+        <div>
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#C9A46A] mb-1">Case File Vault</p>
+          <h3 className="text-lg font-black text-slate-100">Saved Emergency Kits</h3>
+          <p className="text-xs text-slate-500 mt-1">Recover refund, cancel, support, and proof scripts after cache clears.</p>
+        </div>
+        <button onClick={() => onSync?.()}
+          className="px-4 py-2 rounded-xl text-xs font-bold text-slate-200 bg-[#0D0B0E] border border-white/10 cursor-pointer">
+          Sync vault
+        </button>
+      </div>
+      <div className="grid gap-3">
+        {visibleCases.map((caseFile) => {
+          const kit = caseFile.kit || {};
+          return (
+            <article key={caseFile.id} className="rounded-2xl border border-slate-800/50 bg-[#0B0B11]/60 p-4">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
+                <div>
+                  <p className="text-sm font-bold text-slate-100">{kit.service || caseFile.service}</p>
+                  <p className="text-xs text-slate-500 mt-1">{kit.riskLine || 'Saved consumer action kit.'}</p>
+                </div>
+                <div className="sm:text-right shrink-0">
+                  <p className="text-lg font-black text-rose-400">{kit.amount || caseFile.amount || '$0'}</p>
+                  <p className="text-[10px] text-slate-600">{formatCaseDate(caseFile.createdAt)}</p>
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-2">
+                {[
+                  ['refundScript', 'Refund email'],
+                  ['cancelScript', 'Cancel email'],
+                  ['chatScript', 'Support chat'],
+                ].map(([field, label]) => (
+                  <button key={field}
+                    onClick={() => onCopy(caseFile, field)}
+                    disabled={!kit[field]}
+                    className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-[#141420] border border-slate-800/60 text-[11px] font-bold text-slate-300 hover:bg-[#1C1C2A] disabled:opacity-40 cursor-pointer">
+                    <FontAwesomeIcon icon={copied === `${caseFile.id}-${field}` ? faCheck : faCopy} className="w-3 h-3 text-[#C9A46A]" />
+                    {copied === `${caseFile.id}-${field}` ? 'Copied' : label}
+                  </button>
+                ))}
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  );
 }
 
 // Merge subs handed off from the Patrol extension via a base64-encoded hash
@@ -155,6 +257,8 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
   const [notifPromptShown, setNotifPromptShown] = useState(false);
   const [cancelScriptSub, setCancelScriptSub] = useState(null);
   const [undoToast, setUndoToast] = useState(null); // { sub, timer }
+  const [caseFiles, setCaseFiles] = useState([]);
+  const [caseCopied, setCaseCopied] = useState('');
 
   const _ = (key) => t(lang, key);
 
@@ -167,14 +271,20 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
     setSubscriptions(merged);
     if (savedDays) setNoSpendDays(JSON.parse(savedDays));
     if (savedCancelled) setCancelledSubs(JSON.parse(savedCancelled));
+    try {
+      const savedCases = localStorage.getItem(CASES_KEY);
+      if (savedCases) setCaseFiles(JSON.parse(savedCases));
+    } catch { /* keep dashboard usable */ }
   }, []);
   useEffect(() => {
     const onCloudSync = () => {
       try {
         const savedSubs = localStorage.getItem('vampire_subs');
         const savedCancelled = localStorage.getItem('vampire_cancelled');
+        const savedCases = localStorage.getItem(CASES_KEY);
         if (savedSubs) setSubscriptions(JSON.parse(savedSubs));
         if (savedCancelled) setCancelledSubs(JSON.parse(savedCancelled));
+        if (savedCases) setCaseFiles(JSON.parse(savedCases));
       } catch { /* keep local UI */ }
     };
     window.addEventListener('vampire-cloud-sync-applied', onCloudSync);
@@ -470,6 +580,20 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
 
   const remaining = aiUsesRemaining();
 
+  const copyCaseText = async (caseFile, field) => {
+    const text = caseFile?.kit?.[field] || '';
+    if (!text) return;
+    try {
+      await navigator.clipboard.writeText(text);
+      const key = `${caseFile.id}-${field}`;
+      setCaseCopied(key);
+      track('case_file_text_copied', { field, issue_type: caseFile.issueType });
+      setTimeout(() => setCaseCopied(''), 1600);
+    } catch {
+      setCaseCopied('');
+    }
+  };
+
   const enableChargeNotifs = async () => {
     track('notif_permission_requested');
     const result = await requestNotificationPermission();
@@ -715,6 +839,15 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
                 )}
               </div>
             </section>
+
+            <CaseFileVault
+              cases={caseFiles}
+              auth={auth}
+              onAuthRequest={onAuthRequest}
+              onSync={onAuthRefresh}
+              onCopy={copyCaseText}
+              copied={caseCopied}
+            />
 
             {/* Tabs */}
             <nav aria-label="Main tabs" role="tablist" className="hidden lg:flex p-1.5 bg-[#141420]/70 backdrop-blur rounded-2xl mb-8 border border-slate-800/40 gap-1 max-w-md">
