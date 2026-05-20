@@ -27,11 +27,25 @@ id = "006bcf18eaaf4ce9b7ac06a864d22d48"
 # binding = "RATE_LIMIT"
 # id = "REPLACE_WITH_KV_NAMESPACE_ID"
 
+# ------- D1 bindings -------
+# Create this with:
+#   wrangler d1 create bill-vampire-prod
+#   wrangler d1 migrations apply bill-vampire-prod --remote
+# Then uncomment and paste the returned database_id. Functions degrade to
+# guest/sync-paused mode until BV_DB is bound.
+# [[d1_databases]]
+# binding = "BV_DB"
+# database_name = "bill-vampire-prod"
+# database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
 # ------- Env vars (set via dashboard Variables & Secrets, or `wrangler secret put`) -------
 # GEMINI_API_KEY   — Google Gemini 2.5 Flash key, used by functions/api/gemini.js
 # JWT_SIGNING_KEY  — 32+ byte random string, used by functions/api/pro-token.js
 #                    to sign the bv_pro cookie consumed by the Chrome extension
-# RESEND_API_KEY lives on the weekly-digest Worker, not on Pages.
+# AUTH_SESSION_SECRET — 32+ byte random string for web app auth sessions.
+# RESEND_API_KEY      — optional on Pages; sends magic links from auth/start.
+# AUTH_EMAIL_FROM     — optional; defaults to Bill Vampire <hello@billvampire.com>.
+# The weekly-digest Worker has its own RESEND_API_KEY binding.
 
 [vars]
 # Public (non-secret) vars go here. Keep this section for documentation even if empty.

@@ -6,7 +6,7 @@ import { getCancelLink } from '../cancelLinks';
 import { track } from '../analytics';
 import ZhBanner from '../ZhBanner';
 
-export default function Commit({ subscriptions, onDone }) {
+export default function Commit({ subscriptions, onDone, auth, onAuthRequest }) {
   const [selected, setSelected] = useState(new Set());
 
   const toggle = (id) => {
@@ -28,7 +28,7 @@ export default function Commit({ subscriptions, onDone }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B0B11] text-slate-100 relative overflow-hidden">
+    <div className="bv-brutal min-h-screen bg-[#0B0B11] text-slate-100 relative overflow-hidden">
       <ZhBanner />
       <header className="px-6 py-5 flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -101,6 +101,24 @@ export default function Commit({ subscriptions, onDone }) {
             <p className="text-xs text-slate-400">Back in your pocket this year.</p>
           </div>
         )}
+
+        <div className="mb-6 rounded-2xl border border-[rgba(201,164,106,0.22)] bg-[#171217]/80 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div>
+            <p className="text-sm font-semibold text-slate-100">
+              {auth?.status === 'authenticated' ? 'Cancellation plan can sync' : 'Save your cancellation plan'}
+            </p>
+            <p className="text-xs text-slate-500 mt-1">
+              {auth?.status === 'authenticated'
+                ? `${auth.user?.email || 'Your account'} keeps this list available after cache clears.`
+                : 'Create an account after results to keep cancelled subscriptions and reminders.'}
+            </p>
+          </div>
+          {auth?.status !== 'authenticated' && (
+            <button onClick={() => onAuthRequest?.('commit_save')} className="px-4 py-2 rounded-xl bg-[#8E1D2C] text-[#F7EFE6] text-xs font-bold cursor-pointer">
+              Save with account
+            </button>
+          )}
+        </div>
 
         <button onClick={finish}
           className="w-full py-4 bg-rose-600 hover:bg-rose-500 rounded-2xl text-sm font-bold text-white shadow-xl shadow-rose-900/30 transition-all flex items-center justify-center gap-2 cursor-pointer">

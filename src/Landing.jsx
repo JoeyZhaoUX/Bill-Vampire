@@ -140,10 +140,6 @@ function HeroArtPanel() {
         src={brandAsset('hero-vampire-advocate.webp')}
         alt="A refined gothic vampire advocate holding a glowing billing statement and evidence folder"
       />
-      <figcaption className="bv-hero-art-caption">
-        <span>Emergency Kit</span>
-        <strong>Refund script + cancel path + proof checklist</strong>
-      </figcaption>
     </figure>
   );
 }
@@ -266,7 +262,7 @@ export default function Landing({ onEnterApp, onLegal }) {
     },
     {
       q: 'What data leaves my device?',
-      a: "No bank login is required. Your subscription list stays in your browser. When you scan a bill, the pasted text or uploaded image is sent once to our AI proxy for extraction and is not used to build a financial profile. We use anonymous analytics to understand conversion.",
+      a: "No bank login is required. You can see results in guest mode first. If you create an email account after results, we sync the subscriptions, case files, reminders, and purchase entitlements you choose to save.",
     },
     {
       q: 'Why pay $4.99 for this?',
@@ -350,7 +346,7 @@ export default function Landing({ onEnterApp, onLegal }) {
                 <LiveCounter />
                 <p className="text-[10px] text-slate-700 flex items-center gap-1.5">
                   <FontAwesomeIcon icon={faLock} className="w-2.5 h-2.5" />
-                  No signup before results · No bank connection · Consumer-assistance templates, not legal advice
+                  No bank login · No signup before results · Save case files with an account
                 </p>
               </div>
             </div>
@@ -412,7 +408,7 @@ export default function Landing({ onEnterApp, onLegal }) {
             <p className="text-xs font-medium text-violet-400 uppercase tracking-widest mb-3">How it works</p>
             <h2 className="tracking-heading text-3xl lg:text-4xl font-bold text-slate-100 mb-4">Three acts. One concrete next move.</h2>
             <p className="text-sm text-slate-500 max-w-lg mx-auto">
-              Pick the emergency, give us the bill, then copy the script. No signup before results.
+              Pick the emergency, give us the bill, then copy the script. Create an account only when you want to save it.
             </p>
           </div>
 
@@ -700,7 +696,7 @@ export default function Landing({ onEnterApp, onLegal }) {
               <div className="flex items-baseline gap-1 mb-1">
                 <span className="text-4xl font-bold text-slate-100">$0</span>
               </div>
-              <p className="text-[11px] text-slate-600 mb-6">No signup. No credit card. Ever.</p>
+              <p className="text-[11px] text-slate-600 mb-6">See results first. Save and track with an account.</p>
               <ul className="text-xs text-slate-400 space-y-3 mb-8 flex-1">
                 {[
                   'Pick surprise charge, trial ending, or hard cancel',
@@ -810,7 +806,7 @@ export default function Landing({ onEnterApp, onLegal }) {
             Build my free preview
             <FontAwesomeIcon icon={faChevronRight} className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
-          <p className="text-[10px] text-slate-700 mt-4">No signup · No bank connection · Data stays on your device</p>
+          <p className="text-[10px] text-slate-700 mt-4">No bank login · No signup before results · Account sync when you want it</p>
         </div>
       </section>
 

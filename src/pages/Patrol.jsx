@@ -12,7 +12,7 @@ import ZhBanner from '../ZhBanner';
 
 const CHROME_STORE_URL = 'https://chromewebstore.google.com/detail/bill-vampire-patrol/PLACEHOLDER_EXT_ID';
 
-export default function Patrol({ onEnterApp }) {
+export default function Patrol({ onEnterApp, auth, onAuthRequest }) {
   const viewedRef = useRef(false);
   useEffect(() => {
     if (viewedRef.current) return;
@@ -21,7 +21,7 @@ export default function Patrol({ onEnterApp }) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0B0B11] text-slate-100">
+    <div className="bv-brutal min-h-screen bg-[#0B0B11] text-slate-100">
 
       <ZhBanner onEnterApp={onEnterApp} />
 
@@ -75,6 +75,16 @@ export default function Patrol({ onEnterApp }) {
             </button>
           </div>
           <p className="text-[11px] text-slate-600">Cancel any month · read-only Gmail access · your data never leaves Cloudflare</p>
+          <div className="mt-6 inline-flex flex-col sm:flex-row items-center gap-3 rounded-2xl border border-[rgba(201,164,106,0.22)] bg-[#171217]/80 px-5 py-3">
+            <span className="text-xs text-slate-400">
+              {auth?.status === 'authenticated' ? `Signed in as ${auth.user?.email}` : 'Save detected subscriptions with an email account.'}
+            </span>
+            {auth?.status !== 'authenticated' && (
+              <button onClick={() => onAuthRequest?.('patrol_save')} className="text-xs font-bold text-amber-300 cursor-pointer">
+                Create account
+              </button>
+            )}
+          </div>
         </div>
       </section>
 

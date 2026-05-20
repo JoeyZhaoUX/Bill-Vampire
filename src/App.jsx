@@ -128,7 +128,7 @@ function importSubsFromExtensionHash(existing) {
   return Object.values(byKey);
 }
 
-export default function App({ onLegal, onGoToLanding }) {
+export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAuthRefresh }) {
   const [lang, setLang] = useState(getDefaultLang);
   const [activeTab, setActiveTab] = useState('subs');
   const [subscriptions, setSubscriptions] = useState([]);
@@ -167,6 +167,18 @@ export default function App({ onLegal, onGoToLanding }) {
     setSubscriptions(merged);
     if (savedDays) setNoSpendDays(JSON.parse(savedDays));
     if (savedCancelled) setCancelledSubs(JSON.parse(savedCancelled));
+  }, []);
+  useEffect(() => {
+    const onCloudSync = () => {
+      try {
+        const savedSubs = localStorage.getItem('vampire_subs');
+        const savedCancelled = localStorage.getItem('vampire_cancelled');
+        if (savedSubs) setSubscriptions(JSON.parse(savedSubs));
+        if (savedCancelled) setCancelledSubs(JSON.parse(savedCancelled));
+      } catch { /* keep local UI */ }
+    };
+    window.addEventListener('vampire-cloud-sync-applied', onCloudSync);
+    return () => window.removeEventListener('vampire-cloud-sync-applied', onCloudSync);
   }, []);
   useEffect(() => { localStorage.setItem('vampire_subs', JSON.stringify(subscriptions)); }, [subscriptions]);
 
@@ -677,6 +689,30 @@ export default function App({ onLegal, onGoToLanding }) {
               <div className="bv-app-command-meter">
                 <span>monthly drain</span>
                 <strong>{displayCurrency}{monthlyTotal.toFixed(2)}</strong>
+              </div>
+            </section>
+
+            <section className="bv-sync-card mb-8">
+              <div>
+                <p className="text-[10px] font-bold uppercase text-amber-300 mb-1">
+                  {auth?.status === 'authenticated' ? 'Cloud sync active' : 'Guest mode'}
+                </p>
+                <p className="text-sm text-slate-300">
+                  {auth?.status === 'authenticated'
+                    ? `${auth.user?.email || 'Account'} · ${auth.sync === 'synced' ? 'Synced' : auth.sync === 'syncing' ? 'Syncing…' : 'Sync issue'}`
+                    : 'See results without signup. Create an account to save subscriptions, reminders, and paid kits across devices.'}
+                </p>
+              </div>
+              <div className="flex gap-2 shrink-0">
+                {auth?.status === 'authenticated' ? (
+                  <button onClick={() => onAuthRefresh?.()} className="px-4 py-2 rounded-xl text-xs font-bold text-slate-200 bg-[#171217] border border-white/10 cursor-pointer">
+                    Sync now
+                  </button>
+                ) : (
+                  <button onClick={() => onAuthRequest?.('app_sync')} className="px-4 py-2 rounded-xl text-xs font-bold text-[#F7EFE6] bg-[#8E1D2C] cursor-pointer">
+                    Save with account
+                  </button>
+                )}
               </div>
             </section>
 

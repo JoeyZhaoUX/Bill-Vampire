@@ -6,6 +6,9 @@ import Legal from './Legal.jsx'
 import { getDefaultLang } from './i18n.js'
 import { checkPaymentSuccess } from './pro.js'
 import { track } from './analytics.js'
+import AuthModal from './AuthModal.jsx'
+import UpdatePrompt from './UpdatePrompt.jsx'
+import { getMe, syncLocalToCloud } from './auth.js'
 import './index.css'
 
 const Scan = lazy(() => import('./onboarding/Scan.jsx'));
@@ -50,15 +53,53 @@ function Root() {
   });
   const [onboardingSubs, setOnboardingSubs] = useState(loadSubsFromStorage);
   const [lang, setLang] = useState(getDefaultLang);
+  const [auth, setAuth] = useState({ status: 'checking', user: null, sync: 'idle', error: null });
+  const [authModal, setAuthModal] = useState(null);
+
+  const refreshAuth = async (sync = true) => {
+    try {
+      const me = await getMe();
+      if (!me.authenticated) {
+        setAuth({ status: 'guest', user: null, sync: me.error === 'auth_unconfigured' ? 'unconfigured' : 'idle', error: me.error || null });
+        return null;
+      }
+      setAuth({ status: 'authenticated', user: me.user, sync: sync ? 'syncing' : 'synced', error: null });
+      if (sync) {
+        const cloud = await syncLocalToCloud();
+        setOnboardingSubs(loadSubsFromStorage());
+        setAuth({ status: 'authenticated', user: me.user, sync: 'synced', error: null, cloud });
+      }
+      return me.user;
+    } catch (err) {
+      setAuth({ status: 'guest', user: null, sync: err?.data?.error === 'auth_unconfigured' ? 'unconfigured' : 'paused', error: err?.data?.error || err.message });
+      return null;
+    }
+  };
 
   useEffect(() => {
     const onHash = () => {
       const hash = window.location.hash.replace('#', '');
       if (VALID_LEGAL.includes(hash)) setView(hash);
       else if (VALID_PAGES.includes(hash)) setView(hash);
+      else if (hash === 'auth-success') {
+        localStorage.setItem('vampire_visited', 'true');
+        window.location.hash = '';
+        setAuthModal(null);
+        refreshAuth(true);
+        setView(loadSubsFromStorage().length ? 'app' : 'landing');
+      }
     };
     window.addEventListener('hashchange', onHash);
     return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash === 'auth-success') {
+      localStorage.setItem('vampire_visited', 'true');
+      window.location.hash = '';
+    }
+    refreshAuth(true);
   }, []);
 
   const startOnboarding = (source = 'default') => {
@@ -165,60 +206,104 @@ function Root() {
 
   if (view === 'scan') {
     return (
-      <Suspense fallback={loader}>
-        <Scan onComplete={handleScanComplete} onSkipToManual={handleScanSkipToManual} />
-      </Suspense>
+      <>
+        <Suspense fallback={loader}>
+          <Scan onComplete={handleScanComplete} onSkipToManual={handleScanSkipToManual} />
+        </Suspense>
+        <AuthModal open={!!authModal} reason={authModal} onClose={() => setAuthModal(null)} />
+        <UpdatePrompt />
+      </>
     );
   }
 
   if (view === 'email-gate') {
     const subs = onboardingSubs.length ? onboardingSubs : loadSubsFromStorage();
     return (
-      <Suspense fallback={loader}>
-        <EmailGate
-          subscriptionCount={subs.length}
-          onContinue={() => { window.location.hash = 'verdict'; setView('verdict'); window.scrollTo(0, 0); }}
-          onSkip={() => { window.location.hash = 'verdict'; setView('verdict'); window.scrollTo(0, 0); }}
-        />
-      </Suspense>
+      <>
+        <Suspense fallback={loader}>
+          <EmailGate
+            subscriptionCount={subs.length}
+            onContinue={() => { window.location.hash = 'verdict'; setView('verdict'); window.scrollTo(0, 0); }}
+            onSkip={() => { window.location.hash = 'verdict'; setView('verdict'); window.scrollTo(0, 0); }}
+            onAuthRequest={(reason) => setAuthModal(reason || 'email_gate')}
+          />
+        </Suspense>
+        <AuthModal open={!!authModal} reason={authModal} onClose={() => setAuthModal(null)} />
+        <UpdatePrompt />
+      </>
     );
   }
 
   if (view === 'verdict') {
     return (
-      <Suspense fallback={loader}>
-        <Verdict
-          subscriptions={onboardingSubs.length ? onboardingSubs : loadSubsFromStorage()}
-          onContinue={handleVerdictContinue}
-          onShare={handleVerdictShare}
-        />
-      </Suspense>
+      <>
+        <Suspense fallback={loader}>
+          <Verdict
+            subscriptions={onboardingSubs.length ? onboardingSubs : loadSubsFromStorage()}
+            onContinue={handleVerdictContinue}
+            onShare={handleVerdictShare}
+            auth={auth}
+            onAuthRequest={(reason) => setAuthModal(reason || 'save_case')}
+            onAuthRefresh={() => refreshAuth(true)}
+          />
+        </Suspense>
+        <AuthModal open={!!authModal} reason={authModal} onClose={() => setAuthModal(null)} />
+        <UpdatePrompt />
+      </>
     );
   }
 
   if (view === 'patrol') {
     return (
-      <Suspense fallback={loader}>
-        <Patrol onEnterApp={enterApp} />
-      </Suspense>
+      <>
+        <Suspense fallback={loader}>
+          <Patrol onEnterApp={enterApp} auth={auth} onAuthRequest={(reason) => setAuthModal(reason || 'patrol')} />
+        </Suspense>
+        <AuthModal open={!!authModal} reason={authModal} onClose={() => setAuthModal(null)} />
+        <UpdatePrompt />
+      </>
     );
   }
 
   if (view === 'commit') {
     return (
-      <Suspense fallback={loader}>
-        <Commit
-          subscriptions={onboardingSubs.length ? onboardingSubs : loadSubsFromStorage()}
-          onDone={handleCommitDone}
-        />
-      </Suspense>
+      <>
+        <Suspense fallback={loader}>
+          <Commit
+            subscriptions={onboardingSubs.length ? onboardingSubs : loadSubsFromStorage()}
+            onDone={handleCommitDone}
+            auth={auth}
+            onAuthRequest={(reason) => setAuthModal(reason || 'commit')}
+          />
+        </Suspense>
+        <AuthModal open={!!authModal} reason={authModal} onClose={() => setAuthModal(null)} />
+        <UpdatePrompt />
+      </>
     );
   }
 
   if (view === 'landing') {
-    return <Landing onEnterApp={startOnboarding} onLegal={goToLegal} lang={lang} setLang={setLang} />;
+    return (
+      <>
+        <Landing onEnterApp={startOnboarding} onLegal={goToLegal} lang={lang} setLang={setLang} />
+        <AuthModal open={!!authModal} reason={authModal} onClose={() => setAuthModal(null)} />
+        <UpdatePrompt />
+      </>
+    );
   }
-  return <App onLegal={goToLegal} onGoToLanding={goToLanding} />;
+  return (
+    <>
+      <App
+        onLegal={goToLegal}
+        onGoToLanding={goToLanding}
+        auth={auth}
+        onAuthRequest={(reason) => setAuthModal(reason || 'app')}
+        onAuthRefresh={() => refreshAuth(true)}
+      />
+      <AuthModal open={!!authModal} reason={authModal} onClose={() => setAuthModal(null)} />
+      <UpdatePrompt />
+    </>
+  );
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(

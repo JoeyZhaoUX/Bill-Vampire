@@ -11,6 +11,7 @@ import {
 } from '../pro';
 import { generateEmergencyKit } from './emergencyKit';
 import { track } from '../analytics';
+import { saveEmergencyCase } from '../auth';
 import ZhBanner from '../ZhBanner';
 
 function formatUsd(n, decimals = 0) {
@@ -37,7 +38,7 @@ function useDigitRoll(target, durationMs = 1800, startWhen = true) {
   return value;
 }
 
-export default function Verdict({ subscriptions, onContinue, onShare }) {
+export default function Verdict({ subscriptions, onContinue, onShare, auth, onAuthRequest, onAuthRefresh }) {
   const monthly = useMemo(() => totalMonthlyUsd(subscriptions), [subscriptions]);
   const tenYear = useMemo(() => tenYearTotalUsd(subscriptions), [subscriptions]);
   const ranked = useMemo(() => rankByLifetimeWaste(subscriptions), [subscriptions]);
@@ -50,6 +51,7 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
   const [paymentSuccess, setPaymentSuccess] = useState(() => (
     typeof localStorage !== 'undefined' && localStorage.getItem('vampire_payment_success_type') === 'emergency_kit'
   ));
+  const [caseSaveStatus, setCaseSaveStatus] = useState('idle');
 
   const monthlyAnim = useDigitRoll(monthly, 1400, true);
   const tenYearAnim = useDigitRoll(tenYear, 2200, phase !== 'monthly');
@@ -191,6 +193,22 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
     track('kit_calendar_downloaded', { issue_type: issueType });
   };
 
+  const saveCaseFile = async () => {
+    if (auth?.status !== 'authenticated') {
+      onAuthRequest?.('save_case_file');
+      return;
+    }
+    setCaseSaveStatus('saving');
+    try {
+      await saveEmergencyCase({ kit: emergencyKit, issueType, rawInputExcerpt: rawText.slice(0, 1000) });
+      await onAuthRefresh?.();
+      setCaseSaveStatus('saved');
+      track('case_file_saved', { issue_type: issueType });
+    } catch {
+      setCaseSaveStatus('error');
+    }
+  };
+
   return (
     <div className="bv-brutal min-h-screen bg-[#0B0B11] text-slate-100 relative overflow-hidden">
       <ZhBanner />
@@ -268,6 +286,9 @@ export default function Verdict({ subscriptions, onContinue, onShare }) {
             onUnlock={() => openEmergencyKitCheckout('kit_paywall')}
             paymentSuccess={paymentSuccess}
             onDismissSuccess={() => setPaymentSuccess(false)}
+            auth={auth}
+            caseSaveStatus={caseSaveStatus}
+            onSaveCase={saveCaseFile}
           />
 
           {pro && (
@@ -390,7 +411,7 @@ function escapeIcs(value) {
   return String(value).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
 }
 
-function EmergencyKitSection({ kit, unlocked, copied, onCopy, onDownload, onReminderDownload, onUnlock, paymentSuccess, onDismissSuccess }) {
+function EmergencyKitSection({ kit, unlocked, copied, onCopy, onDownload, onReminderDownload, onUnlock, paymentSuccess, onDismissSuccess, auth, caseSaveStatus, onSaveCase }) {
   return (
     <section className="py-10 border-t border-slate-800/40">
       <div className="bv-case-file bg-gradient-to-br from-amber-950/30 via-rose-950/20 to-violet-950/20 rounded-3xl border border-amber-800/30 p-5 sm:p-6">
@@ -446,6 +467,22 @@ function EmergencyKitSection({ kit, unlocked, copied, onCopy, onDownload, onRemi
             <FontAwesomeIcon icon={faArrowRight} className="w-3.5 h-3.5 text-emerald-300 shrink-0" />
           </a>
         )}
+
+        <div className="mb-5 rounded-2xl border border-[rgba(201,164,106,0.22)] bg-[#0D0B0E]/70 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div>
+            <p className="text-sm font-semibold text-slate-100">Save this case file and reminders</p>
+            <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+              {auth?.status === 'authenticated'
+                ? `Signed in as ${auth.user?.email}. Save this kit to recover it after cache clears.`
+                : 'Create an email account after results to sync this kit, subscriptions, and reminders across devices.'}
+            </p>
+          </div>
+          <button onClick={onSaveCase}
+            className="shrink-0 px-5 py-2.5 rounded-xl bg-[#8E1D2C] text-[#F7EFE6] text-xs font-bold cursor-pointer disabled:opacity-60"
+            disabled={caseSaveStatus === 'saving'}>
+            {caseSaveStatus === 'saving' ? 'Saving…' : caseSaveStatus === 'saved' ? 'Saved' : 'Save with account'}
+          </button>
+        </div>
 
         {!unlocked ? (
           <div className="rounded-2xl border border-amber-700/30 bg-[#0B0B11]/70 p-5 text-center">

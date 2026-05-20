@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faArrowRight, faSkull } from '@fortawesome/free-solid-svg-icons';
 import { track } from '../analytics';
 
-export default function EmailGate({ subscriptionCount, onContinue, onSkip }) {
+export default function EmailGate({ subscriptionCount, onContinue, onSkip, onAuthRequest }) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState('');
@@ -51,6 +51,14 @@ export default function EmailGate({ subscriptionCount, onContinue, onSkip }) {
         <p className="text-sm text-slate-400 mb-8 leading-relaxed max-w-sm mx-auto">
           Your verdict is ready. Drop your email and we'll also send you a weekly check-in — which subs you cancelled, which are still bleeding you, and one brutal AI line.
         </p>
+
+        <div className="mb-5 rounded-2xl border border-amber-700/30 bg-[#171217]/80 p-4 text-left">
+          <p className="text-sm font-semibold text-slate-100 mb-1">Want this saved after cache clears?</p>
+          <p className="text-xs text-slate-500 leading-relaxed mb-3">You can see the result first. Create an account afterward to sync subscriptions and reminders.</p>
+          <button onClick={() => onAuthRequest?.('email_gate_save')} className="text-xs font-bold text-amber-300 hover:text-amber-200 cursor-pointer">
+            Save with email sign-in
+          </button>
+        </div>
 
         <form onSubmit={submit} className="space-y-3 mb-4">
           <div className="relative">

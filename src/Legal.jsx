@@ -1,7 +1,6 @@
 import React from 'react';
 
 const CONTACT_EMAIL = 'hello@billvampire.com';
-const SITE_URL = 'https://joeymilano.github.io/Bill-Vampire/';
 const LAST_UPDATED = 'March 20, 2026';
 
 function Section({ title, children }) {
@@ -22,14 +21,15 @@ function TermsOfService() {
       <Section title="2. Description of Service">
         <p>Bill Vampire offers two products: (a) the Bill Vampire web app, with a free tier and a one-time paid upgrade ("Pro") that delivers the full 10-year Verdict, unlimited AI bill parsing, unwatermarked share cards, and unlimited PDF exports; and (b) Bill Vampire Patrol, a separately-billed Chrome extension subscription that scans your Gmail for recurring charges and sends charge-date alerts.</p>
       </Section>
-      <Section title="3. User Data & Local Storage">
-        <p>Bill Vampire stores your subscription data locally on your device using browser local storage. We do not collect, transmit, or store your subscription information on our servers. You are responsible for backing up your own data.</p>
+      <Section title="3. User Data, Accounts & Local Storage">
+        <p>You can see results without creating an account. If you choose to create an email account, Bill Vampire stores your subscriptions, cancelled items, reminders, Emergency Kit case files, and purchase entitlements so you can recover them after cache clears or on another device.</p>
+        <p>Guest-mode data remains in your browser local storage and may be lost if you clear site data. No bank login is required.</p>
       </Section>
       <Section title="4. AI Features">
         <p>The Service includes AI-powered analysis features provided through third-party APIs (Google Gemini). AI-generated advice, roasts, and alternative suggestions are for informational and entertainment purposes only and should not be considered professional financial advice. Bill Vampire is an independent product and is not affiliated with or endorsed by Google.</p>
       </Section>
       <Section title="5. Paid Products & Payment Processing">
-        <p><strong>Pro (web app):</strong> a one-time purchase of 9.99 USD processed through <a href="https://www.creem.io" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">Creem</a>. By purchasing Pro, you receive a permanent license to the Pro features listed in Section 2. Pro status is stored locally on your device.</p>
+        <p><strong>Pro (web app):</strong> a one-time purchase of 9.99 USD processed through <a href="https://www.creem.io" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">Creem</a>. By purchasing Pro, you receive a permanent license to the Pro features listed in Section 2. Pro status may be stored locally and, if you sign in, synced to your account.</p>
         <p><strong>Patrol (Chrome extension):</strong> a recurring subscription billed at 4.99 USD per month or 39 USD per year via Creem. You may cancel any time in one click; billing stops at the end of the current period and Patrol features deactivate at that time. Pro and Patrol are separate products — purchasing one does not entitle you to the other.</p>
         <p>Creem acts as our merchant of record and handles all payment processing, sales tax, and billing.</p>
       </Section>
@@ -56,17 +56,17 @@ function PrivacyPolicy() {
   return (
     <>
       <Section title="1. Overview">
-        <p>Bill Vampire is designed with privacy at its core. We believe your financial data should stay on your device, and we built the app accordingly.</p>
+        <p>Bill Vampire is designed to avoid bank connections. You can use the first result in guest mode, and you can create an email account only when you want saved case files, reminders, cross-device sync, or weekly digests.</p>
       </Section>
       <Section title="2. Data We Do NOT Collect">
-        <p>We do not collect, store, or transmit your subscription data, spending information, or personal financial details. All subscription data you enter is stored exclusively in your browser's local storage on your device.</p>
+        <p>We do not ask for bank login credentials, Plaid access, or full financial account history.</p>
       </Section>
       <Section title="3. Data We May Collect">
-        <p>When you use AI features, your subscription names and amounts are sent to Google's Gemini API to generate analysis and suggestions. Google's own privacy policy governs how they handle this data. We do not store or log these API requests on our side.</p>
-        <p>When you purchase Pro or leave a tip, payment processing is handled entirely by Creem. We receive confirmation of your purchase but do not store credit card numbers or billing details. Please refer to <a href="https://www.creem.io/privacy" target="_blank" rel="noopener noreferrer" className="text-rose-400 hover:text-rose-300 underline">Creem's Privacy Policy</a> for details on their data practices.</p>
+        <p>In guest mode, subscription data is stored locally in your browser. If you create an account, we store the email address, subscriptions you choose to save, cancelled items, reminder/case-file metadata, weekly digest preference, and purchase entitlements.</p>
+        <p>When you use AI features, billing text/images may be sent to Google's Gemini API to extract fields or generate scripts. When you purchase, payment processing is handled by Creem. We do not store credit card numbers.</p>
       </Section>
       <Section title="4. Cookies & Local Storage">
-        <p>We use browser local storage to save your preferences (language, Pro status, subscription list, no-spend calendar). We do not use tracking cookies, analytics services, or advertising pixels.</p>
+        <p>We use browser local storage for guest-mode data and a secure session cookie for signed-in accounts. Clearing site data can delete guest-mode data, but signed-in users can recover synced data by logging in again.</p>
       </Section>
       <Section title="5. Third-Party Services">
         <p>The Service integrates with:</p>
@@ -81,7 +81,7 @@ function PrivacyPolicy() {
         <p>The Service is not directed at children under 13. We do not knowingly collect data from children.</p>
       </Section>
       <Section title="7. Data Deletion">
-        <p>Since all data is stored locally on your device, you can delete it at any time by clearing your browser's local storage or site data for this website.</p>
+        <p>Guest-mode data can be deleted by clearing local site data. Account data can be deleted by contacting us at <a href={`mailto:${CONTACT_EMAIL}`} className="text-rose-400 hover:text-rose-300 underline">{CONTACT_EMAIL}</a>.</p>
       </Section>
       <Section title="8. Changes to This Policy">
         <p>We may update this Privacy Policy from time to time. Changes will be reflected on this page with an updated date.</p>
@@ -138,13 +138,13 @@ export default function Legal({ page, onBack }) {
   const { title, component: Content } = PAGES[page] || PAGES.terms;
 
   return (
-    <div className="min-h-screen bg-[#0B0B11] flex flex-col items-center justify-start">
+    <div className="bv-brutal min-h-screen bg-[#0B0B11] flex flex-col items-center justify-start">
       <div className="w-full max-w-2xl px-6 py-12">
         <button onClick={onBack}
           className="text-xs text-slate-500 hover:text-slate-300 transition-colors mb-8 cursor-pointer">
           &larr; Back
         </button>
-        <h1 className="text-2xl font-bold text-slate-100 font-serif mb-2">{title}</h1>
+        <h1 className="text-2xl font-bold text-slate-100 mb-2">{title}</h1>
         <p className="text-xs text-slate-600 mb-10">Last updated: {LAST_UPDATED}</p>
         <Content />
         <div className="mt-12 pt-6 border-t border-slate-800/50 flex gap-6">
