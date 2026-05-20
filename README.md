@@ -40,7 +40,22 @@ wrangler pages secret put RESEND_API_KEY
 
 Set `AUTH_EMAIL_FROM` in Cloudflare Pages variables if the default `Bill Vampire <hello@billvampire.com>` is not verified in Resend.
 
-4. Configure Creem webhook:
+4. Configure Google sign-in:
+
+Create an OAuth Web Client in Google Cloud Console and add this authorized redirect URI:
+
+```text
+https://billvampire.com/api/auth/google/callback
+```
+
+Then add the credentials as Pages secrets:
+
+```bash
+wrangler pages secret put GOOGLE_CLIENT_ID --project-name bill-vampire
+wrangler pages secret put GOOGLE_CLIENT_SECRET --project-name bill-vampire
+```
+
+5. Configure Creem webhook:
 
 Register this production endpoint in Creem:
 
@@ -59,7 +74,7 @@ CREEM_PATROL_MONTHLY_PRODUCT_ID
 CREEM_PATROL_ANNUAL_PRODUCT_ID
 ```
 
-5. Optional rate limit KV:
+6. Optional rate limit KV:
 
 Create a KV namespace for AI rate limits and uncomment the `RATE_LIMIT` binding in `wrangler.toml`.
 

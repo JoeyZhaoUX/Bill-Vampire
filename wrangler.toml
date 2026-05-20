@@ -38,6 +38,8 @@ database_id = "05775d4c-7c3c-4606-af64-58a6a97ce423"
 # AUTH_SESSION_SECRET — 32+ byte random string for web app auth sessions.
 # RESEND_API_KEY      — optional on Pages; sends magic links from auth/start.
 # AUTH_EMAIL_FROM     — optional; defaults to Bill Vampire <hello@billvampire.com>.
+# GOOGLE_CLIENT_ID    — optional; enables "Continue with Google".
+# GOOGLE_CLIENT_SECRET — optional; enables Google OAuth callback token exchange.
 # CREEM_WEBHOOK_SECRET — required for /api/creem/webhook signature verification.
 # CREEM_EMERGENCY_KIT_PRODUCT_ID — optional override; defaults to prod_5nLkYvnA8LPlZp49NvjXKZ.
 # CREEM_PRO_PRODUCT_ID, CREEM_PATROL_MONTHLY_PRODUCT_ID, CREEM_PATROL_ANNUAL_PRODUCT_ID

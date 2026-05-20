@@ -56,6 +56,20 @@ function Root() {
   const [lang, setLang] = useState(getDefaultLang);
   const [auth, setAuth] = useState({ status: 'checking', user: null, sync: 'idle', error: null });
   const [authModal, setAuthModal] = useState(null);
+  const [authNotice, setAuthNotice] = useState('');
+
+  const authErrorMessage = (error) => {
+    const messages = {
+      expired_token: 'That sign-in link expired. Send yourself a fresh magic link or continue with Google.',
+      invalid_or_used_token: 'That sign-in link was already used or is invalid. Send a new one to continue.',
+      missing_token: 'That sign-in link is missing its token. Please request a fresh link.',
+      auth_unconfigured: 'Cloud login is not fully configured yet. You can keep using guest mode for now.',
+      google_unconfigured: 'Google sign-in still needs its OAuth credentials. Use email magic link for now.',
+      google_denied: 'Google sign-in was cancelled. You can try again or use email.',
+      google_failed: 'Google sign-in failed. Try again or use email magic link.',
+    };
+    return messages[error] || 'Sign-in could not finish. Try again or request a new link.';
+  };
 
   const refreshAuth = async (sync = true) => {
     try {
@@ -86,8 +100,14 @@ function Root() {
         localStorage.setItem('vampire_visited', 'true');
         window.location.hash = '';
         setAuthModal(null);
+        setAuthNotice('');
         queueMicrotask(() => refreshAuth(true));
         setView(loadSubsFromStorage().length ? 'app' : 'landing');
+      } else if (hash.startsWith('auth-error=')) {
+        const error = decodeURIComponent(hash.replace('auth-error=', ''));
+        window.location.hash = '';
+        setAuthNotice(authErrorMessage(error));
+        setAuthModal('auth_error');
       }
     };
     window.addEventListener('hashchange', onHash);
@@ -99,6 +119,13 @@ function Root() {
     if (hash === 'auth-success') {
       localStorage.setItem('vampire_visited', 'true');
       window.location.hash = '';
+    } else if (hash.startsWith('auth-error=')) {
+      const error = decodeURIComponent(hash.replace('auth-error=', ''));
+      window.location.hash = '';
+      queueMicrotask(() => {
+        setAuthNotice(authErrorMessage(error));
+        setAuthModal('auth_error');
+      });
     }
     queueMicrotask(() => refreshAuth(true));
   }, []);
@@ -211,7 +238,7 @@ function Root() {
         <Suspense fallback={loader}>
           <Scan onComplete={handleScanComplete} onSkipToManual={handleScanSkipToManual} />
         </Suspense>
-        <AuthModal open={!!authModal} reason={authModal} onClose={() => setAuthModal(null)} />
+        <AuthModal open={!!authModal} reason={authModal} initialMessage={authNotice} onClose={() => { setAuthModal(null); setAuthNotice(''); }} />
         <UpdatePrompt />
       </>
     );
@@ -229,7 +256,7 @@ function Root() {
             onAuthRequest={(reason) => setAuthModal(reason || 'email_gate')}
           />
         </Suspense>
-        <AuthModal open={!!authModal} reason={authModal} onClose={() => setAuthModal(null)} />
+        <AuthModal open={!!authModal} reason={authModal} initialMessage={authNotice} onClose={() => { setAuthModal(null); setAuthNotice(''); }} />
         <UpdatePrompt />
       </>
     );
@@ -248,7 +275,7 @@ function Root() {
             onAuthRefresh={() => refreshAuth(true)}
           />
         </Suspense>
-        <AuthModal open={!!authModal} reason={authModal} onClose={() => setAuthModal(null)} />
+        <AuthModal open={!!authModal} reason={authModal} initialMessage={authNotice} onClose={() => { setAuthModal(null); setAuthNotice(''); }} />
         <UpdatePrompt />
       </>
     );
@@ -260,7 +287,7 @@ function Root() {
         <Suspense fallback={loader}>
           <Patrol onEnterApp={enterApp} auth={auth} onAuthRequest={(reason) => setAuthModal(reason || 'patrol')} />
         </Suspense>
-        <AuthModal open={!!authModal} reason={authModal} onClose={() => setAuthModal(null)} />
+        <AuthModal open={!!authModal} reason={authModal} initialMessage={authNotice} onClose={() => { setAuthModal(null); setAuthNotice(''); }} />
         <UpdatePrompt />
       </>
     );
@@ -286,8 +313,8 @@ function Root() {
   if (view === 'landing') {
     return (
       <>
-        <Landing onEnterApp={startOnboarding} onLegal={goToLegal} lang={lang} setLang={setLang} />
-        <AuthModal open={!!authModal} reason={authModal} onClose={() => setAuthModal(null)} />
+        <Landing onEnterApp={startOnboarding} onLegal={goToLegal} lang={lang} setLang={setLang} onAuthRequest={(reason) => setAuthModal(reason || 'landing')} />
+        <AuthModal open={!!authModal} reason={authModal} initialMessage={authNotice} onClose={() => { setAuthModal(null); setAuthNotice(''); }} />
         <UpdatePrompt />
       </>
     );
@@ -301,7 +328,7 @@ function Root() {
         onAuthRequest={(reason) => setAuthModal(reason || 'app')}
         onAuthRefresh={() => refreshAuth(true)}
       />
-      <AuthModal open={!!authModal} reason={authModal} onClose={() => setAuthModal(null)} />
+      <AuthModal open={!!authModal} reason={authModal} initialMessage={authNotice} onClose={() => { setAuthModal(null); setAuthNotice(''); }} />
       <UpdatePrompt />
     </>
   );

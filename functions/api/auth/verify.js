@@ -1,20 +1,30 @@
-import { json, requireDb, sessionSecret, setSessionCookie, sha256, signSession } from '../../_shared/auth.js';
+import { requireDb, sessionSecret, setSessionCookie, sha256, signSession } from '../../_shared/auth.js';
+
+function redirectAuthError(url, error) {
+  return new Response(null, {
+    status: 302,
+    headers: {
+      Location: `${url.origin}/#auth-error=${encodeURIComponent(error)}`,
+      'Cache-Control': 'no-store',
+    },
+  });
+}
 
 export async function onRequestGet(context) {
   const db = requireDb(context.env);
   const secret = sessionSecret(context.env);
   const url = new URL(context.request.url);
-  if (!db || !secret) return json({ error: 'auth_unconfigured' }, 503);
+  if (!db || !secret) return redirectAuthError(url, 'auth_unconfigured');
 
   const token = url.searchParams.get('token') || '';
-  if (!token) return json({ error: 'missing_token' }, 400);
+  if (!token) return redirectAuthError(url, 'missing_token');
   const tokenHash = await sha256(token);
   const link = await db.prepare(
     'SELECT token_hash, user_id, email, expires_at, used_at FROM magic_links WHERE token_hash = ?',
   ).bind(tokenHash).first();
 
-  if (!link || link.used_at) return json({ error: 'invalid_or_used_token' }, 400);
-  if (new Date(link.expires_at).getTime() < Date.now()) return json({ error: 'expired_token' }, 400);
+  if (!link || link.used_at) return redirectAuthError(url, 'invalid_or_used_token');
+  if (new Date(link.expires_at).getTime() < Date.now()) return redirectAuthError(url, 'expired_token');
 
   await db.prepare('UPDATE magic_links SET used_at = CURRENT_TIMESTAMP WHERE token_hash = ?')
     .bind(tokenHash)

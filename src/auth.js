@@ -111,6 +111,10 @@ export async function startMagicLink(email, source = 'save_case_file') {
   });
 }
 
+export function getGoogleAuthUrl(reason = 'login') {
+  return `/api/auth/google/start?reason=${encodeURIComponent(reason)}`;
+}
+
 export async function logout() {
   return api('/api/logout', { method: 'POST' });
 }

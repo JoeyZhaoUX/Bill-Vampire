@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock, faXmark, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { startMagicLink } from './auth';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { getGoogleAuthUrl, startMagicLink } from './auth';
 import { track } from './analytics';
 
-export default function AuthModal({ open, reason = 'save', onClose }) {
+export default function AuthModal({ open, reason = 'save', onClose, initialMessage = '' }) {
   const [email, setEmail] = useState(() => localStorage.getItem('vampire_email') || '');
   const [status, setStatus] = useState('idle');
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState(initialMessage);
   const [magicLink, setMagicLink] = useState('');
 
   if (!open) return null;
@@ -38,6 +39,11 @@ export default function AuthModal({ open, reason = 'save', onClose }) {
     }
   };
 
+  const continueWithGoogle = () => {
+    track('auth_google_clicked', { reason });
+    window.location.href = getGoogleAuthUrl(reason);
+  };
+
   return (
     <div className="fixed inset-0 z-[80] flex items-end sm:items-center justify-center bg-black/70 backdrop-blur-sm px-4 py-6">
       <div className="bv-auth-modal w-full max-w-md rounded-3xl border border-white/10 bg-[#171217] shadow-2xl overflow-hidden">
@@ -48,7 +54,7 @@ export default function AuthModal({ open, reason = 'save', onClose }) {
             </div>
             <div>
               <p className="text-sm font-bold text-[#F7EFE6]">Save your case file</p>
-              <p className="text-[11px] text-[#A99A91]">No bank login. Email sign-in only.</p>
+              <p className="text-[11px] text-[#A99A91]">No bank login. Email or Google sign-in.</p>
             </div>
           </div>
           <button onClick={onClose} className="w-9 h-9 rounded-xl bg-black/20 text-[#A99A91] hover:text-[#F7EFE6] cursor-pointer">
@@ -60,6 +66,19 @@ export default function AuthModal({ open, reason = 'save', onClose }) {
           <p className="text-sm text-[#CDBFB6] leading-relaxed mb-5">
             Create an account after results to keep subscriptions, reminders, and Emergency Kits safe when cache is cleared or you switch devices.
           </p>
+          <button
+            type="button"
+            onClick={continueWithGoogle}
+            className="w-full py-3.5 rounded-2xl bg-[#F7EFE6] text-[#171217] text-sm font-bold flex items-center justify-center gap-2 cursor-pointer mb-3 hover:bg-white transition-colors"
+          >
+            <FontAwesomeIcon icon={faGoogle} className="w-4 h-4" />
+            Continue with Google
+          </button>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="h-px flex-1 bg-white/10" />
+            <span className="text-[10px] uppercase tracking-[0.2em] text-[#6f625c]">or</span>
+            <div className="h-px flex-1 bg-white/10" />
+          </div>
           <label className="block text-[10px] font-bold uppercase text-[#C9A46A] mb-2">Email</label>
           <div className="relative mb-3">
             <FontAwesomeIcon icon={faEnvelope} className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#A99A91]" />
