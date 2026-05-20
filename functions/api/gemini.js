@@ -133,7 +133,7 @@ export async function onRequestPost(context) {
       status: 200,
       headers: HEADERS,
     });
-  } catch (err) {
+  } catch {
     return new Response(JSON.stringify({ error: 'Internal server error' }), {
       status: 500,
       headers: HEADERS,

@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { useState, useEffect, Suspense, lazy } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
@@ -33,7 +34,7 @@ function loadSubsFromStorage() {
 function saveSubsToStorage(subs) {
   try {
     localStorage.setItem('vampire_subs', JSON.stringify(subs));
-  } catch {}
+  } catch { /* localStorage may be unavailable */ }
 }
 
 function Root() {
@@ -85,7 +86,7 @@ function Root() {
         localStorage.setItem('vampire_visited', 'true');
         window.location.hash = '';
         setAuthModal(null);
-        refreshAuth(true);
+        queueMicrotask(() => refreshAuth(true));
         setView(loadSubsFromStorage().length ? 'app' : 'landing');
       }
     };
@@ -99,7 +100,7 @@ function Root() {
       localStorage.setItem('vampire_visited', 'true');
       window.location.hash = '';
     }
-    refreshAuth(true);
+    queueMicrotask(() => refreshAuth(true));
   }, []);
 
   const startOnboarding = (source = 'default') => {
@@ -187,7 +188,7 @@ function Root() {
         saveSubsToStorage(remaining);
         const existingCancelled = JSON.parse(localStorage.getItem('vampire_cancelled') || '[]');
         localStorage.setItem('vampire_cancelled', JSON.stringify([...existingCancelled, ...killed]));
-      } catch {}
+      } catch { /* ignore malformed local records */ }
     }
     localStorage.setItem('vampire_visited', 'true');
     window.location.hash = '';

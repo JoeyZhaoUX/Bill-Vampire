@@ -56,7 +56,7 @@ export async function onRequestPost(context) {
     const next = (current || 0) + increment;
     await writeCounter(context.env, next);
     return new Response(JSON.stringify({ total: next + BASELINE_USD, persisted: true }), { status: 200, headers: HEADERS });
-  } catch (err) {
+  } catch {
     return new Response(JSON.stringify({ error: 'internal_error' }), { status: 500, headers: HEADERS });
   }
 }

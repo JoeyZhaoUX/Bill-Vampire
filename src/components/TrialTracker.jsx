@@ -17,8 +17,8 @@ function saveTrials(trials) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(trials));
 }
 
-function daysUntil(timestamp) {
-  return Math.ceil((timestamp - Date.now()) / (1000 * 60 * 60 * 24));
+function daysUntil(timestamp, now) {
+  return Math.ceil((timestamp - now) / (1000 * 60 * 60 * 24));
 }
 
 function formatDate(timestamp) {
@@ -29,15 +29,15 @@ export default function TrialTracker({ lang }) {
   const [trials, setTrials] = useState(loadTrials);
   const [showAdd, setShowAdd] = useState(false);
   const [newTrial, setNewTrial] = useState({ name: '', expiresIn: 7, price: '' });
+  const [now] = useState(() => Date.now());
 
   useEffect(() => { saveTrials(trials); }, [trials]);
 
   const { active, expired } = useMemo(() => {
-    const now = Date.now();
     const active = trials.filter(t => t.expiresAt > now && !t.cancelled);
     const expired = trials.filter(t => t.expiresAt <= now || t.cancelled);
     return { active: active.sort((a, b) => a.expiresAt - b.expiresAt), expired };
-  }, [trials]);
+  }, [trials, now]);
 
   const addTrial = () => {
     if (!newTrial.name.trim()) return;
@@ -67,7 +67,7 @@ export default function TrialTracker({ lang }) {
     setTrials(prev => prev.filter(t => t.id !== id));
   };
 
-  const urgentCount = active.filter(t => daysUntil(t.expiresAt) <= 3).length;
+  const urgentCount = active.filter(t => daysUntil(t.expiresAt, now) <= 3).length;
 
   return (
     <div className="bg-[#141420]/60 rounded-3xl border border-slate-800/30 p-6 animate-in fade-in slide-in-from-bottom-4 duration-300">
@@ -144,7 +144,7 @@ export default function TrialTracker({ lang }) {
       {active.length > 0 && (
         <div className="space-y-2 mb-4">
           {active.map(trial => {
-            const days = daysUntil(trial.expiresAt);
+            const days = daysUntil(trial.expiresAt, now);
             const isUrgent = days <= 3;
             const isWarning = days <= 7 && days > 3;
 

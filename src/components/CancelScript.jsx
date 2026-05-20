@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faScissors, faSpinner, faCopy, faCheck, faArrowUpRightFromSquare,
-  faLock, faCrown, faPhoneVolume, faEnvelope, faComments,
+  faLock, faCrown, faPhoneVolume, faComments,
 } from '@fortawesome/free-solid-svg-icons';
 import { isPro, openCheckout } from '../pro';
 import { track } from '../analytics';

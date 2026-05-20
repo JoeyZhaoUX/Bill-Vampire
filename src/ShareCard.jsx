@@ -1,6 +1,6 @@
 import React, { useRef, useCallback, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShareNodes, faDownload, faCopy, faCheck, faEllipsis } from '@fortawesome/free-solid-svg-icons';
+import { faDownload, faCopy, faCheck, faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { faXTwitter, faFacebook, faWhatsapp, faWeixin } from '@fortawesome/free-brands-svg-icons';
 import { toPng } from 'html-to-image';
 import { isPro } from './pro';
@@ -10,7 +10,6 @@ export default function ShareCard({ monthlyTotal, subscriptions, currency, t, on
   const cardRef = useRef(null);
   const [copied, setCopied] = useState(false);
   const [imageUrl, setImageUrl] = useState(null);
-  const [generating, setGenerating] = useState(true);
 
   const biggest = subscriptions.reduce((max, sub) => {
     const price = parseFloat(sub.price) || 0;
@@ -46,7 +45,6 @@ export default function ShareCard({ monthlyTotal, subscriptions, currency, t, on
       const dataUrl = await generateImage();
       if (!cancelled && dataUrl) {
         setImageUrl(dataUrl);
-        setGenerating(false);
       }
     })();
     return () => { cancelled = true; };
@@ -63,7 +61,7 @@ export default function ShareCard({ monthlyTotal, subscriptions, currency, t, on
       } else {
         await navigator.share({ title: t('shareTitle'), text: shareText });
       }
-    } catch {}
+    } catch { /* native share can be cancelled by the user */ }
   }, [imageUrl, shareText, t]);
 
   const handleDownload = useCallback(() => {

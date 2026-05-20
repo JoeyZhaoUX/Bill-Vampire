@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { registerSW } from 'virtual:pwa-register';
 
 export default function UpdatePrompt() {
   const [needRefresh, setNeedRefresh] = useState(false);
-  const [updateServiceWorker, setUpdateServiceWorker] = useState(null);
+  const updateServiceWorkerRef = useRef(null);
 
   useEffect(() => {
     const update = registerSW({
@@ -12,7 +12,7 @@ export default function UpdatePrompt() {
         setNeedRefresh(true);
       },
     });
-    setUpdateServiceWorker(() => update);
+    updateServiceWorkerRef.current = update;
   }, []);
 
   if (!needRefresh) return null;
@@ -23,7 +23,7 @@ export default function UpdatePrompt() {
       <p className="text-xs text-[#A99A91] mb-3 leading-relaxed">Refresh to load the newest Bill Vampire UI without clearing browser data.</p>
       <button
         onClick={() => {
-          updateServiceWorker?.(true);
+          updateServiceWorkerRef.current?.(true);
         }}
         className="w-full py-2.5 rounded-xl bg-[#8E1D2C] text-[#F7EFE6] text-xs font-bold cursor-pointer"
       >

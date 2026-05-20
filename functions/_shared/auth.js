@@ -70,7 +70,9 @@ export async function verifySession(token, secret) {
   const expected = await hmac(secret, body);
   if (sig !== expected) return null;
   try {
-    const json = atob(body.replace(/-/g, '+').replace(/_/g, '/'));
+    const normalized = body.replace(/-/g, '+').replace(/_/g, '/');
+    const padded = normalized.padEnd(normalized.length + ((4 - (normalized.length % 4)) % 4), '=');
+    const json = atob(padded);
     const payload = JSON.parse(json);
     if (!payload?.user_id || !payload?.email) return null;
     if (payload.exp && payload.exp < Math.floor(Date.now() / 1000)) return null;

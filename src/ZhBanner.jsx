@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 const DISMISS_KEY = 'vampire_zh_banner_dismissed';
 
@@ -13,14 +13,11 @@ function isZhBrowser() {
 // via i18n.js — the banner tells zh visitors the landing is English-only and
 // points them at the app, which IS translated.
 export default function ZhBanner({ onEnterApp }) {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    if (localStorage.getItem(DISMISS_KEY) === 'true') return;
-    if (!isZhBrowser()) return;
-    setVisible(true);
-  }, []);
+  const [visible, setVisible] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    if (localStorage.getItem(DISMISS_KEY) === 'true') return false;
+    return isZhBrowser();
+  });
 
   if (!visible) return null;
 

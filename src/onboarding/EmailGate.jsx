@@ -22,7 +22,7 @@ export default function EmailGate({ subscriptionCount, onContinue, onSkip, onAut
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, source: 'email_gate', subs_count: subscriptionCount }),
       });
-    } catch {}
+    } catch { /* digest signup should not block verdict */ }
     localStorage.setItem('vampire_email', email);
     localStorage.setItem('vampire_digest_subscribed', 'true');
     track('email_gate_submitted', { subs_count: subscriptionCount });

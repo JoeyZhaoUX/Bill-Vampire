@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCrown, faChartLine, faArrowTrendUp, faArrowTrendDown } from '@fortawesome/free-solid-svg-icons';
+import { faCrown, faChartLine } from '@fortawesome/free-solid-svg-icons';
 import { isPro, openCheckout } from '../pro';
 import { track } from '../analytics';
 

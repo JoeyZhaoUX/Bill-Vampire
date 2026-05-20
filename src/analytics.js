@@ -15,7 +15,6 @@ export function track(event, props = {}) {
     }
   } catch { /* ignore */ }
   if (typeof window !== 'undefined' && window.__debugAnalytics) {
-    // eslint-disable-next-line no-console
     console.log('[track]', event, payload);
   }
 }
