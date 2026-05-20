@@ -187,6 +187,14 @@ export default function Scan({ onComplete, onSkipToManual }) {
             onDrop={handleDrop}
             className="relative bg-[#141420]/80 backdrop-blur rounded-3xl border-2 border-dashed border-slate-700/60 hover:border-rose-700/50 transition-colors p-8 sm:p-10">
 
+            <div className="bv-scan-evidence-visual" aria-hidden="true">
+              <img src={`${import.meta.env.BASE_URL}brand/bill-evidence-still.webp`} alt="" />
+              <div>
+                <span>Evidence desk</span>
+                <strong>Receipt, refund draft, cancel proof, reminder</strong>
+              </div>
+            </div>
+
             <label className="block cursor-pointer text-center mb-6">
               <input ref={inputRef} type="file" accept={ACCEPT} className="hidden"
                 onChange={e => handleFile(e.target.files?.[0])} />

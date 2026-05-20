@@ -393,7 +393,7 @@ function escapeIcs(value) {
 function EmergencyKitSection({ kit, unlocked, copied, onCopy, onDownload, onReminderDownload, onUnlock, paymentSuccess, onDismissSuccess }) {
   return (
     <section className="py-10 border-t border-slate-800/40">
-      <div className="bg-gradient-to-br from-amber-950/30 via-rose-950/20 to-violet-950/20 rounded-3xl border border-amber-800/30 p-5 sm:p-6">
+      <div className="bv-case-file bg-gradient-to-br from-amber-950/30 via-rose-950/20 to-violet-950/20 rounded-3xl border border-amber-800/30 p-5 sm:p-6">
         {paymentSuccess && (
           <div className="mb-5 rounded-2xl border border-emerald-700/40 bg-emerald-950/30 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
@@ -406,6 +406,14 @@ function EmergencyKitSection({ kit, unlocked, copied, onCopy, onDownload, onRemi
             </button>
           </div>
         )}
+        <div className="bv-case-file-hero mb-5">
+          <img src={`${import.meta.env.BASE_URL}brand/bill-evidence-still.webp`} alt="" />
+          <div>
+            <span>Case file prepared</span>
+            <strong>Cancel, refund, dispute, and reminder evidence in one place.</strong>
+          </div>
+        </div>
+
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-5">
           <div>
             <p className="text-[10px] font-bold text-amber-300 uppercase tracking-[0.2em] mb-2">Vampire Emergency Kit</p>

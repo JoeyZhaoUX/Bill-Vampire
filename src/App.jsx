@@ -44,19 +44,6 @@ const CATEGORY_KEYS = ['catEntertainment', 'catProductivity', 'catLifestyle', 'c
 const CATEGORY_VALUES = ['Entertainment', 'Productivity', 'Lifestyle', 'Other'];
 const CATEGORY_ICONS = { 'Entertainment': '\u{1F3AE}', 'Productivity': '⚡', 'Lifestyle': '\u{1F33F}', 'Other': '\u{1F4E6}' };
 
-function BrandReceiptMark({ className = '' }) {
-  return (
-    <svg viewBox="0 0 140 140" className={className} role="img" aria-label="Bill Vampire receipt mark">
-      <path d="M30 16h72l12 14v92l-11-7-11 7-11-7-11 7-11-7-11 7-18-10V16Z" fill="currentColor" stroke="#050605" strokeWidth="7" />
-      <path d="M47 42h43M47 58h31M47 74h43" stroke="#fff7f2" strokeWidth="7" strokeLinecap="round" />
-      <path d="M48 96c8 9 15 14 23 14s15-5 23-14" fill="none" stroke="#050605" strokeWidth="7" strokeLinecap="round" />
-      <path d="M58 94l8 25 8-25M80 94l8 25 8-25" fill="#fff7f2" stroke="#050605" strokeWidth="5" strokeLinejoin="round" />
-      <circle cx="48" cy="30" r="5" fill="#050605" />
-      <circle cx="92" cy="30" r="5" fill="#050605" />
-    </svg>
-  );
-}
-
 // Price intelligence: avg monthly price + cheaper tier for popular US subscriptions
 const PRICE_INTEL = {
   'Netflix': { avg: 15.49, low: 6.99, tier: 'Standard with Ads' },
@@ -670,7 +657,11 @@ export default function App({ onLegal, onGoToLanding }) {
 
             <section className="bv-app-command-card mb-8">
               <div className="bv-app-command-mark" aria-hidden="true">
-                <BrandReceiptMark className="w-24 h-24" />
+                <img
+                  src={`${import.meta.env.BASE_URL}brand/app-command-portrait.webp`}
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="min-w-0">
                 <p className="text-[10px] font-bold uppercase text-rose-400 mb-2">Bill Vampire command desk</p>
