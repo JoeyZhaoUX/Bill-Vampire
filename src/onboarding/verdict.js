@@ -31,6 +31,71 @@ export function rankByLifetimeWaste(subs) {
 
 const EXTRACT_SYSTEM_PROMPT = 'You are a bill extraction expert. Extract all subscription / recurring billing line-items from the user\'s text, image, or PDF. Return a JSON array where each element has: name (string), price (numeric amount), currency (one of USD/CNY/EUR/GBP/JPY/HKD), cycle ("monthly" or "yearly"), category (one of Entertainment/Productivity/Lifestyle/Other), next_charge_at (ISO 8601 date string for the next billing date, or null if not inferable). Use reasonable defaults for uncertain fields. Return ONLY the JSON array, no prose.';
 
+const KNOWN_SERVICES = [
+  'Adobe', 'Amazon Prime', 'Apple', 'Canva', 'ChatGPT', 'Claude', 'Disney+', 'Dropbox',
+  'Figma', 'Grammarly', 'Hulu', 'LinkedIn', 'Microsoft', 'Netflix', 'NordVPN', 'Notion',
+  'Spotify', 'YouTube', 'Zoom',
+];
+
+function fallbackExtractFromText(text) {
+  const input = String(text || '').trim();
+  if (!input) return [];
+  const amountMatch = input.match(/(?:USD|US\$|\$)\s?(\d+(?:[.,]\d{1,2})?)/i)
+    || input.match(/(\d+(?:[.,]\d{1,2})?)\s?(?:dollars|usd)/i);
+  if (!amountMatch) return [];
+  const price = parseFloat(amountMatch[1].replace(',', '.'));
+  if (!Number.isFinite(price) || price <= 0) return [];
+  const lower = input.toLowerCase();
+  const service = KNOWN_SERVICES.find(name => lower.includes(name.toLowerCase()))
+    || input.match(/(?:for|from|at|started|charged by)\s+([A-Z][A-Za-z0-9+.\s-]{1,32})/)?.[1]?.trim()
+    || 'Subscription';
+  const cycle = /\b(annual|annually|yearly|per year|\/yr|year)\b/i.test(input) ? 'yearly' : 'monthly';
+  const category = /netflix|spotify|hulu|disney|youtube|max|music|video|stream/i.test(input)
+    ? 'Entertainment'
+    : /canva|figma|notion|grammarly|chatgpt|claude|adobe|zoom|microsoft|dropbox/i.test(input)
+      ? 'Productivity'
+      : 'Other';
+  const nextChargeAt = inferDateFromText(input);
+  return [{
+    name: service.replace(/\s+/g, ' ').slice(0, 40),
+    price: String(price),
+    currency: 'USD',
+    cycle,
+    category,
+    nextChargeAt,
+    id: Date.now() + Math.random(),
+  }];
+}
+
+function inferDateFromText(input) {
+  const lower = input.toLowerCase();
+  const base = new Date();
+  const atNine = (date) => {
+    date.setHours(9, 0, 0, 0);
+    return date.getTime();
+  };
+  if (/\btomorrow\b/.test(lower)) {
+    const d = new Date(base);
+    d.setDate(d.getDate() + 1);
+    return atNine(d);
+  }
+  const weekdays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+  const weekday = weekdays.find(day => new RegExp(`\\bnext\\s+${day}\\b`).test(lower));
+  if (weekday) {
+    const d = new Date(base);
+    const target = weekdays.indexOf(weekday);
+    const delta = ((target - d.getDay() + 7) % 7) || 7;
+    d.setDate(d.getDate() + delta);
+    return atNine(d);
+  }
+  const explicit = input.match(/\b(?:on\s+)?([A-Z][a-z]{2,8}\s+\d{1,2}(?:,\s*\d{4})?|\d{1,2}\/\d{1,2}(?:\/\d{2,4})?)\b/);
+  if (explicit) {
+    const parsed = new Date(explicit[1]);
+    if (Number.isFinite(parsed.getTime())) return atNine(parsed);
+  }
+  return null;
+}
+
 export async function fileToBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -51,28 +116,34 @@ export async function extractBills({ text, file }) {
   if (parts.every(p => !p.text)) {
     parts.unshift({ text: 'Extract subscription / billing information from this image or document.' });
   }
-  const data = await callAi({
-    contents: [{ parts }],
-    systemInstruction: { parts: [{ text: EXTRACT_SYSTEM_PROMPT }] },
-    generationConfig: { responseMimeType: 'application/json' },
-  });
-  const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || '[]';
-  const parsed = JSON.parse(raw);
-  const bills = (Array.isArray(parsed) ? parsed : [parsed])
-    .map(b => {
-      const nextCharge = b.next_charge_at ? Date.parse(b.next_charge_at) : NaN;
-      return {
-        name: b.name || 'Unknown',
-        price: String(parseFloat(b.price) || 0),
-        currency: CURRENCIES[b.currency] ? b.currency : 'USD',
-        cycle: b.cycle === 'yearly' ? 'yearly' : 'monthly',
-        category: CATEGORY_VALUES.includes(b.category) ? b.category : 'Other',
-        nextChargeAt: Number.isFinite(nextCharge) ? nextCharge : null,
-        id: Date.now() + Math.random(),
-      };
-    })
-    .filter(b => b.name !== 'Unknown' || parseFloat(b.price) > 0);
-  return bills;
+  try {
+    const data = await callAi({
+      contents: [{ parts }],
+      systemInstruction: { parts: [{ text: EXTRACT_SYSTEM_PROMPT }] },
+      generationConfig: { responseMimeType: 'application/json' },
+    });
+    const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || '[]';
+    const parsed = JSON.parse(raw);
+    const bills = (Array.isArray(parsed) ? parsed : [parsed])
+      .map(b => {
+        const nextCharge = b.next_charge_at ? Date.parse(b.next_charge_at) : NaN;
+        return {
+          name: b.name || 'Unknown',
+          price: String(parseFloat(b.price) || 0),
+          currency: CURRENCIES[b.currency] ? b.currency : 'USD',
+          cycle: b.cycle === 'yearly' ? 'yearly' : 'monthly',
+          category: CATEGORY_VALUES.includes(b.category) ? b.category : 'Other',
+          nextChargeAt: Number.isFinite(nextCharge) ? nextCharge : null,
+          id: Date.now() + Math.random(),
+        };
+      })
+      .filter(b => b.name !== 'Unknown' || parseFloat(b.price) > 0);
+    return bills.length ? bills : fallbackExtractFromText(text);
+  } catch (err) {
+    const fallback = fallbackExtractFromText(text);
+    if (fallback.length) return fallback;
+    throw err;
+  }
 }
 
 const VERDICT_SYSTEM_PROMPT = `You are the Bill Vampire's verdict engine — a brutally funny, slightly cruel financial judge. The user just uploaded their subscriptions. Deliver a verdict as a JSON object with this exact shape:

@@ -80,12 +80,5 @@ export async function onRequestPost(context) {
     ).run();
   }
 
-  for (const ent of Array.isArray(body?.entitlements) ? body.entitlements : []) {
-    if (!ent?.type) continue;
-    await db.prepare(
-      'INSERT OR IGNORE INTO entitlements (id, user_id, type, source, creem_reference) VALUES (?, ?, ?, ?, ?)',
-    ).bind(ent.id || uuid(), user.id, ent.type, ent.source || 'local_migration', ent.creemReference || null).run();
-  }
-
   return json({ ok: true, user, ...(await readSnapshot(db, user.id)) });
 }

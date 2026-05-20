@@ -182,14 +182,54 @@ export function getEmergencyKitCheckoutUrl(source = 'unknown') {
   return `${CREEM_EMERGENCY_KIT_URL}?success_url=${getEmergencyKitSuccessUrl()}&ref=${encodeURIComponent(source)}`;
 }
 
-export function openEmergencyKitCheckout(source = 'unknown') {
+export async function openEmergencyKitCheckout(source = 'unknown', context = {}) {
+  try {
+    localStorage.setItem('vampire_pending_checkout', JSON.stringify({
+      type: 'emergency_kit',
+      source,
+      startedAt: Date.now(),
+      context,
+    }));
+  } catch { /* storage is best-effort */ }
   track('emergency_kit_checkout_clicked', {
     source,
     price: EMERGENCY_KIT_PRICE.amount,
     tier: EMERGENCY_KIT_PRICE.tier,
     needs_product_url: CREEM_EMERGENCY_KIT_URL.includes('REPLACE_WITH'),
+    ...context,
   });
-  window.open(getEmergencyKitCheckoutUrl(source), '_blank');
+  const fallbackUrl = getEmergencyKitCheckoutUrl(source);
+  const checkoutWindow = window.open('about:blank', '_blank');
+  try {
+    const res = await fetch('/api/creem/checkout', {
+      method: 'POST',
+      credentials: 'include',
+      cache: 'no-store',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'emergency_kit',
+        source,
+        metadata: context,
+      }),
+    });
+    const data = await res.json();
+    if (!res.ok || !data?.checkoutUrl) throw new Error(data?.error || 'checkout_failed');
+    track('emergency_kit_checkout_session_created', {
+      source,
+      request_id: data.requestId,
+      ...context,
+    });
+    if (checkoutWindow) checkoutWindow.location.href = data.checkoutUrl;
+    else window.location.href = data.checkoutUrl;
+  } catch (err) {
+    track('emergency_kit_checkout_session_fallback', {
+      source,
+      reason: String(err?.message || err).slice(0, 80),
+      ...context,
+    });
+    if (checkoutWindow) checkoutWindow.location.href = fallbackUrl;
+    else window.location.href = fallbackUrl;
+  }
 }
 
 function getPatrolSuccessUrl(tier) {
@@ -221,6 +261,7 @@ export function checkPaymentSuccess() {
   if (hash === '#emergency-kit-success') {
     activateEmergencyKit();
     markPaymentSuccess('emergency_kit');
+    localStorage.removeItem('vampire_pending_checkout');
     window.location.hash = '';
     track('emergency_kit_checkout_succeeded');
     return 'emergency_kit';
@@ -240,6 +281,25 @@ export function checkPaymentSuccess() {
     return 'patrol_annual';
   }
   return null;
+}
+
+export function checkPendingCheckoutAbandon() {
+  let pending = null;
+  try {
+    pending = JSON.parse(localStorage.getItem('vampire_pending_checkout') || 'null');
+  } catch {
+    pending = null;
+  }
+  if (!pending?.type || pending.abandonedAt || !pending.startedAt) return;
+  const ageMs = Date.now() - pending.startedAt;
+  if (ageMs < 8000) return;
+  const next = { ...pending, abandonedAt: Date.now() };
+  try { localStorage.setItem('vampire_pending_checkout', JSON.stringify(next)); } catch { /* ignore */ }
+  track(`${pending.type}_checkout_abandoned`, {
+    source: pending.source || 'unknown',
+    age_seconds: Math.round(ageMs / 1000),
+    ...(pending.context || {}),
+  });
 }
 
 export function openTip() {

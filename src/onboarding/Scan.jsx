@@ -283,7 +283,7 @@ export default function Scan({ onComplete, onSkipToManual }) {
           </div>
 
           <p className="text-[11px] text-slate-600 text-center mt-6">
-            Files are sent to our AI once and never stored. Your subscription list lives in your browser — we don't have an account system.
+            Files are sent to our AI once and never stored. See results in guest mode, then create an account to save case files, reminders, and purchases.
           </p>
         </div>
       </main>

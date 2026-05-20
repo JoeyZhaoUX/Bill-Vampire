@@ -5,7 +5,7 @@ import App from './App.jsx'
 import Landing from './Landing.jsx'
 import Legal from './Legal.jsx'
 import { getDefaultLang } from './i18n.js'
-import { checkPaymentSuccess } from './pro.js'
+import { checkPaymentSuccess, checkPendingCheckoutAbandon } from './pro.js'
 import { track } from './analytics.js'
 import AuthModal from './AuthModal.jsx'
 import UpdatePrompt from './UpdatePrompt.jsx'
@@ -128,6 +128,16 @@ function Root() {
       });
     }
     queueMicrotask(() => refreshAuth(true));
+  }, []);
+
+  useEffect(() => {
+    const onFocus = () => checkPendingCheckoutAbandon();
+    window.addEventListener('focus', onFocus);
+    document.addEventListener('visibilitychange', onFocus);
+    return () => {
+      window.removeEventListener('focus', onFocus);
+      document.removeEventListener('visibilitychange', onFocus);
+    };
   }, []);
 
   const startOnboarding = (source = 'default') => {

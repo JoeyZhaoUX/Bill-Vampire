@@ -36,21 +36,13 @@ function writeJson(key, value) {
 }
 
 export function getLocalSnapshot() {
-  const entitlements = [];
-  if (localStorage.getItem('vampire_emergency_kit') === 'true') {
-    entitlements.push({ type: 'emergency_kit', source: 'local_payment_success' });
-  }
-  if (localStorage.getItem('vampire_pro') === 'true') {
-    entitlements.push({ type: 'pro', source: 'local_payment_success' });
-  }
-  const patrol = readJson('vampire_patrol', null);
-  if (patrol?.tier) entitlements.push({ type: patrol.tier, source: 'local_payment_success' });
-
   return {
     subscriptions: readJson('vampire_subs', []),
     cancelled: readJson('vampire_cancelled', []),
     cases: readJson(CASES_KEY, []),
-    entitlements,
+    // Never migrate browser-only unlock flags into cloud entitlements.
+    // Durable paid access should come from the Creem webhook, keyed by checkout email.
+    entitlements: [],
   };
 }
 

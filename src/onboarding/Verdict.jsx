@@ -194,6 +194,15 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
   };
 
   const saveCaseFile = async () => {
+    if (!kitUnlocked) {
+      track('case_file_save_blocked_locked', { issue_type: issueType, service: emergencyKit.service });
+      openEmergencyKitCheckout('save_case_locked', {
+        issue_type: issueType,
+        service: emergencyKit.service,
+        detected_amount: emergencyKit.amount,
+      });
+      return;
+    }
     if (auth?.status !== 'authenticated') {
       onAuthRequest?.('save_case_file');
       return;
@@ -272,7 +281,12 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
                     Your decade number is the warning. The Emergency Kit gives you the refund script, cancel path, chargeback checklist, and reminder copy.
                     <strong className="text-amber-300"> {EMERGENCY_KIT_PRICE.label} one-time.</strong>
                   </p>
-                  <button onClick={() => openEmergencyKitCheckout('ten_year_paywall')}
+                  <button onClick={() => openEmergencyKitCheckout('ten_year_paywall', {
+                    issue_type: issueType,
+                    service: emergencyKit.service,
+                    detected_amount: emergencyKit.amount,
+                    ten_year_usd: Math.round(tenYear),
+                  })}
                     className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-sm font-bold rounded-2xl hover:brightness-110 transition-all shadow-lg shadow-rose-900/30 cursor-pointer">
                     <FontAwesomeIcon icon={faCrown} className="w-4 h-4" />
                     Unlock the kit — {EMERGENCY_KIT_PRICE.label}
@@ -292,7 +306,11 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
             onCopy={copyText}
             onDownload={downloadKit}
             onReminderDownload={downloadReminder}
-            onUnlock={() => openEmergencyKitCheckout('kit_paywall')}
+            onUnlock={() => openEmergencyKitCheckout('kit_paywall', {
+              issue_type: issueType,
+              service: emergencyKit.service,
+              detected_amount: emergencyKit.amount,
+            })}
             paymentSuccess={paymentSuccess}
             onDismissSuccess={() => setPaymentSuccess(false)}
             auth={auth}
@@ -421,6 +439,8 @@ function escapeIcs(value) {
 }
 
 function EmergencyKitSection({ kit, unlocked, copied, onCopy, onDownload, onReminderDownload, onUnlock, paymentSuccess, onDismissSuccess, auth, caseSaveStatus, onSaveCase }) {
+  const specificAmount = kit.amount && kit.amount !== 'the charge';
+  const kitValue = specificAmount ? kit.amount : 'one renewal';
   return (
     <section className="py-10 border-t border-slate-800/40">
       <div className="bv-case-file bg-gradient-to-br from-amber-950/30 via-rose-950/20 to-violet-950/20 rounded-3xl border border-amber-800/30 p-5 sm:p-6">
@@ -479,26 +499,35 @@ function EmergencyKitSection({ kit, unlocked, copied, onCopy, onDownload, onRemi
 
         <div className="mb-5 rounded-2xl border border-[rgba(201,164,106,0.22)] bg-[#0D0B0E]/70 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
-            <p className="text-sm font-semibold text-slate-100">Save this case file and reminders</p>
+            <p className="text-sm font-semibold text-slate-100">
+              {unlocked ? 'Save this case file and reminders' : 'Unlock before saving the full case file'}
+            </p>
             <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-              {auth?.status === 'authenticated'
-                ? `Signed in as ${auth.user?.email}. Save this kit to recover it after cache clears.`
-                : 'Create an email account after results to sync this kit, subscriptions, and reminders across devices.'}
+              {unlocked
+                ? auth?.status === 'authenticated'
+                  ? `Signed in as ${auth.user?.email}. Save this kit to recover it after cache clears.`
+                  : 'Create an email account after results to sync this kit, subscriptions, and reminders across devices.'
+                : 'Full refund scripts, support chat, checklist, and saved vault recovery are available after purchase.'}
             </p>
           </div>
-          <button onClick={onSaveCase}
+          <button onClick={unlocked ? onSaveCase : onUnlock}
             className="shrink-0 px-5 py-2.5 rounded-xl bg-[#8E1D2C] text-[#F7EFE6] text-xs font-bold cursor-pointer disabled:opacity-60"
             disabled={caseSaveStatus === 'saving'}>
-            {caseSaveStatus === 'saving' ? 'Saving…' : caseSaveStatus === 'saved' ? 'Saved' : 'Save with account'}
+            {unlocked
+              ? caseSaveStatus === 'saving' ? 'Saving…' : caseSaveStatus === 'saved' ? 'Saved' : 'Save with account'
+              : `Unlock to save — ${EMERGENCY_KIT_PRICE.label}`}
           </button>
         </div>
 
         {!unlocked ? (
           <div className="rounded-2xl border border-amber-700/30 bg-[#0B0B11]/70 p-5 text-center">
             <FontAwesomeIcon icon={faLock} className="w-5 h-5 text-amber-300 mb-3" />
-            <p className="text-sm font-semibold text-slate-100 mb-2">Unlock the full cancel/refund kit for {EMERGENCY_KIT_PRICE.label}</p>
+            <p className="text-sm font-semibold text-slate-100 mb-2">
+              Unlock the {kitValue} cancel/refund kit for {EMERGENCY_KIT_PRICE.label}
+            </p>
             <p className="text-xs text-slate-400 max-w-lg mx-auto mb-4 leading-relaxed">
-              Includes refund email, support chat script, chargeback checklist, evidence checklist, and downloadable action plan. If it helps avoid one $19.99 renewal, it pays for itself 4x.
+              Includes refund email, support chat script, chargeback checklist, evidence checklist, and downloadable action plan.
+              {specificAmount ? ` If it helps recover or avoid ${kit.amount}, it can pay for itself immediately.` : ' If it helps avoid one $19.99 renewal, it pays for itself about 4x.'}
             </p>
             <button onClick={onUnlock}
               className="inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-sm font-bold rounded-2xl hover:brightness-110 transition-all cursor-pointer">
