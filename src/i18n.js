@@ -50,13 +50,13 @@ const translations = {
     shareCard: 'Share my vampire report',
     generating: 'Generating...',
 
-    // Pro
-    proBadge: 'PRO',
-    upgradeTitle: 'Judge the past. Guard the future.',
-    upgradeDesc: 'Pro is a one-time verdict on subs you already have. Patrol is a monthly bodyguard that catches the ones you don\'t. Separate jobs, separate price tags.',
+    // Paid kit
+    proBadge: 'KIT UNLOCKED',
+    upgradeTitle: 'Unlock scripts and case files.',
+    upgradeDesc: 'The Emergency Kit turns a charge, trial, or hard-to-cancel subscription into refund scripts, cancel paths, reminders, and proof checklists.',
     upgradePrice: 'one-time',
-    upgradeCta: 'Get the Verdict',
-    aiLimitReached: 'Free AI limit reached (3/day). Upgrade to Pro for unlimited.',
+    upgradeCta: 'Unlock Emergency Kit',
+    aiLimitReached: 'Free AI limit reached. Unlock the Emergency Kit for scripts and saved case files.',
     aiUsesLeft: 'free AI uses left today',
 
     // Tip jar
@@ -148,12 +148,12 @@ const translations = {
     shareCard: '分享我的吸血鬼报告',
     generating: '生成中...',
 
-    proBadge: 'PRO',
-    upgradeTitle: '判决过去 · 守护未来',
-    upgradeDesc: 'Pro 一次性买断，帮你审判已有订阅的 10 年浪费。Patrol 按月订阅，扫 Gmail 拦下未来的新订阅。两个产品，两个时间轴，互不重叠。',
-    upgradePrice: '一次性买断',
-    upgradeCta: '解锁 Pro',
-    aiLimitReached: '今日免费 AI 次数已用完 (3/日)。升级 Pro 无限使用。',
+    proBadge: '救急包已解锁',
+    upgradeTitle: '解锁话术和案件档案',
+    upgradeDesc: 'Emergency Kit 把扣费、试用到期、难取消订阅转成退款邮件、取消路径、提醒和证据清单。',
+    upgradePrice: '一次性',
+    upgradeCta: '解锁救急包',
+    aiLimitReached: '今日免费 AI 次数已用完。解锁救急包后可使用话术和案件档案。',
     aiUsesLeft: '次免费 AI（今日剩余）',
 
     tipTitle: '请吸血鬼喝咖啡',

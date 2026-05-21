@@ -25,7 +25,8 @@ export const PATROL_PRICE_ANNUAL = { amount: 39, label: '$39/yr', cycle: 'annual
 export const EMERGENCY_KIT_PRICE = { amount: 4.99, label: '$4.99', tier: 'emergency_kit' };
 
 export function isPro() {
-  return localStorage.getItem(STORAGE_KEY_PRO) === 'true';
+  return localStorage.getItem(STORAGE_KEY_PRO) === 'true'
+    || localStorage.getItem('vampire_emergency_kit') === 'true';
 }
 
 export function isEmergencyKitUnlocked() {

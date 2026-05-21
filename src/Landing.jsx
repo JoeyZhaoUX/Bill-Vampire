@@ -7,7 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faXTwitter, faChrome } from '@fortawesome/free-brands-svg-icons';
 import {
-  getEmergencyKitCheckoutUrl, EMERGENCY_KIT_PRICE,
+  openEmergencyKitCheckout, EMERGENCY_KIT_PRICE,
   isPro,
 } from './pro';
 import { track } from './analytics';
@@ -255,6 +255,11 @@ export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
     onEnterApp(source);
   };
 
+  const handleEmergencyCheckout = (event, source) => {
+    event.preventDefault();
+    openEmergencyKitCheckout(source, { entry: 'landing' });
+  };
+
   const faqs = [
     {
       q: 'What do I get for free vs the Emergency Kit?',
@@ -294,8 +299,7 @@ export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
             <span className="font-gothic text-lg font-bold text-slate-100 hidden sm:block">Bill Vampire</span>
           </div>
           <div className="flex items-center gap-2 sm:gap-3">
-            <a href={getEmergencyKitCheckoutUrl('nav')} target="_blank" rel="noopener noreferrer"
-              onClick={() => track('emergency_kit_checkout_clicked', { source: 'nav' })}
+            <a href="#emergency-kit" onClick={(e) => handleEmergencyCheckout(e, 'nav')}
               className="hidden sm:flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-amber-300 hover:text-amber-200 transition-colors cursor-pointer no-underline">
               <FontAwesomeIcon icon={faCrown} className="w-3 h-3" /> Emergency Kit — {EMERGENCY_KIT_PRICE.label}
             </a>
@@ -747,8 +751,7 @@ export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
                   </li>
                 ))}
               </ul>
-              <a href={getEmergencyKitCheckoutUrl('pricing')} target="_blank" rel="noopener noreferrer"
-                onClick={() => track('emergency_kit_checkout_clicked', { source: 'pricing' })}
+              <a href="#emergency-kit" onClick={(e) => handleEmergencyCheckout(e, 'pricing')}
                 className="w-full py-3.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-sm font-bold rounded-xl hover:brightness-110 transition-all shadow-lg shadow-rose-900/30 cursor-pointer flex items-center justify-center gap-1.5 no-underline">
                 <FontAwesomeIcon icon={faCrown} className="w-3.5 h-3.5" />
                 Unlock Emergency Kit — {EMERGENCY_KIT_PRICE.label}

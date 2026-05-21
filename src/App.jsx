@@ -12,8 +12,8 @@ import {
   isPro, canAiRoast, incrementAiUsage, aiUsesRemaining,
   canSmartImport, markSmartImportUsed,
   canPrintReport, markPrintReportUsed,
-  openCheckout, getCheckoutUrl, openTip,
-  getCurrentPrice,
+  openEmergencyKitCheckout, openTip,
+  EMERGENCY_KIT_PRICE,
 } from './pro';
 import { injectAffiliateLinks, PREFERRED_ALTERNATIVES } from './affiliates';
 import { track } from './analytics';
@@ -129,7 +129,7 @@ function CaseFileVault({ cases, auth, onAuthRequest, onSync, onCopy, copied }) {
         </div>
         <div className="flex-1">
           <p className="text-sm font-semibold text-slate-200">No saved case files yet</p>
-          <p className="text-xs text-slate-500 mt-1">Run a scan, unlock or save the Emergency Kit, and it will appear here.</p>
+          <p className="text-xs text-slate-500 mt-1">Run a scan, unlock the Emergency Kit, then save it here for recovery after cache clears.</p>
         </div>
         <button onClick={() => onSync?.()}
           className="px-4 py-2 rounded-xl text-xs font-bold text-slate-200 bg-[#171217] border border-white/10 cursor-pointer">
@@ -191,7 +191,7 @@ function CaseFileVault({ cases, auth, onAuthRequest, onSync, onCopy, copied }) {
 }
 
 // Merge subs handed off from the Patrol extension via a base64-encoded hash
-// fragment (see public/bridge.html or the popup's "Open full verdict" link).
+// fragment (see public/bridge.html or the popup's "Open app" link).
 // Shape: #ext_subs=<base64 JSON array>. Strips the fragment after import.
 function importSubsFromExtensionHash(existing) {
   if (typeof window === 'undefined') return existing;
@@ -492,7 +492,7 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
     } catch (err) {
       if (err instanceof RateLimitError) {
         setShowProModal(true);
-        return lang === 'zh' ? '今日免费次数已用完，升级 Pro 解锁无限 AI 分析。' : 'Daily free limit reached. Upgrade to Pro for unlimited AI analysis.';
+        return lang === 'zh' ? '今日免费次数已用完，解锁救急包获取 AI 话术和案件档案。' : 'Daily free limit reached. Unlock the Emergency Kit for AI scripts and saved case files.';
       }
       console.error(err);
       return lang === 'zh' ? 'AI 暂时断网了。' : 'AI is offline. Probably saving electricity for you.';
@@ -837,7 +837,7 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
               </div>
             )}
 
-            {/* AI / Pro badge */}
+            {/* AI / paid kit badge */}
             {!isPro() ? (
               <div className="flex items-center gap-1.5 text-[10px] text-slate-500 mb-6 lg:mb-4">
                 <FontAwesomeIcon icon={faWandMagicSparkles} className="w-2.5 h-2.5" />
@@ -860,7 +860,7 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
                 <FontAwesomeIcon icon={faDownload} className="w-3.5 h-3.5" /> {_('exportPdf')}
               </button>
 
-              {/* Pro upgrade */}
+              {/* Emergency Kit upsell */}
               {!isPro() && (
                 <button onClick={() => setShowProModal(true)}
                   className="w-full flex items-center gap-3 p-3 bg-gradient-to-r from-amber-950/40 to-rose-950/40 rounded-xl border border-amber-700/30 hover:from-amber-950/60 hover:to-rose-950/60 transition-all cursor-pointer group">
@@ -869,7 +869,7 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
                   </div>
                   <div className="flex-1 text-left">
                     <span className="text-xs font-semibold text-slate-200 block leading-tight">{_('upgradeTitle')}</span>
-                    <span className="text-[10px] text-slate-500">{getCurrentPrice().label} {_('upgradePrice')}</span>
+                    <span className="text-[10px] text-slate-500">{EMERGENCY_KIT_PRICE.label} {_('upgradePrice')}</span>
                   </div>
                   <FontAwesomeIcon icon={faChevronRight} className="w-3 h-3 text-slate-600 group-hover:text-slate-400 group-hover:translate-x-0.5 transition-all shrink-0" />
                 </button>
@@ -1270,7 +1270,7 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
                   </Suspense>
                 </div>
 
-                {/* Annual Audit — Pro feature */}
+                {/* Annual Audit — paid kit feature */}
                 <div className="mt-5">
                   <Suspense fallback={null}>
                     <AnnualAudit subscriptions={subscriptions} cancelledSubs={cancelledSubs} lang={lang} />
@@ -1294,7 +1294,7 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
                   </div>
                   <div className="flex-1 text-left">
                     <span className="text-xs font-semibold text-slate-200 block leading-tight">{_('upgradeTitle')}</span>
-                    <span className="text-[10px] text-slate-500">{getCurrentPrice().label} {_('upgradePrice')}</span>
+                    <span className="text-[10px] text-slate-500">{EMERGENCY_KIT_PRICE.label} {_('upgradePrice')}</span>
                   </div>
                   <FontAwesomeIcon icon={faChevronRight} className="w-3.5 h-3.5 text-slate-600 group-hover:text-slate-400 group-hover:translate-x-0.5 transition-all shrink-0" />
                 </button>
@@ -1392,20 +1392,20 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
                 <FontAwesomeIcon icon={faCrown} className="w-6 h-6 text-white" />
               </div>
               <h3 id="pro-modal-title" className="font-gothic text-xl sm:text-2xl font-bold text-slate-100 leading-tight mb-2">
-                {lang === 'zh' ? '解锁完整判决' : 'Unlock the full verdict'}
+                {lang === 'zh' ? '解锁救急工具包' : 'Unlock the Emergency Kit'}
               </h3>
               <p className="text-xs text-slate-400 max-w-sm mx-auto leading-relaxed">
                 {lang === 'zh'
-                  ? '看到 10 年真实浪费数字、排行榜、5 条 AI 毒舌点评。付一次，永远能用。'
-                  : 'See the real 10-year waste number, the leaderboard of shame, and 5 AI roasts. Pay once, keep forever.'}
+                  ? '获得退款邮件、取消话术、客服脚本、证据清单和提醒文本。重点不是好玩，是帮你少损失下一笔钱。'
+                  : 'Get refund emails, cancel scripts, support chat wording, evidence checklists, and reminder text. Built to help prevent or recover the next charge.'}
               </p>
             </div>
 
             <ul className="text-xs text-slate-300 space-y-3 mb-6">
               {[
-                { icon: faSkull, text: lang === 'zh' ? '完整 10 年浪费数字 + 逐项排行' : 'Full 10-year waste number + ranked leaderboard' },
-                { icon: faWandMagicSparkles, text: lang === 'zh' ? '5 条 AI 毒舌判决 + 无限账单解析' : '5 uncensored AI roasts + unlimited bill parsing' },
-                { icon: faShareNodes, text: lang === 'zh' ? '无水印分享卡 + 无限 PDF 导出' : 'Watermark-free share card + unlimited PDF export' },
+                { icon: faSkull, text: lang === 'zh' ? '取消路径 + 退款邮件 + 客服聊天脚本' : 'Cancel path + refund email + support chat script' },
+                { icon: faWandMagicSparkles, text: lang === 'zh' ? '证据清单、chargeback 准备清单和提醒文本' : 'Evidence checklist, chargeback prep, and reminder text' },
+                { icon: faShareNodes, text: lang === 'zh' ? '解锁后可保存到账户，清缓存也能恢复' : 'Save to your account after unlock so cache clears do not erase it' },
               ].map(({ icon, text }) => (
                 <li key={text} className="flex items-start gap-3">
                   <FontAwesomeIcon icon={icon} className="w-3.5 h-3.5 text-amber-400 mt-0.5 shrink-0" />
@@ -1414,14 +1414,14 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
               ))}
             </ul>
 
-            <a href={getCheckoutUrl('pro_modal')} target="_blank" rel="noopener noreferrer" onClick={() => { openCheckout('pro_modal'); setShowProModal(false); }}
+            <button type="button" onClick={() => { openEmergencyKitCheckout('pro_modal', { entry: 'legacy_app_paywall' }); setShowProModal(false); }}
               className="w-full py-3.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-sm font-bold rounded-xl hover:brightness-110 transition-all shadow-lg shadow-rose-900/30 cursor-pointer flex items-center justify-center gap-2 no-underline min-h-[48px]">
               <FontAwesomeIcon icon={faCrown} className="w-4 h-4" />
-              {lang === 'zh' ? `解锁 Pro — ${getCurrentPrice().label}` : `Get the Verdict — ${getCurrentPrice().label}`}
-            </a>
+              {lang === 'zh' ? `解锁救急包 — ${EMERGENCY_KIT_PRICE.label}` : `Unlock Emergency Kit — ${EMERGENCY_KIT_PRICE.label}`}
+            </button>
             <p className="text-[10px] text-slate-600 text-center mt-2">
               <FontAwesomeIcon icon={faLock} className="w-2.5 h-2.5 mr-1" />
-              {lang === 'zh' ? '由 Creem 安全支付 · 3 天退款保障' : 'Secured by Creem · 3-day refund'}
+              {lang === 'zh' ? '由 Creem 安全支付 · 若无法访问会协助退款' : 'Secured by Creem · Refund help if access fails'}
             </p>
 
             <button onClick={() => setShowProModal(false)}

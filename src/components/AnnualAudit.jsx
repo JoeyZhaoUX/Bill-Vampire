@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCrown, faChartLine } from '@fortawesome/free-solid-svg-icons';
-import { isPro, openCheckout } from '../pro';
+import { EMERGENCY_KIT_PRICE, isPro, openEmergencyKitCheckout } from '../pro';
 import { track } from '../analytics';
 
 const CATEGORY_ICONS = { 'Entertainment': '🎮', 'Productivity': '⚡', 'Lifestyle': '🌿', 'Other': '📦' };
@@ -10,7 +10,7 @@ export default function AnnualAudit({ subscriptions, cancelledSubs, lang }) {
   const _ = (key) => {
     const strings = {
       title: lang === 'zh' ? '年度订阅审计' : 'Annual Subscription Audit',
-      locked: lang === 'zh' ? '升级 Pro 解锁年度审计' : 'Upgrade to Pro for Annual Audit',
+      locked: lang === 'zh' ? '解锁救急包后查看年度审计' : 'Unlock the Emergency Kit for Annual Audit',
       activeSubs: lang === 'zh' ? '活跃订阅' : 'Active Subscriptions',
       killedSubs: lang === 'zh' ? '已终结' : 'Killed This Year',
       yearlySpend: lang === 'zh' ? '年度总支出' : 'Projected Yearly Spend',
@@ -65,9 +65,9 @@ export default function AnnualAudit({ subscriptions, cancelledSubs, lang }) {
         <div className="absolute inset-0 backdrop-blur-sm bg-[#0B0B11]/60 z-10 flex flex-col items-center justify-center gap-3">
           <FontAwesomeIcon icon={faCrown} className="w-6 h-6 text-amber-400" />
           <p className="text-sm text-slate-300 font-medium">{_('locked')}</p>
-          <button onClick={() => { track('annual_audit_paywall'); openCheckout('annual_audit'); }}
+          <button onClick={() => { track('annual_audit_paywall'); openEmergencyKitCheckout('annual_audit', { entry: 'annual_audit' }); }}
             className="px-5 py-2 text-xs font-semibold bg-gradient-to-r from-amber-500 to-rose-500 text-white rounded-xl cursor-pointer hover:brightness-110 transition-all">
-            Unlock Pro
+            Unlock Kit — {EMERGENCY_KIT_PRICE.label}
           </button>
         </div>
         <div className="opacity-20 pointer-events-none">

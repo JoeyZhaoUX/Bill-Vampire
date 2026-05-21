@@ -4,7 +4,7 @@ import {
   faScissors, faSpinner, faCopy, faCheck, faArrowUpRightFromSquare,
   faLock, faCrown, faPhoneVolume, faComments,
 } from '@fortawesome/free-solid-svg-icons';
-import { isPro, openCheckout } from '../pro';
+import { EMERGENCY_KIT_PRICE, isPro, openEmergencyKitCheckout } from '../pro';
 import { track } from '../analytics';
 import { getCancelLink } from '../cancelLinks';
 import { callAi } from '../aiClient';
@@ -41,7 +41,10 @@ export default function CancelScript({ subscription, lang, onClose }) {
   const generateScript = async (type) => {
     if (!pro) {
       track('cancel_script_paywall');
-      openCheckout('cancel_script');
+      openEmergencyKitCheckout('cancel_script', {
+        entry: 'cancel_script',
+        service: subscription?.name || 'unknown',
+      });
       return;
     }
 
@@ -97,7 +100,7 @@ Keep it factual and under 200 words.`,
       track('cancel_script_generated', { type, service: subscription.name });
     } catch (err) {
       setScript(err.name === 'RateLimitError'
-        ? 'Daily limit reached. Upgrade to Pro for unlimited access.'
+        ? 'Daily limit reached. Unlock the Emergency Kit for scripts and saved case files.'
         : 'AI is temporarily unavailable. Try again shortly.');
     }
     setIsLoading(false);
@@ -214,17 +217,17 @@ Keep it factual and under 200 words.`,
             </div>
           )}
 
-          {/* Pro upsell */}
+          {/* Emergency Kit upsell */}
           {!pro && (
             <div className="bg-amber-950/20 border border-amber-800/20 rounded-2xl p-4 mt-4">
               <div className="flex items-center gap-2 mb-2">
                 <FontAwesomeIcon icon={faCrown} className="w-3.5 h-3.5 text-amber-400" />
-                <span className="text-xs font-semibold text-amber-200">{lang === 'zh' ? 'Pro 解锁 AI 话术' : 'Pro unlocks AI scripts'}</span>
+                <span className="text-xs font-semibold text-amber-200">{lang === 'zh' ? '救急包解锁 AI 话术' : 'Emergency Kit unlocks AI scripts'}</span>
               </div>
               <p className="text-[11px] text-amber-300/60 leading-relaxed">
                 {lang === 'zh'
-                  ? '获取个性化的取消话术、谈判策略和降级建议。一次话术节省的钱就超过 Pro 的价格。'
-                  : 'Get personalized cancellation scripts, negotiation tactics, and downgrade advice. One script saves more than the price of Pro.'}
+                  ? `获取个性化取消话术、谈判策略和降级建议。一次少扣费通常就超过 ${EMERGENCY_KIT_PRICE.label}。`
+                  : `Get personalized cancellation scripts, negotiation tactics, and downgrade advice. One avoided charge can beat the ${EMERGENCY_KIT_PRICE.label} price.`}
               </p>
             </div>
           )}

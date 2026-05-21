@@ -85,7 +85,7 @@ export async function onRequestPost(context) {
 
     if (count >= FREE_DAILY_LIMIT) {
       return new Response(JSON.stringify({
-        error: 'Daily limit reached. Upgrade to Pro for unlimited AI analysis.',
+        error: 'Daily limit reached. Unlock the Emergency Kit for scripts and saved case files.',
         code: 'RATE_LIMITED',
         limit: FREE_DAILY_LIMIT,
       }), {

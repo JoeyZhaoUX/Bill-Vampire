@@ -1,11 +1,12 @@
-// Issues a signed JWT cookie at .billvampire.com so the Chrome extension can verify Pro/Patrol.
-// POST /api/pro-token  body: { tier: 'pro' | 'patrol' | 'patrol_annual', proof?: string }
-// In production, `proof` should be a Creem webhook signature or a one-shot token issued by the
-// web app after checkPaymentSuccess() confirmed #payment-success. For MVP this endpoint trusts
-// same-origin requests and exists to make the cross-surface sync implementable.
+import { getSessionUser } from '../_shared/auth.js';
+
+// Issues a signed JWT cookie at .billvampire.com so companion surfaces can verify paid access.
+// POST /api/pro-token body: { tier: 'pro' | 'emergency_kit' | 'patrol' | 'patrol_annual' }
+// The endpoint only issues a token after checking the logged-in user's cloud entitlement.
 
 const HEADERS = {
   'Content-Type': 'application/json',
+  'Cache-Control': 'no-store',
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
@@ -13,6 +14,7 @@ const HEADERS = {
 
 const TIER_TTL_MS = {
   pro: 50 * 365 * 24 * 60 * 60 * 1000,
+  emergency_kit: 50 * 365 * 24 * 60 * 60 * 1000,
   patrol: 35 * 24 * 60 * 60 * 1000,
   patrol_annual: 366 * 24 * 60 * 60 * 1000,
 };
@@ -65,9 +67,25 @@ export async function onRequestPost(context) {
     return new Response(JSON.stringify({ error: 'Invalid tier' }), { status: 400, headers: HEADERS });
   }
 
+  const { user, db, error } = await getSessionUser(context);
+  if (!user) {
+    const status = error === 'auth_unconfigured' ? 503 : 401;
+    return new Response(JSON.stringify({ error: error || 'not_authenticated' }), { status, headers: HEADERS });
+  }
+
+  const entitlementTypes = tier === 'pro' ? ['pro', 'emergency_kit'] : [tier];
+  const placeholders = entitlementTypes.map(() => '?').join(', ');
+  const entitlement = await db.prepare(
+    `SELECT type FROM entitlements WHERE user_id = ? AND type IN (${placeholders}) LIMIT 1`,
+  ).bind(user.id, ...entitlementTypes).first();
+  if (!entitlement) {
+    return new Response(JSON.stringify({ error: 'paid_entitlement_required' }), { status: 403, headers: HEADERS });
+  }
+
   const now = Date.now();
   const payload = {
     tier,
+    user_id: user.id,
     iat: Math.floor(now / 1000),
     exp: Math.floor((now + TIER_TTL_MS[tier]) / 1000),
   };

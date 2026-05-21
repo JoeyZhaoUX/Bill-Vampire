@@ -1,7 +1,7 @@
 {
   "name": "Bill Vampire - Subscription Tracker",
   "short_name": "Bill Vampire",
-  "description": "Kill the subscription vampires draining your wallet. Pro ($19 one-time) judges the past. Patrol ($4.99/mo) guards the future — scans Gmail daily.",
+  "description": "Stop surprise subscription charges with cancel paths, refund scripts, reminders, and evidence checklists. No bank login required.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0B0B11",
