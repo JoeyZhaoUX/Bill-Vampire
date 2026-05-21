@@ -10,6 +10,8 @@ export default function AuthModal({ open, reason = 'save', onClose, initialMessa
   const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState(initialMessage);
   const [magicLink, setMagicLink] = useState('');
+  const isPostPurchase = reason === 'post_purchase_recovery'
+    || (typeof localStorage !== 'undefined' && localStorage.getItem('vampire_purchase_recovery_needed') === 'true');
 
   if (!open) return null;
 
@@ -28,7 +30,9 @@ export default function AuthModal({ open, reason = 'save', onClose, initialMessa
       track('auth_magic_link_requested', { reason, email_sent: !!res.emailSent });
       setStatus('sent');
       setMessage(res.emailSent
-        ? 'Check your email for a secure sign-in link. After you open it, this case file will sync.'
+        ? isPostPurchase
+          ? 'Check your email for a secure sign-in link. Use the same email you used at Creem checkout to restore the purchase automatically.'
+          : 'Check your email for a secure sign-in link. After you open it, this case file will sync.'
         : 'Magic link is ready. Email sending is not configured yet, so use this development link.');
       if (res.magicLink) setMagicLink(res.magicLink);
     } catch (err) {
@@ -54,7 +58,7 @@ export default function AuthModal({ open, reason = 'save', onClose, initialMessa
             </div>
             <div>
               <p className="text-sm font-bold text-[#F7EFE6]">Save your case file</p>
-              <p className="text-[11px] text-[#A99A91]">No bank login. Email or Google sign-in.</p>
+              <p className="text-[11px] text-[#A99A91]">{isPostPurchase ? 'Save your purchase. No bank login.' : 'No bank login. Email or Google sign-in.'}</p>
             </div>
           </div>
           <button onClick={onClose} className="w-9 h-9 rounded-xl bg-black/20 text-[#A99A91] hover:text-[#F7EFE6] cursor-pointer">
@@ -64,7 +68,9 @@ export default function AuthModal({ open, reason = 'save', onClose, initialMessa
 
         <form onSubmit={submit} className="p-5">
           <p className="text-sm text-[#CDBFB6] leading-relaxed mb-5">
-            Create an account after results to keep subscriptions, reminders, and Emergency Kits safe when cache is cleared or you switch devices.
+            {isPostPurchase
+              ? 'Create an account with the same email you used at Creem checkout to recover your Emergency Kit after cache clears or you switch devices.'
+              : 'Create an account after results to keep subscriptions, reminders, and Emergency Kits safe when cache is cleared or you switch devices.'}
           </p>
           <button
             type="button"

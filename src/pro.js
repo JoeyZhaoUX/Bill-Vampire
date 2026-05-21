@@ -12,6 +12,7 @@ const STORAGE_KEY_FREE_PRINTS = 'vampire_free_prints_used';
 const STORAGE_KEY_FIRST_SEEN = 'vampire_first_seen';
 const STORAGE_KEY_VERDICT_USED = 'vampire_free_verdict_used';
 const STORAGE_KEY_PAYMENT_SUCCESS = 'vampire_payment_success_type';
+const STORAGE_KEY_PURCHASE_RECOVERY = 'vampire_purchase_recovery_needed';
 
 const CREEM_PRO_URL = 'https://www.creem.io/payment/prod_1pw0aIvQW2CzNzfMLrgGAY';
 const CREEM_EMERGENCY_KIT_URL = import.meta.env.VITE_CREEM_EMERGENCY_KIT_URL || 'https://www.creem.io/payment/prod_5nLkYvnA8LPlZp49NvjXKZ';
@@ -262,6 +263,7 @@ export function checkPaymentSuccess() {
   if (hash === '#emergency-kit-success') {
     activateEmergencyKit();
     markPaymentSuccess('emergency_kit');
+    localStorage.setItem(STORAGE_KEY_PURCHASE_RECOVERY, 'true');
     localStorage.removeItem('vampire_pending_checkout');
     window.location.hash = '';
     track('emergency_kit_checkout_succeeded');

@@ -448,12 +448,24 @@ function EmergencyKitSection({ kit, unlocked, copied, onCopy, onDownload, onRemi
           <div className="mb-5 rounded-2xl border border-emerald-700/40 bg-emerald-950/30 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
               <p className="text-sm font-semibold text-emerald-200">Emergency Kit unlocked</p>
-              <p className="text-xs text-emerald-100/70 mt-1">Your scripts, checklist, download, and calendar reminder are ready below.</p>
+              <p className="text-xs text-emerald-100/70 mt-1">
+                {auth?.status === 'authenticated'
+                  ? 'Your scripts, checklist, download, and calendar reminder are ready below.'
+                  : 'Your scripts are unlocked in this browser. Sign in with the same email used at Creem checkout to recover the purchase after cache clears.'}
+              </p>
             </div>
-            <button onClick={onDismissSuccess}
-              className="px-3 py-1.5 rounded-lg bg-emerald-900/40 text-[11px] font-semibold text-emerald-100 hover:bg-emerald-900/70 transition-colors cursor-pointer">
-              Got it
-            </button>
+            <div className="flex flex-col sm:flex-row gap-2">
+              {auth?.status !== 'authenticated' && (
+                <button onClick={onSaveCase}
+                  className="px-3 py-1.5 rounded-lg bg-[#8E1D2C] text-[11px] font-semibold text-[#F7EFE6] hover:bg-[#a32436] transition-colors cursor-pointer">
+                  Save purchase
+                </button>
+              )}
+              <button onClick={onDismissSuccess}
+                className="px-3 py-1.5 rounded-lg bg-emerald-900/40 text-[11px] font-semibold text-emerald-100 hover:bg-emerald-900/70 transition-colors cursor-pointer">
+                Got it
+              </button>
+            </div>
           </div>
         )}
         <div className="bv-case-file-hero mb-5">

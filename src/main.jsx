@@ -82,6 +82,8 @@ function Root() {
       if (sync) {
         const cloud = await syncLocalToCloud();
         setOnboardingSubs(loadSubsFromStorage());
+        localStorage.removeItem('vampire_purchase_recovery_needed');
+        localStorage.removeItem('vampire_purchase_recovery_prompted');
         setAuth({ status: 'authenticated', user: me.user, sync: 'synced', error: null, cloud });
       }
       return me.user;
@@ -139,6 +141,17 @@ function Root() {
       document.removeEventListener('visibilitychange', onFocus);
     };
   }, []);
+
+  useEffect(() => {
+    if (auth.status !== 'guest') return;
+    if (localStorage.getItem('vampire_purchase_recovery_needed') !== 'true') return;
+    if (localStorage.getItem('vampire_purchase_recovery_prompted') === 'true') return;
+    localStorage.setItem('vampire_purchase_recovery_prompted', 'true');
+    queueMicrotask(() => {
+      setAuthNotice('Emergency Kit unlocked locally. Sign in with the same email you used at Creem checkout to keep the purchase recoverable after cache clears.');
+      setAuthModal('post_purchase_recovery');
+    });
+  }, [auth.status]);
 
   const startOnboarding = (source = 'default') => {
     const issueType = source === 'trial_ending' ? 'trial_ending'
