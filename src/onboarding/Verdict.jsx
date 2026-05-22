@@ -181,6 +181,37 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
     track('kit_downloaded', { issue_type: issueType, service: emergencyKit.service });
   };
 
+  const downloadPreview = () => {
+    const preview = buildPublicCasePreview(emergencyKit);
+    const lines = [
+      `Bill Vampire Free Case Preview: ${preview.service}`,
+      '',
+      preview.riskLine,
+      '',
+      'Refund window:',
+      preview.refundWindow,
+      '',
+      'Cancel path:',
+      preview.cancelPath,
+      ...(preview.cancelUrl ? ['', 'Known cancel page:', preview.cancelUrl] : []),
+      '',
+      'Recommended moves:',
+      ...preview.previewSteps.map((i, index) => `${index + 1}. ${i}`),
+      '',
+      preview.disclaimer,
+      '',
+      'Unlock the Emergency Kit for the exact refund email, cancel email, support chat script, chargeback checklist, and evidence checklist.',
+    ].join('\n');
+    const blob = new Blob([lines], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `bill-vampire-${emergencyKit.service.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}-free-preview.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+    track('kit_preview_downloaded', { issue_type: issueType, service: emergencyKit.service });
+  };
+
   const downloadReminder = () => {
     const start = parseReminderDate(emergencyKit.renewalDate);
     const end = new Date(start.getTime() + 30 * 60 * 1000);
@@ -211,27 +242,17 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
   };
 
   const saveCaseFile = async () => {
-    if (!kitUnlocked) {
-      track('case_file_save_blocked_locked', { issue_type: issueType, service: emergencyKit.service });
-      openEmergencyKitCheckout('save_case_locked', {
-        issue_type: issueType,
-        service: emergencyKit.service,
-        detected_amount: emergencyKit.amount,
-        source_page: sourcePage?.path,
-        traffic_source: sourcePage?.source,
-      });
-      return;
-    }
     if (auth?.status !== 'authenticated') {
       onAuthRequest?.('save_case_file');
       return;
     }
     setCaseSaveStatus('saving');
     try {
-      await saveEmergencyCase({ kit: emergencyKit, issueType, rawInputExcerpt: rawText.slice(0, 1000) });
+      const kitToSave = kitUnlocked ? emergencyKit : buildPublicCasePreview(emergencyKit);
+      await saveEmergencyCase({ kit: kitToSave, issueType, rawInputExcerpt: rawText.slice(0, 1000) });
       await onAuthRefresh?.();
       setCaseSaveStatus('saved');
-      track('case_file_saved', { issue_type: issueType, service: emergencyKit.service });
+      track(kitUnlocked ? 'case_file_saved' : 'case_preview_saved', { issue_type: issueType, service: emergencyKit.service });
     } catch {
       setCaseSaveStatus('error');
     }
@@ -326,6 +347,7 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
             copied={copied}
             onCopy={copyText}
             onDownload={downloadKit}
+            onPreviewDownload={downloadPreview}
             onReminderDownload={downloadReminder}
             onUnlock={() => openEmergencyKitCheckout('kit_paywall', {
               issue_type: issueType,
@@ -468,12 +490,32 @@ function escapeIcs(value) {
   return String(value).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
 }
 
+function buildPublicCasePreview(kit) {
+  return {
+    issue: kit.issue,
+    primary: kit.primary,
+    service: kit.service,
+    amount: kit.amount,
+    renewalDate: kit.renewalDate,
+    cancelUrl: kit.cancelUrl,
+    refundWindow: kit.refundWindow,
+    cancelPath: kit.cancelPath,
+    supportHint: kit.supportHint,
+    riskLine: kit.riskLine,
+    previewSteps: kit.previewSteps,
+    reminderText: kit.reminderText,
+    previewOnly: true,
+    disclaimer: kit.disclaimer,
+  };
+}
+
 function EmergencyKitSection({
   kit,
   unlocked,
   copied,
   onCopy,
   onDownload,
+  onPreviewDownload,
   onReminderDownload,
   onUnlock,
   onFounderReview,
@@ -485,15 +527,12 @@ function EmergencyKitSection({
 }) {
   const specificAmount = kit.amount && kit.amount !== 'the charge';
   const kitValue = specificAmount ? kit.amount : 'one renewal';
-  const freePreviewSteps = kit.previewSteps.slice(0, 1);
-  const visiblePreviewSteps = unlocked ? kit.previewSteps : freePreviewSteps;
-  const visibleCaseFacts = unlocked
-    ? [
-        ['Refund window', kit.refundWindow],
-        ['Cancel path', kit.cancelPath],
-        ['Support angle', kit.supportHint],
-      ]
-    : [['Known cancel path', kit.cancelPath]];
+  const visiblePreviewSteps = kit.previewSteps;
+  const visibleCaseFacts = [
+    ['Refund window', kit.refundWindow],
+    ['Cancel path', kit.cancelPath],
+    ['Support angle', kit.supportHint],
+  ];
   return (
     <section className="py-10 border-t border-slate-800/40">
       <div className="bv-case-file bg-gradient-to-br from-amber-950/30 via-rose-950/20 to-violet-950/20 rounded-3xl border border-amber-800/30 p-5 sm:p-6">
@@ -548,31 +587,15 @@ function EmergencyKitSection({
               <p className="text-xs text-slate-300 leading-relaxed">{value}</p>
             </div>
           ))}
-          {!unlocked && (
-            <div className="sm:col-span-2 bg-[#0B0B11]/50 rounded-2xl border border-dashed border-amber-700/40 p-4">
-              <p className="text-[10px] text-amber-300 font-bold uppercase tracking-widest mb-2">Locked case details</p>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Refund window, support angle, dispute preparation, evidence strategy, and scripts are included in the paid kit.
-              </p>
-            </div>
-          )}
         </div>
 
         <div className="grid sm:grid-cols-3 gap-3 mb-5">
           {visiblePreviewSteps.map((step, i) => (
             <div key={step} className="bg-[#0B0B11]/50 rounded-2xl border border-slate-800/50 p-4">
-              <p className="text-[10px] text-rose-400 font-bold uppercase tracking-widest mb-2">{unlocked ? `Move ${i + 1}` : 'Free next step'}</p>
+              <p className="text-[10px] text-rose-400 font-bold uppercase tracking-widest mb-2">Move {i + 1}</p>
               <p className="text-xs text-slate-300 leading-relaxed">{step}</p>
             </div>
           ))}
-          {!unlocked && (
-            <div className="sm:col-span-2 bg-[#0B0B11]/50 rounded-2xl border border-dashed border-amber-700/40 p-4">
-              <p className="text-[10px] text-amber-300 font-bold uppercase tracking-widest mb-2">Locked in the full kit</p>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Refund email, cancel email, support chat script, dispute preparation, evidence checklist, download, and account save.
-              </p>
-            </div>
-          )}
         </div>
 
         {kit.cancelUrl && (
@@ -590,22 +613,20 @@ function EmergencyKitSection({
         <div className="mb-5 rounded-2xl border border-[rgba(201,164,106,0.22)] bg-[#0D0B0E]/70 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
             <p className="text-sm font-semibold text-slate-100">
-              {unlocked ? 'Save this case file and reminders' : 'Unlock before saving the full case file'}
+              {unlocked ? 'Save this full case file and reminders' : 'Save or download this free preview'}
             </p>
             <p className="text-xs text-slate-500 mt-1 leading-relaxed">
               {unlocked
                 ? auth?.status === 'authenticated'
                   ? `Signed in as ${auth.user?.email}. Save this kit to recover it after cache clears.`
                   : 'Create an email account after results to sync this kit, subscriptions, and reminders across devices.'
-                : 'Full refund scripts, support chat, checklist, and saved vault recovery are available after purchase.'}
+                : 'Keep the service-specific preview, cancellation path, refund window, and first action plan. The paid kit only locks the exact scripts and dispute checklist.'}
             </p>
           </div>
-          <button onClick={unlocked ? onSaveCase : onUnlock}
+          <button onClick={onSaveCase}
             className="shrink-0 px-5 py-2.5 rounded-xl bg-[#8E1D2C] text-[#F7EFE6] text-xs font-bold cursor-pointer disabled:opacity-60"
             disabled={caseSaveStatus === 'saving'}>
-            {unlocked
-              ? caseSaveStatus === 'saving' ? 'Saving…' : caseSaveStatus === 'saved' ? 'Saved' : 'Save with account'
-              : `Unlock to save — ${EMERGENCY_KIT_PRICE.label}`}
+            {caseSaveStatus === 'saving' ? 'Saving…' : caseSaveStatus === 'saved' ? 'Saved' : unlocked ? 'Save full kit' : 'Save free preview'}
           </button>
         </div>
 
@@ -616,14 +637,20 @@ function EmergencyKitSection({
               Recover or avoid {kitValue} with a {EMERGENCY_KIT_PRICE.label} case file
             </p>
             <p className="text-xs text-slate-400 max-w-lg mx-auto mb-4 leading-relaxed">
-              The free preview identified the service, risk, and first move. The paid kit gives you the exact refund email, cancel email, support chat script, chargeback checklist, evidence checklist, and downloadable action plan.
+              Your free preview stays useful: service-specific risk, refund window, cancel path, support angle, next moves, download, and account save. Upgrade only if you want the exact refund email, cancel email, support chat script, chargeback checklist, and evidence checklist.
               {specificAmount ? ` If it helps recover or avoid ${kit.amount}, it can pay for itself immediately.` : ' If it helps avoid one $19.99 renewal, it pays for itself about 4x.'}
             </p>
-            <button onClick={onUnlock}
-              className="inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-sm font-bold rounded-2xl hover:brightness-110 transition-all cursor-pointer">
-              <FontAwesomeIcon icon={faCrown} className="w-4 h-4" />
-              Unlock Emergency Kit — {EMERGENCY_KIT_PRICE.label}
-            </button>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <button onClick={onPreviewDownload}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#141420] border border-slate-700/60 text-slate-100 text-sm font-bold rounded-2xl hover:bg-[#1C1C2A] transition-all cursor-pointer">
+                Download free preview
+              </button>
+              <button onClick={onUnlock}
+                className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-sm font-bold rounded-2xl hover:brightness-110 transition-all cursor-pointer">
+                <FontAwesomeIcon icon={faCrown} className="w-4 h-4" />
+                Unlock scripts — {EMERGENCY_KIT_PRICE.label}
+              </button>
+            </div>
             <p className="text-[10px] text-slate-600 mt-3">{kit.disclaimer}</p>
           </div>
         ) : (
