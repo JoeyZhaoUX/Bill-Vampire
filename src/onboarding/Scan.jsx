@@ -4,7 +4,7 @@ import {
   faFileImport, faSpinner, faCheck, faXmark, faWandMagicSparkles,
   faArrowRight, faPen, faMicrophone, faStop, faBolt,
 } from '@fortawesome/free-solid-svg-icons';
-import { extractBills } from './verdict';
+import { extractBills, fallbackExtractFromText } from './verdict';
 import { ISSUE_TYPES, getIssueType } from './emergencyKit';
 import {
   canSmartImport, markSmartImportUsed, isPro, EMERGENCY_KIT_PRICE,
@@ -21,6 +21,27 @@ function readSourcePage() {
   } catch {
     return null;
   }
+}
+
+function buildManualPreviewBills(text, sourcePage) {
+  const parts = [text];
+  if (sourcePage?.service) parts.push(`Service: ${sourcePage.service}.`);
+  if (sourcePage?.amount) parts.push(`Charge amount: ${sourcePage.amount}.`);
+  const mergedText = parts.filter(Boolean).join(' ');
+  const fallback = fallbackExtractFromText(mergedText);
+  if (fallback.length) return fallback;
+  if (sourcePage?.service) {
+    return [{
+      name: sourcePage.service,
+      price: '',
+      currency: 'USD',
+      cycle: 'monthly',
+      category: 'Other',
+      nextChargeAt: null,
+      id: Date.now() + Math.random(),
+    }];
+  }
+  return [];
 }
 
 export default function Scan({ onComplete, onSkipToManual }) {
@@ -70,9 +91,33 @@ export default function Scan({ onComplete, onSkipToManual }) {
   };
 
   const run = async () => {
+    const sourcePage = readSourcePage();
     if (!canSmartImport()) {
-      track('scan_blocked_paywall');
-      openEmergencyKitCheckout('scan_limit');
+      const manualBills = buildManualPreviewBills(text, sourcePage);
+      if (manualBills.length) {
+        localStorage.removeItem('vampire_tool_prefill');
+        track('scan_limit_manual_preview_started', {
+          count: manualBills.length,
+          issue_type: issueType,
+          source_page: sourcePage?.path,
+          source: sourcePage?.source,
+          service: sourcePage?.service || manualBills[0]?.name,
+        });
+        onComplete(manualBills, { issueType, rawText: text, sourcePage });
+        return;
+      }
+      track('scan_blocked_paywall', {
+        issue_type: issueType,
+        source_page: sourcePage?.path,
+        source: sourcePage?.source,
+        service: sourcePage?.service,
+      });
+      openEmergencyKitCheckout('scan_limit', {
+        issue_type: issueType,
+        source_page: sourcePage?.path,
+        traffic_source: sourcePage?.source,
+        service: sourcePage?.service,
+      });
       return;
     }
     if (!text.trim() && !file) {
@@ -81,7 +126,6 @@ export default function Scan({ onComplete, onSkipToManual }) {
     }
     setIsExtracting(true);
     setError('');
-    const sourcePage = readSourcePage();
     track('scan_started', {
       has_text: !!text.trim(),
       has_file: !!file,
@@ -157,6 +201,7 @@ export default function Scan({ onComplete, onSkipToManual }) {
   const currentIssue = getIssueType(issueType);
   const price = EMERGENCY_KIT_PRICE;
   const scanBlocked = !isPro() && !canSmartImport();
+  const canBuildManualPreview = scanBlocked && buildManualPreviewBills(text, readSourcePage()).length > 0;
 
   return (
     <div className="bv-brutal min-h-screen bg-[#0B0B11] text-slate-100 flex flex-col">
@@ -276,11 +321,16 @@ export default function Scan({ onComplete, onSkipToManual }) {
             {scanBlocked && (
               <div className="mt-5 bg-amber-950/30 border border-amber-700/30 rounded-2xl p-4 text-center">
                 <p className="text-xs text-amber-200 mb-3">
-                  You've used your free parse. Unlock the Vampire Emergency Kit for <strong>{price.label}</strong>: refund script, cancel path, chargeback checklist, and reminder copy.
+                  {canBuildManualPreview
+                    ? 'You used your free AI parse, but this can still become a free case preview without calling AI.'
+                    : <>You've used your free AI parse. Unlock the Vampire Emergency Kit for <strong>{price.label}</strong>: refund script, cancel path, chargeback checklist, and reminder copy.</>}
                 </p>
-                <button onClick={() => openEmergencyKitCheckout('scan_limit')}
+                <button onClick={() => {
+                  if (canBuildManualPreview) run();
+                  else openEmergencyKitCheckout('scan_limit', { issue_type: issueType });
+                }}
                   className="px-6 py-2.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all cursor-pointer">
-                  Unlock Emergency Kit — {price.label}
+                  {canBuildManualPreview ? 'Build free preview without AI' : `Unlock Emergency Kit — ${price.label}`}
                 </button>
               </div>
             )}

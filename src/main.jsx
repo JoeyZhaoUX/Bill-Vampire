@@ -55,6 +55,8 @@ function hydrateIntentFromUrl() {
     path: url.pathname,
     source: source || (url.pathname.startsWith('/cancel/') ? 'seo_cancel_page' : 'direct_link'),
     service,
+    amount,
+    renewal,
     capturedAt: new Date().toISOString(),
   }));
 

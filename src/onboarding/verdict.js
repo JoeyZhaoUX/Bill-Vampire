@@ -37,7 +37,7 @@ const KNOWN_SERVICES = [
   'Spotify', 'YouTube', 'Zoom',
 ];
 
-function fallbackExtractFromText(text) {
+export function fallbackExtractFromText(text) {
   const input = String(text || '').trim();
   if (!input) return [];
   const amountMatch = input.match(/(?:USD|US\$|\$)\s?(\d+(?:[.,]\d{1,2})?)/i)
