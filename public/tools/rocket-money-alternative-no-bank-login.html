@@ -49,9 +49,21 @@
     </table>
   </main>
   <script>
+    const params = new URLSearchParams(location.search);
+    const service = params.get('service') || '';
+    if (service) {
+      document.getElementById('input').value = `I want help with ${service} without connecting my bank account. I need a cancel/refund plan for this charge.`;
+    }
     function startKit() {
+      const value = document.getElementById('input').value || '';
       localStorage.setItem('vampire_issue_type', 'surprise_charge');
-      localStorage.setItem('vampire_tool_prefill', document.getElementById('input').value || '');
+      localStorage.setItem('vampire_tool_prefill', value);
+      localStorage.setItem('vampire_source_page', JSON.stringify({
+        path: location.pathname,
+        source: 'tool_rocket_money_alternative',
+        service,
+        capturedAt: new Date().toISOString()
+      }));
       location.href = '/#scan';
     }
   </script>

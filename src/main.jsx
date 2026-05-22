@@ -37,8 +37,46 @@ function saveSubsToStorage(subs) {
   } catch { /* localStorage may be unavailable */ }
 }
 
+function hydrateIntentFromUrl() {
+  if (typeof window === 'undefined') return false;
+  const url = new URL(window.location.href);
+  const service = (url.searchParams.get('service') || '').trim();
+  const amount = (url.searchParams.get('amount') || '').trim();
+  const renewal = (url.searchParams.get('renewal') || '').trim();
+  const issue = (url.searchParams.get('issue') || '').trim();
+  const source = (url.searchParams.get('utm_source') || url.searchParams.get('source') || '').trim();
+  if (!service && !amount && !renewal && !issue && !source) return false;
+
+  const issueType = ['surprise_charge', 'trial_ending', 'hard_cancel'].includes(issue)
+    ? issue
+    : service ? 'hard_cancel' : 'surprise_charge';
+  localStorage.setItem('vampire_issue_type', issueType);
+  localStorage.setItem('vampire_source_page', JSON.stringify({
+    path: url.pathname,
+    source: source || (url.pathname.startsWith('/cancel/') ? 'seo_cancel_page' : 'direct_link'),
+    service,
+    capturedAt: new Date().toISOString(),
+  }));
+
+  if (service || amount || renewal) {
+    const parts = [];
+    if (service) parts.push(`Service: ${service}.`);
+    if (amount) parts.push(`Charge amount: ${amount}.`);
+    if (renewal) parts.push(`Renewal or charge date: ${renewal}.`);
+    parts.push(issueType === 'surprise_charge'
+      ? 'I was charged and want help cancelling and requesting a refund.'
+      : issueType === 'trial_ending'
+        ? 'My trial is ending soon and I want to cancel before renewal.'
+        : 'I need help cancelling and documenting proof.');
+    localStorage.setItem('vampire_tool_prefill', parts.join(' '));
+  }
+  track('intent_url_captured', { issue_type: issueType, service, source_page: url.pathname, source });
+  return !!(service || amount || renewal || issue);
+}
+
 function Root() {
   const [view, setView] = useState(() => {
+    const hasIntent = hydrateIntentFromUrl();
     const paymentSuccess = checkPaymentSuccess();
     if (paymentSuccess) {
       localStorage.setItem('vampire_visited', 'true');
@@ -50,6 +88,7 @@ function Root() {
     if (VALID_LEGAL.includes(hash)) return hash;
     if (VALID_ONBOARDING.includes(hash)) return hash;
     if (VALID_PAGES.includes(hash)) return hash;
+    if (hasIntent) return 'scan';
     return localStorage.getItem('vampire_visited') ? 'app' : 'landing';
   });
   const [onboardingSubs, setOnboardingSubs] = useState(loadSubsFromStorage);
@@ -198,6 +237,7 @@ function Root() {
     setOnboardingSubs(merged);
     if (meta.issueType) localStorage.setItem('vampire_issue_type', meta.issueType);
     if (meta.rawText) localStorage.setItem('vampire_last_raw_input', meta.rawText.slice(0, 4000));
+    if (meta.sourcePage) localStorage.setItem('vampire_source_page', JSON.stringify(meta.sourcePage));
     window.location.hash = 'verdict';
     setView('verdict');
     window.scrollTo(0, 0);

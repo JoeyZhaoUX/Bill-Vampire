@@ -15,6 +15,14 @@ import ZhBanner from '../ZhBanner';
 
 const ACCEPT = 'image/jpeg,image/png,image/webp,image/gif,application/pdf';
 
+function readSourcePage() {
+  try {
+    return JSON.parse(localStorage.getItem('vampire_source_page') || 'null');
+  } catch {
+    return null;
+  }
+}
+
 export default function Scan({ onComplete, onSkipToManual }) {
   const [text, setText] = useState(() => (
     typeof localStorage !== 'undefined' ? localStorage.getItem('vampire_tool_prefill') || '' : ''
@@ -73,7 +81,15 @@ export default function Scan({ onComplete, onSkipToManual }) {
     }
     setIsExtracting(true);
     setError('');
-    track('scan_started', { has_text: !!text.trim(), has_file: !!file, issue_type: issueType });
+    const sourcePage = readSourcePage();
+    track('scan_started', {
+      has_text: !!text.trim(),
+      has_file: !!file,
+      issue_type: issueType,
+      source_page: sourcePage?.path,
+      source: sourcePage?.source,
+      service: sourcePage?.service,
+    });
     const startedAt = Date.now();
     try {
       const bills = await extractBills({ text, file });
@@ -82,8 +98,14 @@ export default function Scan({ onComplete, onSkipToManual }) {
       // Let the user feel the AI work for at least 1.8s — snap-fast reads as fake.
       if (elapsed < 1800) await new Promise(r => setTimeout(r, 1800 - elapsed));
       localStorage.removeItem('vampire_tool_prefill');
-      track('scan_succeeded', { count: bills.length, issue_type: issueType });
-      onComplete(bills, { issueType, rawText: text });
+      track('scan_succeeded', {
+        count: bills.length,
+        issue_type: issueType,
+        source_page: sourcePage?.path,
+        source: sourcePage?.source,
+        service: sourcePage?.service,
+      });
+      onComplete(bills, { issueType, rawText: text, sourcePage });
     } catch (err) {
       track('scan_failed', { message: String(err?.message || err).slice(0, 120) });
       setError('The AI got confused. Try clearer text or a sharper screenshot.');

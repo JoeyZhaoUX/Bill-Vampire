@@ -16,6 +16,7 @@ const STORAGE_KEY_PURCHASE_RECOVERY = 'vampire_purchase_recovery_needed';
 
 const CREEM_PRO_URL = 'https://www.creem.io/payment/prod_1pw0aIvQW2CzNzfMLrgGAY';
 const CREEM_EMERGENCY_KIT_URL = import.meta.env.VITE_CREEM_EMERGENCY_KIT_URL || 'https://www.creem.io/payment/prod_5nLkYvnA8LPlZp49NvjXKZ';
+const CREEM_FOUNDER_REVIEW_URL = import.meta.env.VITE_CREEM_FOUNDER_REVIEW_URL || '';
 const CREEM_PATROL_MONTHLY_URL = 'https://www.creem.io/payment/prod_3l1JRnKrbMvuYiWez8JDGw';
 // Temporary fallback until a dedicated annual checkout product is configured in Creem.
 const CREEM_PATROL_ANNUAL_URL = 'https://www.creem.io/payment/prod_3l1JRnKrbMvuYiWez8JDGw';
@@ -24,6 +25,7 @@ const CREEM_TIP_URL = 'https://www.creem.io/payment/prod_4jHrSY5B9kBakNLmI1GuLw'
 export const PATROL_PRICE_MONTHLY = { amount: 4.99, label: '$4.99/mo', cycle: 'monthly' };
 export const PATROL_PRICE_ANNUAL = { amount: 39, label: '$39/yr', cycle: 'annual', monthlyEquivalent: 3.25 };
 export const EMERGENCY_KIT_PRICE = { amount: 4.99, label: '$4.99', tier: 'emergency_kit' };
+export const FOUNDER_REVIEW_PRICE = { amount: 19, label: '$19', tier: 'founder_review' };
 
 export function isPro() {
   return localStorage.getItem(STORAGE_KEY_PRO) === 'true'
@@ -184,6 +186,81 @@ export function getEmergencyKitCheckoutUrl(source = 'unknown') {
   return `${CREEM_EMERGENCY_KIT_URL}?success_url=${getEmergencyKitSuccessUrl()}&ref=${encodeURIComponent(source)}`;
 }
 
+function getFounderReviewSuccessUrl() {
+  const base = window.location.origin + window.location.pathname;
+  return encodeURIComponent(base + '#founder-review-success');
+}
+
+function getFounderReviewFallbackUrl(source, context = {}) {
+  if (CREEM_FOUNDER_REVIEW_URL) {
+    return `${CREEM_FOUNDER_REVIEW_URL}?success_url=${getFounderReviewSuccessUrl()}&ref=${encodeURIComponent(source)}`;
+  }
+  const subject = encodeURIComponent(`Founder Review for ${context.service || 'my subscription case'}`);
+  const body = encodeURIComponent([
+    'Hi Bill Vampire,',
+    '',
+    'I want the $19 Founder Review for this subscription case.',
+    '',
+    `Service: ${context.service || ''}`,
+    `Amount: ${context.detected_amount || ''}`,
+    `Issue type: ${context.issue_type || ''}`,
+    `Source: ${context.source_page || context.traffic_source || ''}`,
+    '',
+    'Please tell me the next step.',
+  ].join('\n'));
+  return `mailto:hello@billvampire.com?subject=${subject}&body=${body}`;
+}
+
+export async function openFounderReviewCheckout(source = 'unknown', context = {}) {
+  try {
+    localStorage.setItem('vampire_pending_checkout', JSON.stringify({
+      type: 'founder_review',
+      source,
+      startedAt: Date.now(),
+      context,
+    }));
+  } catch { /* storage is best-effort */ }
+  track('founder_review_checkout_clicked', {
+    source,
+    price: FOUNDER_REVIEW_PRICE.amount,
+    tier: FOUNDER_REVIEW_PRICE.tier,
+    configured: !!CREEM_FOUNDER_REVIEW_URL,
+    ...context,
+  });
+  const fallbackUrl = getFounderReviewFallbackUrl(source, context);
+  const checkoutWindow = window.open('about:blank', '_blank');
+  try {
+    const res = await fetch('/api/creem/checkout', {
+      method: 'POST',
+      credentials: 'include',
+      cache: 'no-store',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'founder_review',
+        source,
+        metadata: context,
+      }),
+    });
+    const data = await res.json();
+    if (!res.ok || !data?.checkoutUrl) throw new Error(data?.error || 'checkout_failed');
+    track('founder_review_checkout_session_created', {
+      source,
+      request_id: data.requestId,
+      ...context,
+    });
+    if (checkoutWindow) checkoutWindow.location.href = data.checkoutUrl;
+    else window.location.href = data.checkoutUrl;
+  } catch (err) {
+    track('founder_review_checkout_session_fallback', {
+      source,
+      reason: String(err?.message || err).slice(0, 80),
+      ...context,
+    });
+    if (checkoutWindow) checkoutWindow.location.href = fallbackUrl;
+    else window.location.href = fallbackUrl;
+  }
+}
+
 export async function openEmergencyKitCheckout(source = 'unknown', context = {}) {
   try {
     localStorage.setItem('vampire_pending_checkout', JSON.stringify({
@@ -268,6 +345,15 @@ export function checkPaymentSuccess() {
     window.location.hash = '';
     track('emergency_kit_checkout_succeeded');
     return 'emergency_kit';
+  }
+  if (hash === '#founder-review-success') {
+    localStorage.setItem('vampire_founder_review', 'true');
+    markPaymentSuccess('founder_review');
+    localStorage.setItem(STORAGE_KEY_PURCHASE_RECOVERY, 'true');
+    localStorage.removeItem('vampire_pending_checkout');
+    window.location.hash = '';
+    track('founder_review_checkout_succeeded');
+    return 'founder_review';
   }
   if (hash === '#patrol-success-patrol') {
     activatePatrol('patrol');

@@ -1,4 +1,5 @@
 import { getCancelLink } from '../cancelLinks';
+import { findServiceKitData } from './serviceKitData';
 
 export const ISSUE_TYPES = [
   {
@@ -77,6 +78,8 @@ export function generateEmergencyKit({ subscriptions = [], issueType = 'surprise
   const issue = getIssueType(issueType);
   const primary = pickPrimary(subscriptions);
   const service = primary.name || 'this subscription';
+  const serviceData = findServiceKitData(service);
+  const serviceLabel = serviceData?.name || service;
   const amount = formatMoney(primary);
   const renewalDate = formatRenewal(primary);
   const cancelUrl = getCancelLink(service);
@@ -85,19 +88,19 @@ export function generateEmergencyKit({ subscriptions = [], issueType = 'surprise
   const context = rawText.trim().slice(0, 180);
 
   const previewSteps = [
-    cancelUrl ? `Open the known cancellation page for ${service}.` : `Find the billing or subscription page for ${service}.`,
-    alreadyCharged ? 'Ask for a refund quickly while the charge is recent.' : `Set a reminder and cancel ${renewalCopy}.`,
+    serviceData?.cancelPath || (cancelUrl ? `Open the known cancellation page for ${serviceLabel}.` : `Find the billing or subscription page for ${serviceLabel}.`),
+    alreadyCharged ? (serviceData?.refundAsk || 'Ask for a refund quickly while the charge is recent.') : `Set a reminder and cancel ${renewalCopy}.`,
     'Save screenshots of the cancellation, emails, and any support replies.',
   ];
 
-  const cancelScript = `Hi ${service} support,\n\nI want to cancel my ${service} subscription effective immediately and stop any future renewal charges. Please confirm in writing that my subscription has been cancelled, the final billing date, and that no further charges will be made.\n\nIf there are any steps I must complete, please send the direct cancellation link and instructions in this thread.\n\nThank you.`;
+  const cancelScript = `Hi ${serviceLabel} support,\n\nI want to cancel my ${serviceLabel} subscription effective immediately and stop any future renewal charges. Please confirm in writing that my subscription has been cancelled, the final billing date, and that no further charges will be made.\n\n${serviceData?.supportHint ? `${serviceData.supportHint}\n\n` : ''}If there are any steps I must complete, please send the direct cancellation link and instructions in this thread.\n\nThank you.`;
 
-  const refundScript = `Hi ${service} support,\n\nI was charged ${amount} for ${service}${alreadyCharged ? ' and I am requesting a refund' : ' and want to prevent this upcoming renewal'}. I did not intend to continue this subscription and am asking you to cancel the plan and refund the recent charge if eligible.\n\nPlease confirm the cancellation, refund decision, refund amount, and timeline in writing. If you cannot refund it, please explain the exact policy section you are relying on.\n\nThank you.`;
+  const refundScript = `Hi ${serviceLabel} support,\n\nI was charged ${amount} for ${serviceLabel}${alreadyCharged ? ' and I am requesting a refund' : ' and want to prevent this upcoming renewal'}. I did not intend to continue this subscription and am asking you to cancel the plan and refund the recent charge if eligible.\n\n${serviceData?.refundAsk ? `${serviceData.refundAsk}\n\n` : ''}Please confirm the cancellation, refund decision, refund amount, and timeline in writing. If you cannot refund it, please explain the exact policy section you are relying on.\n\nThank you.`;
 
-  const chatScript = `I need help cancelling ${service} and ${alreadyCharged ? `requesting a refund for ${amount}` : `preventing the next ${amount} renewal`}. Please cancel the plan now, send written confirmation, and tell me whether I will receive a refund or credit.`;
+  const chatScript = `I need help cancelling ${serviceLabel} and ${alreadyCharged ? `requesting a refund for ${amount}` : `preventing the next ${amount} renewal`}. Please cancel the plan now, send written confirmation, and tell me whether I will receive a refund or credit.${serviceData?.supportHint ? ` ${serviceData.supportHint}` : ''}`;
 
   const chargebackChecklist = [
-    `Screenshot showing the ${service} charge or upcoming renewal`,
+    `Screenshot showing the ${serviceLabel} charge or upcoming renewal`,
     'Screenshot of cancellation attempt or missing cancellation path',
     'Copy of refund request or support chat transcript',
     'Cancellation confirmation, if the company provides one',
@@ -109,28 +112,33 @@ export function generateEmergencyKit({ subscriptions = [], issueType = 'surprise
     'Terms or renewal email showing billing timing',
     'Screenshots of account status and plan page',
     'Support ticket number or chat transcript',
+    ...(serviceData?.evidence || []),
   ];
 
   return {
     issue,
     primary,
-    service,
+    service: serviceLabel,
     amount,
     renewalDate,
     cancelUrl,
+    serviceData,
+    refundWindow: serviceData?.refundWindow || 'Refund eligibility depends on timing, billing platform, and the service policy.',
+    cancelPath: serviceData?.cancelPath || (cancelUrl ? `Open the known ${serviceLabel} cancellation page.` : `Open ${serviceLabel} billing or account settings.`),
+    supportHint: serviceData?.supportHint || 'Keep the request short, specific, and tied to the charge date and amount.',
     context,
     alreadyCharged,
     headline: issue.headline,
     riskLine: alreadyCharged
-      ? `${service} already charged ${amount}. Move fast: cancel, request a refund, and preserve evidence.`
-      : `${service} may renew for ${amount} ${renewalCopy}. Cancel or downgrade before it bites.`,
+      ? `${serviceLabel} already charged ${amount}. Move fast: cancel, request a refund, and preserve evidence.`
+      : `${serviceLabel} may renew for ${amount} ${renewalCopy}. Cancel or downgrade before it bites.`,
     previewSteps,
     cancelScript,
     refundScript,
     chatScript,
     chargebackChecklist,
     evidenceChecklist,
-    reminderText: `Cancel ${service} ${renewalCopy}`,
+    reminderText: `Cancel ${serviceLabel} ${renewalCopy}`,
     disclaimer: 'Consumer-assistance templates only. This is not legal, financial, or banking advice.',
   };
 }

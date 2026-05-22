@@ -47,9 +47,21 @@
     </div>
   </main>
   <script>
+    const params = new URLSearchParams(location.search);
+    const service = params.get('service') || '';
+    if (service) {
+      document.getElementById('input').value = `${service} is hard to cancel. I want a firm cancel/refund script, proof checklist, and next steps.`;
+    }
     function startKit() {
+      const value = document.getElementById('input').value || '';
       localStorage.setItem('vampire_issue_type', 'hard_cancel');
-      localStorage.setItem('vampire_tool_prefill', document.getElementById('input').value || '');
+      localStorage.setItem('vampire_tool_prefill', value);
+      localStorage.setItem('vampire_source_page', JSON.stringify({
+        path: location.pathname,
+        source: 'tool_cancel_script',
+        service,
+        capturedAt: new Date().toISOString()
+      }));
       location.href = '/#scan';
     }
   </script>

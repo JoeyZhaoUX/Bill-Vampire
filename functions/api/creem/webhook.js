@@ -5,6 +5,7 @@ const DEFAULT_PRODUCTS = {
   pro: 'prod_1pw0aIvQW2CzNzfMLrgGAY',
   patrol: 'prod_3l1JRnKrbMvuYiWez8JDGw',
   patrol_annual: '',
+  founder_review: '',
 };
 
 function productMap(env) {
@@ -12,6 +13,9 @@ function productMap(env) {
     [env.CREEM_EMERGENCY_KIT_PRODUCT_ID || DEFAULT_PRODUCTS.emergency_kit]: 'emergency_kit',
     [env.CREEM_PRO_PRODUCT_ID || DEFAULT_PRODUCTS.pro]: 'pro',
     [env.CREEM_PATROL_MONTHLY_PRODUCT_ID || DEFAULT_PRODUCTS.patrol]: 'patrol',
+    ...(env.CREEM_FOUNDER_REVIEW_PRODUCT_ID || DEFAULT_PRODUCTS.founder_review
+      ? { [env.CREEM_FOUNDER_REVIEW_PRODUCT_ID || DEFAULT_PRODUCTS.founder_review]: 'founder_review' }
+      : {}),
     ...(env.CREEM_PATROL_ANNUAL_PRODUCT_ID || DEFAULT_PRODUCTS.patrol_annual
       ? { [env.CREEM_PATROL_ANNUAL_PRODUCT_ID || DEFAULT_PRODUCTS.patrol_annual]: 'patrol_annual' }
       : {}),

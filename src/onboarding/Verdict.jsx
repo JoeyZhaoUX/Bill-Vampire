@@ -7,7 +7,8 @@ import {
 } from './verdict';
 import {
   isPro, canAiRoast, incrementAiUsage,
-  isPatrol, isEmergencyKitUnlocked, openEmergencyKitCheckout, EMERGENCY_KIT_PRICE,
+  isPatrol, isEmergencyKitUnlocked, openEmergencyKitCheckout, openFounderReviewCheckout,
+  EMERGENCY_KIT_PRICE, FOUNDER_REVIEW_PRICE,
 } from '../pro';
 import { generateEmergencyKit } from './emergencyKit';
 import { track } from '../analytics';
@@ -61,6 +62,13 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
   const rawText = useMemo(() => (
     typeof localStorage !== 'undefined' ? localStorage.getItem('vampire_last_raw_input') || '' : ''
   ), []);
+  const sourcePage = useMemo(() => {
+    try {
+      return typeof localStorage !== 'undefined' ? JSON.parse(localStorage.getItem('vampire_source_page') || 'null') : null;
+    } catch {
+      return null;
+    }
+  }, []);
   const emergencyKit = useMemo(() => generateEmergencyKit({ subscriptions, issueType, rawText }), [subscriptions, issueType, rawText]);
 
   useEffect(() => {
@@ -115,6 +123,9 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
         ten_year_usd: Math.round(tenYear),
         issue_type: issueType,
         service: emergencyKit.service,
+        detected_amount: emergencyKit.amount,
+        source_page: sourcePage?.path,
+        traffic_source: sourcePage?.source,
       });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -124,7 +135,13 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
     try {
       await navigator.clipboard.writeText(text);
       setCopied(label);
-      track('kit_text_copied', { label, issue_type: issueType });
+      track('kit_text_copied', {
+        label,
+        issue_type: issueType,
+        service: emergencyKit.service,
+        source_page: sourcePage?.path,
+        traffic_source: sourcePage?.source,
+      });
       setTimeout(() => setCopied(''), 1800);
     } catch {
       setCopied('');
@@ -161,7 +178,7 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
     a.download = `bill-vampire-${emergencyKit.service.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}-emergency-kit.txt`;
     a.click();
     URL.revokeObjectURL(url);
-    track('kit_downloaded', { issue_type: issueType });
+    track('kit_downloaded', { issue_type: issueType, service: emergencyKit.service });
   };
 
   const downloadReminder = () => {
@@ -190,7 +207,7 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
     a.download = `bill-vampire-${emergencyKit.service.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}-reminder.ics`;
     a.click();
     URL.revokeObjectURL(url);
-    track('kit_calendar_downloaded', { issue_type: issueType });
+    track('kit_calendar_downloaded', { issue_type: issueType, service: emergencyKit.service });
   };
 
   const saveCaseFile = async () => {
@@ -200,6 +217,8 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
         issue_type: issueType,
         service: emergencyKit.service,
         detected_amount: emergencyKit.amount,
+        source_page: sourcePage?.path,
+        traffic_source: sourcePage?.source,
       });
       return;
     }
@@ -212,7 +231,7 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
       await saveEmergencyCase({ kit: emergencyKit, issueType, rawInputExcerpt: rawText.slice(0, 1000) });
       await onAuthRefresh?.();
       setCaseSaveStatus('saved');
-      track('case_file_saved', { issue_type: issueType });
+      track('case_file_saved', { issue_type: issueType, service: emergencyKit.service });
     } catch {
       setCaseSaveStatus('error');
     }
@@ -285,6 +304,8 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
                     issue_type: issueType,
                     service: emergencyKit.service,
                     detected_amount: emergencyKit.amount,
+                    source_page: sourcePage?.path,
+                    traffic_source: sourcePage?.source,
                     ten_year_usd: Math.round(tenYear),
                   })}
                     className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-sm font-bold rounded-2xl hover:brightness-110 transition-all shadow-lg shadow-rose-900/30 cursor-pointer">
@@ -310,12 +331,21 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
               issue_type: issueType,
               service: emergencyKit.service,
               detected_amount: emergencyKit.amount,
+              source_page: sourcePage?.path,
+              traffic_source: sourcePage?.source,
             })}
             paymentSuccess={paymentSuccess}
             onDismissSuccess={() => setPaymentSuccess(false)}
             auth={auth}
             caseSaveStatus={caseSaveStatus}
             onSaveCase={saveCaseFile}
+            onFounderReview={() => openFounderReviewCheckout('verdict_case_file', {
+              issue_type: issueType,
+              service: emergencyKit.service,
+              detected_amount: emergencyKit.amount,
+              source_page: sourcePage?.path,
+              traffic_source: sourcePage?.source,
+            })}
           />
 
           {pro && (
@@ -438,9 +468,32 @@ function escapeIcs(value) {
   return String(value).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
 }
 
-function EmergencyKitSection({ kit, unlocked, copied, onCopy, onDownload, onReminderDownload, onUnlock, paymentSuccess, onDismissSuccess, auth, caseSaveStatus, onSaveCase }) {
+function EmergencyKitSection({
+  kit,
+  unlocked,
+  copied,
+  onCopy,
+  onDownload,
+  onReminderDownload,
+  onUnlock,
+  onFounderReview,
+  paymentSuccess,
+  onDismissSuccess,
+  auth,
+  caseSaveStatus,
+  onSaveCase,
+}) {
   const specificAmount = kit.amount && kit.amount !== 'the charge';
   const kitValue = specificAmount ? kit.amount : 'one renewal';
+  const freePreviewSteps = kit.previewSteps.slice(0, 1);
+  const visiblePreviewSteps = unlocked ? kit.previewSteps : freePreviewSteps;
+  const visibleCaseFacts = unlocked
+    ? [
+        ['Refund window', kit.refundWindow],
+        ['Cancel path', kit.cancelPath],
+        ['Support angle', kit.supportHint],
+      ]
+    : [['Known cancel path', kit.cancelPath]];
   return (
     <section className="py-10 border-t border-slate-800/40">
       <div className="bv-case-file bg-gradient-to-br from-amber-950/30 via-rose-950/20 to-violet-950/20 rounded-3xl border border-amber-800/30 p-5 sm:p-6">
@@ -489,12 +542,37 @@ function EmergencyKitSection({ kit, unlocked, copied, onCopy, onDownload, onRemi
         </div>
 
         <div className="grid sm:grid-cols-3 gap-3 mb-5">
-          {kit.previewSteps.map((step, i) => (
+          {visibleCaseFacts.map(([label, value]) => (
+            <div key={label} className="bg-[#0B0B11]/50 rounded-2xl border border-slate-800/50 p-4">
+              <p className="text-[10px] text-amber-300 font-bold uppercase tracking-widest mb-2">{label}</p>
+              <p className="text-xs text-slate-300 leading-relaxed">{value}</p>
+            </div>
+          ))}
+          {!unlocked && (
+            <div className="sm:col-span-2 bg-[#0B0B11]/50 rounded-2xl border border-dashed border-amber-700/40 p-4">
+              <p className="text-[10px] text-amber-300 font-bold uppercase tracking-widest mb-2">Locked case details</p>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Refund window, support angle, dispute preparation, evidence strategy, and scripts are included in the paid kit.
+              </p>
+            </div>
+          )}
+        </div>
+
+        <div className="grid sm:grid-cols-3 gap-3 mb-5">
+          {visiblePreviewSteps.map((step, i) => (
             <div key={step} className="bg-[#0B0B11]/50 rounded-2xl border border-slate-800/50 p-4">
-              <p className="text-[10px] text-rose-400 font-bold uppercase tracking-widest mb-2">Move {i + 1}</p>
+              <p className="text-[10px] text-rose-400 font-bold uppercase tracking-widest mb-2">{unlocked ? `Move ${i + 1}` : 'Free next step'}</p>
               <p className="text-xs text-slate-300 leading-relaxed">{step}</p>
             </div>
           ))}
+          {!unlocked && (
+            <div className="sm:col-span-2 bg-[#0B0B11]/50 rounded-2xl border border-dashed border-amber-700/40 p-4">
+              <p className="text-[10px] text-amber-300 font-bold uppercase tracking-widest mb-2">Locked in the full kit</p>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Refund email, cancel email, support chat script, dispute preparation, evidence checklist, download, and account save.
+              </p>
+            </div>
+          )}
         </div>
 
         {kit.cancelUrl && (
@@ -535,10 +613,10 @@ function EmergencyKitSection({ kit, unlocked, copied, onCopy, onDownload, onRemi
           <div className="rounded-2xl border border-amber-700/30 bg-[#0B0B11]/70 p-5 text-center">
             <FontAwesomeIcon icon={faLock} className="w-5 h-5 text-amber-300 mb-3" />
             <p className="text-sm font-semibold text-slate-100 mb-2">
-              Unlock the {kitValue} cancel/refund kit for {EMERGENCY_KIT_PRICE.label}
+              Recover or avoid {kitValue} with a {EMERGENCY_KIT_PRICE.label} case file
             </p>
             <p className="text-xs text-slate-400 max-w-lg mx-auto mb-4 leading-relaxed">
-              Includes refund email, support chat script, chargeback checklist, evidence checklist, and downloadable action plan.
+              The free preview identified the service, risk, and first move. The paid kit gives you the exact refund email, cancel email, support chat script, chargeback checklist, evidence checklist, and downloadable action plan.
               {specificAmount ? ` If it helps recover or avoid ${kit.amount}, it can pay for itself immediately.` : ' If it helps avoid one $19.99 renewal, it pays for itself about 4x.'}
             </p>
             <button onClick={onUnlock}
@@ -550,6 +628,22 @@ function EmergencyKitSection({ kit, unlocked, copied, onCopy, onDownload, onRemi
           </div>
         ) : (
           <div className="space-y-4">
+            <div className="rounded-2xl border border-emerald-800/30 bg-emerald-950/15 p-4">
+              <p className="text-sm font-semibold text-emerald-200 mb-3">Do this in order</p>
+              <ol className="space-y-2">
+                {[
+                  'Copy the refund email and send it to support.',
+                  'Open the cancel page and capture confirmation screenshots.',
+                  'Save the evidence checklist before you consider a card dispute.',
+                  'Download the kit or save it to your account so cache clearing cannot erase it.',
+                ].map((step, i) => (
+                  <li key={step} className="flex gap-2 text-xs text-emerald-100/75 leading-relaxed">
+                    <span className="font-bold text-emerald-300">{i + 1}.</span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
             {[
               ['Refund email', kit.refundScript],
               ['Cancel email', kit.cancelScript],
@@ -589,6 +683,19 @@ function EmergencyKitSection({ kit, unlocked, copied, onCopy, onDownload, onRemi
             <p className="text-[10px] text-slate-600 text-center">{kit.disclaimer}</p>
           </div>
         )}
+
+        <div className="mt-5 rounded-2xl border border-[rgba(201,164,106,0.24)] bg-[#120D12]/80 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold text-[#F7EFE6]">Want a human second look?</p>
+            <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+              Founder Review checks your refund/cancel wording and gives manual notes. First 20 cases only. Not legal or financial advice.
+            </p>
+          </div>
+          <button onClick={onFounderReview}
+            className="shrink-0 px-5 py-2.5 rounded-xl border border-[#C9A46A]/45 bg-[#0D0B0E] text-[#F7EFE6] text-xs font-bold hover:border-[#C9A46A] transition-colors cursor-pointer">
+            Founder Review — {FOUNDER_REVIEW_PRICE.label}
+          </button>
+        </div>
       </div>
     </section>
   );
