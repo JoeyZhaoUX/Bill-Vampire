@@ -158,7 +158,7 @@ export function buildMagicLinkEmail({ magicLink, reason, email }) {
             <tr>
               <td style="padding:18px 8px 0;text-align:center;color:${BRAND.faint};font-size:11px;line-height:1.6;">
                 <p style="margin:0 0 6px;">${escapeHtml(copy.note)}</p>
-                <p style="margin:0;">Sent to ${safeEmail} by Bill Vampire.</p>
+                <p style="margin:0;">Sent by Bill Vampire.</p>
               </td>
             </tr>
           </table>
