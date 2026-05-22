@@ -263,7 +263,7 @@ export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
   const faqs = [
     {
       q: 'What do I get for free vs the Emergency Kit?',
-      a: `Free: pick the problem, paste or upload the bill, and see the detected service, amount, risk, and a basic cancel link when we know one. Emergency Kit (${EMERGENCY_KIT_PRICE.label} one-time): refund email, cancel email, support chat script, chargeback checklist, evidence checklist, reminder text, and a downloadable action plan.`,
+      a: `Free: pick the problem, paste or upload the bill, and get a service-specific case preview with amount, risk, refund window, cancel path, support angle, next moves, download, and optional account save. Emergency Kit (${EMERGENCY_KIT_PRICE.label} one-time): exact refund email, cancel email, support chat script, chargeback checklist, evidence checklist, and full action kit.`,
     },
     {
       q: 'What data leaves my device?',

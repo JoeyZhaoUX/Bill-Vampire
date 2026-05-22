@@ -328,6 +328,16 @@ export function openPatrolCheckout(cycle = 'monthly', source = 'unknown') {
   window.open(getPatrolCheckoutUrl(cycle, source), '_blank');
 }
 
+function readPendingCheckout(type) {
+  try {
+    const pending = JSON.parse(localStorage.getItem('vampire_pending_checkout') || 'null');
+    if (!pending || pending.type !== type) return null;
+    return pending;
+  } catch {
+    return null;
+  }
+}
+
 export function checkPaymentSuccess() {
   const hash = window.location.hash;
   if (hash === '#payment-success') {
@@ -338,21 +348,29 @@ export function checkPaymentSuccess() {
     return 'pro';
   }
   if (hash === '#emergency-kit-success') {
+    const pending = readPendingCheckout('emergency_kit');
     activateEmergencyKit();
     markPaymentSuccess('emergency_kit');
     localStorage.setItem(STORAGE_KEY_PURCHASE_RECOVERY, 'true');
     localStorage.removeItem('vampire_pending_checkout');
     window.location.hash = '';
-    track('emergency_kit_checkout_succeeded');
+    track('emergency_kit_checkout_succeeded', {
+      source: pending?.source || 'unknown',
+      ...(pending?.context || {}),
+    });
     return 'emergency_kit';
   }
   if (hash === '#founder-review-success') {
+    const pending = readPendingCheckout('founder_review');
     localStorage.setItem('vampire_founder_review', 'true');
     markPaymentSuccess('founder_review');
     localStorage.setItem(STORAGE_KEY_PURCHASE_RECOVERY, 'true');
     localStorage.removeItem('vampire_pending_checkout');
     window.location.hash = '';
-    track('founder_review_checkout_succeeded');
+    track('founder_review_checkout_succeeded', {
+      source: pending?.source || 'unknown',
+      ...(pending?.context || {}),
+    });
     return 'founder_review';
   }
   if (hash === '#patrol-success-patrol') {

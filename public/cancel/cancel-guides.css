@@ -42,6 +42,14 @@ h3 { color: #CBD5E1; font-size: 1rem; margin: 0 0 6px; }
 .cta-bottom a.btn { display: inline-block; padding: 14px 36px; background: linear-gradient(90deg, #F59E0B, #E11D48); color: white; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 0.95rem; }
 .cta-bottom .fine { color: #64748B; font-size: 0.8rem; margin-top: 12px; }
 .cta-bottom .fine a { color: #94A3B8; text-decoration: underline; }
+.kit-form { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-width: 560px; margin: 18px auto 0; text-align: left; }
+.kit-form label { display: grid; gap: 6px; }
+.kit-form span { color: #C9A46A; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.kit-form input,
+.kit-form select { width: 100%; padding: 12px 14px; background: #0B0B11; color: #F1F5F9; border: 1px solid rgba(201,164,106,0.28); border-radius: 10px; font: inherit; outline: none; }
+.kit-form input:focus,
+.kit-form select:focus { border-color: #C9A46A; }
+.kit-form button.btn { grid-column: 1 / -1; border: 0; cursor: pointer; }
 
 /* Warning & Info boxes */
 .warnings { margin: 24px 0; padding: 18px 20px; background: rgba(142,29,44,0.08); border: 1px solid rgba(142,29,44,0.3); border-radius: 12px; }
@@ -95,5 +103,6 @@ h3 { color: #CBD5E1; font-size: 1rem; margin: 0 0 6px; }
   h1 { font-size: 1.6rem; }
   .step { padding-left: 50px; }
   .cta-top { flex-direction: column; text-align: center; }
+  .kit-form { grid-template-columns: 1fr; }
   .related-grid { grid-template-columns: 1fr; }
 }

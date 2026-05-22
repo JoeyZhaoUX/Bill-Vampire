@@ -19,7 +19,7 @@ function TermsOfService() {
         <p>By accessing or using Bill Vampire ("the Service"), you agree to be bound by these Terms of Service. If you do not agree, please do not use the Service.</p>
       </Section>
       <Section title="2. Description of Service">
-        <p>Bill Vampire is a no-bank-login subscription emergency assistant. The free flow lets you paste, upload, or speak one subscription problem and see a basic result. The paid Emergency Kit is a 4.99 USD one-time digital purchase that unlocks refund email, cancellation email, support chat script, chargeback checklist, evidence checklist, reminder text, and a downloadable action plan.</p>
+        <p>Bill Vampire is a no-bank-login subscription emergency assistant. The free flow lets you paste, upload, or speak one subscription problem and receive a service-specific case preview with the detected amount, risk, refund window, cancel path, support angle, next moves, download, and optional account save. The paid Emergency Kit is a 4.99 USD one-time digital purchase that unlocks refund email, cancellation email, support chat script, chargeback checklist, evidence checklist, and the full action kit.</p>
         <p>Bill Vampire may also offer optional Pro or Patrol features. These are separate products and are not required to use the Emergency Kit.</p>
       </Section>
       <Section title="3. User Data, Accounts & Local Storage">

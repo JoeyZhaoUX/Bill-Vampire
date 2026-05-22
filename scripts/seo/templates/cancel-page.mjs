@@ -149,11 +149,40 @@ ${schema}
     ${relatedHtml}
 
     <div class="cta-bottom">
-      <h3>Still stuck? Get the Emergency Kit</h3>
-      <p>Refund email + cancel script + chat support wording + evidence checklist. Everything you need in one kit.</p>
-      <a class="btn" href="/?issue=hard_cancel&service=${encodeURIComponent(service.name)}">Build my Emergency Kit &rarr;</a>
+      <h3>Still stuck? Build your ${esc(service.name)} case preview</h3>
+      <p>Free: refund window, cancel path, support angle, next moves, download, and optional account save. Upgrade only if you want the exact scripts and dispute checklist.</p>
+      <form class="kit-form" onsubmit="return startBillVampireKit(event)">
+        <label>
+          <span>How much are they charging?</span>
+          <input name="amount" inputmode="decimal" placeholder="$${service.price === 'varies' ? '119.99' : esc(service.price.replace('$', ''))}" />
+        </label>
+        <label>
+          <span>What is the issue?</span>
+          <select name="issue">
+            <option value="hard_cancel">Hard to cancel</option>
+            <option value="surprise_charge">Already charged / refund</option>
+            <option value="trial_ending">Trial ending soon</option>
+          </select>
+        </label>
+        <button class="btn" type="submit">Build my ${esc(service.name)} preview &rarr;</button>
+      </form>
       <p class="fine">Or <a href="/">scan your entire bill free</a> to find every subscription draining your account.</p>
     </div>
+
+    <script>
+      function startBillVampireKit(event) {
+        event.preventDefault();
+        var form = event.currentTarget;
+        var params = new URLSearchParams({
+          issue: form.issue.value || 'hard_cancel',
+          service: ${JSON.stringify(service.name)},
+          source: 'seo_cancel_page'
+        });
+        if (form.amount.value.trim()) params.set('amount', form.amount.value.trim());
+        window.location.href = '/?' + params.toString();
+        return false;
+      }
+    </script>
 
     <footer class="footer">
       <a href="/cancel/">All Cancel Guides</a>
