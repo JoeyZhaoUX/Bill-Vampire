@@ -1,8 +1,10 @@
 import { createToken, isValidEmail, json, requireDb, sha256, uuid } from '../../_shared/auth.js';
+import { buildMagicLinkEmail } from '../../_shared/emailTemplates.js';
 
-async function sendMagicLink(env, email, magicLink) {
+async function sendMagicLink(env, email, magicLink, reason) {
   if (!env.RESEND_API_KEY) return { sent: false, reason: 'resend_not_configured' };
   const from = env.AUTH_EMAIL_FROM || 'Bill Vampire <hello@billvampire.com>';
+  const emailContent = buildMagicLinkEmail({ magicLink, reason, email });
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
@@ -12,15 +14,9 @@ async function sendMagicLink(env, email, magicLink) {
     body: JSON.stringify({
       from,
       to: email,
-      subject: 'Your Bill Vampire sign-in link',
-      html: `
-        <div style="font-family:Inter,Arial,sans-serif;background:#0d0b0e;color:#f7efe6;padding:28px">
-          <h1 style="margin:0 0 12px">Save your Bill Vampire case file</h1>
-          <p style="color:#cdbfb6;line-height:1.6">Open this secure link to sign in and sync your subscriptions, reminders, and Emergency Kit across devices.</p>
-          <p><a href="${magicLink}" style="display:inline-block;background:#8e1d2c;color:#f7efe6;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:700">Sign in to Bill Vampire</a></p>
-          <p style="color:#8f817a;font-size:12px">This link expires in 15 minutes. No bank login is required.</p>
-        </div>
-      `,
+      subject: emailContent.subject,
+      html: emailContent.html,
+      text: emailContent.text,
     }),
   });
   if (!res.ok) return { sent: false, reason: 'resend_error' };
@@ -63,7 +59,7 @@ export async function onRequestPost(context) {
 
   const url = new URL(context.request.url);
   const magicLink = `${url.origin}/api/auth/verify?token=${encodeURIComponent(token)}`;
-  const delivery = await sendMagicLink(context.env, email, magicLink);
+  const delivery = await sendMagicLink(context.env, email, magicLink, body?.source || 'auth');
 
   return json({
     ok: true,
