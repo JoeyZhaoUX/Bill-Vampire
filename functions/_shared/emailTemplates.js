@@ -96,7 +96,7 @@ export function buildMagicLinkEmail({ magicLink, reason, email }) {
                 <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                   <tr>
                     <td style="vertical-align:middle;">
-                      <div style="display:inline-block;width:42px;height:42px;border-radius:14px;background:linear-gradient(145deg,${BRAND.wineBright},${BRAND.wine});border:1px solid rgba(201,164,106,0.35);text-align:center;line-height:42px;font-weight:900;color:${BRAND.ivory};font-size:18px;">BV</div>
+                      <img src="https://billvampire.com/icons/icon.png" alt="Bill Vampire" width="42" height="42" style="display:inline-block;width:42px;height:42px;border-radius:14px;border:1px solid rgba(201,164,106,0.35);vertical-align:middle;">
                       <span style="display:inline-block;margin-left:12px;color:${BRAND.ivory};font-size:18px;font-weight:800;vertical-align:middle;letter-spacing:-0.02em;">Bill Vampire</span>
                     </td>
                     <td align="right" style="vertical-align:middle;color:${BRAND.gold};font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.16em;">
