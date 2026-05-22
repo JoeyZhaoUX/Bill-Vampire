@@ -1,0 +1,62 @@
+{
+  "title": "How to Cancel Headspace — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Headspace subscription on iPhone, Android, or web. Stop the $12.99/mo charge and keep access to free content.",
+  "intro": "Headspace cancellation depends on where you subscribed — Apple, Google, or directly through Headspace. You keep access to some free content (basics course) after canceling.",
+  "steps": [
+    {
+      "title": "Determine where you subscribed",
+      "text": "Check your billing: Apple subscription shows in iOS Settings → Subscriptions. Google shows in Play Store → Subscriptions. If neither, you subscribed on headspace.com directly.",
+      "tip": "Most mobile users subscribed through Apple or Google, even if they don't remember doing so."
+    },
+    {
+      "title": "Cancel through the correct platform",
+      "text": "For Apple: Settings → Apple ID → Subscriptions → Headspace → Cancel. For Google: Play Store → Payments & subscriptions → Subscriptions → Headspace → Cancel. For web: headspace.com/settings/subscription → Cancel.",
+      "tip": null
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Tap \"Confirm\" or \"Cancel subscription\" on the confirmation dialog. Your Premium access continues until the end of your billing period.",
+      "tip": null
+    },
+    {
+      "title": "Verify cancellation",
+      "text": "Check for a confirmation email or verify in your subscription settings that the renewal is turned off. Your next billing date should show as the end date.",
+      "tip": "After cancellation, Headspace's free tier still offers a limited Basics course and some sleep content."
+    }
+  ],
+  "warnings": [
+    "The cancellation method depends entirely on where you originally subscribed (Apple, Google, or web).",
+    "Canceling on headspace.com does NOT cancel Apple/Google subscriptions — you'll still be charged.",
+    "Your meditation stats and favorites are preserved if you re-subscribe.",
+    "If you have a corporate/employee wellness benefit, check with HR before paying out of pocket."
+  ],
+  "faqs": [
+    {
+      "q": "Will I lose my meditation progress if I cancel?",
+      "a": "No. Your stats, streaks, favorites, and completed courses are all preserved. You can access them again if you re-subscribe."
+    },
+    {
+      "q": "Is there free content on Headspace?",
+      "a": "Yes. The free tier includes the Basics course (introductory meditations), some sleep sounds, and limited content. It's enough to maintain a basic practice."
+    },
+    {
+      "q": "Can I get a refund from Headspace?",
+      "a": "For Apple/Google subscriptions, request refunds through their platforms. For direct web subscriptions, contact Headspace support within a few days of the charge."
+    },
+    {
+      "q": "What's a free alternative to Headspace?",
+      "a": "Insight Timer (free with 100k+ meditations), YouTube meditation channels, and the built-in Breathe app on Apple Watch are excellent free alternatives."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Refunds depend on your billing platform. Apple: reportaproblem.apple.com. Google: Play Store refund request. Direct: contact Headspace support within a few days of charge."
+  },
+  "retentionTactics": [
+    "Headspace may offer a discounted annual rate.",
+    "They show your meditation streak and total minutes practiced.",
+    "They may offer a free month to continue."
+  ],
+  "timeEstimate": "2-3 minutes",
+  "lastVerified": "2026-05-22"
+}

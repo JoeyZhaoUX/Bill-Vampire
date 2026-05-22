@@ -1,0 +1,55 @@
+{
+  "title": "How to Cancel Claude Pro — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel your Claude Pro subscription in 60 seconds. Downgrade to the free tier and keep your conversation history. Direct steps.",
+  "intro": "Anthropic makes Claude Pro cancellation simple — three clicks and you're done. You keep access to Claude Free with lower usage limits, and all your conversation history is preserved.",
+  "steps": [
+    {
+      "title": "Open Claude billing settings",
+      "text": "Go to claude.ai/settings/billing while signed in to your Claude account. You can also access this by clicking your name in the bottom-left → Settings → Billing.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Cancel plan\" or \"Manage subscription\"",
+      "text": "Find the cancellation option in your billing settings. Click \"Cancel plan\" or \"Manage subscription\" depending on the current UI.",
+      "tip": null
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Confirm your cancellation. Your Pro features (higher usage limits, priority access, early feature access) remain active until the end of your current billing period.",
+      "tip": "You keep all conversation history and Projects on the free plan. The main difference is reduced message limits."
+    }
+  ],
+  "warnings": [
+    "If you subscribed through the iOS app (Apple), cancel through Settings → Apple ID → Subscriptions on your device.",
+    "Claude Free has significantly lower daily message limits compared to Pro.",
+    "Your conversation history, Projects, and custom instructions are all preserved on the free plan.",
+    "If you're on a Claude Team or Enterprise plan, ask your workspace admin to manage the subscription."
+  ],
+  "faqs": [
+    {
+      "q": "Will I lose my conversation history if I cancel Claude Pro?",
+      "a": "No. All conversations, Projects, and custom instructions are preserved on the free plan. You just have lower usage limits."
+    },
+    {
+      "q": "What's the difference between Claude Free and Pro?",
+      "a": "Pro gives you 5x more usage, priority access during peak times, and early access to new features and models. Free has the same models but with daily message limits."
+    },
+    {
+      "q": "Can I get a refund for Claude Pro?",
+      "a": "Contact Anthropic support at support@anthropic.com for refund requests. They handle these on a case-by-case basis."
+    },
+    {
+      "q": "How do I cancel Claude Pro on iPhone?",
+      "a": "If you subscribed via the iOS app: Settings → Apple ID → Subscriptions → Claude → Cancel. If you subscribed on the web, cancel at claude.ai/settings/billing."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Contact support@anthropic.com for refund requests. Anthropic handles refunds on a case-by-case basis. Recent charges from accidental renewals are typically refunded."
+  },
+  "retentionTactics": [
+    "Anthropic doesn't use aggressive retention tactics. Cancellation is straightforward with no guilt trips."
+  ],
+  "timeEstimate": "1 minute",
+  "lastVerified": "2026-05-22"
+}

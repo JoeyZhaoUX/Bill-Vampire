@@ -1,0 +1,61 @@
+{
+  "title": "How to Cancel Nintendo Switch Online — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Nintendo Switch Online subscription. Turn off auto-renewal from your Switch console or Nintendo website. Keep playing offline games.",
+  "intro": "Nintendo Switch Online cancellation simply turns off auto-renewal. Your membership stays active until the expiration date. You can do it from the Switch console or Nintendo's website.",
+  "steps": [
+    {
+      "title": "Go to Nintendo eShop or website",
+      "text": "On Switch: Open Nintendo eShop → click your profile icon → Nintendo Switch Online. On web: ec.nintendo.com/my/membership.",
+      "tip": null
+    },
+    {
+      "title": "Find auto-renewal settings",
+      "text": "Navigate to your membership settings. Look for \"Turn Off Automatic Renewal\" option.",
+      "tip": null
+    },
+    {
+      "title": "Turn off auto-renewal",
+      "text": "Click \"Turn Off Automatic Renewal\" and confirm. Your membership continues until the current period expires.",
+      "tip": "If you have a family plan, only the family group admin can manage the subscription."
+    },
+    {
+      "title": "Confirm via email",
+      "text": "Nintendo sends a confirmation email. Your online features (multiplayer, cloud saves, classic game library) remain active until the expiration date.",
+      "tip": null
+    }
+  ],
+  "warnings": [
+    "Cloud save data may be deleted after a period without an active subscription — download important saves.",
+    "Online multiplayer stops working after your membership expires.",
+    "NES/SNES/N64/Game Boy games (included with membership) become inaccessible.",
+    "Family plan members all lose access if the admin cancels.",
+    "The Expansion Pack (N64, Sega Genesis games) is part of the higher tier — it's removed with cancellation."
+  ],
+  "faqs": [
+    {
+      "q": "Can I play online without Nintendo Switch Online?",
+      "a": "Most games require NSO for online multiplayer. Free-to-play games (Fortnite, Apex, Rocket League) do NOT require NSO."
+    },
+    {
+      "q": "What happens to my cloud saves?",
+      "a": "Cloud saves are preserved for a period (around 6 months) after membership expires. After that, they may be deleted. Download saves locally as backup."
+    },
+    {
+      "q": "Can I get a refund from Nintendo?",
+      "a": "Nintendo's refund policy is strict. Contact Nintendo customer support for requests within a few days of purchase. They rarely offer refunds after the membership has been active."
+    },
+    {
+      "q": "Is the Expansion Pack worth keeping?",
+      "a": "The base NSO ($3.99/mo or $19.99/year) gets you cloud saves and basic online. Expansion Pack ($49.99/year) adds N64, Sega, and GBA games. Cancel Expansion Pack and keep base to save money."
+    }
+  ],
+  "refund": {
+    "eligible": false,
+    "details": "Nintendo rarely offers refunds for Switch Online memberships. Contact Nintendo support to request — success varies by region and timing."
+  },
+  "retentionTactics": [
+    "Nintendo doesn't use aggressive retention tactics. The process is clean."
+  ],
+  "timeEstimate": "2-3 minutes",
+  "lastVerified": "2026-05-22"
+}

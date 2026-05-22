@@ -1,0 +1,61 @@
+{
+  "title": "How to Cancel ChatGPT Plus — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel your ChatGPT Plus subscription in 60 seconds. Keep access until the end of your billing cycle. Here's exactly where to click.",
+  "intro": "Canceling ChatGPT Plus is quick and painless — no retention calls, no dark patterns. OpenAI lets you cancel with 3 clicks and you keep access through the end of your paid period.",
+  "steps": [
+    {
+      "title": "Open ChatGPT Settings",
+      "text": "Go to chat.openai.com and click your profile icon in the bottom-left corner. Select \"Settings\" from the menu. Alternatively, navigate directly to chat.openai.com/settings/subscription.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Manage my subscription\"",
+      "text": "In the Settings panel, find the \"Subscription\" section and click \"Manage my subscription\". This opens the billing portal.",
+      "tip": "If you subscribed through the iOS app, you'll see a note directing you to Apple's subscription settings instead."
+    },
+    {
+      "title": "Click \"Cancel plan\"",
+      "text": "In the billing portal, click \"Cancel plan\" or \"Cancel subscription\". You may be shown a comparison of Plus vs Free features.",
+      "tip": null
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Click \"Cancel subscription\" on the confirmation dialog. You'll receive an email confirmation. Your Plus access continues until the end of your current billing cycle.",
+      "tip": "Note your billing date — you can keep using GPT-4, DALL-E, and other Plus features until that date."
+    }
+  ],
+  "warnings": [
+    "If you subscribed via Apple App Store (iOS app), you MUST cancel through Settings → Apple ID → Subscriptions on your device. Canceling in ChatGPT settings won't stop Apple billing.",
+    "After cancellation, you lose access to GPT-4, DALL-E 3, Advanced Data Analysis, custom GPTs, and priority access during peak times.",
+    "Your chat history is preserved on the free plan — you won't lose past conversations.",
+    "If you have a ChatGPT Team or Enterprise plan, only the workspace admin can cancel."
+  ],
+  "faqs": [
+    {
+      "q": "Will I lose my chat history if I cancel ChatGPT Plus?",
+      "a": "No. All your conversations, custom GPTs, and settings are preserved. You simply lose access to Plus-only features like GPT-4 and DALL-E."
+    },
+    {
+      "q": "Can I get a refund for ChatGPT Plus?",
+      "a": "OpenAI doesn't offer automatic refunds, but you can request one by contacting help.openai.com within a few days of being charged. They've been known to issue credits for unused portions."
+    },
+    {
+      "q": "What's the difference between ChatGPT Free and Plus?",
+      "a": "Free gives you access to GPT-3.5 with usage limits. Plus ($20/mo) gives GPT-4, DALL-E 3, web browsing, code interpreter, custom GPTs, and priority access."
+    },
+    {
+      "q": "How do I cancel ChatGPT if I subscribed through Apple?",
+      "a": "On iPhone: Settings → tap your name → Subscriptions → ChatGPT → Cancel. On Mac: App Store → Account → Subscriptions → ChatGPT → Cancel."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "OpenAI doesn't advertise refunds, but if you contact support at help.openai.com within a few days of a charge you didn't intend (e.g., forgot to cancel before renewal), they often issue a one-time courtesy refund."
+  },
+  "retentionTactics": [
+    "OpenAI may show a feature comparison reminding you what you'll lose (GPT-4, DALL-E, etc.).",
+    "They don't use aggressive retention tactics — cancellation is straightforward."
+  ],
+  "timeEstimate": "1-2 minutes",
+  "lastVerified": "2026-05-21"
+}

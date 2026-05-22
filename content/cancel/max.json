@@ -1,0 +1,62 @@
+{
+  "title": "How to Cancel Max (HBO) — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel your Max (formerly HBO Max) subscription in 2 minutes. Stop the charge and keep access until your billing period ends.",
+  "intro": "Max (formerly HBO Max) is straightforward to cancel online. No phone calls needed. Your access continues through the end of your current billing cycle.",
+  "steps": [
+    {
+      "title": "Go to your Max account page",
+      "text": "Visit max.com and sign in. Click your profile icon in the top-right corner and select \"Account\" from the dropdown.",
+      "tip": null
+    },
+    {
+      "title": "Find your subscription details",
+      "text": "On the Account page, look for the \"Subscription\" section. It shows your current plan (With Ads, Ad-Free, or Ultimate) and next billing date.",
+      "tip": "If it says 'Billed through Apple/Google/Amazon/Roku', you must cancel through that platform instead."
+    },
+    {
+      "title": "Click \"Cancel Subscription\"",
+      "text": "Click \"Cancel Subscription\" under your plan details. Max will show what you'll lose and may offer a discount or downgrade option.",
+      "tip": null
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Click through any retention offers and confirm on the final screen. You'll receive an email confirmation and keep access until your billing period expires.",
+      "tip": "If you're canceling because of price, try the cheaper 'With Ads' tier ($9.99/mo) before canceling entirely."
+    }
+  ],
+  "warnings": [
+    "If you subscribed through Apple, Google, Roku, or Amazon, you must cancel through their subscription settings — not on max.com.",
+    "Your profiles, watchlist, and viewing history are preserved for a period after cancellation.",
+    "Downloads become unavailable after your subscription ends.",
+    "If you were previously on HBO Max and were migrated to Max, your legacy pricing may not be available if you re-subscribe."
+  ],
+  "faqs": [
+    {
+      "q": "Is Max the same as HBO Max?",
+      "a": "Yes. HBO Max was rebranded to Max in 2023. If you had HBO Max, your account was automatically migrated. The cancellation process is the same."
+    },
+    {
+      "q": "Can I get a refund from Max?",
+      "a": "Max does not typically offer refunds for partial billing periods. For billing errors, contact Max Help Center. If billed through Apple/Google, request a refund through their systems."
+    },
+    {
+      "q": "Will I lose access to HBO content if I cancel Max?",
+      "a": "Yes. All HBO originals, movies, and Max exclusives require an active subscription. You only keep access to content you've purchased separately through other platforms."
+    },
+    {
+      "q": "What's the cheapest Max plan?",
+      "a": "Max With Ads is $9.99/mo (or $99.99/year). It includes the same content library but with advertising and no offline downloads."
+    }
+  ],
+  "refund": {
+    "eligible": false,
+    "details": "Max does not offer prorated refunds. Your subscription remains active through the end of your billing period. Contact support for billing errors."
+  },
+  "retentionTactics": [
+    "Max may offer to switch you to the cheaper ad-supported tier.",
+    "They may highlight upcoming releases (new HBO series, Warner Bros. movies).",
+    "Some users report being offered a discounted rate for a few months."
+  ],
+  "timeEstimate": "2-3 minutes",
+  "lastVerified": "2026-05-22"
+}

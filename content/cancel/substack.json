@@ -1,0 +1,61 @@
+{
+  "title": "How to Cancel Substack — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Substack paid subscriptions. Manage individual newsletter payments and stop all recurring charges in one place.",
+  "intro": "Substack is different from other services — you may have multiple paid newsletter subscriptions, each billed separately. You need to cancel each one individually through your payment settings.",
+  "steps": [
+    {
+      "title": "Go to Substack payment settings",
+      "text": "Visit substack.com/account/payments while signed in. This shows all your active paid subscriptions.",
+      "tip": null
+    },
+    {
+      "title": "Find the subscription you want to cancel",
+      "text": "Your paid subscriptions are listed with their monthly/annual price. Click on the one you want to cancel.",
+      "tip": "If you have multiple paid newsletters, you need to cancel each one separately."
+    },
+    {
+      "title": "Click \"Cancel\" or \"Manage\"",
+      "text": "Click the cancel or manage option for that specific publication. Confirm when prompted.",
+      "tip": null
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Confirm your cancellation. You keep access to the paid content until your billing period ends, then revert to free posts only from that newsletter.",
+      "tip": "You'll still receive free posts from the newsletter in your inbox. Only paid-subscriber-only content becomes locked."
+    }
+  ],
+  "warnings": [
+    "Each Substack newsletter is a separate subscription — cancel each one individually.",
+    "If subscribed through the Substack iOS app (Apple), cancel through iOS Settings → Subscriptions.",
+    "Canceling doesn't unsubscribe you from the newsletter — you'll still get free posts. Unsubscribe separately if you want to stop emails.",
+    "Your notes, comments, and bookmarks remain accessible."
+  ],
+  "faqs": [
+    {
+      "q": "How do I cancel all my Substack subscriptions at once?",
+      "a": "There's no 'cancel all' button. Visit substack.com/account/payments and cancel each paid subscription individually."
+    },
+    {
+      "q": "Will I still get emails after canceling?",
+      "a": "Yes — canceling a paid subscription only removes paid content access. You'll still receive free posts. To stop emails entirely, unsubscribe from the publication separately."
+    },
+    {
+      "q": "Can I get a refund from Substack?",
+      "a": "Refunds are handled by individual newsletter publishers, not Substack. Contact the publication's author directly for refund requests."
+    },
+    {
+      "q": "What's the difference between cancel and unsubscribe?",
+      "a": "Cancel = stop paying (but still get free posts). Unsubscribe = stop all emails from that newsletter. They're two separate actions."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Refunds are at the discretion of individual newsletter authors, not Substack. Contact the publication author directly. Substack provides no centralized refund system."
+  },
+  "retentionTactics": [
+    "Individual authors may reach out personally when they see you've canceled.",
+    "Substack doesn't itself use retention tactics — each publication handles its own subscribers."
+  ],
+  "timeEstimate": "2-5 minutes",
+  "lastVerified": "2026-05-22"
+}

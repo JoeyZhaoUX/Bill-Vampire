@@ -1,0 +1,63 @@
+{
+  "title": "How to Cancel Grammarly Premium — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Grammarly Premium subscription and switch to the free plan. Keep basic grammar checking without paying $12/month. Exact steps here.",
+  "intro": "Grammarly's free tier still catches basic grammar, spelling, and punctuation errors. Premium adds advanced suggestions (tone, clarity, plagiarism). Canceling is straightforward but slightly hidden.",
+  "steps": [
+    {
+      "title": "Go to Grammarly Account Subscription page",
+      "text": "Open account.grammarly.com/subscription in your browser and sign in. This is the direct link to your subscription management.",
+      "tip": "You can't cancel from the Grammarly desktop app or browser extension — it must be done on the website."
+    },
+    {
+      "title": "Click \"Cancel Subscription\"",
+      "text": "On the Subscription page, find and click \"Cancel Subscription\" or \"Cancel renewal\". It may be listed under your plan details near the renewal date.",
+      "tip": null
+    },
+    {
+      "title": "Complete the cancellation survey",
+      "text": "Grammarly will ask why you're leaving. Select a reason and click \"Continue\". They may offer a discounted rate based on your answer.",
+      "tip": "Selecting 'Too expensive' often triggers their best retention offer (up to 40-60% off)."
+    },
+    {
+      "title": "Decline offers and confirm",
+      "text": "Click through any retention offers by selecting \"Continue to cancel\" or \"No thanks\". On the final screen, click \"Cancel subscription\" to confirm. Your Premium features remain active until your renewal date.",
+      "tip": null
+    }
+  ],
+  "warnings": [
+    "If you purchased through Apple App Store or Google Play, cancel through their subscription settings.",
+    "The free plan still checks grammar, spelling, and punctuation. You only lose clarity rewrites, tone suggestions, vocabulary enhancement, and plagiarism detection.",
+    "Any documents saved in your Grammarly account remain accessible — you don't lose your writing.",
+    "If you have Grammarly Business through an organization, contact your admin — you can't self-cancel."
+  ],
+  "faqs": [
+    {
+      "q": "What do I keep with Grammarly Free?",
+      "a": "Free Grammarly still catches grammar, spelling, and punctuation errors in real-time. You lose advanced suggestions: clarity, engagement, tone detection, vocabulary alternatives, and plagiarism checking."
+    },
+    {
+      "q": "Can I get a refund from Grammarly?",
+      "a": "Grammarly offers a 7-day money-back guarantee on new subscriptions. After that, refunds are at their discretion. Contact support@grammarly.com with your request."
+    },
+    {
+      "q": "Will the browser extension still work after canceling?",
+      "a": "Yes. The Grammarly browser extension continues to work with free features (basic grammar and spelling checks). You just won't see premium suggestions."
+    },
+    {
+      "q": "Is there a good free alternative to Grammarly Premium?",
+      "a": "LanguageTool (free tier with 10,000 char limit), Hemingway Editor (free web version), and Microsoft Editor (built into Edge/Office) are solid free alternatives for advanced writing suggestions."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Grammarly offers a 7-day money-back guarantee for new subscribers. After 7 days, refunds are handled case-by-case by their support team. Contact support@grammarly.com."
+  },
+  "retentionTactics": [
+    "Grammarly often offers 40-60% off for 3-6 months as a retention offer.",
+    "They show you statistics about how many errors they caught for you (e.g., '1,247 corrections this month').",
+    "They suggest switching from monthly to annual to reduce cost per month.",
+    "The cancellation flow requires 4-5 clicks with multiple screens."
+  ],
+  "timeEstimate": "2-3 minutes",
+  "lastVerified": "2026-05-21"
+}

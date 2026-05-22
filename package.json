@@ -5,7 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/seo/generate-pages.mjs && vite build",
+    "build:vite": "vite build",
+    "seo:content": "node scripts/seo/generate-content.mjs",
+    "seo:build": "node scripts/seo/generate-pages.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },

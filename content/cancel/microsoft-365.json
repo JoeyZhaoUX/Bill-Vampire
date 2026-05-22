@@ -1,0 +1,63 @@
+{
+  "title": "How to Cancel Microsoft 365 — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Microsoft 365 (Office 365) subscription. Stop the monthly charge and keep your files. Refund options for annual plans explained.",
+  "intro": "Microsoft 365 cancellation is done through your Microsoft account settings. You keep access to your OneDrive files and can still use the free web versions of Word, Excel, and PowerPoint after canceling.",
+  "steps": [
+    {
+      "title": "Go to Microsoft Services page",
+      "text": "Visit account.microsoft.com/services and sign in with your Microsoft account. Find your Microsoft 365 subscription in the list.",
+      "tip": "If you have multiple Microsoft accounts, make sure you're signed into the one with the subscription."
+    },
+    {
+      "title": "Click \"Manage\" next to Microsoft 365",
+      "text": "Click \"Manage\" on your Microsoft 365 subscription (Personal or Family). Then click \"Cancel\" or \"Turn off recurring billing\".",
+      "tip": null
+    },
+    {
+      "title": "Choose your cancellation option",
+      "text": "Microsoft offers two options: turn off auto-renewal (keep access until expiry) or cancel immediately with a refund. Choose based on your preference.",
+      "tip": "If on an annual plan and within 60 days of purchase, choose immediate cancellation for a prorated refund."
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Follow the remaining prompts and confirm. You'll receive an email confirmation. Your Office apps continue working until your subscription expires, then switch to read-only mode.",
+      "tip": "Download any files from OneDrive locally before your extra storage expires. You keep 5GB free storage."
+    }
+  ],
+  "warnings": [
+    "Office desktop apps (Word, Excel, PowerPoint) switch to read-only mode after cancellation. Free web versions still work.",
+    "OneDrive storage drops from 1TB to 5GB. If you're over 5GB, files aren't deleted but you can't add new ones.",
+    "If subscribed through Apple or Microsoft Store on Windows, cancel through their respective platforms.",
+    "Family plan: all 6 members lose access when the subscription holder cancels.",
+    "Outlook.com email still works (it's free) — you only lose the premium Outlook features."
+  ],
+  "faqs": [
+    {
+      "q": "Can I still use Word after canceling Microsoft 365?",
+      "a": "The desktop apps switch to read-only mode. However, the free web versions at office.com (Word, Excel, PowerPoint) still work for basic editing."
+    },
+    {
+      "q": "Can I get a refund for Microsoft 365?",
+      "a": "Yes. Microsoft offers prorated refunds for annual subscriptions if you cancel within 60 days of purchase or renewal. After 60 days, no refund but you keep access until the term ends."
+    },
+    {
+      "q": "What happens to my OneDrive files?",
+      "a": "Files aren't deleted. If over 5GB, your account becomes read-only. Microsoft gives you time to download or delete files to get under the limit."
+    },
+    {
+      "q": "What's a free alternative to Microsoft 365?",
+      "a": "Google Docs/Sheets/Slides (free with Google account), LibreOffice (free desktop suite), and Apple iWork (free on Apple devices) cover most needs."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Microsoft offers prorated refunds within 60 days of purchase or annual renewal. After 60 days, you can turn off recurring billing and keep access through the end of your term. Contact Microsoft support for refund processing."
+  },
+  "retentionTactics": [
+    "Microsoft shows how much OneDrive storage you're using vs. the free 5GB limit.",
+    "They offer to switch from annual to monthly or suggest Family plan sharing.",
+    "They highlight that desktop apps will become read-only."
+  ],
+  "timeEstimate": "3-5 minutes",
+  "lastVerified": "2026-05-22"
+}

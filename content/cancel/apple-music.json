@@ -1,0 +1,61 @@
+{
+  "title": "How to Cancel Apple Music — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Apple Music subscription on iPhone, Mac, or web. Stop the $10.99/mo charge and keep your library. All methods covered.",
+  "intro": "Apple Music cancellation must be done through Apple's subscription settings — not through the Music app itself. The process differs slightly between iPhone, Mac, and web, but takes under 2 minutes on any platform.",
+  "steps": [
+    {
+      "title": "Open your Apple ID subscription settings",
+      "text": "On iPhone/iPad: Settings → tap your name → Subscriptions. On Mac: App Store → click your name → Account Settings → Subscriptions. On web: appleid.apple.com → Sign In → Subscriptions.",
+      "tip": "The fastest path on iPhone is: Settings → your name at the top → Subscriptions. Don't dig through the Music app."
+    },
+    {
+      "title": "Find Apple Music in your subscription list",
+      "text": "Tap or click on Apple Music in your active subscriptions list. You'll see your current plan, price, and renewal date.",
+      "tip": null
+    },
+    {
+      "title": "Tap \"Cancel Subscription\" or \"Cancel Free Trial\"",
+      "text": "Scroll down and tap \"Cancel Subscription\" (red text). If you're on a free trial, it will say \"Cancel Free Trial\" instead. Apple will ask you to confirm.",
+      "tip": "Cancel before your trial ends to avoid being charged. Apple bills immediately when the trial period expires."
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Tap \"Confirm\" on the confirmation dialog. Your subscription remains active until the end of your current billing period. You'll see the expiration date on the confirmation screen.",
+      "tip": "Your downloaded music and playlists will become unplayable after expiration. Any music you purchased (bought, not streamed) from iTunes remains yours forever."
+    }
+  ],
+  "warnings": [
+    "Downloaded Apple Music songs become unplayable after cancellation — they're DRM-protected streams, not purchases.",
+    "If you're on Apple One bundle, canceling Apple Music means canceling the entire bundle. Consider switching to individual services.",
+    "Your playlists and library are preserved for a period — if you re-subscribe within a few months, they'll be restored.",
+    "Family plan members all lose access if the family organizer cancels."
+  ],
+  "faqs": [
+    {
+      "q": "Will I lose my playlists if I cancel Apple Music?",
+      "a": "Your playlists and library metadata are preserved by Apple for some time. If you re-subscribe, they should reappear. However, you cannot play any songs until you re-subscribe."
+    },
+    {
+      "q": "Can I get a refund from Apple Music?",
+      "a": "Apple offers refunds through reportaproblem.apple.com. You can request a refund for recent charges. They typically approve refunds for accidental renewals or if you cancel within a day of being charged."
+    },
+    {
+      "q": "What's the difference between canceling Apple Music and iTunes purchases?",
+      "a": "Music you purchased from iTunes (bought individual songs/albums) is yours forever. Apple Music streaming content is only accessible while your subscription is active."
+    },
+    {
+      "q": "How do I cancel Apple Music on Android?",
+      "a": "Open the Apple Music app on Android → tap the three dots menu → Account → Manage Subscription → Cancel Subscription. Or visit appleid.apple.com in a browser."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Apple offers refunds through reportaproblem.apple.com. Request within 14 days of a charge for the best chance of approval. Free trial charges that you forgot to cancel before expiry are commonly refunded as a one-time courtesy."
+  },
+  "retentionTactics": [
+    "Apple may offer a discounted rate or extended free trial when you try to cancel.",
+    "They'll remind you of your library size and playlists you'll lose access to."
+  ],
+  "timeEstimate": "1-2 minutes",
+  "lastVerified": "2026-05-22"
+}

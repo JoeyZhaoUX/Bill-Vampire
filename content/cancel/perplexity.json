@@ -1,0 +1,56 @@
+{
+  "title": "How to Cancel Perplexity Pro — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Perplexity Pro subscription in 60 seconds. Downgrade to the free tier and keep your search history. Step-by-step.",
+  "intro": "Perplexity Pro cancellation is done through your account settings and takes about a minute. The free tier still offers useful AI search — you just get fewer Pro searches per day.",
+  "steps": [
+    {
+      "title": "Go to Perplexity settings",
+      "text": "Visit perplexity.ai/settings/subscription while signed in. Or click your profile icon → Settings → Subscription.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Manage Subscription\" or \"Cancel\"",
+      "text": "Find the subscription management section and click \"Manage Subscription\" or \"Cancel Plan\".",
+      "tip": null
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Click through any confirmation dialogs. Your Pro features (unlimited Pro searches, file upload, API credits) remain active until the end of your billing period.",
+      "tip": "The free tier still gives you 5 Pro searches per day — often enough for casual use."
+    }
+  ],
+  "warnings": [
+    "If you subscribed through Apple App Store, cancel through iOS Settings → Subscriptions.",
+    "Free tier limits you to 5 Pro searches per day (vs unlimited on Pro).",
+    "Your search history, Collections, and saved threads are preserved on the free plan.",
+    "API access is revoked after cancellation unless you have separate API credits."
+  ],
+  "faqs": [
+    {
+      "q": "What do I lose when canceling Perplexity Pro?",
+      "a": "You lose unlimited Pro searches (drops to 5/day), file/image upload for analysis, higher model access, and API credits. Basic search still works fine."
+    },
+    {
+      "q": "Can I get a refund from Perplexity?",
+      "a": "Contact Perplexity support for refund requests. They handle these case-by-case. Apple/Google subscriptions must be refunded through those platforms."
+    },
+    {
+      "q": "Is Perplexity Free still useful?",
+      "a": "Yes. Free Perplexity gives you unlimited basic searches and 5 Pro searches per day. For most casual research needs, the free tier works well."
+    },
+    {
+      "q": "Will I lose my search history?",
+      "a": "No. All your threads, Collections, and search history are preserved on the free tier."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Contact Perplexity support for refund requests. They typically handle recent charges on a case-by-case basis."
+  },
+  "retentionTactics": [
+    "Perplexity may offer a discounted annual rate.",
+    "They'll show your usage stats and how many Pro searches you've used."
+  ],
+  "timeEstimate": "1 minute",
+  "lastVerified": "2026-05-22"
+}

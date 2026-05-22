@@ -1,0 +1,62 @@
+{
+  "title": "How to Cancel Duolingo Plus (Super) — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Duolingo Super subscription and keep learning for free. Stop the monthly charge without losing your streak or progress.",
+  "intro": "Duolingo's free version is fully functional for learning — you just deal with ads and limited hearts. Canceling Super (formerly Plus) doesn't affect your streak, XP, or progress.",
+  "steps": [
+    {
+      "title": "Open subscription settings",
+      "text": "On iOS: Settings → Apple ID → Subscriptions → Duolingo. On Android: Google Play → Menu → Payments & subscriptions → Subscriptions → Duolingo. On web: duolingo.com/settings/account.",
+      "tip": "Duolingo Super is almost always billed through Apple or Google, not Duolingo directly. Check your app store first."
+    },
+    {
+      "title": "Find your Duolingo subscription",
+      "text": "Locate Duolingo in your active subscriptions list. Tap on it to see plan details and renewal date.",
+      "tip": null
+    },
+    {
+      "title": "Tap \"Cancel Subscription\"",
+      "text": "Tap \"Cancel Subscription\" or \"Cancel free trial\". Confirm when prompted.",
+      "tip": "If you're on a free trial, cancel before it ends to avoid the first charge. You keep the trial until the expiry date."
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Confirm your cancellation. Super features (no ads, unlimited hearts, offline lessons) remain active until the end of your billing period.",
+      "tip": "Your streak, XP, league position, and all progress are 100% preserved on the free plan."
+    }
+  ],
+  "warnings": [
+    "Most Duolingo subscriptions are through Apple/Google — you must cancel through their subscription settings, not the Duolingo app.",
+    "Free Duolingo uses a 'hearts' system — you lose hearts for wrong answers and must wait or practice to regain them.",
+    "Offline lessons are disabled on the free plan. Download lessons won't work after cancellation.",
+    "Your streak, progress, and league position are completely preserved."
+  ],
+  "faqs": [
+    {
+      "q": "Will I lose my streak if I cancel Duolingo Super?",
+      "a": "No. Your streak, XP, leagues, achievements, and all learning progress are completely preserved on the free plan. Only premium perks (no ads, unlimited hearts) are removed."
+    },
+    {
+      "q": "Can I still learn on free Duolingo?",
+      "a": "Absolutely. Free Duolingo gives you access to all courses and lessons. You'll see ads between lessons and have limited hearts (5 mistakes before waiting), but the learning content is identical."
+    },
+    {
+      "q": "Can I get a refund from Duolingo?",
+      "a": "Request refunds through Apple App Store (reportaproblem.apple.com) or Google Play (play.google.com/store/account) since most subscriptions are billed through them."
+    },
+    {
+      "q": "What's the hearts system on free Duolingo?",
+      "a": "You start with 5 hearts. Each wrong answer costs 1 heart. When hearts run out, you wait a few hours to refill or do practice sessions to earn them back. Super removes this limit entirely."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Since most subscriptions are through Apple/Google, request refunds through reportaproblem.apple.com or Google Play. Duolingo direct subscriptions can be refunded by contacting their support."
+  },
+  "retentionTactics": [
+    "Duolingo may offer a discounted rate or extended free trial.",
+    "They'll remind you about unlimited hearts and your current streak.",
+    "The app may show more aggressive streak-freeze promotions after canceling."
+  ],
+  "timeEstimate": "1-2 minutes",
+  "lastVerified": "2026-05-22"
+}

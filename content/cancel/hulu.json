@@ -1,0 +1,62 @@
+{
+  "title": "How to Cancel Hulu — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel your Hulu subscription in 2 minutes. Works for Hulu Basic, No Ads, and Live TV plans. Keep access until the end of your billing period.",
+  "intro": "Canceling Hulu is quick and can be done entirely online. Your account stays active through the end of your current billing period, so you won't lose access immediately.",
+  "steps": [
+    {
+      "title": "Go to your Hulu Account page",
+      "text": "Visit secure.hulu.com/account in your browser and sign in. You can also access this from the Hulu app by tapping your profile → Account.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Cancel\" under Your Subscription",
+      "text": "In the Your Subscription section, click \"Cancel\". If you have the Disney Bundle, you'll see options to manage individual services.",
+      "tip": "If you're on a Hulu + Live TV plan, consider switching to the basic Hulu plan ($7.99/mo) first — you might only need to drop Live TV."
+    },
+    {
+      "title": "Decline the retention offer",
+      "text": "Hulu may offer you a discounted rate, a plan switch, or a pause option. Click \"Continue to Cancel\" if you want to proceed with full cancellation.",
+      "tip": "Hulu's pause feature (up to 12 weeks) is genuinely useful if you're on the fence. You won't be charged during the pause."
+    },
+    {
+      "title": "Confirm your cancellation",
+      "text": "Click \"Cancel Subscription\" on the final confirmation screen. You'll see your last date of access. An email confirmation will be sent to your registered email.",
+      "tip": null
+    }
+  ],
+  "warnings": [
+    "If you subscribed through Apple, Roku, or Amazon, you must cancel through their billing systems — not on Hulu's website.",
+    "If you have the Disney Bundle through Hulu, canceling Hulu cancels the entire bundle including Disney+ and ESPN+.",
+    "Any add-ons (HBO Max, Showtime, etc.) purchased through Hulu will also be canceled.",
+    "Your profile, watchlist, and viewing history are preserved if you re-subscribe within a reasonable timeframe."
+  ],
+  "faqs": [
+    {
+      "q": "Can I get a refund from Hulu?",
+      "a": "Hulu does not typically offer refunds for partial billing periods. If you were double-charged or experienced a billing error, contact Hulu support for resolution."
+    },
+    {
+      "q": "Will I lose my Hulu profiles if I cancel?",
+      "a": "Hulu retains your profile data, viewing history, and preferences for some time after cancellation. If you re-subscribe within a few months, everything should be restored."
+    },
+    {
+      "q": "Can I cancel Hulu but keep Disney+?",
+      "a": "Yes. If you have the Disney Bundle through Hulu, you can switch to Disney+ only. Go to Account → Manage Add-ons and adjust your bundle."
+    },
+    {
+      "q": "What happens to my Hulu + Live TV DVR recordings?",
+      "a": "All cloud DVR recordings are deleted when your Live TV subscription ends. There's no way to save them externally."
+    }
+  ],
+  "refund": {
+    "eligible": false,
+    "details": "Hulu does not offer prorated refunds for unused portions of your billing cycle. Your access continues through the end of your current period."
+  },
+  "retentionTactics": [
+    "Hulu offers a 'pause subscription' option for up to 12 weeks with no charge.",
+    "They may offer a discounted rate for 2-3 months.",
+    "They'll suggest switching to a cheaper plan (e.g., from No Ads to With Ads tier)."
+  ],
+  "timeEstimate": "2-3 minutes",
+  "lastVerified": "2026-05-21"
+}

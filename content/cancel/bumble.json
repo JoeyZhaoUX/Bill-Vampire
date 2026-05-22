@@ -1,0 +1,61 @@
+{
+  "title": "How to Cancel Bumble — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Bumble Premium or Boost subscription. Stop monthly charges on iPhone or Android. Deleting the app won't stop billing.",
+  "intro": "Like all dating apps, Bumble subscriptions are managed through Apple or Google — not the app itself. Deleting Bumble won't stop charges. Here's how to properly cancel.",
+  "steps": [
+    {
+      "title": "Don't just delete the app",
+      "text": "Uninstalling Bumble does not cancel your subscription. Billing is handled by Apple App Store or Google Play Store.",
+      "tip": null
+    },
+    {
+      "title": "Cancel through your app store",
+      "text": "iPhone: Settings → Apple ID → Subscriptions → Bumble → Cancel. Android: Google Play → Payments & subscriptions → Subscriptions → Bumble → Cancel.",
+      "tip": null
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Tap \"Confirm\" to cancel. Premium features remain active until the end of your billing period.",
+      "tip": "Free Bumble still lets you match and message — you just lose SuperSwipes, Spotlight, Travel mode, and unlimited extends."
+    },
+    {
+      "title": "Optionally snooze or delete your profile",
+      "text": "If you want a break without deleting: use Bumble's Snooze Mode. To fully remove your profile: Settings → Delete Account in the app.",
+      "tip": null
+    }
+  ],
+  "warnings": [
+    "Deleting the Bumble app does NOT cancel your subscription.",
+    "If you subscribed through bumble.com (web), manage it at bumble.com/en/help.",
+    "Free Bumble still works for basic matching and messaging.",
+    "Bumble BFF and Bizz features are separate from dating subscriptions."
+  ],
+  "faqs": [
+    {
+      "q": "Will deleting Bumble cancel my subscription?",
+      "a": "No. You must cancel through Apple Settings or Google Play Store. The app cannot stop its own billing."
+    },
+    {
+      "q": "Can I get a refund from Bumble?",
+      "a": "Request refunds through Apple or Google's platforms. Bumble's own refund policy is strict, but Apple/Google may grant refunds for recent charges."
+    },
+    {
+      "q": "What's free on Bumble?",
+      "a": "Free Bumble includes basic swiping, matching, and messaging. Premium adds SuperSwipes, unlimited extends, travel mode, advanced filters, and seeing who liked you."
+    },
+    {
+      "q": "What's Bumble Snooze Mode?",
+      "a": "Snooze Mode hides your profile temporarily (24 hours to indefinitely) without deleting your account or matches. Useful if you want a break."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Refunds through Apple (reportaproblem.apple.com) or Google Play. Bumble direct refunds are rare — use your app store."
+  },
+  "retentionTactics": [
+    "Bumble doesn't have a direct retention flow — Apple/Google handle the cancellation.",
+    "They may send notifications about new matches or features after canceling."
+  ],
+  "timeEstimate": "1-2 minutes",
+  "lastVerified": "2026-05-22"
+}

@@ -1,0 +1,61 @@
+{
+  "title": "How to Cancel Calm — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Calm app subscription on iPhone, Android, or web. Stop the $14.99/mo charge. Keep free access to limited meditation content.",
+  "intro": "Calm cancellation works the same way as most app subscriptions — through Apple, Google, or their website depending on where you signed up. Some free content remains available after canceling.",
+  "steps": [
+    {
+      "title": "Check where you subscribed",
+      "text": "Most Calm subscriptions are through Apple App Store or Google Play. Check Settings → Subscriptions on your device first.",
+      "tip": null
+    },
+    {
+      "title": "Cancel through the correct platform",
+      "text": "Apple: Settings → Apple ID → Subscriptions → Calm → Cancel. Google: Play Store → Payments & subscriptions → Calm → Cancel. Web: calm.com/account/subscription → Cancel.",
+      "tip": "If you can't find Calm in your subscriptions, try the other platform or check calm.com/account."
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Tap \"Confirm\" to finalize. Your Premium access continues until your billing period ends.",
+      "tip": null
+    },
+    {
+      "title": "Verify in the app",
+      "text": "Open the Calm app and check your account settings to confirm the subscription shows as canceled. Some free content (Daily Calm, limited sleep stories) remains accessible.",
+      "tip": null
+    }
+  ],
+  "warnings": [
+    "Lifetime subscriptions cannot be canceled (one-time purchase — you keep it forever).",
+    "Annual plans are not refundable after the first 30 days in most cases.",
+    "Canceling on calm.com does NOT cancel Apple/Google billing — cancel through the platform you subscribed on.",
+    "Downloaded content for offline use becomes unavailable after cancellation."
+  ],
+  "faqs": [
+    {
+      "q": "Does Calm have free content after canceling?",
+      "a": "Yes. Calm's free tier includes limited meditation content, some sleep stories, and the Daily Calm (new daily meditation). Most of the library requires Premium."
+    },
+    {
+      "q": "Can I get a refund from Calm?",
+      "a": "Annual subscriptions may be refundable within 30 days. For Apple/Google, use their refund processes. For direct subscriptions, contact Calm support."
+    },
+    {
+      "q": "What's the Calm Lifetime plan?",
+      "a": "Calm offers a lifetime subscription (one-time payment of ~$400) that never expires. If you purchased this, you don't need to cancel anything."
+    },
+    {
+      "q": "What's a free alternative to Calm?",
+      "a": "Insight Timer (100k+ free meditations), Smiling Mind (completely free), UCLA Mindful (research-backed, free), and YouTube meditation channels."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Calm offers refunds within 30 days of annual purchase through their support. Apple/Google subscriptions must be refunded through their respective platforms."
+  },
+  "retentionTactics": [
+    "Calm may offer a discounted rate or free month extension.",
+    "They show your meditation streak and total sessions completed."
+  ],
+  "timeEstimate": "2 minutes",
+  "lastVerified": "2026-05-22"
+}

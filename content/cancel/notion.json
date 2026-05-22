@@ -1,0 +1,61 @@
+{
+  "title": "How to Cancel Notion — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel your Notion Plus or Business subscription. Downgrade to the free plan without losing your pages. Step-by-step with screenshots.",
+  "intro": "Notion's cancellation is actually a 'downgrade to free' — and the good news is you keep all your pages and data. The free plan is genuinely usable for personal use.",
+  "steps": [
+    {
+      "title": "Open Notion Settings",
+      "text": "Click \"Settings & Members\" in the left sidebar of your Notion workspace, or navigate directly to notion.so/my-account.",
+      "tip": null
+    },
+    {
+      "title": "Go to the Plans section",
+      "text": "In the Settings panel, click \"Plans\" or \"Subscription\" in the left menu. You'll see your current plan details and billing info.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Downgrade\" or \"Cancel plan\"",
+      "text": "Click the \"Downgrade\" button under your current plan. Notion will show a comparison of what you'll lose (unlimited file uploads, version history beyond 7 days, etc.).",
+      "tip": "If you're the workspace owner with team members, downgrading affects everyone. Consider exporting critical data first."
+    },
+    {
+      "title": "Confirm the downgrade",
+      "text": "Select your reason for canceling and click \"Downgrade to Free\". Your paid features remain active until the end of your billing period, then you switch to the free tier.",
+      "tip": "The free plan includes unlimited pages and blocks. You only lose file upload size (5MB limit), version history (7 days), and guest limits."
+    }
+  ],
+  "warnings": [
+    "Files larger than 5MB won't be accessible for editing on the free plan (you can still view/download them).",
+    "Version history is limited to 7 days on free (vs 30 days on Plus). Export important version history before downgrading.",
+    "If you're on a Team/Business plan, all workspace members will be affected by the downgrade.",
+    "Automations beyond basic ones will be disabled on the free tier."
+  ],
+  "faqs": [
+    {
+      "q": "Will I lose my Notion pages if I cancel?",
+      "a": "No. All your pages, databases, and content are preserved on the free plan. You keep unlimited pages and blocks. The free plan is genuinely usable for personal productivity."
+    },
+    {
+      "q": "Can I get a refund from Notion?",
+      "a": "Notion offers refunds on a case-by-case basis. Contact team@makenotion.com within a few days of charge. They're generally responsive to refund requests for recent charges."
+    },
+    {
+      "q": "What's the difference between Notion Free and Plus?",
+      "a": "Free gives you unlimited pages/blocks but with 5MB file upload limit, 7-day version history, and limited guests. Plus ($10/mo) adds unlimited file uploads, 30-day history, and unlimited guests."
+    },
+    {
+      "q": "Can I export all my Notion data before canceling?",
+      "a": "Yes. Go to Settings → Export all workspace content. You'll get a ZIP file with your pages in HTML or Markdown format, plus any uploaded files."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Notion handles refunds on a case-by-case basis. Email team@makenotion.com with your request. They're generally willing to refund recent charges, especially if you haven't used the paid features extensively."
+  },
+  "retentionTactics": [
+    "Notion shows a comparison table of Free vs Plus features to highlight what you'll lose.",
+    "They may offer a discounted annual plan if you're on monthly billing."
+  ],
+  "timeEstimate": "2-3 minutes",
+  "lastVerified": "2026-05-21"
+}

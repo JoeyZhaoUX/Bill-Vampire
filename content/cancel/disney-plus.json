@@ -1,0 +1,67 @@
+{
+  "title": "How to Cancel Disney+ — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel your Disney+ subscription in 2 minutes. Works for Disney+ Basic, Premium, and bundle plans. Keep access until billing period ends.",
+  "intro": "Disney+ is relatively straightforward to cancel — no phone calls required. You can do it entirely through your account settings on the web or mobile app.",
+  "steps": [
+    {
+      "title": "Log in to Disney+",
+      "text": "Go to disneyplus.com and sign in, or open the Disney+ app. Click your profile avatar in the top-right corner.",
+      "tip": null
+    },
+    {
+      "title": "Go to Account settings",
+      "text": "Select \"Account\" from the profile dropdown menu. This takes you to your subscription and billing details.",
+      "tip": null
+    },
+    {
+      "title": "Click on your subscription",
+      "text": "Under the \"Subscription\" section, click on your current plan (Disney+ Basic, Premium, or Bundle). You'll see your billing details and next renewal date.",
+      "tip": "If you see 'Billed through Apple' or 'Billed through Google', you'll need to cancel through their respective subscription settings."
+    },
+    {
+      "title": "Select \"Cancel Subscription\"",
+      "text": "Click \"Cancel Subscription\" at the bottom of the plan details page. Disney+ will show you what you'll lose and offer alternatives.",
+      "tip": null
+    },
+    {
+      "title": "Confirm your cancellation",
+      "text": "Click \"Complete Cancellation\" on the final confirmation screen. You'll maintain access until the end of your current billing period.",
+      "tip": "Note your renewal date — you have access until then and can change your mind anytime before it expires."
+    }
+  ],
+  "warnings": [
+    "If you have the Disney Bundle (Disney+, Hulu, ESPN+), canceling Disney+ may cancel your entire bundle. Check if you can downgrade to individual plans instead.",
+    "If you subscribed through Apple, Google, Roku, or Amazon, you must cancel through that platform's subscription settings — not on disneyplus.com.",
+    "Downloads and watch history are preserved for a period after cancellation, but profiles may be deleted after extended inactivity.",
+    "Promotional pricing (like $1.99/mo offers) will not be available if you re-subscribe later."
+  ],
+  "faqs": [
+    {
+      "q": "Can I get a refund from Disney+?",
+      "a": "Disney+ does not typically offer refunds for partial billing periods. However, if you were charged incorrectly or experienced significant service issues, contact Disney+ Help Center for a possible credit."
+    },
+    {
+      "q": "What happens to my downloads after canceling Disney+?",
+      "a": "All downloaded content becomes inaccessible once your subscription expires. Download and watch any saved content before your last day of access."
+    },
+    {
+      "q": "Can I cancel Disney+ but keep Hulu?",
+      "a": "Yes, if you have the Disney Bundle, you can switch to standalone Hulu. Go to Account → Subscription → Switch to Hulu Only. You'll keep your Hulu profile and history."
+    },
+    {
+      "q": "Will I lose my profiles and watchlist?",
+      "a": "Disney+ retains your profile data, watchlist, and viewing history for a reasonable period. If you re-subscribe within a few months, everything should be intact."
+    }
+  ],
+  "refund": {
+    "eligible": false,
+    "details": "Disney+ does not offer prorated refunds. Your access continues until the end of your billing cycle. For billing errors, contact the Disney+ Help Center directly."
+  },
+  "retentionTactics": [
+    "Disney+ may offer a discounted rate or remind you of upcoming exclusive releases (Marvel, Star Wars, Pixar).",
+    "They'll show a preview of content you haven't watched yet from your watchlist.",
+    "The cancellation flow may suggest switching to the cheaper ad-supported tier ($7.99/mo) instead of full cancellation."
+  ],
+  "timeEstimate": "2-3 minutes",
+  "lastVerified": "2026-05-21"
+}

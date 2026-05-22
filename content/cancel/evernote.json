@@ -1,0 +1,63 @@
+{
+  "title": "How to Cancel Evernote — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Evernote Personal or Professional subscription. Downgrade to free and keep your notes. Avoid losing data with our export tips.",
+  "intro": "Evernote's free tier is now very limited (50 notes, 1 notebook limit). If you cancel, export your notes first. The cancellation itself is straightforward through your account settings.",
+  "steps": [
+    {
+      "title": "Go to Evernote billing page",
+      "text": "Visit evernote.com/BillingInfo.action while signed in. Or: click your avatar → Settings → Subscription in the Evernote web app.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Manage Subscription\" or \"Cancel\"",
+      "text": "Find your current plan and click the option to manage or cancel your subscription.",
+      "tip": "Before canceling, export your notes: Settings → Export → Export all notes as .enex files."
+    },
+    {
+      "title": "Select cancellation and provide reason",
+      "text": "Choose to cancel/downgrade and select a reason. Evernote may offer a discounted rate.",
+      "tip": "The free plan is limited to 50 notes and 1 notebook. If you have more, they become read-only (not deleted)."
+    },
+    {
+      "title": "Confirm downgrade to Free",
+      "text": "Confirm your cancellation. Premium features remain until the end of your billing cycle. After that, you're on the Free plan with strict limits.",
+      "tip": "Consider moving to Notion (free, unlimited notes) or Apple Notes before downgrading if you have extensive notes."
+    }
+  ],
+  "warnings": [
+    "Evernote Free is extremely limited: 50 notes max, 1 notebook, 60MB monthly upload limit.",
+    "Notes beyond the free limit become read-only — you can view and export but not edit them.",
+    "Export ALL your notes before downgrading if you want to migrate to another app.",
+    "Offline access to notes is removed on the free plan.",
+    "If you subscribed through Apple/Google, cancel through their subscription settings."
+  ],
+  "faqs": [
+    {
+      "q": "Will I lose my notes if I cancel Evernote?",
+      "a": "Notes aren't deleted, but on the free plan (50-note limit), excess notes become read-only. Export everything before canceling if you want to migrate elsewhere."
+    },
+    {
+      "q": "How do I export my Evernote notes?",
+      "a": "In the web app: Settings → Export. In the desktop app: Edit → Select All → File → Export as .enex. This file can be imported into Notion, OneNote, or other apps."
+    },
+    {
+      "q": "Can I get a refund from Evernote?",
+      "a": "Evernote offers refunds within the first few days of a billing cycle. Contact support through their help portal. Annual plans may be eligible for prorated refunds."
+    },
+    {
+      "q": "What's the best free alternative to Evernote?",
+      "a": "Notion (unlimited notes, free for personal use), Apple Notes (unlimited, syncs via iCloud), Microsoft OneNote (free, unlimited), and Obsidian (free, local storage) are all excellent alternatives."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Evernote offers refunds within a few days of billing. Annual subscribers may get prorated refunds. Contact Evernote support through their help center."
+  },
+  "retentionTactics": [
+    "Evernote may offer a 30-50% discount for a few months.",
+    "They show your note count vs. the 50-note free limit.",
+    "They highlight features you'll lose (offline access, PDF annotation, search in documents)."
+  ],
+  "timeEstimate": "3-5 minutes",
+  "lastVerified": "2026-05-22"
+}

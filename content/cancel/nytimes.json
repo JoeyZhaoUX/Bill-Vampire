@@ -1,0 +1,65 @@
+{
+  "title": "How to Cancel New York Times — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel your New York Times digital subscription. NYT requires a phone call or chat for some plans. Here's how to avoid the runaround.",
+  "intro": "The New York Times is one of the hardest subscriptions to cancel. Some plans require a phone call or live chat — you can't always do it online. They're also aggressive with retention offers. Here's how to get through it.",
+  "steps": [
+    {
+      "title": "Try online cancellation first",
+      "text": "Go to myaccount.nytimes.com and sign in. Navigate to Subscription overview. Look for a \"Cancel\" option. Some newer subscriptions allow online cancellation.",
+      "tip": "If subscribed through Apple/Google, skip to their subscription settings instead."
+    },
+    {
+      "title": "If no online option: use live chat",
+      "text": "Click \"Contact Us\" or \"Help\" at the bottom of your account page. Start a live chat and tell them you want to cancel. Be direct and firm.",
+      "tip": "Say: 'I want to cancel my subscription effective immediately. Please process this now.' Don't engage with retention offers if you're sure."
+    },
+    {
+      "title": "If chat doesn't work: call them",
+      "text": "Call NYT customer service at 1-800-NYTIMES (1-800-698-4637). Weekday mornings have shortest wait times. Tell the agent you want to cancel.",
+      "tip": "Calling is the nuclear option but it always works. Average hold time is 5-10 minutes."
+    },
+    {
+      "title": "Get written confirmation",
+      "text": "Ask for email confirmation of your cancellation. Check your inbox. If you don't receive one within 24 hours, check your account to verify the subscription shows as canceled.",
+      "tip": "Screenshot the confirmation. NYT has been known to 'fail to process' cancellations."
+    }
+  ],
+  "warnings": [
+    "NYT is notorious for making cancellation difficult. Online cancellation isn't always available — you may need to call or chat.",
+    "Agents will aggressively offer discounts (often $4/mo or $1/week). Decline firmly if you want to cancel.",
+    "If subscribed through Apple/Google, cancel through their platforms instead — much easier.",
+    "NYT occasionally 'loses' cancellation requests. Always get written confirmation.",
+    "Games-only and Cooking-only subscriptions may have different cancellation paths than the full digital subscription."
+  ],
+  "faqs": [
+    {
+      "q": "Why can't I cancel NYT online?",
+      "a": "NYT deliberately makes online cancellation unavailable for many plan types, forcing you to call or chat with a retention agent. This is a dark pattern to reduce cancellations."
+    },
+    {
+      "q": "Can I get a refund from the New York Times?",
+      "a": "NYT occasionally offers prorated refunds, especially for annual plans. Ask the agent during your cancellation call. They're more likely to give refunds than let you cancel outright."
+    },
+    {
+      "q": "What's the best time to call NYT to cancel?",
+      "a": "Weekday mornings (9-10 AM ET) have the shortest wait times. Avoid Mondays and lunch hours. Weekend support is limited."
+    },
+    {
+      "q": "Will NYT offer me a discount if I try to cancel?",
+      "a": "Almost certainly yes. NYT agents are trained to offer $4/month, $1/week, or similar deals. If you genuinely want to cancel, say 'No thank you, please process the cancellation' firmly."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "NYT may offer prorated refunds, especially for annual subscriptions. Ask during your cancellation call. For Apple/Google subscriptions, request refunds through those platforms."
+  },
+  "retentionTactics": [
+    "NYT agents will offer increasingly aggressive discounts ($4/mo, $1/week).",
+    "They'll ask why you're leaving and try to address each concern.",
+    "They may offer to pause your subscription for 1-4 weeks.",
+    "The cancellation process itself takes 15-20 minutes due to retention attempts.",
+    "Some plans require phone calls specifically to create friction."
+  ],
+  "timeEstimate": "10-20 minutes",
+  "lastVerified": "2026-05-22"
+}

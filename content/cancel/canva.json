@@ -1,0 +1,62 @@
+{
+  "title": "How to Cancel Canva Pro — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Canva Pro subscription in 2 minutes. Downgrade to free without losing your designs. Direct steps for web and mobile.",
+  "intro": "Canva Pro cancellation is straightforward — and the free tier is genuinely generous (250,000+ templates). You keep all your existing designs, you just lose access to Pro-only features like Background Remover and Brand Kit.",
+  "steps": [
+    {
+      "title": "Go to Canva Account Settings",
+      "text": "Open canva.com and click your profile icon in the top-right corner. Select \"Account Settings\" from the dropdown menu.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Billing & plans\"",
+      "text": "In the Account Settings panel, find and click \"Billing & plans\" in the left sidebar. You'll see your current Canva Pro subscription details.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Cancel subscription\" or \"...\" menu",
+      "text": "Click the three dots menu (⋯) next to your plan, then select \"Cancel subscription\". Canva will show you what you'll lose and may offer alternatives.",
+      "tip": "If you primarily use Canva for one feature (like Background Remover), check if a free alternative exists before canceling."
+    },
+    {
+      "title": "Choose your cancellation reason and confirm",
+      "text": "Select a reason from the dropdown (this helps them but is required). Click \"Continue\" through any retention offers, then confirm cancellation. Your Pro access continues until the end of your billing period.",
+      "tip": "Selecting 'Too expensive' sometimes triggers a 50% off retention offer for 3 months."
+    }
+  ],
+  "warnings": [
+    "Designs using Pro-only elements (premium photos, icons, fonts) will show watermarks after your Pro expires. Export important designs as PNG/PDF before canceling.",
+    "Brand Kit configurations are preserved but inaccessible on the free plan.",
+    "If you subscribed via Apple App Store, cancel through iOS Settings → Subscriptions.",
+    "Team members will lose Pro features if the team owner cancels. Individual members can get their own free accounts."
+  ],
+  "faqs": [
+    {
+      "q": "Will I lose my Canva designs if I cancel Pro?",
+      "a": "No. All your designs are preserved. However, any designs using Pro-only elements (premium stock photos, Pro-only templates) will show watermarks when you try to download them."
+    },
+    {
+      "q": "Can I get a refund from Canva?",
+      "a": "Canva offers refunds within 14 days of purchase or renewal for annual plans. Contact support through the help center. Monthly plans are typically not refundable."
+    },
+    {
+      "q": "What's included in Canva Free vs Pro?",
+      "a": "Free includes 250,000+ templates, 5GB storage, and basic editing. Pro adds 100M+ premium photos, Background Remover, Brand Kit, Magic Resize, 1TB storage, and scheduling."
+    },
+    {
+      "q": "Can I export my designs before canceling?",
+      "a": "Yes. Go to each design → Share → Download → choose format (PNG, PDF, SVG). Download all important designs before your Pro expires to avoid watermark issues."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Canva offers refunds within 14 days of an annual plan purchase or renewal. For monthly plans, refunds are rare. Contact Canva support through their help center for refund requests."
+  },
+  "retentionTactics": [
+    "Canva may offer 50% off for 3 months as a retention deal.",
+    "They show a list of Pro-only features you've used recently.",
+    "They suggest switching from annual to monthly (more flexible but more expensive per month)."
+  ],
+  "timeEstimate": "2-3 minutes",
+  "lastVerified": "2026-05-21"
+}

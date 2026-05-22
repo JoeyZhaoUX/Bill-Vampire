@@ -1,0 +1,55 @@
+{
+  "title": "How to Cancel GitHub Copilot — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel GitHub Copilot subscription in 60 seconds. Stop the $10/mo charge and use the free tier. Steps for Individual and Business plans.",
+  "intro": "GitHub Copilot Individual can be canceled directly from your GitHub settings. The free tier now includes limited completions, so you don't lose AI assistance entirely.",
+  "steps": [
+    {
+      "title": "Go to GitHub Copilot settings",
+      "text": "Visit github.com/settings/copilot while signed in to your GitHub account. Or: click your avatar → Settings → Copilot.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Cancel\" or \"Manage subscription\"",
+      "text": "In the Copilot settings page, find your subscription details and click \"Cancel\" or navigate to the billing section.",
+      "tip": "If Copilot was provided by your organization, you cannot cancel it yourself — contact your org admin."
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Select a reason for canceling and confirm. Your Copilot access continues until the end of your current billing period.",
+      "tip": "GitHub Copilot Free gives you limited completions per month — it may be enough if you're not coding full-time."
+    }
+  ],
+  "warnings": [
+    "If Copilot is provided through a GitHub Organization or Enterprise plan, only an admin can remove your seat.",
+    "GitHub Copilot Free still offers limited AI completions — you don't lose all AI assistance.",
+    "Your code suggestions history and settings are preserved if you re-subscribe.",
+    "Student/teacher accounts get Copilot free through GitHub Education — check eligibility before paying."
+  ],
+  "faqs": [
+    {
+      "q": "Is GitHub Copilot free for students?",
+      "a": "Yes. Verified students and teachers get GitHub Copilot free through GitHub Education (education.github.com). If you're eligible, you don't need a paid subscription."
+    },
+    {
+      "q": "What's the difference between Copilot Free and Pro?",
+      "a": "Free gives you limited completions per month. Pro ($10/mo) gives unlimited completions, chat, and access to multiple models. Business ($19/mo) adds org management and policy controls."
+    },
+    {
+      "q": "Can I get a refund for GitHub Copilot?",
+      "a": "GitHub handles refunds on a case-by-case basis. Contact GitHub support through their help portal for refund requests."
+    },
+    {
+      "q": "What are good free alternatives to GitHub Copilot?",
+      "a": "Codeium (free AI completions), Cody by Sourcegraph (free tier), and Amazon CodeWhisperer (free for individual use) are solid alternatives."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Contact GitHub support for refund requests. They handle these case-by-case. No automatic refunds for unused portions."
+  },
+  "retentionTactics": [
+    "GitHub doesn't use aggressive retention tactics for Copilot. Cancellation is clean."
+  ],
+  "timeEstimate": "1 minute",
+  "lastVerified": "2026-05-22"
+}

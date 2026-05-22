@@ -1,0 +1,55 @@
+{
+  "title": "How to Cancel Medium — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Medium membership in 60 seconds. Stop the $5/mo charge and go back to 3 free articles per month.",
+  "intro": "Medium membership is one of the easiest subscriptions to cancel — done in three clicks from your settings page. You keep access to your own published stories.",
+  "steps": [
+    {
+      "title": "Go to Medium membership settings",
+      "text": "Visit medium.com/me/settings/membership while signed in. Or click your avatar → Settings → Membership.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Cancel membership\"",
+      "text": "Find the \"Cancel membership\" option on the membership page and click it.",
+      "tip": null
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Click \"Confirm\" on the dialog. Your member access continues until the end of your billing period. After that, you're back to 3 free articles per month.",
+      "tip": "Your own published stories remain live and accessible to readers regardless of your membership status."
+    }
+  ],
+  "warnings": [
+    "After cancellation, you get 3 free member articles per month (Medium's metered paywall).",
+    "Your published stories remain live — membership status doesn't affect your writing.",
+    "If enrolled in the Partner Program, your earnings continue for past articles even after canceling.",
+    "If subscribed through Apple/Google, cancel through their platforms."
+  ],
+  "faqs": [
+    {
+      "q": "Can I still read Medium after canceling?",
+      "a": "Yes, but limited to 3 member-only articles per month. Non-member articles (marked as free) are unlimited. Your own stories are always accessible."
+    },
+    {
+      "q": "Will I still earn from the Partner Program?",
+      "a": "Yes. Your published stories continue earning from member reading time regardless of your own membership status."
+    },
+    {
+      "q": "Can I get a refund from Medium?",
+      "a": "Medium doesn't advertise refunds, but you can contact support for recent charges. They handle requests case-by-case."
+    },
+    {
+      "q": "How do I read Medium for free?",
+      "a": "You get 3 free member articles per month. Using incognito/private browsing, or reading via links shared on social media, sometimes bypasses the paywall."
+    }
+  ],
+  "refund": {
+    "eligible": false,
+    "details": "Medium doesn't typically offer refunds. Your access continues through the end of your billing period. Contact support for billing errors."
+  },
+  "retentionTactics": [
+    "Medium doesn't use aggressive retention tactics. Cancellation is clean and quick."
+  ],
+  "timeEstimate": "1 minute",
+  "lastVerified": "2026-05-22"
+}

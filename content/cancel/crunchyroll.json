@@ -1,0 +1,51 @@
+{
+  "title": "How to Cancel Crunchyroll — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Crunchyroll Premium subscription. Switch to free tier with ads. Stop monthly charges in 2 minutes.",
+  "intro": "Crunchyroll has a free ad-supported tier, so canceling just means downgrading. You keep access to a limited library with ads — just not the full premium catalog or offline downloads.",
+  "steps": [
+    {
+      "title": "Go to Crunchyroll account settings",
+      "text": "Visit crunchyroll.com/account/subscription while signed in. Or: click your profile → Settings → Subscription.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Cancel Subscription\"",
+      "text": "Find the cancellation option in your subscription settings and click it.",
+      "tip": null
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Confirm your choice. Premium features remain until the end of your billing period, then you switch to the free tier.",
+      "tip": "The free tier gives you access to a limited anime library with ads. New episodes may have a 1-week delay compared to Premium."
+    }
+  ],
+  "warnings": [
+    "If subscribed via Apple, Google, Roku, or Amazon, cancel through their platforms.",
+    "Offline downloads become unavailable after Premium expires.",
+    "Free tier has ads and a smaller content library, with delayed new episodes.",
+    "Your watchlist, history, and queue are preserved on the free tier."
+  ],
+  "faqs": [
+    {
+      "q": "Can I still watch anime free on Crunchyroll?",
+      "a": "Yes. The free tier includes a limited anime library with ads. Most popular shows are available, but new episodes may have a 1-week delay vs. Premium."
+    },
+    {
+      "q": "Can I get a refund from Crunchyroll?",
+      "a": "Crunchyroll may offer refunds within a few days of charge. Contact support through their help center. Apple/Google subscriptions go through their refund processes."
+    },
+    {
+      "q": "What's a free alternative to Crunchyroll?",
+      "a": "Crunchyroll's own free tier (ad-supported), YouTube (some anime channels), and Tubi (limited anime library, free with ads) are options."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Contact Crunchyroll support for refund requests. They may offer refunds for recent charges. Apple/Google subscriptions go through those platforms."
+  },
+  "retentionTactics": [
+    "Crunchyroll may offer a discounted rate or remind you of currently airing shows in your watchlist."
+  ],
+  "timeEstimate": "2 minutes",
+  "lastVerified": "2026-05-22"
+}

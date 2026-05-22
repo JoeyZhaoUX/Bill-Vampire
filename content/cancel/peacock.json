@@ -1,0 +1,61 @@
+{
+  "title": "How to Cancel Peacock — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel your Peacock Premium subscription in 2 minutes. Stop the monthly charge and switch to free tier. All steps covered.",
+  "intro": "Peacock has a free tier, so 'canceling' really means downgrading from Premium to Free. You'll still have access to some content with ads — just not the full library.",
+  "steps": [
+    {
+      "title": "Go to Peacock account settings",
+      "text": "Visit peacocktv.com, sign in, and click your profile icon → Account. Or go directly to peacocktv.com/account/plan.",
+      "tip": null
+    },
+    {
+      "title": "Click on your current plan",
+      "text": "Under \"Plan & Payment\", click on your current subscription (Peacock Premium or Premium Plus). You'll see your billing details.",
+      "tip": null
+    },
+    {
+      "title": "Select \"Cancel Plan\"",
+      "text": "Click \"Cancel Plan\" or \"Downgrade\". Peacock will show what content you'll lose and may offer a retention deal.",
+      "tip": "If you mainly watch NBC next-day content, the free tier still includes some of it — you may not need Premium."
+    },
+    {
+      "title": "Confirm your cancellation",
+      "text": "Click through retention offers and confirm. You'll be downgraded to the free tier at the end of your billing period. A confirmation email will be sent.",
+      "tip": null
+    }
+  ],
+  "warnings": [
+    "If subscribed through Apple, Google, Roku, or Comcast/Xfinity, cancel through their respective platforms.",
+    "Comcast/Xfinity customers may have Peacock Premium included free with their internet plan — check before canceling.",
+    "The free tier has limited content and more ads. Premium exclusives and live sports won't be available.",
+    "Downloaded content becomes unavailable after Premium expires."
+  ],
+  "faqs": [
+    {
+      "q": "Is there a free version of Peacock?",
+      "a": "Yes. Peacock Free gives you access to a limited library with ads. You don't need a paid subscription to use Peacock at all — just downgrade to the free tier."
+    },
+    {
+      "q": "Can I get a refund from Peacock?",
+      "a": "Peacock does not typically offer refunds for partial billing periods. Contact NBC Universal support for billing errors."
+    },
+    {
+      "q": "Do Comcast customers get Peacock free?",
+      "a": "Many Comcast/Xfinity internet and TV customers get Peacock Premium included at no extra charge. Check your Xfinity account benefits before paying separately."
+    },
+    {
+      "q": "What content is Peacock Premium only?",
+      "a": "Premium exclusives include next-day NBC shows, Peacock originals, live sports (NFL, Premier League), and most movies. The free tier has older content and limited episodes."
+    }
+  ],
+  "refund": {
+    "eligible": false,
+    "details": "Peacock does not offer refunds for unused subscription time. You retain Premium access until your billing cycle ends, then revert to the free tier."
+  },
+  "retentionTactics": [
+    "Peacock may offer a discounted rate for a few months.",
+    "They'll remind you of upcoming live sports events or exclusive premieres."
+  ],
+  "timeEstimate": "2 minutes",
+  "lastVerified": "2026-05-22"
+}

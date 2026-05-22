@@ -1,0 +1,61 @@
+{
+  "title": "How to Cancel Apple TV+ — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Apple TV+ subscription in under a minute. Stop the $9.99/mo charge through iPhone, Mac, or web. Keep access until billing period ends.",
+  "intro": "Apple TV+ uses the same subscription management as all Apple services. Cancel it through your Apple ID settings — it takes about 60 seconds regardless of which device you use.",
+  "steps": [
+    {
+      "title": "Open Apple subscription settings",
+      "text": "On iPhone: Settings → your name → Subscriptions. On Mac: App Store → Account → Subscriptions. On web: appleid.apple.com → Subscriptions.",
+      "tip": null
+    },
+    {
+      "title": "Select Apple TV+",
+      "text": "Find Apple TV+ in your active subscriptions list and tap on it. You'll see your plan details and next renewal date.",
+      "tip": "If you don't see Apple TV+ listed, you may have it through Apple One bundle or a free trial from a device purchase."
+    },
+    {
+      "title": "Tap \"Cancel Subscription\"",
+      "text": "Tap \"Cancel Subscription\" at the bottom. If you're on a free trial (included with device purchases), tap \"Cancel Free Trial\".",
+      "tip": "Apple gives up to 3 months free TV+ with new device purchases. Set a reminder before it auto-renews at $9.99/mo."
+    },
+    {
+      "title": "Confirm",
+      "text": "Confirm your cancellation. You keep access until the end of your current billing period or trial. Downloaded shows will become unavailable after expiration.",
+      "tip": null
+    }
+  ],
+  "warnings": [
+    "Apple TV+ often comes as a free trial with new Apple device purchases. Mark your calendar — it auto-renews at $9.99/mo after the trial.",
+    "If you're subscribed through Apple One, you need to cancel the entire bundle or switch to individual services.",
+    "Downloaded content becomes unplayable after cancellation.",
+    "Family Sharing members all lose access if the family organizer cancels."
+  ],
+  "faqs": [
+    {
+      "q": "Do I get Apple TV+ free with my new iPhone?",
+      "a": "Apple offers 3 months free Apple TV+ with the purchase of a new Apple device. After the trial, it auto-renews at $9.99/mo unless you cancel before the trial ends."
+    },
+    {
+      "q": "Can I get a refund for Apple TV+?",
+      "a": "Yes. Visit reportaproblem.apple.com and request a refund for recent charges. Apple is generally accommodating for accidental renewals."
+    },
+    {
+      "q": "What happens to movies I purchased on Apple TV?",
+      "a": "Movies and shows you purchased (bought, not through the subscription) remain yours permanently. Only Apple TV+ Originals require an active subscription to watch."
+    },
+    {
+      "q": "Is there a cheaper Apple TV+ plan?",
+      "a": "No. Apple TV+ only has one tier at $9.99/mo. However, Apple One ($19.95/mo) bundles TV+ with Music, iCloud+, and Arcade, which may be cheaper than subscribing separately."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Request refunds at reportaproblem.apple.com. Apple typically grants refunds for recent charges, especially for forgotten free trial auto-renewals."
+  },
+  "retentionTactics": [
+    "Apple may offer an extended free period or discount.",
+    "They'll highlight upcoming original content releases."
+  ],
+  "timeEstimate": "1 minute",
+  "lastVerified": "2026-05-22"
+}

@@ -1,0 +1,63 @@
+{
+  "title": "How to Cancel iCloud+ — Step-by-Step Guide (2026)",
+  "metaDescription": "Downgrade iCloud+ storage subscription. Stop paying for extra storage and manage your 5GB free limit. iPhone, iPad, and Mac steps.",
+  "intro": "Canceling iCloud+ means downgrading to the free 5GB storage plan. If you're using more than 5GB, your data isn't deleted — but iCloud stops syncing new data until you free up space.",
+  "steps": [
+    {
+      "title": "Open Apple ID subscription settings",
+      "text": "iPhone/iPad: Settings → your name → iCloud → Manage Account Storage → Change Storage Plan. Mac: System Settings → Apple ID → iCloud → Manage → Change Storage Plan.",
+      "tip": null
+    },
+    {
+      "title": "Select \"Downgrade Options\"",
+      "text": "At the bottom of storage plans, tap \"Downgrade Options\". Enter your Apple ID password when prompted.",
+      "tip": null
+    },
+    {
+      "title": "Select the free 5GB plan",
+      "text": "Choose the 5GB (free) option from the list. Apple will warn you if your current usage exceeds 5GB.",
+      "tip": "Check what's using your iCloud storage first: Photos, backups, and Drive are usually the biggest consumers."
+    },
+    {
+      "title": "Confirm downgrade",
+      "text": "Tap \"Done\" to confirm. The downgrade takes effect at the end of your current billing period. Until then, you still have your full storage.",
+      "tip": "Move photos to Google Photos (15GB free) or download backups locally before the downgrade takes effect."
+    }
+  ],
+  "warnings": [
+    "If you're over 5GB, iCloud stops syncing new data (photos, backups, documents). Existing data isn't deleted immediately.",
+    "Device backups will fail if you're over the 5GB limit. Your iPhone may nag you daily.",
+    "iCloud Photos library won't sync new photos until you're under the limit.",
+    "Apple may delete data after an extended period if you remain significantly over the limit (180+ days).",
+    "iCloud Private Relay, Hide My Email, and custom email domains (iCloud+ features) are disabled."
+  ],
+  "faqs": [
+    {
+      "q": "Will Apple delete my photos if I downgrade iCloud?",
+      "a": "Not immediately. Apple keeps your data for 180+ days over the limit. But iCloud stops syncing new content. Download photos and backups locally before downgrading."
+    },
+    {
+      "q": "What uses the most iCloud storage?",
+      "a": "Usually: Photos (often 50-100GB+), Device Backups (5-10GB each), iCloud Drive documents. Check in Settings → Apple ID → iCloud → Manage Storage."
+    },
+    {
+      "q": "Can I get a refund for iCloud+?",
+      "a": "Request refunds at reportaproblem.apple.com. Apple typically accommodates refund requests for recent charges."
+    },
+    {
+      "q": "What's a free alternative to iCloud for photos?",
+      "a": "Google Photos (15GB free, with compression), Amazon Photos (unlimited if you have Prime), and local backup to a computer or external drive."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Request refunds at reportaproblem.apple.com. Apple is generally accommodating for recent iCloud charges."
+  },
+  "retentionTactics": [
+    "Apple shows your current usage vs. the 5GB free limit.",
+    "They display how many photos, documents, and backups would stop syncing.",
+    "The downgrade UX requires navigating through a storage breakdown first."
+  ],
+  "timeEstimate": "2-3 minutes",
+  "lastVerified": "2026-05-22"
+}

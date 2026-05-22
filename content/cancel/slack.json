@@ -1,0 +1,63 @@
+{
+  "title": "How to Cancel Slack — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel or downgrade your Slack paid plan. Switch from Pro/Business+ to Free without losing your messages. Admin steps included.",
+  "intro": "Only Workspace Owners or Admins can cancel a Slack paid plan. Canceling downgrades your workspace to the free tier — you keep your messages but lose access to older history beyond 90 days.",
+  "steps": [
+    {
+      "title": "Go to Slack Billing settings",
+      "text": "Open your Slack workspace in a browser. Click your workspace name → Settings & administration → Workspace settings → Billing.",
+      "tip": "You must be a Workspace Owner or Admin to access billing settings."
+    },
+    {
+      "title": "Click \"Manage plan\" or navigate to subscription",
+      "text": "In the Billing page, find your current plan (Pro or Business+) and click \"Manage plan\" or \"Change plan\".",
+      "tip": null
+    },
+    {
+      "title": "Select \"Switch to Free\" or \"Cancel plan\"",
+      "text": "Choose to downgrade to the Free plan. Slack will show you what you'll lose (message history beyond 90 days, unlimited apps, guest access, etc.).",
+      "tip": "Export your workspace data first (Settings → Import/Export Data) if you need full message history. The export includes everything."
+    },
+    {
+      "title": "Confirm the downgrade",
+      "text": "Confirm your choice. The paid features remain active until the end of your billing period. After that, your workspace switches to the Free tier.",
+      "tip": "On the free plan, messages older than 90 days are hidden (not deleted). If you upgrade again later, they reappear."
+    }
+  ],
+  "warnings": [
+    "Only Workspace Owners/Admins can cancel. Regular members cannot self-cancel.",
+    "Free tier limits: 90-day message history, 10 app integrations, no guest access, 1:1 video calls only (no group).",
+    "Messages older than 90 days are hidden, not deleted. They come back if you re-upgrade.",
+    "If you need an export of all messages for records, do this BEFORE downgrading.",
+    "Per-user billing means you may owe for the full billing period even if users leave mid-cycle."
+  ],
+  "faqs": [
+    {
+      "q": "Will I lose my Slack messages if I cancel?",
+      "a": "Messages are hidden (not deleted) on the free plan — only the last 90 days are visible. Upgrading again restores full history. You can also export all data before downgrading."
+    },
+    {
+      "q": "Can I get a refund from Slack?",
+      "a": "Slack prorates refunds for unused time on annual plans. Contact Slack support or check billing settings for credit balance. Monthly plans don't get partial refunds."
+    },
+    {
+      "q": "What happens to my Slack integrations?",
+      "a": "Free tier allows up to 10 app integrations. If you have more, they'll be disabled (not deleted). You choose which 10 to keep active."
+    },
+    {
+      "q": "Can a regular member cancel Slack?",
+      "a": "No. Only Workspace Owners and Admins can manage billing and cancel/downgrade the plan. Contact your workspace admin."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Slack offers prorated credits for unused time on annual plans. These credits can be applied to future charges or refunded. Monthly plans are not refunded for partial periods."
+  },
+  "retentionTactics": [
+    "Slack shows you exactly how much message history will become hidden.",
+    "They highlight the number of integrations that will be disabled.",
+    "They may offer a discount or suggest reducing seats instead of downgrading entirely."
+  ],
+  "timeEstimate": "3-5 minutes",
+  "lastVerified": "2026-05-22"
+}

@@ -1,0 +1,55 @@
+{
+  "title": "How to Cancel Kindle Unlimited — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Kindle Unlimited subscription in 2 minutes. Stop the $11.99/mo charge. Keep purchased books, lose borrowed ones.",
+  "intro": "Kindle Unlimited is easy to cancel through your Amazon account. You lose access to borrowed books immediately or at period end, but any books you purchased outright remain yours.",
+  "steps": [
+    {
+      "title": "Go to Kindle Unlimited management page",
+      "text": "Visit amazon.com/kindle-dbs/ku/options while signed in. This goes directly to your KU subscription management.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Cancel Kindle Unlimited Membership\"",
+      "text": "Find and click the cancellation option. Amazon will show your membership end date.",
+      "tip": null
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Click through any retention offers and confirm. Your access continues until the end of your billing period. Borrowed books are automatically returned after that.",
+      "tip": "Finish any books you're currently reading before your access expires — they'll be removed from your device."
+    }
+  ],
+  "warnings": [
+    "All currently borrowed KU books are returned at the end of your billing period.",
+    "Highlights and notes on borrowed books may be lost. Export important notes first.",
+    "Books you purchased (bought, not borrowed through KU) remain yours forever.",
+    "Your Kindle device and library continue to work normally for purchased content."
+  ],
+  "faqs": [
+    {
+      "q": "Will I lose my Kindle books?",
+      "a": "Only borrowed Kindle Unlimited books are returned. Any books you purchased outright are yours forever and unaffected by cancellation."
+    },
+    {
+      "q": "Can I get a refund for Kindle Unlimited?",
+      "a": "Amazon may offer a refund if you haven't read any KU books since your last renewal. Contact Amazon customer service to request."
+    },
+    {
+      "q": "What happens to my highlights and notes?",
+      "a": "Highlights and notes on purchased books are preserved. Notes on borrowed KU books may be lost when the book is returned. Export important notes first."
+    },
+    {
+      "q": "Is Kindle Unlimited worth it?",
+      "a": "If you read 2+ books per month, KU ($11.99/mo) saves money vs. buying individually. For occasional readers, your local library's free Libby app is a better alternative."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Amazon may offer a full refund if you haven't used KU since your last renewal. Contact Amazon customer service for refund requests."
+  },
+  "retentionTactics": [
+    "Amazon may offer a discounted month or remind you of unfinished books in your borrowed list."
+  ],
+  "timeEstimate": "2 minutes",
+  "lastVerified": "2026-05-22"
+}

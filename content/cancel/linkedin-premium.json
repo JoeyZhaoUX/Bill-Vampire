@@ -1,0 +1,64 @@
+{
+  "title": "How to Cancel LinkedIn Premium — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel LinkedIn Premium subscription and stop the $29.99/mo charge. Keep your profile and connections. Works for Career, Business, and Sales Navigator.",
+  "intro": "LinkedIn Premium cancellation reverts you to the free Basic account. You keep your profile, connections, and messages — you just lose InMail credits, profile views, and learning courses.",
+  "steps": [
+    {
+      "title": "Go to LinkedIn subscription settings",
+      "text": "Visit linkedin.com/mypreferences/d/manage-subscription while signed in. Or: click your profile photo → Settings & Privacy → Account preferences → Subscriptions.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Manage Premium account\"",
+      "text": "Find your Premium subscription and click \"Manage Premium account\" or \"Cancel subscription\".",
+      "tip": null
+    },
+    {
+      "title": "Click \"Cancel subscription\"",
+      "text": "On the subscription management page, click \"Cancel subscription\". LinkedIn will show you what you'll lose and may offer alternatives.",
+      "tip": "Selecting 'Too expensive' as your reason frequently triggers a 50% off retention offer."
+    },
+    {
+      "title": "Decline offers and confirm",
+      "text": "Click through any retention offers (discounts, free months). Confirm cancellation on the final screen. Premium features remain active until your billing period ends.",
+      "tip": "LinkedIn frequently offers 50% off for 2 months when you try to cancel. If you need the features occasionally, this is worth considering."
+    }
+  ],
+  "warnings": [
+    "InMail credits expire after cancellation — send any pending messages before your Premium ends.",
+    "You lose access to LinkedIn Learning courses and any progress certificates.",
+    "Who's viewed your profile list (full version) becomes unavailable.",
+    "If you have Sales Navigator or Recruiter, those are separate products with separate cancellation.",
+    "Apple/Google app store subscriptions must be canceled through their platforms."
+  ],
+  "faqs": [
+    {
+      "q": "What do I lose when canceling LinkedIn Premium?",
+      "a": "InMail credits, who viewed your profile (full list), LinkedIn Learning access, applicant insights, salary insights, and profile badges. Your profile, connections, and messages are unchanged."
+    },
+    {
+      "q": "Can I get a refund from LinkedIn Premium?",
+      "a": "LinkedIn offers refunds within the first few days of a new billing period. Contact LinkedIn Help Center for refund requests. Long-standing subscriptions are harder to refund."
+    },
+    {
+      "q": "Will my LinkedIn profile change if I cancel Premium?",
+      "a": "Your profile stays the same except the Premium badge disappears. All your posts, articles, connections, and endorsements remain."
+    },
+    {
+      "q": "Is LinkedIn Premium worth it?",
+      "a": "For active job seekers, the InMail credits and applicant insights can be valuable short-term. For most professionals, the free tier is sufficient. Consider subscribing only during job searches."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "LinkedIn may refund charges within the first few days of a billing period. Contact LinkedIn Help Center. For Apple/Google subscriptions, request refund through their platforms."
+  },
+  "retentionTactics": [
+    "LinkedIn aggressively offers 50% off discounts when you try to cancel.",
+    "They show you how many InMail messages you've sent and profile views you've received.",
+    "They may offer a free month extension.",
+    "The cancellation flow is 5+ clicks with multiple screens of 'what you'll lose'."
+  ],
+  "timeEstimate": "3-5 minutes",
+  "lastVerified": "2026-05-22"
+}

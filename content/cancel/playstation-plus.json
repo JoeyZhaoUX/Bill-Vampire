@@ -1,0 +1,62 @@
+{
+  "title": "How to Cancel PlayStation Plus — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel PlayStation Plus Essential, Extra, or Premium. Stop auto-renewal and keep access until your plan expires. PS4 and PS5 instructions.",
+  "intro": "PlayStation Plus cancellation turns off auto-renewal — you keep access for the remainder of your paid period. The process works through your console or the PlayStation website.",
+  "steps": [
+    {
+      "title": "Go to PlayStation subscription management",
+      "text": "On PS5: Settings → Users and Accounts → Account → Payment and Subscriptions → Subscriptions. On web: store.playstation.com/subscriptions. Sign in with your PSN account.",
+      "tip": null
+    },
+    {
+      "title": "Select PlayStation Plus",
+      "text": "Click or tap on your PlayStation Plus subscription (Essential, Extra, or Premium). You'll see your renewal date and plan details.",
+      "tip": null
+    },
+    {
+      "title": "Turn off auto-renewal",
+      "text": "Click \"Turn Off Auto-Renew\" or \"Cancel Subscription\". Confirm when prompted.",
+      "tip": "This keeps your current access until the plan expires — you don't lose it immediately."
+    },
+    {
+      "title": "Confirm",
+      "text": "Confirm your choice. Your PS Plus benefits continue until the expiration date. After that, you lose access to the game catalog, cloud saves (on Essential), and online multiplayer.",
+      "tip": "Download your cloud saves locally before your plan expires if you're on Essential (cloud saves require PS Plus)."
+    }
+  ],
+  "warnings": [
+    "PS Plus Essential members: cloud saves become inaccessible without a subscription. Download saves locally before expiry.",
+    "Monthly free games (claimed while subscribed) remain in your library but are locked until you re-subscribe.",
+    "Online multiplayer for paid games requires PS Plus Essential at minimum.",
+    "Game Catalog titles (Extra/Premium) become unplayable after cancellation.",
+    "If you purchased a yearly plan, you cannot get a partial refund in most regions."
+  ],
+  "faqs": [
+    {
+      "q": "Will I lose my free PS Plus games?",
+      "a": "They stay in your library but are locked. If you re-subscribe, they immediately become playable again. You don't need to re-claim them."
+    },
+    {
+      "q": "Can I play online without PS Plus?",
+      "a": "Free-to-play games (Fortnite, Apex Legends, Genshin Impact) don't require PS Plus for online play. Paid games do require at least PS Plus Essential."
+    },
+    {
+      "q": "Can I get a refund for PlayStation Plus?",
+      "a": "Sony offers refunds within 14 days of purchase in most regions, provided you haven't streamed or downloaded content from the service. Contact PlayStation Support."
+    },
+    {
+      "q": "What happens to my cloud saves?",
+      "a": "Cloud saves become inaccessible without PS Plus Essential. However, they're preserved on Sony's servers. Re-subscribing restores access. Download saves locally as backup."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Sony offers refunds within 14 days of purchase (if service hasn't been significantly used). Contact PlayStation Support via chat or phone. Regional policies vary."
+  },
+  "retentionTactics": [
+    "Sony doesn't typically use aggressive retention tactics. The cancellation process is relatively clean.",
+    "They may show which games from your library will become locked."
+  ],
+  "timeEstimate": "2-3 minutes",
+  "lastVerified": "2026-05-22"
+}

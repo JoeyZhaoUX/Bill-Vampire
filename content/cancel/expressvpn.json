@@ -1,0 +1,61 @@
+{
+  "title": "How to Cancel ExpressVPN — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel ExpressVPN subscription and get a refund within 30 days. Turn off auto-renewal to avoid future charges. Complete instructions.",
+  "intro": "ExpressVPN offers a 30-day money-back guarantee — if you're within that window, you get a full refund. After 30 days, you can still turn off auto-renewal to prevent future charges.",
+  "steps": [
+    {
+      "title": "Sign in to your ExpressVPN account",
+      "text": "Visit expressvpn.com/subscriptions and sign in with your credentials.",
+      "tip": null
+    },
+    {
+      "title": "Turn off auto-renewal",
+      "text": "In your subscription settings, find the auto-renewal toggle and turn it off. This prevents future charges when your current plan expires.",
+      "tip": null
+    },
+    {
+      "title": "Request a refund if within 30 days",
+      "text": "If you're within 30 days of purchase: contact ExpressVPN support via live chat. Tell them you want to cancel and request a refund under the money-back guarantee.",
+      "tip": "Live chat is the fastest method. Be direct: 'I'd like to cancel and request a refund under your 30-day guarantee.'"
+    },
+    {
+      "title": "Confirm via email",
+      "text": "You'll receive email confirmation of the cancellation. Refunds typically process within 5-7 business days depending on payment method.",
+      "tip": null
+    }
+  ],
+  "warnings": [
+    "After 30 days, no refund is available — but you can stop auto-renewal and keep VPN access until your plan expires.",
+    "ExpressVPN often sells 12-month plans. Turning off auto-renewal means you keep the full remaining time.",
+    "If purchased through Apple App Store, cancel through iOS subscription settings.",
+    "Bitcoin/cryptocurrency payments may take longer to refund."
+  ],
+  "faqs": [
+    {
+      "q": "Can I get a refund from ExpressVPN?",
+      "a": "Yes, within 30 days of purchase under their money-back guarantee. Contact live chat support. After 30 days, no refund is available."
+    },
+    {
+      "q": "How long does an ExpressVPN refund take?",
+      "a": "Typically 5-7 business days for credit cards. PayPal may be faster (2-3 days). Bitcoin refunds are processed in the original cryptocurrency."
+    },
+    {
+      "q": "Will my ExpressVPN account be deleted?",
+      "a": "After cancellation, your account remains but without active VPN service. You can reactivate anytime with a new subscription."
+    },
+    {
+      "q": "What's a good free VPN alternative?",
+      "a": "ProtonVPN (free tier with unlimited data, 3 servers), Windscribe (10GB/month free), and WARP by Cloudflare (free, fast, but limited privacy) are reputable free options."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Full 30-day money-back guarantee, no questions asked. Contact live chat to process. After 30 days, no refund but you keep access until your plan expires."
+  },
+  "retentionTactics": [
+    "Live chat agents may offer an extended subscription at a discount.",
+    "They may ask if there's a specific issue they can help resolve before processing cancellation."
+  ],
+  "timeEstimate": "3-5 minutes",
+  "lastVerified": "2026-05-22"
+}

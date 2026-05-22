@@ -1,0 +1,77 @@
+{
+  "title": "How to Cancel Adobe Creative Cloud — Avoid the Early Termination Fee (2026)",
+  "metaDescription": "Cancel Adobe Creative Cloud without paying the early termination fee. Step-by-step guide with the exact cancellation flow and refund options.",
+  "intro": "Adobe is notoriously difficult to cancel — they use annual contracts disguised as monthly payments, plus an early termination fee if you cancel before your year is up. Here's exactly how to do it and minimize damage.",
+  "steps": [
+    {
+      "title": "Sign in to your Adobe Account",
+      "text": "Go to account.adobe.com/plans and sign in with your Adobe ID. This is the only place you can manage your subscription — you cannot cancel through the Creative Cloud desktop app.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Manage plan\" next to your subscription",
+      "text": "Find your Creative Cloud plan in the list and click \"Manage plan\". If you have multiple plans (e.g., Photography + single apps), you'll need to cancel each one separately.",
+      "tip": null
+    },
+    {
+      "title": "Select \"Cancel your plan\"",
+      "text": "Click \"Cancel your plan\" at the bottom of the plan details page. Adobe will present retention offers — discounts, plan pauses, or downgrades. You can accept or decline these.",
+      "tip": "If you're offered 2-3 months at a reduced rate and genuinely want to keep the software, this can save you the early termination fee while you decide."
+    },
+    {
+      "title": "Choose your cancellation reason",
+      "text": "Select a reason from the dropdown. Choosing \"Too expensive\" sometimes triggers a better retention offer (up to 60% off for 3 months).",
+      "tip": "Select 'Too expensive' for the best chance of a discount offer if you're on the fence."
+    },
+    {
+      "title": "Review the early termination fee",
+      "text": "If you're on an annual plan (most people are — even if you pay monthly), Adobe will show the early termination fee (50% of remaining months). Review this carefully.",
+      "tip": "The fee is 50% of your remaining contract. If you have 2 months left, it may be cheaper to just pay the final 2 months than the fee."
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Click \"Continue\" and then \"Confirm\" to finalize. Your apps will continue working until the end of your current billing period, then they'll switch to a limited free mode.",
+      "tip": "Export all your work in non-proprietary formats (PDF, PNG, etc.) before your access ends. Adobe file formats require Creative Cloud to open."
+    }
+  ],
+  "warnings": [
+    "Adobe's 'monthly' plan is actually an annual commitment paid monthly. Canceling early triggers a fee of 50% of remaining monthly payments.",
+    "There's a 14-day cooling off period after your annual renewal. If you cancel within 14 days of renewal, you get a full refund with no fee.",
+    "Files saved in Adobe cloud storage will be deleted 90 days after cancellation. Download everything first.",
+    "Fonts activated through Adobe Fonts will be deactivated, which may break documents using those fonts."
+  ],
+  "faqs": [
+    {
+      "q": "How do I avoid Adobe's early termination fee?",
+      "a": "You have three options: (1) Cancel within 14 days of your annual renewal for a full refund, (2) Wait until your annual term ends and cancel during the renewal window, or (3) Contact Adobe support and explain financial hardship — they sometimes waive the fee."
+    },
+    {
+      "q": "Can I switch to a cheaper Adobe plan instead of canceling?",
+      "a": "Yes. You can downgrade to the Photography plan ($22.99/mo) which includes Photoshop + Lightroom, or switch to a single-app plan. Downgrades don't incur the early termination fee."
+    },
+    {
+      "q": "What happens to my files after I cancel Adobe Creative Cloud?",
+      "a": "You keep 2GB of cloud storage (down from 100GB) on the free plan. Files beyond that limit will be deleted after 90 days. Local files remain accessible but you can't edit them without an active subscription."
+    },
+    {
+      "q": "Is there a free alternative to Adobe Creative Cloud?",
+      "a": "Yes. GIMP (Photoshop alternative), Inkscape (Illustrator), DaVinci Resolve (Premiere Pro), and Figma (XD) are all free. Affinity Suite is a one-time $70 purchase covering photo, design, and publishing."
+    },
+    {
+      "q": "How do I cancel if I bought Adobe through Apple App Store?",
+      "a": "Open Settings → Apple ID → Subscriptions on your iPhone/iPad, find Adobe Creative Cloud, and tap Cancel. The Apple Store handles billing separately from adobe.com."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Adobe offers a full refund if you cancel within 14 days of your initial purchase or annual renewal. After 14 days, you'll be charged the early termination fee (50% of remaining months). Contact Adobe support directly for refund requests outside the 14-day window — they have discretion to issue credits."
+  },
+  "retentionTactics": [
+    "Adobe will offer 2-3 months at 40-60% off as a retention offer.",
+    "They'll suggest a 'pause' option (1-3 months) to keep your subscription active without paying.",
+    "They may offer to downgrade your plan to a cheaper tier instead of full cancellation.",
+    "The cancellation flow is deliberately long (6+ clicks) with multiple screens designed to create friction."
+  ],
+  "timeEstimate": "5-8 minutes",
+  "lastVerified": "2026-05-21"
+}

@@ -1,0 +1,62 @@
+{
+  "title": "How to Cancel Figma — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Figma Professional or Organization plan. Downgrade to the free Starter plan and keep your files. Steps for admins and individuals.",
+  "intro": "Figma's free Starter plan is generous (3 projects, unlimited personal files), so canceling just means downgrading. Your existing files aren't deleted — they become view-only if over limits.",
+  "steps": [
+    {
+      "title": "Go to Figma account settings",
+      "text": "Open figma.com and click your avatar → Settings. Or navigate directly to figma.com/settings.",
+      "tip": "Only team Admins can downgrade team plans. Individual Professional plans can be managed by the account owner."
+    },
+    {
+      "title": "Navigate to Plan/Billing",
+      "text": "Click \"Plan\" or \"Billing\" in the settings sidebar. You'll see your current plan (Professional, Organization, or Enterprise) and billing details.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Downgrade\" or \"Cancel plan\"",
+      "text": "Click \"Downgrade to Starter\" or \"Cancel\". Figma will show what changes — mainly project limits and advanced features.",
+      "tip": "On Starter, you get 3 Figma files and 3 FigJam files. Existing files beyond this become view-only (not deleted)."
+    },
+    {
+      "title": "Confirm the downgrade",
+      "text": "Confirm your choice. Paid features remain active until the end of your billing period. Your files, components, and design systems are preserved.",
+      "tip": "Export important files as .fig before downgrading — you can reimport them later. Or keep them in your account (view-only access continues)."
+    }
+  ],
+  "warnings": [
+    "Files beyond the free limit (3 files) become view-only — you can view and export but not edit them.",
+    "Team libraries, branching, and advanced prototyping features are disabled on Starter.",
+    "If you're on a team plan, downgrading affects all team members.",
+    "Audio conversations, presentation view with timer, and variable modes beyond 1 are removed."
+  ],
+  "faqs": [
+    {
+      "q": "Will I lose my Figma files if I cancel?",
+      "a": "No. Files are never deleted. On the free Starter plan, files beyond the 3-file limit become view-only. You can still export, comment, and share them."
+    },
+    {
+      "q": "What's included in Figma Free (Starter)?",
+      "a": "3 Figma files, 3 FigJam files, unlimited personal drafts, unlimited viewers, basic prototyping, and Dev Mode (limited). The free plan is quite capable for individuals."
+    },
+    {
+      "q": "Can I get a refund from Figma?",
+      "a": "Figma handles refunds on a case-by-case basis. Contact support@figma.com for refund requests. Annual plans may be eligible for prorated refunds."
+    },
+    {
+      "q": "What's a free alternative to Figma?",
+      "a": "Penpot (open source, full-featured), Figma Starter itself (3 free files), and Lunacy (free desktop app) are the best free alternatives for UI design."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Figma handles refunds case-by-case. Email support@figma.com with your request. Annual plans are more likely to get prorated refunds than monthly plans."
+  },
+  "retentionTactics": [
+    "Figma shows how many files and team members will be affected.",
+    "They may suggest switching to the Professional plan (cheaper than Organization).",
+    "They highlight advanced features you've been using (branching, variables, etc.)."
+  ],
+  "timeEstimate": "2-3 minutes",
+  "lastVerified": "2026-05-22"
+}

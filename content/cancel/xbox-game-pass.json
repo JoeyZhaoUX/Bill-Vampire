@@ -1,0 +1,61 @@
+{
+  "title": "How to Cancel Xbox Game Pass — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Xbox Game Pass Ultimate, Core, or PC subscription. Stop the monthly charge through your Microsoft account. Keep purchased games.",
+  "intro": "Xbox Game Pass is managed through your Microsoft account. Cancellation is straightforward — you keep any games purchased at the member discount, but lose access to the Game Pass library.",
+  "steps": [
+    {
+      "title": "Go to Microsoft Services page",
+      "text": "Visit account.microsoft.com/services and sign in with your Microsoft account. Find Xbox Game Pass in your subscriptions list.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Manage\" next to Game Pass",
+      "text": "Click \"Manage\" on your Game Pass subscription (Ultimate, Core, or PC Game Pass).",
+      "tip": null
+    },
+    {
+      "title": "Click \"Cancel\" or turn off recurring billing",
+      "text": "Choose to cancel the subscription or turn off recurring billing. Your access continues until the end of your paid period.",
+      "tip": "If you have months of prepaid time stacked up, turning off recurring billing is better than immediate cancellation — you keep all prepaid time."
+    },
+    {
+      "title": "Confirm",
+      "text": "Confirm your choice. Game Pass library access ends when your current period expires. Games purchased at member discounts remain yours.",
+      "tip": "Save data for any cloud-saved games before your subscription ends, in case cloud saves become inaccessible."
+    }
+  ],
+  "warnings": [
+    "All Game Pass library games become unplayable after cancellation. Only games you purchased outright remain accessible.",
+    "If you redeemed a Game Pass code (e.g., from a promotion), turning off auto-renewal still lets you use the full prepaid period.",
+    "Xbox Live Gold features (online multiplayer) may require Xbox Game Pass Core after cancellation.",
+    "Cloud gaming (streaming) stops working without Game Pass Ultimate."
+  ],
+  "faqs": [
+    {
+      "q": "Will I lose my game saves?",
+      "a": "For games you own: saves are fine. For Game Pass-only games: cloud saves are preserved for some time. If you re-subscribe, they should still be there."
+    },
+    {
+      "q": "Can I get a refund for Game Pass?",
+      "a": "Microsoft offers refunds within 14 days for digital subscriptions, provided you haven't used significant time. Contact Xbox support for requests."
+    },
+    {
+      "q": "What games can I still play after canceling?",
+      "a": "Only games you purchased (bought outright, including those bought at Game Pass member discounts) remain playable. The entire Game Pass catalog library becomes locked."
+    },
+    {
+      "q": "Can I play online multiplayer without Game Pass?",
+      "a": "Free-to-play games (Fortnite, Warzone, Apex) don't require any subscription. For paid games, you need at least Xbox Game Pass Core for online multiplayer."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Microsoft offers refunds within 14 days of purchase. Contact Xbox support at support.xbox.com. After 14 days, refunds are at Microsoft's discretion."
+  },
+  "retentionTactics": [
+    "Microsoft may offer a discounted month or show games being added to the library soon.",
+    "They may suggest converting to a cheaper tier (PC Game Pass instead of Ultimate)."
+  ],
+  "timeEstimate": "2-3 minutes",
+  "lastVerified": "2026-05-22"
+}

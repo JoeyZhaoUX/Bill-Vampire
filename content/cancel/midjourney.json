@@ -1,0 +1,60 @@
+{
+  "title": "How to Cancel Midjourney — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel your Midjourney subscription and stop the monthly charge. Manage your plan through Discord or the Midjourney website.",
+  "intro": "Midjourney subscriptions are managed through their website at midjourney.com/account. You keep access to your generated images after canceling, but lose the ability to create new ones.",
+  "steps": [
+    {
+      "title": "Go to your Midjourney account page",
+      "text": "Visit midjourney.com/account and sign in with your Discord account. You'll see your current plan and billing details.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Manage Sub\" or find subscription settings",
+      "text": "Look for \"Manage Sub\" or \"Manage Plan\" button on your account page. This opens your subscription management panel.",
+      "tip": "You can also type /subscribe in any Midjourney Discord channel to get a link to your account page."
+    },
+    {
+      "title": "Click \"Cancel Plan\"",
+      "text": "Click \"Cancel Plan\" in your subscription settings. Midjourney will show your current billing cycle end date.",
+      "tip": null
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Confirm your cancellation. Your remaining image generation credits are available until the end of your billing period. After that, you can still view and download your previously generated images.",
+      "tip": "Use your remaining monthly credits before the period ends — they don't carry over or get refunded."
+    }
+  ],
+  "warnings": [
+    "You keep access to all previously generated images in your gallery at midjourney.com — they're not deleted.",
+    "Unused generation credits for the current period are forfeited at cancellation — use them first.",
+    "If you subscribed through the yearly plan, you may not get a refund for unused months.",
+    "You retain commercial usage rights for images generated while you had a paid subscription."
+  ],
+  "faqs": [
+    {
+      "q": "Will I lose my Midjourney images if I cancel?",
+      "a": "No. All images you generated remain in your gallery at midjourney.com and can be downloaded anytime. You just can't generate new ones."
+    },
+    {
+      "q": "Can I get a refund from Midjourney?",
+      "a": "Midjourney offers refunds if you've used less than 1% of your monthly GPU time (about 2-3 image generations). Contact their support through Discord for refund requests."
+    },
+    {
+      "q": "Do I keep commercial rights to my images after canceling?",
+      "a": "Yes. Images generated while you had a paid subscription retain their commercial usage rights even after cancellation. Free trial images have more restrictive terms."
+    },
+    {
+      "q": "What's a free alternative to Midjourney?",
+      "a": "DALL-E (limited free generations via Bing Image Creator), Stable Diffusion (free and open source, runs locally), and Leonardo AI (free tier with daily credits) are popular alternatives."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Midjourney offers refunds if you've used less than 1% of your monthly GPU allocation. For annual plans, partial refunds may be available. Contact support through their Discord server."
+  },
+  "retentionTactics": [
+    "Midjourney doesn't use aggressive retention tactics. The cancellation is relatively straightforward."
+  ],
+  "timeEstimate": "2 minutes",
+  "lastVerified": "2026-05-22"
+}

@@ -1,0 +1,61 @@
+{
+  "title": "How to Cancel Tinder — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Tinder Gold, Plus, or Platinum subscription. Stop the monthly charge on iPhone or Android. Deleting the app doesn't cancel billing.",
+  "intro": "Deleting Tinder does NOT cancel your subscription — you'll keep getting charged. You must cancel through Apple or Google's subscription settings. Here's exactly how.",
+  "steps": [
+    {
+      "title": "Do NOT just delete the app",
+      "text": "Uninstalling Tinder does not stop billing. Your subscription is managed by Apple App Store or Google Play, not the app itself.",
+      "tip": "This is the #1 mistake people make. They delete the app and continue being charged for months."
+    },
+    {
+      "title": "Cancel through your app store",
+      "text": "iPhone: Settings → Apple ID → Subscriptions → Tinder → Cancel. Android: Google Play Store → Menu → Payments & subscriptions → Subscriptions → Tinder → Cancel.",
+      "tip": null
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Tap \"Confirm\" or \"Cancel Subscription\". Your premium features (unlimited likes, Super Likes, Passport, etc.) remain active until the billing period ends.",
+      "tip": null
+    },
+    {
+      "title": "Optionally delete your profile",
+      "text": "If you want to remove your profile entirely: Open Tinder → Settings → Delete Account. This is separate from canceling the subscription.",
+      "tip": "You can cancel the subscription but keep your profile active on the free tier if you want."
+    }
+  ],
+  "warnings": [
+    "DELETING THE APP DOES NOT CANCEL YOUR SUBSCRIPTION. You must cancel through Apple/Google.",
+    "If you subscribed on tinder.com (web), cancel through tinder.com/app/settings instead.",
+    "Deleting your Tinder account is separate from canceling payment — do both if you're done with the service.",
+    "Free Tinder still works for swiping — you just get limited likes per day and no premium features."
+  ],
+  "faqs": [
+    {
+      "q": "Will I still be charged if I delete the Tinder app?",
+      "a": "YES. Deleting the app does not stop your subscription. You must cancel through Apple Settings or Google Play to stop being charged."
+    },
+    {
+      "q": "Can I get a refund from Tinder?",
+      "a": "Request refunds through Apple (reportaproblem.apple.com) or Google Play. Tinder itself rarely offers direct refunds. Act within a few days of the charge for best results."
+    },
+    {
+      "q": "What's the difference between canceling and deleting my account?",
+      "a": "Canceling stops payment but keeps your profile. Deleting your account removes your profile, matches, and messages permanently. You can do either or both."
+    },
+    {
+      "q": "Can I use Tinder for free?",
+      "a": "Yes. Free Tinder gives you limited right swipes per day, no Super Likes or Boosts, and no Passport feature. Basic matching still works."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Refunds must go through Apple (reportaproblem.apple.com) or Google Play. Tinder doesn't process refunds directly. Request within a few days of charge for best results."
+  },
+  "retentionTactics": [
+    "Tinder doesn't have a traditional retention flow — cancellation is handled entirely by Apple/Google.",
+    "They may send push notifications about matches or new features after canceling."
+  ],
+  "timeEstimate": "1-2 minutes",
+  "lastVerified": "2026-05-22"
+}

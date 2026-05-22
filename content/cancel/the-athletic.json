@@ -1,0 +1,56 @@
+{
+  "title": "How to Cancel The Athletic — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel The Athletic subscription in 2 minutes. Stop the monthly charge. Now owned by NYT — here's the current cancellation process.",
+  "intro": "The Athletic (owned by the New York Times) can be canceled online through your account settings. Unlike NYT proper, The Athletic doesn't require phone calls.",
+  "steps": [
+    {
+      "title": "Go to your Athletic account",
+      "text": "Visit theathletic.com/account and sign in. Navigate to your subscription details.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Cancel Subscription\"",
+      "text": "Find the cancellation option in your account settings and click it. The Athletic will show your access end date.",
+      "tip": null
+    },
+    {
+      "title": "Decline any retention offers",
+      "text": "They may offer a discounted rate. Click through if you want to fully cancel.",
+      "tip": "The Athletic frequently offers $1-2/month comeback deals. If you can wait, cancel and take the offer when it arrives by email."
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Confirm your choice. Access continues until the end of your billing period.",
+      "tip": null
+    }
+  ],
+  "warnings": [
+    "If subscribed through Apple App Store or Google Play, cancel through their subscription settings.",
+    "If you got The Athletic through a NY Times bundle, you may need to manage it through NYT account settings.",
+    "Your saved articles and preferences are preserved if you re-subscribe."
+  ],
+  "faqs": [
+    {
+      "q": "Is The Athletic free with NY Times subscription?",
+      "a": "Some NYT All Access plans include The Athletic. Check your NYT account benefits before paying for a separate Athletic subscription."
+    },
+    {
+      "q": "Can I get a refund from The Athletic?",
+      "a": "Contact The Athletic support for refund requests. They may offer prorated refunds for annual plans. Apple/Google subscriptions must go through those platforms."
+    },
+    {
+      "q": "What happens after I cancel The Athletic?",
+      "a": "You lose access to all articles and podcasts when your billing period ends. No free tier is available."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Contact The Athletic support for refund requests. Annual plans may be eligible for prorated refunds within a reasonable timeframe."
+  },
+  "retentionTactics": [
+    "The Athletic offers significant discounts ($1-2/month for 6-12 months).",
+    "They send aggressive re-subscription emails after canceling with deals."
+  ],
+  "timeEstimate": "2 minutes",
+  "lastVerified": "2026-05-22"
+}

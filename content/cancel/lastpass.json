@@ -1,0 +1,61 @@
+{
+  "title": "How to Cancel LastPass — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel LastPass Premium subscription. Export your passwords and switch to a free alternative. Step-by-step instructions.",
+  "intro": "LastPass's free tier is now very limited (one device type only). If you're leaving, export your passwords first, then cancel through billing settings.",
+  "steps": [
+    {
+      "title": "Export your passwords",
+      "text": "In the LastPass vault: More Options → Advanced → Export. Download as .csv file. Store this securely — it contains all your credentials in plain text.",
+      "tip": "Delete the exported .csv file after importing into your new password manager. It's a security risk if left on your device."
+    },
+    {
+      "title": "Go to LastPass billing settings",
+      "text": "Visit lastpass.com/billing_update.php while signed in. Or: Account Settings → Subscription → Manage.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Cancel\" or \"Downgrade to Free\"",
+      "text": "Find the cancellation option and click it. LastPass will explain the free tier limitations (one device type: desktop OR mobile, not both).",
+      "tip": null
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Confirm your choice. Premium features remain until your billing period ends. Then you're on the free tier (single device type, no priority support).",
+      "tip": "LastPass Free only works on ONE device type (computer OR phone). If you use both, you need a paid plan or a different service."
+    }
+  ],
+  "warnings": [
+    "LastPass Free limits you to one device type (desktop OR mobile — not both). This makes it nearly unusable for most people.",
+    "Export your vault BEFORE canceling to ensure you have all your passwords.",
+    "Given LastPass's security breaches in 2022-2023, consider migrating to a different service entirely (Bitwarden, 1Password).",
+    "If subscribed through Apple/Google, cancel through their platforms."
+  ],
+  "faqs": [
+    {
+      "q": "Is LastPass Free still usable?",
+      "a": "Barely. LastPass Free only works on one device type (computers OR phones, not both). For most people, this makes it impractical. Consider Bitwarden instead."
+    },
+    {
+      "q": "Should I leave LastPass entirely?",
+      "a": "Given the 2022-2023 security breaches that exposed encrypted vault data, many security experts recommend migrating away from LastPass entirely to Bitwarden or 1Password."
+    },
+    {
+      "q": "How do I switch from LastPass to Bitwarden?",
+      "a": "Export from LastPass as .csv → go to Bitwarden web vault → Tools → Import Data → select LastPass (csv) format → upload. Takes 5 minutes."
+    },
+    {
+      "q": "Can I get a refund from LastPass?",
+      "a": "LastPass offers refunds within 30 days of purchase. Contact support for requests. After 30 days, refunds are unlikely."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "LastPass offers refunds within 30 days of purchase. Contact their support team for refund requests."
+  },
+  "retentionTactics": [
+    "LastPass may offer a discounted rate or remind you of the free tier's limitations.",
+    "They may suggest the Families plan as a cheaper per-person option."
+  ],
+  "timeEstimate": "5-10 minutes",
+  "lastVerified": "2026-05-22"
+}

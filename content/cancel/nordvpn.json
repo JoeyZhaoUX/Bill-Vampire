@@ -1,0 +1,67 @@
+{
+  "title": "How to Cancel NordVPN — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel NordVPN subscription and get a refund within 30 days. Stop auto-renewal and avoid being charged again. Complete guide with refund steps.",
+  "intro": "NordVPN has a 30-day money-back guarantee, so if you're within that window you can get a full refund. Even after 30 days, you can stop auto-renewal so you won't be charged again when your plan expires.",
+  "steps": [
+    {
+      "title": "Log in to your Nord Account",
+      "text": "Go to my.nordaccount.com and sign in with your NordVPN credentials. Click on \"Services\" or navigate to the NordVPN section.",
+      "tip": null
+    },
+    {
+      "title": "Go to Subscription settings",
+      "text": "Find your NordVPN subscription and click \"Change plan\" or navigate to the billing/subscription section. Look for \"Auto-renewal\" settings.",
+      "tip": null
+    },
+    {
+      "title": "Turn off auto-renewal",
+      "text": "Click \"Cancel automatic payments\" or toggle off auto-renewal. This prevents future charges. Your VPN access continues until your current plan expires.",
+      "tip": "If you're within 30 days of purchase, skip this step and go straight to support for a full refund instead."
+    },
+    {
+      "title": "Request a refund (if within 30 days)",
+      "text": "If you're within the 30-day money-back period: click the chat bubble for live support, tell them you want to cancel and request a refund. They'll process it within 5-10 business days.",
+      "tip": "Be direct: 'I'd like to cancel my subscription and request a refund under the 30-day guarantee.' Don't explain too much — they're required to honor it."
+    },
+    {
+      "title": "Confirm cancellation via email",
+      "text": "Check your email for a cancellation/refund confirmation from NordVPN. If paying via PayPal, the refund appears in 5-10 days. Credit card refunds take 5-10 business days.",
+      "tip": null
+    }
+  ],
+  "warnings": [
+    "If you purchased through Apple App Store or Google Play, you must cancel through their subscription settings and request refund through them.",
+    "After the 30-day window, you cannot get a refund — but you can stop auto-renewal so you keep access until expiry without being re-charged.",
+    "NordVPN often sells 1-year or 2-year plans. Turning off auto-renewal means you keep the full remaining time but won't be charged again.",
+    "Third-party purchases (StackSocial, etc.) have different refund policies — contact that vendor instead."
+  ],
+  "faqs": [
+    {
+      "q": "Can I get a refund from NordVPN?",
+      "a": "Yes, within 30 days of purchase under their money-back guarantee. Contact live chat support and request a refund. After 30 days, no refund is available but you can cancel auto-renewal."
+    },
+    {
+      "q": "How long does a NordVPN refund take?",
+      "a": "Refunds are processed within 5-10 business days. PayPal refunds may be faster (2-3 days). Credit card refunds depend on your bank."
+    },
+    {
+      "q": "Will my NordVPN account be deleted when I cancel?",
+      "a": "No. Your account remains active but without VPN access after your plan expires. You can reactivate anytime by purchasing a new plan."
+    },
+    {
+      "q": "What's a good free alternative to NordVPN?",
+      "a": "ProtonVPN offers a free tier with unlimited data (3 server locations). Windscribe offers 10GB/month free. Built-in browser VPNs (Opera) work for basic browsing privacy."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "NordVPN offers a full 30-day money-back guarantee with no questions asked. Contact live chat support to request it. After 30 days, no refund is available but you keep access through your plan expiration."
+  },
+  "retentionTactics": [
+    "Live chat agents may offer an extended subscription at a discount.",
+    "They may suggest pausing your account or switching to a cheaper plan.",
+    "They'll ask why you're leaving and try to address your concern before processing cancellation."
+  ],
+  "timeEstimate": "3-5 minutes",
+  "lastVerified": "2026-05-21"
+}

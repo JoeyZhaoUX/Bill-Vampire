@@ -1,0 +1,60 @@
+{
+  "title": "How to Cancel Cursor Pro — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel your Cursor Pro subscription in 60 seconds. Downgrade to the free Hobby plan. Steps to stop the $20/mo charge.",
+  "intro": "Cursor Pro cancellation is done through their settings page. The free Hobby plan still gives you limited AI completions, so you can keep using the editor without paying.",
+  "steps": [
+    {
+      "title": "Open Cursor settings",
+      "text": "Visit cursor.com/settings while signed in, or open Cursor IDE → click your avatar → Settings/Account.",
+      "tip": null
+    },
+    {
+      "title": "Navigate to Subscription/Billing",
+      "text": "Find the \"Subscription\" or \"Billing\" section in your account settings. You'll see your current plan and renewal date.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Cancel Plan\" or \"Downgrade\"",
+      "text": "Click the cancel or downgrade option. Cursor may ask for feedback or offer a retention deal.",
+      "tip": "The Hobby (free) plan still includes 2000 completions and 50 slow premium requests per month."
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Confirm your cancellation. Pro features remain active until the end of your billing cycle, then you switch to the Hobby plan.",
+      "tip": null
+    }
+  ],
+  "warnings": [
+    "Cursor Hobby plan has limited fast requests — heavy usage may hit caps quickly.",
+    "Your projects, settings, and extensions are preserved on the free plan.",
+    "If you paid annually, check the refund policy for unused months.",
+    "Business/Team plan members should contact their admin for cancellation."
+  ],
+  "faqs": [
+    {
+      "q": "What's included in Cursor's free plan?",
+      "a": "The Hobby plan gives you 2000 code completions per month, 50 slow premium requests, and basic features. Pro ($20/mo) adds 500 fast premium requests and unlimited completions."
+    },
+    {
+      "q": "Can I get a refund from Cursor?",
+      "a": "Contact Cursor support (hi@cursor.com) for refund requests. They typically accommodate recent charges, especially for unused portions of annual plans."
+    },
+    {
+      "q": "Will I lose my settings and extensions?",
+      "a": "No. All your Cursor settings, keybindings, extensions, and project configurations are preserved regardless of plan."
+    },
+    {
+      "q": "What's a free alternative to Cursor?",
+      "a": "VS Code with GitHub Copilot Free, Codeium extension, or Windsurf (Codeium's IDE) offer similar AI coding assistance on free tiers."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Contact hi@cursor.com for refund requests. They generally accommodate requests for unused portions, especially on annual plans."
+  },
+  "retentionTactics": [
+    "Cursor may offer a discount or extended trial of Pro features."
+  ],
+  "timeEstimate": "1 minute",
+  "lastVerified": "2026-05-22"
+}

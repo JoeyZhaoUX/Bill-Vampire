@@ -1,0 +1,60 @@
+{
+  "title": "How to Cancel Netflix — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel your Netflix subscription in under 2 minutes. Direct link, exact steps, and what happens to your account after cancellation.",
+  "intro": "Netflix makes cancellation straightforward — no phone calls, no chat agents, no guilt trips. You can do it entirely online in about 60 seconds.",
+  "steps": [
+    {
+      "title": "Go to your Netflix Account page",
+      "text": "Open netflix.com/cancelplan in your browser, or tap your profile icon → Account from the app. You'll need to be signed in.",
+      "tip": "If you subscribed through Apple/Google, you'll need to cancel through their subscription settings instead."
+    },
+    {
+      "title": "Click \"Cancel Membership\"",
+      "text": "On the Account page, find the Membership & Billing section. Click the \"Cancel Membership\" button.",
+      "tip": null
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Netflix will show you your last day of access. Click \"Finish Cancellation\" to confirm. Your account stays active until the end of your current billing period.",
+      "tip": null
+    },
+    {
+      "title": "Check for confirmation email",
+      "text": "Netflix sends a confirmation email immediately. Save this as proof of cancellation in case of any billing disputes.",
+      "tip": "Take a screenshot of the confirmation page too — you can use this as evidence if you're charged again."
+    }
+  ],
+  "warnings": [
+    "If you subscribed via Apple App Store or Google Play, canceling on Netflix.com won't work — you must cancel through the respective app store's subscription settings.",
+    "Your viewing history, ratings, and profile will be saved for 10 months after cancellation. You can reactivate anytime within that window.",
+    "If you're on a discounted or promotional plan, you'll lose that rate if you cancel and re-subscribe later."
+  ],
+  "faqs": [
+    {
+      "q": "Will I get a refund if I cancel Netflix mid-cycle?",
+      "a": "No. Netflix does not offer partial refunds. Your access continues until the end of your current billing period, then the subscription ends."
+    },
+    {
+      "q": "Can I still watch Netflix after canceling?",
+      "a": "Yes — you keep access until the last day of your paid billing cycle. After that, you'll see a prompt to re-subscribe when you try to watch."
+    },
+    {
+      "q": "What happens to my downloaded shows?",
+      "a": "All downloaded content is deleted from your device once your subscription expires. Download anything you want to watch before the end date."
+    },
+    {
+      "q": "How do I cancel Netflix if I forgot my password?",
+      "a": "Use the 'Forgot Password' link on the sign-in page to reset it via email or SMS. Then proceed with cancellation as normal."
+    }
+  ],
+  "refund": {
+    "eligible": false,
+    "details": "Netflix does not offer refunds or credits for partial months. Your subscription remains active through the end of your billing period after cancellation."
+  },
+  "retentionTactics": [
+    "Netflix may offer to downgrade you to a cheaper plan (like Standard with Ads at $6.99/mo) before confirming cancellation.",
+    "They may remind you of upcoming releases on shows you've been watching to encourage you to stay."
+  ],
+  "timeEstimate": "1-2 minutes",
+  "lastVerified": "2026-05-21"
+}

@@ -1,0 +1,63 @@
+{
+  "title": "How to Cancel Dropbox — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Dropbox Plus or Professional subscription. Downgrade to 2GB free plan without losing your files. Avoid the early cancellation fee.",
+  "intro": "Dropbox cancellation downgrades you to the free Basic plan (2GB). If you're over 2GB, your files aren't deleted — but you can't sync new files until you're under the limit. Annual plan users face an early termination fee.",
+  "steps": [
+    {
+      "title": "Go to Dropbox account settings",
+      "text": "Visit dropbox.com/account/plan while signed in to your Dropbox account.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Cancel plan\" or \"Downgrade\"",
+      "text": "Find your current plan (Plus, Professional, or Family) and click \"Cancel plan\" or \"Downgrade to Basic\". Dropbox will show what changes.",
+      "tip": null
+    },
+    {
+      "title": "Review the impact and early termination fee",
+      "text": "If you're on an annual plan, Dropbox may charge an early cancellation fee. Review the fee and your options. If near the end of your term, it may be cheaper to wait.",
+      "tip": "If you're paying monthly, there's no early termination fee — just cancel and it ends at the next billing date."
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Select your reason, decline any offers, and confirm. Your paid features remain active until the end of your billing period. After that, you switch to Basic (2GB).",
+      "tip": "Before canceling: download any files you want to keep locally. If you're over 2GB on the free plan, Dropbox stops syncing but doesn't delete your cloud files."
+    }
+  ],
+  "warnings": [
+    "Annual plans may incur an early termination fee if canceled before the term ends.",
+    "If your stored files exceed 2GB, Dropbox stops syncing but doesn't delete files. You need to reduce usage or files become view-only.",
+    "Shared folders may stop syncing for collaborators if you were the only paid user.",
+    "Smart Sync and advanced features are disabled on Basic. Files set to 'online-only' remain in the cloud.",
+    "Dropbox Passwords, Vault, and extended version history (180 days → 30 days) are lost."
+  ],
+  "faqs": [
+    {
+      "q": "Will my files be deleted if I cancel Dropbox?",
+      "a": "No. Files are never deleted by Dropbox when you downgrade. If over 2GB, your account becomes read-only (can't add new files) but existing files stay in the cloud."
+    },
+    {
+      "q": "What's Dropbox's early termination fee?",
+      "a": "For annual plans canceled early, Dropbox may charge a fee equivalent to the remaining months (pro-rated). Monthly plans have no early termination fee."
+    },
+    {
+      "q": "Can I get a refund from Dropbox?",
+      "a": "Dropbox offers refunds within 30 days of initial purchase. After that, annual plans have early termination fees. Contact Dropbox support for refund requests."
+    },
+    {
+      "q": "What's a free alternative to Dropbox?",
+      "a": "Google Drive (15GB free), iCloud (5GB free), and OneDrive (5GB free) are the main alternatives. Sync.com offers 5GB with better privacy."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Dropbox offers full refunds within 30 days of purchase. After 30 days, annual plans may incur an early termination fee. Monthly plans are non-refundable but have no termination fee."
+  },
+  "retentionTactics": [
+    "Dropbox shows how much storage you're using vs. the 2GB free limit.",
+    "They may offer a discounted rate or suggest switching to monthly (to avoid the annual termination fee).",
+    "They highlight features you've been using that will disappear (extended version history, Passwords, etc.)."
+  ],
+  "timeEstimate": "3-5 minutes",
+  "lastVerified": "2026-05-22"
+}

@@ -1,0 +1,61 @@
+{
+  "title": "How to Cancel YouTube Premium — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel YouTube Premium in 60 seconds. Stop the $13.99/mo charge and go back to the free ad-supported tier. Web and mobile steps included.",
+  "intro": "YouTube Premium cancellation is straightforward — done in under a minute. You'll go back to the ad-supported free tier but keep all your uploads, playlists, and subscriptions.",
+  "steps": [
+    {
+      "title": "Go to your YouTube memberships page",
+      "text": "Navigate to youtube.com/paid_memberships in your browser. Or in the YouTube app: tap your profile picture → Purchases and memberships → Manage memberships.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Manage membership\" next to YouTube Premium",
+      "text": "Find your YouTube Premium membership in the list and click \"Manage membership\" or the gear icon next to it.",
+      "tip": null
+    },
+    {
+      "title": "Click \"Deactivate\" or \"Cancel membership\"",
+      "text": "Select \"Deactivate\" and then choose \"Cancel subscription\". YouTube may show you what you'll lose (ad-free, background play, YouTube Music).",
+      "tip": "If you mostly use YouTube Music, consider switching to YouTube Music Premium ($10.99/mo) instead of full Premium ($13.99/mo)."
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Click \"Continue to cancel\" and then \"Yes, cancel\" on the final confirmation. Your Premium features remain active until the end of your billing period.",
+      "tip": "Any downloaded videos for offline viewing will become unavailable after your Premium expires."
+    }
+  ],
+  "warnings": [
+    "If you subscribed through Apple App Store (iOS), you must cancel through Settings → Apple ID → Subscriptions.",
+    "YouTube Music Premium is included with YouTube Premium. Canceling Premium cancels Music access too.",
+    "If you're on a Family plan, only the family manager can cancel. All family members lose Premium features.",
+    "Background playback and picture-in-picture on mobile will stop working on the free tier."
+  ],
+  "faqs": [
+    {
+      "q": "Will I see ads again after canceling YouTube Premium?",
+      "a": "Yes. Once your Premium expires, you'll see ads before and during videos, lose background playback, and lose offline downloads. Your content and subscriptions are unchanged."
+    },
+    {
+      "q": "Can I get a refund for YouTube Premium?",
+      "a": "Google does not offer refunds for YouTube Premium. Your access continues through the end of your billing period. For billing errors, contact Google support."
+    },
+    {
+      "q": "What happens to my YouTube Music library?",
+      "a": "Your library, playlists, and liked songs are preserved. You can still use YouTube Music free with ads and shuffle-only playback on mobile."
+    },
+    {
+      "q": "Can I cancel YouTube Premium but keep YouTube Music?",
+      "a": "Yes. After canceling Premium, you can subscribe to YouTube Music Premium separately ($10.99/mo) for ad-free music without the full YouTube Premium features."
+    }
+  ],
+  "refund": {
+    "eligible": false,
+    "details": "Google does not offer refunds for YouTube Premium subscriptions. Your Premium benefits continue until the end of your current billing cycle."
+  },
+  "retentionTactics": [
+    "YouTube may offer a discounted rate (often 1-3 months at a reduced price).",
+    "They'll remind you of features you'll lose: ad-free, background play, offline downloads, YouTube Music."
+  ],
+  "timeEstimate": "1-2 minutes",
+  "lastVerified": "2026-05-21"
+}

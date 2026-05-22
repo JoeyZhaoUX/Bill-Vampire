@@ -1,0 +1,74 @@
+{
+  "title": "How to Cancel Amazon Prime — Step-by-Step Guide (2026)",
+  "metaDescription": "Cancel Amazon Prime membership and stop the $14.99/mo charge. Get a partial refund if you haven't used Prime benefits. Exact steps inside.",
+  "intro": "Amazon makes Prime cancellation deliberately confusing with multiple confirmation screens and guilt-trip messaging. But it takes about 3 minutes if you know exactly where to click. They may even offer a partial refund.",
+  "steps": [
+    {
+      "title": "Go to the Prime cancellation page",
+      "text": "Navigate directly to amazon.com/mc/pipelines/cancelPrime — this skips several navigation screens. Sign in if prompted.",
+      "tip": "Do NOT go through Account → Prime → Manage. The direct URL above saves you 4-5 clicks through Amazon's intentionally confusing menu maze."
+    },
+    {
+      "title": "Click \"End My Benefits\"",
+      "text": "Amazon will show you a summary of all Prime benefits you'll lose (free shipping, Prime Video, Prime Music, Photos storage, etc.). Click \"End My Benefits\" to proceed.",
+      "tip": null
+    },
+    {
+      "title": "Decline the retention offers",
+      "text": "Amazon will offer alternatives: switching to annual plan (cheaper per month), pausing membership, or reminding you of upcoming deliveries. Select \"Continue to Cancel\" to move past these.",
+      "tip": "If you're on the $14.99/month plan, switching to annual ($139/year = $11.58/mo) saves $41/year if you do want to keep Prime."
+    },
+    {
+      "title": "Choose when to end membership",
+      "text": "Select either \"End on [renewal date]\" (keep benefits until billing period ends) or \"End Now\" (immediate cancellation with potential partial refund).",
+      "tip": "Choose 'End Now' only if you want a partial refund for unused days. Otherwise, keep access until your renewal date."
+    },
+    {
+      "title": "Confirm cancellation",
+      "text": "Click the final \"Cancel My Membership\" button. Amazon sends a confirmation email. Check your inbox to verify the cancellation went through.",
+      "tip": "Screenshot the confirmation screen. Amazon has been known to 'accidentally' reactivate Prime memberships."
+    }
+  ],
+  "warnings": [
+    "Amazon uses 6+ screens of dark patterns and guilt messaging to discourage cancellation. Stay firm and keep clicking through.",
+    "If you cancel mid-cycle and choose 'End Now', you lose access to Prime Video, Music, and free shipping immediately.",
+    "Any Subscribe & Save items linked to Prime pricing may increase in price after cancellation.",
+    "If you have an Amazon Prime credit card, you'll lose the 5% cashback on Amazon purchases (drops to 1%).",
+    "Prime Gaming (free games, Twitch sub) also ends with your Prime membership."
+  ],
+  "faqs": [
+    {
+      "q": "Can I get a refund when canceling Amazon Prime?",
+      "a": "Yes — if you haven't used any Prime shipping benefits since your last renewal, Amazon offers a full refund. If you've used some benefits, you may get a partial refund based on usage. Select 'End Now' during cancellation to see your refund amount."
+    },
+    {
+      "q": "Will I lose my Amazon account if I cancel Prime?",
+      "a": "No. Your Amazon account, order history, and wish lists are completely unaffected. You only lose Prime benefits (free shipping, Prime Video, etc.)."
+    },
+    {
+      "q": "What happens to my Prime Video watchlist?",
+      "a": "Your watchlist and viewing history are saved, but you can no longer stream Prime-included titles. You can still access content you've purchased or rented."
+    },
+    {
+      "q": "How do I cancel Amazon Prime on mobile?",
+      "a": "Open the Amazon app → Menu → Account → Prime Membership → Manage Membership → End Membership. Or just visit amazon.com/mc/pipelines/cancelPrime in your mobile browser."
+    },
+    {
+      "q": "Will my Amazon Kids+ subscription also be canceled?",
+      "a": "No. Amazon Kids+ is a separate subscription. You'll need to cancel it separately if you no longer want it."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Amazon offers a full refund if you haven't used Prime benefits since renewal. Partial refunds are available based on usage. When canceling, select 'End Now' to see your specific refund amount before confirming."
+  },
+  "retentionTactics": [
+    "Amazon shows 6+ pages of benefits you'll lose, with personalized data (your last free shipping order, Prime Video shows you watched).",
+    "They offer to switch you from monthly to annual billing to 'save money'.",
+    "They suggest pausing membership for 1-3 months instead of canceling.",
+    "They remind you of active Subscribe & Save items that will increase in price.",
+    "The 'Cancel' button is deliberately styled to look less prominent than the 'Keep' button."
+  ],
+  "timeEstimate": "3-5 minutes",
+  "lastVerified": "2026-05-21"
+}
