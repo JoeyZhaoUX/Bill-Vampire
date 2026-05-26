@@ -10,6 +10,8 @@
     "seo:content": "node scripts/seo/generate-content.mjs",
     "seo:build": "node scripts/seo/generate-pages.mjs",
     "growth:queue": "node scripts/growth/generate-growth-queue.mjs",
+    "growth:reddit": "node scripts/growth/generate-growth-queue.mjs --platform=reddit --status=needs_review",
+    "growth:open": "node scripts/growth/generate-growth-queue.mjs --status=needs_review",
     "lint": "eslint .",
     "preview": "vite preview"
   },

@@ -1,0 +1,16 @@
+{
+  "id": "platform-community-service-issue-short-slug",
+  "platform": "reddit",
+  "community": "r/Frugal",
+  "sourceType": "live_thread",
+  "sourceUrl": "https://www.reddit.com/r/example/comments/example/",
+  "topic": "Short plain-English title of the user problem",
+  "service": "Canva",
+  "issueType": "trial_refund",
+  "amount": "$119",
+  "pain": "One sentence describing the user's real pain and urgency.",
+  "replyAngle": "One sentence explaining how Bill Vampire can help without hard selling.",
+  "linkPolicy": "No link in the first reply. Share only if the user asks for a tool.",
+  "recommendedMedium": "comment",
+  "notes": "Paste any community rule, tone, or follow-up detail here."
+}

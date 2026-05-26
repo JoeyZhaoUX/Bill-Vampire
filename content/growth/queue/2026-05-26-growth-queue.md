@@ -2,6 +2,18 @@
 
 This queue is for human-reviewed acquisition only. It does not post automatically, does not use small accounts, and does not call an AI API. Use it to choose a few high-intent replies, then publish manually after checking platform rules.
 
+Active filters: platform=all, status=all.
+
+## Outcome Summary
+
+- Opportunities in this view: 8
+- Total visits recorded: 0
+- Case preview starts: 0
+- Preview downloads: 0
+- Account saves: 0
+- Checkout clicks: 0
+- Paid conversions: 0
+
 | Priority | Platform | Community | Service | Issue | Medium | Status |
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | reddit | r/SideProject | Canva | trial_refund | post | needs_review |
@@ -26,6 +38,10 @@ This queue is for human-reviewed acquisition only. It does not post automaticall
 - Landing page: /cancel/how-to-cancel-canva-pro.html
 - UTM URL: https://billvampire.com/cancel/how-to-cancel-canva-pro.html?utm_source=reddit&utm_medium=post&utm_campaign=organic_growth_2026w22&utm_content=canva-trial-refund&service=Canva&issue=trial_refund&amount=%24119
 - Status: needs_review
+- Posted URL: not posted
+- Posted at: not posted
+- Metrics: 0 visits, 0 previews, 0 downloads, 0 saves, 0 checkout clicks, 0 paid
+- Result notes: none yet
 
 ### No-link helpful draft
 
@@ -65,6 +81,10 @@ Disclosure: I am building a small tool around this problem, so ignore this if li
 - Landing page: /cancel/how-to-cancel-adobe-creative-cloud.html
 - UTM URL: https://billvampire.com/cancel/how-to-cancel-adobe-creative-cloud.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=adobe-creative-cloud-hard-cancel&service=Adobe+Creative+Cloud&issue=hard_cancel&amount=%2454.99
 - Status: needs_review
+- Posted URL: not posted
+- Posted at: not posted
+- Metrics: 0 visits, 0 previews, 0 downloads, 0 saves, 0 checkout clicks, 0 paid
+- Result notes: none yet
 
 ### No-link helpful draft
 
@@ -104,6 +124,10 @@ Disclosure: I am building a small tool around this problem, so ignore this if li
 - Landing page: /cancel/how-to-cancel-grammarly.html
 - UTM URL: https://billvampire.com/cancel/how-to-cancel-grammarly.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=grammarly-surprise-charge&service=Grammarly&issue=surprise_charge&amount=%24144
 - Status: needs_review
+- Posted URL: not posted
+- Posted at: not posted
+- Metrics: 0 visits, 0 previews, 0 downloads, 0 saves, 0 checkout clicks, 0 paid
+- Result notes: none yet
 
 ### No-link helpful draft
 
@@ -143,6 +167,10 @@ Disclosure: I am building a small tool around this problem, so ignore this if li
 - Landing page: /cancel/how-to-cancel-nordvpn.html
 - UTM URL: https://billvampire.com/cancel/how-to-cancel-nordvpn.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=nordvpn-refund-denied&service=NordVPN&issue=refund_denied&amount=%2499
 - Status: needs_review
+- Posted URL: not posted
+- Posted at: not posted
+- Metrics: 0 visits, 0 previews, 0 downloads, 0 saves, 0 checkout clicks, 0 paid
+- Result notes: none yet
 
 ### No-link helpful draft
 
@@ -182,6 +210,10 @@ Disclosure: I am building a small tool around this problem, so ignore this if li
 - Landing page: /cancel/how-to-cancel-canva-pro.html
 - UTM URL: https://billvampire.com/cancel/how-to-cancel-canva-pro.html?utm_source=quora&utm_medium=answer&utm_campaign=organic_growth_2026w22&utm_content=canva-trial-refund&service=Canva&issue=trial_refund&amount=%24119
 - Status: needs_review
+- Posted URL: not posted
+- Posted at: not posted
+- Metrics: 0 visits, 0 previews, 0 downloads, 0 saves, 0 checkout clicks, 0 paid
+- Result notes: none yet
 
 ### No-link helpful draft
 
@@ -221,6 +253,10 @@ Disclosure: I am building a small tool around this problem, so ignore this if li
 - Landing page: /tools/rocket-money-alternative-no-bank-login.html
 - UTM URL: https://billvampire.com/tools/rocket-money-alternative-no-bank-login.html?utm_source=indiehackers&utm_medium=post&utm_campaign=organic_growth_2026w22&utm_content=bill-vampire-builder-log&service=Bill+Vampire&issue=builder_log&amount=%244.99
 - Status: needs_review
+- Posted URL: not posted
+- Posted at: not posted
+- Metrics: 0 visits, 0 previews, 0 downloads, 0 saves, 0 checkout clicks, 0 paid
+- Result notes: none yet
 
 ### No-link helpful draft
 
@@ -260,6 +296,10 @@ I am building this and would genuinely value blunt feedback. I made a no-bank-lo
 - Landing page: /tools/rocket-money-alternative-no-bank-login.html
 - UTM URL: https://billvampire.com/tools/rocket-money-alternative-no-bank-login.html?utm_source=hn&utm_medium=post&utm_campaign=organic_growth_2026w22&utm_content=bill-vampire-show-hn&service=Bill+Vampire&issue=show_hn&amount=%244.99
 - Status: needs_review
+- Posted URL: not posted
+- Posted at: not posted
+- Metrics: 0 visits, 0 previews, 0 downloads, 0 saves, 0 checkout clicks, 0 paid
+- Result notes: none yet
 
 ### No-link helpful draft
 
@@ -299,6 +339,10 @@ I am building this and would genuinely value blunt feedback. I made a no-bank-lo
 - Landing page: /
 - UTM URL: https://billvampire.com/?utm_source=directory&utm_medium=directory&utm_campaign=organic_growth_2026w22&utm_content=bill-vampire-directory-submission&service=Bill+Vampire&issue=directory_submission&amount=%244.99
 - Status: needs_review
+- Posted URL: not posted
+- Posted at: not posted
+- Metrics: 0 visits, 0 previews, 0 downloads, 0 saves, 0 checkout clicks, 0 paid
+- Result notes: none yet
 
 ### No-link helpful draft
 

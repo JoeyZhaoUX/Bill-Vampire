@@ -7,6 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const rootDir = join(__dirname, '../..')
 const seedPath = join(rootDir, 'content/growth/opportunities.seed.json')
 const seoBacklogPath = join(rootDir, 'content/growth/seo-page-backlog.json')
+const outcomesPath = join(rootDir, 'content/growth/outcomes.json')
 const outputDir = join(rootDir, 'content/growth/queue')
 const baseUrl = process.env.GROWTH_BASE_URL || 'https://billvampire.com'
 
@@ -23,6 +24,8 @@ const args = new Map(
 const runDate = args.get('date') || new Date().toISOString().slice(0, 10)
 const opportunities = JSON.parse(readFileSync(seedPath, 'utf8'))
 const seoBacklog = JSON.parse(readFileSync(seoBacklogPath, 'utf8'))
+const outcomes = JSON.parse(readFileSync(outcomesPath, 'utf8'))
+const outcomesById = new Map((outcomes.items || []).map((item) => [item.id, item]))
 
 const serviceLookup = new Map(
   SERVICES.flatMap((service) => [
@@ -178,18 +181,36 @@ function recommendedAction(opportunity) {
   return 'Post only after checking community rules and editing the draft in your own voice.'
 }
 
-const queue = opportunities.map((opportunity, index) => ({
-  ...opportunity,
-  status: 'needs_review',
-  priority: index + 1,
-  landingPath: landingPath(opportunity),
-  utmUrl: utmUrl(opportunity),
-  recommendedAction: recommendedAction(opportunity),
-  drafts: {
-    noLink: noLinkDraft(opportunity),
-    transparentWithLink: transparentDraft(opportunity),
-  },
-}))
+const queue = opportunities
+  .map((opportunity, index) => {
+    const outcome = outcomesById.get(opportunity.id) || {}
+
+    return {
+      ...opportunity,
+      status: outcome.status || 'needs_review',
+      priority: index + 1,
+      landingPath: landingPath(opportunity),
+      utmUrl: utmUrl(opportunity),
+      recommendedAction: recommendedAction(opportunity),
+      postedUrl: outcome.postedUrl || '',
+      postedAt: outcome.postedAt || '',
+      resultNotes: outcome.notes || '',
+      metrics: {
+        visits: Number(outcome.visits || 0),
+        previewStarts: Number(outcome.previewStarts || 0),
+        downloads: Number(outcome.downloads || 0),
+        accountSaves: Number(outcome.accountSaves || 0),
+        checkoutClicks: Number(outcome.checkoutClicks || 0),
+        paid: Number(outcome.paid || 0),
+      },
+      drafts: {
+        noLink: noLinkDraft(opportunity),
+        transparentWithLink: transparentDraft(opportunity),
+      },
+    }
+  })
+  .filter((item) => !args.get('platform') || item.platform === args.get('platform'))
+  .filter((item) => !args.get('status') || item.status === args.get('status'))
 
 function renderMarkdown(items) {
   const rows = items
@@ -199,6 +220,7 @@ function renderMarkdown(items) {
     )
     .join('\n')
 
+  const metrics = summarizeMetrics(items)
   const sections = items
     .map(
       (item) => `## ${item.priority}. ${item.topic}
@@ -214,6 +236,10 @@ function renderMarkdown(items) {
 - Landing page: ${item.landingPath}
 - UTM URL: ${item.utmUrl}
 - Status: ${item.status}
+- Posted URL: ${item.postedUrl || 'not posted'}
+- Posted at: ${item.postedAt || 'not posted'}
+- Metrics: ${item.metrics.visits} visits, ${item.metrics.previewStarts} previews, ${item.metrics.downloads} downloads, ${item.metrics.accountSaves} saves, ${item.metrics.checkoutClicks} checkout clicks, ${item.metrics.paid} paid
+- Result notes: ${item.resultNotes || 'none yet'}
 
 ### No-link helpful draft
 
@@ -244,6 +270,18 @@ ${item.drafts.transparentWithLink}
 
 This queue is for human-reviewed acquisition only. It does not post automatically, does not use small accounts, and does not call an AI API. Use it to choose a few high-intent replies, then publish manually after checking platform rules.
 
+Active filters: platform=${args.get('platform') || 'all'}, status=${args.get('status') || 'all'}.
+
+## Outcome Summary
+
+- Opportunities in this view: ${items.length}
+- Total visits recorded: ${metrics.visits}
+- Case preview starts: ${metrics.previewStarts}
+- Preview downloads: ${metrics.downloads}
+- Account saves: ${metrics.accountSaves}
+- Checkout clicks: ${metrics.checkoutClicks}
+- Paid conversions: ${metrics.paid}
+
 | Priority | Platform | Community | Service | Issue | Medium | Status |
 | --- | --- | --- | --- | --- | --- | --- |
 ${rows}
@@ -258,6 +296,20 @@ Use these only when you can add service-specific facts and a case-preview form. 
 | --- | --- | --- | --- | --- | --- |
 ${seoRows}
 `
+}
+
+function summarizeMetrics(items) {
+  return items.reduce(
+    (totals, item) => ({
+      visits: totals.visits + item.metrics.visits,
+      previewStarts: totals.previewStarts + item.metrics.previewStarts,
+      downloads: totals.downloads + item.metrics.downloads,
+      accountSaves: totals.accountSaves + item.metrics.accountSaves,
+      checkoutClicks: totals.checkoutClicks + item.metrics.checkoutClicks,
+      paid: totals.paid + item.metrics.paid,
+    }),
+    { visits: 0, previewStarts: 0, downloads: 0, accountSaves: 0, checkoutClicks: 0, paid: 0 },
+  )
 }
 
 mkdirSync(outputDir, { recursive: true })

@@ -77,6 +77,13 @@ Run:
 npm run growth:queue
 ```
 
+Useful filtered views:
+
+```bash
+npm run growth:open
+npm run growth:reddit
+```
+
 Outputs:
 
 - `content/growth/queue/latest.json`
@@ -89,7 +96,37 @@ Review process:
 3. Start from the no-link draft.
 4. Rewrite it in the founder's voice.
 5. Only use the transparent link draft if the platform allows it or the person asks for a tool.
-6. After posting, record the final URL, status, and outcome in the seed file or a follow-up queue note.
+6. After posting, record the final URL, status, and outcome in `content/growth/outcomes.json`.
+
+## Adding Real Threads
+
+When WebAccess or Chrome finds a real thread, copy `content/growth/opportunity-intake.template.json`, fill it in, then append the object to `content/growth/opportunities.seed.json`.
+
+Recommended status values in `content/growth/outcomes.json`:
+
+- `needs_review`: not reviewed yet.
+- `ready_to_post`: approved, waiting for manual posting.
+- `posted`: published.
+- `needs_followup`: someone replied or asked for the link.
+- `discarded`: bad fit, risky community, or low intent.
+
+Example outcome entry:
+
+```json
+{
+  "id": "reddit-frugal-adobe-cancellation-fee",
+  "status": "posted",
+  "postedUrl": "https://www.reddit.com/r/example/comments/example/",
+  "postedAt": "2026-05-26",
+  "visits": 12,
+  "previewStarts": 3,
+  "downloads": 1,
+  "accountSaves": 0,
+  "checkoutClicks": 1,
+  "paid": 0,
+  "notes": "No-link comment first; one user asked for the tool."
+}
+```
 
 ## SEO Page Rules
 
