@@ -1,0 +1,66 @@
+[
+  {
+    "slug": "canva-pro-trial-refund-after-119-charge",
+    "title": "Canva Pro trial refund after a $119 charge",
+    "service": "Canva",
+    "issueType": "trial_refund",
+    "primaryKeyword": "Canva Pro trial refund",
+    "requiredSections": ["refund window", "cancel path", "refund request email", "evidence checklist", "case preview form"]
+  },
+  {
+    "slug": "adobe-cancellation-fee-refund-email-template",
+    "title": "Adobe cancellation fee refund email template",
+    "service": "Adobe Creative Cloud",
+    "issueType": "hard_cancel",
+    "primaryKeyword": "Adobe cancellation fee refund",
+    "requiredSections": ["fee context", "support script", "cancel path", "evidence checklist", "case preview form"]
+  },
+  {
+    "slug": "grammarly-annual-renewal-refund-request",
+    "title": "Grammarly annual renewal refund request",
+    "service": "Grammarly",
+    "issueType": "surprise_charge",
+    "primaryKeyword": "Grammarly annual renewal refund",
+    "requiredSections": ["refund request timing", "cancel path", "short email template", "reminder setup", "case preview form"]
+  },
+  {
+    "slug": "chatgpt-plus-refund-request-after-renewal",
+    "title": "ChatGPT Plus refund request after renewal",
+    "service": "ChatGPT Plus",
+    "issueType": "surprise_charge",
+    "primaryKeyword": "ChatGPT Plus refund request",
+    "requiredSections": ["support path", "refund request wording", "cancel path", "proof checklist", "case preview form"]
+  },
+  {
+    "slug": "nordvpn-refund-script-after-auto-renewal",
+    "title": "NordVPN refund script after auto-renewal",
+    "service": "NordVPN",
+    "issueType": "refund_denied",
+    "primaryKeyword": "NordVPN refund script",
+    "requiredSections": ["refund window", "cancel path", "support chat script", "chargeback preparation", "case preview form"]
+  },
+  {
+    "slug": "amazon-prime-refund-after-unwanted-renewal",
+    "title": "Amazon Prime refund after unwanted renewal",
+    "service": "Amazon Prime",
+    "issueType": "surprise_charge",
+    "primaryKeyword": "Amazon Prime refund renewal",
+    "requiredSections": ["unused membership angle", "cancel path", "refund request steps", "evidence checklist", "case preview form"]
+  },
+  {
+    "slug": "linkedin-premium-refund-after-free-trial",
+    "title": "LinkedIn Premium refund after a free trial",
+    "service": "LinkedIn Premium",
+    "issueType": "trial_refund",
+    "primaryKeyword": "LinkedIn Premium refund trial",
+    "requiredSections": ["refund context", "cancel path", "support wording", "calendar reminder", "case preview form"]
+  },
+  {
+    "slug": "duolingo-super-refund-after-annual-charge",
+    "title": "Duolingo Super refund after an annual charge",
+    "service": "Duolingo Super",
+    "issueType": "surprise_charge",
+    "primaryKeyword": "Duolingo Super refund annual charge",
+    "requiredSections": ["app store vs web billing", "cancel path", "refund request wording", "evidence checklist", "case preview form"]
+  }
+]
