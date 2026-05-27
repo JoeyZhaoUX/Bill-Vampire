@@ -6,6 +6,7 @@ import { SERVICES } from './services.mjs';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '../..');
 const CONTENT_DIR = join(ROOT, 'content/cancel');
+const REFUND_CONTENT_PATH = join(ROOT, 'content/refund/guides.json');
 const SITEMAP_PATH = join(ROOT, 'public/sitemap.xml');
 
 const STATIC_URLS = [
@@ -16,6 +17,7 @@ const STATIC_URLS = [
   { loc: 'https://billvampire.com/tools/free-trial-refund-helper.html', priority: '0.8', freq: 'weekly' },
   { loc: 'https://billvampire.com/tools/cancel-subscription-script-generator.html', priority: '0.8', freq: 'weekly' },
   { loc: 'https://billvampire.com/tools/rocket-money-alternative-no-bank-login.html', priority: '0.8', freq: 'weekly' },
+  { loc: 'https://billvampire.com/refund/', priority: '0.8', freq: 'weekly' },
   { loc: 'https://billvampire.com/terms.html', priority: '0.3', freq: 'monthly' },
   { loc: 'https://billvampire.com/privacy.html', priority: '0.3', freq: 'monthly' },
   { loc: 'https://billvampire.com/refund.html', priority: '0.3', freq: 'monthly' },
@@ -56,6 +58,18 @@ export function generateSitemap() {
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>`);
+  }
+
+  if (existsSync(REFUND_CONTENT_PATH)) {
+    const refundGuides = JSON.parse(readFileSync(REFUND_CONTENT_PATH, 'utf-8'));
+    for (const guide of refundGuides) {
+      urls.push(`  <url>
+    <loc>https://billvampire.com/refund/${guide.slug}.html</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`);
+    }
   }
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

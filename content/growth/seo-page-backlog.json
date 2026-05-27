@@ -5,6 +5,8 @@
     "service": "Canva",
     "issueType": "trial_refund",
     "primaryKeyword": "Canva Pro trial refund",
+    "status": "shipped",
+    "url": "/refund/canva-pro-trial-refund-after-119-charge.html",
     "requiredSections": ["refund window", "cancel path", "refund request email", "evidence checklist", "case preview form"]
   },
   {
@@ -13,6 +15,8 @@
     "service": "Adobe Creative Cloud",
     "issueType": "hard_cancel",
     "primaryKeyword": "Adobe cancellation fee refund",
+    "status": "shipped",
+    "url": "/refund/adobe-cancellation-fee-refund-email-template.html",
     "requiredSections": ["fee context", "support script", "cancel path", "evidence checklist", "case preview form"]
   },
   {
@@ -21,6 +25,8 @@
     "service": "Grammarly",
     "issueType": "surprise_charge",
     "primaryKeyword": "Grammarly annual renewal refund",
+    "status": "shipped",
+    "url": "/refund/grammarly-annual-renewal-refund-request.html",
     "requiredSections": ["refund request timing", "cancel path", "short email template", "reminder setup", "case preview form"]
   },
   {
@@ -29,6 +35,8 @@
     "service": "ChatGPT Plus",
     "issueType": "surprise_charge",
     "primaryKeyword": "ChatGPT Plus refund request",
+    "status": "shipped",
+    "url": "/refund/chatgpt-plus-refund-request-after-renewal.html",
     "requiredSections": ["support path", "refund request wording", "cancel path", "proof checklist", "case preview form"]
   },
   {
@@ -37,6 +45,8 @@
     "service": "NordVPN",
     "issueType": "refund_denied",
     "primaryKeyword": "NordVPN refund script",
+    "status": "shipped",
+    "url": "/refund/nordvpn-refund-script-after-auto-renewal.html",
     "requiredSections": ["refund window", "cancel path", "support chat script", "chargeback preparation", "case preview form"]
   },
   {

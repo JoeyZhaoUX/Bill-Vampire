@@ -262,7 +262,7 @@ ${item.drafts.transparentWithLink}
   const seoRows = seoBacklog
     .map(
       (page, index) =>
-        `| ${index + 1} | ${page.title} | ${page.service} | ${page.issueType} | ${page.primaryKeyword} | ${page.requiredSections.join(', ')} |`,
+        `| ${index + 1} | ${page.title} | ${page.service} | ${page.issueType} | ${page.primaryKeyword} | ${page.status || 'backlog'} | ${page.url || 'not shipped'} | ${page.requiredSections.join(', ')} |`,
     )
     .join('\n')
 
@@ -292,8 +292,8 @@ ${sections}
 
 Use these only when you can add service-specific facts and a case-preview form. Do not publish pages that are just generic template swaps.
 
-| Priority | Page | Service | Issue | Primary keyword | Required sections |
-| --- | --- | --- | --- | --- | --- |
+| Priority | Page | Service | Issue | Primary keyword | Status | URL | Required sections |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 ${seoRows}
 `
 }

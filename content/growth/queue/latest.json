@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-05-26T13:01:16.628Z",
-  "runDate": "2026-05-26",
+  "generatedAt": "2026-05-27T08:16:03.751Z",
+  "runDate": "2026-05-27",
   "baseUrl": "https://billvampire.com",
-  "count": 8,
+  "count": 11,
   "queue": [
     {
       "id": "reddit-sideproject-canva-trial-refund",
@@ -42,9 +42,9 @@
     {
       "id": "reddit-frugal-adobe-cancellation-fee",
       "platform": "reddit",
-      "community": "r/Frugal",
-      "sourceType": "seed",
-      "sourceUrl": "",
+      "community": "r/Adobe",
+      "sourceType": "live_search",
+      "sourceUrl": "https://www.reddit.com/r/Adobe/comments/1ff6d1g/cancellation_fee/",
       "topic": "Adobe cancellation fee refund email template",
       "service": "Adobe Creative Cloud",
       "issueType": "hard_cancel",
@@ -77,9 +77,9 @@
     {
       "id": "reddit-adhd-annual-renewal-forgotten",
       "platform": "reddit",
-      "community": "r/ADHD",
-      "sourceType": "seed",
-      "sourceUrl": "",
+      "community": "r/Grammarly",
+      "sourceType": "live_search",
+      "sourceUrl": "https://www.reddit.com/r/Grammarly/comments/1pwprtx/refund/",
       "topic": "Forgotten annual subscription renewal",
       "service": "Grammarly",
       "issueType": "surprise_charge",
@@ -105,16 +105,16 @@
         "paid": 0
       },
       "drafts": {
-        "noLink": "That kind of forgotten renewal is painfully common, especially with annual plans around $144.\n\nI would keep the next move very small: cancel first, screenshot the cancellation confirmation, then send support a short refund note with the charge date, amount, account email, and a clear sentence saying you did not intend to continue after the trial/renewal.\n\nIf support refuses, keep the reply thread, receipt, cancellation proof, and terms screenshot together before you consider escalating through the card issuer. Not legal or financial advice, just the cleanest evidence trail.",
-        "transparentWithLink": "That kind of forgotten renewal is painfully common, especially with annual plans around $144.\n\nI would keep the next move very small: cancel first, screenshot the cancellation confirmation, then send support a short refund note with the charge date, amount, account email, and a clear sentence saying you did not intend to continue after the trial/renewal.\n\nIf support refuses, keep the reply thread, receipt, cancellation proof, and terms screenshot together before you consider escalating through the card issuer. Not legal or financial advice, just the cleanest evidence trail.\n\nDisclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of Grammarly issue here: https://billvampire.com/cancel/how-to-cancel-grammarly.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=grammarly-surprise-charge&service=Grammarly&issue=surprise_charge&amount=%24144"
+        "noLink": "For a Grammarly charge around $144, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.\n\nKeep the message short: \"I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward.\"\n\nIf they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.",
+        "transparentWithLink": "For a Grammarly charge around $144, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.\n\nKeep the message short: \"I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward.\"\n\nIf they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.\n\nDisclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of Grammarly issue here: https://billvampire.com/cancel/how-to-cancel-grammarly.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=grammarly-surprise-charge&service=Grammarly&issue=surprise_charge&amount=%24144"
       }
     },
     {
       "id": "reddit-personalfinance-chargeback-proof",
       "platform": "reddit",
-      "community": "r/personalfinance",
-      "sourceType": "seed",
-      "sourceUrl": "",
+      "community": "r/nordvpn",
+      "sourceType": "live_search",
+      "sourceUrl": "https://www.reddit.com/r/nordvpn/comments/1rt2sln/the_renewal_date_and_charge_date_is_a_total_joke/",
       "topic": "Subscription company will not cancel or refund",
       "service": "NordVPN",
       "issueType": "refund_denied",
@@ -180,6 +180,111 @@
       }
     },
     {
+      "id": "reddit-adobe-recent-termination-fee-story",
+      "platform": "reddit",
+      "community": "r/FuckAdobe",
+      "sourceType": "live_search",
+      "sourceUrl": "https://www.reddit.com/r/FuckAdobe/comments/1t5hq40/adobe_tried_to_trap_me_with_an_early_termination/",
+      "topic": "Adobe tried to trap me with an early termination fee",
+      "service": "Adobe Creative Cloud",
+      "issueType": "hard_cancel",
+      "amount": "$100+",
+      "pain": "A recent user story about Adobe early termination fees shows high anger and high urgency.",
+      "replyAngle": "Give a calm evidence-first support script and link only if asked for a generator.",
+      "linkPolicy": "No link in first reply; this community is anti-Adobe and will punish obvious promotion.",
+      "recommendedMedium": "comment",
+      "status": "needs_review",
+      "priority": 6,
+      "landingPath": "/cancel/how-to-cancel-adobe-creative-cloud.html",
+      "utmUrl": "https://billvampire.com/cancel/how-to-cancel-adobe-creative-cloud.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=adobe-creative-cloud-hard-cancel&service=Adobe+Creative+Cloud&issue=hard_cancel&amount=%24100%2B",
+      "recommendedAction": "Use the no-link draft first. Share the link only after someone asks for it.",
+      "postedUrl": "",
+      "postedAt": "",
+      "resultNotes": "",
+      "metrics": {
+        "visits": 0,
+        "previewStarts": 0,
+        "downloads": 0,
+        "accountSaves": 0,
+        "checkoutClicks": 0,
+        "paid": 0
+      },
+      "drafts": {
+        "noLink": "For Adobe Creative Cloud, I would avoid arguing in the first message and make it very specific: state the plan, charge amount around $100+, cancellation attempt date, and the outcome you want.\n\nA useful line is: \"I am requesting cancellation without additional renewal charges, and if a fee applies, please point me to the exact term I agreed to and the date it was shown.\"\n\nSave screenshots of the account page, the cancellation flow, chat transcript, and every email. If you later dispute the charge, that evidence matters more than a long complaint.",
+        "transparentWithLink": "For Adobe Creative Cloud, I would avoid arguing in the first message and make it very specific: state the plan, charge amount around $100+, cancellation attempt date, and the outcome you want.\n\nA useful line is: \"I am requesting cancellation without additional renewal charges, and if a fee applies, please point me to the exact term I agreed to and the date it was shown.\"\n\nSave screenshots of the account page, the cancellation flow, chat transcript, and every email. If you later dispute the charge, that evidence matters more than a long complaint.\n\nDisclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of Adobe Creative Cloud issue here: https://billvampire.com/cancel/how-to-cancel-adobe-creative-cloud.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=adobe-creative-cloud-hard-cancel&service=Adobe+Creative+Cloud&issue=hard_cancel&amount=%24100%2B"
+      }
+    },
+    {
+      "id": "reddit-grammarly-annual-refund-question",
+      "platform": "reddit",
+      "community": "r/Grammarly",
+      "sourceType": "live_search",
+      "sourceUrl": "https://www.reddit.com/r/Grammarly/comments/1rktf73/i_accidentally_paid_for_an_annual_grammarly/",
+      "topic": "I accidentally paid for an annual Grammarly subscription",
+      "service": "Grammarly",
+      "issueType": "surprise_charge",
+      "amount": "$144",
+      "pain": "A user cannot find where to ask for a Grammarly refund after an accidental annual charge.",
+      "replyAngle": "Give the shortest support-ticket path and a copyable refund note.",
+      "linkPolicy": "No-link reply first; offer the preview if the user asks for wording.",
+      "recommendedMedium": "comment",
+      "status": "needs_review",
+      "priority": 7,
+      "landingPath": "/cancel/how-to-cancel-grammarly.html",
+      "utmUrl": "https://billvampire.com/cancel/how-to-cancel-grammarly.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=grammarly-surprise-charge&service=Grammarly&issue=surprise_charge&amount=%24144",
+      "recommendedAction": "Use the no-link draft first. Share the link only after someone asks for it.",
+      "postedUrl": "",
+      "postedAt": "",
+      "resultNotes": "",
+      "metrics": {
+        "visits": 0,
+        "previewStarts": 0,
+        "downloads": 0,
+        "accountSaves": 0,
+        "checkoutClicks": 0,
+        "paid": 0
+      },
+      "drafts": {
+        "noLink": "For a Grammarly charge around $144, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.\n\nKeep the message short: \"I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward.\"\n\nIf they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.",
+        "transparentWithLink": "For a Grammarly charge around $144, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.\n\nKeep the message short: \"I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward.\"\n\nIf they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.\n\nDisclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of Grammarly issue here: https://billvampire.com/cancel/how-to-cancel-grammarly.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=grammarly-surprise-charge&service=Grammarly&issue=surprise_charge&amount=%24144"
+      }
+    },
+    {
+      "id": "reddit-nordvpn-auto-renewal-high-price",
+      "platform": "reddit",
+      "community": "r/nordvpn",
+      "sourceType": "live_search",
+      "sourceUrl": "https://www.reddit.com/r/nordvpn/comments/1pev9qv/my_sub_auto_renewed_at_150_how_can_i_get_a_better/",
+      "topic": "NordVPN auto-renewed at $150",
+      "service": "NordVPN",
+      "issueType": "refund_denied",
+      "amount": "$150",
+      "pain": "A user was auto-renewed at a high price and wants either a refund or a better deal.",
+      "replyAngle": "Frame support ask as refund-or-adjustment request with renewal email and invoice proof.",
+      "linkPolicy": "No-link reply first; link only if someone asks for a script.",
+      "recommendedMedium": "comment",
+      "status": "needs_review",
+      "priority": 8,
+      "landingPath": "/cancel/how-to-cancel-nordvpn.html",
+      "utmUrl": "https://billvampire.com/cancel/how-to-cancel-nordvpn.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=nordvpn-refund-denied&service=NordVPN&issue=refund_denied&amount=%24150",
+      "recommendedAction": "Use the no-link draft first. Share the link only after someone asks for it.",
+      "postedUrl": "",
+      "postedAt": "",
+      "resultNotes": "",
+      "metrics": {
+        "visits": 0,
+        "previewStarts": 0,
+        "downloads": 0,
+        "accountSaves": 0,
+        "checkoutClicks": 0,
+        "paid": 0
+      },
+      "drafts": {
+        "noLink": "For a NordVPN charge around $150, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.\n\nKeep the message short: \"I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward.\"\n\nIf they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.",
+        "transparentWithLink": "For a NordVPN charge around $150, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.\n\nKeep the message short: \"I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward.\"\n\nIf they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.\n\nDisclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of NordVPN issue here: https://billvampire.com/cancel/how-to-cancel-nordvpn.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=nordvpn-refund-denied&service=NordVPN&issue=refund_denied&amount=%24150"
+      }
+    },
+    {
       "id": "indiehackers-builder-log-zero-budget-seo",
       "platform": "indiehackers",
       "community": "Indie Hackers",
@@ -194,7 +299,7 @@
       "linkPolicy": "A founder link is acceptable in a builder log if the post gives real data.",
       "recommendedMedium": "post",
       "status": "needs_review",
-      "priority": 6,
+      "priority": 9,
       "landingPath": "/tools/rocket-money-alternative-no-bank-login.html",
       "utmUrl": "https://billvampire.com/tools/rocket-money-alternative-no-bank-login.html?utm_source=indiehackers&utm_medium=post&utm_campaign=organic_growth_2026w22&utm_content=bill-vampire-builder-log&service=Bill+Vampire&issue=builder_log&amount=%244.99",
       "recommendedAction": "Post only after checking community rules and editing the draft in your own voice.",
@@ -229,7 +334,7 @@
       "linkPolicy": "Use only for a real Show HN once the flow is stable; do not repeat.",
       "recommendedMedium": "post",
       "status": "needs_review",
-      "priority": 7,
+      "priority": 10,
       "landingPath": "/tools/rocket-money-alternative-no-bank-login.html",
       "utmUrl": "https://billvampire.com/tools/rocket-money-alternative-no-bank-login.html?utm_source=hn&utm_medium=post&utm_campaign=organic_growth_2026w22&utm_content=bill-vampire-show-hn&service=Bill+Vampire&issue=show_hn&amount=%244.99",
       "recommendedAction": "Hold until the product flow is stable enough for a one-time Show HN.",
@@ -264,7 +369,7 @@
       "linkPolicy": "Directory submission only; vary descriptions and avoid low-quality spam farms.",
       "recommendedMedium": "directory",
       "status": "needs_review",
-      "priority": 8,
+      "priority": 11,
       "landingPath": "/",
       "utmUrl": "https://billvampire.com/?utm_source=directory&utm_medium=directory&utm_campaign=organic_growth_2026w22&utm_content=bill-vampire-directory-submission&service=Bill+Vampire&issue=directory_submission&amount=%244.99",
       "recommendedAction": "Submit manually with a unique description and this UTM link.",
@@ -292,6 +397,8 @@
       "service": "Canva",
       "issueType": "trial_refund",
       "primaryKeyword": "Canva Pro trial refund",
+      "status": "shipped",
+      "url": "/refund/canva-pro-trial-refund-after-119-charge.html",
       "requiredSections": [
         "refund window",
         "cancel path",
@@ -306,6 +413,8 @@
       "service": "Adobe Creative Cloud",
       "issueType": "hard_cancel",
       "primaryKeyword": "Adobe cancellation fee refund",
+      "status": "shipped",
+      "url": "/refund/adobe-cancellation-fee-refund-email-template.html",
       "requiredSections": [
         "fee context",
         "support script",
@@ -320,6 +429,8 @@
       "service": "Grammarly",
       "issueType": "surprise_charge",
       "primaryKeyword": "Grammarly annual renewal refund",
+      "status": "shipped",
+      "url": "/refund/grammarly-annual-renewal-refund-request.html",
       "requiredSections": [
         "refund request timing",
         "cancel path",
@@ -334,6 +445,8 @@
       "service": "ChatGPT Plus",
       "issueType": "surprise_charge",
       "primaryKeyword": "ChatGPT Plus refund request",
+      "status": "shipped",
+      "url": "/refund/chatgpt-plus-refund-request-after-renewal.html",
       "requiredSections": [
         "support path",
         "refund request wording",
@@ -348,6 +461,8 @@
       "service": "NordVPN",
       "issueType": "refund_denied",
       "primaryKeyword": "NordVPN refund script",
+      "status": "shipped",
+      "url": "/refund/nordvpn-refund-script-after-auto-renewal.html",
       "requiredSections": [
         "refund window",
         "cancel path",
