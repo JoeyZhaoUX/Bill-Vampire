@@ -13,7 +13,13 @@
     "officialContext": "Adobe cancellation is handled from the Adobe account plans area; users should keep screenshots of plan terms, cancellation flow, and support transcripts.",
     "refundWindow": "Check the exact plan terms shown in your Adobe account and any recent plan-change confirmation email before asking support to waive or refund a fee.",
     "cancelPath": "Open your Adobe account, go to Plans, choose Manage plan, then follow the cancellation or support path shown for your subscription.",
-    "evidence": ["Current plan name and billing cadence", "Screenshot of the cancellation fee screen", "Recent invoice or receipt", "Support chat transcript", "Any plan-change confirmation email"],
+    "evidence": [
+      "Current plan name and billing cadence",
+      "Screenshot of the cancellation fee screen",
+      "Recent invoice or receipt",
+      "Support chat transcript",
+      "Any plan-change confirmation email"
+    ],
     "freePreviewPrompt": "I want to cancel Adobe Creative Cloud. It is showing a cancellation fee and I need a calm support script plus refund/waiver request.",
     "sourceUrl": "https://www.reddit.com/r/Adobe/comments/1ff6d1g/cancellation_fee/"
   },
@@ -31,7 +37,13 @@
     "officialContext": "Grammarly support says billing errors or mistaken charges should be submitted through a support request; App Store purchases may need Apple refund handling.",
     "refundWindow": "Submit the refund request as soon as possible and include account email, charge date, amount, and whether the purchase came through web, Apple, or Google billing.",
     "cancelPath": "Open Grammarly account subscription settings, cancel renewal, and save the cancellation confirmation before writing support.",
-    "evidence": ["Receipt with charge date and amount", "Account email", "Cancellation confirmation", "Support ticket ID", "App Store or Google Play receipt if applicable"],
+    "evidence": [
+      "Receipt with charge date and amount",
+      "Account email",
+      "Cancellation confirmation",
+      "Support ticket ID",
+      "App Store or Google Play receipt if applicable"
+    ],
     "freePreviewPrompt": "I was charged for Grammarly annual renewal and need to cancel, request a refund, and keep proof in case support is slow.",
     "sourceUrl": "https://www.reddit.com/r/Grammarly/comments/1pwprtx/refund/"
   },
@@ -49,7 +61,13 @@
     "officialContext": "NordVPN publishes refund and auto-renewal cancellation help pages; users should check whether their payment route was direct, Apple, Google, or another reseller.",
     "refundWindow": "Check NordVPN's current refund policy and ask support promptly, especially if the renewal charge arrived before the next service period began.",
     "cancelPath": "Open Nord Account, go to billing or subscription settings, cancel auto-renewal, then contact support if a refund is needed.",
-    "evidence": ["Renewal email", "Invoice or payment receipt", "Subscription end date", "Auto-renewal status screenshot", "Support chat transcript"],
+    "evidence": [
+      "Renewal email",
+      "Invoice or payment receipt",
+      "Subscription end date",
+      "Auto-renewal status screenshot",
+      "Support chat transcript"
+    ],
     "freePreviewPrompt": "NordVPN auto-renewed before I expected. I need a refund script, cancellation proof checklist, and escalation plan.",
     "sourceUrl": "https://www.reddit.com/r/nordvpn/comments/1rt2sln/the_renewal_date_and_charge_date_is_a_total_joke/"
   },
@@ -67,7 +85,13 @@
     "officialContext": "Canva billing is managed from account settings; users should confirm whether the charge came through Canva directly or an app store.",
     "refundWindow": "Act quickly after the charge, cancel future renewal first, then ask support for a goodwill refund with charge details.",
     "cancelPath": "Open Canva settings, go to Billing and plans, cancel the plan, and save confirmation before contacting support.",
-    "evidence": ["Canva receipt", "Trial start date if known", "Charge date and amount", "Cancellation confirmation", "Support ticket or chat record"],
+    "evidence": [
+      "Canva receipt",
+      "Trial start date if known",
+      "Charge date and amount",
+      "Cancellation confirmation",
+      "Support ticket or chat record"
+    ],
     "freePreviewPrompt": "I started a Canva Pro trial and got charged around $119. I want to cancel and ask for a refund.",
     "sourceUrl": "https://www.reddit.com/r/ADHD/comments/16q1x8p"
   },
@@ -85,8 +109,110 @@
     "officialContext": "OpenAI's help center says refund requests should be made while logged into the account tied to the subscription or from the associated email address.",
     "refundWindow": "Request the refund quickly, include the account email, charge date, amount, and whether the subscription was purchased on web, iOS, or Android.",
     "cancelPath": "Open ChatGPT settings, go to subscription or plan management, cancel renewal, then use the Help Center chat widget for refund support.",
-    "evidence": ["OpenAI receipt", "Account email", "Charge date and amount", "Cancellation confirmation", "Support conversation transcript"],
+    "evidence": [
+      "OpenAI receipt",
+      "Account email",
+      "Charge date and amount",
+      "Cancellation confirmation",
+      "Support conversation transcript"
+    ],
     "freePreviewPrompt": "I was charged for ChatGPT Plus renewal and need to cancel and ask OpenAI support for a refund.",
     "sourceUrl": "https://help.openai.com/en/articles/7232895-how-do-i-request-a-refund-for-ch"
+  },
+  {
+    "slug": "amazon-prime-refund-after-unwanted-renewal",
+    "title": "Amazon Prime refund after unwanted renewal",
+    "metaDescription": "Amazon Prime renewed after you meant to cancel? Build a refund request, evidence checklist, and cancel path without connecting a bank account.",
+    "service": "Amazon Prime",
+    "serviceId": "amazon-prime",
+    "issueType": "surprise_charge",
+    "amountExample": "$14.99-$139",
+    "primaryKeyword": "Amazon Prime refund after unwanted renewal",
+    "searchIntent": "User was charged for Prime after trying to cancel, forgetting renewal, or not using the membership.",
+    "communitySignal": "Recent Amazon Prime Reddit posts mention renewals after cancellation, slow refunds, and users needing the right support wording instead of arguing from memory.",
+    "officialContext": "Amazon Prime membership refunds depend on membership status, usage, billing route, and customer service handling; users should save any cancellation confirmation and support transcript.",
+    "refundWindow": "Act immediately after the charge. If you did not use Prime benefits after the renewal, say that clearly and ask support to reverse the most recent membership charge.",
+    "cancelPath": "Open Amazon account settings, go to Prime Membership, manage membership, cancel or end membership, then save any cancellation confirmation screen or email.",
+    "evidence": [
+      "Prime renewal receipt",
+      "Cancellation confirmation if you have it",
+      "Date you attempted to cancel",
+      "Whether Prime benefits were used after renewal",
+      "Support chat or call notes"
+    ],
+    "freePreviewPrompt": "Amazon Prime renewed after I thought I cancelled. I need a refund request, proof checklist, and the next support steps.",
+    "sourceUrl": "https://www.reddit.com/r/amazonprime/comments/1r8912a/amazon_prime_just_renewed_itself_after_i/"
+  },
+  {
+    "slug": "linkedin-premium-refund-after-free-trial",
+    "title": "LinkedIn Premium refund after a free trial",
+    "metaDescription": "Forgot to cancel LinkedIn Premium trial? Build a refund request and cancellation checklist for the recent charge.",
+    "service": "LinkedIn Premium",
+    "serviceId": "linkedin-premium",
+    "issueType": "trial_refund",
+    "amountExample": "$29.99-$320",
+    "primaryKeyword": "LinkedIn Premium refund after free trial",
+    "searchIntent": "User forgot a LinkedIn Premium trial and wants a refund before the charge becomes a sunk cost.",
+    "communitySignal": "LinkedIn Reddit threads repeatedly point users to the refund policy page and describe successful refund requests soon after being charged.",
+    "officialContext": "LinkedIn Help says Premium subscriptions may be refundable within 7 days from the charge date if premium features were not used, with regional exceptions.",
+    "refundWindow": "Move fast. If you are within the refund window, cancel Premium first, avoid using premium features, then submit the refund request with the charge details.",
+    "cancelPath": "Open LinkedIn subscription settings, cancel Premium, then use the LinkedIn refund policy or purchases/payments refund flow if eligible.",
+    "evidence": [
+      "LinkedIn receipt",
+      "Trial start or reminder email",
+      "Charge date and amount",
+      "Cancellation confirmation",
+      "Whether premium features were used after charge"
+    ],
+    "freePreviewPrompt": "I forgot to cancel LinkedIn Premium after the free trial and got charged. I need a refund request and checklist.",
+    "sourceUrl": "https://www.reddit.com/r/linkedin/comments/17jfs5m/linkedin_premium_subscription_refund/"
+  },
+  {
+    "slug": "duolingo-super-refund-after-annual-charge",
+    "title": "Duolingo Super refund after an annual charge",
+    "metaDescription": "Duolingo charged you for annual Super or Max? Build an App Store/web refund checklist and support script.",
+    "service": "Duolingo Super",
+    "serviceId": "duolingo",
+    "issueType": "surprise_charge",
+    "amountExample": "$84-$154",
+    "primaryKeyword": "Duolingo Super refund after annual charge",
+    "searchIntent": "User was charged for Duolingo annual billing after a trial, app-store flow, or subscription confusion.",
+    "communitySignal": "Duolingo Reddit posts show users stressed by annual charges, Apple refund routing, and unclear support paths after trial conversion.",
+    "officialContext": "Duolingo subscriptions may be billed through Apple, Google, or web; refund handling often depends on where the purchase was made.",
+    "refundWindow": "Identify the billing route first. If Apple or Google billed you, use their refund request flow; if web billed you, gather receipt details before contacting Duolingo support.",
+    "cancelPath": "Check App Store, Google Play, or Duolingo web account settings depending on where the subscription was purchased, then cancel renewal and save proof.",
+    "evidence": [
+      "Apple, Google, or Duolingo receipt",
+      "Trial end date if known",
+      "Charge amount and currency",
+      "Cancellation confirmation",
+      "Support reference number"
+    ],
+    "freePreviewPrompt": "Duolingo charged me for an annual Super or Max plan after a trial. I need to cancel and ask for a refund.",
+    "sourceUrl": "https://www.reddit.com/r/duolingo/comments/1p4xlmt/membership_refund/"
+  },
+  {
+    "slug": "expressvpn-refund-after-auto-renewal-charge",
+    "title": "ExpressVPN refund after auto-renewal charge",
+    "metaDescription": "ExpressVPN auto-renewed or charged after cancellation? Build a refund script, support checklist, and cancellation proof file.",
+    "service": "ExpressVPN",
+    "serviceId": "expressvpn",
+    "issueType": "refund_denied",
+    "amountExample": "$12.95-$116.95",
+    "primaryKeyword": "ExpressVPN refund after auto-renewal",
+    "searchIntent": "User was charged by ExpressVPN auto-renewal or cannot get live chat to process a refund.",
+    "communitySignal": "ExpressVPN Reddit threads mention multi-step auto-renew cancellation, users thinking renewal was off, and urgent refund requests after annual renewal.",
+    "officialContext": "ExpressVPN publishes a 30-day refund policy for eligible first-time users and says support can handle refund requests; app-store purchases can follow different rules.",
+    "refundWindow": "If you are within 30 days and eligible, ask support for a refund with the account email, order ID, and reason; if auto-renew was supposedly off, include proof.",
+    "cancelPath": "Log in to ExpressVPN, open subscription settings, turn off auto-renewal, confirm the final cancellation state, and contact support if refund action is needed.",
+    "evidence": [
+      "ExpressVPN receipt or order ID",
+      "Auto-renew status screenshot",
+      "Cancellation confirmation",
+      "Charge date and amount",
+      "Live chat or support email transcript"
+    ],
+    "freePreviewPrompt": "ExpressVPN auto-renewed or charged after cancellation. I need a refund script and evidence checklist.",
+    "sourceUrl": "https://www.reddit.com/r/Express_VPN/comments/11cjbw6"
   }
 ]

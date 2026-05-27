@@ -7,7 +7,13 @@
     "primaryKeyword": "Canva Pro trial refund",
     "status": "shipped",
     "url": "/refund/canva-pro-trial-refund-after-119-charge.html",
-    "requiredSections": ["refund window", "cancel path", "refund request email", "evidence checklist", "case preview form"]
+    "requiredSections": [
+      "refund window",
+      "cancel path",
+      "refund request email",
+      "evidence checklist",
+      "case preview form"
+    ]
   },
   {
     "slug": "adobe-cancellation-fee-refund-email-template",
@@ -17,7 +23,13 @@
     "primaryKeyword": "Adobe cancellation fee refund",
     "status": "shipped",
     "url": "/refund/adobe-cancellation-fee-refund-email-template.html",
-    "requiredSections": ["fee context", "support script", "cancel path", "evidence checklist", "case preview form"]
+    "requiredSections": [
+      "fee context",
+      "support script",
+      "cancel path",
+      "evidence checklist",
+      "case preview form"
+    ]
   },
   {
     "slug": "grammarly-annual-renewal-refund-request",
@@ -27,7 +39,13 @@
     "primaryKeyword": "Grammarly annual renewal refund",
     "status": "shipped",
     "url": "/refund/grammarly-annual-renewal-refund-request.html",
-    "requiredSections": ["refund request timing", "cancel path", "short email template", "reminder setup", "case preview form"]
+    "requiredSections": [
+      "refund request timing",
+      "cancel path",
+      "short email template",
+      "reminder setup",
+      "case preview form"
+    ]
   },
   {
     "slug": "chatgpt-plus-refund-request-after-renewal",
@@ -37,7 +55,13 @@
     "primaryKeyword": "ChatGPT Plus refund request",
     "status": "shipped",
     "url": "/refund/chatgpt-plus-refund-request-after-renewal.html",
-    "requiredSections": ["support path", "refund request wording", "cancel path", "proof checklist", "case preview form"]
+    "requiredSections": [
+      "support path",
+      "refund request wording",
+      "cancel path",
+      "proof checklist",
+      "case preview form"
+    ]
   },
   {
     "slug": "nordvpn-refund-script-after-auto-renewal",
@@ -47,7 +71,13 @@
     "primaryKeyword": "NordVPN refund script",
     "status": "shipped",
     "url": "/refund/nordvpn-refund-script-after-auto-renewal.html",
-    "requiredSections": ["refund window", "cancel path", "support chat script", "chargeback preparation", "case preview form"]
+    "requiredSections": [
+      "refund window",
+      "cancel path",
+      "support chat script",
+      "chargeback preparation",
+      "case preview form"
+    ]
   },
   {
     "slug": "amazon-prime-refund-after-unwanted-renewal",
@@ -55,7 +85,15 @@
     "service": "Amazon Prime",
     "issueType": "surprise_charge",
     "primaryKeyword": "Amazon Prime refund renewal",
-    "requiredSections": ["unused membership angle", "cancel path", "refund request steps", "evidence checklist", "case preview form"]
+    "requiredSections": [
+      "unused membership angle",
+      "cancel path",
+      "refund request steps",
+      "evidence checklist",
+      "case preview form"
+    ],
+    "status": "shipped",
+    "url": "/refund/amazon-prime-refund-after-unwanted-renewal.html"
   },
   {
     "slug": "linkedin-premium-refund-after-free-trial",
@@ -63,7 +101,15 @@
     "service": "LinkedIn Premium",
     "issueType": "trial_refund",
     "primaryKeyword": "LinkedIn Premium refund trial",
-    "requiredSections": ["refund context", "cancel path", "support wording", "calendar reminder", "case preview form"]
+    "requiredSections": [
+      "refund context",
+      "cancel path",
+      "support wording",
+      "calendar reminder",
+      "case preview form"
+    ],
+    "status": "shipped",
+    "url": "/refund/linkedin-premium-refund-after-free-trial.html"
   },
   {
     "slug": "duolingo-super-refund-after-annual-charge",
@@ -71,6 +117,30 @@
     "service": "Duolingo Super",
     "issueType": "surprise_charge",
     "primaryKeyword": "Duolingo Super refund annual charge",
-    "requiredSections": ["app store vs web billing", "cancel path", "refund request wording", "evidence checklist", "case preview form"]
+    "requiredSections": [
+      "app store vs web billing",
+      "cancel path",
+      "refund request wording",
+      "evidence checklist",
+      "case preview form"
+    ],
+    "status": "shipped",
+    "url": "/refund/duolingo-super-refund-after-annual-charge.html"
+  },
+  {
+    "slug": "expressvpn-refund-after-auto-renewal-charge",
+    "title": "ExpressVPN refund after auto-renewal charge",
+    "service": "ExpressVPN",
+    "issueType": "refund_denied",
+    "primaryKeyword": "ExpressVPN refund after auto-renewal",
+    "status": "shipped",
+    "url": "/refund/expressvpn-refund-after-auto-renewal-charge.html",
+    "requiredSections": [
+      "30-day refund window",
+      "cancel path",
+      "support script",
+      "auto-renew proof checklist",
+      "case preview form"
+    ]
   }
 ]

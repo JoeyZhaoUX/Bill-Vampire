@@ -6,7 +6,7 @@ Active filters: platform=all, status=all.
 
 ## Outcome Summary
 
-- Opportunities in this view: 11
+- Opportunities in this view: 15
 - Total visits recorded: 0
 - Case preview starts: 0
 - Preview downloads: 0
@@ -27,6 +27,10 @@ Active filters: platform=all, status=all.
 | 9 | indiehackers | Indie Hackers | Bill Vampire | builder_log | post | needs_review |
 | 10 | hn | Hacker News | Bill Vampire | show_hn | post | needs_review |
 | 11 | directory | AI and SaaS directories | Bill Vampire | directory_submission | directory | needs_review |
+| 12 | reddit | r/amazonprime | Amazon Prime | surprise_charge | comment | needs_review |
+| 13 | reddit | r/linkedin | LinkedIn Premium | trial_refund | comment | needs_review |
+| 14 | reddit | r/duolingo | Duolingo Super | surprise_charge | comment | needs_review |
+| 15 | reddit | r/Express_VPN | ExpressVPN | refund_denied | comment | needs_review |
 
 ## 1. I forgot a Canva trial and got charged $119
 
@@ -501,6 +505,178 @@ Disclosure: I am building a small tool around this problem, so ignore this if li
 - Prefer the no-link draft unless the thread invites links.
 - Record the final URL and outcome after posting.
 
+## 12. Amazon Prime renewed after cancellation
+
+- Platform: reddit / r/amazonprime
+- Source type: live_search / https://www.reddit.com/r/amazonprime/comments/1r8912a/amazon_prime_just_renewed_itself_after_i/
+- Service: Amazon Prime
+- Issue: surprise_charge
+- Pain: A user says Prime renewed after cancellation and support has not resolved the refund.
+- Reply angle: Give a short evidence-first support checklist and point to refund wording only if asked.
+- Link rule: No-link reply first; Amazon communities are complaint-heavy and skeptical of tools.
+- Recommended action: Use the no-link draft first. Share the link only after someone asks for it.
+- Landing page: /cancel/how-to-cancel-amazon-prime.html
+- UTM URL: https://billvampire.com/cancel/how-to-cancel-amazon-prime.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=amazon-prime-surprise-charge&service=Amazon+Prime&issue=surprise_charge&amount=%24139
+- Status: needs_review
+- Posted URL: not posted
+- Posted at: not posted
+- Metrics: 0 visits, 0 previews, 0 downloads, 0 saves, 0 checkout clicks, 0 paid
+- Result notes: none yet
+
+### No-link helpful draft
+
+For a Amazon Prime charge around $139, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.
+
+Keep the message short: "I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward."
+
+If they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.
+
+### Transparent draft with link
+
+For a Amazon Prime charge around $139, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.
+
+Keep the message short: "I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward."
+
+If they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.
+
+Disclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of Amazon Prime issue here: https://billvampire.com/cancel/how-to-cancel-amazon-prime.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=amazon-prime-surprise-charge&service=Amazon+Prime&issue=surprise_charge&amount=%24139
+
+### Human review checklist
+
+- Read the community/platform rules.
+- Edit the draft so it sounds like your own experience.
+- Prefer the no-link draft unless the thread invites links.
+- Record the final URL and outcome after posting.
+
+## 13. LinkedIn Premium subscription refund after free trial
+
+- Platform: reddit / r/linkedin
+- Source type: live_search / https://www.reddit.com/r/linkedin/comments/17jfs5m/linkedin_premium_subscription_refund/
+- Service: LinkedIn Premium
+- Issue: trial_refund
+- Pain: Users need the refund request path quickly after a Premium trial turns into a paid subscription.
+- Reply angle: Mention the short refund window, cancel-first step, and what proof to keep.
+- Link rule: No link in first reply; offer a case preview only if someone asks for wording.
+- Recommended action: Use the no-link draft first. Share the link only after someone asks for it.
+- Landing page: /cancel/how-to-cancel-linkedin-premium.html
+- UTM URL: https://billvampire.com/cancel/how-to-cancel-linkedin-premium.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=linkedin-premium-trial-refund&service=LinkedIn+Premium&issue=trial_refund&amount=%2429.99%2B
+- Status: needs_review
+- Posted URL: not posted
+- Posted at: not posted
+- Metrics: 0 visits, 0 previews, 0 downloads, 0 saves, 0 checkout clicks, 0 paid
+- Result notes: none yet
+
+### No-link helpful draft
+
+For a LinkedIn Premium charge around $29.99+, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.
+
+Keep the message short: "I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward."
+
+If they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.
+
+### Transparent draft with link
+
+For a LinkedIn Premium charge around $29.99+, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.
+
+Keep the message short: "I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward."
+
+If they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.
+
+Disclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of LinkedIn Premium issue here: https://billvampire.com/cancel/how-to-cancel-linkedin-premium.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=linkedin-premium-trial-refund&service=LinkedIn+Premium&issue=trial_refund&amount=%2429.99%2B
+
+### Human review checklist
+
+- Read the community/platform rules.
+- Edit the draft so it sounds like your own experience.
+- Prefer the no-link draft unless the thread invites links.
+- Record the final URL and outcome after posting.
+
+## 14. Duolingo membership refund after annual charge
+
+- Platform: reddit / r/duolingo
+- Source type: live_search / https://www.reddit.com/r/duolingo/comments/1p4xlmt/membership_refund/
+- Service: Duolingo Super
+- Issue: surprise_charge
+- Pain: Users report annual charges after trial confusion and uncertainty about Apple versus Duolingo refund routes.
+- Reply angle: Help them identify billing route first, then prepare Apple/Google/web refund wording.
+- Link rule: No-link reply first; disclose founder status if sharing the preview.
+- Recommended action: Use the no-link draft first. Share the link only after someone asks for it.
+- Landing page: /tools/free-trial-refund-helper.html
+- UTM URL: https://billvampire.com/tools/free-trial-refund-helper.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=duolingo-super-surprise-charge&service=Duolingo+Super&issue=surprise_charge&amount=%24154
+- Status: needs_review
+- Posted URL: not posted
+- Posted at: not posted
+- Metrics: 0 visits, 0 previews, 0 downloads, 0 saves, 0 checkout clicks, 0 paid
+- Result notes: none yet
+
+### No-link helpful draft
+
+For a Duolingo Super charge around $154, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.
+
+Keep the message short: "I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward."
+
+If they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.
+
+### Transparent draft with link
+
+For a Duolingo Super charge around $154, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.
+
+Keep the message short: "I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward."
+
+If they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.
+
+Disclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of Duolingo Super issue here: https://billvampire.com/tools/free-trial-refund-helper.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=duolingo-super-surprise-charge&service=Duolingo+Super&issue=surprise_charge&amount=%24154
+
+### Human review checklist
+
+- Read the community/platform rules.
+- Edit the draft so it sounds like your own experience.
+- Prefer the no-link draft unless the thread invites links.
+- Record the final URL and outcome after posting.
+
+## 15. ExpressVPN yearly plan auto-renewed and user needs refund urgently
+
+- Platform: reddit / r/Express_VPN
+- Source type: live_search / https://www.reddit.com/r/Express_VPN/comments/11cjbw6
+- Service: ExpressVPN
+- Issue: refund_denied
+- Pain: A user missed annual renewal, chat is not loading, and they need a refund path quickly.
+- Reply angle: Give email/live chat backup, 30-day window, and evidence to include.
+- Link rule: No-link reply first; share tool only if asked for a script.
+- Recommended action: Use the no-link draft first. Share the link only after someone asks for it.
+- Landing page: /cancel/how-to-cancel-expressvpn.html
+- UTM URL: https://billvampire.com/cancel/how-to-cancel-expressvpn.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=expressvpn-refund-denied&service=ExpressVPN&issue=refund_denied&amount=%24116.95
+- Status: needs_review
+- Posted URL: not posted
+- Posted at: not posted
+- Metrics: 0 visits, 0 previews, 0 downloads, 0 saves, 0 checkout clicks, 0 paid
+- Result notes: none yet
+
+### No-link helpful draft
+
+For a ExpressVPN charge around $116.95, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.
+
+Keep the message short: "I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward."
+
+If they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.
+
+### Transparent draft with link
+
+For a ExpressVPN charge around $116.95, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.
+
+Keep the message short: "I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward."
+
+If they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.
+
+Disclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of ExpressVPN issue here: https://billvampire.com/cancel/how-to-cancel-expressvpn.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=expressvpn-refund-denied&service=ExpressVPN&issue=refund_denied&amount=%24116.95
+
+### Human review checklist
+
+- Read the community/platform rules.
+- Edit the draft so it sounds like your own experience.
+- Prefer the no-link draft unless the thread invites links.
+- Record the final URL and outcome after posting.
+
 
 # SEO Page Backlog
 
@@ -513,6 +689,7 @@ Use these only when you can add service-specific facts and a case-preview form. 
 | 3 | Grammarly annual renewal refund request | Grammarly | surprise_charge | Grammarly annual renewal refund | shipped | /refund/grammarly-annual-renewal-refund-request.html | refund request timing, cancel path, short email template, reminder setup, case preview form |
 | 4 | ChatGPT Plus refund request after renewal | ChatGPT Plus | surprise_charge | ChatGPT Plus refund request | shipped | /refund/chatgpt-plus-refund-request-after-renewal.html | support path, refund request wording, cancel path, proof checklist, case preview form |
 | 5 | NordVPN refund script after auto-renewal | NordVPN | refund_denied | NordVPN refund script | shipped | /refund/nordvpn-refund-script-after-auto-renewal.html | refund window, cancel path, support chat script, chargeback preparation, case preview form |
-| 6 | Amazon Prime refund after unwanted renewal | Amazon Prime | surprise_charge | Amazon Prime refund renewal | backlog | not shipped | unused membership angle, cancel path, refund request steps, evidence checklist, case preview form |
-| 7 | LinkedIn Premium refund after a free trial | LinkedIn Premium | trial_refund | LinkedIn Premium refund trial | backlog | not shipped | refund context, cancel path, support wording, calendar reminder, case preview form |
-| 8 | Duolingo Super refund after an annual charge | Duolingo Super | surprise_charge | Duolingo Super refund annual charge | backlog | not shipped | app store vs web billing, cancel path, refund request wording, evidence checklist, case preview form |
+| 6 | Amazon Prime refund after unwanted renewal | Amazon Prime | surprise_charge | Amazon Prime refund renewal | shipped | /refund/amazon-prime-refund-after-unwanted-renewal.html | unused membership angle, cancel path, refund request steps, evidence checklist, case preview form |
+| 7 | LinkedIn Premium refund after a free trial | LinkedIn Premium | trial_refund | LinkedIn Premium refund trial | shipped | /refund/linkedin-premium-refund-after-free-trial.html | refund context, cancel path, support wording, calendar reminder, case preview form |
+| 8 | Duolingo Super refund after an annual charge | Duolingo Super | surprise_charge | Duolingo Super refund annual charge | shipped | /refund/duolingo-super-refund-after-annual-charge.html | app store vs web billing, cancel path, refund request wording, evidence checklist, case preview form |
+| 9 | ExpressVPN refund after auto-renewal charge | ExpressVPN | refund_denied | ExpressVPN refund after auto-renewal | shipped | /refund/expressvpn-refund-after-auto-renewal-charge.html | 30-day refund window, cancel path, support script, auto-renew proof checklist, case preview form |
