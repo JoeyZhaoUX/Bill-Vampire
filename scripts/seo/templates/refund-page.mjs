@@ -14,10 +14,38 @@ function escapeJsString(value = '') {
     .replace(/\r/g, '')
 }
 
+function escapeJsonForHtml(value) {
+  return JSON.stringify(value).replace(/</g, '\\u003c')
+}
+
 function getRelatedGuides(guide, guides) {
   const sameIssue = guides.filter((item) => item.slug !== guide.slug && item.issueType === guide.issueType)
   const differentIssue = guides.filter((item) => item.slug !== guide.slug && item.issueType !== guide.issueType)
   return [...sameIssue, ...differentIssue].slice(0, 4)
+}
+
+function ctaLabelFor(guide) {
+  if (guide.issueType === 'hard_cancel') return `Build my ${guide.service} cancel script`
+  if (guide.issueType === 'refund_denied') return `Build my ${guide.service} escalation plan`
+  if (guide.issueType === 'trial_refund') return `Build my ${guide.service} refund request`
+  return `Build my ${guide.service} refund request`
+}
+
+function faqFor(guide) {
+  return [
+    {
+      q: `Can I get a refund from ${guide.service}?`,
+      a: guide.refundWindow,
+    },
+    {
+      q: `How do I cancel ${guide.service}?`,
+      a: guide.cancelPath,
+    },
+    {
+      q: `What proof should I keep for ${guide.service}?`,
+      a: `Keep ${guide.evidence.slice(0, 4).join(', ').toLowerCase()}, and any support replies before escalating.`,
+    },
+  ]
 }
 
 export function renderRefundPage(guide, services, guides = []) {
@@ -27,6 +55,16 @@ export function renderRefundPage(guide, services, guides = []) {
   const scanUrl = `/#scan?service=${encodeURIComponent(guide.service)}&issue=${encodeURIComponent(guide.issueType)}`
   const canonical = `https://billvampire.com/refund/${guide.slug}.html`
   const evidenceItems = guide.evidence.map((item) => `<li>${escapeHtml(item)}</li>`).join('')
+  const ctaLabel = ctaLabelFor(guide)
+  const faqs = faqFor(guide)
+  const faqItems = faqs
+    .map(
+      (item) => `<details class="faq-item">
+        <summary>${escapeHtml(item.q)}</summary>
+        <p>${escapeHtml(item.a)}</p>
+      </details>`,
+    )
+    .join('')
   const relatedCards = getRelatedGuides(guide, guides)
     .map(
       (item) => `<a class="related-card" href="/refund/${item.slug}.html">
@@ -35,6 +73,38 @@ export function renderRefundPage(guide, services, guides = []) {
       </a>`,
     )
     .join('')
+  const structuredData = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Bill Vampire', item: 'https://billvampire.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Refund Guides', item: 'https://billvampire.com/refund/' },
+        { '@type': 'ListItem', position: 3, name: guide.title, item: canonical },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: guide.title,
+      description: guide.metaDescription,
+      totalTime: 'PT10M',
+      step: [
+        { '@type': 'HowToStep', name: 'Cancel or stop renewal', text: guide.cancelPath },
+        { '@type': 'HowToStep', name: 'Collect evidence', text: `Save ${guide.evidence.join(', ')}.` },
+        { '@type': 'HowToStep', name: 'Request refund or escalation', text: guide.refundWindow },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: { '@type': 'Answer', text: item.a },
+      })),
+    },
+  ]
 
   return `<!doctype html>
 <html lang="en">
@@ -49,6 +119,7 @@ export function renderRefundPage(guide, services, guides = []) {
   <meta property="og:url" content="${canonical}" />
   <link rel="icon" href="/icons/icon.png" type="image/png" />
   <link rel="stylesheet" href="/tools/gothic-tools.css" />
+  ${structuredData.map((item) => `<script type="application/ld+json">${escapeJsonForHtml(item)}</script>`).join('\n  ')}
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { min-height: 100vh; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
@@ -60,7 +131,7 @@ export function renderRefundPage(guide, services, guides = []) {
     h1 { font-size: clamp(34px, 6vw, 62px); line-height: 1.02; max-width: 850px; margin-bottom: 18px; }
     .lead { font-size: 18px; line-height: 1.68; max-width: 760px; margin-bottom: 26px; }
     .hero { display: grid; gap: 20px; grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr); align-items: start; }
-    .case-box, .panel, .mini-form, .related { border: 1px solid rgba(247,239,230,.12); background: linear-gradient(180deg, rgba(247,239,230,.055), rgba(247,239,230,.018)), rgba(23,18,23,.84); border-radius: 18px; padding: 20px; box-shadow: 0 22px 70px rgba(0,0,0,.38); }
+    .case-box, .panel, .mini-form, .related, .faq { border: 1px solid rgba(247,239,230,.12); background: linear-gradient(180deg, rgba(247,239,230,.055), rgba(247,239,230,.018)), rgba(23,18,23,.84); border-radius: 18px; padding: 20px; box-shadow: 0 22px 70px rgba(0,0,0,.38); }
     .case-box { position: sticky; top: 20px; }
     .case-box strong { display: block; color: #f7efe6; font-size: 26px; margin-bottom: 4px; }
     .case-box span { display: block; color: #c9a46a; font-weight: 800; margin-bottom: 14px; }
@@ -78,6 +149,12 @@ export function renderRefundPage(guide, services, guides = []) {
     .related-card { display: grid; gap: 5px; padding: 14px; border: 1px solid rgba(247,239,230,.1); border-radius: 14px; text-decoration: none; background: rgba(13,11,14,.52); }
     .related-card strong { color: #f7efe6; line-height: 1.25; }
     .related-card span { color: #c9a46a; font-size: 12px; font-weight: 800; }
+    .faq { margin-top: 24px; }
+    .faq h2 { color: #f7efe6; font-size: 22px; margin-bottom: 12px; }
+    .faq-item { border-top: 1px solid rgba(247,239,230,.1); padding: 14px 0; }
+    .faq-item:first-of-type { border-top: 0; }
+    .faq-item summary { color: #f7efe6; cursor: pointer; font-weight: 800; }
+    .faq-item p { color: #a99a91; line-height: 1.64; margin-top: 10px; }
     textarea { width: 100%; min-height: 140px; margin-top: 12px; resize: vertical; border-radius: 14px; padding: 14px; font: inherit; line-height: 1.5; }
     button { width: 100%; border: 0; border-radius: 14px; padding: 15px 18px; margin-top: 12px; font-weight: 900; cursor: pointer; }
     .disclaimer { margin-top: 18px; font-size: 12px; line-height: 1.55; color: #7f716a; }
@@ -124,7 +201,7 @@ export function renderRefundPage(guide, services, guides = []) {
         <strong>${escapeHtml(guide.amountExample)}</strong>
         <span>Typical amount at risk</span>
         <p>${escapeHtml(guide.officialContext)}</p>
-        <a class="cta" href="${toolUrl}">Build my free case preview</a>
+        <a class="cta" href="${toolUrl}" onclick="bvTrack('refund_cta_clicked', { placement: 'side_card' })">${escapeHtml(ctaLabel)}</a>
         <a class="secondary" href="${cancelUrl}">Open ${escapeHtml(guide.service)} cancel guide</a>
         <p class="disclaimer">Bill Vampire provides consumer communication templates and organization help. It is not legal, financial, or banking advice.</p>
       </aside>
@@ -134,7 +211,12 @@ export function renderRefundPage(guide, services, guides = []) {
       <h2>Start with your exact charge</h2>
       <p>Paste the charge, receipt, or one sentence. The free preview can be saved or downloaded; the paid Emergency Kit adds full scripts and checklist details.</p>
       <textarea id="refundInput">${escapeHtml(guide.freePreviewPrompt)}</textarea>
-      <button onclick="startRefundCase()">Generate preview</button>
+      <button onclick="startRefundCase()">${escapeHtml(ctaLabel)}</button>
+    </section>
+
+    <section class="faq">
+      <h2>${escapeHtml(guide.service)} refund FAQ</h2>
+      ${faqItems}
     </section>
 
     <section class="related">
@@ -143,8 +225,21 @@ export function renderRefundPage(guide, services, guides = []) {
     </section>
   </main>
   <script>
+    function bvTrack(event, props) {
+      var payload = Object.assign({
+        service: '${escapeJsString(guide.service)}',
+        issue_type: '${escapeJsString(guide.issueType)}',
+        page: location.pathname,
+        source: 'seo_refund_page'
+      }, props || {});
+      try { if (window.gtag) window.gtag('event', event, payload); } catch (e) {}
+      try { if (window.posthog && window.posthog.capture) window.posthog.capture(event, payload); } catch (e) {}
+      try { if (window.__debugAnalytics) console.log('[track]', event, payload); } catch (e) {}
+    }
+    bvTrack('refund_page_viewed');
     function startRefundCase() {
       const value = document.getElementById('refundInput').value || '${escapeJsString(guide.freePreviewPrompt)}';
+      bvTrack('refund_cta_clicked', { placement: 'mini_form' });
       localStorage.setItem('vampire_issue_type', '${escapeHtml(guide.issueType)}');
       localStorage.setItem('vampire_tool_prefill', value);
       localStorage.setItem('vampire_source_page', JSON.stringify({

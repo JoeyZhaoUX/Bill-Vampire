@@ -11,6 +11,9 @@
   <meta property="og:url" content="https://billvampire.com/refund/new-york-times-cancel-refund-script.html" />
   <link rel="icon" href="/icons/icon.png" type="image/png" />
   <link rel="stylesheet" href="/tools/gothic-tools.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Bill Vampire","item":"https://billvampire.com/"},{"@type":"ListItem","position":2,"name":"Refund Guides","item":"https://billvampire.com/refund/"},{"@type":"ListItem","position":3,"name":"New York Times cancel and refund script","item":"https://billvampire.com/refund/new-york-times-cancel-refund-script.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"New York Times cancel and refund script","description":"NYTimes hard to cancel or still charging? Build a cancellation record, refund request, and evidence checklist before escalating.","totalTime":"PT10M","step":[{"@type":"HowToStep","name":"Cancel or stop renewal","text":"Open NYTimes account subscription settings, use the available cancel/contact option, and record the date, channel, representative name, and confirmation number."},{"@type":"HowToStep","name":"Collect evidence","text":"Save Subscription product name, First cancellation attempt date, Chat transcript or call notes, Charge after cancellation request, Confirmation number or email."},{"@type":"HowToStep","name":"Request refund or escalation","text":"Ask support to cancel immediately, confirm the effective date, and refund any charge after your first documented cancellation request."}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I get a refund from New York Times?","acceptedAnswer":{"@type":"Answer","text":"Ask support to cancel immediately, confirm the effective date, and refund any charge after your first documented cancellation request."}},{"@type":"Question","name":"How do I cancel New York Times?","acceptedAnswer":{"@type":"Answer","text":"Open NYTimes account subscription settings, use the available cancel/contact option, and record the date, channel, representative name, and confirmation number."}},{"@type":"Question","name":"What proof should I keep for New York Times?","acceptedAnswer":{"@type":"Answer","text":"Keep subscription product name, first cancellation attempt date, chat transcript or call notes, charge after cancellation request, and any support replies before escalating."}}]}</script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { min-height: 100vh; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
@@ -22,7 +25,7 @@
     h1 { font-size: clamp(34px, 6vw, 62px); line-height: 1.02; max-width: 850px; margin-bottom: 18px; }
     .lead { font-size: 18px; line-height: 1.68; max-width: 760px; margin-bottom: 26px; }
     .hero { display: grid; gap: 20px; grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr); align-items: start; }
-    .case-box, .panel, .mini-form, .related { border: 1px solid rgba(247,239,230,.12); background: linear-gradient(180deg, rgba(247,239,230,.055), rgba(247,239,230,.018)), rgba(23,18,23,.84); border-radius: 18px; padding: 20px; box-shadow: 0 22px 70px rgba(0,0,0,.38); }
+    .case-box, .panel, .mini-form, .related, .faq { border: 1px solid rgba(247,239,230,.12); background: linear-gradient(180deg, rgba(247,239,230,.055), rgba(247,239,230,.018)), rgba(23,18,23,.84); border-radius: 18px; padding: 20px; box-shadow: 0 22px 70px rgba(0,0,0,.38); }
     .case-box { position: sticky; top: 20px; }
     .case-box strong { display: block; color: #f7efe6; font-size: 26px; margin-bottom: 4px; }
     .case-box span { display: block; color: #c9a46a; font-weight: 800; margin-bottom: 14px; }
@@ -40,6 +43,12 @@
     .related-card { display: grid; gap: 5px; padding: 14px; border: 1px solid rgba(247,239,230,.1); border-radius: 14px; text-decoration: none; background: rgba(13,11,14,.52); }
     .related-card strong { color: #f7efe6; line-height: 1.25; }
     .related-card span { color: #c9a46a; font-size: 12px; font-weight: 800; }
+    .faq { margin-top: 24px; }
+    .faq h2 { color: #f7efe6; font-size: 22px; margin-bottom: 12px; }
+    .faq-item { border-top: 1px solid rgba(247,239,230,.1); padding: 14px 0; }
+    .faq-item:first-of-type { border-top: 0; }
+    .faq-item summary { color: #f7efe6; cursor: pointer; font-weight: 800; }
+    .faq-item p { color: #a99a91; line-height: 1.64; margin-top: 10px; }
     textarea { width: 100%; min-height: 140px; margin-top: 12px; resize: vertical; border-radius: 14px; padding: 14px; font: inherit; line-height: 1.5; }
     button { width: 100%; border: 0; border-radius: 14px; padding: 15px 18px; margin-top: 12px; font-weight: 900; cursor: pointer; }
     .disclaimer { margin-top: 18px; font-size: 12px; line-height: 1.55; color: #7f716a; }
@@ -86,7 +95,7 @@
         <strong>$4-$25/mo</strong>
         <span>Typical amount at risk</span>
         <p>NYTimes account cancellation and refund options depend on product, purchase route, and region; users should save every cancellation attempt.</p>
-        <a class="cta" href="/tools/free-trial-refund-helper.html?service=New%20York%20Times&issue=hard_cancel">Build my free case preview</a>
+        <a class="cta" href="/tools/free-trial-refund-helper.html?service=New%20York%20Times&issue=hard_cancel" onclick="bvTrack('refund_cta_clicked', { placement: 'side_card' })">Build my New York Times cancel script</a>
         <a class="secondary" href="/cancel/how-to-cancel-new-york-times.html">Open New York Times cancel guide</a>
         <p class="disclaimer">Bill Vampire provides consumer communication templates and organization help. It is not legal, financial, or banking advice.</p>
       </aside>
@@ -96,7 +105,21 @@
       <h2>Start with your exact charge</h2>
       <p>Paste the charge, receipt, or one sentence. The free preview can be saved or downloaded; the paid Emergency Kit adds full scripts and checklist details.</p>
       <textarea id="refundInput">I am trying to cancel New York Times and want a refund or proof trail for charges after my cancellation request.</textarea>
-      <button onclick="startRefundCase()">Generate preview</button>
+      <button onclick="startRefundCase()">Build my New York Times cancel script</button>
+    </section>
+
+    <section class="faq">
+      <h2>New York Times refund FAQ</h2>
+      <details class="faq-item">
+        <summary>Can I get a refund from New York Times?</summary>
+        <p>Ask support to cancel immediately, confirm the effective date, and refund any charge after your first documented cancellation request.</p>
+      </details><details class="faq-item">
+        <summary>How do I cancel New York Times?</summary>
+        <p>Open NYTimes account subscription settings, use the available cancel/contact option, and record the date, channel, representative name, and confirmation number.</p>
+      </details><details class="faq-item">
+        <summary>What proof should I keep for New York Times?</summary>
+        <p>Keep subscription product name, first cancellation attempt date, chat transcript or call notes, charge after cancellation request, and any support replies before escalating.</p>
+      </details>
     </section>
 
     <section class="related">
@@ -117,8 +140,21 @@
     </section>
   </main>
   <script>
+    function bvTrack(event, props) {
+      var payload = Object.assign({
+        service: 'New York Times',
+        issue_type: 'hard_cancel',
+        page: location.pathname,
+        source: 'seo_refund_page'
+      }, props || {});
+      try { if (window.gtag) window.gtag('event', event, payload); } catch (e) {}
+      try { if (window.posthog && window.posthog.capture) window.posthog.capture(event, payload); } catch (e) {}
+      try { if (window.__debugAnalytics) console.log('[track]', event, payload); } catch (e) {}
+    }
+    bvTrack('refund_page_viewed');
     function startRefundCase() {
       const value = document.getElementById('refundInput').value || 'I am trying to cancel New York Times and want a refund or proof trail for charges after my cancellation request.';
+      bvTrack('refund_cta_clicked', { placement: 'mini_form' });
       localStorage.setItem('vampire_issue_type', 'hard_cancel');
       localStorage.setItem('vampire_tool_prefill', value);
       localStorage.setItem('vampire_source_page', JSON.stringify({
