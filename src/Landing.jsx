@@ -492,32 +492,54 @@ export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 scroll-reveal-stagger">
-            {[
-              {
-                icon: faWandMagicSparkles, title: 'Pick the emergency',
-                desc: 'Choose surprise charge, trial ending soon, or hard-to-cancel subscription so the kit matches the job.',
-                step: '01', color: 'violet',
-              },
-              {
-                icon: faSkull, title: 'Paste, upload, or speak',
-                desc: 'Use a billing email, screenshot, PDF, manual note, or voice input. We extract service, amount, date, and status.',
-                step: '02', color: 'rose',
-              },
-              {
-                icon: faBolt, title: 'Copy the rescue kit',
-                desc: 'Get a cancel path, refund email, support script, chargeback checklist, evidence list, and reminder text.',
-                step: '03', color: 'emerald',
-              },
-            ].map(s => (
-              <div key={s.title} className="scroll-reveal glass-card glass-card-hover rounded-2xl p-7 transition-all hover:scale-[1.02]">
-                <p className="text-[10px] font-bold text-violet-400 uppercase tracking-[0.2em] mb-5">Step {s.step}</p>
-                <div className={`inline-flex w-12 h-12 rounded-xl ${s.color === 'rose' ? 'bg-rose-950/40 border-rose-800/30' : s.color === 'emerald' ? 'bg-emerald-950/40 border-emerald-800/30' : 'bg-violet-950/40 border-violet-800/30'} border items-center justify-center mb-5`}>
-                  <FontAwesomeIcon icon={s.icon} className={`w-5 h-5 ${s.color === 'rose' ? 'text-rose-400' : s.color === 'emerald' ? 'text-emerald-400' : 'text-violet-400'}`} />
-                </div>
-                <h3 className="text-lg font-semibold text-slate-100 mb-2">{s.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{s.desc}</p>
+            {/* Step 1 */}
+            <div className="scroll-reveal glass-card glass-card-hover rounded-2xl p-7 transition-all hover:scale-[1.02] flex flex-col justify-between">
+              <div>
+                <p className="text-[10px] font-bold text-violet-400 uppercase tracking-[0.2em] mb-5">Step 01</p>
+                <svg viewBox="0 0 100 60" className="w-full h-20 mb-6 text-violet-400 opacity-80" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <rect x="5" y="5" width="90" height="50" rx="6" strokeDasharray="3 3" className="stroke-slate-800" />
+                  <rect x="15" y="15" width="22" height="14" rx="3" className="fill-violet-950/20 stroke-violet-500" />
+                  <rect x="44" y="15" width="41" height="4" rx="2" className="fill-slate-800 stroke-slate-800" />
+                  <rect x="44" y="23" width="28" height="4" rx="2" className="fill-slate-800 stroke-slate-800" />
+                  <circle cx="26" cy="22" r="5" className="stroke-violet-400 animate-pulse fill-violet-500/20" />
+                  <circle cx="26" cy="22" r="1.5" className="fill-violet-400" />
+                </svg>
+                <h3 className="text-lg font-semibold text-slate-100 mb-2">Pick the emergency</h3>
+                <p className="text-sm text-slate-500 leading-relaxed">Choose surprise charge, trial ending soon, or hard-to-cancel subscription so the kit matches the job.</p>
               </div>
-            ))}
+            </div>
+
+            {/* Step 2 */}
+            <div className="scroll-reveal glass-card glass-card-hover rounded-2xl p-7 transition-all hover:scale-[1.02] flex flex-col justify-between">
+              <div>
+                <p className="text-[10px] font-bold text-rose-400 uppercase tracking-[0.2em] mb-5">Step 02</p>
+                <svg viewBox="0 0 100 60" className="w-full h-20 mb-6 text-rose-400 opacity-80" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M30 5 h40 l10 10 v40 l-5-3-5 3-5-3-5 3-5-3-5 3-5-3-5 3-5-3-5 3z" className="fill-rose-950/10 stroke-rose-800/40" />
+                  <line x1="37" y1="18" x2="63" y2="18" className="stroke-slate-700" />
+                  <line x1="37" y1="26" x2="55" y2="26" className="stroke-rose-500/60" />
+                  <line x1="37" y1="34" x2="60" y2="34" className="stroke-slate-700" />
+                  <line x1="37" y1="42" x2="50" y2="42" className="stroke-rose-400" />
+                  <line x1="15" y1="28" x2="85" y2="28" className="stroke-rose-500 shadow-lg shadow-rose-500 animate-pulse" strokeWidth="2" />
+                </svg>
+                <h3 className="text-lg font-semibold text-slate-100 mb-2">Paste, upload, or speak</h3>
+                <p className="text-sm text-slate-500 leading-relaxed">Use a billing email, screenshot, PDF, manual note, or voice input. We extract service, amount, date, and status.</p>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="scroll-reveal glass-card glass-card-hover rounded-2xl p-7 transition-all hover:scale-[1.02] flex flex-col justify-between">
+              <div>
+                <p className="text-[10px] font-bold text-emerald-400 uppercase tracking-[0.2em] mb-5">Step 03</p>
+                <svg viewBox="0 0 100 60" className="w-full h-20 mb-6 text-emerald-400 opacity-80" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M15 18 h20 l5-5 h45 a4 4 0 0 1 4 4 v33 a4 4 0 0 1 -4 4 h-70 a4 4 0 0 1 -4 -4 z" className="fill-emerald-950/10 stroke-emerald-800/40" />
+                  <rect x="25" y="22" width="50" height="20" rx="4" className="fill-emerald-950/20 stroke-emerald-500" />
+                  <circle cx="50" cy="32" r="6" className="stroke-emerald-400 fill-emerald-500/20" />
+                  <path d="M47 32 l2 2 l4-4" className="stroke-emerald-400" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <h3 className="text-lg font-semibold text-slate-100 mb-2">Copy the rescue kit</h3>
+                <p className="text-sm text-slate-500 leading-relaxed">Get a cancel path, refund email, support script, chargeback checklist, evidence list, and reminder text.</p>
+              </div>
+            </div>
           </div>
 
           <div className="mt-12">
