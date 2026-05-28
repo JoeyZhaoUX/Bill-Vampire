@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faFileImport, faSpinner, faCheck, faXmark, faWandMagicSparkles,
-  faArrowRight, faPen, faMicrophone, faStop, faBolt,
+  faArrowRight, faPen, faMicrophone, faStop, faBolt, faLock, faShieldHalved,
 } from '@fortawesome/free-solid-svg-icons';
 import { extractBills, fallbackExtractFromText } from './verdict';
 import { ISSUE_TYPES, getIssueType } from './emergencyKit';
@@ -312,6 +312,22 @@ export default function Scan({ onComplete, onSkipToManual }) {
                 <FontAwesomeIcon icon={isListening ? faStop : faMicrophone} className="w-3 h-3" />
                 {isListening ? 'Stop listening' : 'Speak it'}
               </button>
+            </div>
+
+            {/* Trust Signals under upload/input area */}
+            <div className="mt-5 py-3 border-t border-b border-slate-800/20 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+              <span className="text-[11px] text-slate-400 flex items-center gap-1.5 font-medium">
+                <FontAwesomeIcon icon={faLock} className="text-rose-400 w-3 h-3" />
+                No Bank Login Required
+              </span>
+              <span className="text-[11px] text-slate-400 flex items-center gap-1.5 font-medium">
+                <FontAwesomeIcon icon={faShieldHalved} className="text-violet-400 w-3 h-3" />
+                100% Privacy Protected
+              </span>
+              <span className="text-[11px] text-slate-400 flex items-center gap-1.5 font-medium">
+                <FontAwesomeIcon icon={faCheck} className="text-emerald-400 w-3 h-3" />
+                Google Gemini Secured
+              </span>
             </div>
 
             {error && (
