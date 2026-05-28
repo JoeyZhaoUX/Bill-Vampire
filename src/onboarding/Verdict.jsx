@@ -450,24 +450,26 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
           )}
 
           {/* Viral Sharing Promotion Box - Fourth Phase */}
-          <section className="py-10 border-t border-slate-800/40">
-            <div className="bg-gradient-to-r from-violet-950/40 to-rose-950/30 rounded-2xl border border-violet-800/30 p-5 sm:p-6 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
-              <div>
-                <h3 className="text-sm font-bold text-amber-300 uppercase tracking-widest mb-1.5 flex items-center justify-center sm:justify-start gap-1.5">
-                  <FontAwesomeIcon icon={faCrown} className="w-3.5 h-3.5 text-amber-300" />
-                  Share & Get 1 Free Emergency Kit!
-                </h3>
-                <p className="text-xs text-slate-300 leading-relaxed max-w-md">
-                  Share your Bill Vampire damage report or a successful refund screenshot on X (Twitter), Reddit, TikTok, or Instagram, tag <strong className="text-rose-400">@BillVampire</strong>, and we will direct message you a promo code for a <strong className="text-amber-300">Lifetime Free 1-Time Emergency Kit</strong>!
-                </p>
+          {kitUnlocked && (
+            <section className="py-10 border-t border-slate-800/40">
+              <div className="bg-gradient-to-r from-violet-950/40 to-rose-950/30 rounded-2xl border border-violet-800/30 p-5 sm:p-6 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div>
+                  <h3 className="text-sm font-bold text-amber-300 uppercase tracking-widest mb-1.5 flex items-center justify-center sm:justify-start gap-1.5">
+                    <FontAwesomeIcon icon={faCrown} className="w-3.5 h-3.5 text-amber-300" />
+                    Share & Get 1 Free Emergency Kit!
+                  </h3>
+                  <p className="text-xs text-slate-300 leading-relaxed max-w-md">
+                    Share your Bill Vampire damage report or a successful refund screenshot on X (Twitter), Reddit, TikTok, or Instagram, tag <strong className="text-rose-400">@BillVampire</strong>, and we will direct message you a promo code for a <strong className="text-amber-300">Lifetime Free 1-Time Emergency Kit</strong>!
+                  </p>
+                </div>
+                <button onClick={onShare}
+                  className="shrink-0 px-6 py-3 bg-[#1C1C2A] text-slate-200 border border-slate-700/60 rounded-xl text-xs font-bold hover:bg-[#252536] transition-colors cursor-pointer flex items-center gap-1.5">
+                  <FontAwesomeIcon icon={faShareNodes} className="w-3.5 h-3.5 text-rose-400" />
+                  Share & Claim Code
+                </button>
               </div>
-              <button onClick={onShare}
-                className="shrink-0 px-6 py-3 bg-[#1C1C2A] text-slate-200 border border-slate-700/60 rounded-xl text-xs font-bold hover:bg-[#252536] transition-colors cursor-pointer flex items-center gap-1.5">
-                <FontAwesomeIcon icon={faShareNodes} className="w-3.5 h-3.5 text-rose-400" />
-                Share & Claim Code
-              </button>
-            </div>
-          </section>
+            </section>
+          )}
 
           <section className="py-10 border-t border-slate-800/40 flex flex-col sm:flex-row gap-3">
             <button onClick={onShare}
