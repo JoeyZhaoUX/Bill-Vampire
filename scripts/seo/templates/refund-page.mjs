@@ -14,13 +14,27 @@ function escapeJsString(value = '') {
     .replace(/\r/g, '')
 }
 
-export function renderRefundPage(guide, services) {
+function getRelatedGuides(guide, guides) {
+  const sameIssue = guides.filter((item) => item.slug !== guide.slug && item.issueType === guide.issueType)
+  const differentIssue = guides.filter((item) => item.slug !== guide.slug && item.issueType !== guide.issueType)
+  return [...sameIssue, ...differentIssue].slice(0, 4)
+}
+
+export function renderRefundPage(guide, services, guides = []) {
   const service = services.find((item) => item.id === guide.serviceId)
   const cancelUrl = service ? `/cancel/${service.slug}.html` : '/tools/cancel-subscription-guide.html'
   const toolUrl = `/tools/free-trial-refund-helper.html?service=${encodeURIComponent(guide.service)}&issue=${encodeURIComponent(guide.issueType)}`
   const scanUrl = `/#scan?service=${encodeURIComponent(guide.service)}&issue=${encodeURIComponent(guide.issueType)}`
   const canonical = `https://billvampire.com/refund/${guide.slug}.html`
   const evidenceItems = guide.evidence.map((item) => `<li>${escapeHtml(item)}</li>`).join('')
+  const relatedCards = getRelatedGuides(guide, guides)
+    .map(
+      (item) => `<a class="related-card" href="/refund/${item.slug}.html">
+        <strong>${escapeHtml(item.title)}</strong>
+        <span>${escapeHtml(item.service)} · ${escapeHtml(item.amountExample)}</span>
+      </a>`,
+    )
+    .join('')
 
   return `<!doctype html>
 <html lang="en">
@@ -46,7 +60,7 @@ export function renderRefundPage(guide, services) {
     h1 { font-size: clamp(34px, 6vw, 62px); line-height: 1.02; max-width: 850px; margin-bottom: 18px; }
     .lead { font-size: 18px; line-height: 1.68; max-width: 760px; margin-bottom: 26px; }
     .hero { display: grid; gap: 20px; grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr); align-items: start; }
-    .case-box, .panel, .mini-form { border: 1px solid rgba(247,239,230,.12); background: linear-gradient(180deg, rgba(247,239,230,.055), rgba(247,239,230,.018)), rgba(23,18,23,.84); border-radius: 18px; padding: 20px; box-shadow: 0 22px 70px rgba(0,0,0,.38); }
+    .case-box, .panel, .mini-form, .related { border: 1px solid rgba(247,239,230,.12); background: linear-gradient(180deg, rgba(247,239,230,.055), rgba(247,239,230,.018)), rgba(23,18,23,.84); border-radius: 18px; padding: 20px; box-shadow: 0 22px 70px rgba(0,0,0,.38); }
     .case-box { position: sticky; top: 20px; }
     .case-box strong { display: block; color: #f7efe6; font-size: 26px; margin-bottom: 4px; }
     .case-box span { display: block; color: #c9a46a; font-weight: 800; margin-bottom: 14px; }
@@ -58,11 +72,17 @@ export function renderRefundPage(guide, services) {
     .panel p, .panel li, .mini-form p { color: #a99a91; line-height: 1.64; }
     .panel ul { padding-left: 20px; display: grid; gap: 8px; }
     .mini-form { margin-top: 24px; }
+    .related { margin-top: 24px; }
+    .related h2 { color: #f7efe6; font-size: 22px; margin-bottom: 12px; }
+    .related-grid { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .related-card { display: grid; gap: 5px; padding: 14px; border: 1px solid rgba(247,239,230,.1); border-radius: 14px; text-decoration: none; background: rgba(13,11,14,.52); }
+    .related-card strong { color: #f7efe6; line-height: 1.25; }
+    .related-card span { color: #c9a46a; font-size: 12px; font-weight: 800; }
     textarea { width: 100%; min-height: 140px; margin-top: 12px; resize: vertical; border-radius: 14px; padding: 14px; font: inherit; line-height: 1.5; }
     button { width: 100%; border: 0; border-radius: 14px; padding: 15px 18px; margin-top: 12px; font-weight: 900; cursor: pointer; }
     .disclaimer { margin-top: 18px; font-size: 12px; line-height: 1.55; color: #7f716a; }
     @media (max-width: 760px) {
-      .hero, .grid { grid-template-columns: 1fr; }
+      .hero, .grid, .related-grid { grid-template-columns: 1fr; }
       .case-box { position: static; }
     }
   </style>
@@ -115,6 +135,11 @@ export function renderRefundPage(guide, services) {
       <p>Paste the charge, receipt, or one sentence. The free preview can be saved or downloaded; the paid Emergency Kit adds full scripts and checklist details.</p>
       <textarea id="refundInput">${escapeHtml(guide.freePreviewPrompt)}</textarea>
       <button onclick="startRefundCase()">Generate preview</button>
+    </section>
+
+    <section class="related">
+      <h2>Related refund case files</h2>
+      <div class="related-grid">${relatedCards}</div>
     </section>
   </main>
   <script>

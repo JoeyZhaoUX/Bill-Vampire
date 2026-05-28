@@ -19,7 +19,7 @@ export function generateRefundPages() {
   const guides = JSON.parse(readFileSync(CONTENT_PATH, 'utf-8'))
 
   for (const guide of guides) {
-    const html = renderRefundPage(guide, SERVICES)
+    const html = renderRefundPage(guide, SERVICES, guides)
     writeFileSync(join(OUTPUT_DIR, `${guide.slug}.html`), html)
   }
 

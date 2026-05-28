@@ -26,6 +26,13 @@
     .tool-card h2 { color: #F1F5F9; font-size: 1.2rem; margin-bottom: 8px; }
     .tool-card p { color: #94A3B8; font-size: 0.9rem; line-height: 1.6; }
     .tool-card .tag { display: inline-block; margin-top: 12px; padding: 4px 10px; background: #1E293B; border-radius: 6px; font-size: 0.75rem; color: #FB7185; font-weight: 600; }
+    .hero-card { padding: 28px; border: 1px solid rgba(201,164,106,.28); border-radius: 18px; background: linear-gradient(145deg, rgba(201,164,106,.12), rgba(142,29,44,.08)), #141420; margin-bottom: 16px; }
+    .hero-card h2 { color: #F8FAFC; font-size: 1.45rem; line-height: 1.15; margin-bottom: 10px; }
+    .hero-card p { color: #CBD5E1; font-size: .95rem; line-height: 1.65; margin-bottom: 18px; }
+    .guide-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .guide-pill { display: block; padding: 12px; border: 1px solid rgba(148,163,184,.16); border-radius: 12px; color: #F8FAFC; text-decoration: none; font-size: .82rem; line-height: 1.35; background: rgba(15,23,42,.36); }
+    .guide-pill span { display: block; color: #C9A46A; font-size: .7rem; font-weight: 800; margin-bottom: 4px; text-transform: uppercase; letter-spacing: .08em; }
+    @media (max-width: 520px) { .guide-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -37,6 +44,17 @@
 
     <h1>Free Subscription Tools</h1>
     <p class="subtitle">See results before signup. Create an account only when you want saved case files, reminders, and cross-device sync.</p>
+
+    <section class="hero-card">
+      <h2>Refund case files for the charges people search in panic</h2>
+      <p>Open a service-specific case file, then generate a free preview with the service, issue type, and refund path already framed.</p>
+      <div class="guide-grid">
+        <a class="guide-pill" href="/refund/adobe-cancellation-fee-refund-email-template.html"><span>$54.99+</span>Adobe cancellation fee</a>
+        <a class="guide-pill" href="/refund/microsoft-365-refund-after-annual-renewal.html"><span>$99.99</span>Microsoft 365 renewal</a>
+        <a class="guide-pill" href="/refund/dropbox-annual-renewal-refund-request.html"><span>$119+</span>Dropbox annual refund</a>
+        <a class="guide-pill" href="/refund/tinder-gold-refund-after-accidental-purchase.html"><span>$149.99</span>Tinder Gold refund</a>
+      </div>
+    </section>
 
     <a class="tool-card" href="/tools/free-trial-refund-helper.html">
       <h2>Free Trial Refund Helper</h2>

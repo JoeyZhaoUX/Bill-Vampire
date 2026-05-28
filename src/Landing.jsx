@@ -67,6 +67,33 @@ const EMERGENCY_CHOICES = [
   },
 ];
 
+const REFUND_GUIDE_LINKS = [
+  {
+    title: 'Adobe cancellation fee',
+    href: '/refund/adobe-cancellation-fee-refund-email-template.html',
+    amount: '$54.99+',
+    issue: 'Hard cancel',
+  },
+  {
+    title: 'Microsoft 365 annual renewal',
+    href: '/refund/microsoft-365-refund-after-annual-renewal.html',
+    amount: '$99.99',
+    issue: 'Annual renewal',
+  },
+  {
+    title: 'Canva Pro trial charge',
+    href: '/refund/canva-pro-trial-refund-after-119-charge.html',
+    amount: '$119',
+    issue: 'Trial refund',
+  },
+  {
+    title: 'Tinder Gold accidental purchase',
+    href: '/refund/tinder-gold-refund-after-accidental-purchase.html',
+    amount: '$149.99',
+    issue: 'App purchase',
+  },
+];
+
 // ===== Utilities =====
 
 function formatUsd(n) {
@@ -405,6 +432,50 @@ export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
                 <p className="text-xs text-slate-500">{s.label}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== REFUND GUIDE CLUSTER ===== */}
+      <section className="py-16 lg:py-20 bg-gradient-to-b from-[#0B0B11] via-[#0F0F18] to-[#0B0B11] border-y border-white/[0.04]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 items-start">
+            <div>
+              <p className="text-xs font-medium text-amber-400 uppercase tracking-widest mb-3">Refund case library</p>
+              <h2 className="tracking-heading text-3xl lg:text-4xl font-bold text-slate-100 mb-4">
+                Start from the exact charge people are searching for.
+              </h2>
+              <p className="text-sm text-slate-500 leading-relaxed mb-6">
+                These pages are built around high-intent refund and cancellation situations, then route users into the same free case preview instead of leaving them with generic advice.
+              </p>
+              <a
+                href="/refund/"
+                onClick={() => track('refund_cluster_clicked', { source: 'landing_refund_cluster' })}
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#1C1C2A] border border-amber-700/30 text-amber-300 text-sm font-bold hover:bg-[#252536] transition-colors no-underline"
+              >
+                Browse all refund guides <FontAwesomeIcon icon={faArrowRight} className="w-3 h-3" />
+              </a>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {REFUND_GUIDE_LINKS.map(item => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => track('refund_guide_clicked', { source: 'landing_refund_cluster', guide: item.href })}
+                  className="glass-card glass-card-hover rounded-2xl p-5 no-underline transition-all hover:scale-[1.02]"
+                >
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <span className="inline-flex w-10 h-10 rounded-xl bg-amber-950/30 border border-amber-800/30 items-center justify-center text-amber-300">
+                      <FontAwesomeIcon icon={faFileInvoiceDollar} className="w-4 h-4" />
+                    </span>
+                    <span className="text-lg font-black text-rose-400 tabular-nums">{item.amount}</span>
+                  </div>
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-amber-400 font-bold mb-2">{item.issue}</p>
+                  <h3 className="text-sm font-bold text-slate-100 mb-2">{item.title}</h3>
+                  <p className="text-xs text-slate-500 leading-relaxed">Open the case file, then generate a free preview with the service and issue already set.</p>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>
