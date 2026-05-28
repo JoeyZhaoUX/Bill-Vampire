@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-05-27T08:27:25.430Z",
-  "runDate": "2026-05-27",
+  "generatedAt": "2026-05-28T01:52:06.555Z",
+  "runDate": "2026-05-28",
   "baseUrl": "https://billvampire.com",
-  "count": 15,
+  "count": 19,
   "queue": [
     {
       "id": "reddit-sideproject-canva-trial-refund",
@@ -528,6 +528,146 @@
         "noLink": "For a ExpressVPN charge around $116.95, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.\n\nKeep the message short: \"I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward.\"\n\nIf they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.",
         "transparentWithLink": "For a ExpressVPN charge around $116.95, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.\n\nKeep the message short: \"I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward.\"\n\nIf they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.\n\nDisclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of ExpressVPN issue here: https://billvampire.com/cancel/how-to-cancel-expressvpn.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=expressvpn-refund-denied&service=ExpressVPN&issue=refund_denied&amount=%24116.95"
       }
+    },
+    {
+      "id": "reddit-microsoft-365-annual-refund-help",
+      "platform": "reddit",
+      "community": "r/microsoft",
+      "sourceType": "live_search",
+      "sourceUrl": "https://www.reddit.com/r/microsoft/comments/11fj1o2/help_is_there_anyway_i_can_get_a_refund_on_a/",
+      "topic": "Microsoft 365 annual subscription refund help",
+      "service": "Microsoft 365",
+      "issueType": "surprise_charge",
+      "amount": "$99.99",
+      "pain": "Users are charged for annual Microsoft 365 and need to cancel in the right place to trigger refund eligibility.",
+      "replyAngle": "Give the Services & subscriptions path, order proof checklist, and support escalation wording.",
+      "linkPolicy": "No-link reply first; Microsoft threads are support-like and should get direct help before any tool mention.",
+      "recommendedMedium": "comment",
+      "status": "needs_review",
+      "priority": 16,
+      "landingPath": "/cancel/how-to-cancel-microsoft-365.html",
+      "utmUrl": "https://billvampire.com/cancel/how-to-cancel-microsoft-365.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=microsoft-365-surprise-charge&service=Microsoft+365&issue=surprise_charge&amount=%2499.99",
+      "recommendedAction": "Use the no-link draft first. Share the link only after someone asks for it.",
+      "postedUrl": "",
+      "postedAt": "",
+      "resultNotes": "",
+      "metrics": {
+        "visits": 0,
+        "previewStarts": 0,
+        "downloads": 0,
+        "accountSaves": 0,
+        "checkoutClicks": 0,
+        "paid": 0
+      },
+      "drafts": {
+        "noLink": "For a Microsoft 365 charge around $99.99, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.\n\nKeep the message short: \"I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward.\"\n\nIf they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.",
+        "transparentWithLink": "For a Microsoft 365 charge around $99.99, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.\n\nKeep the message short: \"I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward.\"\n\nIf they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.\n\nDisclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of Microsoft 365 issue here: https://billvampire.com/cancel/how-to-cancel-microsoft-365.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=microsoft-365-surprise-charge&service=Microsoft+365&issue=surprise_charge&amount=%2499.99"
+      }
+    },
+    {
+      "id": "reddit-dropbox-annual-refund-hard",
+      "platform": "reddit",
+      "community": "r/dropbox",
+      "sourceType": "live_search",
+      "sourceUrl": "https://www.reddit.com/r/dropbox/comments/y1l2yw/has_anybody_ever_gotten_a_refund_from_dropbox/",
+      "topic": "Has anybody ever gotten a refund from Dropbox?",
+      "service": "Dropbox",
+      "issueType": "refund_denied",
+      "amount": "$119+",
+      "pain": "Users describe Dropbox annual subscription refunds as hard, especially after renewal.",
+      "replyAngle": "Help identify billing route and build a clean evidence trail before support or bank escalation.",
+      "linkPolicy": "No-link reply first; share a case preview only if the user asks for a script/checklist.",
+      "recommendedMedium": "comment",
+      "status": "needs_review",
+      "priority": 17,
+      "landingPath": "/cancel/how-to-cancel-dropbox.html",
+      "utmUrl": "https://billvampire.com/cancel/how-to-cancel-dropbox.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=dropbox-refund-denied&service=Dropbox&issue=refund_denied&amount=%24119%2B",
+      "recommendedAction": "Use the no-link draft first. Share the link only after someone asks for it.",
+      "postedUrl": "",
+      "postedAt": "",
+      "resultNotes": "",
+      "metrics": {
+        "visits": 0,
+        "previewStarts": 0,
+        "downloads": 0,
+        "accountSaves": 0,
+        "checkoutClicks": 0,
+        "paid": 0
+      },
+      "drafts": {
+        "noLink": "For a Dropbox charge around $119+, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.\n\nKeep the message short: \"I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward.\"\n\nIf they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.",
+        "transparentWithLink": "For a Dropbox charge around $119+, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.\n\nKeep the message short: \"I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward.\"\n\nIf they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.\n\nDisclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of Dropbox issue here: https://billvampire.com/cancel/how-to-cancel-dropbox.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=dropbox-refund-denied&service=Dropbox&issue=refund_denied&amount=%24119%2B"
+      }
+    },
+    {
+      "id": "reddit-nytimes-hard-cancel-proof",
+      "platform": "reddit",
+      "community": "r/assholedesign",
+      "sourceType": "live_search",
+      "sourceUrl": "https://www.reddit.com/r/assholedesign/comments/10j2lkv/new_york_times_does_not_allow_you_to_cancel_your/",
+      "topic": "New York Times does not allow you to cancel your own subscription",
+      "service": "New York Times",
+      "issueType": "hard_cancel",
+      "amount": "$25",
+      "pain": "Users complain about cancellation friction and repeated failed cancellation attempts.",
+      "replyAngle": "Offer a cancellation proof log template and refund wording for charges after the first cancellation attempt.",
+      "linkPolicy": "No-link reply first; this community is hostile to dark patterns and will reject promotion.",
+      "recommendedMedium": "comment",
+      "status": "needs_review",
+      "priority": 18,
+      "landingPath": "/cancel/how-to-cancel-new-york-times.html",
+      "utmUrl": "https://billvampire.com/cancel/how-to-cancel-new-york-times.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=new-york-times-hard-cancel&service=New+York+Times&issue=hard_cancel&amount=%2425",
+      "recommendedAction": "Use the no-link draft first. Share the link only after someone asks for it.",
+      "postedUrl": "",
+      "postedAt": "",
+      "resultNotes": "",
+      "metrics": {
+        "visits": 0,
+        "previewStarts": 0,
+        "downloads": 0,
+        "accountSaves": 0,
+        "checkoutClicks": 0,
+        "paid": 0
+      },
+      "drafts": {
+        "noLink": "For New York Times, I would avoid arguing in the first message and make it very specific: state the plan, charge amount around $25, cancellation attempt date, and the outcome you want.\n\nA useful line is: \"I am requesting cancellation without additional renewal charges, and if a fee applies, please point me to the exact term I agreed to and the date it was shown.\"\n\nSave screenshots of the account page, the cancellation flow, chat transcript, and every email. If you later dispute the charge, that evidence matters more than a long complaint.",
+        "transparentWithLink": "For New York Times, I would avoid arguing in the first message and make it very specific: state the plan, charge amount around $25, cancellation attempt date, and the outcome you want.\n\nA useful line is: \"I am requesting cancellation without additional renewal charges, and if a fee applies, please point me to the exact term I agreed to and the date it was shown.\"\n\nSave screenshots of the account page, the cancellation flow, chat transcript, and every email. If you later dispute the charge, that evidence matters more than a long complaint.\n\nDisclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of New York Times issue here: https://billvampire.com/cancel/how-to-cancel-new-york-times.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=new-york-times-hard-cancel&service=New+York+Times&issue=hard_cancel&amount=%2425"
+      }
+    },
+    {
+      "id": "reddit-tinder-gold-accidental-purchase-refund",
+      "platform": "reddit",
+      "community": "r/Tinder",
+      "sourceType": "live_search",
+      "sourceUrl": "https://www.reddit.com/r/Tinder/comments/dhn4dn",
+      "topic": "Accidentally purchased Tinder Gold and wants a refund",
+      "service": "Tinder",
+      "issueType": "trial_refund",
+      "amount": "$149.99",
+      "pain": "Users accidentally buy Tinder Gold or misunderstand annual pricing and need the right refund route.",
+      "replyAngle": "Explain Apple, Google, and Tinder order-number routing before giving any script.",
+      "linkPolicy": "No-link reply first; dating app subs are sensitive and users want direct instructions.",
+      "recommendedMedium": "comment",
+      "status": "needs_review",
+      "priority": 19,
+      "landingPath": "/cancel/how-to-cancel-tinder.html",
+      "utmUrl": "https://billvampire.com/cancel/how-to-cancel-tinder.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=tinder-trial-refund&service=Tinder&issue=trial_refund&amount=%24149.99",
+      "recommendedAction": "Use the no-link draft first. Share the link only after someone asks for it.",
+      "postedUrl": "",
+      "postedAt": "",
+      "resultNotes": "",
+      "metrics": {
+        "visits": 0,
+        "previewStarts": 0,
+        "downloads": 0,
+        "accountSaves": 0,
+        "checkoutClicks": 0,
+        "paid": 0
+      },
+      "drafts": {
+        "noLink": "For a Tinder charge around $149.99, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.\n\nKeep the message short: \"I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward.\"\n\nIf they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.",
+        "transparentWithLink": "For a Tinder charge around $149.99, I would move in this order: cancel the renewal, capture proof of cancellation, then ask support for a goodwill refund with the charge date and account email.\n\nKeep the message short: \"I intended to cancel before renewal, have now cancelled, and I am requesting a refund for the most recent charge because I will not use the service going forward.\"\n\nIf they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.\n\nDisclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of Tinder issue here: https://billvampire.com/cancel/how-to-cancel-tinder.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=tinder-trial-refund&service=Tinder&issue=trial_refund&amount=%24149.99"
+      }
     }
   ],
   "seoBacklog": [
@@ -672,6 +812,70 @@
         "cancel path",
         "support script",
         "auto-renew proof checklist",
+        "case preview form"
+      ]
+    },
+    {
+      "slug": "microsoft-365-refund-after-annual-renewal",
+      "title": "Microsoft 365 refund after annual renewal",
+      "service": "Microsoft 365",
+      "issueType": "surprise_charge",
+      "primaryKeyword": "Microsoft 365 refund after annual renewal",
+      "status": "shipped",
+      "url": "/refund/microsoft-365-refund-after-annual-renewal.html",
+      "requiredSections": [
+        "refund eligibility",
+        "cancel path",
+        "support script",
+        "order proof checklist",
+        "case preview form"
+      ]
+    },
+    {
+      "slug": "dropbox-annual-renewal-refund-request",
+      "title": "Dropbox annual renewal refund request",
+      "service": "Dropbox",
+      "issueType": "refund_denied",
+      "primaryKeyword": "Dropbox annual renewal refund request",
+      "status": "shipped",
+      "url": "/refund/dropbox-annual-renewal-refund-request.html",
+      "requiredSections": [
+        "billing route",
+        "cancel path",
+        "refund request",
+        "support/bank evidence checklist",
+        "case preview form"
+      ]
+    },
+    {
+      "slug": "new-york-times-cancel-refund-script",
+      "title": "New York Times cancel and refund script",
+      "service": "New York Times",
+      "issueType": "hard_cancel",
+      "primaryKeyword": "New York Times cancel refund script",
+      "status": "shipped",
+      "url": "/refund/new-york-times-cancel-refund-script.html",
+      "requiredSections": [
+        "failed cancel attempts",
+        "cancel path",
+        "refund wording",
+        "proof log",
+        "case preview form"
+      ]
+    },
+    {
+      "slug": "tinder-gold-refund-after-accidental-purchase",
+      "title": "Tinder Gold refund after accidental purchase",
+      "service": "Tinder",
+      "issueType": "trial_refund",
+      "primaryKeyword": "Tinder Gold refund after accidental purchase",
+      "status": "shipped",
+      "url": "/refund/tinder-gold-refund-after-accidental-purchase.html",
+      "requiredSections": [
+        "billing route",
+        "Apple/Google/Tinder refund path",
+        "order number checklist",
+        "cancel renewal",
         "case preview form"
       ]
     }

@@ -142,5 +142,69 @@
       "auto-renew proof checklist",
       "case preview form"
     ]
+  },
+  {
+    "slug": "microsoft-365-refund-after-annual-renewal",
+    "title": "Microsoft 365 refund after annual renewal",
+    "service": "Microsoft 365",
+    "issueType": "surprise_charge",
+    "primaryKeyword": "Microsoft 365 refund after annual renewal",
+    "status": "shipped",
+    "url": "/refund/microsoft-365-refund-after-annual-renewal.html",
+    "requiredSections": [
+      "refund eligibility",
+      "cancel path",
+      "support script",
+      "order proof checklist",
+      "case preview form"
+    ]
+  },
+  {
+    "slug": "dropbox-annual-renewal-refund-request",
+    "title": "Dropbox annual renewal refund request",
+    "service": "Dropbox",
+    "issueType": "refund_denied",
+    "primaryKeyword": "Dropbox annual renewal refund request",
+    "status": "shipped",
+    "url": "/refund/dropbox-annual-renewal-refund-request.html",
+    "requiredSections": [
+      "billing route",
+      "cancel path",
+      "refund request",
+      "support/bank evidence checklist",
+      "case preview form"
+    ]
+  },
+  {
+    "slug": "new-york-times-cancel-refund-script",
+    "title": "New York Times cancel and refund script",
+    "service": "New York Times",
+    "issueType": "hard_cancel",
+    "primaryKeyword": "New York Times cancel refund script",
+    "status": "shipped",
+    "url": "/refund/new-york-times-cancel-refund-script.html",
+    "requiredSections": [
+      "failed cancel attempts",
+      "cancel path",
+      "refund wording",
+      "proof log",
+      "case preview form"
+    ]
+  },
+  {
+    "slug": "tinder-gold-refund-after-accidental-purchase",
+    "title": "Tinder Gold refund after accidental purchase",
+    "service": "Tinder",
+    "issueType": "trial_refund",
+    "primaryKeyword": "Tinder Gold refund after accidental purchase",
+    "status": "shipped",
+    "url": "/refund/tinder-gold-refund-after-accidental-purchase.html",
+    "requiredSections": [
+      "billing route",
+      "Apple/Google/Tinder refund path",
+      "order number checklist",
+      "cancel renewal",
+      "case preview form"
+    ]
   }
 ]

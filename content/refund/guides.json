@@ -214,5 +214,101 @@
     ],
     "freePreviewPrompt": "ExpressVPN auto-renewed or charged after cancellation. I need a refund script and evidence checklist.",
     "sourceUrl": "https://www.reddit.com/r/Express_VPN/comments/11cjbw6"
+  },
+  {
+    "slug": "microsoft-365-refund-after-annual-renewal",
+    "title": "Microsoft 365 refund after annual renewal",
+    "metaDescription": "Microsoft 365 renewed for the year? Build a refund request, cancellation proof checklist, and support script before the window closes.",
+    "service": "Microsoft 365",
+    "serviceId": "microsoft-365",
+    "issueType": "surprise_charge",
+    "amountExample": "$69.99-$99.99",
+    "primaryKeyword": "Microsoft 365 refund after annual renewal",
+    "searchIntent": "User was charged for Microsoft 365 annual renewal and wants to know whether cancellation triggers a refund.",
+    "communitySignal": "Recent Reddit comments show users still finding refunds through Microsoft subscription cancellation and agent chat after annual renewal charges.",
+    "officialContext": "Microsoft Support says refund eligibility for Microsoft 365 consumer subscriptions is checked after cancellation, and business subscriptions can have short cancellation windows.",
+    "refundWindow": "Cancel through Microsoft account services first, then check whether the flow offers a refund. If not, contact support with the order number, charge date, and account email.",
+    "cancelPath": "Open Microsoft account Services & subscriptions, find Microsoft 365, choose Manage, then Cancel subscription and follow the refund eligibility prompts.",
+    "evidence": [
+      "Microsoft order number",
+      "Renewal receipt",
+      "Account email",
+      "Cancellation confirmation",
+      "Support chat transcript"
+    ],
+    "freePreviewPrompt": "Microsoft 365 renewed for the year and I need to cancel and request a refund before the window closes.",
+    "sourceUrl": "https://www.reddit.com/r/microsoft/comments/11fj1o2/help_is_there_anyway_i_can_get_a_refund_on_a/"
+  },
+  {
+    "slug": "dropbox-annual-renewal-refund-request",
+    "title": "Dropbox annual renewal refund request",
+    "metaDescription": "Dropbox annual plan renewed unexpectedly? Build a refund request, cancellation checklist, and evidence file for support.",
+    "service": "Dropbox",
+    "serviceId": "dropbox",
+    "issueType": "refund_denied",
+    "amountExample": "$119.88-$199",
+    "primaryKeyword": "Dropbox annual renewal refund request",
+    "searchIntent": "User was charged for Dropbox annual renewal and is worried support will refuse the refund.",
+    "communitySignal": "Dropbox refund threads often describe annual renewals as hard to reverse, so the user needs a clean evidence file before contacting support or their bank.",
+    "officialContext": "Dropbox Help explains refund handling depends on payment method and region; some direct debit cases require contacting the bank, while app-store purchases follow store rules.",
+    "refundWindow": "Act immediately after renewal. Cancel future billing, identify whether the payment was Dropbox, Apple, Google, or direct debit, then route the refund request accordingly.",
+    "cancelPath": "Open Dropbox billing settings, cancel or downgrade the plan, save the confirmation, and then use Dropbox support or the relevant app-store/bank path for refunds.",
+    "evidence": [
+      "Dropbox invoice",
+      "Billing method",
+      "Plan name and renewal date",
+      "Cancellation or downgrade confirmation",
+      "Support ticket or bank record"
+    ],
+    "freePreviewPrompt": "Dropbox annual plan renewed and I need a refund request plus evidence checklist before contacting support.",
+    "sourceUrl": "https://www.reddit.com/r/dropbox/comments/y1l2yw/has_anybody_ever_gotten_a_refund_from_dropbox/"
+  },
+  {
+    "slug": "new-york-times-cancel-refund-script",
+    "title": "New York Times cancel and refund script",
+    "metaDescription": "NYTimes hard to cancel or still charging? Build a cancellation record, refund request, and evidence checklist before escalating.",
+    "service": "New York Times",
+    "serviceId": "nytimes",
+    "issueType": "hard_cancel",
+    "amountExample": "$4-$25/mo",
+    "primaryKeyword": "New York Times cancel refund script",
+    "searchIntent": "User wants to cancel NYTimes or document repeated failed cancellation attempts before disputing future charges.",
+    "communitySignal": "NYTimes cancellation complaints on Reddit focus on phone/chat friction, repeated failed cancellation attempts, and the need for clear proof.",
+    "officialContext": "NYTimes account cancellation and refund options depend on product, purchase route, and region; users should save every cancellation attempt.",
+    "refundWindow": "Ask support to cancel immediately, confirm the effective date, and refund any charge after your first documented cancellation request.",
+    "cancelPath": "Open NYTimes account subscription settings, use the available cancel/contact option, and record the date, channel, representative name, and confirmation number.",
+    "evidence": [
+      "Subscription product name",
+      "First cancellation attempt date",
+      "Chat transcript or call notes",
+      "Charge after cancellation request",
+      "Confirmation number or email"
+    ],
+    "freePreviewPrompt": "I am trying to cancel New York Times and want a refund or proof trail for charges after my cancellation request.",
+    "sourceUrl": "https://www.reddit.com/r/assholedesign/comments/10j2lkv/new_york_times_does_not_allow_you_to_cancel_your/"
+  },
+  {
+    "slug": "tinder-gold-refund-after-accidental-purchase",
+    "title": "Tinder Gold refund after accidental purchase",
+    "metaDescription": "Accidentally bought Tinder Gold or got renewed? Build an Apple, Google, or Tinder refund checklist with the right order details.",
+    "service": "Tinder",
+    "serviceId": "tinder",
+    "issueType": "trial_refund",
+    "amountExample": "$24.99-$149.99",
+    "primaryKeyword": "Tinder Gold refund after accidental purchase",
+    "searchIntent": "User accidentally purchased Tinder Gold or upgraded and needs the correct refund route for Apple, Google, or Tinder direct billing.",
+    "communitySignal": "Tinder Reddit threads repeatedly mention accidental Gold purchases, confusing annual pricing, app-store refunds, and users needing to know which merchant handles the refund.",
+    "officialContext": "Tinder Help says refund routing depends on order number and payment method; Apple purchases go through Apple, while Tinder.com or some Android/card purchases can be reviewed by Tinder.",
+    "refundWindow": "Do not wait. Identify the order prefix or payment route, cancel renewal, then submit the refund request through Apple, Google, or Tinder with the order number.",
+    "cancelPath": "Check whether the purchase was Apple ID, Google Play, Tinder.com, credit card, or PayPal, then cancel subscription through that same billing route before requesting a refund.",
+    "evidence": [
+      "Tinder order number or app-store receipt",
+      "Purchase date and amount",
+      "Device/billing route",
+      "Cancellation confirmation",
+      "Short explanation of accidental purchase or misleading upgrade"
+    ],
+    "freePreviewPrompt": "I accidentally bought or renewed Tinder Gold and need the correct refund path and support wording.",
+    "sourceUrl": "https://www.reddit.com/r/Tinder/comments/dhn4dn"
   }
 ]
