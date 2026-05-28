@@ -179,7 +179,7 @@ Thank you.</textarea>
     function startRefundCase() {
       const value = document.getElementById('refundInput').value || 'I forgot to cancel LinkedIn Premium after the free trial and got charged. I need a refund request and checklist.';
       bvTrack('refund_cta_clicked', { placement: 'mini_form' });
-      localStorage.setItem('vampire_issue_type', 'trial_refund');
+      localStorage.setItem('vampire_issue_type', 'surprise_charge');
       localStorage.setItem('vampire_tool_prefill', value);
       localStorage.setItem('vampire_source_page', JSON.stringify({
         path: location.pathname,
@@ -188,7 +188,7 @@ Thank you.</textarea>
         issue: 'trial_refund',
         capturedAt: new Date().toISOString()
       }));
-      location.href = '/#scan?service=LinkedIn%20Premium&issue=trial_refund';
+      location.href = '/?service=LinkedIn%20Premium&issue=surprise_charge&source=seo_refund_page#scan';
     }
     async function copyBasicTemplate() {
       const value = document.getElementById('basicTemplate').value;

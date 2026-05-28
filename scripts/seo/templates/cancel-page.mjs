@@ -54,6 +54,7 @@ export function renderCancelPage(service, content, allServices) {
       </div>
     </div>`
     : '';
+  const serviceJson = JSON.stringify(service.name);
 
   const schema = JSON.stringify({
     "@context": "https://schema.org",
@@ -126,7 +127,7 @@ ${schema}
 
     <div class="cta-top">
       <p>Tired of canceling one by one? Upload your bill and let Bill Vampire find ALL hidden charges.</p>
-      <a href="/">Scan my bill free &rarr;</a>
+      <a href="/?source=seo_cancel_top#scan" onclick="trackCancelGuide('cancel_top_scan_clicked')">Scan my bill free &rarr;</a>
     </div>
 
     <h1>${esc(content.title)}</h1>
@@ -173,15 +174,29 @@ ${schema}
       function startBillVampireKit(event) {
         event.preventDefault();
         var form = event.currentTarget;
+        trackCancelGuide('cancel_kit_form_submitted', {
+          issue_type: form.issue.value || 'hard_cancel',
+          amount_entered: !!form.amount.value.trim()
+        });
         var params = new URLSearchParams({
           issue: form.issue.value || 'hard_cancel',
-          service: ${JSON.stringify(service.name)},
+          service: ${serviceJson},
           source: 'seo_cancel_page'
         });
         if (form.amount.value.trim()) params.set('amount', form.amount.value.trim());
-        window.location.href = '/?' + params.toString();
+        window.location.href = '/?' + params.toString() + '#scan';
         return false;
       }
+      function trackCancelGuide(event, props) {
+        var payload = Object.assign({
+          service: ${serviceJson},
+          source: 'seo_cancel_page',
+          path: location.pathname
+        }, props || {});
+        try { if (window.gtag) window.gtag('event', event, payload); } catch (e) {}
+        try { if (window.posthog && window.posthog.capture) window.posthog.capture(event, payload); } catch (e) {}
+      }
+      trackCancelGuide('cancel_guide_viewed');
     </script>
 
     <footer class="footer">

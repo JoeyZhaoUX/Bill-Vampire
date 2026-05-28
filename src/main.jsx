@@ -37,19 +37,46 @@ function saveSubsToStorage(subs) {
   } catch { /* localStorage may be unavailable */ }
 }
 
+function getHashValue() {
+  if (typeof window === 'undefined') return '';
+  return window.location.hash.replace(/^#/, '');
+}
+
+function getHashRoute() {
+  return getHashValue().split('?')[0];
+}
+
+function getIntentParams(url) {
+  const params = new URLSearchParams(url.search);
+  const hash = url.hash.replace(/^#/, '');
+  const hashQuery = hash.includes('?') ? hash.slice(hash.indexOf('?') + 1) : '';
+  if (hashQuery) {
+    const hashParams = new URLSearchParams(hashQuery);
+    hashParams.forEach((value, key) => {
+      if (!params.has(key)) params.set(key, value);
+    });
+  }
+  return params;
+}
+
+function normalizeIssueType(issue, service = '') {
+  if (['surprise_charge', 'trial_ending', 'hard_cancel'].includes(issue)) return issue;
+  if (['trial_refund', 'refund_denied', 'refund_request'].includes(issue)) return 'surprise_charge';
+  return service ? 'hard_cancel' : 'surprise_charge';
+}
+
 function hydrateIntentFromUrl() {
   if (typeof window === 'undefined') return false;
   const url = new URL(window.location.href);
-  const service = (url.searchParams.get('service') || '').trim();
-  const amount = (url.searchParams.get('amount') || '').trim();
-  const renewal = (url.searchParams.get('renewal') || '').trim();
-  const issue = (url.searchParams.get('issue') || '').trim();
-  const source = (url.searchParams.get('utm_source') || url.searchParams.get('source') || '').trim();
+  const params = getIntentParams(url);
+  const service = (params.get('service') || '').trim();
+  const amount = (params.get('amount') || '').trim();
+  const renewal = (params.get('renewal') || '').trim();
+  const issue = (params.get('issue') || '').trim();
+  const source = (params.get('utm_source') || params.get('source') || '').trim();
   if (!service && !amount && !renewal && !issue && !source) return false;
 
-  const issueType = ['surprise_charge', 'trial_ending', 'hard_cancel'].includes(issue)
-    ? issue
-    : service ? 'hard_cancel' : 'surprise_charge';
+  const issueType = normalizeIssueType(issue, service);
   localStorage.setItem('vampire_issue_type', issueType);
   localStorage.setItem('vampire_source_page', JSON.stringify({
     path: url.pathname,
@@ -86,7 +113,7 @@ function Root() {
       if (paymentSuccess === 'patrol' || paymentSuccess === 'patrol_annual') return 'patrol';
       return 'app';
     }
-    const hash = window.location.hash.replace('#', '');
+    const hash = getHashRoute();
     if (VALID_LEGAL.includes(hash)) return hash;
     if (VALID_ONBOARDING.includes(hash)) return hash;
     if (VALID_PAGES.includes(hash)) return hash;
@@ -136,8 +163,9 @@ function Root() {
 
   useEffect(() => {
     const onHash = () => {
-      const hash = window.location.hash.replace('#', '');
+      const hash = getHashRoute();
       if (VALID_LEGAL.includes(hash)) setView(hash);
+      else if (VALID_ONBOARDING.includes(hash)) setView(hash);
       else if (VALID_PAGES.includes(hash)) setView(hash);
       else if (hash === 'auth-success') {
         localStorage.setItem('vampire_visited', 'true');
@@ -158,7 +186,7 @@ function Root() {
   }, []);
 
   useEffect(() => {
-    const hash = window.location.hash.replace('#', '');
+    const hash = getHashRoute();
     if (hash === 'auth-success') {
       localStorage.setItem('vampire_visited', 'true');
       window.location.hash = '';

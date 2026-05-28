@@ -179,7 +179,7 @@ Thank you.</textarea>
     function startRefundCase() {
       const value = document.getElementById('refundInput').value || 'Dropbox annual plan renewed and I need a refund request plus evidence checklist before contacting support.';
       bvTrack('refund_cta_clicked', { placement: 'mini_form' });
-      localStorage.setItem('vampire_issue_type', 'refund_denied');
+      localStorage.setItem('vampire_issue_type', 'surprise_charge');
       localStorage.setItem('vampire_tool_prefill', value);
       localStorage.setItem('vampire_source_page', JSON.stringify({
         path: location.pathname,
@@ -188,7 +188,7 @@ Thank you.</textarea>
         issue: 'refund_denied',
         capturedAt: new Date().toISOString()
       }));
-      location.href = '/#scan?service=Dropbox&issue=refund_denied';
+      location.href = '/?service=Dropbox&issue=surprise_charge&source=seo_refund_page#scan';
     }
     async function copyBasicTemplate() {
       const value = document.getElementById('basicTemplate').value;

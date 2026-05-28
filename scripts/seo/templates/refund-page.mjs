@@ -31,6 +31,12 @@ function ctaLabelFor(guide) {
   return `Build my ${guide.service} refund request`
 }
 
+function appIssueTypeFor(guide) {
+  if (guide.issueType === 'hard_cancel') return 'hard_cancel'
+  if (guide.issueType === 'trial_ending') return 'trial_ending'
+  return 'surprise_charge'
+}
+
 function faqFor(guide) {
   return [
     {
@@ -70,7 +76,8 @@ export function renderRefundPage(guide, services, guides = []) {
   const service = services.find((item) => item.id === guide.serviceId)
   const cancelUrl = service ? `/cancel/${service.slug}.html` : '/tools/cancel-subscription-guide.html'
   const toolUrl = `/tools/free-trial-refund-helper.html?service=${encodeURIComponent(guide.service)}&issue=${encodeURIComponent(guide.issueType)}`
-  const scanUrl = `/#scan?service=${encodeURIComponent(guide.service)}&issue=${encodeURIComponent(guide.issueType)}`
+  const appIssueType = appIssueTypeFor(guide)
+  const scanUrl = `/?service=${encodeURIComponent(guide.service)}&issue=${encodeURIComponent(appIssueType)}&source=seo_refund_page#scan`
   const canonical = `https://billvampire.com/refund/${guide.slug}.html`
   const evidenceItems = guide.evidence.map((item) => `<li>${escapeHtml(item)}</li>`).join('')
   const ctaLabel = ctaLabelFor(guide)
@@ -271,7 +278,7 @@ export function renderRefundPage(guide, services, guides = []) {
     function startRefundCase() {
       const value = document.getElementById('refundInput').value || '${escapeJsString(guide.freePreviewPrompt)}';
       bvTrack('refund_cta_clicked', { placement: 'mini_form' });
-      localStorage.setItem('vampire_issue_type', '${escapeHtml(guide.issueType)}');
+      localStorage.setItem('vampire_issue_type', '${escapeHtml(appIssueType)}');
       localStorage.setItem('vampire_tool_prefill', value);
       localStorage.setItem('vampire_source_page', JSON.stringify({
         path: location.pathname,
