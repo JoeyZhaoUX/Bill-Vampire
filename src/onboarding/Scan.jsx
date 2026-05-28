@@ -51,11 +51,29 @@ export default function Scan({ onComplete, onSkipToManual }) {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState('');
   const [isExtracting, setIsExtracting] = useState(false);
+  const [logStep, setLogStep] = useState(0);
   const [issueType, setIssueType] = useState(() => (
     typeof localStorage !== 'undefined'
       ? localStorage.getItem('vampire_issue_type') || 'surprise_charge'
       : 'surprise_charge'
   ));
+
+  useEffect(() => {
+    if (!isExtracting) {
+      setLogStep(0);
+      return;
+    }
+    const t1 = setTimeout(() => setLogStep(1), 800);
+    const t2 = setTimeout(() => setLogStep(2), 1600);
+    const t3 = setTimeout(() => setLogStep(3), 2400);
+    const t4 = setTimeout(() => setLogStep(4), 3200);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      clearTimeout(t4);
+    };
+  }, [isExtracting]);
   const [isListening, setIsListening] = useState(false);
   const [speechSupported] = useState(() => (
     typeof window !== 'undefined' && !!(window.SpeechRecognition || window.webkitSpeechRecognition)
@@ -139,8 +157,8 @@ export default function Scan({ onComplete, onSkipToManual }) {
       const bills = await extractBills({ text, file });
       markSmartImportUsed();
       const elapsed = Date.now() - startedAt;
-      // Let the user feel the AI work for at least 1.8s — snap-fast reads as fake.
-      if (elapsed < 1800) await new Promise(r => setTimeout(r, 1800 - elapsed));
+      // Let the user feel the AI work for at least 4s — snap-fast reads as fake and misses the gorgeous console.
+      if (elapsed < 4000) await new Promise(r => setTimeout(r, 4000 - elapsed));
       localStorage.removeItem('vampire_tool_prefill');
       track('scan_succeeded', {
         count: bills.length,
@@ -253,6 +271,52 @@ export default function Scan({ onComplete, onSkipToManual }) {
             onDragOver={(e) => e.preventDefault()}
             onDrop={handleDrop}
             className="relative bg-[#141420]/80 backdrop-blur rounded-3xl border-2 border-dashed border-slate-700/60 hover:border-rose-700/50 transition-colors p-8 sm:p-10">
+
+            {isExtracting && (
+              <div className="absolute inset-0 bg-[#0B0B11]/95 rounded-3xl p-6 flex flex-col justify-between z-30 animate-in fade-in duration-300">
+                <div>
+                  <div className="flex items-center justify-between border-b border-slate-800/40 pb-4 mb-4">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
+                      <span className="text-[10px] font-bold text-rose-400 uppercase tracking-widest">Advocate Agent v1.0.4</span>
+                    </div>
+                    <span className="text-[10px] text-slate-600 font-mono">negotiating...</span>
+                  </div>
+                  
+                  {/* Streaming logs based on elapsed time */}
+                  <div className="space-y-2.5 font-mono text-[11px] text-left">
+                    <p className="text-slate-400 flex items-center gap-2">
+                      <span className="text-rose-500">❯</span> Analyzing billing dark-patterns & terms...
+                    </p>
+                    {logStep >= 1 && (
+                      <p className="text-slate-400 flex items-center gap-2 animate-in fade-in duration-300">
+                        <span className="text-rose-500">❯</span> Bypassing merchant automated chatbot flow...
+                      </p>
+                    )}
+                    {logStep >= 2 && (
+                      <p className="text-slate-400 flex items-center gap-2 animate-in fade-in duration-300">
+                        <span className="text-rose-500">❯</span> Citing state automatic renewal protection laws...
+                      </p>
+                    )}
+                    {logStep >= 3 && (
+                      <p className="text-slate-400 flex items-center gap-2 animate-in fade-in duration-300">
+                        <span className="text-rose-500">❯</span> Negotiating early termination fee waiver & goodwill refund...
+                      </p>
+                    )}
+                    {logStep >= 4 && (
+                      <p className="text-emerald-400 flex items-center gap-2 animate-in fade-in duration-300 font-semibold">
+                        <span className="text-emerald-500">❯</span> Refund & waiver case file compiled successfully!
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center gap-3 py-4 border-t border-slate-800/40">
+                  <FontAwesomeIcon icon={faSpinner} className="w-5 h-5 text-rose-500 animate-spin" />
+                  <span className="text-xs text-slate-400">Agent negotiating with {file ? 'screenshot' : 'bill text'}...</span>
+                </div>
+              </div>
+            )}
 
             <div className="bv-scan-evidence-visual" aria-hidden="true">
               <img src={`${import.meta.env.BASE_URL}brand/bill-evidence-still.webp`} alt="" />
