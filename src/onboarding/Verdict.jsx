@@ -141,6 +141,7 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
         service: emergencyKit.service,
         source_page: sourcePage?.path,
         traffic_source: sourcePage?.source,
+        unlocked: kitUnlocked,
       });
       setTimeout(() => setCopied(''), 1800);
     } catch {
@@ -356,6 +357,8 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
               source_page: sourcePage?.path,
               traffic_source: sourcePage?.source,
             })}
+            issueType={issueType}
+            sourcePage={sourcePage}
             paymentSuccess={paymentSuccess}
             onDismissSuccess={() => setPaymentSuccess(false)}
             auth={auth}
@@ -519,6 +522,8 @@ function EmergencyKitSection({
   onReminderDownload,
   onUnlock,
   onFounderReview,
+  issueType,
+  sourcePage,
   paymentSuccess,
   onDismissSuccess,
   auth,
@@ -533,6 +538,46 @@ function EmergencyKitSection({
     ['Cancel path', kit.cancelPath],
     ['Support angle', kit.supportHint],
   ];
+  const freeAssets = [
+    'Service risk and detected amount',
+    'Refund window and cancel path',
+    'First action plan',
+    'Free preview download or account save',
+  ];
+  const paidAssets = [
+    'Exact refund email',
+    'Cancel request email',
+    'Support chat script',
+    'Chargeback and evidence checklist',
+    'Calendar reminder file',
+  ];
+
+  useEffect(() => {
+    if (unlocked) return;
+    track('kit_paywall_seen', {
+      issue_type: issueType,
+      service: kit.service,
+      detected_amount: kit.amount,
+      source_page: sourcePage?.path,
+      traffic_source: sourcePage?.source,
+      free_assets: freeAssets.length,
+      paid_assets: paidAssets.length,
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [unlocked, kit.service]);
+
+  useEffect(() => {
+    if (!unlocked) return;
+    track('kit_unlocked_viewed', {
+      issue_type: issueType,
+      service: kit.service,
+      detected_amount: kit.amount,
+      source_page: sourcePage?.path,
+      traffic_source: sourcePage?.source,
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [unlocked, kit.service]);
+
   return (
     <section className="py-10 border-t border-slate-800/40">
       <div className="bv-case-file bg-gradient-to-br from-amber-950/30 via-rose-950/20 to-violet-950/20 rounded-3xl border border-amber-800/30 p-5 sm:p-6">
@@ -640,6 +685,30 @@ function EmergencyKitSection({
               Your free preview stays useful: service-specific risk, refund window, cancel path, support angle, next moves, download, and account save. Upgrade only if you want the exact refund email, cancel email, support chat script, chargeback checklist, and evidence checklist.
               {specificAmount ? ` If it helps recover or avoid ${kit.amount}, it can pay for itself immediately.` : ' If it helps avoid one $19.99 renewal, it pays for itself about 4x.'}
             </p>
+            <div className="grid sm:grid-cols-2 gap-3 text-left mb-5">
+              <div className="rounded-2xl border border-emerald-800/25 bg-emerald-950/10 p-4">
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-300 mb-3">Free preview includes</p>
+                <ul className="space-y-2">
+                  {freeAssets.map(item => (
+                    <li key={item} className="flex gap-2 text-[11px] leading-relaxed text-slate-300">
+                      <span className="text-emerald-300">✓</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="rounded-2xl border border-amber-700/30 bg-amber-950/10 p-4">
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-amber-300 mb-3">Emergency Kit unlocks</p>
+                <ul className="space-y-2">
+                  {paidAssets.map(item => (
+                    <li key={item} className="flex gap-2 text-[11px] leading-relaxed text-slate-300">
+                      <FontAwesomeIcon icon={faLock} className="w-3 h-3 text-amber-300 mt-0.5" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <button onClick={onPreviewDownload}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#141420] border border-slate-700/60 text-slate-100 text-sm font-bold rounded-2xl hover:bg-[#1C1C2A] transition-all cursor-pointer">

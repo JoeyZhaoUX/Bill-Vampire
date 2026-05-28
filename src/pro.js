@@ -277,6 +277,13 @@ export async function openEmergencyKitCheckout(source = 'unknown', context = {})
     needs_product_url: CREEM_EMERGENCY_KIT_URL.includes('REPLACE_WITH'),
     ...context,
   });
+  track('checkout_started', {
+    product: 'emergency_kit',
+    source,
+    price: EMERGENCY_KIT_PRICE.amount,
+    tier: EMERGENCY_KIT_PRICE.tier,
+    ...context,
+  });
   const fallbackUrl = getEmergencyKitCheckoutUrl(source);
   const checkoutWindow = window.open('about:blank', '_blank');
   try {
@@ -355,6 +362,16 @@ export function checkPaymentSuccess() {
     localStorage.removeItem('vampire_pending_checkout');
     window.location.hash = '';
     track('emergency_kit_checkout_succeeded', {
+      source: pending?.source || 'unknown',
+      ...(pending?.context || {}),
+    });
+    track('checkout_returned_success', {
+      product: 'emergency_kit',
+      source: pending?.source || 'unknown',
+      ...(pending?.context || {}),
+    });
+    track('kit_unlocked', {
+      product: 'emergency_kit',
       source: pending?.source || 'unknown',
       ...(pending?.context || {}),
     });

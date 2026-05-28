@@ -49,6 +49,11 @@
     .faq-item:first-of-type { border-top: 0; }
     .faq-item summary { color: #f7efe6; cursor: pointer; font-weight: 800; }
     .faq-item p { color: #a99a91; line-height: 1.64; margin-top: 10px; }
+    .template-panel { margin-top: 24px; border: 1px solid rgba(201,164,106,.22); background: linear-gradient(180deg, rgba(201,164,106,.08), rgba(247,239,230,.018)), rgba(13,11,14,.82); border-radius: 18px; padding: 20px; box-shadow: 0 22px 70px rgba(0,0,0,.34); }
+    .template-panel h2 { color: #f7efe6; font-size: 22px; margin-bottom: 10px; }
+    .template-panel p { color: #a99a91; line-height: 1.64; }
+    .template-copy { background: rgba(13,11,14,.9); color: #f7efe6; border: 1px solid rgba(247,239,230,.14); }
+    .template-action { background: #f7efe6; color: #171217; }
     textarea { width: 100%; min-height: 140px; margin-top: 12px; resize: vertical; border-radius: 14px; padding: 14px; font: inherit; line-height: 1.5; }
     button { width: 100%; border: 0; border-radius: 14px; padding: 15px 18px; margin-top: 12px; font-weight: 900; cursor: pointer; }
     .disclaimer { margin-top: 18px; font-size: 12px; line-height: 1.55; color: #7f716a; }
@@ -108,6 +113,25 @@
       <button onclick="startRefundCase()">Build my ChatGPT Plus refund request</button>
     </section>
 
+    <section class="template-panel">
+      <h2>Copy a basic ChatGPT Plus request now</h2>
+      <p>This generic script is free and does not use AI. The paid kit turns your exact charge, timing, and evidence into a more specific refund/cancel case file.</p>
+      <textarea id="basicTemplate" class="template-copy" readonly>Hi ChatGPT Plus support,
+
+I’m asking for help with a ChatGPT Plus charge or renewal.
+
+Charge amount/date: [add amount and date]
+Account email: [add the email on the account]
+Situation: User was charged for ChatGPT Plus renewal and wants to request a refund cleanly.
+
+Please confirm the subscription is cancelled or will not renew again. I’d also like you to review whether this charge is eligible for a refund based on the timing and account activity.
+
+I can provide the receipt, cancellation screenshots, and support history if needed.
+
+Thank you.</textarea>
+      <button class="template-action" onclick="copyBasicTemplate()">Copy basic script</button>
+    </section>
+
     <section class="faq">
       <h2>ChatGPT Plus refund FAQ</h2>
       <details class="faq-item">
@@ -165,6 +189,17 @@
         capturedAt: new Date().toISOString()
       }));
       location.href = '/#scan?service=ChatGPT%20Plus&issue=surprise_charge';
+    }
+    async function copyBasicTemplate() {
+      const value = document.getElementById('basicTemplate').value;
+      bvTrack('refund_basic_template_copied', { placement: 'free_template' });
+      try {
+        await navigator.clipboard.writeText(value);
+      } catch (e) {
+        const field = document.getElementById('basicTemplate');
+        field.focus();
+        field.select();
+      }
     }
   </script>
 </body>
