@@ -12,6 +12,7 @@ export default function AuthModal({ open, reason = 'save', onClose, initialMessa
   const [magicLink, setMagicLink] = useState('');
   const isPostPurchase = reason === 'post_purchase_recovery'
     || (typeof localStorage !== 'undefined' && localStorage.getItem('vampire_purchase_recovery_needed') === 'true');
+  const isSettings = reason === 'settings';
 
   if (!open) return null;
 
@@ -57,7 +58,7 @@ export default function AuthModal({ open, reason = 'save', onClose, initialMessa
               <FontAwesomeIcon icon={faLock} className="w-4 h-4 text-[#C9A46A]" />
             </div>
             <div>
-              <p className="text-sm font-bold text-[#F7EFE6]">Save your case file</p>
+              <p className="text-sm font-bold text-[#F7EFE6]">{isSettings ? 'Sign in for Settings' : 'Save your case file'}</p>
               <p className="text-[11px] text-[#A99A91]">{isPostPurchase ? 'Save your purchase. No bank login.' : 'No bank login. Email or Google sign-in.'}</p>
             </div>
           </div>
@@ -70,6 +71,8 @@ export default function AuthModal({ open, reason = 'save', onClose, initialMessa
           <p className="text-sm text-[#CDBFB6] leading-relaxed mb-5">
             {isPostPurchase
               ? 'Create an account with the same email you used at Creem checkout to recover your Emergency Kit after cache clears or you switch devices.'
+              : isSettings
+                ? 'Settings are tied to your account so reminders, saved cases, and sync preferences do not disappear when browser cache is cleared.'
               : 'Create an account after results to keep subscriptions, reminders, and Emergency Kits safe when cache is cleared or you switch devices.'}
           </p>
           <button

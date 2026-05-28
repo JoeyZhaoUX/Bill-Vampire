@@ -674,6 +674,15 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
 
   const remaining = aiUsesRemaining();
 
+  const openSettings = () => {
+    track('settings_clicked', { auth_status: auth?.status || 'unknown' });
+    if (auth?.status !== 'authenticated') {
+      onAuthRequest?.('settings');
+      return;
+    }
+    onAuthRequest?.('settings');
+  };
+
   const copyCaseText = async (caseFile, field) => {
     const text = caseFile?.kit?.[field] || '';
     if (!text) return;
@@ -816,7 +825,7 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
             </button>
 
             {/* Settings */}
-            <button className="flex items-center gap-2 px-3 py-2 rounded-lg text-[11px] text-slate-500 hover:text-slate-300 hover:bg-slate-800/30 transition-colors cursor-pointer bg-transparent border-0 mb-4">
+            <button onClick={openSettings} className="flex items-center gap-2 px-3 py-2 rounded-lg text-[11px] text-slate-500 hover:text-slate-300 hover:bg-slate-800/30 transition-colors cursor-pointer bg-transparent border-0 mb-4">
               <FontAwesomeIcon icon={faGear} className="w-3 h-3" />
               Settings
             </button>
