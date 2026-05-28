@@ -21,6 +21,10 @@ const STATIC_URLS = [
   { loc: 'https://billvampire.com/terms.html', priority: '0.3', freq: 'monthly' },
   { loc: 'https://billvampire.com/privacy.html', priority: '0.3', freq: 'monthly' },
   { loc: 'https://billvampire.com/refund.html', priority: '0.3', freq: 'monthly' },
+  { loc: 'https://billvampire.com/cases/', priority: '0.8', freq: 'weekly' },
+  { loc: 'https://billvampire.com/cases/how-i-got-119-back-from-forgotten-canva-pro-trial.html', priority: '0.7', freq: 'monthly' },
+  { loc: 'https://billvampire.com/cases/how-to-negotiate-adobe-early-termination-fee-refund.html', priority: '0.7', freq: 'monthly' },
+  { loc: 'https://billvampire.com/cases/getting-refunded-for-99-dollar-microsoft-365-accidental-renewal.html', priority: '0.7', freq: 'monthly' },
 ];
 
 export function generateSitemap() {

@@ -755,6 +755,101 @@ export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
         </div>
       </section>
 
+      {/* ===== POPULAR DIRECTORY & RESOURCES HUB ===== */}
+      <section className="py-20 lg:py-28 bg-[#0B0B11] border-b border-white/[0.04]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <p className="text-xs font-medium text-rose-400 uppercase tracking-widest mb-3">Consumer Resources Directory</p>
+            <h2 className="tracking-heading text-3xl lg:text-4xl font-bold text-slate-100 mb-4">Popular Cancellation Guides, Refund Templates, & Tools</h2>
+            <p className="text-sm text-slate-500 max-w-lg mx-auto">
+              Browse our growing public library of no-BS cancellation steps, refund request emails, real-world case studies, and free consumer tools.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6 items-start">
+            {/* Column 1: Cancel Guides */}
+            <div className="glass-card rounded-2xl p-6 border-slate-800/40">
+              <h3 className="text-sm font-bold text-slate-100 mb-4 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-rose-500" /> Popular Cancel Guides
+              </h3>
+              <ul className="space-y-3 text-xs text-slate-400">
+                <li><a href="/cancel/how-to-cancel-netflix.html" className="hover:text-rose-400 transition-colors">How to Cancel Netflix</a></li>
+                <li><a href="/cancel/how-to-cancel-adobe-creative-cloud.html" className="hover:text-rose-400 transition-colors">How to Cancel Adobe</a></li>
+                <li><a href="/cancel/how-to-cancel-canva-pro.html" className="hover:text-rose-400 transition-colors">How to Cancel Canva Pro</a></li>
+                <li><a href="/cancel/how-to-cancel-chatgpt-plus.html" className="hover:text-rose-400 transition-colors">How to Cancel ChatGPT Plus</a></li>
+                <li><a href="/cancel/how-to-cancel-nordvpn.html" className="hover:text-rose-400 transition-colors">How to Cancel NordVPN</a></li>
+                <li><a href="/cancel/how-to-cancel-amazon-prime.html" className="hover:text-rose-400 transition-colors">How to Cancel Amazon Prime</a></li>
+                <li><a href="/cancel/how-to-cancel-spotify.html" className="hover:text-rose-400 transition-colors">How to Cancel Spotify</a></li>
+                <li><a href="/cancel/how-to-cancel-youtube-premium.html" className="hover:text-rose-400 transition-colors">How to Cancel YouTube Premium</a></li>
+              </ul>
+              <div className="mt-5 pt-4 border-t border-slate-800/40">
+                <a href="/cancel/" className="text-xs font-semibold text-rose-300 hover:text-rose-200 transition-colors">
+                  View all 47+ cancel guides &rarr;
+                </a>
+              </div>
+            </div>
+
+            {/* Column 2: Refund Guides */}
+            <div className="glass-card rounded-2xl p-6 border-slate-800/40">
+              <h3 className="text-sm font-bold text-slate-100 mb-4 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-amber-500" /> Popular Refund Templates
+              </h3>
+              <ul className="space-y-3 text-xs text-slate-400">
+                <li><a href="/refund/adobe-cancellation-fee-refund-email-template.html" className="hover:text-amber-400 transition-colors">Adobe Cancellation Fee</a></li>
+                <li><a href="/refund/canva-pro-trial-refund-after-119-charge.html" className="hover:text-amber-400 transition-colors">Canva Pro Trial Refund</a></li>
+                <li><a href="/refund/microsoft-365-refund-after-annual-renewal.html" className="hover:text-amber-400 transition-colors">Microsoft 365 Annual Refund</a></li>
+                <li><a href="/refund/amazon-prime-refund-after-unwanted-renewal.html" className="hover:text-amber-400 transition-colors">Amazon Prime Renewal Refund</a></li>
+                <li><a href="/refund/chatgpt-plus-refund-request-after-renewal.html" className="hover:text-amber-400 transition-colors">ChatGPT Plus Renewal Refund</a></li>
+                <li><a href="/refund/linkedin-premium-refund-after-free-trial.html" className="hover:text-amber-400 transition-colors">LinkedIn Premium Trial Refund</a></li>
+                <li><a href="/refund/duolingo-super-refund-after-annual-charge.html" className="hover:text-amber-400 transition-colors">Duolingo Super Refund</a></li>
+                <li><a href="/refund/dropbox-annual-renewal-refund-request.html" className="hover:text-amber-400 transition-colors">Dropbox Annual Refund</a></li>
+              </ul>
+              <div className="mt-5 pt-4 border-t border-slate-800/40">
+                <a href="/refund/" className="text-xs font-semibold text-amber-300 hover:text-amber-200 transition-colors">
+                  View all refund guides &rarr;
+                </a>
+              </div>
+            </div>
+
+            {/* Column 3: Case Studies */}
+            <div className="glass-card rounded-2xl p-6 border-slate-800/40">
+              <h3 className="text-sm font-bold text-slate-100 mb-4 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-violet-500" /> Successful Case Studies
+              </h3>
+              <ul className="space-y-3 text-xs text-slate-400">
+                <li><a href="/cases/how-i-got-119-back-from-forgotten-canva-pro-trial.html" className="hover:text-violet-400 transition-colors">How I Got $119 Back from Canva</a></li>
+                <li><a href="/cases/how-to-negotiate-adobe-early-termination-fee-refund.html" className="hover:text-violet-400 transition-colors">Waive Adobe Termination Fee</a></li>
+                <li><a href="/cases/getting-refunded-for-99-dollar-microsoft-365-accidental-renewal.html" className="hover:text-violet-400 transition-colors">Refund Microsoft 365 Renewal</a></li>
+              </ul>
+              <div className="mt-5 pt-4 border-t border-slate-800/40">
+                <a href="/cases/" className="text-xs font-semibold text-violet-300 hover:text-violet-200 transition-colors">
+                  View all successful cases &rarr;
+                </a>
+              </div>
+            </div>
+
+            {/* Column 4: Free Tools */}
+            <div className="glass-card rounded-2xl p-6 border-slate-800/40">
+              <h3 className="text-sm font-bold text-slate-100 mb-4 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500" /> Free Consumer Tools
+              </h3>
+              <ul className="space-y-3 text-xs text-slate-400">
+                <li><a href="/tools/free-trial-refund-helper.html" className="hover:text-emerald-400 transition-colors">Free Trial Refund Helper</a></li>
+                <li><a href="/tools/cancel-subscription-script-generator.html" className="hover:text-emerald-400 transition-colors">Cancel Script Generator</a></li>
+                <li><a href="/tools/subscription-cost-calculator.html" className="hover:text-emerald-400 transition-colors">Subscription Cost Calculator</a></li>
+                <li><a href="/tools/rocket-money-alternative-no-bank-login.html" className="hover:text-emerald-400 transition-colors">Rocket Money Alternative</a></li>
+                <li><a href="/tools/cancel-subscription-guide.html" className="hover:text-emerald-400 transition-colors">Cancel Subscription Guide</a></li>
+              </ul>
+              <div className="mt-5 pt-4 border-t border-slate-800/40">
+                <a href="/tools/" className="text-xs font-semibold text-emerald-300 hover:text-emerald-200 transition-colors">
+                  View all free tools &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ===== PRICING ===== */}
       <section ref={(el) => { revealPricingRef.current = el; pricingRef.current = el; }} className="scroll-reveal py-20 lg:py-28">
         <div className="max-w-6xl mx-auto px-6">
