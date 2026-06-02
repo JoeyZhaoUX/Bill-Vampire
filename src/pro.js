@@ -16,7 +16,7 @@ const STORAGE_KEY_PURCHASE_RECOVERY = 'vampire_purchase_recovery_needed';
 
 const CREEM_PRO_URL = 'https://www.creem.io/payment/prod_1pw0aIvQW2CzNzfMLrgGAY';
 const CREEM_EMERGENCY_KIT_URL = import.meta.env.VITE_CREEM_EMERGENCY_KIT_URL || 'https://www.creem.io/payment/prod_5nLkYvnA8LPlZp49NvjXKZ';
-const CREEM_DISPUTE_KIT_URL = import.meta.env.VITE_CREEM_DISPUTE_KIT_URL || '';
+const CREEM_DISPUTE_KIT_URL = import.meta.env.VITE_CREEM_DISPUTE_KIT_URL || 'https://www.creem.io/payment/prod_Il6xhSbypQPUT4JiCa1sv';
 const CREEM_PATROL_MONTHLY_URL = 'https://www.creem.io/payment/prod_3l1JRnKrbMvuYiWez8JDGw';
 // Temporary fallback until a dedicated annual checkout product is configured in Creem.
 const CREEM_PATROL_ANNUAL_URL = 'https://www.creem.io/payment/prod_3l1JRnKrbMvuYiWez8JDGw';
