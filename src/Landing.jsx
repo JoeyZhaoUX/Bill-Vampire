@@ -11,7 +11,6 @@ import {
   isPro,
 } from './pro';
 import { track } from './analytics';
-import ZhBanner from './ZhBanner';
 
 // ===== Data =====
 
@@ -312,8 +311,6 @@ export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
 
   return (
     <div className="bv-brutal min-h-screen bg-[#0B0B11] text-slate-100 overflow-x-hidden">
-
-      <ZhBanner onEnterApp={() => handleEnter('zh_banner')} />
 
       {/* ===== GRADIENT ACCENT LINE ===== */}
       <div className="gradient-accent-line" />

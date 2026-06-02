@@ -13,7 +13,6 @@ import {
 import { generateEmergencyKit } from './emergencyKit';
 import { track } from '../analytics';
 import { saveEmergencyCase } from '../auth';
-import ZhBanner from '../ZhBanner';
 
 function formatUsd(n, decimals = 0) {
   if (!Number.isFinite(n)) return '$0';
@@ -270,7 +269,6 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
 
   return (
     <div className="bv-brutal min-h-screen bg-[#0B0B11] text-slate-100 relative overflow-hidden">
-      <ZhBanner />
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[140%] h-[60%] pointer-events-none"
         style={{ background: 'radial-gradient(ellipse at center, rgba(136, 19, 55, 0.3) 0%, transparent 60%)' }}
@@ -833,14 +831,14 @@ function EmergencyKitSection({
 
         <div className="mt-5 rounded-2xl border border-[rgba(201,164,106,0.24)] bg-[#120D12]/80 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <p className="text-sm font-semibold text-[#F7EFE6]">Want a human second look?</p>
+            <p className="text-sm font-semibold text-[#F7EFE6]">Refund denied? Need to dispute the charge?</p>
             <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-              Founder Review checks your refund/cancel wording and gives manual notes. First 20 cases only. Not legal or financial advice.
+              Instantly generate an official PDF dispute dossier citing Visa & Mastercard rules, plus a chronological timeline to guarantee your bank chargeback succeeds.
             </p>
           </div>
           <button onClick={onFounderReview}
             className="shrink-0 px-5 py-2.5 rounded-xl border border-[#C9A46A]/45 bg-[#0D0B0E] text-[#F7EFE6] text-xs font-bold hover:border-[#C9A46A] transition-colors cursor-pointer">
-            Founder Review — {FOUNDER_REVIEW_PRICE.label}
+            Premium Card Dispute Kit — {FOUNDER_REVIEW_PRICE.label}
           </button>
         </div>
       </div>

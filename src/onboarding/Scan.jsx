@@ -11,7 +11,6 @@ import {
   openEmergencyKitCheckout,
 } from '../pro';
 import { track } from '../analytics';
-import ZhBanner from '../ZhBanner';
 
 const ACCEPT = 'image/jpeg,image/png,image/webp,image/gif,application/pdf';
 
@@ -223,7 +222,6 @@ export default function Scan({ onComplete, onSkipToManual }) {
 
   return (
     <div className="bv-brutal min-h-screen bg-[#0B0B11] text-slate-100 flex flex-col">
-      <ZhBanner />
       <div className="absolute top-0 left-[10%] w-80 h-80 bg-rose-900/20 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute top-40 right-[5%] w-96 h-96 bg-violet-900/15 rounded-full blur-[140px] pointer-events-none" />
 
@@ -273,47 +271,85 @@ export default function Scan({ onComplete, onSkipToManual }) {
             className="relative bg-[#141420]/80 backdrop-blur rounded-3xl border-2 border-dashed border-slate-700/60 hover:border-rose-700/50 transition-colors p-8 sm:p-10">
 
             {isExtracting && (
-              <div className="absolute inset-0 bg-[#0B0B11]/95 rounded-3xl p-6 flex flex-col justify-between z-30 animate-in fade-in duration-300">
+              <div className="absolute inset-0 bg-[#0d0b0e] rounded-3xl p-5 sm:p-7 flex flex-col justify-between z-30 animate-in fade-in duration-300 border border-[rgba(201,164,106,0.3)] shadow-[0_32px_110px_rgba(0,0,0,0.6)]">
                 <div>
-                  <div className="flex items-center justify-between border-b border-slate-800/40 pb-4 mb-4">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
-                      <span className="text-[10px] font-bold text-rose-400 uppercase tracking-widest">Advocate Agent v1.0.4</span>
+                  {/* macOS Style Window Header with custom styling and glowing dots */}
+                  <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-5">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 shadow-[0_0_8px_rgba(244,63,94,0.6)]" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
                     </div>
-                    <span className="text-[10px] text-slate-600 font-mono">negotiating...</span>
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping" />
+                      <span className="text-[10px] font-bold text-rose-300 uppercase tracking-widest font-mono">Advocate Agent v1.0.4</span>
+                    </div>
+                    <span className="text-[9px] text-[#c9a46a] font-bold uppercase tracking-wider bg-[rgba(201,164,106,0.1)] px-2 py-0.5 rounded border border-[rgba(201,164,106,0.2)]">SYS: OK</span>
                   </div>
                   
-                  {/* Streaming logs based on elapsed time */}
-                  <div className="space-y-2.5 font-mono text-[11px] text-left">
-                    <p className="text-slate-400 flex items-center gap-2">
-                      <span className="text-rose-500">❯</span> Analyzing billing dark-patterns & terms...
-                    </p>
-                    {logStep >= 1 && (
-                      <p className="text-slate-400 flex items-center gap-2 animate-in fade-in duration-300">
-                        <span className="text-rose-500">❯</span> Bypassing merchant automated chatbot flow...
+                  {/* Two Column Layout: Left (Logs) / Right (Gothic Radar Scan) */}
+                  <div className="grid grid-cols-[1fr_auto] gap-6 items-start">
+                    {/* Streaming logs based on elapsed time */}
+                    <div className="space-y-3 font-mono text-[11px] text-left">
+                      <p className="text-[#a99a91] flex items-center gap-2">
+                        <span className="text-[#8e1d2c] font-bold">❯</span> Analyzing billing dark-patterns & terms...
                       </p>
-                    )}
-                    {logStep >= 2 && (
-                      <p className="text-slate-400 flex items-center gap-2 animate-in fade-in duration-300">
-                        <span className="text-rose-500">❯</span> Citing state automatic renewal protection laws...
-                      </p>
-                    )}
-                    {logStep >= 3 && (
-                      <p className="text-slate-400 flex items-center gap-2 animate-in fade-in duration-300">
-                        <span className="text-rose-500">❯</span> Negotiating early termination fee waiver & goodwill refund...
-                      </p>
-                    )}
-                    {logStep >= 4 && (
-                      <p className="text-emerald-400 flex items-center gap-2 animate-in fade-in duration-300 font-semibold">
-                        <span className="text-emerald-500">❯</span> Refund & waiver case file compiled successfully!
-                      </p>
-                    )}
+                      {logStep >= 1 && (
+                        <p className="text-[#a99a91] flex items-center gap-2 animate-in fade-in duration-300">
+                          <span className="text-[#8e1d2c] font-bold">❯</span> Bypassing merchant automated chatbot flow...
+                        </p>
+                      )}
+                      {logStep >= 2 && (
+                        <p className="text-[#a99a91] flex items-center gap-2 animate-in fade-in duration-300">
+                          <span className="text-[#8e1d2c] font-bold">❯</span> Citing state automatic renewal protection laws...
+                        </p>
+                      )}
+                      {logStep >= 3 && (
+                        <p className="text-[#a99a91] flex items-center gap-2 animate-in fade-in duration-300">
+                          <span className="text-[#8e1d2c] font-bold">❯</span> Negotiating early termination fee waiver & goodwill refund...
+                        </p>
+                      )}
+                      {logStep >= 4 && (
+                        <p className="text-[#88c7a2] flex items-center gap-2 animate-in fade-in duration-300 font-semibold shadow-[0_0_12px_rgba(136,199,162,0.15)]">
+                          <span className="text-[#88c7a2] font-bold">❯</span> Refund & waiver case file compiled successfully!
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Cyber-Gothic Radar Scan Sweep Visualizer */}
+                    <div className="hidden sm:block shrink-0 w-24 h-24 relative rounded-full border border-white/10 bg-black/40 overflow-hidden shadow-inner">
+                      <svg viewBox="0 0 100 100" className="w-full h-full text-rose-500/20">
+                        {/* Radar grid lines */}
+                        <circle cx="50" cy="50" r="45" className="stroke-white/5" fill="none" />
+                        <circle cx="50" cy="50" r="30" className="stroke-white/5" fill="none" />
+                        <circle cx="50" cy="50" r="15" className="stroke-white/5" fill="none" />
+                        <line x1="5" y1="50" x2="95" y2="50" className="stroke-white/5" />
+                        <line x1="50" y1="5" x2="50" y2="95" className="stroke-white/5" />
+                        {/* Pulsing focal point */}
+                        <circle cx="50" cy="50" r="3" className="fill-rose-500 stroke-rose-400 animate-pulse" />
+                        {/* Sweep line */}
+                        <line x1="50" y1="50" x2="82" y2="18" className="stroke-rose-500 animate-spin" style={{ transformOrigin: '50px 50px', animationDuration: '3s' }} />
+                        <path d="M 50 50 L 82 18 A 45 45 0 0 0 50 5 Z" className="fill-rose-500/10" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-center gap-3 py-4 border-t border-slate-800/40">
-                  <FontAwesomeIcon icon={faSpinner} className="w-5 h-5 text-rose-500 animate-spin" />
-                  <span className="text-xs text-slate-400">Agent negotiating with {file ? 'screenshot' : 'bill text'}...</span>
+                {/* Bottom Telemetry Status bar */}
+                <div className="border-t border-white/10 pt-4 mt-6">
+                  <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-[10px] font-mono text-[#a99a91]/60">
+                    <div className="flex items-center gap-3">
+                      <span>TLS 1.3</span>
+                      <span>•</span>
+                      <span>AES 256</span>
+                      <span>•</span>
+                      <span className="text-emerald-400">LATENCY: 24ms</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <FontAwesomeIcon icon={faSpinner} className="w-3.5 h-3.5 text-[#8e1d2c] animate-spin" />
+                      <span>Inference engine: Gemini-1.5-Pro</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}

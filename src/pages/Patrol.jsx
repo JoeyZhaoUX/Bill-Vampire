@@ -8,7 +8,6 @@ import {
   openPatrolCheckout, PATROL_PRICE_MONTHLY, PATROL_PRICE_ANNUAL, isPatrol,
 } from '../pro';
 import { track } from '../analytics';
-import ZhBanner from '../ZhBanner';
 
 const CHROME_STORE_URL = 'https://chromewebstore.google.com/detail/bill-vampire-patrol/PLACEHOLDER_EXT_ID';
 
@@ -22,8 +21,6 @@ export default function Patrol({ onEnterApp, auth, onAuthRequest }) {
 
   return (
     <div className="bv-brutal min-h-screen bg-[#0B0B11] text-slate-100">
-
-      <ZhBanner onEnterApp={onEnterApp} />
 
       <nav className="sticky top-0 z-50 bg-[#0B0B11]/80 backdrop-blur-xl border-b border-slate-800/30">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">

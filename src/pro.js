@@ -16,7 +16,7 @@ const STORAGE_KEY_PURCHASE_RECOVERY = 'vampire_purchase_recovery_needed';
 
 const CREEM_PRO_URL = 'https://www.creem.io/payment/prod_1pw0aIvQW2CzNzfMLrgGAY';
 const CREEM_EMERGENCY_KIT_URL = import.meta.env.VITE_CREEM_EMERGENCY_KIT_URL || 'https://www.creem.io/payment/prod_5nLkYvnA8LPlZp49NvjXKZ';
-const CREEM_FOUNDER_REVIEW_URL = import.meta.env.VITE_CREEM_FOUNDER_REVIEW_URL || '';
+const CREEM_DISPUTE_KIT_URL = import.meta.env.VITE_CREEM_DISPUTE_KIT_URL || '';
 const CREEM_PATROL_MONTHLY_URL = 'https://www.creem.io/payment/prod_3l1JRnKrbMvuYiWez8JDGw';
 // Temporary fallback until a dedicated annual checkout product is configured in Creem.
 const CREEM_PATROL_ANNUAL_URL = 'https://www.creem.io/payment/prod_3l1JRnKrbMvuYiWez8JDGw';
@@ -25,7 +25,7 @@ const CREEM_TIP_URL = 'https://www.creem.io/payment/prod_4jHrSY5B9kBakNLmI1GuLw'
 export const PATROL_PRICE_MONTHLY = { amount: 4.99, label: '$4.99/mo', cycle: 'monthly' };
 export const PATROL_PRICE_ANNUAL = { amount: 39, label: '$39/yr', cycle: 'annual', monthlyEquivalent: 3.25 };
 export const EMERGENCY_KIT_PRICE = { amount: 4.99, label: '$4.99', tier: 'emergency_kit' };
-export const FOUNDER_REVIEW_PRICE = { amount: 19, label: '$19', tier: 'founder_review' };
+export const FOUNDER_REVIEW_PRICE = { amount: 29, label: '$29', tier: 'dispute_kit' };
 
 export function isPro() {
   return localStorage.getItem(STORAGE_KEY_PRO) === 'true'
@@ -188,18 +188,18 @@ export function getEmergencyKitCheckoutUrl(source = 'unknown') {
 
 function getFounderReviewSuccessUrl() {
   const base = window.location.origin + window.location.pathname;
-  return encodeURIComponent(base + '#founder-review-success');
+  return encodeURIComponent(base + '#dispute-kit-success');
 }
 
 function getFounderReviewFallbackUrl(source, context = {}) {
-  if (CREEM_FOUNDER_REVIEW_URL) {
-    return `${CREEM_FOUNDER_REVIEW_URL}?success_url=${getFounderReviewSuccessUrl()}&ref=${encodeURIComponent(source)}`;
+  if (CREEM_DISPUTE_KIT_URL) {
+    return `${CREEM_DISPUTE_KIT_URL}?success_url=${getFounderReviewSuccessUrl()}&ref=${encodeURIComponent(source)}`;
   }
-  const subject = encodeURIComponent(`Founder Review for ${context.service || 'my subscription case'}`);
+  const subject = encodeURIComponent(`Credit Card Dispute Kit for ${context.service || 'my subscription case'}`);
   const body = encodeURIComponent([
     'Hi Bill Vampire,',
     '',
-    'I want the $19 Founder Review for this subscription case.',
+    'I want the $29 Premium Credit Card Dispute Kit for this subscription case.',
     '',
     `Service: ${context.service || ''}`,
     `Amount: ${context.detected_amount || ''}`,
@@ -214,7 +214,7 @@ function getFounderReviewFallbackUrl(source, context = {}) {
 export async function openFounderReviewCheckout(source = 'unknown', context = {}) {
   try {
     localStorage.setItem('vampire_pending_checkout', JSON.stringify({
-      type: 'founder_review',
+      type: 'dispute_kit',
       source,
       startedAt: Date.now(),
       context,
@@ -224,7 +224,7 @@ export async function openFounderReviewCheckout(source = 'unknown', context = {}
     source,
     price: FOUNDER_REVIEW_PRICE.amount,
     tier: FOUNDER_REVIEW_PRICE.tier,
-    configured: !!CREEM_FOUNDER_REVIEW_URL,
+    configured: !!CREEM_DISPUTE_KIT_URL,
     ...context,
   });
   const fallbackUrl = getFounderReviewFallbackUrl(source, context);
@@ -377,18 +377,18 @@ export function checkPaymentSuccess() {
     });
     return 'emergency_kit';
   }
-  if (hash === '#founder-review-success') {
-    const pending = readPendingCheckout('founder_review');
-    localStorage.setItem('vampire_founder_review', 'true');
-    markPaymentSuccess('founder_review');
+  if (hash === '#dispute-kit-success' || hash === '#founder-review-success') {
+    const pending = readPendingCheckout('dispute_kit') || readPendingCheckout('founder_review');
+    localStorage.setItem('vampire_founder_review', 'true'); // Keep the same storage key for backwards compatibility
+    markPaymentSuccess('dispute_kit');
     localStorage.setItem(STORAGE_KEY_PURCHASE_RECOVERY, 'true');
     localStorage.removeItem('vampire_pending_checkout');
     window.location.hash = '';
-    track('founder_review_checkout_succeeded', {
+    track('dispute_kit_checkout_succeeded', {
       source: pending?.source || 'unknown',
       ...(pending?.context || {}),
     });
-    return 'founder_review';
+    return 'dispute_kit';
   }
   if (hash === '#patrol-success-patrol') {
     activatePatrol('patrol');

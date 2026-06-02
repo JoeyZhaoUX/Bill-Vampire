@@ -4,7 +4,6 @@ import { faSkull, faArrowRight, faCircleCheck, faArrowUpRightFromSquare } from '
 import { monthlyUsd } from './verdict';
 import { getCancelLink } from '../cancelLinks';
 import { track } from '../analytics';
-import ZhBanner from '../ZhBanner';
 
 export default function Commit({ subscriptions, onDone, auth, onAuthRequest }) {
   const [selected, setSelected] = useState(new Set());
@@ -29,7 +28,6 @@ export default function Commit({ subscriptions, onDone, auth, onAuthRequest }) {
 
   return (
     <div className="bv-brutal min-h-screen bg-[#0B0B11] text-slate-100 relative overflow-hidden">
-      <ZhBanner />
       <header className="px-6 py-5 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <img src={`${import.meta.env.BASE_URL}icons/icon.png`} alt="Bill Vampire" className="w-8 h-8 rounded-lg" />
