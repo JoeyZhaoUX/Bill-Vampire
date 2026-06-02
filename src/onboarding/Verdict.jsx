@@ -13,6 +13,7 @@ import {
 import { generateEmergencyKit } from './emergencyKit';
 import { track } from '../analytics';
 import { saveEmergencyCase } from '../auth';
+import DisputeBanner from '../DisputeBanner';
 
 function formatUsd(n, decimals = 0) {
   if (!Number.isFinite(n)) return '$0';
@@ -273,6 +274,7 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
 
   return (
     <div className="bv-brutal min-h-screen bg-[#0B0B11] text-slate-100 relative overflow-hidden">
+      <DisputeBanner />
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[140%] h-[60%] pointer-events-none"
         style={{ background: 'radial-gradient(ellipse at center, rgba(136, 19, 55, 0.3) 0%, transparent 60%)' }}

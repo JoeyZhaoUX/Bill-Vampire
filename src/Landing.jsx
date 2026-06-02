@@ -12,6 +12,7 @@ import {
   isPro,
 } from './pro';
 import { track } from './analytics';
+import DisputeBanner from './DisputeBanner';
 
 // ===== Data =====
 
@@ -312,6 +313,8 @@ export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
 
   return (
     <div className="bv-brutal min-h-screen bg-[#0B0B11] text-slate-100 overflow-x-hidden">
+
+      <DisputeBanner />
 
       {/* ===== GRADIENT ACCENT LINE ===== */}
       <div className="gradient-accent-line" />
