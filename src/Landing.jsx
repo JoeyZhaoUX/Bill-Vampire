@@ -8,6 +8,7 @@ import {
 import { faXTwitter, faChrome } from '@fortawesome/free-brands-svg-icons';
 import {
   openEmergencyKitCheckout, EMERGENCY_KIT_PRICE,
+  openFounderReviewCheckout, FOUNDER_REVIEW_PRICE,
   isPro,
 } from './pro';
 import { track } from './analytics';
@@ -882,7 +883,7 @@ export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {/* FREE */}
             <div className="glass-card rounded-2xl p-7 flex flex-col">
               <p className="text-xs text-slate-500 uppercase tracking-widest mb-1">Free</p>
@@ -912,7 +913,7 @@ export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
             {/* PRO */}
             <div className="relative bg-gradient-to-br from-amber-950/30 to-rose-950/30 rounded-2xl p-7 border border-amber-700/30 flex flex-col shadow-xl shadow-amber-950/10 hover:scale-[1.01] transition-transform">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-[9px] font-bold px-5 py-1.5 rounded-full shadow-lg whitespace-nowrap">
-                MOST POPULAR · ONE-TIME
+                POPULAR · ONE-TIME
               </div>
               <p className="text-xs text-amber-400 uppercase tracking-widest mb-1 mt-2">Emergency Kit</p>
               <div className="flex items-baseline gap-2 mb-1">
@@ -948,6 +949,48 @@ export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
               <div className="mt-4 pt-4 border-t border-amber-800/20 text-center">
                 <p className="text-[10px] text-amber-400/70">
                   Not legal or financial advice. Use the scripts as a starting point for support conversations.
+                </p>
+              </div>
+            </div>
+
+            {/* DISPUTE KIT */}
+            <div className="relative bg-gradient-to-br from-violet-950/30 to-rose-950/30 rounded-2xl p-7 border border-violet-700/30 flex flex-col shadow-xl shadow-violet-950/10 hover:scale-[1.01] transition-transform">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-violet-500 to-rose-500 text-white text-[9px] font-bold px-5 py-1.5 rounded-full shadow-lg whitespace-nowrap">
+                ULTIMATE DISPUTE RECOVERY
+              </div>
+              <p className="text-xs text-violet-300 uppercase tracking-widest mb-1 mt-2">Dispute Kit</p>
+              <div className="flex items-baseline gap-2 mb-1">
+                <span className="text-4xl font-bold text-slate-100">{FOUNDER_REVIEW_PRICE.label}</span>
+                <span className="text-xs text-slate-600">one-time</span>
+              </div>
+              <p className="text-[11px] text-slate-500 mb-6">Guarantees chargeback success with card network rule citations.</p>
+              <ul className="text-xs text-slate-300 space-y-3 mb-8 flex-1">
+                {[
+                  'Everything in Emergency Kit',
+                  'Official Bank Dispute Letter (PDF)',
+                  'Chronological cancellation timeline',
+                  'Visa & Mastercard rule citations',
+                  'One-click portal copy-paste statements',
+                  'Step-by-step submission walkthrough',
+                  'Lifetime updates & support',
+                ].map(item => (
+                  <li key={item} className="flex items-start gap-2.5">
+                    <FontAwesomeIcon icon={faCheck} className="text-violet-400 mt-0.5 shrink-0 w-3 h-3" /> {item}
+                  </li>
+                ))}
+              </ul>
+              <a href="#dispute-kit" onClick={(e) => { e.preventDefault(); openFounderReviewCheckout('landing_pricing', { entry: 'landing' }); }}
+                className="w-full py-3.5 bg-gradient-to-r from-violet-600 to-rose-600 text-white text-sm font-bold rounded-xl hover:brightness-110 transition-all shadow-lg shadow-rose-900/30 cursor-pointer flex items-center justify-center gap-1.5 no-underline">
+                <FontAwesomeIcon icon={faCrown} className="w-3.5 h-3.5" />
+                Unlock Dispute Kit — {FOUNDER_REVIEW_PRICE.label}
+              </a>
+              <p className="text-[10px] text-slate-600 text-center mt-3 flex items-center justify-center gap-1.5">
+                <FontAwesomeIcon icon={faLock} className="w-2.5 h-2.5" />
+                Secured by Creem · 100% automated delivery
+              </p>
+              <div className="mt-4 pt-4 border-t border-violet-800/20 text-center">
+                <p className="text-[10px] text-violet-400/70">
+                  Provides standard banking dispute templates. User-friendly and legally structured.
                 </p>
               </div>
             </div>
