@@ -49,9 +49,13 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
   const [verdictError, setVerdictError] = useState('');
   const [copied, setCopied] = useState('');
   const [paymentSuccess, setPaymentSuccess] = useState(() => (
-    typeof localStorage !== 'undefined' && localStorage.getItem('vampire_payment_success_type') === 'emergency_kit'
+    typeof localStorage !== 'undefined' && (
+      localStorage.getItem('vampire_payment_success_type') === 'emergency_kit' ||
+      localStorage.getItem('vampire_payment_success_type') === 'dispute_kit'
+    )
   ));
   const [caseSaveStatus, setCaseSaveStatus] = useState('idle');
+  const disputeUnlocked = typeof localStorage !== 'undefined' && localStorage.getItem('vampire_founder_review') === 'true';
 
   const monthlyAnim = useDigitRoll(monthly, 1400, true);
   const tenYearAnim = useDigitRoll(tenYear, 2200, phase !== 'monthly');
@@ -343,6 +347,7 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
           <EmergencyKitSection
             kit={emergencyKit}
             unlocked={kitUnlocked}
+            disputeUnlocked={disputeUnlocked}
             copied={copied}
             onCopy={copyText}
             onDownload={downloadKit}
@@ -780,6 +785,64 @@ function EmergencyKitSection({
           </div>
         ) : (
           <div className="space-y-4">
+            {disputeUnlocked && (
+              <div className="rounded-3xl border border-violet-800/30 bg-violet-950/10 p-5 sm:p-6 mb-4 animate-in fade-in duration-300">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-violet-950/40 border border-violet-800/40 flex items-center justify-center">
+                    <FontAwesomeIcon icon={faShieldHalved} className="w-5 h-5 text-violet-300" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-slate-100">Official Credit Card Dispute Dossier</h3>
+                    <p className="text-xs text-slate-500 mt-0.5">Citing card network merchant regulations & consumer rights directives.</p>
+                  </div>
+                </div>
+
+                {/* Part 1: Official Card Rules Reference */}
+                <div className="bg-[#0B0B11]/60 rounded-2xl border border-violet-900/30 p-4 mb-4">
+                  <span className="text-[9px] font-bold text-violet-400 uppercase tracking-[0.2em] block mb-2">Part 1: Card Network Compliance Violations</span>
+                  <p className="text-xs text-slate-300 leading-relaxed font-mono">
+                    <strong className="text-violet-300">Visa Core Rules Section 1.5.2</strong> & <strong className="text-violet-300">Mastercard Rules Section 4.3 (Negative Option Billing)</strong>: The merchant, {kit.service}, charged your card {kit.amount} on {kit.renewalDate} without providing a prominent, 1-click cancellation path or prior written pre-billing notification. These regulatory violations constitute grounds for a full reversal.
+                  </p>
+                </div>
+
+                {/* Part 2: Copypaste bank dispute statement */}
+                <div className="bg-[#0B0B11]/60 rounded-2xl border border-violet-900/30 p-4 mb-4">
+                  <div className="flex items-center justify-between gap-3 mb-2">
+                    <span className="text-[9px] font-bold text-violet-400 uppercase tracking-[0.2em] block">Part 2: Bank Statement Text (Copy-paste)</span>
+                    <button onClick={() => onCopy('Bank Statement', `I am disputing this transaction of ${kit.amount} charged by ${kit.service} on ${kit.renewalDate} under Reason Code 4853 (Mastercard) / Reason Code 13.5 (Visa) - 'Services Not Received or Cancelled.' The merchant billed my card on file without providing the mandatory pre-billing subscription notice. I cancelled the service immediately and requested a goodwill refund. The merchant denied the refund, violating card association negative option billing guidelines. I have not accessed or used the service since the charge date.`)}
+                      className="px-2.5 py-1.5 rounded-lg bg-violet-900/40 text-[10px] font-bold text-violet-200 hover:bg-violet-900/70 transition-colors cursor-pointer">
+                      {copied === 'Bank Statement' ? 'Copied' : 'Copy Statement'}
+                    </button>
+                  </div>
+                  <p className="text-xs text-slate-300 leading-relaxed font-mono whitespace-pre-wrap">
+                    I am disputing this transaction of {kit.amount} charged by {kit.service} on {kit.renewalDate} under Reason Code 4853 (Mastercard) / Reason Code 13.5 (Visa) - 'Services Not Received or Cancelled.' The merchant billed my card on file without providing the mandatory pre-billing subscription notice. I cancelled the service immediately and requested a goodwill refund. The merchant denied the refund, violating card association negative option billing guidelines. I have not accessed or used the service since the charge date.
+                  </p>
+                </div>
+
+                {/* Part 3: Good faith timeline log */}
+                <div className="bg-[#0B0B11]/60 rounded-2xl border border-violet-900/30 p-4">
+                  <span className="text-[9px] font-bold text-violet-400 uppercase tracking-[0.2em] block mb-3">Part 3: Good Faith Chronological Evidence Timeline</span>
+                  <div className="space-y-3 pl-3 border-l border-violet-800/30">
+                    <div className="relative">
+                      <div className="absolute -left-[16.5px] top-1.5 w-2 h-2 rounded-full bg-violet-400" />
+                      <p className="text-xs font-semibold text-slate-200">Cancellation Initiated</p>
+                      <p className="text-[10px] text-slate-500">Attempted automatic cancellation on {kit.service} settings. Roads & retention loops encountered.</p>
+                    </div>
+                    <div className="relative">
+                      <div className="absolute -left-[16.5px] top-1.5 w-2 h-2 rounded-full bg-violet-400" />
+                      <p className="text-xs font-semibold text-slate-200">Written Request Sent</p>
+                      <p className="text-[10px] text-slate-500">Submitted courtesy refund & dispute ticket regarding the {kit.amount} charge.</p>
+                    </div>
+                    <div className="relative">
+                      <div className="absolute -left-[16.5px] top-1.5 w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
+                      <p className="text-xs font-semibold text-rose-300">Refund Denied</p>
+                      <p className="text-[10px] text-slate-500">Merchant refused/denied refund request in breach of card association negative option protocols.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
             <div className="rounded-2xl border border-emerald-800/30 bg-emerald-950/15 p-4">
               <p className="text-sm font-semibold text-emerald-200 mb-3">Do this in order</p>
               <ol className="space-y-2">
