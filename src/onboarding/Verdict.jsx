@@ -776,6 +776,19 @@ function EmergencyKitSection({
               </div>
             </div>
 
+            {/* Secure Payment & Guarantee Badges */}
+            <div className="my-6 py-3 border-t border-b border-slate-800/40 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+              <span className="text-[10px] text-slate-400 flex items-center gap-1.5 font-medium">
+                🔒 Secured by Creem & Stripe
+              </span>
+              <span className="text-[10px] text-slate-400 flex items-center gap-1.5 font-medium">
+                🛡️ 100% Encrypted Checkout
+              </span>
+              <span className="text-[10px] text-slate-400 flex items-center gap-1.5 font-medium">
+                💵 Money-Back Guarantee
+              </span>
+            </div>
+
             <div className="flex justify-center mb-2">
               <button onClick={onPreviewDownload}
                 className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#141420] border border-slate-700/60 text-slate-300 text-xs font-semibold rounded-xl hover:bg-[#1C1C2A] transition-all cursor-pointer">

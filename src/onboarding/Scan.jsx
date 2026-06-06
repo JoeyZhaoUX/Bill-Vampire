@@ -374,7 +374,10 @@ export default function Scan({ onComplete, onSkipToManual }) {
                   </div>
                   <div>
                     <p className="text-base font-semibold text-slate-100 mb-1">Drop a file or click to browse</p>
-                    <p className="text-[11px] text-slate-500">JPG · PNG · PDF — up to ~10 MB</p>
+                    <p className="text-[11px] text-slate-500 mb-2.5">JPG · PNG · PDF — up to ~10 MB</p>
+                    <span className="inline-flex items-center gap-1 text-[10px] text-emerald-400 bg-emerald-950/40 border border-emerald-900/40 px-2.5 py-1 rounded-full font-mono font-medium">
+                      🛡️ Local Privacy: Files are parsed securely and never stored
+                    </span>
                   </div>
                 </div>
               ) : (
