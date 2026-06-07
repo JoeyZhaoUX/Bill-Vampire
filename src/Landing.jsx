@@ -454,12 +454,12 @@ export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
               </div>
 
               <h1 className="tracking-display text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-100 leading-[1.05] mb-7 landing-fade-in landing-delay-1">
-                Every month, invisible vampires drain your money.<br />{' '}
-                <span className="text-shimmer">Bill Vampire exposes them before they bleed you dry.</span>
+                Invisible subscriptions<br />{' '}
+                <span className="text-shimmer">drain your money.</span>
               </h1>
 
               <p className="text-lg lg:text-xl text-slate-400 max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed landing-fade-in landing-delay-2">
-                A financial survival tool for the subscription economy: paste a billing email, upload a screenshot, or describe the panic, then build a cancel/refund plan before the next renewal hits.
+                Bill Vampire exposes hidden renewals, refund windows, and cancel paths before the next charge hits.
               </p>
 
               <div className="landing-fade-in landing-delay-3 flex flex-col items-center lg:items-start gap-3">
