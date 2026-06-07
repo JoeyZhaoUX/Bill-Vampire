@@ -1,0 +1,119 @@
+{
+  "themes": [
+    {
+      "slug": "ai-layoffs",
+      "label": "AI Layoffs",
+      "tagline": "Cut recurring bills before severance, savings, or runway disappears.",
+      "description": "A survival lane for workers who need to reduce subscription burn after layoffs, income risk, or AI-driven job anxiety.",
+      "source": "survival_ai_layoffs",
+      "defaultPrompt": "I am worried about job loss or lower income and need to audit my subscriptions. Help me find what to cancel, downgrade, refund, or set reminders for first.",
+      "inspectFirst": ["AI tools and productivity SaaS", "annual plans renewing in the next 60 days", "streaming bundles", "cloud storage and app stores", "memberships you have not used in 30 days"],
+      "checklist": ["List every recurring charge from the last 60 days.", "Mark each item as essential, work-related, replaceable, or unused.", "Cancel or downgrade anything that does not protect income, housing, health, or job search.", "Request refunds for recent annual renewals and forgotten trials.", "Set reminders for every plan you cannot cancel today."],
+      "examples": ["ChatGPT Plus", "Claude Pro", "LinkedIn Premium", "Adobe Creative Cloud", "Dropbox", "Notion", "Canva Pro"],
+      "articles": [
+        ["cancel-subscriptions-after-job-loss", "Cancel subscriptions after job loss", "cancel subscriptions after job loss", "Tier 1", "A practical subscription triage checklist for the first week after job loss or income shock."],
+        ["what-subscriptions-to-cancel-first", "What subscriptions to cancel first when money gets tight", "what subscriptions to cancel first", "Tier 1", "A money-first ranking system for cutting recurring charges without losing essentials."],
+        ["subscription-audit-after-layoff", "Subscription audit after layoff", "subscription audit after layoff", "Tier 1", "How to find hidden renewals, refund windows, and downgrade opportunities after a layoff."],
+        ["emergency-budget-subscription-checklist", "Emergency budget subscription checklist", "emergency budget subscription checklist", "Tier 1", "Use this checklist to reduce monthly subscription burn before cash gets tight."],
+        ["how-to-cut-monthly-bills-fast", "How to cut monthly bills fast without connecting a bank account", "how to cut monthly bills fast", "Tier 1", "A no-bank-login plan for reducing recurring charges quickly."],
+        ["ai-layoffs-budget-cuts", "AI layoffs budget cuts: subscriptions to inspect first", "AI layoffs budget cuts", "Tier 2", "Turn AI layoff anxiety into a concrete recurring-bill survival audit."],
+        ["ai-layoffs-financial-survival-checklist", "AI layoffs financial survival checklist", "AI layoffs financial survival checklist", "Tier 2", "A focused checklist for cutting subscription waste during job-market uncertainty."],
+        ["tools-to-cancel-before-severance-runs-out", "Tools to cancel before your severance runs out", "tools to cancel before severance runs out", "Tier 2", "Prioritize expensive software, annual renewals, and forgotten premium plans before runway shrinks."],
+        ["job-search-subscriptions-worth-keeping", "Job-search subscriptions worth keeping after a layoff", "job search subscriptions worth keeping", "Tier 3", "Separate useful job-search subscriptions from panic subscriptions that drain cash."],
+        ["recurring-payments-after-income-drop", "Recurring payments after an income drop", "recurring payments after income drop", "Tier 3", "A survival framework for subscriptions when income becomes uncertain."]
+      ]
+    },
+    {
+      "slug": "consumer-downgrade",
+      "label": "Consumer Downgrade",
+      "tagline": "Downgrade, pause, or cancel premium plans before they quietly become lifestyle inflation.",
+      "description": "A lane for users trading down from premium subscriptions, bundles, and annual plans.",
+      "source": "survival_consumer_downgrade",
+      "defaultPrompt": "I want to downgrade my subscriptions and reduce monthly spending without losing the services I actually need. Help me choose what to cancel, downgrade, or ask support about.",
+      "inspectFirst": ["premium streaming tiers", "annual software plans", "family plans nobody uses", "fitness and wellness apps", "newsletters and creator memberships"],
+      "checklist": ["Find every premium tier and annual plan.", "Compare the cheaper tier, free tier, or pause option.", "Cancel add-ons before canceling core services.", "Ask support for downgrade or retention pricing if you still need the service.", "Save confirmation screenshots after every downgrade."],
+      "examples": ["Netflix", "Spotify", "Disney+", "Hulu", "Amazon Prime", "Apple Music", "LinkedIn Premium"],
+      "articles": [
+        ["consumer-downgrade-subscription-cuts", "Consumer downgrade subscription cuts", "consumer downgrade subscriptions", "Tier 2", "How to turn trading down into a subscription survival plan."],
+        ["recession-budget-cuts-subscriptions", "Recession budget cuts for subscriptions", "recession budget cuts subscriptions", "Tier 2", "A practical list of recurring charges to cut, pause, or downgrade first."],
+        ["downgrade-premium-subscriptions", "Downgrade premium subscriptions without losing everything", "downgrade premium subscriptions", "Tier 3", "How to reduce premium plans before canceling them outright."],
+        ["cheaper-alternatives-to-premium-subscriptions", "Cheaper alternatives to premium subscriptions", "best cheaper alternatives to subscriptions", "Tier 3", "Look for free tiers, ad-supported plans, bundles, and annual-plan exits."],
+        ["streaming-subscriptions-too-expensive", "Streaming subscriptions too expensive? Build a cut list", "streaming subscriptions too expensive", "Tier 2", "A survival checklist for cutting streaming costs without guessing."],
+        ["saas-subscriptions-too-expensive", "SaaS subscriptions too expensive? Audit your stack", "SaaS subscriptions too expensive", "Tier 2", "Find the work tools that deserve to stay and the nice-to-have apps to cancel."],
+        ["annual-plan-downgrade-checklist", "Annual plan downgrade checklist", "annual plan downgrade checklist", "Tier 1", "What to screenshot, ask, and cancel before an annual plan renews."],
+        ["subscription-lifestyle-inflation-audit", "Subscription lifestyle inflation audit", "subscription lifestyle inflation", "Tier 2", "Spot recurring charges that grew slowly until they became a real budget problem."],
+        ["cancel-streaming-services-2026", "Cancel streaming services in 2026: what to cut first", "cancel streaming services 2026", "Tier 3", "A rotation strategy for streamers who want fewer recurring charges."],
+        ["value-for-money-subscription-checklist", "Value-for-money subscription checklist", "subscription value for money checklist", "Tier 3", "Decide which plans still earn their monthly charge."]
+      ]
+    },
+    {
+      "slug": "subscription-hell",
+      "label": "Subscription Hell",
+      "tagline": "Escape hidden renewals, hard-cancel flows, and recurring charges that feel designed to trap you.",
+      "description": "A lane for high-intent users dealing with hard-to-cancel services, dark patterns, surprise renewals, and hidden subscription fees.",
+      "source": "survival_subscription_hell",
+      "defaultPrompt": "I feel stuck in subscription hell. Help me identify hidden recurring charges, hard-to-cancel services, refund options, and the proof I should save.",
+      "inspectFirst": ["charges with unclear merchant descriptors", "apps with no obvious cancel button", "annual renewals", "free trials that converted", "services that require chat, phone, or email to cancel"],
+      "checklist": ["Identify the merchant, amount, and billing platform.", "Find the direct cancel path before contacting support.", "Write down every failed cancel attempt.", "Send a short cancellation/refund request with the charge date and amount.", "Save proof before escalating to your card issuer."],
+      "examples": ["Adobe Creative Cloud", "New York Times", "NordVPN", "Dropbox", "Tinder", "Canva Pro", "Microsoft 365"],
+      "articles": [
+        ["subscription-hell-cancel-everything-guide", "Subscription hell: cancel-everything guide", "subscription hell", "Tier 2", "A step-by-step escape plan for recurring charges and hard-cancel services."],
+        ["cancel-unused-subscriptions", "Cancel unused subscriptions before they renew again", "cancel unused subscriptions", "Tier 1", "Find and stop recurring charges that are not earning their place."],
+        ["hidden-subscription-fees-checklist", "Hidden subscription fees checklist", "hidden subscription fees checklist", "Tier 2", "What to inspect when the merchant descriptor is unclear or the renewal was buried."],
+        ["hard-to-cancel-subscription-playbook", "Hard-to-cancel subscription playbook", "hard to cancel subscription", "Tier 1", "How to document cancellation attempts and force a clearer support path."],
+        ["subscription-cancellation-script", "Subscription cancellation script", "subscription cancellation script", "Tier 1", "Copy a direct cancellation message and keep proof for the next step."],
+        ["refund-request-email-template", "Refund request email template for subscriptions", "refund request email template", "Tier 1", "A concise refund email structure for surprise renewals and forgotten trials."],
+        ["chargeback-evidence-checklist", "Chargeback evidence checklist for subscriptions", "chargeback evidence checklist", "Tier 1", "What to gather before disputing a subscription charge with your bank."],
+        ["subscription-dark-pattern-survival-guide", "Subscription dark pattern survival guide", "subscription dark patterns", "Tier 1", "Recognize retention loops, hidden cancel buttons, and proof gaps before they cost you."],
+        ["why-is-everything-a-subscription-now", "Why is everything a subscription now?", "why is everything a subscription", "Tier 2", "Turn subscription fatigue into a practical recurring-charge audit."],
+        ["hidden-monthly-charges", "Hidden monthly charges: how to expose them", "hidden monthly charges", "Tier 3", "A no-bank-login method for turning vague charges into an action plan."]
+      ]
+    },
+    {
+      "slug": "doom-spending",
+      "label": "Doom Spending",
+      "tagline": "Turn panic purchases, impulse subscriptions, and late-night trials into a cancellation plan.",
+      "description": "A lane for users who buy apps, tools, or memberships while stressed and need a nonjudgmental way to reverse the damage.",
+      "source": "survival_doom_spending",
+      "defaultPrompt": "I signed up for subscriptions or bought apps while stressed. Help me cancel what I do not need, ask for refunds where possible, and set reminders before renewals hit.",
+      "inspectFirst": ["late-night app purchases", "free trials started during stress", "wellness or productivity tools bought impulsively", "annual plans bought from ads", "subscriptions that promised relief but went unused"],
+      "checklist": ["List purchases from the last 30 days.", "Mark which ones were used, unused, or bought during stress.", "Cancel future renewals first.", "Ask for refunds on recent unused charges.", "Set a cooling-off reminder before starting new trials."],
+      "examples": ["Calm", "Headspace", "Duolingo Super", "Tinder", "Bumble", "Perplexity Pro", "Midjourney"],
+      "articles": [
+        ["doom-spending-subscriptions", "Doom spending subscriptions", "doom spending subscriptions", "Tier 2", "How stress spending turns into recurring charges and what to cancel first."],
+        ["doom-spending-subscription-audit", "Doom spending subscription audit", "doom spending subscription audit", "Tier 2", "A practical audit for impulse subscriptions and stress purchases."],
+        ["impulse-subscription-purchase", "Impulse subscription purchase: cancel and refund checklist", "impulse subscription purchase", "Tier 2", "What to do after buying a subscription you did not really need."],
+        ["late-night-purchase-refund-script", "Late-night purchase refund script", "late night purchase refund script", "Tier 1", "A short refund request for impulse app purchases and recent subscriptions."],
+        ["apps-charging-after-free-trial", "Apps charging after free trial", "apps charging after free trial", "Tier 3", "Cancel the renewal, identify the billing route, and request a refund quickly."],
+        ["how-to-stop-doom-spending", "How to stop doom spending with a subscription audit", "how to stop doom spending", "Tier 3", "Use recurring charges as the first repairable part of a stress-spending loop."],
+        ["how-to-stop-panic-buying-apps", "How to stop panic buying apps", "how to stop panic buying apps", "Tier 3", "Set a cooling-off workflow for trials, app purchases, and recurring plans."],
+        ["doom-spending-free-trial-trap", "Doom spending and the free trial trap", "doom spending free trial", "Tier 2", "Why stress trials become surprise charges and how to prevent the next one."],
+        ["cancel-apps-you-bought-while-stressed", "Cancel apps you bought while stressed", "cancel apps bought while stressed", "Tier 2", "A nonjudgmental checklist for reversing stress-driven subscription clutter."],
+        ["impulse-subscription-cooling-off-checklist", "Impulse subscription cooling-off checklist", "impulse subscription cooling off checklist", "Tier 1", "Use this before starting another trial or annual plan."]
+      ]
+    },
+    {
+      "slug": "financial-anxiety",
+      "label": "Financial Anxiety",
+      "tagline": "Make recurring charges visible without opening a full finance dashboard.",
+      "description": "A lane for users who feel overwhelmed by money, ADHD reminders, renewal dates, or invisible recurring payments.",
+      "source": "survival_financial_anxiety",
+      "defaultPrompt": "I feel anxious about recurring charges and subscriptions. Help me make a simple plan to cancel, refund, downgrade, and set reminders without connecting my bank account.",
+      "inspectFirst": ["renewals you are avoiding", "services you forgot you had", "trial dates", "small charges that repeat monthly", "subscriptions tied to anxiety, productivity, or entertainment"],
+      "checklist": ["Start with one bill, receipt, or sentence instead of a full dashboard.", "Find the next charge date and amount.", "Choose one action: cancel, downgrade, refund request, or reminder.", "Save the script and proof.", "Repeat only after the first case is handled."],
+      "examples": ["Spotify", "YouTube Premium", "iCloud+", "1Password", "Medium", "Substack", "Audible"],
+      "articles": [
+        ["financial-anxiety-spending", "Financial anxiety spending and subscriptions", "financial anxiety spending", "Tier 2", "A calmer way to face recurring charges one case at a time."],
+        ["financial-anxiety-subscription-plan", "Financial anxiety subscription plan", "financial anxiety subscription plan", "Tier 2", "Turn money dread into one cancel/refund/reminder action."],
+        ["money-anxiety-checklist", "Money anxiety checklist for recurring charges", "money anxiety checklist", "Tier 2", "A short checklist for people who avoid looking at subscriptions."],
+        ["adhd-subscription-reminders", "ADHD subscription reminders", "ADHD subscription reminders", "Tier 2", "Build reminders around renewal dates, trial endings, and proof screenshots."],
+        ["adhd-friendly-subscription-cancel-checklist", "ADHD-friendly subscription cancel checklist", "ADHD subscription cancel checklist", "Tier 2", "A low-friction cancellation checklist for forgotten renewals."],
+        ["how-to-face-subscriptions-without-bank-login", "How to face your subscriptions without a bank login", "how to face subscriptions without bank login", "Tier 3", "Start from a receipt or sentence instead of connecting financial accounts."],
+        ["one-hour-financial-survival-audit", "One-hour financial survival audit", "one hour financial survival audit", "Tier 1", "A focused hour for finding, canceling, and documenting recurring charges."],
+        ["recurring-payments-draining-account", "Recurring payments draining your account", "recurring payments draining account", "Tier 3", "Expose repeated charges and decide what to do next."],
+        ["subscription-overload", "Subscription overload: what to do first", "subscription overload", "Tier 3", "When the list feels too big, start with one urgent charge."],
+        ["no-bank-login-subscription-tracker-alternative", "No bank login subscription tracker alternative", "no bank login subscription tracker alternative", "Tier 1", "A privacy-first way to build a case preview from a bill, screenshot, or note."]
+      ]
+    }
+  ]
+}

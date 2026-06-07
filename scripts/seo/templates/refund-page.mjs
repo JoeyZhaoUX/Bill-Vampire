@@ -75,7 +75,6 @@ function basicTemplateFor(guide) {
 export function renderRefundPage(guide, services, guides = []) {
   const service = services.find((item) => item.id === guide.serviceId)
   const cancelUrl = service ? `/cancel/${service.slug}.html` : '/tools/cancel-subscription-guide.html'
-  const toolUrl = `/tools/free-trial-refund-helper.html?service=${encodeURIComponent(guide.service)}&issue=${encodeURIComponent(guide.issueType)}`
   const appIssueType = appIssueTypeFor(guide)
   const scanUrl = `/?service=${encodeURIComponent(guide.service)}&issue=${encodeURIComponent(appIssueType)}&source=seo_refund_page#scan`
   const canonical = `https://billvampire.com/refund/${guide.slug}.html`
@@ -232,7 +231,7 @@ export function renderRefundPage(guide, services, guides = []) {
         <strong>${escapeHtml(guide.amountExample)}</strong>
         <span>Typical amount at risk</span>
         <p>${escapeHtml(guide.officialContext)}</p>
-        <a class="cta" href="${toolUrl}" onclick="bvTrack('refund_cta_clicked', { placement: 'side_card' })">${escapeHtml(ctaLabel)}</a>
+        <a class="cta" href="${scanUrl}" onclick="bvTrack('refund_cta_clicked', { placement: 'side_card' })">${escapeHtml(ctaLabel)}</a>
         <a class="secondary" href="${cancelUrl}">Open ${escapeHtml(guide.service)} cancel guide</a>
         <p class="disclaimer">Bill Vampire provides consumer communication templates and organization help. It is not legal, financial, or banking advice.</p>
       </aside>

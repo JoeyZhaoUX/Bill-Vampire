@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLock, faShareNodes, faArrowRight, faSkull, faSpinner, faCrown, faShieldHalved, faEnvelope, faWandMagicSparkles, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faLock, faShareNodes, faArrowRight, faSkull, faSpinner, faCrown, faShieldHalved, faEnvelope, faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons';
 import {
   totalMonthlyUsd, tenYearTotalUsd, rankByLifetimeWaste,
   generateVerdict, reportVerdictToStats,
@@ -542,6 +542,7 @@ function buildPublicCasePreview(kit) {
 function EmergencyKitSection({
   kit,
   unlocked,
+  disputeUnlocked,
   copied,
   onCopy,
   onDownload,
@@ -737,41 +738,24 @@ function EmergencyKitSection({
               Our AI has analyzed your charge and confirmed a high success probability. Choose a professional recovery path below to secure your credit immediately.
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-4 text-left mb-6 mt-4">
-              {/* Option A: Emergency Kit */}
-              <div className="rounded-2xl border border-amber-700/30 bg-amber-950/10 p-5 flex flex-col justify-between hover:scale-[1.01] transition-transform">
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="text-xs font-bold text-amber-300 uppercase tracking-widest">Self-Service Kit</span>
-                    <span className="text-lg font-bold text-slate-100">{EMERGENCY_KIT_PRICE.label}</span>
+            <div className="text-left mb-6 mt-4">
+              <div className="rounded-2xl border border-amber-700/30 bg-amber-950/10 p-5 sm:p-6 hover:scale-[1.01] transition-transform">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-5">
+                  <div>
+                    <span className="text-xs font-bold text-amber-300 uppercase tracking-widest">Emergency Kit</span>
+                    <p className="text-sm font-semibold text-slate-100 mt-2">Unlock the exact scripts for this case</p>
+                    <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+                      Includes the refund email, cancellation email, support chat script, evidence checklist, chargeback checklist, calendar reminder, and downloadable action plan.
+                    </p>
                   </div>
-                  <p className="text-xs text-slate-400 mb-4 leading-relaxed">
-                    Unlocks exact refund email templates, cancel scripts, support chat scripts, and evidence checklists. Ideal for initial, direct merchant support contact.
-                  </p>
+                  <div className="shrink-0 sm:text-right">
+                    <p className="text-[10px] text-slate-500 uppercase tracking-widest">One-time</p>
+                    <p className="text-3xl font-black text-slate-100">{EMERGENCY_KIT_PRICE.label}</p>
+                  </div>
                 </div>
                 <button onClick={onUnlock}
-                  className="w-full py-2.5 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all cursor-pointer flex items-center justify-center gap-1.5">
-                  <FontAwesomeIcon icon={faCrown} className="w-3.5 h-3.5" /> Unlock Scripts — {EMERGENCY_KIT_PRICE.label}
-                </button>
-              </div>
-
-              {/* Option B: Card Dispute Kit */}
-              <div className="relative rounded-2xl border border-violet-700/30 bg-violet-950/10 p-5 flex flex-col justify-between hover:scale-[1.01] transition-transform overflow-hidden">
-                <div className="absolute top-0 right-0 bg-gradient-to-r from-violet-600 to-rose-600 text-white text-[8px] font-bold px-3 py-1 rounded-bl">
-                  RECOMMENDED FOR DENIED REFUNDS
-                </div>
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-2 mt-2">
-                    <span className="text-xs font-bold text-violet-300 uppercase tracking-widest">Premium Dispute Kit</span>
-                    <span className="text-lg font-bold text-slate-100">{FOUNDER_REVIEW_PRICE.label}</span>
-                  </div>
-                  <p className="text-xs text-slate-400 mb-4 leading-relaxed">
-                    Cites Visa & Mastercard rules, generates an official bank dispute letter PDF, and chronological cancellation attempt log. Perfect if support says no.
-                  </p>
-                </div>
-                <button onClick={onFounderReview}
-                  className="w-full py-2.5 bg-gradient-to-r from-violet-600 to-rose-600 text-white text-xs font-bold rounded-xl hover:brightness-110 transition-all cursor-pointer flex items-center justify-center gap-1.5">
-                  <FontAwesomeIcon icon={faCrown} className="w-3.5 h-3.5" /> Get Dispute Kit — {FOUNDER_REVIEW_PRICE.label}
+                  className="w-full py-3 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-sm font-bold rounded-xl hover:brightness-110 transition-all cursor-pointer flex items-center justify-center gap-1.5">
+                  <FontAwesomeIcon icon={faCrown} className="w-3.5 h-3.5" /> Unlock Emergency Kit — {EMERGENCY_KIT_PRICE.label}
                 </button>
               </div>
             </div>

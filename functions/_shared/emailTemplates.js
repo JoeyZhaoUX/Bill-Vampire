@@ -53,7 +53,6 @@ function reasonCopy(reason = 'save_case_file') {
 export function buildMagicLinkEmail({ magicLink, reason, email }) {
   const copy = reasonCopy(reason);
   const safeLink = escapeHtml(magicLink);
-  const safeEmail = escapeHtml(email);
   const preview = 'Secure link expires in 15 minutes. No bank login required.';
 
   const subject = reason === 'post_purchase_recovery'

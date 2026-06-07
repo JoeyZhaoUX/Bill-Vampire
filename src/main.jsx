@@ -74,7 +74,8 @@ function hydrateIntentFromUrl() {
   const renewal = (params.get('renewal') || '').trim();
   const issue = (params.get('issue') || '').trim();
   const source = (params.get('utm_source') || params.get('source') || '').trim();
-  if (!service && !amount && !renewal && !issue && !source) return false;
+  const prefill = (params.get('prefill') || '').trim();
+  if (!service && !amount && !renewal && !issue && !source && !prefill) return false;
 
   const issueType = normalizeIssueType(issue, service);
   localStorage.setItem('vampire_issue_type', issueType);
@@ -84,10 +85,13 @@ function hydrateIntentFromUrl() {
     service,
     amount,
     renewal,
+    prefill: !!prefill,
     capturedAt: new Date().toISOString(),
   }));
 
-  if (service || amount || renewal) {
+  if (prefill) {
+    localStorage.setItem('vampire_tool_prefill', prefill);
+  } else if (service || amount || renewal) {
     const parts = [];
     if (service) parts.push(`Service: ${service}.`);
     if (amount) parts.push(`Charge amount: ${amount}.`);
@@ -100,7 +104,7 @@ function hydrateIntentFromUrl() {
     localStorage.setItem('vampire_tool_prefill', parts.join(' '));
   }
   track('intent_url_captured', { issue_type: issueType, service, source_page: url.pathname, source });
-  return !!(service || amount || renewal || issue);
+  return !!(service || amount || renewal || issue || prefill);
 }
 
 function Root() {

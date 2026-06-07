@@ -8,7 +8,7 @@ Goal: create steady, high-intent traffic without paid ads, spam, or full-auto po
 - Do not buy accounts, use throwaway accounts, or pretend to be a customer.
 - Do not paste the same link across multiple communities.
 - Do not increase the free AI parsing allowance to support growth. Use deterministic drafts and manual review first.
-- Do not publish generic AI SEO pages that only swap keywords. Every page needs a specific service, refund/cancel context, evidence checklist, and next action.
+- Do not publish generic AI SEO pages that only swap keywords. Service pages need refund/cancel context, evidence checklist, and next action. Survival pages need a money-pressure checklist, examples, case-preview CTA, and internal links to refund/cancel actions.
 
 Reference rules to re-check before campaigns:
 
@@ -20,7 +20,7 @@ Reference rules to re-check before campaigns:
 
 1. Monday: run `npm run growth:queue` and add any real URLs found from WebAccess or Chrome to `content/growth/opportunities.seed.json`.
 2. Tuesday: review 5 opportunities and publish 2 helpful no-link comments where appropriate.
-3. Wednesday: choose 5 high-intent SEO pages from real community pain points.
+3. Wednesday: choose 5 high-intent SEO pages from real community pain points. Prioritize purchase urgency, refund/cancel proximity, pain specificity, ability to route to the `$4.99` kit, and content defensibility.
 4. Thursday: ship the approved SEO pages and make sure each one has a case-preview form.
 5. Friday: publish 1 transparent founder post or builder log with real metrics.
 6. Weekend: review visits, preview starts, downloads, account saves, checkout clicks, and paid conversions.
@@ -130,12 +130,22 @@ Example outcome entry:
 
 ## SEO Page Rules
 
+Bill Vampire is now positioned as a financial survival tool for the subscription economy. Broad money-pressure keywords should land on `/survival/` pages first; service-specific refund/cancel keywords should still land on refund and cancel pages.
+
+Survival themes:
+
+- AI Layoffs: use only with monetizable modifiers like cut bills, subscriptions, emergency budget, or cancel subscriptions after job loss.
+- Consumer Downgrade: downgrade, pause, cancel, or refund decisions when money is tight.
+- Subscription Hell: hard-to-cancel services, dark patterns, forgotten renewals, and “why is everything a subscription” searches.
+- Doom Spending: impulse subscriptions, panic buying apps, and late-night purchase regret.
+- Financial Anxiety: money anxiety, subscription reminders, ADHD renewals, and one-hour audit language.
+
 Each new page must include:
 
-- Service name.
-- Concrete scenario, such as trial refund, annual renewal refund, hard cancellation, or refund denied.
-- Refund/cancel context and likely window.
-- Cancellation path.
+- Service name when the page is service-specific; a concrete financial-pressure scenario when it is a survival page.
+- Concrete scenario, such as trial refund, annual renewal refund, hard cancellation, refund denied, job-loss budget audit, downgrade order, doom-spending subscription cleanup, or money anxiety checklist.
+- Refund/cancel context and likely window when applicable.
+- Cancellation path or internal links to the relevant cancel/refund cluster.
 - Evidence checklist.
 - Free case-preview form.
 - Secondary `$4.99 Emergency Kit` CTA.
@@ -147,6 +157,11 @@ Good page ideas:
 - `Grammarly annual renewal refund request`
 - `ChatGPT Plus refund request after renewal`
 - `NordVPN refund script`
+- `cancel subscriptions after job loss`
+- `subscription audit after layoff`
+- `doom spending subscriptions`
+- `what to cancel when money is tight`
+- `financial anxiety spending checklist`
 
 ## Metrics
 

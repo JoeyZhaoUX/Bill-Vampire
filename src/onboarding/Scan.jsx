@@ -59,10 +59,7 @@ export default function Scan({ onComplete, onSkipToManual }) {
   ));
 
   useEffect(() => {
-    if (!isExtracting) {
-      setLogStep(0);
-      return;
-    }
+    if (!isExtracting) return;
     const t1 = setTimeout(() => setLogStep(1), 800);
     const t2 = setTimeout(() => setLogStep(2), 1600);
     const t3 = setTimeout(() => setLogStep(3), 2400);
@@ -142,6 +139,7 @@ export default function Scan({ onComplete, onSkipToManual }) {
       textareaRef.current?.focus();
       return;
     }
+    setLogStep(0);
     setIsExtracting(true);
     setError('');
     track('scan_started', {

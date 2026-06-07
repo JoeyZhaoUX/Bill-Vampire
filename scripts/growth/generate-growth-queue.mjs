@@ -27,6 +27,14 @@ const seoBacklog = JSON.parse(readFileSync(seoBacklogPath, 'utf8'))
 const outcomes = JSON.parse(readFileSync(outcomesPath, 'utf8'))
 const outcomesById = new Map((outcomes.items || []).map((item) => [item.id, item]))
 
+const SURVIVAL_THEME_PATHS = {
+  survival_ai_layoffs: '/survival/ai-layoffs/',
+  survival_consumer_downgrade: '/survival/consumer-downgrade/',
+  survival_subscription_hell: '/survival/subscription-hell/',
+  survival_doom_spending: '/survival/doom-spending/',
+  survival_financial_anxiety: '/survival/financial-anxiety/',
+}
+
 const serviceLookup = new Map(
   SERVICES.flatMap((service) => [
     [normalize(service.name), service],
@@ -60,7 +68,30 @@ function serviceFor(opportunity) {
   return serviceLookup.get(normalize(opportunity.service))
 }
 
+function survivalPathFor(opportunity) {
+  if (SURVIVAL_THEME_PATHS[opportunity.issueType]) return SURVIVAL_THEME_PATHS[opportunity.issueType]
+
+  const text = normalize([
+    opportunity.topic,
+    opportunity.service,
+    opportunity.issueType,
+    opportunity.pain,
+    opportunity.replyAngle,
+  ].filter(Boolean).join(' '))
+
+  if (text.includes('layoff') || text.includes('job loss')) return '/survival/ai-layoffs/'
+  if (text.includes('downgrade') || text.includes('recession')) return '/survival/consumer-downgrade/'
+  if (text.includes('subscription hell') || text.includes('everything a subscription') || text.includes('dark pattern')) return '/survival/subscription-hell/'
+  if (text.includes('doom spending') || text.includes('impulse')) return '/survival/doom-spending/'
+  if (text.includes('financial anxiety') || text.includes('money anxiety')) return '/survival/financial-anxiety/'
+
+  return ''
+}
+
 function landingPath(opportunity) {
+  const survivalPath = survivalPathFor(opportunity)
+  if (survivalPath) return survivalPath
+
   const service = serviceFor(opportunity)
 
   if (service?.slug && !['Bill Vampire'].includes(opportunity.service)) {
@@ -103,7 +134,7 @@ function utmUrl(opportunity) {
   landing.searchParams.set('utm_medium', mediumFor(opportunity))
   landing.searchParams.set('utm_campaign', `organic_growth_${isoWeek(runDate)}`)
   landing.searchParams.set('utm_content', content)
-  landing.searchParams.set('service', opportunity.service)
+  if (!survivalPathFor(opportunity)) landing.searchParams.set('service', opportunity.service)
   landing.searchParams.set('issue', opportunity.issueType)
   if (opportunity.amount) landing.searchParams.set('amount', opportunity.amount)
   return landing.toString()

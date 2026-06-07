@@ -4,6 +4,7 @@ export function renderCancelPage(service, content, allServices) {
     .filter(Boolean);
 
   const diffBadge = `<span class="badge badge-${service.difficulty}">${service.difficulty}</span>`;
+  const scanUrl = `/?service=${encodeURIComponent(service.name)}&issue=hard_cancel&source=seo_cancel_page#scan`;
 
   const stepsHtml = content.steps.map((step, i) => {
     const tipHtml = step.tip ? `<div class="tip">${esc(step.tip)}</div>` : '';
@@ -16,7 +17,7 @@ export function renderCancelPage(service, content, allServices) {
       return html + `
     <div class="cta-inline">
       <p>Need the exact words to say if they try to keep you?</p>
-      <a href="/tools/cancel-subscription-script-generator.html?service=${encodeURIComponent(service.name)}">Generate your cancel script free &rarr;</a>
+      <a href="${scanUrl}" onclick="trackCancelGuide('cancel_inline_preview_clicked')">Build your ${esc(service.name)} preview free &rarr;</a>
     </div>`;
     }
     return html;
@@ -127,7 +128,7 @@ ${schema}
 
     <div class="cta-top">
       <p>Tired of canceling one by one? Upload your bill and let Bill Vampire find ALL hidden charges.</p>
-      <a href="/?source=seo_cancel_top#scan" onclick="trackCancelGuide('cancel_top_scan_clicked')">Scan my bill free &rarr;</a>
+      <a href="${scanUrl}" onclick="trackCancelGuide('cancel_top_scan_clicked')">Build my ${esc(service.name)} preview free &rarr;</a>
     </div>
 
     <h1>${esc(content.title)}</h1>

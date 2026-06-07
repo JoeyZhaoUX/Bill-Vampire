@@ -685,6 +685,57 @@ textarea:focus-visible {
   box-shadow: 0 34px 110px rgba(0, 0, 0, 0.55) !important;
 }
 
+.bv-hero-value-strip {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  width: min(100%, 620px);
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid rgba(201, 164, 106, 0.22);
+  border-radius: 18px;
+  background: rgba(13, 11, 14, 0.72);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.32);
+}
+
+.bv-hero-value-strip div {
+  min-height: 58px;
+  padding: 10px 12px;
+  border-radius: 13px;
+  background: rgba(247, 239, 230, 0.035);
+}
+
+.bv-hero-value-strip span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--bv-gold) !important;
+  font-size: 10px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.bv-hero-value-strip strong {
+  display: block;
+  color: var(--bv-ink);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.bv-hero-value-strip button {
+  min-height: 58px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #a82d3d, var(--bv-wine) 54%, #5f1420);
+  color: var(--bv-ink);
+  font-size: 12px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
 .bv-hero-art::before {
   content: '';
   position: absolute;
@@ -932,6 +983,48 @@ textarea:focus-visible {
 }
 
 @media (max-width: 768px) {
+  .bv-landing-hero {
+    padding-top: 1.5rem !important;
+  }
+
+  .bv-landing-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(13, 11, 14, 0.72) 0%, rgba(13, 11, 14, 0.5) 42%, rgba(13, 11, 14, 0.92) 100%),
+      radial-gradient(circle at 50% 20%, rgba(201, 164, 106, 0.16), transparent 42%);
+  }
+
+  .bv-landing-hero-copy {
+    padding: 1rem 0.75rem 0.5rem;
+    border-radius: 22px;
+    background: rgba(13, 11, 14, 0.54);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+  }
+
+  .bv-landing-hero-copy h1,
+  .bv-landing-hero-copy p {
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.85);
+  }
+
+  .bv-hero-value-strip {
+    grid-template-columns: 1fr;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .bv-hero-value-strip div {
+    min-height: auto;
+  }
+
+  .bv-hero-value-strip button {
+    width: 100%;
+    min-height: 48px;
+  }
+
   .bv-hero-art {
     min-height: 220px;
     max-height: 280px;
@@ -1040,9 +1133,6 @@ textarea:focus-visible {
 }
 
 @media print {
-  /* Ensure Google Fonts are embedded */
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700;900&display=swap');
-
   /* Hide app UI, show report */
   body {
     background: white !important;

@@ -41,6 +41,7 @@ export function fallbackExtractFromText(text) {
   const input = String(text || '').trim();
   if (!input) return [];
   const amountMatch = input.match(/(?:USD|US\$|\$)\s?(\d+(?:[.,]\d{1,2})?)/i)
+    || input.match(/(?:charge amount|amount|charged|renewal|price|cost)\s*[:-]?\s*(\d+(?:[.,]\d{1,2})?)/i)
     || input.match(/(\d+(?:[.,]\d{1,2})?)\s?(?:dollars|usd)/i);
   if (!amountMatch) return [];
   const price = parseFloat(amountMatch[1].replace(',', '.'));

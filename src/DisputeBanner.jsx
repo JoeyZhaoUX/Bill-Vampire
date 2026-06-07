@@ -8,7 +8,9 @@ const DISMISS_KEY = 'vampire_dispute_banner_dismissed';
 export default function DisputeBanner() {
   const [visible, setVisible] = useState(() => {
     if (typeof window === 'undefined') return false;
-    return localStorage.getItem(DISMISS_KEY) !== 'true';
+    const params = new URLSearchParams(window.location.search);
+    const shouldShow = params.get('dispute') === '1' || window.location.hash.includes('dispute');
+    return shouldShow && localStorage.getItem(DISMISS_KEY) !== 'true';
   });
 
   if (!visible) return null;

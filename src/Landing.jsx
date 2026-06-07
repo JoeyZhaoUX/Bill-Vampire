@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronRight, faCrown, faChevronDown, faShieldHalved, faArrowRight,
-  faBolt, faWandMagicSparkles, faSkull, faLock, faCheck, faEnvelope, faBell,
+  faLock, faCheck, faEnvelope, faBell,
   faFireFlameCurved, faFolderOpen, faFileInvoiceDollar,
 } from '@fortawesome/free-solid-svg-icons';
 import { faXTwitter, faChrome } from '@fortawesome/free-brands-svg-icons';
@@ -128,6 +128,39 @@ const REFUND_GUIDE_LINKS = [
   },
 ];
 
+const SURVIVAL_THEMES = [
+  {
+    title: 'AI Layoffs',
+    href: '/survival/ai-layoffs/',
+    tagline: 'Cut subscription drag when income suddenly feels fragile.',
+    keyword: 'Layoff budget',
+  },
+  {
+    title: 'Consumer Downgrade',
+    href: '/survival/consumer-downgrade/',
+    tagline: 'Decide what to cancel, pause, downgrade, or refund first.',
+    keyword: 'Downgrade plan',
+  },
+  {
+    title: 'Subscription Hell',
+    href: '/survival/subscription-hell/',
+    tagline: 'Escape forgotten renewals, hard cancel flows, and dark patterns.',
+    keyword: 'Cancel maze',
+  },
+  {
+    title: 'Doom Spending',
+    href: '/survival/doom-spending/',
+    tagline: 'Turn late-night impulse subscriptions into a clean exit plan.',
+    keyword: 'Impulse control',
+  },
+  {
+    title: 'Financial Anxiety',
+    href: '/survival/financial-anxiety/',
+    tagline: 'Shrink money panic into a one-hour subscription audit.',
+    keyword: 'Money anxiety',
+  },
+];
+
 // ===== Utilities =====
 
 function formatUsd(n) {
@@ -202,6 +235,24 @@ function HeroArtPanel() {
         alt="A refined gothic vampire advocate holding a glowing billing statement and evidence folder"
       />
     </figure>
+  );
+}
+
+function HeroValueStrip({ onStart }) {
+  return (
+    <div className="bv-hero-value-strip landing-fade-in landing-delay-3">
+      <div>
+        <span>Survival preview</span>
+        <strong>Hidden charges, downgrade targets, refund windows, and first moves</strong>
+      </div>
+      <div>
+        <span>{EMERGENCY_KIT_PRICE.label} one-time</span>
+        <strong>Exact scripts, checklist, reminder, and download</strong>
+      </div>
+      <button onClick={() => onStart('hero_value_strip')}>
+        Build preview <FontAwesomeIcon icon={faArrowRight} className="w-3 h-3" />
+      </button>
+    </div>
   );
 }
 
@@ -370,14 +421,14 @@ export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
             </button>
             <button onClick={() => handleEnter('surprise_charge')}
               className="flex items-center gap-1.5 px-5 py-2.5 bg-rose-600 text-white text-xs font-semibold rounded-xl hover:bg-rose-500 transition-all hover:scale-[1.02] cursor-pointer">
-              Fix a charge <FontAwesomeIcon icon={faArrowRight} className="w-3 h-3" />
+              Build preview <FontAwesomeIcon icon={faArrowRight} className="w-3 h-3" />
             </button>
           </div>
         </div>
       </nav>
 
       {/* ===== HERO ===== */}
-      <section ref={heroRef} className="relative pt-10 pb-12 lg:pt-32 lg:pb-36 overflow-hidden">
+      <section ref={heroRef} className="bv-landing-hero relative pt-10 pb-12 lg:pt-32 lg:pb-36 overflow-hidden">
         {/* Background video */}
         <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
           <video
@@ -394,7 +445,7 @@ export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
 
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-[1.08fr_0.92fr] gap-6 lg:gap-14 items-center mb-8 lg:mb-12">
-            <div className="text-center lg:text-left">
+            <div className="bv-landing-hero-copy text-center lg:text-left">
               <div className="inline-flex items-center gap-2 bg-rose-950/40 border border-rose-800/30 px-4 py-1.5 rounded-full mb-8 landing-fade-in">
                 <FontAwesomeIcon icon={faFireFlameCurved} className="w-3 h-3 text-rose-400" />
                 <span className="text-[11px] font-medium text-rose-300">
@@ -403,12 +454,12 @@ export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
               </div>
 
               <h1 className="tracking-display text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-100 leading-[1.05] mb-7 landing-fade-in landing-delay-1">
-                Stop your next<br />{' '}
-                <span className="text-shimmer">surprise<br className="sm:hidden" /> subscription<br className="sm:hidden" /> charge.</span>
+                Every month, invisible vampires drain your money.<br />{' '}
+                <span className="text-shimmer">Bill Vampire exposes them before they bleed you dry.</span>
               </h1>
 
               <p className="text-lg lg:text-xl text-slate-400 max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed landing-fade-in landing-delay-2">
-                Paste a billing email, upload a screenshot, or say the trial out loud. Bill Vampire builds a cancel/refund plan before the next renewal bites.
+                A financial survival tool for the subscription economy: paste a billing email, upload a screenshot, or describe the panic, then build a cancel/refund plan before the next renewal hits.
               </p>
 
               <div className="landing-fade-in landing-delay-3 flex flex-col items-center lg:items-start gap-3">
@@ -418,6 +469,8 @@ export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
                   No bank login · No signup before results · Save case files with an account
                 </p>
               </div>
+
+              <HeroValueStrip onStart={handleEnter} />
             </div>
 
             <HeroArtPanel />
@@ -466,6 +519,44 @@ export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
                 <p className="text-xs text-slate-500">{s.label}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== SUBSCRIPTION SURVIVAL MAP ===== */}
+      <section className="py-16 lg:py-20 bg-[#0F0F18] border-y border-white/[0.04]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid lg:grid-cols-[0.82fr_1.18fr] gap-8 items-start">
+            <div>
+              <p className="text-xs font-medium text-rose-400 uppercase tracking-widest mb-3">Subscription Survival Map</p>
+              <h2 className="tracking-heading text-3xl lg:text-4xl font-bold text-slate-100 mb-4">
+                Five money pressures. One route into action.
+              </h2>
+              <p className="text-sm text-slate-500 leading-relaxed mb-6">
+                Job-loss panic, downgrade pressure, hidden renewals, doom spending, and money anxiety all point to the same first move: find the drains, rank the cuts, and build the exact cancel/refund case.
+              </p>
+              <a
+                href="/survival/"
+                onClick={() => track('survival_hub_clicked', { source: 'landing_survival_map' })}
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#1C1C2A] border border-rose-700/30 text-rose-300 text-sm font-bold hover:bg-[#252536] transition-colors no-underline"
+              >
+                Open financial survival guides <FontAwesomeIcon icon={faArrowRight} className="w-3 h-3" />
+              </a>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {SURVIVAL_THEMES.map(item => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => track('survival_theme_clicked', { source: 'landing_survival_map', theme: item.href })}
+                  className="glass-card glass-card-hover rounded-2xl p-5 no-underline transition-all hover:scale-[1.02]"
+                >
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-rose-400 font-bold mb-3">{item.keyword}</p>
+                  <h3 className="text-lg font-bold text-slate-100 mb-2">{item.title}</h3>
+                  <p className="text-xs text-slate-500 leading-relaxed">{item.tagline}</p>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -873,7 +964,26 @@ export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-6 items-start">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 items-start">
+            {/* Column 1: Survival Guides */}
+            <div className="glass-card rounded-2xl p-6 border-slate-800/40">
+              <h3 className="text-sm font-bold text-slate-100 mb-4 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-rose-400" /> Financial Survival Guides
+              </h3>
+              <ul className="space-y-3 text-xs text-slate-400">
+                {SURVIVAL_THEMES.map(item => (
+                  <li key={item.href}>
+                    <a href={item.href} className="hover:text-rose-400 transition-colors">{item.title}</a>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-5 pt-4 border-t border-slate-800/40">
+                <a href="/survival/" className="text-xs font-semibold text-rose-300 hover:text-rose-200 transition-colors">
+                  View survival hub &rarr;
+                </a>
+              </div>
+            </div>
+
             {/* Column 1: Cancel Guides */}
             <div className="glass-card rounded-2xl p-6 border-slate-800/40">
               <h3 className="text-sm font-bold text-slate-100 mb-4 flex items-center gap-2">

@@ -1,4 +1,4 @@
-import { readdirSync, writeFileSync, readFileSync, existsSync } from 'fs';
+import { writeFileSync, readFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { SERVICES } from './services.mjs';
@@ -7,6 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '../..');
 const CONTENT_DIR = join(ROOT, 'content/cancel');
 const REFUND_CONTENT_PATH = join(ROOT, 'content/refund/guides.json');
+const SURVIVAL_CONTENT_PATH = join(ROOT, 'content/survival/guides.json');
 const SITEMAP_PATH = join(ROOT, 'public/sitemap.xml');
 
 const STATIC_URLS = [
@@ -73,6 +74,35 @@ export function generateSitemap() {
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>`);
+    }
+  }
+
+  if (existsSync(SURVIVAL_CONTENT_PATH)) {
+    const survivalThemes = JSON.parse(readFileSync(SURVIVAL_CONTENT_PATH, 'utf-8')).themes || [];
+    urls.push(`  <url>
+    <loc>https://billvampire.com/survival/</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>`);
+
+    for (const theme of survivalThemes) {
+      urls.push(`  <url>
+    <loc>https://billvampire.com/survival/${theme.slug}/</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>`);
+
+      for (const item of theme.articles || []) {
+        const article = Array.isArray(item) ? { slug: item[0] } : item
+        urls.push(`  <url>
+    <loc>https://billvampire.com/survival/${theme.slug}/${article.slug}.html</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.78</priority>
+  </url>`);
+      }
     }
   }
 
