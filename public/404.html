@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Page Drained | Bill Vampire</title>
+  <meta name="description" content="This page has been drained. Navigate back to Bill Vampire's cancel guides, refund scripts, and subscription tools." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="icon" href="/icons/icon.png" type="image/png" sizes="192x192" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0D0B0E;
+      --crimson: #8E1D2C;
+      --gold: #C9A46A;
+      --gold-light: #FDE68A;
+      --cream: #F7EFE6;
+      --muted: #A99A91;
+      --dim: #64748B;
+      --card-bg: rgba(247,239,230,.055);
+      --card-border: rgba(247,239,230,.10);
+    }
+
+    html { height: 100%; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0D0B0E;
+      color: var(--muted);
+      min-height: 100vh;
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .nav-logo {
+      display: inline-flex;
+      width: 40px; height: 40px;
+      align-items: center; justify-content: center;
+      flex: 0 0 auto;
+      border-radius: 12px;
+      background: rgba(247,239,230,.06);
+      border: 1px solid rgba(247,239,230,.10);
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .nav-logo:hover { background: rgba(247,239,230,.10); }
+    .nav-logo img { width: 26px; height: 26px; border-radius: 7px; display: block; }
+    .breadcrumb {
+      display: flex; align-items: center; gap: 8px;
+      color: #526078; font-size: 0.88rem; font-weight: 600;
+    }
+    .breadcrumb a { color: #7F8CA6; text-decoration: none; transition: color 0.15s; }
+    .breadcrumb a:hover { color: var(--cream); }
+
+    /* ── HERO SPLIT LAYOUT ── */
+    .hero {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 0;
+      max-width: 1160px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 32px 60px;
+    }
+    @media (max-width: 760px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 0 24px 48px;
+        text-align: center;
+      }
+      .hero-image { order: -1; }
+    }
+
+    /* ── LEFT: TEXT SIDE ── */
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding-right: 40px;
+    }
+    @media (max-width: 760px) {
+      .hero-text { padding-right: 0; align-items: center; }
+    }
+
+    .label-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(142,29,44,0.45);
+      background: rgba(142,29,44,0.10);
+      color: #fb7185;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      width: fit-content;
+      margin-bottom: 20px;
+    }
+
+    .error-num {
+      font-size: clamp(5.5rem, 14vw, 9.5rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.9;
+      background: linear-gradient(160deg, #F7EFE6 0%, #C9A46A 45%, #8E1D2C 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 40px rgba(142,29,44,0.5));
+      margin-bottom: 20px;
+    }
+
+    .headline {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      color: var(--cream);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .subline {
+      font-size: 0.97rem;
+      color: var(--muted);
+      max-width: 400px;
+      line-height: 1.65;
+      margin-bottom: 36px;
+    }
+    .subline strong { color: var(--gold); font-weight: 700; }
+
+    /* ── LINKS GRID ── */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      width: 100%;
+      max-width: 440px;
+      margin-bottom: 28px;
+    }
+    @media (max-width: 760px) {
+      .links-grid { max-width: 360px; }
+    }
+
+    .link-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      padding: 14px 14px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      text-decoration: none;
+      transition: border-color 0.18s, background 0.18s, transform 0.18s;
+    }
+    .link-card:hover {
+      border-color: rgba(201,164,106,0.38);
+      background: rgba(247,239,230,.08);
+      transform: translateY(-2px);
+    }
+    @media (max-width: 760px) { .link-card { align-items: center; } }
+    .link-icon { font-size: 1.3rem; line-height: 1; margin-bottom: 2px; }
+    .link-label { font-size: 0.8rem; font-weight: 700; color: var(--cream); line-height: 1.2; }
+    .link-hint { font-size: 0.7rem; color: var(--dim); line-height: 1.2; }
+
+    /* ── CTA BUTTON ── */
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 32px;
+      background: linear-gradient(135deg, #F7EFE6, #D9C6A7);
+      color: #171217;
+      text-decoration: none;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 0.92rem;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 14px 34px rgba(0,0,0,.35);
+      transition: transform 0.18s ease, filter 0.18s ease;
+      width: fit-content;
+    }
+    .cta-btn:hover { transform: translateY(-2px); filter: brightness(1.06); }
+
+    /* ── RIGHT: IMAGE SIDE ── */
+    .hero-image {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* radial glow behind image */
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      inset: -10%;
+      background: radial-gradient(ellipse at 50% 60%, rgba(142,29,44,0.30) 0%, rgba(142,29,44,0.10) 45%, transparent 72%);
+      pointer-events: none;
+      border-radius: 50%;
+    }
+
+    .vampire-img {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      aspect-ratio: 4/5;
+      object-fit: contain;
+      animation: levitate 4.5s ease-in-out infinite;
+      filter: drop-shadow(0 30px 60px rgba(142,29,44,0.50));
+    }
+    @media (max-width: 760px) {
+      .vampire-img { max-width: 320px; }
+    }
+
+    @keyframes levitate {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-14px); }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid rgba(247,239,230,.07);
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    footer a {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--dim);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    footer a:hover { color: var(--cream); }
+    footer .sep { color: rgba(247,239,230,.10); font-size: 0.7rem; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a class="nav-logo" href="/">
+      <img src="/icons/icon-192x192.png" alt="Bill Vampire" />
+    </a>
+    <div class="breadcrumb">
+      <a href="/">Bill Vampire</a>
+      <span>/</span>
+      <span>404</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <!-- LEFT: TEXT -->
+    <div class="hero-text">
+      <div class="label-tag">
+        <span>⚠</span> Error 404 — Not Found
+      </div>
+
+      <div class="error-num">404</div>
+
+      <h1 class="headline">This page has<br>been drained.</h1>
+
+      <p class="subline">
+        The URL you followed has <strong>vanished into the night</strong> — moved, deleted, or never existed.<br>
+        Your subscriptions, however, are still very much alive.
+      </p>
+
+      <div class="links-grid">
+        <a class="link-card" href="/cancel/">
+          <div class="link-icon">🧛</div>
+          <div class="link-label">Cancel Guides</div>
+          <div class="link-hint">47 services</div>
+        </a>
+        <a class="link-card" href="/refund/">
+          <div class="link-icon">💰</div>
+          <div class="link-label">Refund Scripts</div>
+          <div class="link-hint">Get money back</div>
+        </a>
+        <a class="link-card" href="/tools/">
+          <div class="link-icon">🔮</div>
+          <div class="link-label">Free Tools</div>
+          <div class="link-hint">No bank login</div>
+        </a>
+      </div>
+
+      <a class="cta-btn" href="/">← Back to Bill Vampire</a>
+    </div>
+
+    <!-- RIGHT: IMAGE -->
+    <div class="hero-image">
+      <picture>
+        <source srcset="brand/vampire-404.webp" type="image/webp" />
+        <img
+          class="vampire-img"
+          src="brand/vampire-404.png"
+          alt="Bill Vampire character holding a 404 NOT FOUND subscription scroll"
+          width="520"
+          height="650"
+        />
+      </picture>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="/cancel/">Cancel Guides</a>
+    <span class="sep">|</span>
+    <a href="/refund/">Refund Guides</a>
+    <span class="sep">|</span>
+    <a href="/tools/">Free Tools</a>
+    <span class="sep">|</span>
+    <a href="/cases/">Case Studies</a>
+    <span class="sep">|</span>
+    <a href="/">Bill Vampire</a>
+  </footer>
+
+</body>
+</html>
