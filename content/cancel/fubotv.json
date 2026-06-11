@@ -1,0 +1,63 @@
+{
+  "title": "How to Cancel FuboTV & Avoid Free Trial Auto-Renewal Charges",
+  "metaDescription": "Stop FuboTV auto-renewal instantly. Step-by-step guide to cancel Fubo free trial, avoid hidden charges, and request a subscription refund.",
+  "intro": "FuboTV subscriptions automatically renew at the end of your billing cycle or free trial. Canceling your FuboTV free trial will terminate the service immediately, so time it carefully to avoid a sudden charge of $79.99 or more.",
+  "steps": [
+    {
+      "title": "Sign in to Fubo.tv",
+      "text": "Go to fubo.tv on a web browser or mobile browser. Sign in using your registered email and password. Note: You cannot cancel FuboTV through most TV apps directly.",
+      "tip": null
+    },
+    {
+      "title": "Navigate to My Account",
+      "text": "Hover or tap on your profile icon in the top right corner and select \"My Account\" from the dropdown menu.",
+      "tip": "Make sure you are logged into the primary profile of your subscription."
+    },
+    {
+      "title": "Go to Subscription and Billing",
+      "text": "Locate the \"Subscription & Billing\" section. Here, you will see your current plan, renewal date, and next billing amount.",
+      "tip": null
+    },
+    {
+      "title": "Click Cancel Subscription",
+      "text": "Scroll down and click the \"Cancel Subscription\" button. Fubo will show several retention screens or discount offers.",
+      "tip": "Do not select 'Pause Subscription' if you want to completely stop billing. Choose 'Complete Cancellation' or 'Cancel Subscription' again."
+    },
+    {
+      "title": "Confirm and check email",
+      "text": "Provide a reason for canceling if prompted, then click \"Cancel Subscription\" to confirm. Check your email for a confirmation receipt containing your cancellation reference.",
+      "tip": "If you are on a free trial, canceling will immediately cut off your streaming access."
+    }
+  ],
+  "warnings": [
+    "FuboTV free trials terminate IMMEDIATELY upon cancellation. If you cancel on Day 1 of a 7-day trial, you lose access instantly.",
+    "FuboTV does not offer prorated refunds for mid-cycle cancellations of paid plans.",
+    "If you subscribed through a third party like Apple, Roku, or Amazon, you must cancel through their respective subscription platforms.",
+    "Be careful of 'Pause' offers, which will resume billing automatically after a set period."
+  ],
+  "faqs": [
+    {
+      "q": "Will I get a refund if I cancel FuboTV after being charged?",
+      "a": "FuboTV has a strict no-refund policy for paid subscriptions once charged. However, if you were accidentally billed due to a trial transition or system error, you can submit a billing dispute."
+    },
+    {
+      "q": "Can I cancel FuboTV on Apple TV or Roku?",
+      "a": "Yes, if you billed through Apple or Roku, go to your Apple ID Subscriptions or Roku Account Portal to cancel. Fubo cannot process cancellations or refunds for third-party billing."
+    },
+    {
+      "q": "What happens if I pause my Fubo subscription?",
+      "a": "Pausing suspends billing for up to 3 months, keeping your profile and DVR settings. After the pause period ends, your credit card will be billed automatically at the standard rate."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "FuboTV states all fees are non-refundable. However, in cases of unauthorized charges or immediate trial expiration issues, support may grant exceptions if disputed promptly."
+  },
+  "retentionTactics": [
+    "Offering a temporary discount ($10-$20 off your next month).",
+    "Encouraging you to 'Pause' your subscription instead of canceling completely.",
+    "Warning you about losing scheduled DVR recordings."
+  ],
+  "timeEstimate": "3-5 minutes",
+  "lastVerified": "2026-06-11"
+}

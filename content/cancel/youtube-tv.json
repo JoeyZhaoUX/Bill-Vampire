@@ -1,0 +1,52 @@
+{
+  "title": "How to Cancel YouTube TV & Get a Refund",
+  "metaDescription": "Cancel YouTube TV on computer, mobile, or third-party billing. Learn step-by-step subscription cancellation, how to pause, and refund policies.",
+  "intro": "YouTube TV has a simple subscription model with no cancellation fees, but billing automatically rolls over unless canceled. You can cancel your subscription or free trial at any time.",
+  "steps": [
+    {
+      "title": "Open YouTube TV settings",
+      "text": "Go to tv.youtube.com on your computer or mobile web browser. Click on your profile photo in the top right and select \"Settings\". Note: iOS users cannot cancel subscriptions from the YouTube TV App.",
+      "tip": null
+    },
+    {
+      "title": "Go to Membership section",
+      "text": "In the Settings menu, click on \"Membership\". You will see your active membership, Base Plan, and any active Add-ons.",
+      "tip": null
+    },
+    {
+      "title": "Click Pause or Cancel Membership",
+      "text": "Next to your Base Plan, click \"Manage\". Then click \"Pause or cancel membership\" or \"Cancel membership\".",
+      "tip": "YouTube TV allows you to pause your membership for up to 6 months if you just want a temporary break."
+    },
+    {
+      "title": "Choose Cancellation and Confirm",
+      "text": "Click \"Cancel\" to proceed. Select your reason for leaving, then click \"Continue canceling\". Finally, click \"Yes, cancel\" to complete the process.",
+      "tip": "If you are on a paid plan, your service remains active until the end of your billing cycle. If on a free trial, your service ends immediately."
+    }
+  ],
+  "warnings": [
+    "Free trial cancellations take effect IMMEDIATELY. You will lose access to all channels, DVR recordings, and add-ons right away.",
+    "Paid plans remain active until your next billing date — no partial or prorated refunds are standard.",
+    "If you billed through Apple/iTunes, you must cancel through iOS Settings -> Apple ID Subscriptions."
+  ],
+  "faqs": [
+    {
+      "q": "Can I get a refund for YouTube TV?",
+      "a": "YouTube TV does not offer refunds for partial billing periods. However, if you forgot to cancel a trial or had an accidental charge, you can request a refund through the Google Play Refund Support page."
+    },
+    {
+      "q": "What happens to my recorded DVR shows when I cancel?",
+      "a": "Your recorded shows in your Library are saved for 21 days. If you re-subscribe within 21 days, your recordings will be restored. After that, they are permanently deleted."
+    }
+  ],
+  "refund": {
+    "eligible": true,
+    "details": "Refunds are generally not provided. However, Google provides an automatic refund tool for certain situations (e.g., accidental renewals or unrecognized charges) at support.google.com."
+  },
+  "retentionTactics": [
+    "Offering to pause subscription instead of complete cancellation.",
+    "Highlighting that your unlimited DVR library will be deleted after 21 days."
+  ],
+  "timeEstimate": "2 minutes",
+  "lastVerified": "2026-06-11"
+}

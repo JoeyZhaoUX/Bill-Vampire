@@ -310,5 +310,29 @@
     ],
     "freePreviewPrompt": "I accidentally bought or renewed Tinder Gold and need the correct refund path and support wording.",
     "sourceUrl": "https://www.reddit.com/r/Tinder/comments/dhn4dn"
+  },
+  {
+    "slug": "ftc-may-2026-refund-payments-claim-guide",
+    "title": "FTC May 2026 Refund Payments: How to Claim Your Check",
+    "metaDescription": "Are you eligible for the FTC May 2026 refund payments? Learn how the Federal Trade Commission distributes settlement checks and how to claim your money.",
+    "service": "FTC Refunds",
+    "serviceId": "ftc-refunds",
+    "issueType": "trial_refund",
+    "amountExample": "Varies ($50-$500)",
+    "primaryKeyword": "FTC May 2026 refund payments",
+    "searchIntent": "User wants to check if they are eligible for the FTC May 2026 refund distributions and how to claim or cash their check.",
+    "communitySignal": "Google Trends and Reddit show rising searches for FTC refund checks mailed out in May and June 2026 for deceptive subscription and billing practices.",
+    "officialContext": "The FTC mails refund checks and PayPal payments directly to affected consumers from authorized settlement administrators. The FTC never asks you to pay money to get a refund.",
+    "refundWindow": "Cash your check before the expiration date printed on the check (usually 60-90 days from issuance). Check the FTC interactive dashboard for active distribution status.",
+    "cancelPath": "Visit the official FTC refund page at ftc.gov/refunds to verify if your email, phone, or address is associated with any recent deceptive billing actions.",
+    "evidence": [
+      "Official FTC refund letter or email notice",
+      "FTC Case or Claim Number",
+      "Deceptive merchant charge history or card receipts",
+      "Copy of the mailed check (if disputing/depositing)",
+      "Registered email used with the deceptive service"
+    ],
+    "freePreviewPrompt": "I received or heard about an FTC refund check for deceptive subscription practices and want to verify how to claim it and audit my other active subscriptions.",
+    "sourceUrl": "https://www.ftc.gov/enforcement/refunds"
   }
 ]

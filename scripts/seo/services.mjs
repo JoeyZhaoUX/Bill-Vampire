@@ -516,6 +516,28 @@ export const SERVICES = [
     keywords: ['how to cancel icloud', 'cancel icloud storage subscription', 'icloud+ cancellation'],
     related: ['dropbox', 'apple-music', 'apple-tv-plus'],
   },
+  {
+    id: 'fubotv',
+    name: 'FuboTV',
+    slug: 'how-to-cancel-fubotv',
+    cancelUrl: 'https://my.fubo.tv/settings/subscription',
+    category: 'streaming',
+    price: '$79.99/mo',
+    difficulty: 'hard',
+    keywords: ['how to cancel fubotv', 'cancel fubo free trial', 'fubo subscription cancel', 'fubotv cancel'],
+    related: ['youtube-premium', 'hulu', 'netflix'],
+  },
+  {
+    id: 'youtube-tv',
+    name: 'YouTube TV',
+    slug: 'how-to-cancel-youtube-tv',
+    cancelUrl: 'https://tv.youtube.com/settings/membership',
+    category: 'streaming',
+    price: '$72.99/mo',
+    difficulty: 'easy',
+    keywords: ['how to cancel youtube tv', 'cancel youtube tv subscription', 'youtube tv refund'],
+    related: ['fubotv', 'hulu', 'netflix'],
+  },
 ];
 
 export const CATEGORIES = {
