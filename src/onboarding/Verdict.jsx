@@ -1,13 +1,13 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLock, faShareNodes, faArrowRight, faSkull, faSpinner, faCrown, faShieldHalved, faEnvelope, faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons';
+import { faLock, faShareNodes, faArrowRight, faSkull, faSpinner, faCrown, faShieldHalved, faEnvelope, faWandMagicSparkles, faHeart } from '@fortawesome/free-solid-svg-icons';
 import {
   totalMonthlyUsd, tenYearTotalUsd, rankByLifetimeWaste,
   generateVerdict, reportVerdictToStats,
 } from './verdict';
 import {
   isPro, canAiRoast, incrementAiUsage,
-  isPatrol, isEmergencyKitUnlocked, openEmergencyKitCheckout, openFounderReviewCheckout,
+  isPatrol, isEmergencyKitUnlocked, openEmergencyKitCheckout, openFounderReviewCheckout, openTip,
   EMERGENCY_KIT_PRICE, FOUNDER_REVIEW_PRICE,
 } from '../pro';
 import { generateEmergencyKit } from './emergencyKit';
@@ -456,24 +456,45 @@ export default function Verdict({ subscriptions, onContinue, onShare, auth, onAu
 
           {/* Viral Sharing Promotion Box - Fourth Phase */}
           {kitUnlocked && (
-            <section className="py-10 border-t border-slate-800/40">
-              <div className="bg-gradient-to-r from-violet-950/40 to-rose-950/30 rounded-2xl border border-violet-800/30 p-5 sm:p-6 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
-                <div>
-                  <h3 className="text-sm font-bold text-amber-300 uppercase tracking-widest mb-1.5 flex items-center justify-center sm:justify-start gap-1.5">
-                    <FontAwesomeIcon icon={faCrown} className="w-3.5 h-3.5 text-amber-300" />
-                    Share & Get 1 Free Emergency Kit!
-                  </h3>
-                  <p className="text-xs text-slate-300 leading-relaxed max-w-md">
-                    Share your Bill Vampire damage report or a successful refund screenshot on X (Twitter), Reddit, TikTok, or Instagram, tag <strong className="text-rose-400">@BillVampire</strong>, and we will direct message you a promo code for a <strong className="text-amber-300">Lifetime Free 1-Time Emergency Kit</strong>!
-                  </p>
+            <>
+              <section className="py-10 border-t border-slate-800/40">
+                <div className="bg-gradient-to-r from-[#141420]/60 to-rose-950/30 p-6 rounded-3xl border border-amber-800/20 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
+                  <div>
+                    <h3 className="text-sm font-bold text-amber-300 uppercase tracking-widest mb-1.5 flex items-center justify-center sm:justify-start gap-1.5">
+                      <FontAwesomeIcon icon={faHeart} className="w-4 h-4 text-rose-400 animate-pulse" />
+                      Buy the Vampire a coffee
+                    </h3>
+                    <p className="text-xs text-slate-300 leading-relaxed max-w-md">
+                      If our custom Emergency Kit has helped you waive fees or secure a refund, buy the vampire a coffee to support our fight against subscription dark patterns!
+                    </p>
+                  </div>
+                  <button onClick={openTip}
+                    className="shrink-0 px-6 py-3 bg-gradient-to-r from-amber-500 to-rose-500 text-white rounded-xl text-xs font-bold hover:brightness-110 transition-all cursor-pointer flex items-center gap-1.5 shadow-lg shadow-rose-900/20">
+                    <FontAwesomeIcon icon={faHeart} className="w-3.5 h-3.5 text-white" />
+                    Tip $2
+                  </button>
                 </div>
-                <button onClick={onShare}
-                  className="shrink-0 px-6 py-3 bg-[#1C1C2A] text-slate-200 border border-slate-700/60 rounded-xl text-xs font-bold hover:bg-[#252536] transition-colors cursor-pointer flex items-center gap-1.5">
-                  <FontAwesomeIcon icon={faShareNodes} className="w-3.5 h-3.5 text-rose-400" />
-                  Share & Claim Code
-                </button>
-              </div>
-            </section>
+              </section>
+
+              <section className="py-10 border-t border-slate-800/40">
+                <div className="bg-gradient-to-r from-violet-950/40 to-rose-950/30 rounded-2xl border border-violet-800/30 p-5 sm:p-6 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
+                  <div>
+                    <h3 className="text-sm font-bold text-amber-300 uppercase tracking-widest mb-1.5 flex items-center justify-center sm:justify-start gap-1.5">
+                      <FontAwesomeIcon icon={faCrown} className="w-3.5 h-3.5 text-amber-300" />
+                      Share & Get 1 Free Emergency Kit!
+                    </h3>
+                    <p className="text-xs text-slate-300 leading-relaxed max-w-md">
+                      Share your Bill Vampire damage report or a successful refund screenshot on X (Twitter), Reddit, TikTok, or Instagram, tag <strong className="text-rose-400">@BillVampire</strong>, and we will direct message you a promo code for a <strong className="text-amber-300">Lifetime Free 1-Time Emergency Kit</strong>!
+                    </p>
+                  </div>
+                  <button onClick={onShare}
+                    className="shrink-0 px-6 py-3 bg-[#1C1C2A] text-slate-200 border border-slate-700/60 rounded-xl text-xs font-bold hover:bg-[#252536] transition-colors cursor-pointer flex items-center gap-1.5">
+                    <FontAwesomeIcon icon={faShareNodes} className="w-3.5 h-3.5 text-rose-400" />
+                    Share & Claim Code
+                  </button>
+                </div>
+              </section>
+            </>
           )}
 
           <section className="py-10 border-t border-slate-800/40 flex flex-col sm:flex-row gap-3">

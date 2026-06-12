@@ -23,12 +23,13 @@ import {
   fireChargeDateNotifications, pendingToasts, markToastDelivered,
   notificationPermission, requestNotificationPermission, hasNotificationApi,
 } from './sw-notifications';
+import CancelScript from './components/CancelScript';
+import { fallbackExtractFromText } from './onboarding/verdict';
 
 // Lazy load heavy components
 const LazyChart = lazy(() => import('./components/LazyChart'));
 const ShareCard = lazy(() => import('./ShareCard'));
 const PrintReport = lazy(() => import('./PrintReport'));
-const CancelScript = lazy(() => import('./components/CancelScript'));
 const SubscriptionHealth = lazy(() => import('./components/SubscriptionHealth'));
 const TrialTracker = lazy(() => import('./components/TrialTracker'));
 const AnnualAudit = lazy(() => import('./components/AnnualAudit'));
@@ -347,6 +348,7 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
   const [importFileName, setImportFileName] = useState('');
   const [isExtracting, setIsExtracting] = useState(false);
   const [extractedBills, setExtractedBills] = useState(null);
+  const [importError, setImportError] = useState('');
   const [chargeToasts, setChargeToasts] = useState([]);
   const [notifPromptShown, setNotifPromptShown] = useState(false);
   const [cancelScriptSub, setCancelScriptSub] = useState(null);
@@ -565,9 +567,9 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
       setShowProModal(true);
       return;
     }
-    markSmartImportUsed();
     setIsExtracting(true);
     setExtractedBills(null);
+    setImportError('');
 
     const systemPrompt = lang === 'zh'
       ? '你是一个账单提取专家。从用户提供的文本或图片中提取所有订阅/扣款信息。返回JSON数组，每个元素包含：name（服务名称）、price（数字金额）、currency（USD/CNY/EUR/GBP/JPY/HKD之一）、cycle（monthly或yearly）、category（Entertainment/Productivity/Lifestyle/Other之一）。如果无法确定某个字段，使用合理的默认值。只返回JSON数组，不要其他文本。'
@@ -586,11 +588,18 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
         parts.unshift({ text: 'Extract subscription/billing information from this image or document.' });
       }
 
-      const data = await callAi({
+      // Add standard timeout of 8s (8000ms) on callAi using a custom Promise.race
+      const aiPromise = callAi({
         contents: [{ parts }],
         systemInstruction: { parts: [{ text: systemPrompt }] },
         generationConfig: { responseMimeType: 'application/json' },
       });
+
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('TIMEOUT')), 8000)
+      );
+
+      const data = await Promise.race([aiPromise, timeoutPromise]);
       const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '[]';
       const parsed = JSON.parse(text);
       const bills = (Array.isArray(parsed) ? parsed : [parsed]).map(b => ({
@@ -600,11 +609,37 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
         cycle: b.cycle === 'yearly' ? 'yearly' : 'monthly',
         category: CATEGORY_VALUES.includes(b.category) ? b.category : 'Other',
       })).filter(b => b.name !== 'Unknown' || parseFloat(b.price) > 0);
-      setExtractedBills(bills.length > 0 ? bills : []);
+
+      if (bills.length > 0) {
+        markSmartImportUsed();
+        setExtractedBills(bills);
+      } else {
+        // Try fallback local regex parser
+        const fallback = fallbackExtractFromText(importText);
+        if (fallback.length > 0) {
+          setExtractedBills(fallback);
+        } else {
+          setImportError(lang === 'zh' ? '未能提取出任何订阅，请检查格式或重试。' : 'No subscriptions could be extracted. Please check the text format and try again.');
+          setExtractedBills([]);
+        }
+      }
     } catch (err) {
-      if (err instanceof RateLimitError) setShowProModal(true);
-      else console.error('Extract error:', err);
-      setExtractedBills([]);
+      if (err instanceof RateLimitError) {
+        setShowProModal(true);
+      } else {
+        console.error('Extract error:', err);
+        // On error or timeout (TIMEOUT), try fallback local regex parser
+        const fallback = fallbackExtractFromText(importText);
+        if (fallback.length > 0) {
+          setExtractedBills(fallback);
+        } else {
+          setImportError(err.message === 'TIMEOUT'
+            ? (lang === 'zh' ? 'AI 解析超时，本地解析也未匹配到账单。请尝试更清晰的内容。' : 'AI analysis timed out and local parser could not find any charge. Try clearer text.')
+            : (lang === 'zh' ? '账单解析失败，请检查网络或重试。' : 'Failed to parse bill. Please check your network or try again.')
+          );
+          setExtractedBills([]);
+        }
+      }
     }
     setIsExtracting(false);
   };
@@ -627,6 +662,7 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
     setImportFileName('');
     setExtractedBills(null);
     setIsExtracting(false);
+    setImportError('');
   };
 
   const exportPDF = () => {
@@ -883,15 +919,6 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
                   <FontAwesomeIcon icon={faChevronRight} className="w-3 h-3 text-slate-600 group-hover:text-slate-400 group-hover:translate-x-0.5 transition-all shrink-0" />
                 </button>
               )}
-
-              {/* Tip */}
-              <div className="bg-[#141420]/40 p-3 rounded-xl border border-slate-800/20">
-                <p className="text-[10px] text-slate-500 mb-2 flex items-center gap-1.5"><FontAwesomeIcon icon={faHeart} className="w-2.5 h-2.5 text-rose-400/60" /> {_('tipTitle')}</p>
-                <button onClick={openTip}
-                  className="w-full py-2 text-[10px] font-medium text-amber-300/80 bg-[#1C1C2A]/50 rounded-lg hover:bg-[#252536] transition-colors border border-amber-800/10 cursor-pointer">
-                  {lang === 'zh' ? '打赏 $2' : 'Tip $2'}
-                </button>
-              </div>
 
               {/* Legal links */}
               <div className="flex gap-3 pt-2">
@@ -1260,13 +1287,6 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
                       <p className="text-sm text-slate-600 italic">{lang === 'zh' ? '添加订阅后查看洞察' : 'Add subscriptions to see insights'}</p>
                     )}
                   </div>
-                  <div className="bg-gradient-to-r from-amber-950/30 to-rose-950/30 p-6 rounded-2xl border border-amber-800/20 print:hidden">
-                    <p className="text-sm font-medium text-slate-300 mb-4 flex items-center gap-2"><FontAwesomeIcon icon={faHeart} className="w-4 h-4 text-rose-400" /> {_('tipTitle')}</p>
-                    <button onClick={openTip}
-                      className="w-full py-3 text-sm font-medium text-amber-300 bg-[#1C1C2A]/70 rounded-xl hover:bg-[#252536] transition-colors border border-amber-800/20 cursor-pointer">
-                      {lang === 'zh' ? '打赏 $2' : 'Tip $2'}
-                    </button>
-                  </div>
                 </div>
 
                 {/* Subscription Health + Trial Tracker — full width below grid */}
@@ -1483,6 +1503,12 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
                     <button onClick={() => { setImportFile(null); setImportFileName(''); }}
                       className="text-[10px] text-rose-400 hover:text-rose-300 cursor-pointer shrink-0">{_('removeFile')}</button>
                   </div>
+                )}
+
+                {importError && (
+                  <p className="text-xs text-rose-400 mt-3 text-center leading-relaxed" role="alert">
+                    {importError}
+                  </p>
                 )}
 
                 {/* Extract button */}
