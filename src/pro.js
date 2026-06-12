@@ -1,6 +1,6 @@
 import { track } from './analytics';
 
-const AI_WEEKLY_LIMIT_FREE = 5;
+const AI_WEEKLY_LIMIT_FREE = 3;
 const FREE_SCAN_LIFETIME_LIMIT = 1;
 const FREE_PRINT_LIFETIME_LIMIT = 1;
 

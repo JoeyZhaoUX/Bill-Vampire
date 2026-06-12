@@ -750,58 +750,69 @@ function EmergencyKitSection({
         </div>
 
         {!unlocked ? (
-          <div className="rounded-2xl border border-amber-700/30 bg-[#0B0B11]/70 p-5 text-center">
-            <FontAwesomeIcon icon={faLock} className="w-5 h-5 text-amber-300 mb-3" />
-            <p className="text-sm font-semibold text-slate-100 mb-2">
-              Secure your {kitValue} refund instantly
-            </p>
-            <p className="text-xs text-slate-400 max-w-lg mx-auto mb-4 leading-relaxed">
-              Our AI has analyzed your charge and confirmed a high success probability. Choose a professional recovery path below to secure your credit immediately.
-            </p>
-
-            <div className="text-left mb-6 mt-4">
-              <div className="rounded-2xl border border-amber-700/30 bg-amber-950/10 p-5 sm:p-6 hover:scale-[1.01] transition-transform">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-5">
-                  <div>
-                    <span className="text-xs font-bold text-amber-300 uppercase tracking-widest">Emergency Kit</span>
-                    <p className="text-sm font-semibold text-slate-100 mt-2">Unlock the exact scripts for this case</p>
-                    <p className="text-xs text-slate-400 mt-2 leading-relaxed">
-                      Includes the refund email, cancellation email, support chat script, evidence checklist, chargeback checklist, calendar reminder, and downloadable action plan.
-                    </p>
-                  </div>
-                  <div className="shrink-0 sm:text-right">
-                    <p className="text-[10px] text-slate-500 uppercase tracking-widest">One-time</p>
-                    <p className="text-3xl font-black text-slate-100">{EMERGENCY_KIT_PRICE.label}</p>
-                  </div>
-                </div>
-                <button onClick={onUnlock}
-                  className="w-full py-3 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-sm font-bold rounded-xl hover:brightness-110 transition-all cursor-pointer flex items-center justify-center gap-1.5">
-                  <FontAwesomeIcon icon={faCrown} className="w-3.5 h-3.5" /> Unlock Emergency Kit — {EMERGENCY_KIT_PRICE.label}
-                </button>
+          <div className="rounded-2xl border border-amber-700/30 bg-[#0B0B11]/70 overflow-hidden">
+            {/* Blurred refund email preview — user sees what they're paying for */}
+            <div className="relative px-5 pt-5">
+              <p className="text-[10px] font-bold text-amber-300 uppercase tracking-[0.18em] mb-2">Refund email — ready to send</p>
+              <div className="relative rounded-xl border border-slate-800/50 bg-[#0B0B11]/60 p-4 overflow-hidden" style={{ maxHeight: '140px' }}>
+                <p className="text-xs text-slate-300 leading-relaxed whitespace-pre-wrap font-mono select-none" aria-hidden>
+                  {`Hi ${kit.service} support,\n\nI was charged ${kit.amount} and I am requesting a refund for this charge. I did not intend to continue this subscription...\n\n[Evidence summary, card network violation reference, and exact refund ask]\n\nPlease confirm the refund timeline in writing.\n\nThank you.`}
+                </p>
+                {/* Gradient fade-out covering the bottom 55% */}
+                <div className="absolute inset-x-0 bottom-0 h-[55%] pointer-events-none" style={{ background: 'linear-gradient(to bottom, transparent, #0B0B11)' }} />
+              </div>
+              <div className="absolute inset-x-5 bottom-0 flex items-center justify-center">
+                <span className="text-[10px] text-slate-600 flex items-center gap-1.5 pb-1">
+                  <FontAwesomeIcon icon={faLock} className="w-2.5 h-2.5" /> Full email unlocks below
+                </span>
               </div>
             </div>
 
-            {/* Secure Payment & Guarantee Badges */}
-            <div className="my-6 py-3 border-t border-b border-slate-800/40 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-              <span className="text-[10px] text-slate-400 flex items-center gap-1.5 font-medium">
-                🔒 Secured by Creem & Stripe
-              </span>
-              <span className="text-[10px] text-slate-400 flex items-center gap-1.5 font-medium">
-                🛡️ 100% Encrypted Checkout
-              </span>
-              <span className="text-[10px] text-slate-400 flex items-center gap-1.5 font-medium">
-                💵 Money-Back Guarantee
-              </span>
-            </div>
+            <div className="p-5 pt-4 text-center">
+              <div className="text-left mb-5">
+                <div className="rounded-2xl border border-amber-700/30 bg-amber-950/10 p-5 sm:p-6 hover:scale-[1.01] transition-transform">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-5">
+                    <div>
+                      <span className="text-xs font-bold text-amber-300 uppercase tracking-widest">Emergency Kit</span>
+                      <p className="text-sm font-semibold text-slate-100 mt-2">Unlock the exact scripts for this case</p>
+                      <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+                        Refund email, cancellation email, support chat script, evidence checklist, chargeback checklist, calendar reminder, and downloadable action plan.
+                      </p>
+                    </div>
+                    <div className="shrink-0 sm:text-right">
+                      <p className="text-[10px] text-slate-500 uppercase tracking-widest">One-time</p>
+                      <p className="text-3xl font-black text-slate-100">{EMERGENCY_KIT_PRICE.label}</p>
+                    </div>
+                  </div>
+                  <button onClick={onUnlock}
+                    className="w-full py-3 bg-gradient-to-r from-amber-500 to-rose-500 text-white text-sm font-bold rounded-xl hover:brightness-110 transition-all cursor-pointer flex items-center justify-center gap-1.5">
+                    <FontAwesomeIcon icon={faCrown} className="w-3.5 h-3.5" /> Unlock Emergency Kit — {EMERGENCY_KIT_PRICE.label}
+                  </button>
+                </div>
+              </div>
 
-            <div className="flex justify-center mb-2">
-              <button onClick={onPreviewDownload}
-                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#141420] border border-slate-700/60 text-slate-300 text-xs font-semibold rounded-xl hover:bg-[#1C1C2A] transition-all cursor-pointer">
-                Download free case file preview
-              </button>
-            </div>
+              {/* Secure Payment & Guarantee Badges */}
+              <div className="my-4 py-3 border-t border-b border-slate-800/40 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+                <span className="text-[10px] text-slate-400 flex items-center gap-1.5 font-medium">
+                  🔒 Secured by Creem
+                </span>
+                <span className="text-[10px] text-slate-400 flex items-center gap-1.5 font-medium">
+                  🛡️ 100% Encrypted Checkout
+                </span>
+                <span className="text-[10px] text-slate-400 flex items-center gap-1.5 font-medium">
+                  💵 Money-Back Guarantee
+                </span>
+              </div>
 
-            <p className="text-[10px] text-slate-600 mt-3">{kit.disclaimer}</p>
+              <div className="flex justify-center mb-2">
+                <button onClick={onPreviewDownload}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#141420] border border-slate-700/60 text-slate-300 text-xs font-semibold rounded-xl hover:bg-[#1C1C2A] transition-all cursor-pointer">
+                  Download free case file preview
+                </button>
+              </div>
+
+              <p className="text-[10px] text-slate-600 mt-3">{kit.disclaimer}</p>
+            </div>
           </div>
         ) : (
           <div className="space-y-4">

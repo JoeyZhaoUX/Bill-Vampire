@@ -325,6 +325,42 @@ function AccountMenu({ user, onLogout, onSync, syncStatus, compact }) {
   );
 }
 
+function QuickPasteEmpty({ lang, onImport, onAdd }) {
+  const examples = lang === 'zh'
+    ? ['Netflix 扣费 $15.49', 'Adobe 收取了 $59.99 取消费', 'Spotify 自动续费 $9.99']
+    : ['Netflix charged me $15.49', 'Adobe took $59.99 as a cancellation fee', 'Spotify auto-renewed for $9.99'];
+  return (
+    <div className="py-10 px-2">
+      <p className="text-center text-xs text-slate-600 uppercase tracking-widest mb-3 font-medium">
+        {lang === 'zh' ? '哪笔扣款让你懵了？' : 'What charge surprised you?'}
+      </p>
+      <button
+        onClick={onImport}
+        className="w-full bg-[#0D0B0E]/80 border-2 border-dashed border-slate-700/60 hover:border-rose-700/60 rounded-2xl px-5 py-8 text-left transition-all group cursor-pointer"
+      >
+        <p className="text-slate-300 text-base font-light mb-4 group-hover:text-slate-100 transition-colors">
+          {lang === 'zh' ? '粘贴账单截图、银行短信或任何扣费记录……' : 'Paste a bank statement, charge notification, or any billing text…'}
+        </p>
+        <div className="space-y-2 mb-5">
+          {examples.map(ex => (
+            <p key={ex} className="text-xs text-slate-600 font-mono pl-1">"{ex}"</p>
+          ))}
+        </div>
+        <span className="inline-flex items-center gap-2 px-4 py-2 bg-rose-600/90 group-hover:bg-rose-500 rounded-xl text-xs font-bold text-white transition-colors">
+          <FontAwesomeIcon icon={faWandMagicSparkles} className="w-3 h-3" />
+          {lang === 'zh' ? 'AI 分析扣款' : 'Analyze with AI'}
+        </span>
+      </button>
+      <button
+        onClick={onAdd}
+        className="mt-3 w-full py-2.5 text-xs text-slate-700 hover:text-slate-500 transition-colors cursor-pointer"
+      >
+        {lang === 'zh' ? '或手动添加订阅 →' : 'or add subscriptions manually →'}
+      </button>
+    </div>
+  );
+}
+
 export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAuthRefresh }) {
   const [lang, setLang] = useState(getDefaultLang);
   const [activeTab, setActiveTab] = useState('subs');
@@ -1012,28 +1048,7 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
                   </div>
                 </div>
                 {subscriptions.length === 0 && (
-                  <div className="flex flex-col items-center justify-center py-16 text-slate-600">
-                    <div className="relative mb-6">
-                      <VampireIcon className="w-16 h-16 opacity-40" />
-                      <div className="absolute -top-1 -right-1 w-5 h-5 bg-rose-500/10 rounded-full flex items-center justify-center border border-rose-500/20">
-                        <span className="text-[9px]">z</span>
-                      </div>
-                    </div>
-                    <p className="text-base font-light mb-2">{_('noSubs')}</p>
-                    <p className="text-xs text-slate-700 mb-5 max-w-xs text-center">
-                      {lang === 'zh' ? '添加你的订阅，让吸血鬼帮你守住钱包' : 'Add your subscriptions and let the vampire guard your wallet'}
-                    </p>
-                    <div className="flex gap-3">
-                      <button onClick={() => setShowAddModal(true)}
-                        className="flex items-center gap-2 px-5 py-2.5 bg-rose-950/50 text-rose-300 rounded-xl hover:bg-rose-950/70 transition-colors cursor-pointer text-sm font-medium border border-rose-800/30">
-                        <FontAwesomeIcon icon={faPlus} className="w-3.5 h-3.5" /> {lang === 'zh' ? '手动添加' : 'Add manually'}
-                      </button>
-                      <button onClick={() => setShowImportModal(true)}
-                        className="flex items-center gap-2 px-5 py-2.5 bg-violet-950/50 text-violet-300 rounded-xl hover:bg-violet-950/70 transition-colors cursor-pointer text-sm font-medium border border-violet-800/30">
-                        <FontAwesomeIcon icon={faFileImport} className="w-3.5 h-3.5" /> {lang === 'zh' ? '智能导入' : 'Smart import'}
-                      </button>
-                    </div>
-                  </div>
+                  <QuickPasteEmpty lang={lang} onImport={() => setShowImportModal(true)} onAdd={() => setShowAddModal(true)} />
                 )}
                 <div className="space-y-1">
                   {subscriptions.map((sub, idx) => {
