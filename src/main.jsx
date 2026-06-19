@@ -252,6 +252,7 @@ function Root() {
   const goToLanding = () => {
     window.location.hash = '';
     window.scrollTo(0, 0);
+    refreshAuth(false);
     setView('landing');
   };
 
@@ -410,7 +411,15 @@ function Root() {
   if (view === 'landing') {
     return (
       <>
-        <Landing onEnterApp={startOnboarding} onLegal={goToLegal} lang={lang} setLang={setLang} onAuthRequest={(reason) => setAuthModal(reason || 'landing')} />
+        <Landing
+          onEnterApp={startOnboarding}
+          onOpenApp={enterApp}
+          onLegal={goToLegal}
+          lang={lang}
+          setLang={setLang}
+          auth={auth}
+          onAuthRequest={(reason) => setAuthModal(reason || 'landing')}
+        />
         <AuthModal open={!!authModal} reason={authModal} initialMessage={authNotice} onClose={() => { setAuthModal(null); setAuthNotice(''); }} />
         <UpdatePrompt />
       </>

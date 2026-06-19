@@ -329,12 +329,15 @@ function VerdictMockup() {
 
 // ===== Main Component =====
 
-export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
+export default function Landing({ onEnterApp, onOpenApp, onLegal, onAuthRequest, auth }) {
   const [openFaq, setOpenFaq] = useState(null);
   const [showStickyCta, setShowStickyCta] = useState(false);
   const viewedRef = useRef(false);
   const heroRef = useRef(null);
   const pricingRef = useRef(null);
+  const signedIn = auth?.status === 'authenticated' && auth?.user;
+  const authChecking = auth?.status === 'checking';
+  const userEmail = auth?.user?.email || '';
 
   // Scroll-reveal refs
   const revealHow = useScrollReveal();
@@ -415,10 +418,28 @@ export default function Landing({ onEnterApp, onLegal, onAuthRequest }) {
               className="hidden sm:flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-amber-300 hover:text-amber-200 transition-colors cursor-pointer no-underline">
               <FontAwesomeIcon icon={faCrown} className="w-3 h-3" /> Emergency Kit — {EMERGENCY_KIT_PRICE.label}
             </a>
-            <button onClick={() => onAuthRequest?.('landing_nav')}
-              className="hidden sm:flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-slate-300 hover:text-slate-100 transition-colors cursor-pointer">
-              Sign in
-            </button>
+            {signedIn ? (
+              <>
+                <button onClick={() => onOpenApp?.()}
+                  className="hidden sm:flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-emerald-300 hover:text-emerald-200 transition-colors cursor-pointer">
+                  Open app
+                </button>
+                <button onClick={() => onOpenApp?.()}
+                  title={userEmail}
+                  className="hidden md:flex items-center max-w-[180px] px-3 py-2 rounded-xl border border-emerald-500/20 bg-emerald-950/20 text-[11px] font-semibold text-emerald-200 truncate cursor-pointer">
+                  {userEmail}
+                </button>
+              </>
+            ) : authChecking ? (
+              <span className="hidden sm:flex items-center px-4 py-2 text-xs font-semibold text-slate-500">
+                Checking session
+              </span>
+            ) : (
+              <button onClick={() => onAuthRequest?.('landing_nav')}
+                className="hidden sm:flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-slate-300 hover:text-slate-100 transition-colors cursor-pointer">
+                Sign in
+              </button>
+            )}
             <button onClick={() => handleEnter('surprise_charge')}
               className="flex items-center gap-1.5 px-5 py-2.5 bg-rose-600 text-white text-xs font-semibold rounded-xl hover:bg-rose-500 transition-all hover:scale-[1.02] cursor-pointer">
               Build preview <FontAwesomeIcon icon={faArrowRight} className="w-3 h-3" />
