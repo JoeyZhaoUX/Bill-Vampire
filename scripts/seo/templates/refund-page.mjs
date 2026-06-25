@@ -54,22 +54,113 @@ function faqFor(guide) {
   ]
 }
 
-function basicTemplateFor(guide) {
-  return [
-    `Hi ${guide.service} support,`,
+// Per-service scripts keyed by serviceId. Each is a "consumer communication
+// template", not legal advice. Falls back to a master template by issueType.
+const SERVICE_SCRIPTS = {
+  'adobe-creative-cloud': [
+    'Hi Adobe,',
     '',
-    `I’m asking for help with a ${guide.service} charge or renewal.`,
+    'I want to cancel my Creative Cloud plan on the account under [email], and I’m seeing an early-termination fee. I’d like to request that the fee be waived — I was not clearly aware this annual commitment carried a cancellation fee at the point of [signup/plan change].',
     '',
-    'Charge amount/date: [add amount and date]',
-    'Account email: [add the email on the account]',
-    `Situation: ${guide.searchIntent}`,
-    '',
-    'Please confirm the subscription is cancelled or will not renew again. I’d also like you to review whether this charge is eligible for a refund based on the timing and account activity.',
-    '',
-    'I can provide the receipt, cancellation screenshots, and support history if needed.',
+    'Please confirm the cancellation and review the fee. I’m happy to discuss switching plans if that resolves it.',
     '',
     'Thank you.',
-  ].join('\n')
+  ],
+  grammarly: [
+    'Hi Grammarly,',
+    '',
+    'My Premium subscription under [email] renewed on [date] for [amount]. I did not intend to renew and have not used Premium since the charge.',
+    '',
+    'Please cancel future renewals and refund this charge. I can provide the receipt.',
+    '',
+    'Thank you.',
+  ],
+  nordvpn: [
+    'Hi NordVPN Support,',
+    '',
+    'I’m requesting a refund for the [amount] charge on [date] on the account under [email], under your 30-day money-back guarantee.',
+    '',
+    'Please cancel auto-renewal and process the refund to my original payment method.',
+    '',
+    'Thank you.',
+  ],
+  expressvpn: [
+    'Hi ExpressVPN Support,',
+    '',
+    'I’m requesting a refund for the [amount] charge on [date] on the account under [email], under your 30-day money-back guarantee.',
+    '',
+    'Please cancel auto-renewal and process the refund to my original payment method.',
+    '',
+    'Thank you.',
+  ],
+  canva: [
+    'Hi Canva,',
+    '',
+    'My Pro trial converted to a paid subscription on [date] ([amount]) under [email]. I forgot to cancel before it converted and have not used Pro features since.',
+    '',
+    'Could you cancel Pro and refund this charge? I appreciate your help.',
+    '',
+    'Thank you.',
+  ],
+  'amazon-prime': [
+    'Hi Amazon,',
+    '',
+    'My Prime membership under [email] renewed on [date] for [amount] and I did not intend to continue. I have not used Prime benefits since the renewal — no Prime shipping, Prime Video, or other benefits.',
+    '',
+    'Please cancel the membership and refund this renewal as unused.',
+    '',
+    'Thank you.',
+  ],
+  'microsoft-365': [
+    'Hi Microsoft Support,',
+    '',
+    'My Microsoft 365 subscription under [email] renewed on [date] for [amount]. This was unintended and I have not used the renewed term.',
+    '',
+    'Please turn off recurring billing and refund this charge under your renewal-refund policy.',
+    '',
+    'Thank you.',
+  ],
+  'chatgpt-plus': [
+    'Important: if you subscribed through the Apple App Store, the refund comes from Apple, not OpenAI.',
+    '',
+    'Apple route: go to reportaproblem.apple.com → sign in → find the ChatGPT charge → "Request a refund" → choose a reason (e.g. "subscription renewed unexpectedly"). Apple, not the app, issues the refund.',
+    '',
+    'Direct (openai.com) route — email support:',
+    'Hi OpenAI Support, my ChatGPT Plus subscription under [email] renewed on [date] for [amount]. I did not intend to continue and have not used it since. Please cancel future renewals and review this charge for a refund. Thank you.',
+  ],
+}
+
+function masterTemplateFor(guide) {
+  const situationByIssue = {
+    hard_cancel:
+      'I’ve been trying to cancel and want this confirmed in writing so it will not renew again.',
+    trial_refund:
+      'A trial converted to a paid plan and I was charged for something I have not used since.',
+    refund_denied:
+      'I was charged after I believed I had already cancelled, and I’d like this reviewed again.',
+    surprise_charge:
+      'This renewed automatically and I did not intend to continue; I haven’t used the service since.',
+  }
+  const situation = situationByIssue[guide.issueType] || situationByIssue.surprise_charge
+  return [
+    `Subject: Refund request — ${guide.service} charge on [date] ([amount])`,
+    '',
+    `Hi ${guide.service} Support,`,
+    '',
+    `I’m writing about a ${guide.service} charge of [amount] on [date], on the account under [email].`,
+    '',
+    situation,
+    '',
+    'Could you please (1) confirm the subscription is cancelled and will not renew, and (2) review this charge for a refund based on the timing and my account activity? I have the receipt, account screenshots, and any confirmation emails available.',
+    '',
+    'Thank you for your help,',
+    '[Name]',
+  ]
+}
+
+function basicTemplateFor(guide) {
+  const lines = SERVICE_SCRIPTS[guide.serviceId] || masterTemplateFor(guide)
+  return lines.join('\n')
 }
 
 export function renderRefundPage(guide, services, guides = []) {

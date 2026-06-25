@@ -56,6 +56,48 @@ function renderChecklist(items) {
   return items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')
 }
 
+function renderArticleBody(article) {
+  const body = article.body
+  if (!body) return ''
+  const cutItems = (body.cutFirst || []).map((item) => `<li>${escapeHtml(item)}</li>`).join('')
+  const faqHtml = (body.faqs || [])
+    .map(
+      (item) => `<details class="faq-item">
+          <summary>${escapeHtml(item.q)}</summary>
+          <p>${escapeHtml(item.a)}</p>
+        </details>`,
+    )
+    .join('')
+  return `<section class="article-body">
+      <h2>What's happening</h2>
+      <p>${escapeHtml(body.whatsHappening)}</p>
+      <h2>Your first move in the next 10 minutes</h2>
+      <p>${escapeHtml(body.firstMove)}</p>
+      <h2>What to cut or check first</h2>
+      <ul class="cut-list">${cutItems}</ul>
+      <h2>The exact words to use</h2>
+      <p class="exact-words">${escapeHtml(body.exactWords)}</p>
+      <p class="exact-note">Adapt the bracketed parts. <a href="/refund/">Refund templates</a> and <a href="/cancel/">cancel guides</a> cover specific services.</p>
+      <h2>What to keep an eye on</h2>
+      <p>${escapeHtml(body.keepWatch)}</p>
+      ${faqHtml ? `<h2>FAQ</h2><div class="faq">${faqHtml}</div>` : ''}
+    </section>`
+}
+
+function faqSchemaFor(article) {
+  const faqs = article.body?.faqs
+  if (!faqs || !faqs.length) return null
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  }
+}
+
 function renderExamples(items) {
   return items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')
 }
@@ -126,6 +168,18 @@ function renderShell({ title, description, canonical, structuredData, body }) {
     textarea { width: 100%; min-height: 150px; margin-top: 12px; resize: vertical; border-radius: 14px; padding: 14px; font: inherit; line-height: 1.5; background: rgba(13,11,14,.9); color: #f7efe6; border: 1px solid rgba(247,239,230,.14); }
     button { width: 100%; border: 0; border-radius: 14px; padding: 15px 18px; margin-top: 12px; font-weight: 900; cursor: pointer; background: #f7efe6; color: #171217; }
     .disclaimer { margin-top: 18px; font-size: 12px; line-height: 1.55; color: #7f716a; }
+    .article-body { margin-top: 30px; max-width: 820px; }
+    .article-body h2 { color: #f7efe6; font-size: clamp(21px, 3.2vw, 27px); line-height: 1.2; margin: 32px 0 12px; }
+    .article-body p { color: #cdbfb6; font-size: 16px; line-height: 1.72; margin-bottom: 14px; }
+    .article-body .cut-list { padding-left: 20px; display: grid; gap: 9px; color: #cdbfb6; font-size: 16px; line-height: 1.6; margin-bottom: 14px; }
+    .article-body .exact-words { border-left: 3px solid #c9a46a; background: rgba(201,164,106,.08); border-radius: 0 12px 12px 0; padding: 14px 18px; color: #f7efe6; font-size: 15px; line-height: 1.7; white-space: pre-line; }
+    .article-body .exact-note { font-size: 13px; color: #a99a91; }
+    .article-body .exact-note a { color: #c9a46a; }
+    .article-body .faq { margin-top: 6px; }
+    .faq-item { border-top: 1px solid rgba(247,239,230,.12); padding: 14px 0; }
+    .faq-item:first-of-type { border-top: 0; }
+    .faq-item summary { color: #f7efe6; cursor: pointer; font-weight: 800; font-size: 16px; }
+    .faq-item p { color: #a99a91; line-height: 1.64; margin-top: 10px; margin-bottom: 0; }
     @media (max-width: 760px) {
       .hero, .grid, .cards, .article-grid { grid-template-columns: 1fr; }
       .case-box { position: static; }
@@ -259,6 +313,8 @@ export function renderSurvivalArticle(theme, article) {
       ],
     },
   ]
+  const faqSchema = faqSchemaFor(article)
+  if (faqSchema) structuredData.push(faqSchema)
   const related = relatedArticles(theme, article.slug)
   const scanUrl = ctaUrlFor(theme, article)
   const articlePrompt = promptFor(theme, article)
@@ -304,6 +360,7 @@ export function renderSurvivalArticle(theme, article) {
           <p class="disclaimer">Bill Vampire provides consumer communication templates and organization help. It is not legal, financial, or banking advice.</p>
         </aside>
       </section>
+      ${renderArticleBody(article)}
       <section class="mini-form">
         <h2>Case-preview starter</h2>
         <p>Edit this with the service names, dates, and amounts you can remember.</p>

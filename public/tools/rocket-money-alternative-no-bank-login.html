@@ -6,8 +6,34 @@
   <title>Rocket Money Alternative Without Bank Login | Bill Vampire</title>
   <meta name="description" content="Need help with one subscription without connecting a bank account? Build a cancel/refund kit for a specific charge." />
   <link rel="canonical" href="https://billvampire.com/tools/rocket-money-alternative-no-bank-login.html" />
+  <meta property="og:title" content="A Rocket Money alternative that never touches your bank | Bill Vampire" />
+  <meta property="og:description" content="An honest comparison of Rocket Money, manual trackers, and Bill Vampire for cancelling or refunding one charge without a bank login." />
+  <meta property="og:url" content="https://billvampire.com/tools/rocket-money-alternative-no-bank-login.html" />
   <link rel="icon" href="/icons/icon.png" type="image/png" />
   <link rel="stylesheet" href="/tools/gothic-tools.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is there a Rocket Money alternative that doesn't link to your bank account?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Manual trackers like Bobby keep subscriptions you already know about organized, and Bill Vampire handles a specific charge you want to cancel or get refunded — both work without any bank connection." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why would I avoid connecting my bank?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Bank-aggregator apps read your transaction history continuously through a third party. If you only need to deal with one charge, that's far more data exposure than the task requires." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Bill Vampire negotiate bills like Rocket Money?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Bill Vampire focuses on cancelling and getting refunds on specific charges, with the exact scripts and evidence you need to do it yourself — no percentage-of-savings fee." }
+      }
+    ]
+  }
+  </script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { min-height: 100vh; background: #0B0B11; color: #CBD5E1; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
@@ -26,6 +52,17 @@
     th { color: #F8FAFC; background: #141420; }
     td { color: #94A3B8; background: #111827; }
     .fine { color: #64748B; font-size: 12px; line-height: 1.5; margin-top: 14px; }
+    .prose h2 { color: #F8FAFC; font-size: clamp(22px, 3.4vw, 28px); line-height: 1.18; margin: 40px 0 14px; letter-spacing: -0.01em; }
+    .prose h3 { color: #F8FAFC; font-size: 18px; margin: 28px 0 10px; }
+    .prose p { color: #94A3B8; font-size: 16px; line-height: 1.7; margin-bottom: 16px; }
+    .prose ul { color: #94A3B8; font-size: 16px; line-height: 1.7; margin: 0 0 16px 0; padding-left: 22px; display: grid; gap: 10px; }
+    .prose strong { color: #E2E8F0; }
+    .prose td strong { color: #F8FAFC; }
+    .callout { border-left: 3px solid #FB7185; background: rgba(251,113,133,.07); border-radius: 0 12px 12px 0; padding: 14px 18px; margin: 22px 0; color: #CBD5E1; font-size: 15px; line-height: 1.6; }
+    .faq-block { margin-top: 18px; }
+    details { border-top: 1px solid #1E293B; padding: 16px 0; }
+    details summary { color: #F8FAFC; font-weight: 700; cursor: pointer; font-size: 16px; }
+    details p { margin-top: 10px; margin-bottom: 0; }
   </style>
 </head>
 <body>
@@ -34,19 +71,54 @@
       <a href="/"><img src="/icons/icon.png" alt="Bill Vampire" /></a>
       <a href="/tools/">Free tools</a>
     </nav>
-    <h1>A Rocket Money alternative for one urgent charge.</h1>
+    <h1>A Rocket Money alternative that never touches your bank.</h1>
     <p class="lead">Rocket Money is useful when you want ongoing account-connected subscription management. Bill Vampire is for a narrower moment: one subscription charge, no bank login, and a free cancel/refund case preview you can save or download.</p>
     <section class="panel">
       <textarea id="input" placeholder="Example: I was charged by Grammarly for $139.95 annual renewal and want to cancel, request a refund, and set proof reminders."></textarea>
       <button onclick="startKit()">Build my no-bank-login preview</button>
       <p class="fine">The Emergency Kit is $4.99 after the free preview and adds exact scripts, evidence checklist, chargeback prep, and reminder text. It is consumer communication assistance, not legal or financial advice.</p>
     </section>
-    <table>
-      <tr><th>Rocket Money style</th><th>Bill Vampire style</th></tr>
-      <tr><td>Ongoing account connection</td><td>No bank login for one charge</td></tr>
-      <tr><td>Subscription overview and concierge options</td><td>Free case preview; paid exact scripts and evidence checklist</td></tr>
-      <tr><td>Best for recurring management</td><td>Best for trial surprise, renewal risk, hard cancel</td></tr>
-    </table>
+
+    <article class="prose">
+      <p>Rocket Money (formerly Truebill) works by connecting to your bank through Plaid, scanning your transaction history, and surfacing recurring charges — then offering paid concierge cancellation and bill negotiation. That model is genuinely useful if you want ongoing, account-linked oversight of every subscription you have.</p>
+      <p>But it isn't the right fit for everyone. Some people don't want a third party reading their full transaction history. Rocket Money is also US-focused, and its Premium tier uses a sliding scale (roughly $6–12/month) that some users find hard to predict. And often you don't need ongoing management at all — you need to deal with <strong>one</strong> charge, right now, without handing over your bank login.</p>
+      <p><strong>Bill Vampire is built for that narrower moment.</strong> You paste a single charge, screenshot, or one sentence — no bank connection — and get a free cancel/refund case preview: the cancel path, the refund window, a support angle, and your next best move. If you need the full kit (exact scripts, evidence checklist, chargeback prep, reminder text), it's a one-time $4.99 — not a recurring fee.</p>
+
+      <h2>Quick comparison</h2>
+      <table>
+        <tr><th></th><th>Rocket Money</th><th>Bill Vampire</th><th>Manual trackers (Bobby, etc.)</th></tr>
+        <tr><td><strong>Bank connection</strong></td><td>Required (Plaid)</td><td><strong>None</strong></td><td>None</td></tr>
+        <tr><td><strong>What it's for</strong></td><td>Ongoing management of all subs</td><td><strong>One urgent charge: cancel or refund</strong></td><td>Logging subs you already know about</td></tr>
+        <tr><td><strong>Finds forgotten charges</strong></td><td>Yes (scans transactions)</td><td>No (you bring the charge)</td><td>No</td></tr>
+        <tr><td><strong>Gets your money back</strong></td><td>Concierge cancel; bill negotiation</td><td><strong>Refund/cancel scripts + evidence + chargeback prep</strong></td><td>No</td></tr>
+        <tr><td><strong>Pricing</strong></td><td>Premium ~$6–12/mo (sliding)</td><td><strong>$4.99 one-time</strong> kit; free preview</td><td>Free / small one-time</td></tr>
+        <tr><td><strong>Privacy</strong></td><td>Reads transaction history</td><td><strong>No financial data accessed</strong></td><td>No financial data</td></tr>
+      </table>
+
+      <h2>When to use which</h2>
+      <ul>
+        <li><strong>Use Rocket Money</strong> if you want a dashboard that automatically detects every recurring charge across your accounts and you're comfortable linking your bank.</li>
+        <li><strong>Use a manual tracker</strong> (Bobby, Subby) if you just want reminders for subscriptions you already know about.</li>
+        <li><strong>Use Bill Vampire</strong> if you have a specific surprise charge, an annual renewal you didn't want, or a subscription that's hard to cancel — and you want to cancel it or get a refund <strong>without connecting your bank</strong>.</li>
+      </ul>
+
+      <h2>Frequently asked questions</h2>
+      <div class="faq-block">
+        <details>
+          <summary>Is there a Rocket Money alternative that doesn't link to your bank account?</summary>
+          <p>Yes. Manual trackers like Bobby keep subscriptions you already know about organized, and Bill Vampire handles a specific charge you want to cancel or get refunded — both work without any bank connection.</p>
+        </details>
+        <details>
+          <summary>Why would I avoid connecting my bank?</summary>
+          <p>Bank-aggregator apps read your transaction history continuously through a third party. If you only need to deal with one charge, that's far more data exposure than the task requires.</p>
+        </details>
+        <details>
+          <summary>Does Bill Vampire negotiate bills like Rocket Money?</summary>
+          <p>No. Bill Vampire focuses on cancelling and getting refunds on specific charges, with the exact scripts and evidence you need to do it yourself — no percentage-of-savings fee.</p>
+        </details>
+      </div>
+      <p class="fine">Bill Vampire provides consumer communication assistance. It is not a bank, and it is not legal or financial advice.</p>
+    </article>
   </main>
   <script>
     const params = new URLSearchParams(location.search);

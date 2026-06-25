@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/tools/gothic-tools.css" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Subscription cancellation script","description":"Copy a direct cancellation message and keep proof for the next step.","mainEntityOfPage":"https://billvampire.com/survival/subscription-hell/subscription-cancellation-script.html","author":{"@type":"Organization","name":"Bill Vampire"},"publisher":{"@type":"Organization","name":"Bill Vampire"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Bill Vampire","item":"https://billvampire.com/"},{"@type":"ListItem","position":2,"name":"Survival Guides","item":"https://billvampire.com/survival/"},{"@type":"ListItem","position":3,"name":"Subscription Hell","item":"https://billvampire.com/survival/subscription-hell/"},{"@type":"ListItem","position":4,"name":"Subscription cancellation script","item":"https://billvampire.com/survival/subscription-hell/subscription-cancellation-script.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What do I say when they offer me 50% off to stay?","acceptedAnswer":{"@type":"Answer","text":"Say \"No thank you, I want to cancel, not change the price,\" and stop talking. Silence is fine. If you negotiate, you've reopened the conversation they want; if you just repeat the line, the call ends faster."}},{"@type":"Question","name":"Do I have to give a reason for canceling?","acceptedAnswer":{"@type":"Answer","text":"No. \"Personal reasons\" or \"I just don't need it anymore\" is enough. Detailed reasons give the agent hooks for counteroffers, so keep it short and don't justify yourself."}},{"@type":"Question","name":"What if the agent says they can't cancel and I have to do it online?","acceptedAnswer":{"@type":"Answer","text":"Ask them to note on your account that you requested cancellation today, get a reference number, then cancel online immediately. The dated request protects you if the online flow fails or charges you again."}}]}</script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { min-height: 100vh; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
@@ -40,6 +41,18 @@
     textarea { width: 100%; min-height: 150px; margin-top: 12px; resize: vertical; border-radius: 14px; padding: 14px; font: inherit; line-height: 1.5; background: rgba(13,11,14,.9); color: #f7efe6; border: 1px solid rgba(247,239,230,.14); }
     button { width: 100%; border: 0; border-radius: 14px; padding: 15px 18px; margin-top: 12px; font-weight: 900; cursor: pointer; background: #f7efe6; color: #171217; }
     .disclaimer { margin-top: 18px; font-size: 12px; line-height: 1.55; color: #7f716a; }
+    .article-body { margin-top: 30px; max-width: 820px; }
+    .article-body h2 { color: #f7efe6; font-size: clamp(21px, 3.2vw, 27px); line-height: 1.2; margin: 32px 0 12px; }
+    .article-body p { color: #cdbfb6; font-size: 16px; line-height: 1.72; margin-bottom: 14px; }
+    .article-body .cut-list { padding-left: 20px; display: grid; gap: 9px; color: #cdbfb6; font-size: 16px; line-height: 1.6; margin-bottom: 14px; }
+    .article-body .exact-words { border-left: 3px solid #c9a46a; background: rgba(201,164,106,.08); border-radius: 0 12px 12px 0; padding: 14px 18px; color: #f7efe6; font-size: 15px; line-height: 1.7; white-space: pre-line; }
+    .article-body .exact-note { font-size: 13px; color: #a99a91; }
+    .article-body .exact-note a { color: #c9a46a; }
+    .article-body .faq { margin-top: 6px; }
+    .faq-item { border-top: 1px solid rgba(247,239,230,.12); padding: 14px 0; }
+    .faq-item:first-of-type { border-top: 0; }
+    .faq-item summary { color: #f7efe6; cursor: pointer; font-weight: 800; font-size: 16px; }
+    .faq-item p { color: #a99a91; line-height: 1.64; margin-top: 10px; margin-bottom: 0; }
     @media (max-width: 760px) {
       .hero, .grid, .cards, .article-grid { grid-template-columns: 1fr; }
       .case-box { position: static; }
@@ -89,6 +102,29 @@
           <p class="disclaimer">Bill Vampire provides consumer communication templates and organization help. It is not legal, financial, or banking advice.</p>
         </aside>
       </section>
+      <section class="article-body">
+      <h2>What's happening</h2>
+      <p>When you cancel by phone or chat, the agent is trained to redirect you: offer a discount, a pause, a &quot;let me transfer you.&quot; Having a subscription cancellation script removes the improvisation they rely on. You say the same firm sentences no matter what they offer, and the call gets short.</p>
+      <h2>Your first move in the next 10 minutes</h2>
+      <p>Write down three things before you contact them: your account email, the date and amount of your last charge, and one sentence stating you want a full cancellation. Keep that sentence visible during the call so you can repeat it verbatim every time they pivot to a counteroffer.</p>
+      <h2>What to cut or check first</h2>
+      <ul class="cut-list"><li>Opening line: &quot;I'm calling to cancel my subscription, effective today.&quot;</li><li>To a discount offer: &quot;No thank you, I want to cancel, not change the price.&quot;</li><li>To a pause offer: &quot;No, a full cancellation, not a pause.&quot;</li><li>To a transfer: &quot;I'd rather not be transferred. Can you cancel it now?&quot;</li><li>Closing: &quot;Please give me a cancellation confirmation number.&quot;</li><li>After: &quot;Please email me written confirmation as well.&quot;</li></ul>
+      <h2>The exact words to use</h2>
+      <p class="exact-words">Hi, I'm calling to cancel my [service] subscription on the account under [email], effective today. I'm not interested in a discount, pause, or downgrade. Please cancel it now and give me a confirmation number, and send written confirmation to my email. Thank you.</p>
+      <p class="exact-note">Adapt the bracketed parts. <a href="/refund/">Refund templates</a> and <a href="/cancel/">cancel guides</a> cover specific services.</p>
+      <h2>What to keep an eye on</h2>
+      <p>Write down the confirmation number, the agent's name, and the time. If access doesn't actually stop or a charge appears next cycle, that record is what turns a &quot;we have no record of that call&quot; into a refund. Don't hang up without the number.</p>
+      <h2>FAQ</h2><div class="faq"><details class="faq-item">
+          <summary>What do I say when they offer me 50% off to stay?</summary>
+          <p>Say &quot;No thank you, I want to cancel, not change the price,&quot; and stop talking. Silence is fine. If you negotiate, you've reopened the conversation they want; if you just repeat the line, the call ends faster.</p>
+        </details><details class="faq-item">
+          <summary>Do I have to give a reason for canceling?</summary>
+          <p>No. &quot;Personal reasons&quot; or &quot;I just don't need it anymore&quot; is enough. Detailed reasons give the agent hooks for counteroffers, so keep it short and don't justify yourself.</p>
+        </details><details class="faq-item">
+          <summary>What if the agent says they can't cancel and I have to do it online?</summary>
+          <p>Ask them to note on your account that you requested cancellation today, get a reference number, then cancel online immediately. The dated request protects you if the online flow fails or charges you again.</p>
+        </details></div>
+    </section>
       <section class="mini-form">
         <h2>Case-preview starter</h2>
         <p>Edit this with the service names, dates, and amounts you can remember.</p>

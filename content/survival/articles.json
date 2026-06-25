@@ -1,0 +1,1402 @@
+{
+  "ai-layoffs/cancel-subscriptions-after-job-loss": {
+    "whatsHappening": "You just lost your job, and every recurring charge that felt harmless last month now feels like a slow leak in a boat. The problem isn't any single subscription. It's that you signed up for a dozen of them over two years and have never once seen them lined up in a single list with a total at the bottom.",
+    "firstMove": "Open your email and search for \"receipt OR subscription OR your payment OR renews\" over the last 90 days. Every result is a charge that may still be hitting your card. Write each one on a sticky note with its monthly price. You'll have your real list in under ten minutes.",
+    "cutFirst": [
+      "Streaming you stacked: keep one, cancel Netflix, Hulu, Max, and Disney+ down to the single service you actually open",
+      "ChatGPT Plus or Claude Pro if you're not using them daily for the job search",
+      "That gym membership you've visited twice since January",
+      "Audible, Spotify Premium, and any app you forgot was auto-renewing yearly",
+      "Cloud storage tiers you outgrew (the 2TB plan when you use 40GB)",
+      "Keep: phone, internet, and one email/calendar tool you rely on"
+    ],
+    "exactWords": "Hi, I've just lost my job and need to cancel my [service name] subscription effective immediately. My account is under [email/username]. Please confirm the cancellation date and that no further charges will be made, and let me know if any unused portion is refundable.",
+    "keepWatch": "Don't cancel anything tied to a live job application: an email address recruiters have, a portfolio host with your work on it, or a calendar people use to book interviews. Losing those mid-search costs more than the monthly fee.",
+    "faqs": [
+      {
+        "q": "Can I cancel a yearly subscription I already paid for and get money back?",
+        "a": "Sometimes. Annual plans often have no prorated refund, but many companies will refund the unused months if you ask within a window, especially citing hardship. It's worth one polite message before you assume it's gone."
+      },
+      {
+        "q": "Do I have to give my bank account to a tool that cancels subscriptions for me?",
+        "a": "No, and you shouldn't have to. Bill Vampire works from your own receipts and emails, not a bank login, so there's no Plaid connection and no read access to your account."
+      },
+      {
+        "q": "What's the fastest way to see everything I'm paying for at once?",
+        "a": "Your inbox is the most honest record you have. Searching receipts beats trying to remember, and a free case preview can flag which charges are easiest to kill or refund first."
+      }
+    ]
+  },
+  "ai-layoffs/what-subscriptions-to-cancel-first": {
+    "whatsHappening": "When money gets tight, people freeze and cancel nothing, or they panic-cancel the one tool they actually needed. Neither helps. The trick is sequencing: kill the charges that are pure convenience before you touch anything that protects your income or your job hunt.",
+    "firstMove": "Make two columns on paper: \"costs me money\" and \"could make me money.\" Spend ten minutes sorting every subscription into one. Anything in the first column that you haven't opened in 30 days is your first cut, starting today.",
+    "cutFirst": [
+      "Duplicate entertainment: pick one streamer, cancel the rest this week",
+      "Premium tiers you don't use: Spotify Premium, YouTube Premium, news paywalls",
+      "Adobe Creative Cloud if you're not actively designing for income",
+      "Meal kits, delivery memberships, and subscription boxes",
+      "Keep for now: LinkedIn Premium if you're mid-application, and your resume/portfolio host",
+      "Keep: any one AI tool you genuinely use to write cover letters or prep interviews"
+    ],
+    "exactWords": "Hi, I'd like to downgrade my [service name] from the [paid tier] to the free plan, or cancel it entirely if there's no free option. The account email is [email]. Please confirm when the downgrade takes effect and whether I keep access through the period I've already paid for.",
+    "keepWatch": "Watch the order, not just the list. A $4.99 app you use to land interviews is a better keep than a $4.99 app you scroll for fun. Cut by usefulness to your income, not by price alone.",
+    "faqs": [
+      {
+        "q": "Should I cancel everything at once or one at a time?",
+        "a": "Cancel the obvious dead weight all at once today, then sit with the borderline ones for a few days. Rushing the gray-area cancellations is how people kill the tool they needed for interviews."
+      },
+      {
+        "q": "Is it better to downgrade or fully cancel a subscription?",
+        "a": "Downgrade when there's a free tier and you still want your account and data. Cancel fully when the service offers nothing free and you won't miss it. Both stop the bleeding; downgrading just keeps a door open."
+      },
+      {
+        "q": "How do I decide between two subscriptions I sort of use?",
+        "a": "Ask which one you'd repurchase today knowing your income dropped. If the honest answer is neither, cancel both and re-subscribe later if you actually miss one."
+      }
+    ]
+  },
+  "ai-layoffs/subscription-audit-after-layoff": {
+    "whatsHappening": "A layoff is the one moment you'll actually do a full subscription audit, because suddenly every charge has to justify itself. Most people discover three to five recurring payments they completely forgot about: a trial that converted, an annual renewal they never canceled, a tool from a project that ended a year ago.",
+    "firstMove": "Pull up your last two card and PayPal statements and highlight every recurring line. Don't filter yet, just collect. Ten minutes of highlighting usually surfaces at least one zombie charge you didn't know was still alive.",
+    "cutFirst": [
+      "Zombie trials that auto-converted: the ones you genuinely forgot existed",
+      "Annual renewals you meant to cancel last year (Dropbox, password managers you doubled up on)",
+      "Project-specific tools from work or freelance gigs that have ended",
+      "Notion or Canva Pro if the free tier covers what you do now",
+      "Keep: one cloud backup so you don't lose your files during the chaos",
+      "Keep: anything storing your work samples or references"
+    ],
+    "exactWords": "Hi, I noticed a recurring charge for [service name] on [date] for [amount] that I no longer use. I'd like to cancel and request a refund for this most recent charge, as I didn't intend to renew. The account is under [email]. Can you confirm cancellation and review the charge?",
+    "keepWatch": "An audit means looking, not blindly slashing. Flag anything that holds your data (tax docs, design files, the portfolio recruiters see) and cancel those last, after you've exported what you need.",
+    "faqs": [
+      {
+        "q": "How far back should I look to find subscriptions I forgot about?",
+        "a": "Go back at least 12 months, because annual renewals only show once a year. A single yearly charge is easy to miss on a monthly glance but can be your biggest single line item."
+      },
+      {
+        "q": "I found a charge from a service I don't even recognize, what now?",
+        "a": "Search your email for the company name first; it's usually a renamed app or a trial you forgot. If nothing turns up, message their support to identify and cancel it, and dispute it if it's genuinely not yours."
+      },
+      {
+        "q": "Do I need to connect my bank for an audit tool to find these charges?",
+        "a": "No. The fastest honest audit comes from your own statements and inbox. Bill Vampire builds the list from receipts you already have rather than asking for a bank login."
+      }
+    ]
+  },
+  "ai-layoffs/emergency-budget-subscription-checklist": {
+    "whatsHappening": "When you're building an emergency budget, subscriptions are the easiest wins because they're recurring and many can be killed in minutes without penalty. A clear emergency budget subscription checklist turns a vague \"I should cut stuff\" into a finished task you can do in one sitting.",
+    "firstMove": "Set a ten-minute timer and list every subscription with its renewal date next to it. The dates matter as much as the prices: anything renewing in the next two weeks is urgent, because canceling now stops the next charge before it lands.",
+    "cutFirst": [
+      "Anything renewing in the next 14 days that you don't need this month",
+      "Bundled add-ons you forgot you opted into (extended warranties, app upsells)",
+      "Second and third streaming services",
+      "Software you have a free alternative for (Canva Pro vs free, Notion paid vs free)",
+      "Keep: essentials with no substitute (phone, one email, internet)",
+      "Keep: one job-search tool that's actively helping"
+    ],
+    "exactWords": "Hi, I'm cutting expenses and need to cancel [service name] before my next renewal on [date]. Account email is [email]. Please make sure no charge goes through on that date and send me written confirmation of the cancellation.",
+    "keepWatch": "Don't cancel a tool the night before something depends on it. If a renewal funds something live, like a domain pointing to your resume site, pause and check what breaks before you pull the plug.",
+    "faqs": [
+      {
+        "q": "Which subscriptions give the biggest savings for the least effort?",
+        "a": "Annual software plans and bundled streaming. One canceled annual renewal can save more than a dozen small monthly trims, and it's a single message to do it."
+      },
+      {
+        "q": "Should I cancel before or right at the renewal date?",
+        "a": "Cancel a few days before, not on the day. Some services bill at the start of the cycle, and cutting it close risks one more charge clearing before your cancellation processes."
+      },
+      {
+        "q": "What if I cancel and then realize I needed it?",
+        "a": "Most services let you resubscribe instantly and keep your old data for a grace period. The cost of re-signing later is almost always smaller than paying for months you didn't use."
+      }
+    ]
+  },
+  "ai-layoffs/how-to-cut-monthly-bills-fast": {
+    "whatsHappening": "Cutting monthly bills fast doesn't require a budgeting app, a spreadsheet course, or handing some service your bank login. It requires one focused hour with your receipts and a willingness to send a few cancellation messages. The slow part is usually fear, not the actual cancelling.",
+    "firstMove": "Grab your last month's email receipts and write down only the recurring ones, ignore the one-time purchases. In ten minutes you'll have a short list of exactly the charges that repeat, which is the only list that matters when you're trying to cut fast.",
+    "cutFirst": [
+      "Subscriptions billed monthly that you can clearly live without for 90 days",
+      "Premium upgrades where the free version does the job",
+      "Insurance riders and add-ons you can call to trim",
+      "Streaming and music down to one of each",
+      "Keep: the cheapest plan that keeps your job search running",
+      "Keep: anything required for current contract or gig work"
+    ],
+    "exactWords": "Hi, I need to cancel [service name] right away to reduce my monthly costs. The account is under [email/phone]. Please confirm the cancellation in writing and tell me the exact date my access ends so I can plan around it.",
+    "keepWatch": "Fast doesn't mean reckless. Before you cut, note any subscription that auto-renews a domain, hosts your files, or holds login access you need, so cutting bills today doesn't cost you an interview next week.",
+    "faqs": [
+      {
+        "q": "How can I cut bills fast without giving an app my bank account?",
+        "a": "Work straight from your receipts and statements instead of linking accounts. Bill Vampire is built around exactly this, no Plaid, no bank login, just the charges you can already see in your inbox."
+      },
+      {
+        "q": "What's the single fastest bill to cut today?",
+        "a": "Whatever renews next. Stopping the nearest upcoming charge gives you the quickest visible win and a little breathing room, which makes the rest of the list easier to face."
+      },
+      {
+        "q": "Will cancelling subscriptions hurt my credit?",
+        "a": "No. Subscriptions aren't credit accounts, so canceling them has zero effect on your credit score. That fear keeps a lot of people paying for things they don't need."
+      }
+    ]
+  },
+  "ai-layoffs/ai-layoffs-budget-cuts": {
+    "whatsHappening": "If your role got cut as a team \"restructured around AI,\" there's a bitter irony in still paying for the AI subscriptions. With AI layoffs budget cuts, the tools to inspect first are often the productivity and AI apps you signed up for to stay competitive, the ones that no longer have an employer reimbursing them.",
+    "firstMove": "List every AI and productivity tool you pay for: ChatGPT Plus, Claude Pro, Copilot, Notion AI, design tools, the lot. Next to each, write whether you used it this week for an actual job-search task. Ten minutes tells you which ones are habit versus help.",
+    "cutFirst": [
+      "Duplicate AI assistants: keep one, cancel the second ChatGPT Plus / Claude Pro overlap",
+      "AI add-ons bolted onto tools you barely open (Notion AI, AI writing upsells)",
+      "GitHub Copilot or coding AI if you're not actively building",
+      "Premium design AI (Adobe Firefly tiers, Canva Pro) if free covers your applications",
+      "Keep: one capable AI tool for cover letters, interview prep, and resume tailoring",
+      "Keep: LinkedIn while you're actively networking"
+    ],
+    "exactWords": "Hi, I was recently laid off and need to cancel my [AI tool] subscription. My account is [email]. Given the circumstances, is there a hardship pause or a partial refund for the current period? If not, please cancel and confirm no further billing.",
+    "keepWatch": "Keep the one AI tool that's actually doing job-search work for you. The goal of these cuts is runway, not self-sabotage, so don't strip away the thing helping you write applications faster.",
+    "faqs": [
+      {
+        "q": "Should I cancel ChatGPT Plus or Claude Pro if I'm out of work?",
+        "a": "Keep one if it's genuinely speeding up your job search, cancel the other. Paying for two general assistants at once is the clearest overlap to cut while income is paused."
+      },
+      {
+        "q": "Do these AI companies offer any hardship or pause option?",
+        "a": "Some will pause billing or refund a recent charge if you ask directly and explain you were laid off. It's not advertised, but a short honest message sometimes gets a month back."
+      },
+      {
+        "q": "Is it worth keeping any AI subscription while unemployed?",
+        "a": "Often yes, if one tool meaningfully cuts the time you spend on applications. One $20 tool that helps you apply faster can pay for itself; three of them paying for habit do not."
+      }
+    ]
+  },
+  "ai-layoffs/ai-layoffs-financial-survival-checklist": {
+    "whatsHappening": "An AI layoffs financial survival checklist isn't only about subscriptions, but recurring charges are the part you can fix today without anyone's permission. Before you touch savings or take on debt, plug the small steady leaks, because those are the dollars draining quietly while you focus on the bigger fight.",
+    "firstMove": "Write down your three numbers: cash on hand, monthly must-pay bills, and total recurring subscriptions. That last number is usually the surprise. Ten minutes of math shows you how many weeks each canceled subscription buys back into your runway.",
+    "cutFirst": [
+      "Every non-essential recurring charge that doesn't touch rent, food, health, or job search",
+      "Subscriptions overlapping with a free employer or library alternative",
+      "Auto-renewing memberships (warehouse clubs, premium loyalty programs) you can pause",
+      "Second devices' data plans or unused phone lines",
+      "Keep: health-related apps or coverage you actually depend on",
+      "Keep: one tool that keeps applications moving"
+    ],
+    "exactWords": "Hi, I'm reducing expenses after a layoff and need to either pause or cancel [service name] under [email]. If you offer a hardship freeze, I'd prefer to pause; otherwise please cancel and confirm. I'd also like to ask about a refund for the [date] charge.",
+    "keepWatch": "Survival mode still needs a path out. Don't cancel the things that get you re-employed, your professional email, portfolio host, or the one networking tool, even when slashing everything else feels satisfying.",
+    "faqs": [
+      {
+        "q": "What should I cancel before I dip into savings?",
+        "a": "Every recurring charge that isn't rent, food, health, or job search. Subscriptions are the cheapest cut to make, so they should go before you touch the savings you'll want for essentials."
+      },
+      {
+        "q": "How much can cancelling subscriptions realistically save me a month?",
+        "a": "For most people it's $50 to $200 a month once forgotten renewals are included. That can be a week or two of groceries, which matters a lot when runway is the whole game."
+      },
+      {
+        "q": "Is there a way to handle all this without sharing financial details?",
+        "a": "Yes. You can run the whole subscription side from your receipts. Bill Vampire's free preview shows what's cancellable or refundable without any bank login, and the $4.99 kit gives you the scripts if you want them."
+      }
+    ]
+  },
+  "ai-layoffs/tools-to-cancel-before-severance-runs-out": {
+    "whatsHappening": "Severance creates a dangerous calm. The money's there, so the subscriptions keep auto-renewing while you tell yourself you'll deal with them later. The tools to cancel before your severance runs out are the ones quietly eating that cushion, so by the time the last severance check clears, you're not also discovering a stack of live charges.",
+    "firstMove": "Estimate the week your severance ends, then list every subscription that will renew between now and then. Each one is a charge you can stop in advance. Ten minutes now prevents the slow surprise of paying for habits long after the income stopped.",
+    "cutFirst": [
+      "Annual plans set to auto-renew during your severance window",
+      "High-tier software you only needed for the old job (Adobe CC, enterprise tools you paid for personally)",
+      "Premium subscriptions you kept \"because severance covers it\"",
+      "Delivery and convenience memberships that creep back up",
+      "Keep: a lean job-search stack you'll still want after severance ends",
+      "Keep: health coverage continuation, which is not the place to economize"
+    ],
+    "exactWords": "Hi, I'd like to turn off auto-renewal and cancel [service name] before its next charge on [date]. The account is [email]. Please confirm auto-renew is disabled so I'm not billed once my current period ends, and send written confirmation.",
+    "keepWatch": "Don't confuse \"severance is paying\" with \"I need this.\" The test is whether you'd still want each tool the month after severance stops. If not, cancel it now while the choice is calm instead of urgent.",
+    "faqs": [
+      {
+        "q": "Should I cancel subscriptions now even though severance still covers them?",
+        "a": "Yes. Every charge you stop now extends how long your severance lasts. Waiting until the money's gone just means you paid for months of things you'd already decided to drop."
+      },
+      {
+        "q": "How do I stop an annual plan from auto-renewing during my severance?",
+        "a": "Turn off auto-renewal in the account settings or message support to disable it before the renewal date. The plan stays active until it expires, but no new annual charge hits."
+      },
+      {
+        "q": "Can I get a refund on a tool I paid for through my old job's stipend?",
+        "a": "If you personally paid, treat it like any subscription and ask for a refund on the recent charge. If the company paid, it's usually theirs to cancel, so check before assuming it's on your card."
+      }
+    ]
+  },
+  "ai-layoffs/job-search-subscriptions-worth-keeping": {
+    "whatsHappening": "Not every subscription is dead weight during a layoff. A few genuinely earn their place by helping you land the next role faster. The skill is telling the job-search subscriptions worth keeping apart from the ones that just feel productive, because keeping the wrong three is as wasteful as keeping none.",
+    "firstMove": "List the tools you'd call \"for my job search\" and be honest about which you opened this week to do an actual task: apply, network, prep, or tailor a resume. Ten minutes separates the genuine helpers from the ones you keep out of guilt.",
+    "cutFirst": [
+      "Keep: LinkedIn Premium only if you're actively using InMail and recruiter visibility",
+      "Keep: one AI tool that tailors resumes and cover letters quickly",
+      "Keep: your portfolio or personal site host while recruiters can see it",
+      "Cut: course platforms you subscribed to but never finished",
+      "Cut: a second resume-builder or job-board premium that overlaps the first",
+      "Cut: \"productivity\" apps that feel like progress but don't move applications"
+    ],
+    "exactWords": "Hi, I want to keep using [job-search tool] but at a lower cost while I'm between jobs. Do you offer a discounted, paused, or job-seeker plan for the account under [email]? If not, I'll need to cancel, so please let me know my options.",
+    "keepWatch": "Keep what touches recruiters or applications directly, and cut what only feels useful. The danger here is the opposite of overspending: cancelling LinkedIn or your portfolio host to save a few dollars and going invisible mid-search.",
+    "faqs": [
+      {
+        "q": "Should I cancel LinkedIn Premium while job hunting?",
+        "a": "Only if you're not actually using InMail, recruiter signals, or the analytics. If you are reaching out and getting responses, it can be worth keeping; if it's just sitting there, the free tier is fine."
+      },
+      {
+        "q": "Is paying for a resume builder or job board worth it when unemployed?",
+        "a": "Rarely worth more than one. Most resume and job-board features overlap heavily, so keep the single tool you actually use and cancel the rest you signed up for in a panic."
+      },
+      {
+        "q": "Are course or learning subscriptions worth keeping to upskill?",
+        "a": "Only if you're genuinely finishing courses tied to roles you're applying for. An unfinished learning subscription is a hope, not a tool, and hope shouldn't auto-renew while you're broke."
+      }
+    ]
+  },
+  "ai-layoffs/recurring-payments-after-income-drop": {
+    "whatsHappening": "An income drop doesn't have to come from a layoff. Reduced hours, a lost client, a partner's job change, the math still shifts the same way. Recurring payments are the first thing to revisit because they were set up assuming the old income, and they'll keep charging the new, smaller one until you intervene.",
+    "firstMove": "Add up your recurring payments as a single monthly number, then compare it to how much your income actually dropped. Ten minutes of that comparison usually shows that trimming subscriptions covers a real slice of the gap before you touch anything bigger.",
+    "cutFirst": [
+      "Recurring charges sized for your old income (premium tiers, larger storage plans)",
+      "Subscriptions you share or could share to split the cost instead of cancelling",
+      "Auto-pay donations or memberships you can pause without guilt for now",
+      "Overlapping services where one covers the other",
+      "Keep: tools tied to the income you still have or are rebuilding",
+      "Keep: essential utilities and any health-related coverage"
+    ],
+    "exactWords": "Hi, my income recently dropped and I need to adjust my [service name] plan under [email]. Could you move me to a cheaper tier, a pause, or a hardship rate? If none of those exist, please cancel and confirm there are no further charges.",
+    "keepWatch": "An income dip is often temporary, so favor pausing and downgrading over hard cancellation where it's offered. Just don't keep paying full premium prices on the assumption income bounces back next month, hope is not a budget.",
+    "faqs": [
+      {
+        "q": "My income dropped but I wasn't fired, do the same cancellation rules apply?",
+        "a": "Yes. Support teams don't need your life story; \"I need to reduce costs\" is reason enough to cancel, pause, or downgrade. The mechanics are identical whether the income drop came from a layoff or fewer hours."
+      },
+      {
+        "q": "Should I cancel or just downgrade when my income falls?",
+        "a": "Downgrade or pause when the drop might be temporary and you'd miss the service; cancel when you wouldn't. Pausing keeps your data and habits intact while still stopping the full charge."
+      },
+      {
+        "q": "How do I find every recurring payment without linking my accounts?",
+        "a": "Your receipts and statements already list them. A free case preview can sort them into cancel, pause, or refund without a bank login, so you keep control of your financial info while you decide."
+      }
+    ]
+  },
+  "consumer-downgrade/consumer-downgrade-subscription-cuts": {
+    "whatsHappening": "Households are quietly downgrading instead of fully canceling. People keep the services they actually use but drop to lower tiers, kill the ad-free upcharge, and trim duplicate streaming apps. The pattern shows up as a wave of consumer downgrade subscriptions decisions made in one sitting, usually after a card statement lands bigger than expected.",
+    "firstMove": "Open your last card statement and highlight every recurring charge in yellow. Then write a single number next to each: how many times you used it this month. Anything you used zero or one time goes on the cut list right now, before you talk yourself out of it.",
+    "cutFirst": [
+      "Drop Netflix Premium 4K to Standard if only one screen streams at a time",
+      "Kill the Hulu no-ads upgrade and accept ads on a service you barely open",
+      "Switch Spotify Premium to the free ad-supported tier if you mostly stream at home",
+      "Cancel the second music app entirely (you don't need Apple Music and Spotify)",
+      "Drop Disney+ to monthly so you can pause it between new seasons",
+      "Cut any 'premium' news or fitness app you opened fewer than twice"
+    ],
+    "exactWords": "Hi, I'd like to downgrade my [service] plan from [current tier] to [lower tier] effective my next billing date on [date]. Please confirm the new monthly price and that no features I rely on will be removed mid-cycle. If a downgrade isn't possible, I'd like to cancel instead.",
+    "keepWatch": "Don't cut a service you prepaid annually until the term ends, you've already paid for it. Also watch bundles: dropping one app can sometimes raise the price of the ones left if you were getting a multi-service discount.",
+    "faqs": [
+      {
+        "q": "Does downgrading a subscription save money right away or next month?",
+        "a": "Usually next billing cycle. Most services let the downgrade take effect when your current paid period ends, so you keep the higher tier until the date you already paid through, then drop to the cheaper price."
+      },
+      {
+        "q": "Is it better to downgrade everything at once or one at a time?",
+        "a": "Do it in one sitting. Spreading it out gives you a dozen chances to rationalize keeping each one. Batch the decisions while the statement shock is fresh."
+      },
+      {
+        "q": "Will I lose my data or history if I downgrade instead of cancel?",
+        "a": "Almost never. Downgrading a tier keeps your account, profiles, and history intact. Full cancellation is what risks data loss, which is exactly why downgrading is the safer first move."
+      }
+    ]
+  },
+  "consumer-downgrade/recession-budget-cuts-subscriptions": {
+    "whatsHappening": "When money tightens, subscriptions are the easiest cut because nothing physical disappears. The trap is recurring charges feel small individually, so they survive a budget review that axes bigger one-time spending. A focused round of recession budget cuts subscriptions usually frees up more monthly cash than people expect, because five $12 charges add up faster than one $40 one.",
+    "firstMove": "Add up your monthly subscription total and divide by your hourly take-home pay. Seeing 'I work three hours a month to fund apps I forgot about' reframes the decision instantly. Cut until the hours feel worth it, starting with the highest-cost lowest-use item.",
+    "cutFirst": [
+      "Cancel any service whose annual cost exceeds what you'd pay to rent the content piecemeal",
+      "Drop Amazon Prime if you can wait two extra days and don't watch Prime Video",
+      "Cut LinkedIn Premium unless you're actively job hunting this quarter",
+      "Pause Spotify and use the free tier through the tight months",
+      "Eliminate overlapping cloud storage plans (you're probably paying iCloud and Google both)",
+      "Drop streaming services down to one at a time and rotate monthly"
+    ],
+    "exactWords": "Hi, I'm cutting back on monthly expenses and need to cancel my [service] subscription effective [date]. Please confirm the cancellation and that I won't be charged again. If there's a hardship or pause option that's cheaper than canceling, please tell me what it is first.",
+    "keepWatch": "Keep anything that directly earns you money or replaces a bigger expense, like a tool that lets you skip a paid gym or a subscription that covers a work requirement. Cutting those is false economy.",
+    "faqs": [
+      {
+        "q": "Which subscriptions should I cut first in a recession?",
+        "a": "Start with anything you use less than once a week that has a free or cheaper substitute. Entertainment and 'someday I'll use it' tools go before anything tied to income or a fixed need."
+      },
+      {
+        "q": "Should I cancel subscriptions or just pause them during a tight stretch?",
+        "a": "Pause if the service offers it and you'll genuinely return, like a fitness app over winter. Cancel if you're unsure, you can always resubscribe and reactivation usually takes two minutes."
+      },
+      {
+        "q": "How much can cutting subscriptions realistically save per month?",
+        "a": "For most people, $40 to $120 a month once you count the forgotten ones. The recurring nature means a $15 cut today is $180 over a year, which makes small cancellations worth the five minutes."
+      }
+    ]
+  },
+  "consumer-downgrade/downgrade-premium-subscriptions": {
+    "whatsHappening": "Most premium tiers were sold on one feature you wanted and four you never touch. The 4K, the extra screens, the offline downloads, the priority support, you're paying for the whole bundle to get one piece. The smart move is to downgrade premium subscriptions to the base plan and only re-upgrade the month you actually need the premium feature.",
+    "firstMove": "For each premium plan, name the single feature you upgraded for. If you can't name it in five seconds, you're paying for status, not use. Open that account's plan settings and step down one tier today, then see if you even notice the difference next week.",
+    "cutFirst": [
+      "Drop Netflix to Standard unless you regularly stream on three screens at once",
+      "Move YouTube Premium to free and just tolerate ads if you don't download videos",
+      "Downgrade Apple Music individual if family plan members stopped using it",
+      "Cut Spotify Premium's offline downloads need by using free tier on wifi",
+      "Drop Dropbox or iCloud to the smallest paid tier and delete old files instead",
+      "Step LinkedIn down from Career to Basic between job searches"
+    ],
+    "exactWords": "Hi, I want to move from your [premium tier] plan down to [base/standard tier]. I rarely use [specific premium feature] and don't want to keep paying for it. Please confirm the change takes effect [next cycle] and what the new price will be.",
+    "keepWatch": "Watch for features you'll miss seasonally, like extra screens during a holiday visit or offline downloads before a long flight. You can usually re-upgrade for a single month and drop back down, so don't let one busy week justify a year of premium.",
+    "faqs": [
+      {
+        "q": "Can I downgrade Netflix without losing my profiles and watchlist?",
+        "a": "Yes. Tier changes on Netflix keep all profiles, watch history, and 'My List' intact. You only lose 4K resolution and the number of simultaneous screens, not your account data."
+      },
+      {
+        "q": "What do I actually lose when I downgrade a premium streaming plan?",
+        "a": "Usually resolution, simultaneous-stream count, and offline downloads. The catalog of shows and your account stay the same. If you watch alone on one device, you'll rarely notice the lower tier."
+      },
+      {
+        "q": "Can I re-upgrade later if I miss the premium features?",
+        "a": "Almost always, instantly, and with no penalty. That's the whole point of downgrading first: you can bump back up for the one month you need it, then drop down again."
+      }
+    ]
+  },
+  "consumer-downgrade/cheaper-alternatives-to-premium-subscriptions": {
+    "whatsHappening": "For nearly every premium subscription there's a free or one-time-purchase substitute that covers 80 percent of what you use. The gap between paying monthly forever and a cheaper option is often a feature you don't need. Finding the best cheaper alternatives to subscriptions is mostly about being honest that 'good enough' is fine for things you use casually.",
+    "firstMove": "Pick your single most expensive monthly app and spend ten minutes searching '[that app] free alternative' plus '[that app] one-time purchase.' Write down two replacements. You don't have to switch today, just prove to yourself a cheaper path exists before the next renewal.",
+    "cutFirst": [
+      "Replace a paid music app with the free ad-supported tier on wifi at home",
+      "Swap a premium cloud storage plan for a one-time external drive purchase",
+      "Drop a streaming service and use your library card's free Kanopy or Hoopla",
+      "Trade a monthly photo editor for a one-time-buy app or free open-source tool",
+      "Replace cable-style live TV with a single free ad-supported channel app",
+      "Use the ad-supported tier of one streamer instead of the ad-free upgrade"
+    ],
+    "exactWords": "Hi, I'm planning to cancel my [service] because I've found a cheaper option that fits my use. Before I go, is there a lower-priced plan or longer free trial you can offer? If not, please cancel effective [date] and confirm no further charges.",
+    "keepWatch": "Free alternatives often come with ads, data limits, or smaller catalogs, that's the trade. Keep the paid version only if the missing feature genuinely costs you time or money, not just a little convenience.",
+    "faqs": [
+      {
+        "q": "What's a good free alternative to a paid streaming subscription?",
+        "a": "Library apps like Kanopy and Hoopla are free with a library card, and ad-supported services like Tubi and Pluto TV cost nothing. They won't have every new release, but they cover casual watching."
+      },
+      {
+        "q": "Are one-time-purchase apps actually cheaper than subscriptions?",
+        "a": "Over a year, almost always. A $40 one-time app beats a $7-a-month subscription in six months. The catch is you may not get future updates, which matters more for tools than for media."
+      },
+      {
+        "q": "Is the free tier of Spotify or YouTube good enough to switch to?",
+        "a": "If you mostly listen or watch at home on wifi and can tolerate ads, yes. The main losses are offline downloads, background play on YouTube, and skip limits. Casual users rarely miss them."
+      }
+    ]
+  },
+  "consumer-downgrade/streaming-subscriptions-too-expensive": {
+    "whatsHappening": "Streaming was supposed to be cheaper than cable, then everyone launched their own app and the bill crept past what cable cost. If your streaming subscriptions feel too expensive, it's usually because you're paying for four services to watch one show on each. The fix is a rotation, not keeping them all live year round.",
+    "firstMove": "List every streaming app you pay for and the one show on each you're actually waiting for. If a service has no current show you're mid-watching, cancel it today. You can resubscribe the month its next season drops, the back catalog isn't going anywhere.",
+    "cutFirst": [
+      "Cancel any streamer with no show you're currently mid-season on",
+      "Drop the ad-free upgrade on the service you watch least",
+      "Rotate: keep one streamer per month and cancel the rest until you need them",
+      "Cut Disney+ between Marvel and Star Wars release windows",
+      "Drop Max or Paramount+ once you finish the one series you signed up for",
+      "Downgrade Netflix to the ad-supported tier if you only watch a few hours a week"
+    ],
+    "exactWords": "Hi, I'd like to cancel my [streaming service] subscription effective [date] since I've finished the shows I was watching. Please confirm there are no further charges. If you offer a pause option instead of full cancellation, let me know how long I can pause for.",
+    "keepWatch": "Watch your live-sports and bundle dependencies. If one streamer carries a sport or a bundled service you rely on, canceling it can cost more than it saves. Also note any annual streaming plans you already prepaid, ride those out.",
+    "faqs": [
+      {
+        "q": "Is it cheaper to rotate streaming services or keep them all?",
+        "a": "Rotating is almost always cheaper. Most people watch one service at a time anyway. Subscribe for the month you're binging a show, cancel when you finish, and you'll pay for two or three months instead of twelve."
+      },
+      {
+        "q": "Will I lose my watchlist if I cancel and resubscribe to a streamer?",
+        "a": "It depends on the service and how long you're gone. Netflix and Disney+ keep your profile and list for about 10 months after cancellation. Beyond that, the account may be deleted, so screenshot your list if you're pausing long term."
+      },
+      {
+        "q": "How many streaming services does the average person actually need?",
+        "a": "One or two live at a time covers most viewing. The trick is treating them as month-to-month rentals for specific shows rather than permanent fixtures you keep paying for out of habit."
+      }
+    ]
+  },
+  "consumer-downgrade/saas-subscriptions-too-expensive": {
+    "whatsHappening": "Software subscriptions accumulate the same way streaming does: you sign up for a trial, forget the cancel date, and a year later you're paying for three note apps and two design tools. If your SaaS subscriptions feel too expensive, the problem is usually overlap and seats you stopped using, not the price of any single tool.",
+    "firstMove": "Open the app store subscriptions screen on your phone and your last two card statements side by side. Catch the SaaS charges that don't show up in the app store, those annual desktop-tool renewals are where the surprises hide. List every one and mark the last time you opened it.",
+    "cutFirst": [
+      "Cancel any tool with a free tier that covers your actual usage",
+      "Drop duplicate tools (you don't need Notion, Evernote, and Apple Notes)",
+      "Cut paid seats for team members who left or never logged in",
+      "Downgrade from a Pro plan to free if you use one premium feature monthly",
+      "Cancel design or AI tools you signed up for during a single project",
+      "Switch annual auto-renew to monthly so a forgotten tool only costs one month"
+    ],
+    "exactWords": "Hi, I'd like to cancel my [SaaS tool] subscription before it renews on [date]. I'm no longer using it enough to justify the cost. Please confirm the cancellation and that I won't be auto-charged for the next term. If a cheaper plan covers basic use, send me the details.",
+    "keepWatch": "Keep any tool that directly produces income or stores work you can't easily export. Before canceling, export your data, some SaaS products lock you out the moment the plan lapses, and re-subscribing just to download a file is a trap.",
+    "faqs": [
+      {
+        "q": "How do I find SaaS subscriptions I forgot I'm paying for?",
+        "a": "Check your phone's app store subscriptions, then scan card and PayPal statements for the annual desktop renewals that don't appear there. Search your email for 'receipt' and 'your subscription' to catch the rest."
+      },
+      {
+        "q": "Should I cancel a SaaS tool before or after I export my data?",
+        "a": "Always export first. Many tools cut off access to your data the instant the subscription ends, with no grace period. Download everything you'd want, then cancel, never the other way around."
+      },
+      {
+        "q": "Is downgrading to a free tier safe or will I lose my work?",
+        "a": "Usually safe, but free tiers often cap storage or hide older items rather than delete them. Read the limits before downgrading, and export anything that exceeds the free cap just in case."
+      }
+    ]
+  },
+  "consumer-downgrade/annual-plan-downgrade-checklist": {
+    "whatsHappening": "Annual plans lock in a discount but also lock you in, and the auto-renew date is easy to forget eleven months later. The real money is made by handling the downgrade or cancellation in the renewal window, before the next year's charge clears. An annual plan downgrade checklist exists because each service hides its renewal terms in a different place.",
+    "firstMove": "Find the renewal date for every annual plan you have and put each one in your calendar with a reminder set seven days before. That single ten-minute step prevents the most common subscription mistake: discovering a full-year charge after it already posted.",
+    "cutFirst": [
+      "Mark every annual renewal date in your calendar with a 7-day-before alert",
+      "Switch any annual plan you're unsure about to monthly before it renews",
+      "Cancel annual auto-renew now even if you keep using the service this term",
+      "Downgrade the tier on annual plans renewing in the next 30 days",
+      "Request a prorated refund on any annual plan that renewed in the last few days",
+      "Note which annual plans are non-refundable so you ride them out instead"
+    ],
+    "exactWords": "Hi, my annual [service] plan is set to auto-renew on [date]. I'd like to either downgrade to a lower tier or switch to monthly billing before that charge. Please confirm my options and turn off auto-renewal so I'm not charged for a full year by default.",
+    "keepWatch": "If you already prepaid the year, don't cancel out of frustration, you've paid for the access, so use it through the term and just turn off auto-renew. Watch for plans that bundle a discount you'd lose by going monthly.",
+    "faqs": [
+      {
+        "q": "Can I get a refund if my annual plan already auto-renewed?",
+        "a": "Sometimes, especially if you ask within a few days and haven't used the new term heavily. Many companies offer a prorated or full refund inside a short window, but it's discretionary, so ask politely and promptly."
+      },
+      {
+        "q": "Is it worth switching from an annual plan to monthly billing?",
+        "a": "If you're unsure you'll keep the service all year, yes, even though monthly costs more per month. The flexibility to cancel anytime usually beats the annual discount when your usage is uncertain."
+      },
+      {
+        "q": "How do I stop an annual subscription from auto-renewing?",
+        "a": "Look for 'manage plan' or 'renewal' in account settings and toggle auto-renew off, you usually keep access until the term ends. If it's billed through the app store, you cancel there, not in the app itself."
+      }
+    ]
+  },
+  "consumer-downgrade/subscription-lifestyle-inflation-audit": {
+    "whatsHappening": "Lifestyle inflation hides best in subscriptions because each upgrade felt reasonable at the time, the better plan, the extra service, the premium tier. Income rose and the bill rose with it without a decision ever being made. A subscription lifestyle inflation audit catches the creep by comparing what you pay now to what you paid two years ago for the same needs.",
+    "firstMove": "Total your current monthly subscriptions, then estimate what the same set cost you two years ago. The gap is your lifestyle inflation. Pick the three additions that crept in since then and ask whether your life is actually three subscriptions better, or just three subscriptions more expensive.",
+    "cutFirst": [
+      "Cut the second and third streaming service added 'just to try' a single show",
+      "Drop any plan you upgraded purely because you could afford to",
+      "Cancel premium tiers added for one feature you used once and forgot",
+      "Eliminate the meal, fitness, or hobby app that replaced a free habit",
+      "Roll back family or multi-seat plans that no longer have the extra users",
+      "Cut the convenience add-on (faster shipping, no-ads) you don't actually notice"
+    ],
+    "exactWords": "Hi, I'm reviewing my recurring spending and want to cancel my [service] subscription effective [date]. It's something I added without really needing it. Please confirm the cancellation and no further billing. If you have a basic free option, I'd consider keeping that instead.",
+    "keepWatch": "Keep the upgrades that genuinely improved your routine, inflation isn't always bad if it bought real value. The ones to watch are the silent renewals you'd forgotten about and the tiers you upgraded 'because you could' rather than because you needed to.",
+    "faqs": [
+      {
+        "q": "What is subscription lifestyle inflation exactly?",
+        "a": "It's when your recurring spending quietly rises with your income, more services and higher tiers, without any single decision to spend more. You end up paying more for roughly the same lifestyle you had before the raise."
+      },
+      {
+        "q": "How often should I audit my subscriptions for creep?",
+        "a": "Twice a year is plenty for most people, ideally around tax time and again mid-year. That cadence catches forgotten trials and annual renewals before they roll over for another full term."
+      },
+      {
+        "q": "How do I tell good upgrades from lifestyle inflation?",
+        "a": "Ask if you'd re-buy it today at full price knowing what you know now. If yes, it earns its spot. If you hesitate or can't recall the last time it helped, it's creep, not value."
+      }
+    ]
+  },
+  "consumer-downgrade/cancel-streaming-services-2026": {
+    "whatsHappening": "Heading into 2026, streaming prices climbed again and ad-free tiers got pricier across Netflix, Disney+, and Max, while password-sharing crackdowns ended the old workarounds. People are deciding what to cut first now that sharing one account across households isn't an option. The question for 2026 is which services earn their place when each one wants its own full subscription.",
+    "firstMove": "Write down every streaming bill and the date of the last thing you finished watching on each. Any service where that date is more than two months ago is a clear cancel. Do it before the next renewal so you stop paying for catalogs you've stopped opening.",
+    "cutFirst": [
+      "Cancel the service you haven't opened in 60 days, no matter how good the catalog looks",
+      "Drop services you only kept for password sharing now that it's blocked",
+      "Cut to one premium streamer and use free ad-supported apps for everything else",
+      "Cancel anything you signed up for in 2025 for a single limited series",
+      "Drop the ad-free upgrade and accept ads on your secondary service",
+      "Pause sports or seasonal streamers during the off-season months"
+    ],
+    "exactWords": "Hi, I want to cancel my [streaming service] subscription for 2026 effective [date]. With prices rising I'm consolidating to fewer services. Please confirm the cancellation and that I won't be billed again. If you can match a lower price or offer a pause, I'm open to hearing it first.",
+    "keepWatch": "Keep the one streamer carrying the live sports or annual event you won't miss, and any you prepaid through 2026. Watch the new ad-supported tiers, sometimes the ad version of a service you love is cheaper than canceling and re-adding it later.",
+    "faqs": [
+      {
+        "q": "Which streaming service should I cancel first in 2026?",
+        "a": "The one you've opened least in the last two months. Recency of use beats how impressive a catalog looks. If you can't remember the last thing you watched there, that's your first cancellation."
+      },
+      {
+        "q": "Now that password sharing is blocked, is it cheaper to share or rotate?",
+        "a": "Rotating your own subscriptions month to month is now the cleaner move. With sharing cracked down on across the major services, paying for one streamer at a time and cycling beats juggling extra-member fees."
+      },
+      {
+        "q": "Should I switch to ad-supported streaming tiers in 2026?",
+        "a": "If the price gap is more than a few dollars and you don't mind ad breaks, yes. The ad tiers got cheaper relative to ad-free this year, and for casual watching the savings usually outweigh the interruptions."
+      }
+    ]
+  },
+  "consumer-downgrade/value-for-money-subscription-checklist": {
+    "whatsHappening": "Not every subscription deserves to be cut, the goal is keeping the ones that pull their weight and dropping the ones that don't. The problem is most people never score their subscriptions, they just feel vaguely guilty about all of them. A value-for-money subscription checklist turns that vague guilt into a clear keep, downgrade, or cancel decision for each line item.",
+    "firstMove": "For each subscription, jot its monthly cost and roughly how many times you used it last month, then divide. A $15 app used twice costs $7.50 a use, a $15 app used daily costs 50 cents. Seeing the per-use price makes the keep-or-cut call obvious in about ten minutes.",
+    "cutFirst": [
+      "Cancel anything over $5 per use that has a free substitute",
+      "Downgrade tiers where you use the base features but pay for premium ones",
+      "Cut subscriptions you kept out of guilt for 'wasting' the signup",
+      "Drop anything whose value you can't explain in one sentence",
+      "Eliminate services that duplicate something you already pay for elsewhere",
+      "Cancel free trials converting to paid before the next billing date"
+    ],
+    "exactWords": "Hi, I'm reviewing the value I get from my subscriptions and [service] isn't earning its cost for me right now. I'd like to cancel effective [date], or downgrade to your lowest paid tier if that fits my limited use. Please confirm whichever option I choose and the new price.",
+    "keepWatch": "Keep the low-cost-per-use winners even if the monthly price looks high, a daily-driver app is cheap on a per-use basis. Watch for services that score poorly now but you'll need next month, pause those instead of canceling outright.",
+    "faqs": [
+      {
+        "q": "How do I decide if a subscription is worth the money?",
+        "a": "Divide the monthly cost by how many times you used it that month to get a per-use price, then ask if you'd happily pay that amount each time you opened it. If the answer is no, cancel or downgrade."
+      },
+      {
+        "q": "What's a reasonable cost-per-use to keep a subscription?",
+        "a": "There's no universal number, but a daily-use app at under a dollar a use is clearly worth it, while anything over $5 a use with a free alternative is hard to justify. Compare each to what the same value costs elsewhere."
+      },
+      {
+        "q": "Should I keep a subscription just because I already paid for it this month?",
+        "a": "No, that's the sunk-cost trap. Money already spent is gone whether you use the service or not. Decide based on next month's value, not regret over this month's charge, and turn off auto-renew if it's not earning its keep."
+      }
+    ]
+  },
+  "subscription-hell/subscription-hell-cancel-everything-guide": {
+    "whatsHappening": "You signed up for one free trial, then another, then a \"$1 for 7 days\" deal, and now five different companies pull money on five different dates you can't remember. This is subscription hell: not one big bill, but a dozen small ones designed to stay just below the threshold where you'd notice.",
+    "firstMove": "Open your card statement and your App Store and Google Play subscription lists. Write down every recurring charge with its dollar amount and renewal date. Don't cancel anything yet. You can't escape what you haven't named, and most people are surprised by two or three they forgot existed.",
+    "cutFirst": [
+      "List every recurring charge from the last two statements, not just last month",
+      "Flag anything you haven't opened in 30 days",
+      "Note where each one bills: App Store, Google Play, PayPal, or direct card",
+      "Mark the ones with free trials about to convert",
+      "Cancel the easy ones first to build momentum",
+      "Save the hard-to-cancel ones for a dedicated session, not a rushed five minutes"
+    ],
+    "exactWords": "Hi, I'd like to cancel my [service] subscription effective immediately and stop all future charges. Please confirm the cancellation in writing and send a confirmation number. I'm not looking for a discount or pause, just a full cancellation.",
+    "keepWatch": "Cancel where you were actually billed: an App Store subscription won't die by deleting the app or emailing the company. Screenshot every confirmation. A cancellation you can't prove is one they can quietly reverse.",
+    "faqs": [
+      {
+        "q": "I have so many I don't know where to start. Does order matter?",
+        "a": "Kill the ones renewing soonest first so you stop bleeding money this week. Then sort by \"haven't used in a month.\" Save the deliberately hard ones for last so they don't stall the whole effort."
+      },
+      {
+        "q": "Will canceling hurt my credit or anything?",
+        "a": "No. Subscriptions aren't credit accounts, so canceling them doesn't touch your credit score. The only thing that hits your credit is letting a charge bounce or go to collections, which canceling cleanly avoids."
+      },
+      {
+        "q": "What about the ones I'm not sure I even still have?",
+        "a": "Search your email inbox for \"receipt,\" \"your subscription,\" and \"renewal.\" Those confirmation emails are the paper trail. If a charge shows up with a vague merchant name, search that name plus \"subscription\" to identify it."
+      }
+    ]
+  },
+  "subscription-hell/cancel-unused-subscriptions": {
+    "whatsHappening": "The most expensive subscriptions aren't the ones you hate. They're the ones you forgot. A $14.99 charge you stopped using in March quietly renews every month because nothing prompts you to look. By the time you notice, you've paid for half a year of nothing.",
+    "firstMove": "Sort your last statement by recurring charges and ask one question per line: have I opened this in the last 30 days? If no, cancel it now. You can always resubscribe in two minutes later. Re-signing up is easy; getting back four months of wasted charges is not.",
+    "cutFirst": [
+      "Streaming you binged once and abandoned (the third and fourth video apps)",
+      "A gym or fitness app with no visits logged this month",
+      "\"Pro\" tiers of free tools you only use the free features of",
+      "Cloud storage you bought for one project that ended",
+      "Trials that converted to paid while you weren't looking",
+      "Anything where you can't remember the password, which means you're not using it"
+    ],
+    "exactWords": "I want to cancel my [service] plan and confirm no further charges will be made. I understand I'll lose access at the end of the current period. Please send written confirmation. I don't need a retention offer.",
+    "keepWatch": "Watch for the \"pause instead of cancel\" trap. A pause restarts billing automatically; a cancellation doesn't. If you only want a break, set a calendar reminder for the restart date, because the company is counting on you forgetting it.",
+    "faqs": [
+      {
+        "q": "If I cancel, do I lose access right away or keep it until the period ends?",
+        "a": "Almost always you keep access until the end of the period you already paid for. So there's no reason to wait until the last day to cancel; do it now and use it out."
+      },
+      {
+        "q": "How do I cancel unused subscriptions I can't find a button for?",
+        "a": "Check where you signed up. App Store subs cancel in iOS Settings, Google Play subs in the Play Store, and some only cancel through a web login, not the mobile app. The app's \"account\" page often hides the link."
+      },
+      {
+        "q": "Should I just cancel my card to kill them all at once?",
+        "a": "Tempting, but no. Many services keep charging through card-updater services even after a new card, and you'll also break the subscriptions you actually want. Cancel each one properly instead."
+      }
+    ]
+  },
+  "subscription-hell/hidden-subscription-fees-checklist": {
+    "whatsHappening": "Hidden fees aren't always hidden charges. Often they're real subscriptions buried under a merchant name you don't recognize, billed on odd cycles, or bundled into something else. A \"hidden subscription fees checklist\" works because these charges survive by being individually too small to investigate.",
+    "firstMove": "Pull three months of statements, not one. Highlight every charge that repeats on roughly the same date. Then highlight every charge under $20 with a merchant name you can't immediately explain. Those two highlight colors are your entire problem, sitting in plain sight.",
+    "cutFirst": [
+      "Charges with cryptic merchant names like \"DRI\" or \"APL* \" followed by codes",
+      "Annual renewals that only hit once a year and slip past monthly reviews",
+      "Add-on fees stacked on a base subscription (extra seats, extra storage)",
+      "Trials that started free and now bill at full price",
+      "Currency-conversion or \"foreign transaction\" fees on overseas services",
+      "Duplicate subscriptions across two cards or two accounts"
+    ],
+    "exactWords": "I'm reviewing a recurring charge from [merchant name] for [amount] dated [date] that I don't recognize. Can you tell me what product this is for and whether it's an active subscription? If it's mine and active, I want to cancel it.",
+    "keepWatch": "Identify a charge before you dispute it. A weird merchant name is often a real service you forgot, not fraud. Disputing a legitimate charge you signed up for can get the dispute thrown out and the account flagged.",
+    "faqs": [
+      {
+        "q": "A charge has a name I've never heard of. Is it fraud?",
+        "a": "Maybe, but usually it's a real company using a billing descriptor that doesn't match its brand name. Search the exact descriptor plus \"charge\" online; someone has almost always already identified it."
+      },
+      {
+        "q": "Why do annual subscriptions catch me off guard?",
+        "a": "Because you review monthly and they bill yearly, so they're invisible eleven months out of twelve. Add every annual renewal date to your calendar with a reminder a week before, when you can still cancel."
+      },
+      {
+        "q": "What counts as a hidden fee versus a normal charge?",
+        "a": "If you can name the product and chose to pay for it, it's a normal charge. If you can't explain what it's for or don't remember agreeing to it, treat it as hidden and investigate before assuming it's legitimate."
+      }
+    ]
+  },
+  "subscription-hell/hard-to-cancel-subscription-playbook": {
+    "whatsHappening": "Some subscriptions are easy to start and engineered to be hard to cancel. Adobe charges an early-termination fee on annual plans billed monthly. Others hide the cancel button behind a phone call, a chat queue, or three \"are you sure\" screens. A hard to cancel subscription isn't a bug; it's the retention strategy.",
+    "firstMove": "Before you start, find out which plan you're actually on. Log into the account and read the plan name and renewal terms. Adobe's \"annual, paid monthly\" plan has a cancellation fee; the month-to-month plan doesn't. Knowing this changes your whole script and stops you from accepting a fee you don't owe.",
+    "cutFirst": [
+      "Find the exact plan name and contract terms before contacting anyone",
+      "Cancel through web login, not the app, when the app hides the button",
+      "Have your account email and last-charge date ready for the chat agent",
+      "State \"cancel\" plainly and refuse pause, discount, and \"talk to a specialist\" detours",
+      "Ask in writing whether any early-termination fee applies and why",
+      "Screenshot or save the chat transcript and confirmation number"
+    ],
+    "exactWords": "I want to cancel my [service] subscription today. I've reviewed my plan and I'm declining any retention offer, pause, or downgrade. Please process the cancellation and confirm in writing, including whether any fee applies and the exact contract clause it's based on.",
+    "keepWatch": "If they quote an early-termination fee, ask them to cite the specific term you agreed to and the date. Sometimes the fee is real; sometimes it's a bluff to make you stop. Either way, keep the transcript. Don't chargeback first while you still have a clean cancellation path open.",
+    "faqs": [
+      {
+        "q": "Why won't Adobe let me cancel without a fee?",
+        "a": "If you're on the \"annual, paid monthly\" plan, you agreed to a 12-month commitment, and canceling early triggers a fee of about 50% of the remaining months. The month-to-month and prepaid-annual plans don't have this. Check which one you're on before arguing."
+      },
+      {
+        "q": "They keep transferring me to a \"specialist.\" Is that legal stalling?",
+        "a": "It's a known retention tactic, not necessarily illegal. Stay on the line, repeat \"I want to cancel\" every time, and don't accept being told to call back later. Ask for a confirmation number before you hang up."
+      },
+      {
+        "q": "Can I cancel a hard-to-cancel sub through my bank instead?",
+        "a": "You can ask your bank to block future charges, but that doesn't end the contract, so you may still owe fees or get sent to collections. Cancel through the company first and use the bank block only as backup."
+      }
+    ]
+  },
+  "subscription-hell/subscription-cancellation-script": {
+    "whatsHappening": "When you cancel by phone or chat, the agent is trained to redirect you: offer a discount, a pause, a \"let me transfer you.\" Having a subscription cancellation script removes the improvisation they rely on. You say the same firm sentences no matter what they offer, and the call gets short.",
+    "firstMove": "Write down three things before you contact them: your account email, the date and amount of your last charge, and one sentence stating you want a full cancellation. Keep that sentence visible during the call so you can repeat it verbatim every time they pivot to a counteroffer.",
+    "cutFirst": [
+      "Opening line: \"I'm calling to cancel my subscription, effective today.\"",
+      "To a discount offer: \"No thank you, I want to cancel, not change the price.\"",
+      "To a pause offer: \"No, a full cancellation, not a pause.\"",
+      "To a transfer: \"I'd rather not be transferred. Can you cancel it now?\"",
+      "Closing: \"Please give me a cancellation confirmation number.\"",
+      "After: \"Please email me written confirmation as well.\""
+    ],
+    "exactWords": "Hi, I'm calling to cancel my [service] subscription on the account under [email], effective today. I'm not interested in a discount, pause, or downgrade. Please cancel it now and give me a confirmation number, and send written confirmation to my email. Thank you.",
+    "keepWatch": "Write down the confirmation number, the agent's name, and the time. If access doesn't actually stop or a charge appears next cycle, that record is what turns a \"we have no record of that call\" into a refund. Don't hang up without the number.",
+    "faqs": [
+      {
+        "q": "What do I say when they offer me 50% off to stay?",
+        "a": "Say \"No thank you, I want to cancel, not change the price,\" and stop talking. Silence is fine. If you negotiate, you've reopened the conversation they want; if you just repeat the line, the call ends faster."
+      },
+      {
+        "q": "Do I have to give a reason for canceling?",
+        "a": "No. \"Personal reasons\" or \"I just don't need it anymore\" is enough. Detailed reasons give the agent hooks for counteroffers, so keep it short and don't justify yourself."
+      },
+      {
+        "q": "What if the agent says they can't cancel and I have to do it online?",
+        "a": "Ask them to note on your account that you requested cancellation today, get a reference number, then cancel online immediately. The dated request protects you if the online flow fails or charges you again."
+      }
+    ]
+  },
+  "subscription-hell/refund-request-email-template": {
+    "whatsHappening": "You got charged for a renewal you meant to cancel, or a trial converted before you noticed. Many companies will refund a recent accidental charge if you ask clearly and quickly, but a vague angry email gets a canned \"all sales final\" reply. A clean refund request email template gets you to the yes faster.",
+    "firstMove": "Find the exact charge: date, amount, and the email tied to the account. Note how long ago it hit; most refund-friendly windows are 14 to 30 days. Then send one calm, specific email rather than a phone call, so you have the request and their reply in writing.",
+    "cutFirst": [
+      "Subject line that states the ask: \"Refund request for [date] charge\"",
+      "The exact charge date, amount, and account email",
+      "One plain sentence on why (didn't use it / meant to cancel / charged after canceling)",
+      "A clear request for a full refund to the original payment method",
+      "A polite deadline: \"within 5 business days\"",
+      "A note that you'll keep this email as your record"
+    ],
+    "exactWords": "Subject: Refund request for [amount] charged on [date]\n\nHi, I was charged [amount] on [date] for [service] on the account under [email]. I [didn't intend to renew / canceled before this date / never used the service]. I'd like a full refund to my original payment method. Please confirm within 5 business days. Thank you.",
+    "keepWatch": "Ask the company for the refund before you call your bank. A successful refund request keeps your account in good standing; a chargeback can get you banned and is slower. Keep the email thread, because it's your evidence if they stall or say no.",
+    "faqs": [
+      {
+        "q": "How likely is a refund if I just forgot to cancel?",
+        "a": "Better than people expect, especially within the first couple of weeks and if you haven't used the service that period. It's not guaranteed, but a polite, specific request often works where a complaint doesn't."
+      },
+      {
+        "q": "Should I demand or ask nicely?",
+        "a": "Ask clearly and firmly, not angrily. The person reading it usually has discretion to approve refunds, and they approve the easy, polite ones first. Save firmness for the follow-up if they ignore you."
+      },
+      {
+        "q": "They said \"no refunds, it's in the terms.\" Is that final?",
+        "a": "Not always. Reply once noting the charge was recent and unused and ask them to make an exception. If they still refuse and you genuinely didn't authorize or use it, that's when a chargeback becomes reasonable."
+      }
+    ]
+  },
+  "subscription-hell/chargeback-evidence-checklist": {
+    "whatsHappening": "A chargeback is your bank reversing a charge, and you win it on evidence, not on how annoyed you are. The company gets to respond with their own proof, so a thin \"I didn't want it\" claim loses. A chargeback evidence checklist makes sure you bring the receipts that actually hold up.",
+    "firstMove": "Before you file, gather proof in one place: the charge details, your cancellation confirmation (or proof you tried), any \"no refunds\" reply, and screenshots showing you didn't use the service. Spend ten minutes assembling this; a dispute filed with evidence attached beats one you scramble to back up later.",
+    "cutFirst": [
+      "The disputed charge: date, amount, merchant descriptor",
+      "Proof you canceled or tried to: confirmation number, email, chat transcript",
+      "The company's refusal or non-response (their email or a note of no reply)",
+      "Evidence of non-use: login history, unused access, no downloads",
+      "The original terms you agreed to, if they contradict what you were charged",
+      "A short timeline: signed up, canceled, charged anyway, asked for refund, denied"
+    ],
+    "exactWords": "I'm disputing a charge of [amount] from [merchant] on [date]. I canceled this subscription on [date] (confirmation [number]) and was charged after cancellation. I contacted the merchant on [date] requesting a refund and they [refused / did not respond]. I did not use the service in this billing period. Evidence attached.",
+    "keepWatch": "Try the merchant's own refund first and keep that paper trail; banks ask whether you contacted the merchant, and \"yes, here's the email\" strengthens your case. Filing a chargeback may also get your account closed by that company, so don't dispute a service you still want.",
+    "faqs": [
+      {
+        "q": "Does a chargeback cancel the subscription too?",
+        "a": "No. A chargeback reverses one charge; the subscription can keep billing. Cancel the subscription separately, or you'll dispute the same charge again next month."
+      },
+      {
+        "q": "What's the strongest single piece of evidence?",
+        "a": "A dated cancellation confirmation showing you canceled before the charge, paired with proof you contacted the merchant for a refund and were refused. That combination shows the charge was both unwanted and unresolved through normal channels."
+      },
+      {
+        "q": "How long do I have to file a chargeback?",
+        "a": "Usually 60 to 120 days from the charge depending on your bank and card network, but sooner is stronger. The closer to the charge date you file, the more credible and less complicated the dispute."
+      }
+    ]
+  },
+  "subscription-hell/subscription-dark-pattern-survival-guide": {
+    "whatsHappening": "Subscription dark patterns are design choices meant to make canceling harder than subscribing: a cancel button hidden three menus deep, a \"are you sure?\" guilt screen, a chat-only cancellation, or a checkbox pre-ticked to renew. They're not your confusion; they're deliberate friction. Naming the pattern is half of beating it.",
+    "firstMove": "When a cancel flow feels like a maze, stop clicking randomly and look for the actual exit: the word \"Cancel,\" often small, often gray, often at the bottom. If the app hides it, log in through a browser instead. Most dark patterns die the moment you switch from the mobile app to the desktop account page.",
+    "cutFirst": [
+      "The hidden cancel link (small, gray, bottom of the account page)",
+      "The \"call us to cancel\" wall: do it, get a reference number, don't give up",
+      "The guilt screen (\"you'll lose your data\"): screenshot it and continue",
+      "The pre-ticked auto-renew box: untick it the moment you sign up next time",
+      "The \"pause\" button dressed up to look like cancel: read the actual word",
+      "The retention discount: a real offer, but only if you wanted to stay anyway"
+    ],
+    "exactWords": "I want to cancel, not pause or change my plan. I'm aware I'll lose access at the end of the period and I accept that. Please complete the cancellation now and send written confirmation with a reference number.",
+    "keepWatch": "Screenshot each step, especially the guilt and \"are you sure\" screens, because they sometimes loop you back without canceling. If a flow claims it canceled, verify in your account and on next month's statement. Don't trust the confirmation page; trust the absence of the next charge.",
+    "faqs": [
+      {
+        "q": "Is it legal for companies to make canceling this hard?",
+        "a": "It's increasingly regulated, and rules like \"click to cancel\" requirements push back on the worst of it, but enforcement is patchy. In practice you can't wait for the law; you beat the pattern by recognizing it and being stubborn."
+      },
+      {
+        "q": "The cancel flow keeps looping me back to the start. Now what?",
+        "a": "Switch channels: try the desktop browser instead of the app, or email support stating you want to cancel and screenshotting the broken flow. A documented attempt to cancel protects you if you later dispute a charge."
+      },
+      {
+        "q": "They make me call to cancel but the line is always 'busy.' Options?",
+        "a": "Call at off-peak hours, use any chat or email option in parallel, and document every attempt with dates and times. That record matters if you escalate to your bank, since it shows you genuinely tried to cancel."
+      }
+    ]
+  },
+  "subscription-hell/why-is-everything-a-subscription-now": {
+    "whatsHappening": "Software you used to buy once now rents itself to you monthly. Cars charge for heated seats by the month, printers meter your ink, and apps gate basic features behind \"Pro.\" The reason is simple: recurring revenue is worth more to companies than one-time sales, so everything is being redesigned to bill you forever.",
+    "firstMove": "Pick one subscription you pay and ask: do I use this enough to justify renting it, or did I just accept the default? For things you use occasionally, look for a one-time-purchase alternative or a free tier. Ten minutes of honest math often kills one recurring charge outright.",
+    "cutFirst": [
+      "Software you use twice a year but pay for twelve months",
+      "\"Pro\" tiers where the free version actually covers your needs",
+      "Hardware features locked behind a subscription you already bought the hardware for",
+      "Services with a cheaper annual or one-time option you didn't notice",
+      "Bundles where you only use one of the included services",
+      "Anything you kept only because canceling felt like effort"
+    ],
+    "exactWords": "I'd like to switch off auto-renewal and cancel at the end of my current period. I use this too rarely to justify a recurring charge. Please confirm the cancellation and that I won't be billed again. Thank you.",
+    "keepWatch": "Canceling a rarely-used subscription is usually painless, but check whether you lose files or a purchased license tied to it (cloud storage, design files). Export what's yours before the access window closes. Don't let \"you'll lose your data\" scare you into paying forever, but do back it up first.",
+    "faqs": [
+      {
+        "q": "Why is everything a subscription now instead of a one-time purchase?",
+        "a": "Because predictable monthly revenue is far more valuable to companies and investors than lumpy one-time sales. It also lets them raise prices in small increments you're less likely to cancel over. It's a business model choice, not a feature for you."
+      },
+      {
+        "q": "Are subscriptions ever actually the better deal?",
+        "a": "Sometimes. If you use something heavily and it updates constantly, renting can beat buying outdated software. The trap is paying monthly for things you touch a few times a year, where a one-time purchase or free tier wins."
+      },
+      {
+        "q": "How do I stop accumulating new ones?",
+        "a": "Treat every \"start free trial\" as a future charge: set a reminder for the trial end date the moment you sign up, and untick auto-renew where you can. The default is designed to convert; you have to opt out on purpose."
+      }
+    ]
+  },
+  "subscription-hell/hidden-monthly-charges": {
+    "whatsHappening": "Hidden monthly charges thrive on being just small enough to ignore. A $6.99 here, a $3.49 there, on dates scattered across the month so they never cluster into one alarming line. Individually forgettable, together they can be a car payment. Exposing them means looking at the pattern, not the single charges.",
+    "firstMove": "Download your last two months of statements as a spreadsheet or PDF and sort by amount, smallest first. The little recurring numbers float to the top together, and the duplicates and forgotten trials become obvious. This view shows what scrolling the app's transaction feed never will.",
+    "cutFirst": [
+      "Small recurring charges under $10 you skim past every month",
+      "Two services that overlap (two cloud storages, two music apps)",
+      "Trials that converted silently to paid",
+      "Charges on a backup card you rarely check",
+      "Add-ons billed separately from the main subscription",
+      "Anything billing on a weird date that dodges your monthly review"
+    ],
+    "exactWords": "I'm seeing a recurring monthly charge of [amount] from [merchant] that I want to stop. Please confirm what it's for, cancel it effective immediately, and send written confirmation. If this charged me after a trial I didn't intend to continue, I'd also like a refund for the most recent charge.",
+    "keepWatch": "Once you spot a hidden charge, identify it before assuming fraud; odd merchant descriptors usually map to real services you forgot. Cancel at the source, then watch next month's statement to confirm it actually stopped. A charge that \"canceled\" but bills again is your cue to escalate.",
+    "faqs": [
+      {
+        "q": "How do small charges stay hidden for so long?",
+        "a": "They sit below the amount that triggers your attention and spread across different dates, so they never appear together. Your brain filters them as noise. Sorting by amount instead of date is what finally makes them line up and stand out."
+      },
+      {
+        "q": "I found a charge but the merchant name is gibberish. How do I trace it?",
+        "a": "Search the exact descriptor online with the word \"charge\" or \"subscription.\" Billing descriptors rarely match brand names, but other people have usually already identified the same mystery charge and posted what it is."
+      },
+      {
+        "q": "Once I cancel, how do I make sure it's really gone?",
+        "a": "Get written confirmation, then check the same date next month. The charge is only truly dead when the next cycle passes with no new line item. Until then, keep the confirmation number handy."
+      }
+    ]
+  },
+  "doom-spending/doom-spending-subscriptions": {
+    "whatsHappening": "When stress spikes, subscribing feels like fixing something. You tap \"start free trial\" on Calm or Perplexity Pro at 11pm, get a small hit of relief, and forget. Weeks later the charges show up together and the relief is gone. This is doom spending subscriptions in plain terms: small recurring buys made for a mood, not a plan.",
+    "firstMove": "Open your phone's subscription list right now. iPhone: Settings > your name > Subscriptions. Android: Play Store > Subscriptions. Screenshot the whole list. You're not deciding anything yet, just seeing it. Most people find two or three they don't remember starting.",
+    "cutFirst": [
+      "Anything you subscribed to during a single bad week (check start dates)",
+      "Free trials converting to paid in the next 7 days",
+      "Two apps that do the same job (e.g. Calm plus Headspace)",
+      "Annual plans you bought to \"save money\" but barely opened",
+      "Subscriptions where you can't recall the password",
+      "Add-ons bundled onto a service you forgot you pay for"
+    ],
+    "exactWords": "Hi, I started a subscription to [app name] on [date] during a stressful time and haven't used it. I'd like to cancel and request a refund for the most recent charge of [amount] on [date]. The account email is [email]. Thank you for your help.",
+    "keepWatch": "Not every subscription bought under stress is a mistake. If a meditation or therapy app is genuinely steadying you, keep it. Cancel from clarity, not guilt. And note each refund window before you cancel, since some close fast.",
+    "faqs": [
+      {
+        "q": "Can I cancel a subscription I clearly only bought because I was stressed?",
+        "a": "Yes, you can cancel any subscription at any time from your App Store or Play Store settings. Cancelling stops future charges; getting money back for a recent charge is a separate refund request."
+      },
+      {
+        "q": "Will Apple refund a subscription I forgot about?",
+        "a": "Sometimes. Go to reportaproblem.apple.com, find the charge, and explain you didn't intend to keep it. Approval isn't guaranteed, but recent, unused charges are reviewed case by case."
+      },
+      {
+        "q": "Does cancelling mean I lose access immediately?",
+        "a": "Usually no. With Apple and Google, you keep access until the end of the period you already paid for, so cancel as soon as you decide rather than waiting for renewal day."
+      }
+    ]
+  },
+  "doom-spending/doom-spending-subscription-audit": {
+    "whatsHappening": "A doom spending subscription audit is one calm sitting where you list every recurring charge born from a stressful moment and decide its fate. The goal isn't budgeting forever. It's clearing the pile of half-used apps so your statement stops feeling like an accusation. One pass usually surfaces money you can recover.",
+    "firstMove": "Grab your last two bank or card statements and one highlighter (or your phone's notes). Spend ten minutes marking every recurring line you can't immediately explain. Don't cancel yet. A complete list first prevents the half-finished audit that leaves three charges still running.",
+    "cutFirst": [
+      "Charges you can't identify by name on the statement",
+      "Trials you started but never opened after day one",
+      "Duplicate categories: two streaming, two fitness, two AI tools",
+      "Subscriptions that renewed within the last 30 days (refund still possible)",
+      "Anything tied to a one-time need you no longer have",
+      "Family-plan slots nobody actually uses"
+    ],
+    "exactWords": "Hello, I'm reviewing my account and noticed a charge of [amount] on [date] for [service] that I no longer use and didn't mean to renew. Could you cancel the subscription and refund this most recent payment? My account is under [email]. Thanks very much.",
+    "keepWatch": "An audit can tip into over-correction. Keep the one or two services you use weekly even if the rest goes. Also confirm each refund deadline as you work, because cancelling first can occasionally forfeit a refund you were still eligible for.",
+    "faqs": [
+      {
+        "q": "How far back should an audit go?",
+        "a": "Cover at least two full statement cycles, since some subscriptions bill monthly and others annually. Annual charges hide easily because they only appear once a year."
+      },
+      {
+        "q": "Can I get refunds on more than one app at once?",
+        "a": "Yes. Apple's reportaproblem.apple.com lets you report several charges in one visit, and each card subscription can be cancelled individually. Refund approval is decided per charge."
+      },
+      {
+        "q": "Should I cancel before or after asking for a refund?",
+        "a": "Ask about the refund first when possible, then cancel. With some services, cancelling immediately can close the refund window before your request is processed."
+      }
+    ]
+  },
+  "doom-spending/impulse-subscription-purchase": {
+    "whatsHappening": "An impulse subscription purchase is the one you made in under a minute, no comparison, no plan. Duolingo Super or Midjourney looked like the answer in the moment. Now there's a charge and a quiet \"why did I do that.\" The fix is mechanical, not emotional: cancel, then check whether the charge is refundable.",
+    "firstMove": "Find the exact charge first. Open your email and search the app name plus \"receipt\" or \"your subscription.\" The receipt gives you the date, amount, and billing platform (Apple, Google, or direct), which is everything you need to request a refund in the next ten minutes.",
+    "cutFirst": [
+      "The purchase from the last 48 hours (highest refund odds)",
+      "Any \"premium\" or \"pro\" tier you upgraded to on a whim",
+      "Subscriptions bought through the app instead of the App Store",
+      "Trials that already auto-converted to paid",
+      "Anything you bought for a feature you used once",
+      "A second account you created and forgot"
+    ],
+    "exactWords": "Hi, I made an accidental purchase of [service] for [amount] on [date]. I didn't intend to subscribe and haven't used it. Please cancel the subscription and refund this charge to my original payment method. Account email: [email]. I appreciate your help.",
+    "keepWatch": "Speed matters more here than anywhere. Refund chances drop the longer you wait, so handle a fresh impulse purchase the same day. Don't, though, cancel a tool you bought impulsively but genuinely need this week just to feel disciplined.",
+    "faqs": [
+      {
+        "q": "Can I get a refund on an app I bought at 2am last night?",
+        "a": "Often yes if you act quickly. For Apple purchases, go to reportaproblem.apple.com, select the charge, and note it was unintended. Same-day, unused purchases have the best odds."
+      },
+      {
+        "q": "What if I bought it inside the app, not the App Store?",
+        "a": "Then contact the company directly through their support email or billing page, since Apple and Google didn't process it. Ask to cancel and refund the most recent charge."
+      },
+      {
+        "q": "Does requesting a refund get my account banned?",
+        "a": "A single honest refund request won't. Reserve it for genuine accidents and unused purchases rather than routine end-of-month cleanups, and you'll have no issues."
+      }
+    ]
+  },
+  "doom-spending/late-night-purchase-refund-script": {
+    "whatsHappening": "Late-night purchases have a pattern: tired, a little anxious, one tap, and a subscription you'd never sign up for at noon. By morning the logic is gone but the charge stays. A late night purchase refund script removes the hardest part, which is finding the words to ask for your money back without overexplaining.",
+    "firstMove": "Before you write anyone, gather three facts: the service name, the charge amount, and the exact date and time. Pull them from the receipt email or your statement. Ten minutes of fact-finding makes your refund message short, accurate, and far more likely to be approved.",
+    "cutFirst": [
+      "Charges timestamped between roughly 10pm and 4am",
+      "Dating-app boosts or upgrades (Tinder, Bumble) bought late",
+      "\"Limited time\" offers you accepted half-asleep",
+      "Subscriptions you don't remember the next morning",
+      "Trials that started overnight and convert within days",
+      "Any second purchase made right after the first"
+    ],
+    "exactWords": "Hi, late on [date] I subscribed to [service] for [amount] and realized the next morning it was a mistake. I haven't used it. Could you please cancel and refund that charge? My account email is [email]. Thank you for understanding.",
+    "keepWatch": "If something you bought late at night turns out to genuinely help, like a sleep or calm app you keep using, it's fine to keep it. Otherwise, send the script promptly; refund windows for impulse charges tend to be short.",
+    "faqs": [
+      {
+        "q": "Do I have to explain it was an emotional or late-night purchase?",
+        "a": "No. A short, honest line like \"this was unintended and I haven't used it\" is enough. You don't owe anyone the backstory to get a fair refund review."
+      },
+      {
+        "q": "Where do I send an Apple refund request?",
+        "a": "Go to reportaproblem.apple.com, sign in, find the charge, and choose the option that it was accidental or unwanted. That's the official route for App Store subscriptions."
+      },
+      {
+        "q": "What if support says no the first time?",
+        "a": "You can reply once and politely restate that the charge was unintended and unused. For Apple, you can also re-submit through reportaproblem.apple.com, though repeated requests for the same charge rarely change."
+      }
+    ]
+  },
+  "doom-spending/apps-charging-after-free-trial": {
+    "whatsHappening": "Apps charging after a free trial isn't a glitch, it's the design. You started a trial during a busy stretch, the reminder never landed, and the first paid charge appeared as a surprise. It's one of the most common impulse-subscription traps, and a fresh post-trial charge is often the most refundable kind.",
+    "firstMove": "Check which trials are about to convert before more charge. iPhone: Settings > your name > Subscriptions shows renewal dates. Spend ten minutes there, cancel the trials you won't keep, and flag any that already charged in the last few days so you can request those back.",
+    "cutFirst": [
+      "Trials with a renewal date in the next 7 days",
+      "Any charge that hit within 72 hours of a trial ending",
+      "Trials you started for one feature and never reopened",
+      "Annual trials that convert to a large one-time charge",
+      "Stacked trials across similar apps started the same week",
+      "Trials on apps you can't remember installing"
+    ],
+    "exactWords": "Hi, my free trial of [app] converted to a paid charge of [amount] on [date]. I meant to cancel before it renewed and haven't used the paid version. Please cancel the subscription and refund this charge. Account email: [email]. Thank you.",
+    "keepWatch": "Cancelling a trial usually keeps your access until the trial's last day, so you lose nothing by cancelling early. Watch the renewal dates closely; the gap between \"trial ends\" and \"card charged\" is often the same day, not a grace period.",
+    "faqs": [
+      {
+        "q": "Will Apple refund a subscription I forgot to cancel after a trial?",
+        "a": "Frequently yes for a recent first charge. Use reportaproblem.apple.com, select the charge, and note the trial converted before you could cancel. Approval is case by case but post-trial charges are commonly approved."
+      },
+      {
+        "q": "If I cancel during the trial, do I lose access right away?",
+        "a": "No. With Apple and Google you keep the trial benefits until the original end date, then it simply doesn't renew. Cancel as soon as you decide."
+      },
+      {
+        "q": "How do I stop trials from charging in the first place?",
+        "a": "Cancel the trial the same day you start it. Cancellation stops the future charge while you still get the full free period, so you keep the trial and avoid the bill."
+      }
+    ]
+  },
+  "doom-spending/how-to-stop-doom-spending": {
+    "whatsHappening": "Knowing how to stop doom spending starts with seeing that the spending is a stress response, not a character flaw. The buys cluster around hard days. So the practical move isn't more willpower, it's a repeatable audit that catches the charges quickly and a small barrier that slows the next late-night tap.",
+    "firstMove": "Do a fast subscription sweep today: list every recurring charge from your phone's subscription settings and your last statement. Then remove saved card details from one or two apps you most often impulse-buy in. Ten minutes now, and the next impulse meets a small speed bump.",
+    "cutFirst": [
+      "Subscriptions clustered on your worst recent weeks",
+      "Saved payment methods in apps you binge-subscribe in",
+      "Notifications that nudge you toward upgrades",
+      "Trials and \"pro\" tiers you upgraded to on bad days",
+      "Duplicate apps serving the same need",
+      "Auto-renewing annual plans you don't track"
+    ],
+    "exactWords": "Hi, I'm cleaning up subscriptions I started impulsively. I'd like to cancel [service] and request a refund for the charge of [amount] on [date], which I haven't used. My account is [email]. Thanks for your help with this.",
+    "keepWatch": "Stopping doom spending doesn't mean cutting everything that brings comfort. Keep the few subscriptions you genuinely use and value. The aim is fewer regretful charges, not a punishing freeze that you'll rebound from a week later.",
+    "faqs": [
+      {
+        "q": "Is doom spending the same as overspending in general?",
+        "a": "Not quite. Doom spending specifically describes buying to cope with stress or bad news. It tends to be small, fast, and recurring, which is why subscription audits catch it well."
+      },
+      {
+        "q": "Do I need a budgeting app to stop?",
+        "a": "No. A budgeting dashboard tracks the past; the faster lever is cancelling current impulse subscriptions and adding friction to future ones. You can do both, but the cancellation step recovers money now."
+      },
+      {
+        "q": "What's the single most effective change?",
+        "a": "Removing stored card details from the one or two apps you most often impulse-buy in. The extra step of re-entering a card is enough to break many late-night purchases."
+      }
+    ]
+  },
+  "doom-spending/how-to-stop-panic-buying-apps": {
+    "whatsHappening": "Panic buying apps usually happens when a problem feels urgent: a deadline, a flight, a rough mood, and an app promises to fix it now. You buy Notion-style productivity tools or AI subscriptions in a rush. Learning how to stop panic buying apps is mostly about adding a short pause and cleaning up what already slipped through.",
+    "firstMove": "Set one rule and act on it now: anything over a few dollars waits 24 hours. Then open your subscription list and cancel the most recent panic buy you regret. Knocking out one real charge in ten minutes makes the 24-hour rule feel worth keeping.",
+    "cutFirst": [
+      "The most recent purchase you bought \"to fix\" something urgent",
+      "Productivity or AI tools bought during a deadline crunch",
+      "Apps you opened once after buying, then never again",
+      "Upgrades triggered by an in-app \"unlock now\" prompt",
+      "Subscriptions bought to solve a problem now resolved",
+      "Anything still in its refundable first few days"
+    ],
+    "exactWords": "Hello, I purchased [app] for [amount] on [date] in a rush and don't actually need it. I haven't used the paid features. Could you cancel and refund this charge? My account email is [email]. Thank you for your time.",
+    "keepWatch": "A 24-hour pause filters panic buys without blocking genuinely useful tools. If after a day you still want it, buy it then. Just watch refund windows on the panic purchase you're undoing, since waiting too long can close them.",
+    "faqs": [
+      {
+        "q": "How long should the cooling-off pause be?",
+        "a": "Twenty-four hours covers most panic buys, since urgency fades fast. For larger annual subscriptions, give it a few days. The point is to separate the purchase from the spike of stress."
+      },
+      {
+        "q": "Can I refund an app I panic-bought yesterday?",
+        "a": "Often yes. For Apple, use reportaproblem.apple.com and mark it unintended; same-day and next-day requests on unused apps have good odds. For direct purchases, email the company's support."
+      },
+      {
+        "q": "What if I keep reinstalling and re-buying the same app?",
+        "a": "After refunding, delete the app and remove the saved card from that store profile. Repeat purchases usually stop once the buy takes more than one tap."
+      }
+    ]
+  },
+  "doom-spending/doom-spending-free-trial-trap": {
+    "whatsHappening": "The doom spending free trial loop is sneaky because nothing costs anything at first. On a stressful night you start three or four trials, feeling productive. The bill lands later, all at once, when the mood and the memory have faded. Free trials are where impulse subscriptions hide their cost until it's automatic.",
+    "firstMove": "List every active trial and its conversion date today. iPhone: Settings > your name > Subscriptions. Android: Play Store > Subscriptions. For each one, decide keep or cancel in the next ten minutes, and cancel now rather than relying on a reminder that may never come.",
+    "cutFirst": [
+      "Trials started in a single stressful sitting",
+      "Any trial converting to paid within 7 days",
+      "Trials where you've already explored the feature you wanted",
+      "Free trials that quietly require a card up front",
+      "Long trials (14-30 days) you'll forget by the end",
+      "Trials on apps you haven't reopened since installing"
+    ],
+    "exactWords": "Hi, I signed up for a free trial of [service] and it charged me [amount] on [date] before I cancelled. I haven't used the paid version. Please cancel the subscription and refund this charge. Account email: [email]. Thanks so much.",
+    "keepWatch": "Cancelling a trial early almost always keeps your access until the trial's last day, so there's rarely a reason to wait. The real risk is the silent conversion, so treat \"trial end\" and \"charge day\" as the same day unless told otherwise.",
+    "faqs": [
+      {
+        "q": "Why do free trials lead to doom spending?",
+        "a": "Because the cost is delayed. Starting a trial feels free and gives instant relief, so it's easy to start several at once and forget. The charges arrive later as a batch."
+      },
+      {
+        "q": "Can I keep using a trial after I cancel it?",
+        "a": "Usually yes. Apple and Google let you finish the free period after cancelling, then simply don't renew. So cancelling on day one still gives you the full trial."
+      },
+      {
+        "q": "It already charged me after the trial. Any options?",
+        "a": "Yes. For Apple, go to reportaproblem.apple.com and report the charge as a forgotten trial conversion. Recent, unused post-trial charges are often refunded."
+      }
+    ]
+  },
+  "doom-spending/cancel-apps-you-bought-while-stressed": {
+    "whatsHappening": "There's a specific kind of regret in finding an app you bought while overwhelmed and barely opened. The charge sits there like evidence of a bad night. To cancel apps bought while stressed, you don't need to relive the moment. You just need the receipt, two minutes, and a short message that asks plainly.",
+    "firstMove": "Make a quick list of apps you remember buying during hard stretches, then match each to a charge in your statement or App Store purchase history. Ten minutes of matching turns a vague guilty feeling into a concrete to-cancel list you can clear one by one.",
+    "cutFirst": [
+      "Apps you bought on a specifically bad day and rarely opened",
+      "\"Self-improvement\" buys made to feel back in control",
+      "Subscriptions you hid from yourself by muting receipts",
+      "Anything bought right after stressful news",
+      "Premium upgrades you regretted by the next morning",
+      "Charges still inside their refundable window"
+    ],
+    "exactWords": "Hi, I purchased [app] for [amount] on [date] during a difficult time and haven't really used it. I'd like to cancel the subscription and request a refund for that charge. My account email is [email]. Thank you for your understanding.",
+    "keepWatch": "Be honest in both directions. If one of those stressed-day purchases turned out to genuinely help you, it's allowed to stay. Cancel the rest without shame, and check each refund window first so you don't lose money you could have recovered.",
+    "faqs": [
+      {
+        "q": "I'm embarrassed about why I bought it. Do I have to say that?",
+        "a": "No. Support doesn't need your reasons. \"I haven't used it and would like to cancel and request a refund\" is a complete, legitimate request on its own."
+      },
+      {
+        "q": "How do I find apps I don't even remember buying?",
+        "a": "Check your App Store or Play Store purchase history and your last two statements. For Apple, your purchase history also appears when you sign in at reportaproblem.apple.com."
+      },
+      {
+        "q": "Is it too late to refund something from a few weeks ago?",
+        "a": "Maybe, but it's worth asking. Refund windows vary by service and platform, and unused subscriptions sometimes get partial consideration. Request it rather than assuming no."
+      }
+    ]
+  },
+  "doom-spending/impulse-subscription-cooling-off-checklist": {
+    "whatsHappening": "A cooling-off checklist is a tiny ritual you run before any new subscription sticks. The idea is simple: give the impulse a day to cool, then decide with a clear head. An impulse subscription cooling off checklist turns \"I'll be more careful\" into a few concrete steps you actually follow.",
+    "firstMove": "Write your checklist somewhere you'll see it at purchase time, like a phone note titled \"before I subscribe.\" Then apply it retroactively to your newest subscription: if it fails the checklist, cancel it in the next ten minutes. Starting with one real example makes the habit stick.",
+    "cutFirst": [
+      "Any subscription less than 24 hours old you haven't re-examined",
+      "Buys that fail \"would I want this at 10am, calm?\"",
+      "Subscriptions you can't name a specific weekly use for",
+      "Anything bought during a stress spike, no cooling period",
+      "Trials you started without a renewal-date reminder",
+      "Duplicate tools you subscribed to before checking what you had"
+    ],
+    "exactWords": "Hi, I subscribed to [service] for [amount] on [date] and after thinking it over I don't want to keep it. I haven't used it. Please cancel the subscription and refund this charge. My account email is [email]. Thank you.",
+    "keepWatch": "A checklist is a filter, not a ban. Subscriptions that pass the 24-hour pause and have a clear weekly use are worth keeping. When something fails and you're undoing it, check the refund window first so the cooling-off step doesn't cost you a refund.",
+    "faqs": [
+      {
+        "q": "What should be on the checklist?",
+        "a": "Four quick questions: Did I wait 24 hours? Can I name a weekly use? Do I already pay for something similar? Do I know the renewal date? If any answer is no, hold off."
+      },
+      {
+        "q": "Does a cooling-off period actually work?",
+        "a": "For impulse buys, yes. Most are driven by a passing spike of stress or urgency that fades within a day, so the pause alone cancels a lot of purchases you'd have regretted."
+      },
+      {
+        "q": "If I already subscribed, can I still apply the checklist?",
+        "a": "Yes. Run it on recent subscriptions and cancel the ones that fail. If a charge is recent and unused, also request a refund, through reportaproblem.apple.com for App Store purchases."
+      }
+    ]
+  },
+  "financial-anxiety/financial-anxiety-spending": {
+    "whatsHappening": "When money makes you anxious, the natural move is to stop looking. Meanwhile small recurring charges (Spotify, Medium, an old app trial) keep leaving quietly. None of this means you failed at money. It usually means a few signups got automated and then forgotten, which is exactly what subscriptions are designed to do.",
+    "firstMove": "Set a 10-minute timer and write down only the subscriptions you can remember from memory. Don't open any app or bank. Just the names. Five or six is normal. This list is enough to start, and you can always add more later.",
+    "cutFirst": [
+      "The free trial you meant to cancel and didn't",
+      "Anything you signed up for during a stressful week",
+      "Two services that do the same thing",
+      "A plan you upgraded once and never used",
+      "The one you feel a small flinch seeing",
+      "Anything billed yearly that you forgot existed"
+    ],
+    "exactWords": "Hi, I'd like to cancel my [service] subscription effective immediately and stop all future charges. I was last billed on [date] and would like to confirm no further payments will be taken. Please send written confirmation of the cancellation.",
+    "keepWatch": "You don't have to cancel everything to feel better. Keep one or two subscriptions that genuinely make your days lighter, like the music you actually play. The goal is fewer surprises, not punishment.",
+    "faqs": [
+      {
+        "q": "How do I check my subscriptions without linking my bank?",
+        "a": "You can start from memory and email receipts alone. Bill Vampire builds a case from a charge name or a forwarded receipt, so you never connect a bank account or use Plaid."
+      },
+      {
+        "q": "Why does spending money trigger so much anxiety for me?",
+        "a": "For many people it's the uncertainty, not the amount. Seeing a clear, finite list of recurring charges often lowers the dread faster than avoiding it does."
+      },
+      {
+        "q": "What if I'm scared of what I'll find?",
+        "a": "Most people find the total is smaller and more fixable than they feared. You can preview one charge for free before deciding to do anything about it."
+      }
+    ]
+  },
+  "financial-anxiety/financial-anxiety-subscription-plan": {
+    "whatsHappening": "A subscription plan isn't a budget spreadsheet you have to maintain forever. It's a one-time decision about which recurring charges stay and which go, made calmly and then mostly left alone. If finance dashboards make you shut down, a small written plan you control works better and asks far less of you.",
+    "firstMove": "Take 10 minutes to sort your known subscriptions into three buckets on paper: keep, cancel, and unsure. Don't act on anything yet. Just sorting them gives your brain a finished task and removes the vague background hum of not knowing.",
+    "cutFirst": [
+      "Move obvious yearly renewals into a dated note",
+      "Decide one service to cancel this week, not five",
+      "Park anything emotional in the unsure pile for now",
+      "Note the next billing date for each keeper",
+      "Pick a single day each month to glance at the list",
+      "Stop there once it feels manageable"
+    ],
+    "exactWords": "Hello, please cancel my [service] plan and downgrade me to the free tier if one exists. My account email is [email]. I'd appreciate confirmation that I won't be charged again on the next renewal date of [date].",
+    "keepWatch": "A good financial anxiety subscription plan still has keepers in it. Protect the one or two services that support your sleep, focus, or calm. A plan that strips out everything comforting rarely lasts.",
+    "faqs": [
+      {
+        "q": "Do I need a budgeting app to make a subscription plan?",
+        "a": "No. A plan can be three buckets on a sticky note. Budgeting apps track everything continuously, which is often the exact pressure you're trying to avoid."
+      },
+      {
+        "q": "How often should I revisit the plan?",
+        "a": "Once a month is plenty, ideally on a fixed day. Most months you'll glance and change nothing, which is the point."
+      },
+      {
+        "q": "Can I make this plan without sharing financial logins?",
+        "a": "Yes. You can plan entirely from your own notes and email receipts, and tools like Bill Vampire act on a single charge without bank access."
+      }
+    ]
+  },
+  "financial-anxiety/money-anxiety-checklist": {
+    "whatsHappening": "A checklist works when willpower doesn't, because it removes the need to decide what comes next. For recurring charges, a short list turns a scary blur into a few small boxes you can tick at your own pace. You're not auditing your whole financial life here, just walking one calm path through your subscriptions.",
+    "firstMove": "Print or copy the checklist below and do only the first item today: name three subscriptions you're sure you pay for. Ticking one box releases a little of the pressure and proves the rest is doable. The other items can wait for tomorrow.",
+    "cutFirst": [
+      "List subscriptions you remember, no app needed",
+      "Star the one charge that worries you most",
+      "Find its last billing date from an email receipt",
+      "Decide keep or cancel for that one charge only",
+      "Send the cancel message if you chose cancel",
+      "Tick the box and stop for today"
+    ],
+    "exactWords": "Hi, I'm requesting cancellation of [service] and a refund for the most recent charge on [date], as I did not intend to renew. Please confirm the cancellation and let me know the refund timeline. Thank you for your help.",
+    "keepWatch": "Running this money anxiety checklist doesn't mean ending every subscription. Leave the ones that earn their place, like a podcast app you open daily. The checklist exists to surface charges, not to guilt you out of things you enjoy.",
+    "faqs": [
+      {
+        "q": "Is there an ADHD-friendly money checklist that won't overwhelm me?",
+        "a": "Yes, the trick is one action per session and a clear stopping point. A list of six small boxes beats an open-ended dashboard you feel you must finish."
+      },
+      {
+        "q": "What if I freeze partway through the checklist?",
+        "a": "That's normal and fine. The list keeps your place, so you can return to the exact next box later without redoing anything."
+      },
+      {
+        "q": "Can I complete this without logging into my bank?",
+        "a": "Completely. Every step here uses memory and email receipts, and Bill Vampire can pursue a refund from a charge name alone, no bank login."
+      }
+    ]
+  },
+  "financial-anxiety/adhd-subscription-reminders": {
+    "whatsHappening": "With ADHD, the problem usually isn't caring about money, it's that renewal dates are invisible until the charge already landed. Subscriptions are built around that gap. A reminder a few days before billing turns an out-of-sight charge into a quick, in-the-moment decision while you still have a choice to make.",
+    "firstMove": "Pick your single most expensive subscription and set one calendar reminder for two days before its next charge, titled \"Cancel or keep [service]?\" Ten minutes, one reminder. Future-you gets a nudge at the exact moment it's useful, instead of a surprise afterward.",
+    "cutFirst": [
+      "The subscription with the biggest single charge",
+      "Anything billed yearly, since those ambush you most",
+      "A trial that converts to paid soon",
+      "Two apps that overlap in purpose",
+      "The service you keep meaning to deal with",
+      "Anything you can't remember the last time you used"
+    ],
+    "exactWords": "Hi, before my next renewal on [date] I'd like to cancel [service] so I'm not charged again. Please confirm the cancellation in writing and let me know if there's anything I need to do on my end. Thanks.",
+    "keepWatch": "ADHD subscription reminders work best when they're rare and meaningful. Set them only for charges you might want to drop. The music or focus app that genuinely helps you doesn't need a reminder fighting it every cycle.",
+    "faqs": [
+      {
+        "q": "Is there an ADHD-friendly way to remember subscription renewals?",
+        "a": "A charge-date reminder set a couple of days early works well, because it prompts you in the moment of choice. Bill Vampire can push a heads-up before a renewal so you don't rely on memory."
+      },
+      {
+        "q": "Why do I always forget I'm even subscribed to things?",
+        "a": "Recurring charges are designed to be forgettable, and ADHD makes invisible-until-billed costs especially easy to miss. External reminders beat willpower here."
+      },
+      {
+        "q": "Can I get renewal reminders without connecting my bank?",
+        "a": "Yes. You can build reminders from charge names and receipts, with no bank login or Plaid connection required."
+      }
+    ]
+  },
+  "financial-anxiety/adhd-friendly-subscription-cancel-checklist": {
+    "whatsHappening": "Canceling a subscription has too many micro-steps for an ADHD brain to hold at once: find the account, locate settings, dodge the dark patterns, confirm. That's why good intentions stall. An ADHD subscription cancel checklist externalizes every step so you're never holding the whole process in your head, just doing the next small thing.",
+    "firstMove": "Choose one subscription to cancel and open just its account page or app, nothing else. Don't cancel yet. Simply getting to the right screen is often the hardest part, so reaching it counts as a real win for today.",
+    "cutFirst": [
+      "Open the right account page first, that's step one",
+      "Find the manage or billing section",
+      "Locate the cancel link, often buried on purpose",
+      "Take the cancel path without clicking \"pause\" by mistake",
+      "Screenshot the confirmation so it's done and proven",
+      "Close the tab and stop"
+    ],
+    "exactWords": "Hello, I'd like to cancel [service] right now and would prefer not to pause or downgrade. Please process the cancellation, confirm by email to [email], and ensure no charge occurs on [date]. I appreciate it.",
+    "keepWatch": "This ADHD subscription cancel checklist is for clearing dead weight, not for cancelling on a bad day and regretting it. If a service quietly supports your routine, leave it. Cancel the ones that only added friction.",
+    "faqs": [
+      {
+        "q": "Is there an ADHD-friendly way to cancel subscriptions?",
+        "a": "Yes, break it into single visible steps with a clear finish, like the checklist above. The hardest part is usually reaching the right screen, so treat that as its own win."
+      },
+      {
+        "q": "Why do cancellation flows feel so deliberately confusing?",
+        "a": "Many are designed with friction to make you give up. Knowing that lets you expect the buried link and push through instead of blaming yourself."
+      },
+      {
+        "q": "Can I cancel without giving a tracker my bank login?",
+        "a": "Yes. Bill Vampire can draft and pursue the cancellation from a charge name or receipt, so no bank connection is involved."
+      }
+    ]
+  },
+  "financial-anxiety/how-to-face-subscriptions-without-bank-login": {
+    "whatsHappening": "A lot of subscription trackers demand you connect your bank through Plaid first, which is a wall if logins make you anxious or you don't trust handing over credentials. You don't actually need that. Your own memory, app stores, and email receipts already hold almost everything you need to face your subscriptions safely.",
+    "firstMove": "Spend 10 minutes searching your email inbox for the word \"receipt\" or \"your subscription.\" Read nothing closely. Just skim the sender names that appear. This surfaces real recurring charges with zero bank access and usually jogs your memory about a few you'd forgotten.",
+    "cutFirst": [
+      "Search email for \"receipt\" and \"renewal\"",
+      "Check your phone's app store subscription list",
+      "Note iCloud, Google, and Apple charges first",
+      "Write down every sender name you recognize",
+      "Flag any name you don't recognize at all",
+      "Pick one to deal with, leave the rest listed"
+    ],
+    "exactWords": "Hi, I'd like to cancel [service] and confirm the email on file is [email]. I found the charge through my receipts and want to stop future billing from [date] onward. Please reply with written confirmation. Thank you.",
+    "keepWatch": "Facing your subscriptions without a bank login isn't about deleting all of them. Keep the handful that quietly improve your life. The aim is to see clearly, not to connect every account or strip yourself of small comforts.",
+    "faqs": [
+      {
+        "q": "How can I face my subscriptions without a bank login?",
+        "a": "Start from email receipts and your app store's subscription list, which together cover most recurring charges. Bill Vampire works the same way, from a charge name or receipt, never a bank connection."
+      },
+      {
+        "q": "Aren't bank-linked trackers more accurate?",
+        "a": "They catch more automatically, but they also require trust and access many people won't give. For facing and cancelling a few charges, receipts and memory are usually enough."
+      },
+      {
+        "q": "Is connecting through Plaid safe?",
+        "a": "Plaid is widely used and reputable, but if it raises your anxiety you're allowed to skip it entirely. A no bank login approach can do everything you need here."
+      }
+    ]
+  },
+  "financial-anxiety/one-hour-financial-survival-audit": {
+    "whatsHappening": "A survival audit isn't a full financial review, it's a focused hour to find the recurring charges that are quietly hurting and stop the worst one. The word \"audit\" sounds heavy, but here it just means looking once, on purpose, with a timer running so it can't sprawl into your whole evening or your whole self-worth.",
+    "firstMove": "Block one hour, but only commit to the first 10 minutes: list every subscription you can recall and circle the one that stings most. If you stop after that, you've still done the most valuable part. The rest of the hour is a bonus, not a requirement.",
+    "cutFirst": [
+      "Spend 10 minutes listing charges from memory",
+      "Circle the single most painful one",
+      "Confirm its amount from an email receipt",
+      "Cancel that one charge before anything else",
+      "List two more candidates for next time",
+      "Stop the timer and call it done"
+    ],
+    "exactWords": "Hello, please cancel [service] and refund the latest charge of [amount] from [date], which I didn't mean to renew. Kindly confirm both the cancellation and the refund in writing. I appreciate your help with this.",
+    "keepWatch": "A one hour financial survival audit is triage, not a purge. Cut the charge that's bleeding you and keep the ones that hold your week together. You can revisit later with a calmer head rather than deciding everything at once.",
+    "faqs": [
+      {
+        "q": "What should I tackle first in a one-hour audit?",
+        "a": "The single most painful recurring charge. Fixing one real thing in the first ten minutes does more for your anxiety than a perfect, complete list ever will."
+      },
+      {
+        "q": "What if an hour feels like too much right now?",
+        "a": "Do just the first ten minutes. Listing charges and cancelling one is a complete, worthwhile result on its own."
+      },
+      {
+        "q": "Can I run this audit without bank access?",
+        "a": "Yes. Email receipts and your app store cover most of it, and Bill Vampire can chase a refund from a charge name without any bank login."
+      }
+    ]
+  },
+  "financial-anxiety/recurring-payments-draining-account": {
+    "whatsHappening": "When several small recurring payments stack up, the drain feels mysterious because no single charge looks alarming. It's the quiet total that hurts. This isn't a sign you're careless. A handful of $5 to $15 charges across Spotify, iCloud+, Audible and a couple of apps can add up faster than anyone notices.",
+    "firstMove": "For 10 minutes, just count. Write the rough monthly cost of each subscription you remember and add them up once. Seeing a single honest number, even an estimate, replaces the vague dread with something concrete you can actually decide to shrink.",
+    "cutFirst": [
+      "Total your recurring charges roughly, just once",
+      "Identify the two largest by monthly cost",
+      "Spot any you forgot were still active",
+      "Look for two services doing the same job",
+      "Cancel the largest one you don't truly use",
+      "Recheck the total and notice it drop"
+    ],
+    "exactWords": "Hi, I've noticed ongoing charges from [service] that I want to stop. Please cancel my subscription effective [date] and confirm no further payments will be taken. If a recent charge can be refunded, I'd appreciate that too. Thank you.",
+    "keepWatch": "Stopping recurring payments that are draining your account doesn't mean zeroing out the list. Keep the one or two that genuinely earn their cost. The win is shrinking the silent total, not living without anything you value.",
+    "faqs": [
+      {
+        "q": "How do I find what recurring payments are draining my account?",
+        "a": "Tally them from email receipts and your app store list to get one honest total. Bill Vampire can identify and act on a single charge from its name, with no bank login needed."
+      },
+      {
+        "q": "Why do small subscriptions feel like such a big drain?",
+        "a": "Because the total stays hidden while each charge looks trivial. Adding them up once usually makes the fix obvious and less frightening."
+      },
+      {
+        "q": "Can I stop a recurring charge I don't even recognize?",
+        "a": "Yes. Search the charge name in your email or app store, then cancel from there. If it's unclear, Bill Vampire can help pursue it without bank access."
+      }
+    ]
+  },
+  "financial-anxiety/subscription-overload": {
+    "whatsHappening": "Subscription overload is the point where you've lost track of how many services you pay for, so you avoid the whole topic. The fix isn't a heroic purge, it's deciding what to do first. One clear starting move beats a vague plan to deal with all of it someday, which usually means never.",
+    "firstMove": "Don't try to list everything. Just name the one subscription you'd be relieved to be rid of, and deal with only that one in the next 10 minutes. Starting with relief rather than completeness gives you momentum without triggering the overwhelm that froze you before.",
+    "cutFirst": [
+      "Name the one you'd most like gone",
+      "Handle that single charge first, ignore the rest",
+      "Then list the others, no action required yet",
+      "Group obvious duplicates together",
+      "Pick a second candidate for another day",
+      "Stop once you've made one real change"
+    ],
+    "exactWords": "Hello, I'd like to cancel [service] as I'm no longer using it. Please end my subscription before the next billing date of [date] and send written confirmation to [email]. Thanks very much for sorting this out.",
+    "keepWatch": "Coming out of subscription overload, resist the urge to cancel in a panic. Keep the services that genuinely support your wellbeing or work. Overload is about losing track, so the cure is clarity and a slower pace, not a clean sweep.",
+    "faqs": [
+      {
+        "q": "With subscription overload, what should I do first?",
+        "a": "Pick the single subscription you'd be most relieved to lose and cancel just that one. One concrete win restores enough momentum to face the rest later."
+      },
+      {
+        "q": "Should I cancel everything at once to get it over with?",
+        "a": "Usually no. A panic purge often hits services you actually value. Start with one, then decide the rest with a clearer head."
+      },
+      {
+        "q": "Is there a tracker that doesn't need bank access to help with this?",
+        "a": "Yes. Bill Vampire works from a charge name or receipt and never asks for a bank login, so you can act on one charge at a time."
+      }
+    ]
+  },
+  "financial-anxiety/no-bank-login-subscription-tracker-alternative": {
+    "whatsHappening": "Most subscription trackers route you straight to Plaid and a bank login, and for a lot of people that's a dealbreaker, whether from privacy worry or plain anxiety. A no bank login subscription tracker alternative starts from what you already have: charge names, email receipts, and your app store list. No credentials handed over, same useful result.",
+    "firstMove": "Open your email and your phone's subscription settings side by side for 10 minutes and jot down every recurring service you see. That's a working subscription list, built without linking a single account. You can act on it the same way you would with any tracker, just more privately.",
+    "cutFirst": [
+      "Pull subscriptions from your app store settings",
+      "Add any found in email receipts",
+      "Note the charge name exactly as it appears",
+      "Flag charges you can't immediately place",
+      "Pick one to cancel or dispute first",
+      "Keep the list somewhere you'll see it"
+    ],
+    "exactWords": "Hi, I'd like to cancel [service] and stop all future charges. The charge appears on my statement as [charge name]. Please confirm cancellation to [email] and let me know if any recent payment from [date] can be refunded. Thank you.",
+    "keepWatch": "A no-bank tracker alternative is about control and privacy, not cutting everything. Keep the subscriptions that genuinely help you. The point is to see and manage them on your own terms, without surrendering bank access to do it.",
+    "faqs": [
+      {
+        "q": "Is there a subscription tracker that doesn't need bank access?",
+        "a": "Yes. Bill Vampire is a no bank login alternative: it works from a charge name or email receipt and never connects to your bank or uses Plaid."
+      },
+      {
+        "q": "How accurate can a no-bank approach really be?",
+        "a": "Email receipts and app store listings catch the large majority of recurring charges. You trade a little automation for full privacy and zero login anxiety."
+      },
+      {
+        "q": "What do I lose by skipping the bank connection?",
+        "a": "Mostly automatic detection of obscure charges. For finding, cancelling, and disputing the subscriptions you actually have, receipts and charge names are enough."
+      }
+    ]
+  }
+}

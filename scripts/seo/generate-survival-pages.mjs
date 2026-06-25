@@ -4,16 +4,34 @@ import { renderSurvivalArticle, renderSurvivalHub, renderSurvivalTheme } from '.
 
 const ROOT = process.cwd()
 const SURVIVAL_PATH = join(ROOT, 'content', 'survival', 'guides.json')
+const ARTICLE_BODY_PATH = join(ROOT, 'content', 'survival', 'articles.json')
 const OUTPUT_DIR = join(ROOT, 'public', 'survival')
+
+function loadArticleBodies() {
+  try {
+    return JSON.parse(readFileSync(ARTICLE_BODY_PATH, 'utf8'))
+  } catch {
+    return {}
+  }
+}
 
 function loadThemes() {
   const data = JSON.parse(readFileSync(SURVIVAL_PATH, 'utf8'))
+  const bodies = loadArticleBodies()
   return data.themes.map((theme) => ({
     ...theme,
     articles: theme.articles.map((article) => {
-      if (!Array.isArray(article)) return article
-      const [slug, title, keyword, tier, metaDescription] = article
-      return { slug, title, keyword, tier, metaDescription }
+      const base = Array.isArray(article)
+        ? {
+            slug: article[0],
+            title: article[1],
+            keyword: article[2],
+            tier: article[3],
+            metaDescription: article[4],
+          }
+        : article
+      const body = bodies[`${theme.slug}/${base.slug}`] || bodies[base.slug]
+      return body ? { ...base, body } : base
     }),
   }))
 }

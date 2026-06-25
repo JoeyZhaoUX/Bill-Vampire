@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/tools/gothic-tools.css" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Financial anxiety spending and subscriptions","description":"A calmer way to face recurring charges one case at a time.","mainEntityOfPage":"https://billvampire.com/survival/financial-anxiety/financial-anxiety-spending.html","author":{"@type":"Organization","name":"Bill Vampire"},"publisher":{"@type":"Organization","name":"Bill Vampire"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Bill Vampire","item":"https://billvampire.com/"},{"@type":"ListItem","position":2,"name":"Survival Guides","item":"https://billvampire.com/survival/"},{"@type":"ListItem","position":3,"name":"Financial Anxiety","item":"https://billvampire.com/survival/financial-anxiety/"},{"@type":"ListItem","position":4,"name":"Financial anxiety spending and subscriptions","item":"https://billvampire.com/survival/financial-anxiety/financial-anxiety-spending.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I check my subscriptions without linking my bank?","acceptedAnswer":{"@type":"Answer","text":"You can start from memory and email receipts alone. Bill Vampire builds a case from a charge name or a forwarded receipt, so you never connect a bank account or use Plaid."}},{"@type":"Question","name":"Why does spending money trigger so much anxiety for me?","acceptedAnswer":{"@type":"Answer","text":"For many people it's the uncertainty, not the amount. Seeing a clear, finite list of recurring charges often lowers the dread faster than avoiding it does."}},{"@type":"Question","name":"What if I'm scared of what I'll find?","acceptedAnswer":{"@type":"Answer","text":"Most people find the total is smaller and more fixable than they feared. You can preview one charge for free before deciding to do anything about it."}}]}</script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { min-height: 100vh; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
@@ -40,6 +41,18 @@
     textarea { width: 100%; min-height: 150px; margin-top: 12px; resize: vertical; border-radius: 14px; padding: 14px; font: inherit; line-height: 1.5; background: rgba(13,11,14,.9); color: #f7efe6; border: 1px solid rgba(247,239,230,.14); }
     button { width: 100%; border: 0; border-radius: 14px; padding: 15px 18px; margin-top: 12px; font-weight: 900; cursor: pointer; background: #f7efe6; color: #171217; }
     .disclaimer { margin-top: 18px; font-size: 12px; line-height: 1.55; color: #7f716a; }
+    .article-body { margin-top: 30px; max-width: 820px; }
+    .article-body h2 { color: #f7efe6; font-size: clamp(21px, 3.2vw, 27px); line-height: 1.2; margin: 32px 0 12px; }
+    .article-body p { color: #cdbfb6; font-size: 16px; line-height: 1.72; margin-bottom: 14px; }
+    .article-body .cut-list { padding-left: 20px; display: grid; gap: 9px; color: #cdbfb6; font-size: 16px; line-height: 1.6; margin-bottom: 14px; }
+    .article-body .exact-words { border-left: 3px solid #c9a46a; background: rgba(201,164,106,.08); border-radius: 0 12px 12px 0; padding: 14px 18px; color: #f7efe6; font-size: 15px; line-height: 1.7; white-space: pre-line; }
+    .article-body .exact-note { font-size: 13px; color: #a99a91; }
+    .article-body .exact-note a { color: #c9a46a; }
+    .article-body .faq { margin-top: 6px; }
+    .faq-item { border-top: 1px solid rgba(247,239,230,.12); padding: 14px 0; }
+    .faq-item:first-of-type { border-top: 0; }
+    .faq-item summary { color: #f7efe6; cursor: pointer; font-weight: 800; font-size: 16px; }
+    .faq-item p { color: #a99a91; line-height: 1.64; margin-top: 10px; margin-bottom: 0; }
     @media (max-width: 760px) {
       .hero, .grid, .cards, .article-grid { grid-template-columns: 1fr; }
       .case-box { position: static; }
@@ -89,6 +102,29 @@
           <p class="disclaimer">Bill Vampire provides consumer communication templates and organization help. It is not legal, financial, or banking advice.</p>
         </aside>
       </section>
+      <section class="article-body">
+      <h2>What's happening</h2>
+      <p>When money makes you anxious, the natural move is to stop looking. Meanwhile small recurring charges (Spotify, Medium, an old app trial) keep leaving quietly. None of this means you failed at money. It usually means a few signups got automated and then forgotten, which is exactly what subscriptions are designed to do.</p>
+      <h2>Your first move in the next 10 minutes</h2>
+      <p>Set a 10-minute timer and write down only the subscriptions you can remember from memory. Don't open any app or bank. Just the names. Five or six is normal. This list is enough to start, and you can always add more later.</p>
+      <h2>What to cut or check first</h2>
+      <ul class="cut-list"><li>The free trial you meant to cancel and didn't</li><li>Anything you signed up for during a stressful week</li><li>Two services that do the same thing</li><li>A plan you upgraded once and never used</li><li>The one you feel a small flinch seeing</li><li>Anything billed yearly that you forgot existed</li></ul>
+      <h2>The exact words to use</h2>
+      <p class="exact-words">Hi, I'd like to cancel my [service] subscription effective immediately and stop all future charges. I was last billed on [date] and would like to confirm no further payments will be taken. Please send written confirmation of the cancellation.</p>
+      <p class="exact-note">Adapt the bracketed parts. <a href="/refund/">Refund templates</a> and <a href="/cancel/">cancel guides</a> cover specific services.</p>
+      <h2>What to keep an eye on</h2>
+      <p>You don't have to cancel everything to feel better. Keep one or two subscriptions that genuinely make your days lighter, like the music you actually play. The goal is fewer surprises, not punishment.</p>
+      <h2>FAQ</h2><div class="faq"><details class="faq-item">
+          <summary>How do I check my subscriptions without linking my bank?</summary>
+          <p>You can start from memory and email receipts alone. Bill Vampire builds a case from a charge name or a forwarded receipt, so you never connect a bank account or use Plaid.</p>
+        </details><details class="faq-item">
+          <summary>Why does spending money trigger so much anxiety for me?</summary>
+          <p>For many people it's the uncertainty, not the amount. Seeing a clear, finite list of recurring charges often lowers the dread faster than avoiding it does.</p>
+        </details><details class="faq-item">
+          <summary>What if I'm scared of what I'll find?</summary>
+          <p>Most people find the total is smaller and more fixable than they feared. You can preview one charge for free before deciding to do anything about it.</p>
+        </details></div>
+    </section>
       <section class="mini-form">
         <h2>Case-preview starter</h2>
         <p>Edit this with the service names, dates, and amounts you can remember.</p>

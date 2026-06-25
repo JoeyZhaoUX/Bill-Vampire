@@ -6,8 +6,29 @@
   <title>Cancel Subscription Script Generator | Bill Vampire</title>
   <meta name="description" content="Generate a cancel email and support chat script for a hard-to-cancel subscription. No bank login required." />
   <link rel="canonical" href="https://billvampire.com/tools/cancel-subscription-script-generator.html" />
+  <meta property="og:title" content="Free cancel-subscription script generator | Bill Vampire" />
+  <meta property="og:description" content="Generate a cancel email and support-chat script for a hard-to-cancel subscription. No bank login required." />
+  <meta property="og:url" content="https://billvampire.com/tools/cancel-subscription-script-generator.html" />
   <link rel="icon" href="/icons/icon.png" type="image/png" />
   <link rel="stylesheet" href="/tools/gothic-tools.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I cancel a subscription that won't let me cancel?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Identify where it's billed (App Store, Google Play, or direct), cancel in that location, and if a retention flow blocks you, send a written cancellation request and keep the confirmation. The generator gives you the exact wording." }
+      },
+      {
+        "@type": "Question",
+        "name": "What if they keep charging after I cancel?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Keep your cancellation confirmation, then dispute the post-cancellation charge with the wording in the Emergency Kit; the confirmation is your evidence." }
+      }
+    ]
+  }
+  </script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { min-height: 100vh; background: #0B0B11; color: #CBD5E1; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
@@ -25,6 +46,14 @@
     .item { border: 1px solid #1E293B; background: #111827; border-radius: 16px; padding: 16px; }
     .item b { display: block; color: #F8FAFC; margin-bottom: 6px; }
     .fine { color: #64748B; font-size: 12px; line-height: 1.5; margin-top: 14px; }
+    .prose h2 { color: #F8FAFC; font-size: clamp(22px, 3.4vw, 28px); line-height: 1.18; margin: 40px 0 14px; letter-spacing: -0.01em; }
+    .prose p { color: #94A3B8; font-size: 16px; line-height: 1.7; margin-bottom: 16px; }
+    .prose ol { color: #94A3B8; font-size: 16px; line-height: 1.7; margin: 0 0 16px 0; padding-left: 22px; display: grid; gap: 12px; }
+    .prose strong { color: #E2E8F0; }
+    .faq-block { margin-top: 18px; }
+    details { border-top: 1px solid #1E293B; padding: 16px 0; }
+    details summary { color: #F8FAFC; font-weight: 700; cursor: pointer; font-size: 16px; }
+    details p { margin-top: 10px; margin-bottom: 0; }
   </style>
 </head>
 <body>
@@ -45,6 +74,31 @@
       <div class="item"><b>Free preview</b>Detected service, amount, refund window, support angle, next moves, download, and known cancel link when available.</div>
       <div class="item"><b>Paid kit</b>Exact refund/cancel copy, support chat phrasing, chargeback checklist, and reminder text.</div>
     </div>
+
+    <article class="prose">
+      <p>Some subscriptions make cancelling deliberately hard: hidden cancel pages, retention loops that keep offering you discounts, email-only cancellation, vague billing descriptors you don't recognize, or services that keep charging after you thought you cancelled. The fix is usually not a magic button — it's saying the right thing, in the right place, with the right evidence on hand.</p>
+      <p>Paste the service, the amount, and what's blocking you. Bill Vampire opens a <strong>free</strong> case preview with: the known cancel path, the refund window, a support angle, your next moves, and a downloadable summary — no bank login. The optional <strong>$4.99 Emergency Kit</strong> turns it into exact refund/cancel copy, support-chat phrasing, a chargeback checklist, and reminder text.</p>
+
+      <h2>What makes a cancellation actually stick</h2>
+      <ol>
+        <li><strong>Cancel in the right place.</strong> App Store / Google Play subscriptions are cancelled in <em>those</em> settings — not in the app. Direct subscriptions are cancelled in the service's own account area.</li>
+        <li><strong>Get it in writing.</strong> Save the confirmation screen, the cancellation email, and any confirmation number.</li>
+        <li><strong>Hold your ground in retention loops.</strong> A polite, firm "please proceed with cancellation rather than a discount" beats clicking through five "are you sure?" screens.</li>
+        <li><strong>Watch the next billing date.</strong> Cancelling usually keeps access until the period ends; set a reminder to confirm no further charge hits.</li>
+      </ol>
+
+      <h2>Frequently asked questions</h2>
+      <div class="faq-block">
+        <details>
+          <summary>How do I cancel a subscription that won't let me cancel?</summary>
+          <p>Identify where it's billed (App Store, Google Play, or direct), cancel in that location, and if a retention flow blocks you, send a written cancellation request and keep the confirmation. The generator gives you the exact wording.</p>
+        </details>
+        <details>
+          <summary>What if they keep charging after I cancel?</summary>
+          <p>Keep your cancellation confirmation, then dispute the post-cancellation charge with the wording in the Emergency Kit; the confirmation is your evidence.</p>
+        </details>
+      </div>
+    </article>
   </main>
   <script>
     const params = new URLSearchParams(location.search);

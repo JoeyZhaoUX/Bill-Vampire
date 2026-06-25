@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/tools/gothic-tools.css" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Chargeback evidence checklist for subscriptions","description":"What to gather before disputing a subscription charge with your bank.","mainEntityOfPage":"https://billvampire.com/survival/subscription-hell/chargeback-evidence-checklist.html","author":{"@type":"Organization","name":"Bill Vampire"},"publisher":{"@type":"Organization","name":"Bill Vampire"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Bill Vampire","item":"https://billvampire.com/"},{"@type":"ListItem","position":2,"name":"Survival Guides","item":"https://billvampire.com/survival/"},{"@type":"ListItem","position":3,"name":"Subscription Hell","item":"https://billvampire.com/survival/subscription-hell/"},{"@type":"ListItem","position":4,"name":"Chargeback evidence checklist for subscriptions","item":"https://billvampire.com/survival/subscription-hell/chargeback-evidence-checklist.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does a chargeback cancel the subscription too?","acceptedAnswer":{"@type":"Answer","text":"No. A chargeback reverses one charge; the subscription can keep billing. Cancel the subscription separately, or you'll dispute the same charge again next month."}},{"@type":"Question","name":"What's the strongest single piece of evidence?","acceptedAnswer":{"@type":"Answer","text":"A dated cancellation confirmation showing you canceled before the charge, paired with proof you contacted the merchant for a refund and were refused. That combination shows the charge was both unwanted and unresolved through normal channels."}},{"@type":"Question","name":"How long do I have to file a chargeback?","acceptedAnswer":{"@type":"Answer","text":"Usually 60 to 120 days from the charge depending on your bank and card network, but sooner is stronger. The closer to the charge date you file, the more credible and less complicated the dispute."}}]}</script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { min-height: 100vh; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
@@ -40,6 +41,18 @@
     textarea { width: 100%; min-height: 150px; margin-top: 12px; resize: vertical; border-radius: 14px; padding: 14px; font: inherit; line-height: 1.5; background: rgba(13,11,14,.9); color: #f7efe6; border: 1px solid rgba(247,239,230,.14); }
     button { width: 100%; border: 0; border-radius: 14px; padding: 15px 18px; margin-top: 12px; font-weight: 900; cursor: pointer; background: #f7efe6; color: #171217; }
     .disclaimer { margin-top: 18px; font-size: 12px; line-height: 1.55; color: #7f716a; }
+    .article-body { margin-top: 30px; max-width: 820px; }
+    .article-body h2 { color: #f7efe6; font-size: clamp(21px, 3.2vw, 27px); line-height: 1.2; margin: 32px 0 12px; }
+    .article-body p { color: #cdbfb6; font-size: 16px; line-height: 1.72; margin-bottom: 14px; }
+    .article-body .cut-list { padding-left: 20px; display: grid; gap: 9px; color: #cdbfb6; font-size: 16px; line-height: 1.6; margin-bottom: 14px; }
+    .article-body .exact-words { border-left: 3px solid #c9a46a; background: rgba(201,164,106,.08); border-radius: 0 12px 12px 0; padding: 14px 18px; color: #f7efe6; font-size: 15px; line-height: 1.7; white-space: pre-line; }
+    .article-body .exact-note { font-size: 13px; color: #a99a91; }
+    .article-body .exact-note a { color: #c9a46a; }
+    .article-body .faq { margin-top: 6px; }
+    .faq-item { border-top: 1px solid rgba(247,239,230,.12); padding: 14px 0; }
+    .faq-item:first-of-type { border-top: 0; }
+    .faq-item summary { color: #f7efe6; cursor: pointer; font-weight: 800; font-size: 16px; }
+    .faq-item p { color: #a99a91; line-height: 1.64; margin-top: 10px; margin-bottom: 0; }
     @media (max-width: 760px) {
       .hero, .grid, .cards, .article-grid { grid-template-columns: 1fr; }
       .case-box { position: static; }
@@ -89,6 +102,29 @@
           <p class="disclaimer">Bill Vampire provides consumer communication templates and organization help. It is not legal, financial, or banking advice.</p>
         </aside>
       </section>
+      <section class="article-body">
+      <h2>What's happening</h2>
+      <p>A chargeback is your bank reversing a charge, and you win it on evidence, not on how annoyed you are. The company gets to respond with their own proof, so a thin &quot;I didn't want it&quot; claim loses. A chargeback evidence checklist makes sure you bring the receipts that actually hold up.</p>
+      <h2>Your first move in the next 10 minutes</h2>
+      <p>Before you file, gather proof in one place: the charge details, your cancellation confirmation (or proof you tried), any &quot;no refunds&quot; reply, and screenshots showing you didn't use the service. Spend ten minutes assembling this; a dispute filed with evidence attached beats one you scramble to back up later.</p>
+      <h2>What to cut or check first</h2>
+      <ul class="cut-list"><li>The disputed charge: date, amount, merchant descriptor</li><li>Proof you canceled or tried to: confirmation number, email, chat transcript</li><li>The company's refusal or non-response (their email or a note of no reply)</li><li>Evidence of non-use: login history, unused access, no downloads</li><li>The original terms you agreed to, if they contradict what you were charged</li><li>A short timeline: signed up, canceled, charged anyway, asked for refund, denied</li></ul>
+      <h2>The exact words to use</h2>
+      <p class="exact-words">I'm disputing a charge of [amount] from [merchant] on [date]. I canceled this subscription on [date] (confirmation [number]) and was charged after cancellation. I contacted the merchant on [date] requesting a refund and they [refused / did not respond]. I did not use the service in this billing period. Evidence attached.</p>
+      <p class="exact-note">Adapt the bracketed parts. <a href="/refund/">Refund templates</a> and <a href="/cancel/">cancel guides</a> cover specific services.</p>
+      <h2>What to keep an eye on</h2>
+      <p>Try the merchant's own refund first and keep that paper trail; banks ask whether you contacted the merchant, and &quot;yes, here's the email&quot; strengthens your case. Filing a chargeback may also get your account closed by that company, so don't dispute a service you still want.</p>
+      <h2>FAQ</h2><div class="faq"><details class="faq-item">
+          <summary>Does a chargeback cancel the subscription too?</summary>
+          <p>No. A chargeback reverses one charge; the subscription can keep billing. Cancel the subscription separately, or you'll dispute the same charge again next month.</p>
+        </details><details class="faq-item">
+          <summary>What's the strongest single piece of evidence?</summary>
+          <p>A dated cancellation confirmation showing you canceled before the charge, paired with proof you contacted the merchant for a refund and were refused. That combination shows the charge was both unwanted and unresolved through normal channels.</p>
+        </details><details class="faq-item">
+          <summary>How long do I have to file a chargeback?</summary>
+          <p>Usually 60 to 120 days from the charge depending on your bank and card network, but sooner is stronger. The closer to the charge date you file, the more credible and less complicated the dispute.</p>
+        </details></div>
+    </section>
       <section class="mini-form">
         <h2>Case-preview starter</h2>
         <p>Edit this with the service names, dates, and amounts you can remember.</p>

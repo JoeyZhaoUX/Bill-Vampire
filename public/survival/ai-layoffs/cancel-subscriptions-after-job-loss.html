@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/tools/gothic-tools.css" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Cancel subscriptions after job loss","description":"A practical subscription triage checklist for the first week after job loss or income shock.","mainEntityOfPage":"https://billvampire.com/survival/ai-layoffs/cancel-subscriptions-after-job-loss.html","author":{"@type":"Organization","name":"Bill Vampire"},"publisher":{"@type":"Organization","name":"Bill Vampire"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Bill Vampire","item":"https://billvampire.com/"},{"@type":"ListItem","position":2,"name":"Survival Guides","item":"https://billvampire.com/survival/"},{"@type":"ListItem","position":3,"name":"AI Layoffs","item":"https://billvampire.com/survival/ai-layoffs/"},{"@type":"ListItem","position":4,"name":"Cancel subscriptions after job loss","item":"https://billvampire.com/survival/ai-layoffs/cancel-subscriptions-after-job-loss.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I cancel a yearly subscription I already paid for and get money back?","acceptedAnswer":{"@type":"Answer","text":"Sometimes. Annual plans often have no prorated refund, but many companies will refund the unused months if you ask within a window, especially citing hardship. It's worth one polite message before you assume it's gone."}},{"@type":"Question","name":"Do I have to give my bank account to a tool that cancels subscriptions for me?","acceptedAnswer":{"@type":"Answer","text":"No, and you shouldn't have to. Bill Vampire works from your own receipts and emails, not a bank login, so there's no Plaid connection and no read access to your account."}},{"@type":"Question","name":"What's the fastest way to see everything I'm paying for at once?","acceptedAnswer":{"@type":"Answer","text":"Your inbox is the most honest record you have. Searching receipts beats trying to remember, and a free case preview can flag which charges are easiest to kill or refund first."}}]}</script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { min-height: 100vh; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
@@ -40,6 +41,18 @@
     textarea { width: 100%; min-height: 150px; margin-top: 12px; resize: vertical; border-radius: 14px; padding: 14px; font: inherit; line-height: 1.5; background: rgba(13,11,14,.9); color: #f7efe6; border: 1px solid rgba(247,239,230,.14); }
     button { width: 100%; border: 0; border-radius: 14px; padding: 15px 18px; margin-top: 12px; font-weight: 900; cursor: pointer; background: #f7efe6; color: #171217; }
     .disclaimer { margin-top: 18px; font-size: 12px; line-height: 1.55; color: #7f716a; }
+    .article-body { margin-top: 30px; max-width: 820px; }
+    .article-body h2 { color: #f7efe6; font-size: clamp(21px, 3.2vw, 27px); line-height: 1.2; margin: 32px 0 12px; }
+    .article-body p { color: #cdbfb6; font-size: 16px; line-height: 1.72; margin-bottom: 14px; }
+    .article-body .cut-list { padding-left: 20px; display: grid; gap: 9px; color: #cdbfb6; font-size: 16px; line-height: 1.6; margin-bottom: 14px; }
+    .article-body .exact-words { border-left: 3px solid #c9a46a; background: rgba(201,164,106,.08); border-radius: 0 12px 12px 0; padding: 14px 18px; color: #f7efe6; font-size: 15px; line-height: 1.7; white-space: pre-line; }
+    .article-body .exact-note { font-size: 13px; color: #a99a91; }
+    .article-body .exact-note a { color: #c9a46a; }
+    .article-body .faq { margin-top: 6px; }
+    .faq-item { border-top: 1px solid rgba(247,239,230,.12); padding: 14px 0; }
+    .faq-item:first-of-type { border-top: 0; }
+    .faq-item summary { color: #f7efe6; cursor: pointer; font-weight: 800; font-size: 16px; }
+    .faq-item p { color: #a99a91; line-height: 1.64; margin-top: 10px; margin-bottom: 0; }
     @media (max-width: 760px) {
       .hero, .grid, .cards, .article-grid { grid-template-columns: 1fr; }
       .case-box { position: static; }
@@ -89,6 +102,29 @@
           <p class="disclaimer">Bill Vampire provides consumer communication templates and organization help. It is not legal, financial, or banking advice.</p>
         </aside>
       </section>
+      <section class="article-body">
+      <h2>What's happening</h2>
+      <p>You just lost your job, and every recurring charge that felt harmless last month now feels like a slow leak in a boat. The problem isn't any single subscription. It's that you signed up for a dozen of them over two years and have never once seen them lined up in a single list with a total at the bottom.</p>
+      <h2>Your first move in the next 10 minutes</h2>
+      <p>Open your email and search for &quot;receipt OR subscription OR your payment OR renews&quot; over the last 90 days. Every result is a charge that may still be hitting your card. Write each one on a sticky note with its monthly price. You'll have your real list in under ten minutes.</p>
+      <h2>What to cut or check first</h2>
+      <ul class="cut-list"><li>Streaming you stacked: keep one, cancel Netflix, Hulu, Max, and Disney+ down to the single service you actually open</li><li>ChatGPT Plus or Claude Pro if you're not using them daily for the job search</li><li>That gym membership you've visited twice since January</li><li>Audible, Spotify Premium, and any app you forgot was auto-renewing yearly</li><li>Cloud storage tiers you outgrew (the 2TB plan when you use 40GB)</li><li>Keep: phone, internet, and one email/calendar tool you rely on</li></ul>
+      <h2>The exact words to use</h2>
+      <p class="exact-words">Hi, I've just lost my job and need to cancel my [service name] subscription effective immediately. My account is under [email/username]. Please confirm the cancellation date and that no further charges will be made, and let me know if any unused portion is refundable.</p>
+      <p class="exact-note">Adapt the bracketed parts. <a href="/refund/">Refund templates</a> and <a href="/cancel/">cancel guides</a> cover specific services.</p>
+      <h2>What to keep an eye on</h2>
+      <p>Don't cancel anything tied to a live job application: an email address recruiters have, a portfolio host with your work on it, or a calendar people use to book interviews. Losing those mid-search costs more than the monthly fee.</p>
+      <h2>FAQ</h2><div class="faq"><details class="faq-item">
+          <summary>Can I cancel a yearly subscription I already paid for and get money back?</summary>
+          <p>Sometimes. Annual plans often have no prorated refund, but many companies will refund the unused months if you ask within a window, especially citing hardship. It's worth one polite message before you assume it's gone.</p>
+        </details><details class="faq-item">
+          <summary>Do I have to give my bank account to a tool that cancels subscriptions for me?</summary>
+          <p>No, and you shouldn't have to. Bill Vampire works from your own receipts and emails, not a bank login, so there's no Plaid connection and no read access to your account.</p>
+        </details><details class="faq-item">
+          <summary>What's the fastest way to see everything I'm paying for at once?</summary>
+          <p>Your inbox is the most honest record you have. Searching receipts beats trying to remember, and a free case preview can flag which charges are easiest to kill or refund first.</p>
+        </details></div>
+    </section>
       <section class="mini-form">
         <h2>Case-preview starter</h2>
         <p>Edit this with the service names, dates, and amounts you can remember.</p>
