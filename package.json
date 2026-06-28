@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/seo/generate-pages.mjs && vite build",
+    "build": "node scripts/seo/generate-pages.mjs && npm run seo:audit && vite build",
     "build:vite": "vite build",
     "seo:content": "node scripts/seo/generate-content.mjs",
     "seo:build": "node scripts/seo/generate-pages.mjs",
+    "seo:audit": "node --test tests/seo/*.test.mjs",
+    "seo:audit:live": "node scripts/seo/audit-live.mjs",
     "growth:queue": "node scripts/growth/generate-growth-queue.mjs",
     "growth:reddit": "node scripts/growth/generate-growth-queue.mjs --platform=reddit --status=needs_review",
     "growth:open": "node scripts/growth/generate-growth-queue.mjs --status=needs_review",

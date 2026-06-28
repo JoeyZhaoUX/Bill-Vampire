@@ -2,6 +2,7 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { SERVICES } from '../seo/services.mjs'
+import { cleanInternalUrl } from '../seo/url-policy.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const rootDir = join(__dirname, '../..')
@@ -95,22 +96,22 @@ function landingPath(opportunity) {
   const service = serviceFor(opportunity)
 
   if (service?.slug && !['Bill Vampire'].includes(opportunity.service)) {
-    return `/cancel/${service.slug}.html`
+    return cleanInternalUrl(`/cancel/${service.slug}.html`)
   }
 
   if (['trial_refund', 'surprise_charge', 'refund_denied'].includes(opportunity.issueType)) {
-    return '/tools/free-trial-refund-helper.html'
+    return cleanInternalUrl('/tools/free-trial-refund-helper.html')
   }
 
   if (opportunity.issueType === 'hard_cancel') {
-    return '/tools/cancel-subscription-script-generator.html'
+    return cleanInternalUrl('/tools/cancel-subscription-script-generator.html')
   }
 
   if (opportunity.issueType === 'directory_submission') {
     return '/'
   }
 
-  return '/tools/rocket-money-alternative-no-bank-login.html'
+  return cleanInternalUrl('/tools/rocket-money-alternative-no-bank-login.html')
 }
 
 function sourceFor(platform) {

@@ -21,7 +21,10 @@
       "Any plan-change confirmation email"
     ],
     "freePreviewPrompt": "I want to cancel Adobe Creative Cloud. It is showing a cancellation fee and I need a calm support script plus refund/waiver request.",
-    "sourceUrl": "https://www.reddit.com/r/Adobe/comments/1ff6d1g/cancellation_fee/"
+    "sourceUrl": "https://www.reddit.com/r/Adobe/comments/1ff6d1g/cancellation_fee/",
+    "officialSourceUrl": "https://account.adobe.com/plans",
+    "lastVerified": "2026-06-28",
+    "directAnswer": "Open Adobe Plans, review the exact commitment shown on your account, cancel renewal, and save the fee screen before asking support to waive or refund a charge."
   },
   {
     "slug": "grammarly-annual-renewal-refund-request",
@@ -45,7 +48,10 @@
       "App Store or Google Play receipt if applicable"
     ],
     "freePreviewPrompt": "I was charged for Grammarly annual renewal and need to cancel, request a refund, and keep proof in case support is slow.",
-    "sourceUrl": "https://www.reddit.com/r/Grammarly/comments/1pwprtx/refund/"
+    "sourceUrl": "https://www.reddit.com/r/Grammarly/comments/1pwprtx/refund/",
+    "officialSourceUrl": "https://account.grammarly.com/subscription",
+    "lastVerified": "2026-06-28",
+    "directAnswer": "Cancel renewal in Grammarly subscription settings first, then submit a prompt refund request with the charge date, account email, amount, and billing channel."
   },
   {
     "slug": "nordvpn-refund-script-after-auto-renewal",
@@ -69,7 +75,10 @@
       "Support chat transcript"
     ],
     "freePreviewPrompt": "NordVPN auto-renewed before I expected. I need a refund script, cancellation proof checklist, and escalation plan.",
-    "sourceUrl": "https://www.reddit.com/r/nordvpn/comments/1rt2sln/the_renewal_date_and_charge_date_is_a_total_joke/"
+    "sourceUrl": "https://www.reddit.com/r/nordvpn/comments/1rt2sln/the_renewal_date_and_charge_date_is_a_total_joke/",
+    "officialSourceUrl": "https://my.nordaccount.com/dashboard/nordvpn/",
+    "lastVerified": "2026-06-28",
+    "directAnswer": "Turn off NordVPN auto-renewal in Nord Account, then ask support to review the recent charge under the policy that applies to your purchase route."
   },
   {
     "slug": "canva-pro-trial-refund-after-119-charge",
@@ -93,7 +102,10 @@
       "Support ticket or chat record"
     ],
     "freePreviewPrompt": "I started a Canva Pro trial and got charged around $119. I want to cancel and ask for a refund.",
-    "sourceUrl": "https://www.reddit.com/r/ADHD/comments/16q1x8p"
+    "sourceUrl": "https://www.reddit.com/r/ADHD/comments/16q1x8p",
+    "officialSourceUrl": "https://www.canva.com/settings/billing-and-plans",
+    "lastVerified": "2026-06-28",
+    "directAnswer": "Cancel Canva renewal in Billing and plans, identify whether Canva or an app store billed you, and request review of the recent charge with the receipt attached."
   },
   {
     "slug": "chatgpt-plus-refund-request-after-renewal",
@@ -117,7 +129,10 @@
       "Support conversation transcript"
     ],
     "freePreviewPrompt": "I was charged for ChatGPT Plus renewal and need to cancel and ask OpenAI support for a refund.",
-    "sourceUrl": "https://help.openai.com/en/articles/7232895-how-do-i-request-a-refund-for-ch"
+    "sourceUrl": "https://help.openai.com/en/articles/7232895-how-do-i-request-a-refund-for-ch",
+    "officialSourceUrl": "https://chatgpt.com/#settings/Subscription",
+    "lastVerified": "2026-06-28",
+    "directAnswer": "Cancel ChatGPT renewal in the account that was charged; request the refund through OpenAI for web billing or through Apple or Google for app-store billing."
   },
   {
     "slug": "amazon-prime-refund-after-unwanted-renewal",
@@ -141,7 +156,10 @@
       "Support chat or call notes"
     ],
     "freePreviewPrompt": "Amazon Prime renewed after I thought I cancelled. I need a refund request, proof checklist, and the next support steps.",
-    "sourceUrl": "https://www.reddit.com/r/amazonprime/comments/1r8912a/amazon_prime_just_renewed_itself_after_i/"
+    "sourceUrl": "https://www.reddit.com/r/amazonprime/comments/1r8912a/amazon_prime_just_renewed_itself_after_i/",
+    "officialSourceUrl": "https://www.amazon.com/mc/pipelines/cancelPrime",
+    "lastVerified": "2026-06-28",
+    "directAnswer": "End the Prime membership, save the confirmation, and ask Amazon to review the latest renewal—especially if no Prime benefits were used after the charge."
   },
   {
     "slug": "linkedin-premium-refund-after-free-trial",
@@ -165,7 +183,10 @@
       "Whether premium features were used after charge"
     ],
     "freePreviewPrompt": "I forgot to cancel LinkedIn Premium after the free trial and got charged. I need a refund request and checklist.",
-    "sourceUrl": "https://www.reddit.com/r/linkedin/comments/17jfs5m/linkedin_premium_subscription_refund/"
+    "sourceUrl": "https://www.reddit.com/r/linkedin/comments/17jfs5m/linkedin_premium_subscription_refund/",
+  "officialSourceUrl": "https://www.linkedin.com/help/linkedin/answer/a1337140",
+    "lastVerified": "2026-06-28",
+    "directAnswer": "Cancel LinkedIn Premium first, then identify whether LinkedIn, Apple, or Google billed you; refund eligibility depends on timing, region, and feature use."
   },
   {
     "slug": "duolingo-super-refund-after-annual-charge",
@@ -189,7 +210,10 @@
       "Support reference number"
     ],
     "freePreviewPrompt": "Duolingo charged me for an annual Super or Max plan after a trial. I need to cancel and ask for a refund.",
-    "sourceUrl": "https://www.reddit.com/r/duolingo/comments/1p4xlmt/membership_refund/"
+    "sourceUrl": "https://www.reddit.com/r/duolingo/comments/1p4xlmt/membership_refund/",
+    "officialSourceUrl": "https://www.duolingo.com/settings/account",
+    "lastVerified": "2026-06-28",
+    "directAnswer": "Check the receipt to identify Apple, Google Play, or Duolingo web billing, cancel in that same channel, and submit the refund request there."
   },
   {
     "slug": "expressvpn-refund-after-auto-renewal-charge",
@@ -213,7 +237,10 @@
       "Live chat or support email transcript"
     ],
     "freePreviewPrompt": "ExpressVPN auto-renewed or charged after cancellation. I need a refund script and evidence checklist.",
-    "sourceUrl": "https://www.reddit.com/r/Express_VPN/comments/11cjbw6"
+    "sourceUrl": "https://www.reddit.com/r/Express_VPN/comments/11cjbw6",
+    "officialSourceUrl": "https://www.expressvpn.com/subscriptions",
+    "lastVerified": "2026-06-28",
+    "directAnswer": "Turn off ExpressVPN auto-renewal, confirm the final account state, and contact support promptly with the order ID if the charge qualifies for review."
   },
   {
     "slug": "microsoft-365-refund-after-annual-renewal",
@@ -237,7 +264,10 @@
       "Support chat transcript"
     ],
     "freePreviewPrompt": "Microsoft 365 renewed for the year and I need to cancel and request a refund before the window closes.",
-    "sourceUrl": "https://www.reddit.com/r/microsoft/comments/11fj1o2/help_is_there_anyway_i_can_get_a_refund_on_a/"
+    "sourceUrl": "https://www.reddit.com/r/microsoft/comments/11fj1o2/help_is_there_anyway_i_can_get_a_refund_on_a/",
+  "officialSourceUrl": "https://support.microsoft.com/en-US/accounts-billing/subscriptions/how-to-get-a-refund-on-a-microsoft-subscription",
+    "lastVerified": "2026-06-28",
+    "directAnswer": "Cancel Microsoft 365 from Services and subscriptions; Microsoft will show any available refund during cancellation, otherwise contact support with the order number."
   },
   {
     "slug": "dropbox-annual-renewal-refund-request",
@@ -261,7 +291,10 @@
       "Support ticket or bank record"
     ],
     "freePreviewPrompt": "Dropbox annual plan renewed and I need a refund request plus evidence checklist before contacting support.",
-    "sourceUrl": "https://www.reddit.com/r/dropbox/comments/y1l2yw/has_anybody_ever_gotten_a_refund_from_dropbox/"
+    "sourceUrl": "https://www.reddit.com/r/dropbox/comments/y1l2yw/has_anybody_ever_gotten_a_refund_from_dropbox/",
+    "officialSourceUrl": "https://www.dropbox.com/account/plan",
+    "lastVerified": "2026-06-28",
+    "directAnswer": "Cancel or downgrade from the Dropbox Plan page, preserve the receipt and cancellation state, and ask support to review the latest renewal."
   },
   {
     "slug": "new-york-times-cancel-refund-script",
@@ -285,7 +318,10 @@
       "Confirmation number or email"
     ],
     "freePreviewPrompt": "I am trying to cancel New York Times and want a refund or proof trail for charges after my cancellation request.",
-    "sourceUrl": "https://www.reddit.com/r/assholedesign/comments/10j2lkv/new_york_times_does_not_allow_you_to_cancel_your/"
+    "sourceUrl": "https://www.reddit.com/r/assholedesign/comments/10j2lkv/new_york_times_does_not_allow_you_to_cancel_your/",
+    "officialSourceUrl": "https://myaccount.nytimes.com/seg/",
+    "lastVerified": "2026-06-28",
+    "directAnswer": "Open the New York Times subscription account, follow the cancellation method shown for your region, and request written confirmation before seeking a refund."
   },
   {
     "slug": "tinder-gold-refund-after-accidental-purchase",
@@ -309,7 +345,10 @@
       "Short explanation of accidental purchase or misleading upgrade"
     ],
     "freePreviewPrompt": "I accidentally bought or renewed Tinder Gold and need the correct refund path and support wording.",
-    "sourceUrl": "https://www.reddit.com/r/Tinder/comments/dhn4dn"
+    "sourceUrl": "https://www.reddit.com/r/Tinder/comments/dhn4dn",
+  "officialSourceUrl": "https://www.help.tinder.com/hc/en-us/articles/115003521343-Refund-Requests",
+    "lastVerified": "2026-06-28",
+    "directAnswer": "Identify whether Tinder, Apple, or Google processed the purchase, cancel renewal in that channel, and send the refund request to the same billing provider."
   },
   {
     "slug": "ftc-may-2026-refund-payments-claim-guide",
@@ -333,6 +372,9 @@
       "Registered email used with the deceptive service"
     ],
     "freePreviewPrompt": "I received or heard about an FTC refund check for deceptive subscription practices and want to verify how to claim it and audit my other active subscriptions.",
-    "sourceUrl": "https://www.ftc.gov/enforcement/refunds"
+    "sourceUrl": "https://www.ftc.gov/enforcement/refunds",
+    "officialSourceUrl": "https://www.ftc.gov/enforcement/refunds",
+    "lastVerified": "2026-06-28",
+    "directAnswer": "Verify the payment or claim directly on the FTC refunds page and never pay a fee or share bank credentials to receive an FTC refund."
   }
 ]

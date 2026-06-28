@@ -1,7 +1,7 @@
 {
-  "title": "How to Cancel The Athletic — Step-by-Step Guide (2026)",
-  "metaDescription": "Cancel The Athletic subscription in 2 minutes. Stop the monthly charge. Now owned by NYT — here's the current cancellation process.",
-  "intro": "The Athletic (owned by the New York Times) can be canceled online through your account settings. Unlike NYT proper, The Athletic doesn't require phone calls.",
+  "title": "How to Cancel The Athletic Subscription by Billing Channel (2026)",
+  "metaDescription": "Cancel The Athletic through your NYT account, Apple Subscriptions, or Google Play. Find the billing channel and stop the next renewal.",
+  "intro": "Start by checking who billed you. Direct New York Times or The Athletic purchases are managed from the account page; Apple and Google Play purchases must be cancelled in the matching app-store subscription settings.",
   "steps": [
     {
       "title": "Go to your Athletic account",
@@ -36,21 +36,21 @@
     },
     {
       "q": "Can I get a refund from The Athletic?",
-      "a": "Contact The Athletic support for refund requests. They may offer prorated refunds for annual plans. Apple/Google subscriptions must go through those platforms."
+      "a": "Refund handling depends on who billed you and your region. Contact New York Times support for direct billing, Apple for App Store purchases, or Google Play for Android purchases."
     },
     {
       "q": "What happens after I cancel The Athletic?",
-      "a": "You lose access to all articles and podcasts when your billing period ends. No free tier is available."
+      "a": "Paid access normally continues until the end of the current billing period. Your account remains available, but subscriber-only articles and features require an active plan."
     }
   ],
   "refund": {
     "eligible": true,
-    "details": "Contact The Athletic support for refund requests. Annual plans may be eligible for prorated refunds within a reasonable timeframe."
+    "details": "Contact the provider that processed the payment. Refund eligibility depends on the billing channel, region, timing, and account use."
   },
   "retentionTactics": [
     "The Athletic offers significant discounts ($1-2/month for 6-12 months).",
     "They send aggressive re-subscription emails after canceling with deals."
   ],
   "timeEstimate": "2 minutes",
-  "lastVerified": "2026-05-22"
+  "lastVerified": "2026-06-28"
 }

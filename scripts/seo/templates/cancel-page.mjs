@@ -1,3 +1,5 @@
+import { absoluteUrl } from '../url-policy.mjs';
+
 export function renderCancelPage(service, content, allServices) {
   const related = service.related
     .map(id => allServices.find(s => s.id === id))
@@ -51,7 +53,7 @@ export function renderCancelPage(service, content, allServices) {
     ? `<div class="related">
       <h2>Related Cancel Guides</h2>
       <div class="related-grid">
-        ${related.map(r => `<a class="related-link" href="/cancel/${r.slug}.html">${r.name} <span class="arrow">&rarr;</span></a>`).join('\n        ')}
+        ${related.map(r => `<a class="related-link" href="/cancel/${r.slug}">${r.name} <span class="arrow">&rarr;</span></a>`).join('\n        ')}
       </div>
     </div>`
     : '';
@@ -70,7 +72,7 @@ export function renderCancelPage(service, content, allServices) {
           "position": i + 1,
           "name": s.title,
           "text": s.text,
-          "url": `https://billvampire.com/cancel/${service.slug}.html#step-${i + 1}`
+          "url": `${absoluteUrl(`/cancel/${service.slug}`)}#step-${i + 1}`
         }))
       },
       {
@@ -99,10 +101,10 @@ export function renderCancelPage(service, content, allServices) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${esc(content.title)} | Bill Vampire</title>
   <meta name="description" content="${esc(content.metaDescription)}" />
-  <link rel="canonical" href="https://billvampire.com/cancel/${service.slug}.html" />
+  <link rel="canonical" href="${absoluteUrl(`/cancel/${service.slug}`)}" />
   <meta property="og:title" content="${esc(content.title)}" />
   <meta property="og:description" content="${esc(content.metaDescription)}" />
-  <meta property="og:url" content="https://billvampire.com/cancel/${service.slug}.html" />
+  <meta property="og:url" content="${absoluteUrl(`/cancel/${service.slug}`)}" />
   <meta property="og:type" content="article" />
   <meta property="og:image" content="https://billvampire.com/og-image.svg" />
   <meta property="og:site_name" content="Bill Vampire" />
@@ -137,10 +139,11 @@ ${schema}
       ${diffBadge}
       <span>Last Updated: ${esc(content.lastVerified)}</span>
       ${service.price !== 'varies' ? `<span>${esc(service.price)}</span>` : ''}
-      <span class="author-badge" style="background:rgba(16,185,129,0.1); color:#10b981; padding:3px 10px; border-radius:12px; font-weight:600; font-size:10px; border:1px solid rgba(16,185,129,0.2);">🛡️ Written & Verified by Consumer Advocacy Team</span>
+      <a class="author-badge" href="/about/" style="background:rgba(16,185,129,0.1); color:#10b981; padding:3px 10px; border-radius:12px; font-weight:600; font-size:10px; border:1px solid rgba(16,185,129,0.2); text-decoration:none;">Reviewed by Bill Vampire Editorial Team</a>
     </div>
 
     ${content.intro ? `<p style="margin-bottom:24px">${esc(content.intro)}</p>` : ''}
+    <p style="margin:-12px 0 24px; font-size:12px; color:#64748B;">Official account or cancellation path: <a href="${esc(service.cancelUrl)}" target="_blank" rel="noopener noreferrer" style="color:#10b981;">${esc(service.name)}</a></p>
 
     <div class="steps">
     ${stepsHtml}

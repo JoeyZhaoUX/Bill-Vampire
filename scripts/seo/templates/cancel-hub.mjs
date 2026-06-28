@@ -1,4 +1,5 @@
 import { CATEGORIES } from '../services.mjs';
+import { absoluteUrl } from '../url-policy.mjs';
 
 export function renderCancelHub(services) {
   const grouped = {};
@@ -11,7 +12,7 @@ export function renderCancelHub(services) {
     .filter(([key]) => grouped[key] && grouped[key].length > 0)
     .map(([key, cat]) => {
       const cards = grouped[key].map(s =>
-        `<a class="service-card" href="/cancel/${s.slug}.html" data-name="${esc(s.name.toLowerCase())}">
+        `<a class="service-card" href="/cancel/${s.slug}" data-name="${esc(s.name.toLowerCase())}">
           <div>
             <span class="name">${esc(s.name)}</span>
             ${s.price !== 'varies' ? `<span class="price">${esc(s.price)}</span>` : ''}
@@ -41,7 +42,7 @@ export function renderCancelHub(services) {
           "@type": "ListItem",
           "position": i + 1,
           "name": `How to Cancel ${s.name}`,
-          "url": `https://billvampire.com/cancel/${s.slug}.html`
+          "url": absoluteUrl(`/cancel/${s.slug}`)
         }))
       },
       {
@@ -102,13 +103,13 @@ ${schema}
       <h3>Found all the subscriptions draining your wallet?</h3>
       <p>Upload a billing email or screenshot. Bill Vampire scans it and builds your cancel + refund plan in 60 seconds.</p>
       <a class="btn" href="/">Scan my bill free &rarr;</a>
-      <p class="fine">Or try our <a href="/tools/cancel-subscription-script-generator.html">cancel script generator</a> for the exact words to say.</p>
+      <p class="fine">Or try our <a href="/tools/cancel-subscription-script-generator">cancel script generator</a> for the exact words to say.</p>
     </div>
 
     <footer class="footer">
       <a href="/">Bill Vampire App</a>
       <a href="/tools/">Free Tools</a>
-      <a href="/tools/cancel-subscription-guide.html">Quick Cancel Links</a>
+      <a href="/tools/cancel-subscription-guide">Quick Cancel Links</a>
     </footer>
   </div>
 

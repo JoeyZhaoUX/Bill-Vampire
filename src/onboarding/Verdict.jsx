@@ -579,15 +579,8 @@ function EmergencyKitSection({
   caseSaveStatus,
   onSaveCase,
 }) {
-  const specificAmount = kit.amount && kit.amount !== 'the charge';
-  const kitValue = specificAmount ? kit.amount : 'one renewal';
   const visiblePreviewSteps = kit.previewSteps;
 
-  const successRate = useMemo(() => {
-    if (!kit.service) return 88;
-    const code = kit.service.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-    return 85 + (code % 10); // yields 85% to 94% deterministically based on service name
-  }, [kit.service]);
   const visibleCaseFacts = [
     ['Refund window', kit.refundWindow],
     ['Cancel path', kit.cancelPath],
@@ -680,22 +673,18 @@ function EmergencyKitSection({
           </div>
         </div>
 
-        {/* AI Success Estimator - Third Phase */}
+        {/* Honest outcome framing: no invented probability or guaranteed result. */}
         <div className="mb-5 bg-[#141420]/80 rounded-2xl border border-slate-800/40 p-4 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-emerald-950/40 border border-emerald-800/30 flex items-center justify-center">
               <FontAwesomeIcon icon={faWandMagicSparkles} className="w-4.5 h-4.5 text-emerald-400" />
             </div>
             <div>
-              <p className="text-xs text-slate-400 uppercase tracking-wider font-bold">AI Refund Probability Estimator</p>
+              <p className="text-xs text-slate-400 uppercase tracking-wider font-bold">Outcome depends on the reviewer</p>
               <p className="text-[11px] text-slate-500 mt-0.5 leading-relaxed">
-                Based on consumer auto-renewal guidelines and merchant dispute history, your case has very high refund probability.
+                Bill Vampire prepares the request and evidence checklist. The merchant, app store, or card issuer decides whether a refund or dispute is approved.
               </p>
             </div>
-          </div>
-          <div className="shrink-0 text-right">
-            <span className="text-[10px] text-slate-500 uppercase block font-medium">Probability</span>
-            <span className="text-2xl font-black text-emerald-400 tabular-nums">{successRate}%</span>
           </div>
         </div>
 
@@ -791,7 +780,7 @@ function EmergencyKitSection({
                 </div>
               </div>
 
-              {/* Secure Payment & Guarantee Badges */}
+              {/* Checkout and policy badges */}
               <div className="my-4 py-3 border-t border-b border-slate-800/40 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
                 <span className="text-[10px] text-slate-400 flex items-center gap-1.5 font-medium">
                   🔒 Secured by Creem
@@ -800,7 +789,7 @@ function EmergencyKitSection({
                   🛡️ 100% Encrypted Checkout
                 </span>
                 <span className="text-[10px] text-slate-400 flex items-center gap-1.5 font-medium">
-                  💵 Money-Back Guarantee
+                  💵 Technical-failure refunds per policy
                 </span>
               </div>
 
@@ -934,7 +923,7 @@ function EmergencyKitSection({
           <div>
             <p className="text-sm font-semibold text-[#F7EFE6]">Refund denied? Need to dispute the charge?</p>
             <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-              Instantly generate an official PDF dispute dossier citing Visa & Mastercard rules, plus a chronological timeline to guarantee your bank chargeback succeeds.
+              Generate a structured PDF dispute packet with relevant Visa and Mastercard references plus a chronological timeline. Your card issuer makes the final decision, and no outcome is guaranteed.
             </p>
           </div>
           <button onClick={onFounderReview}

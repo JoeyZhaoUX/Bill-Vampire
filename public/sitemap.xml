@@ -2,812 +2,546 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://billvampire.com/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-06-28</lastmod>
+  </url>
+  <url>
+    <loc>https://billvampire.com/about/</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
     <loc>https://billvampire.com/tools/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/tools/subscription-cost-calculator.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/tools/subscription-cost-calculator</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/tools/cancel-subscription-guide.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/tools/cancel-subscription-guide</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/tools/free-trial-refund-helper.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://billvampire.com/tools/free-trial-refund-helper</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/tools/cancel-subscription-script-generator.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://billvampire.com/tools/cancel-subscription-script-generator</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/tools/rocket-money-alternative-no-bank-login.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://billvampire.com/tools/rocket-money-alternative-no-bank-login</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
     <loc>https://billvampire.com/refund/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/terms.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://billvampire.com/terms</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/privacy.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://billvampire.com/privacy</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/refund.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://billvampire.com/refund</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
     <loc>https://billvampire.com/cases/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cases/how-i-got-119-back-from-forgotten-canva-pro-trial.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cases/how-i-got-119-back-from-forgotten-canva-pro-trial</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cases/how-to-negotiate-adobe-early-termination-fee-refund.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cases/how-to-negotiate-adobe-early-termination-fee-refund</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cases/getting-refunded-for-99-dollar-microsoft-365-accidental-renewal.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cases/getting-refunded-for-99-dollar-microsoft-365-accidental-renewal</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
     <loc>https://billvampire.com/cancel/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-netflix.html</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-netflix</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-spotify.html</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-spotify</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-hulu.html</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-hulu</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-disney-plus.html</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-disney-plus</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-apple-music.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-apple-music</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-apple-tv-plus.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-apple-tv-plus</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-youtube-premium.html</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-youtube-premium</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-amazon-prime.html</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-amazon-prime</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-hbo-max.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-hbo-max</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-paramount-plus.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-paramount-plus</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-peacock.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-peacock</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-adobe-creative-cloud.html</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-adobe-creative-cloud</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-chatgpt-plus.html</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-chatgpt-plus</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-claude-pro.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-claude-pro</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-midjourney.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-midjourney</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-perplexity.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-perplexity</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-github-copilot.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-github-copilot</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-cursor.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-cursor</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-notion.html</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-notion</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-slack.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-slack</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-dropbox.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-dropbox</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-microsoft-365.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-microsoft-365</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-canva-pro.html</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-canva-pro</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-figma.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-figma</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-grammarly.html</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-grammarly</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-linkedin-premium.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-linkedin-premium</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-evernote.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-evernote</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-duolingo.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-duolingo</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-headspace.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-headspace</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-calm.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-calm</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-tinder.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-tinder</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-bumble.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-bumble</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-new-york-times.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-new-york-times</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-medium.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-medium</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-the-athletic.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-the-athletic</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-substack.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-substack</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-nordvpn.html</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-nordvpn</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-expressvpn.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-expressvpn</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-1password.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-1password</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-lastpass.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-lastpass</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-audible.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-audible</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-kindle-unlimited.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-kindle-unlimited</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-xbox-game-pass.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-xbox-game-pass</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-playstation-plus.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-playstation-plus</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-nintendo-switch-online.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-nintendo-switch-online</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-crunchyroll.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-crunchyroll</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-icloud.html</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-icloud</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-fubotv.html</loc>
-    <lastmod>2026-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-fubotv</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/cancel/how-to-cancel-youtube-tv.html</loc>
-    <lastmod>2026-06-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://billvampire.com/cancel/how-to-cancel-youtube-tv</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/refund/adobe-cancellation-fee-refund-email-template.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://billvampire.com/refund/adobe-cancellation-fee-refund-email-template</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/refund/grammarly-annual-renewal-refund-request.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://billvampire.com/refund/grammarly-annual-renewal-refund-request</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/refund/nordvpn-refund-script-after-auto-renewal.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://billvampire.com/refund/nordvpn-refund-script-after-auto-renewal</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/refund/canva-pro-trial-refund-after-119-charge.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://billvampire.com/refund/canva-pro-trial-refund-after-119-charge</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/refund/chatgpt-plus-refund-request-after-renewal.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://billvampire.com/refund/chatgpt-plus-refund-request-after-renewal</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/refund/amazon-prime-refund-after-unwanted-renewal.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://billvampire.com/refund/amazon-prime-refund-after-unwanted-renewal</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/refund/linkedin-premium-refund-after-free-trial.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://billvampire.com/refund/linkedin-premium-refund-after-free-trial</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/refund/duolingo-super-refund-after-annual-charge.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://billvampire.com/refund/duolingo-super-refund-after-annual-charge</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/refund/expressvpn-refund-after-auto-renewal-charge.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://billvampire.com/refund/expressvpn-refund-after-auto-renewal-charge</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/refund/microsoft-365-refund-after-annual-renewal.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://billvampire.com/refund/microsoft-365-refund-after-annual-renewal</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/refund/dropbox-annual-renewal-refund-request.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://billvampire.com/refund/dropbox-annual-renewal-refund-request</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/refund/new-york-times-cancel-refund-script.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://billvampire.com/refund/new-york-times-cancel-refund-script</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/refund/tinder-gold-refund-after-accidental-purchase.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://billvampire.com/refund/tinder-gold-refund-after-accidental-purchase</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/refund/ftc-may-2026-refund-payments-claim-guide.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://billvampire.com/refund/ftc-may-2026-refund-payments-claim-guide</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
     <loc>https://billvampire.com/survival/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
     <loc>https://billvampire.com/survival/ai-layoffs/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/ai-layoffs/cancel-subscriptions-after-job-loss.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/ai-layoffs/cancel-subscriptions-after-job-loss</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/ai-layoffs/what-subscriptions-to-cancel-first.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/ai-layoffs/what-subscriptions-to-cancel-first</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/ai-layoffs/subscription-audit-after-layoff.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/ai-layoffs/subscription-audit-after-layoff</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/ai-layoffs/emergency-budget-subscription-checklist.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/ai-layoffs/emergency-budget-subscription-checklist</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/ai-layoffs/how-to-cut-monthly-bills-fast.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/ai-layoffs/how-to-cut-monthly-bills-fast</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/ai-layoffs/ai-layoffs-budget-cuts.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/ai-layoffs/ai-layoffs-budget-cuts</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/ai-layoffs/ai-layoffs-financial-survival-checklist.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/ai-layoffs/ai-layoffs-financial-survival-checklist</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/ai-layoffs/tools-to-cancel-before-severance-runs-out.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/ai-layoffs/tools-to-cancel-before-severance-runs-out</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/ai-layoffs/job-search-subscriptions-worth-keeping.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/ai-layoffs/job-search-subscriptions-worth-keeping</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/ai-layoffs/recurring-payments-after-income-drop.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/ai-layoffs/recurring-payments-after-income-drop</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
     <loc>https://billvampire.com/survival/consumer-downgrade/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/consumer-downgrade/consumer-downgrade-subscription-cuts.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/consumer-downgrade/consumer-downgrade-subscription-cuts</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/consumer-downgrade/recession-budget-cuts-subscriptions.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/consumer-downgrade/recession-budget-cuts-subscriptions</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/consumer-downgrade/downgrade-premium-subscriptions.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/consumer-downgrade/downgrade-premium-subscriptions</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/consumer-downgrade/cheaper-alternatives-to-premium-subscriptions.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/consumer-downgrade/cheaper-alternatives-to-premium-subscriptions</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/consumer-downgrade/streaming-subscriptions-too-expensive.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/consumer-downgrade/streaming-subscriptions-too-expensive</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/consumer-downgrade/saas-subscriptions-too-expensive.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/consumer-downgrade/saas-subscriptions-too-expensive</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/consumer-downgrade/annual-plan-downgrade-checklist.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/consumer-downgrade/annual-plan-downgrade-checklist</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/consumer-downgrade/subscription-lifestyle-inflation-audit.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/consumer-downgrade/subscription-lifestyle-inflation-audit</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/consumer-downgrade/cancel-streaming-services-2026.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/consumer-downgrade/cancel-streaming-services-2026</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/consumer-downgrade/value-for-money-subscription-checklist.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/consumer-downgrade/value-for-money-subscription-checklist</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
     <loc>https://billvampire.com/survival/subscription-hell/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/subscription-hell/subscription-hell-cancel-everything-guide.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/subscription-hell/subscription-hell-cancel-everything-guide</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/subscription-hell/cancel-unused-subscriptions.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/subscription-hell/cancel-unused-subscriptions</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/subscription-hell/hidden-subscription-fees-checklist.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/subscription-hell/hidden-subscription-fees-checklist</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/subscription-hell/hard-to-cancel-subscription-playbook.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/subscription-hell/hard-to-cancel-subscription-playbook</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/subscription-hell/subscription-cancellation-script.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/subscription-hell/subscription-cancellation-script</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/subscription-hell/refund-request-email-template.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/subscription-hell/refund-request-email-template</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/subscription-hell/chargeback-evidence-checklist.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/subscription-hell/chargeback-evidence-checklist</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/subscription-hell/subscription-dark-pattern-survival-guide.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/subscription-hell/subscription-dark-pattern-survival-guide</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/subscription-hell/why-is-everything-a-subscription-now.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/subscription-hell/why-is-everything-a-subscription-now</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/subscription-hell/hidden-monthly-charges.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/subscription-hell/hidden-monthly-charges</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
     <loc>https://billvampire.com/survival/doom-spending/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/doom-spending/doom-spending-subscriptions.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/doom-spending/doom-spending-subscriptions</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/doom-spending/doom-spending-subscription-audit.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/doom-spending/doom-spending-subscription-audit</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/doom-spending/impulse-subscription-purchase.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/doom-spending/impulse-subscription-purchase</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/doom-spending/late-night-purchase-refund-script.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/doom-spending/late-night-purchase-refund-script</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/doom-spending/apps-charging-after-free-trial.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/doom-spending/apps-charging-after-free-trial</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/doom-spending/how-to-stop-doom-spending.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/doom-spending/how-to-stop-doom-spending</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/doom-spending/how-to-stop-panic-buying-apps.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/doom-spending/how-to-stop-panic-buying-apps</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/doom-spending/doom-spending-free-trial-trap.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/doom-spending/doom-spending-free-trial-trap</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/doom-spending/cancel-apps-you-bought-while-stressed.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/doom-spending/cancel-apps-you-bought-while-stressed</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/doom-spending/impulse-subscription-cooling-off-checklist.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/doom-spending/impulse-subscription-cooling-off-checklist</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
     <loc>https://billvampire.com/survival/financial-anxiety/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/financial-anxiety/financial-anxiety-spending.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/financial-anxiety/financial-anxiety-spending</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/financial-anxiety/financial-anxiety-subscription-plan.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/financial-anxiety/financial-anxiety-subscription-plan</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/financial-anxiety/money-anxiety-checklist.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/financial-anxiety/money-anxiety-checklist</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/financial-anxiety/adhd-subscription-reminders.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/financial-anxiety/adhd-subscription-reminders</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/financial-anxiety/adhd-friendly-subscription-cancel-checklist.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/financial-anxiety/adhd-friendly-subscription-cancel-checklist</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/financial-anxiety/how-to-face-subscriptions-without-bank-login.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/financial-anxiety/how-to-face-subscriptions-without-bank-login</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/financial-anxiety/one-hour-financial-survival-audit.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/financial-anxiety/one-hour-financial-survival-audit</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/financial-anxiety/recurring-payments-draining-account.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/financial-anxiety/recurring-payments-draining-account</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/financial-anxiety/subscription-overload.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/financial-anxiety/subscription-overload</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
   <url>
-    <loc>https://billvampire.com/survival/financial-anxiety/no-bank-login-subscription-tracker-alternative.html</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
+    <loc>https://billvampire.com/survival/financial-anxiety/no-bank-login-subscription-tracker-alternative</loc>
+    <lastmod>2026-06-28</lastmod>
   </url>
 </urlset>

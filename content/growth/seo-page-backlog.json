@@ -6,7 +6,7 @@
     "issueType": "trial_refund",
     "primaryKeyword": "Canva Pro trial refund",
     "status": "shipped",
-    "url": "/refund/canva-pro-trial-refund-after-119-charge.html",
+    "url": "/refund/canva-pro-trial-refund-after-119-charge",
     "requiredSections": [
       "refund window",
       "cancel path",
@@ -22,7 +22,7 @@
     "issueType": "hard_cancel",
     "primaryKeyword": "Adobe cancellation fee refund",
     "status": "shipped",
-    "url": "/refund/adobe-cancellation-fee-refund-email-template.html",
+    "url": "/refund/adobe-cancellation-fee-refund-email-template",
     "requiredSections": [
       "fee context",
       "support script",
@@ -38,7 +38,7 @@
     "issueType": "surprise_charge",
     "primaryKeyword": "Grammarly annual renewal refund",
     "status": "shipped",
-    "url": "/refund/grammarly-annual-renewal-refund-request.html",
+    "url": "/refund/grammarly-annual-renewal-refund-request",
     "requiredSections": [
       "refund request timing",
       "cancel path",
@@ -54,7 +54,7 @@
     "issueType": "surprise_charge",
     "primaryKeyword": "ChatGPT Plus refund request",
     "status": "shipped",
-    "url": "/refund/chatgpt-plus-refund-request-after-renewal.html",
+    "url": "/refund/chatgpt-plus-refund-request-after-renewal",
     "requiredSections": [
       "support path",
       "refund request wording",
@@ -70,7 +70,7 @@
     "issueType": "refund_denied",
     "primaryKeyword": "NordVPN refund script",
     "status": "shipped",
-    "url": "/refund/nordvpn-refund-script-after-auto-renewal.html",
+    "url": "/refund/nordvpn-refund-script-after-auto-renewal",
     "requiredSections": [
       "refund window",
       "cancel path",
@@ -93,7 +93,7 @@
       "case preview form"
     ],
     "status": "shipped",
-    "url": "/refund/amazon-prime-refund-after-unwanted-renewal.html"
+    "url": "/refund/amazon-prime-refund-after-unwanted-renewal"
   },
   {
     "slug": "linkedin-premium-refund-after-free-trial",
@@ -109,7 +109,7 @@
       "case preview form"
     ],
     "status": "shipped",
-    "url": "/refund/linkedin-premium-refund-after-free-trial.html"
+    "url": "/refund/linkedin-premium-refund-after-free-trial"
   },
   {
     "slug": "duolingo-super-refund-after-annual-charge",
@@ -125,7 +125,7 @@
       "case preview form"
     ],
     "status": "shipped",
-    "url": "/refund/duolingo-super-refund-after-annual-charge.html"
+    "url": "/refund/duolingo-super-refund-after-annual-charge"
   },
   {
     "slug": "expressvpn-refund-after-auto-renewal-charge",
@@ -134,7 +134,7 @@
     "issueType": "refund_denied",
     "primaryKeyword": "ExpressVPN refund after auto-renewal",
     "status": "shipped",
-    "url": "/refund/expressvpn-refund-after-auto-renewal-charge.html",
+    "url": "/refund/expressvpn-refund-after-auto-renewal-charge",
     "requiredSections": [
       "30-day refund window",
       "cancel path",
@@ -150,7 +150,7 @@
     "issueType": "surprise_charge",
     "primaryKeyword": "Microsoft 365 refund after annual renewal",
     "status": "shipped",
-    "url": "/refund/microsoft-365-refund-after-annual-renewal.html",
+    "url": "/refund/microsoft-365-refund-after-annual-renewal",
     "requiredSections": [
       "refund eligibility",
       "cancel path",
@@ -166,7 +166,7 @@
     "issueType": "refund_denied",
     "primaryKeyword": "Dropbox annual renewal refund request",
     "status": "shipped",
-    "url": "/refund/dropbox-annual-renewal-refund-request.html",
+    "url": "/refund/dropbox-annual-renewal-refund-request",
     "requiredSections": [
       "billing route",
       "cancel path",
@@ -182,7 +182,7 @@
     "issueType": "hard_cancel",
     "primaryKeyword": "New York Times cancel refund script",
     "status": "shipped",
-    "url": "/refund/new-york-times-cancel-refund-script.html",
+    "url": "/refund/new-york-times-cancel-refund-script",
     "requiredSections": [
       "failed cancel attempts",
       "cancel path",
@@ -198,7 +198,7 @@
     "issueType": "trial_refund",
     "primaryKeyword": "Tinder Gold refund after accidental purchase",
     "status": "shipped",
-    "url": "/refund/tinder-gold-refund-after-accidental-purchase.html",
+    "url": "/refund/tinder-gold-refund-after-accidental-purchase",
     "requiredSections": [
       "billing route",
       "Apple/Google/Tinder refund path",

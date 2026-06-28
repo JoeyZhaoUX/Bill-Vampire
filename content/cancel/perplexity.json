@@ -1,7 +1,7 @@
 {
-  "title": "How to Cancel Perplexity Pro — Step-by-Step Guide (2026)",
-  "metaDescription": "Cancel Perplexity Pro subscription in 60 seconds. Downgrade to the free tier and keep your search history. Step-by-step.",
-  "intro": "Perplexity Pro cancellation is done through your account settings and takes about a minute. The free tier still offers useful AI search — you just get fewer Pro searches per day.",
+  "title": "How to Cancel Perplexity Pro on Web, iPhone, or Android (2026)",
+  "metaDescription": "Cancel Perplexity Pro on web, iPhone, or Android. Use the same billing channel that charged you and keep your saved search history.",
+  "intro": "Cancel Perplexity Pro through the same channel that billed you: Perplexity settings for web purchases, Apple Subscriptions for iPhone or iPad, or Google Play for Android. The free account currently includes five Pro Searches per day.",
   "steps": [
     {
       "title": "Go to Perplexity settings",
@@ -20,7 +20,7 @@
     }
   ],
   "warnings": [
-    "If you subscribed through Apple App Store, cancel through iOS Settings → Subscriptions.",
+    "If Apple billed you, cancel through iOS Settings → Apple Account → Subscriptions. If Google billed you, use Google Play → Payments & subscriptions.",
     "Free tier limits you to 5 Pro searches per day (vs unlimited on Pro).",
     "Your search history, Collections, and saved threads are preserved on the free plan.",
     "API access is revoked after cancellation unless you have separate API credits."
@@ -52,5 +52,5 @@
     "They'll show your usage stats and how many Pro searches you've used."
   ],
   "timeEstimate": "1 minute",
-  "lastVerified": "2026-05-22"
+  "lastVerified": "2026-06-28"
 }

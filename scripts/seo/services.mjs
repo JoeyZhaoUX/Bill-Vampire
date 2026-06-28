@@ -190,7 +190,7 @@ export const SERVICES = [
     id: 'cursor',
     name: 'Cursor Pro',
     slug: 'how-to-cancel-cursor',
-    cancelUrl: 'https://www.cursor.com/settings',
+    cancelUrl: 'https://cursor.com/dashboard',
     category: 'ai',
     price: '$20/mo',
     difficulty: 'easy',

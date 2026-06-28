@@ -1,3 +1,5 @@
+import { absoluteUrl } from '../url-policy.mjs'
+
 function escapeHtml(value = '') {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -165,14 +167,15 @@ function basicTemplateFor(guide) {
 
 export function renderRefundPage(guide, services, guides = []) {
   const service = services.find((item) => item.id === guide.serviceId)
-  const cancelUrl = service ? `/cancel/${service.slug}.html` : '/tools/cancel-subscription-guide.html'
+  const cancelUrl = service ? `/cancel/${service.slug}` : '/tools/cancel-subscription-guide'
   const appIssueType = appIssueTypeFor(guide)
   const scanUrl = `/?service=${encodeURIComponent(guide.service)}&issue=${encodeURIComponent(appIssueType)}&source=seo_refund_page#scan`
-  const canonical = `https://billvampire.com/refund/${guide.slug}.html`
+  const canonical = absoluteUrl(`/refund/${guide.slug}`)
   const evidenceItems = guide.evidence.map((item) => `<li>${escapeHtml(item)}</li>`).join('')
   const ctaLabel = ctaLabelFor(guide)
   const faqs = faqFor(guide)
   const basicTemplate = basicTemplateFor(guide)
+  const researchSourceLabel = guide.sourceUrl.includes('reddit.com') ? 'Community discussion' : 'Official reference'
   const faqItems = faqs
     .map(
       (item) => `<details class="faq-item">
@@ -183,7 +186,7 @@ export function renderRefundPage(guide, services, guides = []) {
     .join('')
   const relatedCards = getRelatedGuides(guide, guides)
     .map(
-      (item) => `<a class="related-card" href="/refund/${item.slug}.html">
+      (item) => `<a class="related-card" href="/refund/${item.slug}">
         <strong>${escapeHtml(item.title)}</strong>
         <span>${escapeHtml(item.service)} · ${escapeHtml(item.amountExample)}</span>
       </a>`,
@@ -297,12 +300,13 @@ export function renderRefundPage(guide, services, guides = []) {
       <div>
         <p class="eyebrow">${escapeHtml(guide.service)} case file</p>
         <h1>${escapeHtml(guide.title)}</h1>
-        <p class="lead">${escapeHtml(guide.searchIntent)} Bill Vampire turns that one charge into a focused cancel/refund case preview without a bank login.</p>
+        <p class="lead">${escapeHtml(guide.directAnswer || guide.searchIntent)} Bill Vampire turns that one charge into a focused cancel/refund case preview without a bank login.</p>
+        <p class="disclaimer">Reviewed ${escapeHtml(guide.lastVerified)} by the <a href="/about/">Bill Vampire Editorial Team</a>. Policies vary by region and billing channel.</p>
         <div class="grid">
           <article class="panel">
             <h2>What people are running into</h2>
             <p>${escapeHtml(guide.communitySignal)}</p>
-            <a class="source-link" href="${escapeHtml(guide.sourceUrl)}" rel="nofollow noopener" target="_blank">Research signal</a>
+            <a class="source-link" href="${escapeHtml(guide.sourceUrl)}" rel="nofollow noopener noreferrer" target="_blank">${researchSourceLabel}</a>
           </article>
           <article class="panel">
             <h2>Refund window</h2>
@@ -322,6 +326,7 @@ export function renderRefundPage(guide, services, guides = []) {
         <strong>${escapeHtml(guide.amountExample)}</strong>
         <span>Typical amount at risk</span>
         <p>${escapeHtml(guide.officialContext)}</p>
+        <a class="source-link" href="${escapeHtml(guide.officialSourceUrl)}" rel="noopener noreferrer" target="_blank">Official account or policy source</a>
         <a class="cta" href="${scanUrl}" onclick="bvTrack('refund_cta_clicked', { placement: 'side_card' })">${escapeHtml(ctaLabel)}</a>
         <a class="secondary" href="${cancelUrl}">Open ${escapeHtml(guide.service)} cancel guide</a>
         <p class="disclaimer">Bill Vampire provides consumer communication templates and organization help. It is not legal, financial, or banking advice.</p>
@@ -398,7 +403,7 @@ export function renderRefundPage(guide, services, guides = []) {
 export function renderRefundHub(guides) {
   const cards = guides
     .map(
-      (guide) => `<a class="tool-card" href="/refund/${guide.slug}.html">
+      (guide) => `<a class="tool-card" href="/refund/${guide.slug}">
       <h2>${escapeHtml(guide.title)}</h2>
       <p>${escapeHtml(guide.metaDescription)}</p>
       <span class="tag">${escapeHtml(guide.service)}</span>
@@ -414,6 +419,7 @@ export function renderRefundHub(guides) {
   <title>Subscription Refund Guides | Bill Vampire</title>
   <meta name="description" content="High-intent refund and cancellation guides for surprise subscription charges, free trials, and hard-to-cancel services." />
   <link rel="canonical" href="https://billvampire.com/refund/" />
+  <meta property="og:url" content="https://billvampire.com/refund/" />
   <link rel="icon" href="/icons/icon.png" type="image/png" />
   <link rel="stylesheet" href="/tools/gothic-tools.css" />
   <style>

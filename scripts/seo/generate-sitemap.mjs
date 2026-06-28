@@ -2,6 +2,7 @@ import { writeFileSync, readFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { SERVICES } from './services.mjs';
+import { absoluteUrl } from './url-policy.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '../..');
@@ -10,98 +11,65 @@ const REFUND_CONTENT_PATH = join(ROOT, 'content/refund/guides.json');
 const SURVIVAL_CONTENT_PATH = join(ROOT, 'content/survival/guides.json');
 const SITEMAP_PATH = join(ROOT, 'public/sitemap.xml');
 
+const SEO_STRUCTURE_UPDATE = '2026-06-28';
 const STATIC_URLS = [
-  { loc: 'https://billvampire.com/', priority: '1.0', freq: 'weekly' },
-  { loc: 'https://billvampire.com/tools/', priority: '0.6', freq: 'monthly' },
-  { loc: 'https://billvampire.com/tools/subscription-cost-calculator.html', priority: '0.7', freq: 'monthly' },
-  { loc: 'https://billvampire.com/tools/cancel-subscription-guide.html', priority: '0.7', freq: 'monthly' },
-  { loc: 'https://billvampire.com/tools/free-trial-refund-helper.html', priority: '0.8', freq: 'weekly' },
-  { loc: 'https://billvampire.com/tools/cancel-subscription-script-generator.html', priority: '0.8', freq: 'weekly' },
-  { loc: 'https://billvampire.com/tools/rocket-money-alternative-no-bank-login.html', priority: '0.8', freq: 'weekly' },
-  { loc: 'https://billvampire.com/refund/', priority: '0.8', freq: 'weekly' },
-  { loc: 'https://billvampire.com/terms.html', priority: '0.3', freq: 'monthly' },
-  { loc: 'https://billvampire.com/privacy.html', priority: '0.3', freq: 'monthly' },
-  { loc: 'https://billvampire.com/refund.html', priority: '0.3', freq: 'monthly' },
-  { loc: 'https://billvampire.com/cases/', priority: '0.8', freq: 'weekly' },
-  { loc: 'https://billvampire.com/cases/how-i-got-119-back-from-forgotten-canva-pro-trial.html', priority: '0.7', freq: 'monthly' },
-  { loc: 'https://billvampire.com/cases/how-to-negotiate-adobe-early-termination-fee-refund.html', priority: '0.7', freq: 'monthly' },
-  { loc: 'https://billvampire.com/cases/getting-refunded-for-99-dollar-microsoft-365-accidental-renewal.html', priority: '0.7', freq: 'monthly' },
+  '/', '/about/', '/tools/', '/tools/subscription-cost-calculator',
+  '/tools/cancel-subscription-guide', '/tools/free-trial-refund-helper',
+  '/tools/cancel-subscription-script-generator', '/tools/rocket-money-alternative-no-bank-login',
+  '/refund/', '/terms', '/privacy', '/refund', '/cases/',
+  '/cases/how-i-got-119-back-from-forgotten-canva-pro-trial',
+  '/cases/how-to-negotiate-adobe-early-termination-fee-refund',
+  '/cases/getting-refunded-for-99-dollar-microsoft-365-accidental-renewal',
 ];
 
-export function generateSitemap() {
-  const today = new Date().toISOString().split('T')[0];
+function sitemapEntry(path, lastmod = SEO_STRUCTURE_UPDATE) {
+  return `  <url>
+    <loc>${absoluteUrl(path)}</loc>
+    <lastmod>${lastmod}</lastmod>
+  </url>`;
+}
 
-  let urls = STATIC_URLS.map(u => `  <url>
-    <loc>${u.loc}</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>${u.freq}</changefreq>
-    <priority>${u.priority}</priority>
-  </url>`);
+function latestDate(...dates) {
+  return dates.filter(Boolean).sort().at(-1) || SEO_STRUCTURE_UPDATE;
+}
+
+export function generateSitemap() {
+  let urls = STATIC_URLS.map((path) => sitemapEntry(path));
 
   // Add cancel hub
-  urls.push(`  <url>
-    <loc>https://billvampire.com/cancel/</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>`);
+  urls.push(sitemapEntry('/cancel/'));
 
   // Add individual cancel guide pages
   for (const service of SERVICES) {
     const contentPath = join(CONTENT_DIR, `${service.id}.json`);
     if (!existsSync(contentPath)) continue;
 
-    let lastmod = today;
+    let lastmod = SEO_STRUCTURE_UPDATE;
     try {
       const content = JSON.parse(readFileSync(contentPath, 'utf-8'));
-      if (content.lastVerified) lastmod = content.lastVerified;
+      lastmod = latestDate(content.lastVerified, SEO_STRUCTURE_UPDATE);
     } catch {}
 
-    urls.push(`  <url>
-    <loc>https://billvampire.com/cancel/${service.slug}.html</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>`);
+    urls.push(sitemapEntry(`/cancel/${service.slug}`, lastmod));
   }
 
   if (existsSync(REFUND_CONTENT_PATH)) {
     const refundGuides = JSON.parse(readFileSync(REFUND_CONTENT_PATH, 'utf-8'));
     for (const guide of refundGuides) {
-      urls.push(`  <url>
-    <loc>https://billvampire.com/refund/${guide.slug}.html</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>`);
+      urls.push(sitemapEntry(`/refund/${guide.slug}`, guide.lastVerified || SEO_STRUCTURE_UPDATE));
     }
   }
 
   if (existsSync(SURVIVAL_CONTENT_PATH)) {
     const survivalThemes = JSON.parse(readFileSync(SURVIVAL_CONTENT_PATH, 'utf-8')).themes || [];
-    urls.push(`  <url>
-    <loc>https://billvampire.com/survival/</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>`);
+    urls.push(sitemapEntry('/survival/'));
 
     for (const theme of survivalThemes) {
-      urls.push(`  <url>
-    <loc>https://billvampire.com/survival/${theme.slug}/</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>`);
+      urls.push(sitemapEntry(`/survival/${theme.slug}/`));
 
       for (const item of theme.articles || []) {
         const article = Array.isArray(item) ? { slug: item[0] } : item
-        urls.push(`  <url>
-    <loc>https://billvampire.com/survival/${theme.slug}/${article.slug}.html</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.78</priority>
-  </url>`);
+        urls.push(sitemapEntry(`/survival/${theme.slug}/${article.slug}`));
       }
     }
   }

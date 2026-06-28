@@ -35,8 +35,8 @@ Active filters: platform=all, status=all.
 - Reply angle: Ask for honest founder feedback while giving a practical refund/cancel checklist.
 - Link rule: Post with founder disclosure; keep the product link out of the main body unless the community allows feedback links.
 - Recommended action: Post only after checking community rules and editing the draft in your own voice.
-- Landing page: /cancel/how-to-cancel-canva-pro.html
-- UTM URL: https://billvampire.com/cancel/how-to-cancel-canva-pro.html?utm_source=reddit&utm_medium=post&utm_campaign=organic_growth_2026w22&utm_content=canva-trial-refund&service=Canva&issue=trial_refund&amount=%24119
+- Landing page: /cancel/how-to-cancel-canva-pro
+- UTM URL: https://billvampire.com/cancel/how-to-cancel-canva-pro?utm_source=reddit&utm_medium=post&utm_campaign=organic_growth_2026w22&utm_content=canva-trial-refund&service=Canva&issue=trial_refund&amount=%24119
 - Status: needs_review
 - Posted URL: not posted
 - Posted at: not posted
@@ -59,7 +59,7 @@ Keep the message short: "I intended to cancel before renewal, have now cancelled
 
 If they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.
 
-Disclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of Canva issue here: https://billvampire.com/cancel/how-to-cancel-canva-pro.html?utm_source=reddit&utm_medium=post&utm_campaign=organic_growth_2026w22&utm_content=canva-trial-refund&service=Canva&issue=trial_refund&amount=%24119
+Disclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of Canva issue here: https://billvampire.com/cancel/how-to-cancel-canva-pro?utm_source=reddit&utm_medium=post&utm_campaign=organic_growth_2026w22&utm_content=canva-trial-refund&service=Canva&issue=trial_refund&amount=%24119
 
 ### Human review checklist
 
@@ -78,8 +78,8 @@ Disclosure: I am building a small tool around this problem, so ignore this if li
 - Reply angle: Give a step-by-step cancellation-fee negotiation script without sounding like an ad.
 - Link rule: Default to no-link comments. Offer the tool link only if someone asks for a generator.
 - Recommended action: Use the no-link draft first. Share the link only after someone asks for it.
-- Landing page: /cancel/how-to-cancel-adobe-creative-cloud.html
-- UTM URL: https://billvampire.com/cancel/how-to-cancel-adobe-creative-cloud.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=adobe-creative-cloud-hard-cancel&service=Adobe+Creative+Cloud&issue=hard_cancel&amount=%2454.99
+- Landing page: /cancel/how-to-cancel-adobe-creative-cloud
+- UTM URL: https://billvampire.com/cancel/how-to-cancel-adobe-creative-cloud?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=adobe-creative-cloud-hard-cancel&service=Adobe+Creative+Cloud&issue=hard_cancel&amount=%2454.99
 - Status: needs_review
 - Posted URL: not posted
 - Posted at: not posted
@@ -102,7 +102,7 @@ A useful line is: "I am requesting cancellation without additional renewal charg
 
 Save screenshots of the account page, the cancellation flow, chat transcript, and every email. If you later dispute the charge, that evidence matters more than a long complaint.
 
-Disclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of Adobe Creative Cloud issue here: https://billvampire.com/cancel/how-to-cancel-adobe-creative-cloud.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=adobe-creative-cloud-hard-cancel&service=Adobe+Creative+Cloud&issue=hard_cancel&amount=%2454.99
+Disclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of Adobe Creative Cloud issue here: https://billvampire.com/cancel/how-to-cancel-adobe-creative-cloud?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=adobe-creative-cloud-hard-cancel&service=Adobe+Creative+Cloud&issue=hard_cancel&amount=%2454.99
 
 ### Human review checklist
 
@@ -121,8 +121,8 @@ Disclosure: I am building a small tool around this problem, so ignore this if li
 - Reply angle: Lead with empathy, short next actions, and a reminder habit; avoid sales pressure.
 - Link rule: No link in the first reply. Ask permission before sharing a free preview.
 - Recommended action: Use the no-link draft first. Share the link only after someone asks for it.
-- Landing page: /cancel/how-to-cancel-grammarly.html
-- UTM URL: https://billvampire.com/cancel/how-to-cancel-grammarly.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=grammarly-surprise-charge&service=Grammarly&issue=surprise_charge&amount=%24144
+- Landing page: /cancel/how-to-cancel-grammarly
+- UTM URL: https://billvampire.com/cancel/how-to-cancel-grammarly?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=grammarly-surprise-charge&service=Grammarly&issue=surprise_charge&amount=%24144
 - Status: needs_review
 - Posted URL: not posted
 - Posted at: not posted
@@ -145,7 +145,7 @@ I would keep the next move very small: cancel first, screenshot the cancellation
 
 If support refuses, keep the reply thread, receipt, cancellation proof, and terms screenshot together before you consider escalating through the card issuer. Not legal or financial advice, just the cleanest evidence trail.
 
-Disclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of Grammarly issue here: https://billvampire.com/cancel/how-to-cancel-grammarly.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=grammarly-surprise-charge&service=Grammarly&issue=surprise_charge&amount=%24144
+Disclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of Grammarly issue here: https://billvampire.com/cancel/how-to-cancel-grammarly?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=grammarly-surprise-charge&service=Grammarly&issue=surprise_charge&amount=%24144
 
 ### Human review checklist
 
@@ -164,8 +164,8 @@ Disclosure: I am building a small tool around this problem, so ignore this if li
 - Reply angle: Explain evidence collection, cancellation confirmation, refund request timeline, and chargeback preparation.
 - Link rule: No link unless explicitly requested; this subreddit is sensitive to self-promo.
 - Recommended action: Use the no-link draft first. Share the link only after someone asks for it.
-- Landing page: /cancel/how-to-cancel-nordvpn.html
-- UTM URL: https://billvampire.com/cancel/how-to-cancel-nordvpn.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=nordvpn-refund-denied&service=NordVPN&issue=refund_denied&amount=%2499
+- Landing page: /cancel/how-to-cancel-nordvpn
+- UTM URL: https://billvampire.com/cancel/how-to-cancel-nordvpn?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=nordvpn-refund-denied&service=NordVPN&issue=refund_denied&amount=%2499
 - Status: needs_review
 - Posted URL: not posted
 - Posted at: not posted
@@ -188,7 +188,7 @@ Keep the message short: "I intended to cancel before renewal, have now cancelled
 
 If they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.
 
-Disclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of NordVPN issue here: https://billvampire.com/cancel/how-to-cancel-nordvpn.html?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=nordvpn-refund-denied&service=NordVPN&issue=refund_denied&amount=%2499
+Disclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of NordVPN issue here: https://billvampire.com/cancel/how-to-cancel-nordvpn?utm_source=reddit&utm_medium=comment&utm_campaign=organic_growth_2026w22&utm_content=nordvpn-refund-denied&service=NordVPN&issue=refund_denied&amount=%2499
 
 ### Human review checklist
 
@@ -207,8 +207,8 @@ Disclosure: I am building a small tool around this problem, so ignore this if li
 - Reply angle: Write a complete answer first; add one disclosed tool link at the end as optional help.
 - Link rule: One contextual link max, with clear founder disclosure.
 - Recommended action: Publish as a complete answer. Keep one disclosed link at the end.
-- Landing page: /cancel/how-to-cancel-canva-pro.html
-- UTM URL: https://billvampire.com/cancel/how-to-cancel-canva-pro.html?utm_source=quora&utm_medium=answer&utm_campaign=organic_growth_2026w22&utm_content=canva-trial-refund&service=Canva&issue=trial_refund&amount=%24119
+- Landing page: /cancel/how-to-cancel-canva-pro
+- UTM URL: https://billvampire.com/cancel/how-to-cancel-canva-pro?utm_source=quora&utm_medium=answer&utm_campaign=organic_growth_2026w22&utm_content=canva-trial-refund&service=Canva&issue=trial_refund&amount=%24119
 - Status: needs_review
 - Posted URL: not posted
 - Posted at: not posted
@@ -231,7 +231,7 @@ Keep the message short: "I intended to cancel before renewal, have now cancelled
 
 If they say no, ask for the refund policy section they are relying on, then decide whether the evidence is strong enough to escalate with your card issuer. This is consumer communication help, not legal or financial advice.
 
-Disclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of Canva issue here: https://billvampire.com/cancel/how-to-cancel-canva-pro.html?utm_source=quora&utm_medium=answer&utm_campaign=organic_growth_2026w22&utm_content=canva-trial-refund&service=Canva&issue=trial_refund&amount=%24119
+Disclosure: I am building a small tool around this problem, so ignore this if links are not welcome. I made a no-bank-login case preview for this kind of Canva issue here: https://billvampire.com/cancel/how-to-cancel-canva-pro?utm_source=quora&utm_medium=answer&utm_campaign=organic_growth_2026w22&utm_content=canva-trial-refund&service=Canva&issue=trial_refund&amount=%24119
 
 ### Human review checklist
 
@@ -250,8 +250,8 @@ Disclosure: I am building a small tool around this problem, so ignore this if li
 - Reply angle: Share the 14-day experiment, conversion metrics, failures, and ask for positioning feedback.
 - Link rule: A founder link is acceptable in a builder log if the post gives real data.
 - Recommended action: Post only after checking community rules and editing the draft in your own voice.
-- Landing page: /tools/rocket-money-alternative-no-bank-login.html
-- UTM URL: https://billvampire.com/tools/rocket-money-alternative-no-bank-login.html?utm_source=indiehackers&utm_medium=post&utm_campaign=organic_growth_2026w22&utm_content=bill-vampire-builder-log&service=Bill+Vampire&issue=builder_log&amount=%244.99
+- Landing page: /tools/rocket-money-alternative-no-bank-login
+- UTM URL: https://billvampire.com/tools/rocket-money-alternative-no-bank-login?utm_source=indiehackers&utm_medium=post&utm_campaign=organic_growth_2026w22&utm_content=bill-vampire-builder-log&service=Bill+Vampire&issue=builder_log&amount=%244.99
 - Status: needs_review
 - Posted URL: not posted
 - Posted at: not posted
@@ -274,7 +274,7 @@ Give people a concrete case file: amount, service, cancellation path, refund wor
 
 Then measure whether they actually click checkout or only say it sounds useful.
 
-I am building this and would genuinely value blunt feedback. I made a no-bank-login case preview for this kind of Bill Vampire issue here: https://billvampire.com/tools/rocket-money-alternative-no-bank-login.html?utm_source=indiehackers&utm_medium=post&utm_campaign=organic_growth_2026w22&utm_content=bill-vampire-builder-log&service=Bill+Vampire&issue=builder_log&amount=%244.99
+I am building this and would genuinely value blunt feedback. I made a no-bank-login case preview for this kind of Bill Vampire issue here: https://billvampire.com/tools/rocket-money-alternative-no-bank-login?utm_source=indiehackers&utm_medium=post&utm_campaign=organic_growth_2026w22&utm_content=bill-vampire-builder-log&service=Bill+Vampire&issue=builder_log&amount=%244.99
 
 ### Human review checklist
 
@@ -293,8 +293,8 @@ I am building this and would genuinely value blunt feedback. I made a no-bank-lo
 - Reply angle: Explain privacy tradeoffs, no bank login, local-first preview, and the conversion experiment.
 - Link rule: Use only for a real Show HN once the flow is stable; do not repeat.
 - Recommended action: Hold until the product flow is stable enough for a one-time Show HN.
-- Landing page: /tools/rocket-money-alternative-no-bank-login.html
-- UTM URL: https://billvampire.com/tools/rocket-money-alternative-no-bank-login.html?utm_source=hn&utm_medium=post&utm_campaign=organic_growth_2026w22&utm_content=bill-vampire-show-hn&service=Bill+Vampire&issue=show_hn&amount=%244.99
+- Landing page: /tools/rocket-money-alternative-no-bank-login
+- UTM URL: https://billvampire.com/tools/rocket-money-alternative-no-bank-login?utm_source=hn&utm_medium=post&utm_campaign=organic_growth_2026w22&utm_content=bill-vampire-show-hn&service=Bill+Vampire&issue=show_hn&amount=%244.99
 - Status: needs_review
 - Posted URL: not posted
 - Posted at: not posted
@@ -317,7 +317,7 @@ A good Show HN story should show the local-first preview, explain what data is s
 
 I would lead with the technical tradeoff and the conversion experiment instead of marketing copy.
 
-I am building this and would genuinely value blunt feedback. I made a no-bank-login case preview for this kind of Bill Vampire issue here: https://billvampire.com/tools/rocket-money-alternative-no-bank-login.html?utm_source=hn&utm_medium=post&utm_campaign=organic_growth_2026w22&utm_content=bill-vampire-show-hn&service=Bill+Vampire&issue=show_hn&amount=%244.99
+I am building this and would genuinely value blunt feedback. I made a no-bank-login case preview for this kind of Bill Vampire issue here: https://billvampire.com/tools/rocket-money-alternative-no-bank-login?utm_source=hn&utm_medium=post&utm_campaign=organic_growth_2026w22&utm_content=bill-vampire-show-hn&service=Bill+Vampire&issue=show_hn&amount=%244.99
 
 ### Human review checklist
 

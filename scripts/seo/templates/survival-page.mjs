@@ -1,3 +1,5 @@
+import { absoluteUrl } from '../url-policy.mjs'
+
 function escapeHtml(value = '') {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -117,7 +119,7 @@ function renderThemeCards(themes) {
 function renderArticleCards(theme, articles = theme.articles) {
   return articles
     .map(
-      (article) => `<a class="article-card" href="/survival/${theme.slug}/${article.slug}.html">
+      (article) => `<a class="article-card" href="/survival/${theme.slug}/${article.slug}">
         <span>${escapeHtml(tierLabel(article))} · ${escapeHtml(article.keyword)}</span>
         <strong>${escapeHtml(article.title)}</strong>
         <p>${escapeHtml(article.metaDescription)}</p>
@@ -291,7 +293,7 @@ export function renderSurvivalTheme(theme) {
 export function renderSurvivalArticle(theme, article) {
   const title = article.title
   const description = article.metaDescription
-  const canonical = `https://billvampire.com/survival/${theme.slug}/${article.slug}.html`
+  const canonical = absoluteUrl(`/survival/${theme.slug}/${article.slug}`)
   const structuredData = [
     {
       '@context': 'https://schema.org',
@@ -348,7 +350,7 @@ export function renderSurvivalArticle(theme, article) {
               <ul>
                 <li><a href="/refund/">Open refund templates for surprise charges</a></li>
                 <li><a href="/cancel/">Find a service-specific cancellation path</a></li>
-                <li><a href="/tools/free-trial-refund-helper.html">Use the free trial refund helper</a></li>
+                <li><a href="/tools/free-trial-refund-helper">Use the free trial refund helper</a></li>
               </ul>
             </article>
           </div>
@@ -361,6 +363,7 @@ export function renderSurvivalArticle(theme, article) {
         </aside>
       </section>
       ${renderArticleBody(article)}
+      <p class="disclaimer">Reviewed by the <a href="/about/">Bill Vampire Editorial Team</a>. General guidance only; verify service-specific terms before acting.</p>
       <section class="mini-form">
         <h2>Case-preview starter</h2>
         <p>Edit this with the service names, dates, and amounts you can remember.</p>

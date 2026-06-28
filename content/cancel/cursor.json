@@ -1,11 +1,11 @@
 {
-  "title": "How to Cancel Cursor Pro — Step-by-Step Guide (2026)",
-  "metaDescription": "Cancel your Cursor Pro subscription in 60 seconds. Downgrade to the free Hobby plan. Steps to stop the $20/mo charge.",
-  "intro": "Cursor Pro cancellation is done through their settings page. The free Hobby plan still gives you limited AI completions, so you can keep using the editor without paying.",
+  "title": "How to Cancel Cursor Pro in the Dashboard (2026)",
+  "metaDescription": "Cancel Cursor Pro from the Cursor dashboard: open Billing, turn off renewal, and keep your projects on the limited Hobby plan.",
+  "intro": "Cursor subscriptions are sold directly through Cursor. Open the dashboard, find Billing, and cancel renewal there. Your projects and settings remain; the current Hobby plan has limited Agent requests and limited Tab completions, while exact usage limits may change.",
   "steps": [
     {
       "title": "Open Cursor settings",
-      "text": "Visit cursor.com/settings while signed in, or open Cursor IDE → click your avatar → Settings/Account.",
+      "text": "Visit cursor.com/dashboard while signed in, or open Cursor → click your avatar → Settings → Account to reach the web dashboard.",
       "tip": null
     },
     {
@@ -16,7 +16,7 @@
     {
       "title": "Click \"Cancel Plan\" or \"Downgrade\"",
       "text": "Click the cancel or downgrade option. Cursor may ask for feedback or offer a retention deal.",
-      "tip": "The Hobby (free) plan still includes 2000 completions and 50 slow premium requests per month."
+      "tip": "Cursor currently describes Hobby as limited Agent requests and limited Tab completions; it no longer publishes the old fixed 2,000/50 quotas."
     },
     {
       "title": "Confirm cancellation",
@@ -25,7 +25,7 @@
     }
   ],
   "warnings": [
-    "Cursor Hobby plan has limited fast requests — heavy usage may hit caps quickly.",
+    "Cursor Hobby has limited Agent requests and Tab completions; check the live pricing page for current limits.",
     "Your projects, settings, and extensions are preserved on the free plan.",
     "If you paid annually, check the refund policy for unused months.",
     "Business/Team plan members should contact their admin for cancellation."
@@ -33,11 +33,11 @@
   "faqs": [
     {
       "q": "What's included in Cursor's free plan?",
-      "a": "The Hobby plan gives you 2000 code completions per month, 50 slow premium requests, and basic features. Pro ($20/mo) adds 500 fast premium requests and unlimited completions."
+      "a": "Cursor currently lists Hobby as free with limited Agent requests and limited Tab completions. Pro adds extended Agent limits and access to frontier models. Exact usage is shown in Cursor's live pricing and dashboard."
     },
     {
       "q": "Can I get a refund from Cursor?",
-      "a": "Contact Cursor support (hi@cursor.com) for refund requests. They typically accommodate recent charges, especially for unused portions of annual plans."
+      "a": "Contact Cursor at hi@cursor.com with the account email, charge date, amount, and reason. Cursor does not publish a universal refund promise, so eligibility is reviewed case by case."
     },
     {
       "q": "Will I lose my settings and extensions?",
@@ -50,11 +50,11 @@
   ],
   "refund": {
     "eligible": true,
-    "details": "Contact hi@cursor.com for refund requests. They generally accommodate requests for unused portions, especially on annual plans."
+    "details": "Contact hi@cursor.com with the account email, charge date, amount, and usage details. Refund eligibility is reviewed case by case and is not guaranteed."
   },
   "retentionTactics": [
     "Cursor may offer a discount or extended trial of Pro features."
   ],
   "timeEstimate": "1 minute",
-  "lastVerified": "2026-05-22"
+  "lastVerified": "2026-06-28"
 }
