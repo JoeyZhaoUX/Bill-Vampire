@@ -36,14 +36,17 @@ async function checkLegacyRedirect(url, fetchImpl) {
   const legacy = legacyUrlFor(url)
   if (!legacy) return []
 
+  legacy.searchParams.set('seo_audit', '1')
+  const expected = new URL(url)
+  expected.search = legacy.search
   const response = await fetchImpl(legacy, { redirect: 'manual', headers: { 'user-agent': 'BillVampireSeoAudit/1.0' } })
   const location = response.headers.get('location')
   const destination = location ? new URL(location, legacy) : null
   if (![301, 308].includes(response.status)) {
-    return [`${legacy} must redirect once to ${url}, received ${response.status}`]
+    return [`${legacy} must redirect once to ${expected}, received ${response.status}`]
   }
-  if (destination?.href !== url) {
-    return [`${legacy} redirects to ${destination?.href ?? 'no location'} instead of ${url}`]
+  if (destination?.href !== expected.href) {
+    return [`${legacy} must preserve query parameters and redirect to ${expected}, received ${destination?.href ?? 'no location'}`]
   }
   return []
 }
