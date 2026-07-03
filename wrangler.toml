@@ -44,6 +44,9 @@ database_id = "05775d4c-7c3c-4606-af64-58a6a97ce423"
 # CREEM_EMERGENCY_KIT_PRODUCT_ID — optional override; defaults to prod_5nLkYvnA8LPlZp49NvjXKZ.
 # CREEM_PRO_PRODUCT_ID, CREEM_PATROL_MONTHLY_PRODUCT_ID, CREEM_PATROL_ANNUAL_PRODUCT_ID
 #                    — optional product-id overrides for entitlement sync.
+# CREEM_RECOVERY_CASE_PRODUCT_ID — set once $14.99 Recovery Case product is created in Creem dashboard.
+# CREEM_GUARDIAN_MONTHLY_PRODUCT_ID — set once Guardian $6.99/mo product is created in Creem dashboard.
+# CREEM_GUARDIAN_ANNUAL_PRODUCT_ID  — set once Guardian $49/yr product is created in Creem dashboard.
 # The weekly-digest Worker has its own RESEND_API_KEY binding.
 
 [vars]
@@ -51,3 +54,6 @@ AUTH_EMAIL_FROM = "Bill Vampire <hello@billvampire.com>"
 CREEM_EMERGENCY_KIT_PRODUCT_ID = "prod_5nLkYvnA8LPlZp49NvjXKZ"
 CREEM_PRO_PRODUCT_ID = "prod_1pw0aIvQW2CzNzfMLrgGAY"
 CREEM_PATROL_MONTHLY_PRODUCT_ID = "prod_3l1JRnKrbMvuYiWez8JDGw"
+CREEM_RECOVERY_CASE_PRODUCT_ID = "prod_4GBYdpWeFg9ekbVmdbcqMP"
+CREEM_GUARDIAN_MONTHLY_PRODUCT_ID = "prod_6n3m6MXnrd97XCPWYKdfWz"
+CREEM_GUARDIAN_ANNUAL_PRODUCT_ID = "prod_5G5D809hitmYcHa9t2HK2I"

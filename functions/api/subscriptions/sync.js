@@ -12,7 +12,7 @@ async function readSnapshot(db, userId) {
     'SELECT id, name, monthly_usd AS monthlyUSD, cancelled_at AS cancelledAt, created_at AS createdAt FROM cancelled_subscriptions WHERE user_id = ? ORDER BY created_at DESC',
   ).bind(userId).all();
   const cases = await db.prepare(
-    'SELECT id, issue_type AS issueType, service, amount, raw_input_excerpt AS rawInputExcerpt, kit_json AS kitJson, created_at AS createdAt FROM emergency_cases WHERE user_id = ? ORDER BY created_at DESC',
+    'SELECT id, issue_type AS issueType, service, amount, raw_input_excerpt AS rawInputExcerpt, kit_json AS kitJson, status, current_step AS currentStep, amount_recovered AS amountRecovered, next_action_at AS nextActionAt, created_at AS createdAt FROM emergency_cases WHERE user_id = ? ORDER BY created_at DESC',
   ).bind(userId).all();
   const entitlements = await db.prepare(
     'SELECT id, type, source, creem_reference AS creemReference, created_at AS createdAt FROM entitlements WHERE user_id = ? ORDER BY created_at DESC',

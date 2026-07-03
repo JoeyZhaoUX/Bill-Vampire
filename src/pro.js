@@ -25,7 +25,10 @@ const CREEM_TIP_URL = 'https://www.creem.io/payment/prod_4jHrSY5B9kBakNLmI1GuLw'
 export const PATROL_PRICE_MONTHLY = { amount: 4.99, label: '$4.99/mo', cycle: 'monthly' };
 export const PATROL_PRICE_ANNUAL = { amount: 39, label: '$39/yr', cycle: 'annual', monthlyEquivalent: 3.25 };
 export const EMERGENCY_KIT_PRICE = { amount: 4.99, label: '$4.99', tier: 'emergency_kit' };
-export const FOUNDER_REVIEW_PRICE = { amount: 29, label: '$29', tier: 'dispute_kit' };
+export const RECOVERY_CASE_PRICE = { amount: 14.99, label: '$14.99', tier: 'recovery_case' };
+export const FOUNDER_REVIEW_PRICE = { amount: 39, label: '$39', tier: 'dispute_kit' }; // Dispute Pro
+export const GUARDIAN_PRICE_MONTHLY = { amount: 6.99, label: '$6.99/mo', cycle: 'monthly', tier: 'guardian' };
+export const GUARDIAN_PRICE_ANNUAL = { amount: 69, label: '$69/yr', cycle: 'annual', tier: 'guardian_annual', monthlyEquivalent: 5.75 };
 
 export function isPro() {
   return localStorage.getItem(STORAGE_KEY_PRO) === 'true'
@@ -404,6 +407,33 @@ export function checkPaymentSuccess() {
     track('patrol_checkout_succeeded', { cycle: 'annual' });
     return 'patrol_annual';
   }
+  if (hash === '#recovery-case-success') {
+    const pending = readPendingCheckout('recovery_case');
+    activateEmergencyKit(); // grants same kit access as emergency_kit tier
+    markPaymentSuccess('recovery_case');
+    localStorage.setItem(STORAGE_KEY_PURCHASE_RECOVERY, 'true');
+    localStorage.removeItem('vampire_pending_checkout');
+    window.location.hash = '';
+    track('recovery_case_checkout_succeeded', {
+      source: pending?.source || 'unknown',
+      ...(pending?.context || {}),
+    });
+    return 'recovery_case';
+  }
+  if (hash === '#guardian-success-monthly' || hash === '#guardian-success-annual') {
+    const cycle = hash.includes('annual') ? 'annual' : 'monthly';
+    const pending = readPendingCheckout(cycle === 'annual' ? 'guardian_annual' : 'guardian');
+    activatePatrol(cycle === 'annual' ? 'patrol_annual' : 'patrol'); // guardian maps to patrol entitlement
+    markPaymentSuccess(cycle === 'annual' ? 'guardian_annual' : 'guardian');
+    localStorage.removeItem('vampire_pending_checkout');
+    window.location.hash = '';
+    track('guardian_checkout_succeeded', {
+      cycle,
+      source: pending?.source || 'unknown',
+      ...(pending?.context || {}),
+    });
+    return cycle === 'annual' ? 'guardian_annual' : 'guardian';
+  }
   return null;
 }
 
@@ -429,4 +459,100 @@ export function checkPendingCheckoutAbandon() {
 export function openTip() {
   track('tip_clicked');
   window.open(CREEM_TIP_URL, '_blank');
+}
+
+export function getRecoveryTierForAmount(amountUsd) {
+  if (!amountUsd || amountUsd < 30) {
+    return 'emergency_kit';
+  }
+  return 'recovery_case';
+}
+
+function getRecoveryCaseSuccessUrl() {
+  const base = window.location.origin + window.location.pathname;
+  return encodeURIComponent(base + '#recovery-case-success');
+}
+
+export async function openRecoveryCaseCheckout(source = 'unknown', context = {}) {
+  try {
+    localStorage.setItem('vampire_pending_checkout', JSON.stringify({
+      type: 'recovery_case',
+      source,
+      startedAt: Date.now(),
+      context,
+    }));
+  } catch { /* storage is best-effort */ }
+  track('recovery_case_checkout_clicked', {
+    source,
+    price: RECOVERY_CASE_PRICE.amount,
+    tier: RECOVERY_CASE_PRICE.tier,
+    ...context,
+  });
+  const fallbackUrl = `https://www.creem.io/payment/recovery_case?success_url=${getRecoveryCaseSuccessUrl()}&ref=${encodeURIComponent(source)}`;
+  const checkoutWindow = window.open('about:blank', '_blank');
+  try {
+    const res = await fetch('/api/creem/checkout', {
+      method: 'POST',
+      credentials: 'include',
+      cache: 'no-store',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'recovery_case', source, metadata: context }),
+    });
+    const data = await res.json();
+    if (!res.ok || !data?.checkoutUrl) throw new Error(data?.error || 'checkout_failed');
+    track('recovery_case_checkout_session_created', { source, request_id: data.requestId, ...context });
+    if (checkoutWindow) checkoutWindow.location.href = data.checkoutUrl;
+    else window.location.href = data.checkoutUrl;
+  } catch (err) {
+    track('recovery_case_checkout_session_fallback', {
+      source,
+      reason: String(err?.message || err).slice(0, 80),
+      ...context,
+    });
+    if (checkoutWindow) checkoutWindow.location.href = fallbackUrl;
+    else window.location.href = fallbackUrl;
+  }
+}
+
+function getGuardianSuccessUrl(cycle) {
+  const base = window.location.origin + window.location.pathname;
+  return encodeURIComponent(base + (cycle === 'annual' ? '#guardian-success-annual' : '#guardian-success-monthly'));
+}
+
+export async function openGuardianCheckout(cycle = 'monthly', source = 'unknown', context = {}) {
+  const type = cycle === 'annual' ? 'guardian_annual' : 'guardian';
+  const price = cycle === 'annual' ? GUARDIAN_PRICE_ANNUAL : GUARDIAN_PRICE_MONTHLY;
+  try {
+    localStorage.setItem('vampire_pending_checkout', JSON.stringify({
+      type,
+      source,
+      startedAt: Date.now(),
+      context,
+    }));
+  } catch { /* storage is best-effort */ }
+  track('guardian_checkout_clicked', { source, price: price.amount, cycle, tier: price.tier });
+  const fallbackUrl = `https://www.creem.io/payment/${type}?success_url=${getGuardianSuccessUrl(cycle)}&ref=${encodeURIComponent(source)}`;
+  const checkoutWindow = window.open('about:blank', '_blank');
+  try {
+    const res = await fetch('/api/creem/checkout', {
+      method: 'POST',
+      credentials: 'include',
+      cache: 'no-store',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type, source, metadata: context }),
+    });
+    const data = await res.json();
+    if (!res.ok || !data?.checkoutUrl) throw new Error(data?.error || 'checkout_failed');
+    track('guardian_checkout_session_created', { source, cycle, request_id: data.requestId, ...context });
+    if (checkoutWindow) checkoutWindow.location.href = data.checkoutUrl;
+    else window.location.href = data.checkoutUrl;
+  } catch (err) {
+    track('guardian_checkout_session_fallback', {
+      source,
+      reason: String(err?.message || err).slice(0, 80),
+      ...context,
+    });
+    if (checkoutWindow) checkoutWindow.location.href = fallbackUrl;
+    else window.location.href = fallbackUrl;
+  }
 }

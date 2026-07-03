@@ -18,7 +18,7 @@ import {
 import { injectAffiliateLinks, PREFERRED_ALTERNATIVES } from './affiliates';
 import { track } from './analytics';
 import { callAi, RateLimitError } from './aiClient';
-import { logout } from './auth';
+import { logout, patchCase, reportOutcome } from './auth';
 import {
   fireChargeDateNotifications, pendingToasts, markToastDelivered,
   notificationPermission, requestNotificationPermission, hasNotificationApi,
@@ -97,7 +97,106 @@ function formatCaseDate(value) {
   return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }
 
-function CaseFileVault({ cases, auth, onAuthRequest, onSync, onCopy, copied }) {
+const CASE_STATUS_STYLES = {
+  draft: 'bg-slate-800/60 text-slate-300 border-slate-700/60',
+  sent: 'bg-sky-950/50 text-sky-300 border-sky-800/40',
+  awaiting: 'bg-amber-950/50 text-amber-300 border-amber-800/40',
+  escalated: 'bg-orange-950/50 text-orange-300 border-orange-800/40',
+  won: 'bg-emerald-950/50 text-emerald-300 border-emerald-800/40',
+  lost: 'bg-rose-950/50 text-rose-300 border-rose-800/40',
+  abandoned: 'bg-slate-800/60 text-slate-500 border-slate-700/60',
+};
+
+function CaseStatusBadge({ status }) {
+  const key = status && CASE_STATUS_STYLES[status] ? status : 'draft';
+  return (
+    <span className={`inline-flex items-center px-2 py-0.5 rounded-full border text-[10px] font-bold uppercase tracking-wide ${CASE_STATUS_STYLES[key]}`}>
+      {key}
+    </span>
+  );
+}
+
+// The new case-outcomes table uses a different (narrower) enum than the
+// existing onboarding ISSUE_TYPES — map the two so we never send an
+// out-of-range charge_type and trigger the API's 400 (invalid_charge_type).
+const ISSUE_TYPE_TO_CHARGE_TYPE = {
+  surprise_charge: 'surprise_charge',
+  hard_cancel: 'hard_cancel',
+  trial_ending: 'trial_refund',
+};
+
+function mapIssueTypeToChargeType(issueType) {
+  return ISSUE_TYPE_TO_CHARGE_TYPE[issueType] || 'surprise_charge';
+}
+
+// Rough, deliberately simple signal: how far a case got through the
+// escalation ladder tells us which channel most likely produced the outcome.
+function inferPathUsed(currentStep) {
+  const step = Number(currentStep) || 0;
+  if (step >= 3) return 'chargeback';
+  if (step === 2) return 'email_escalation';
+  return 'email';
+}
+
+function parseCaseAmount(caseFile) {
+  const raw = caseFile?.kit?.amount ?? caseFile?.amount ?? '';
+  const num = parseFloat(String(raw).replace(/[^0-9.]/g, ''));
+  return Number.isFinite(num) ? num : 0;
+}
+
+function CaseOutcomePrompt({ caseFile, onReport }) {
+  const [manualOpen, setManualOpen] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [note, setNote] = useState('');
+  const [dismissed, setDismissed] = useState(false);
+
+  const autoShow = caseFile.status === 'escalated';
+  if (dismissed) {
+    return note ? <p className="text-[11px] text-slate-500 mt-2 italic">{note}</p> : null;
+  }
+
+  if (!autoShow && !manualOpen) {
+    return (
+      <button
+        onClick={() => setManualOpen(true)}
+        className="mt-2 self-start inline-flex items-center gap-1.5 text-[11px] font-semibold text-slate-500 hover:text-[#C9A46A] cursor-pointer bg-transparent border-0 p-0">
+        Did you get your money back?
+      </button>
+    );
+  }
+
+  const amountNum = parseCaseAmount(caseFile);
+
+  const handle = async (won) => {
+    setSubmitting(true);
+    const res = await onReport(caseFile, won, amountNum);
+    setSubmitting(false);
+    setNote(res?.error === 'already_reported' ? 'Thanks — already recorded for this service.' : '');
+    setDismissed(true);
+  };
+
+  return (
+    <div className="mt-2 rounded-xl border border-[rgba(201,164,106,0.25)] bg-[#171217]/60 p-3">
+      <p className="text-[11px] font-semibold text-slate-200 mb-2">Did you get your money back?</p>
+      <div className="flex flex-col sm:flex-row gap-2">
+        <button
+          disabled={submitting}
+          onClick={() => handle(true)}
+          className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-[#171217] border border-emerald-800/40 text-[11px] font-bold text-emerald-300 hover:bg-[#1C1C2A] disabled:opacity-40 cursor-pointer">
+          Yes, got {amountNum > 0 ? `$${amountNum.toFixed(0)}` : 'it'} back
+        </button>
+        <button
+          disabled={submitting}
+          onClick={() => handle(false)}
+          className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-[#171217] border border-slate-700/50 text-[11px] font-bold text-slate-400 hover:bg-[#1C1C2A] disabled:opacity-40 cursor-pointer">
+          No / gave up
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function CaseFileVault({ cases, auth, onAuthRequest, onSync, onCopy, copied, onStatusChange, onReportOutcome }) {
   const visibleCases = Array.isArray(cases) ? cases.filter(c => c?.kit).slice(0, 3) : [];
   const signedIn = auth?.status === 'authenticated';
 
@@ -160,7 +259,10 @@ function CaseFileVault({ cases, auth, onAuthRequest, onSync, onCopy, copied }) {
             <article key={caseFile.id} className="rounded-2xl border border-slate-800/50 bg-[#0B0B11]/60 p-4">
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
                 <div>
-                  <p className="text-sm font-bold text-slate-100">{kit.service || caseFile.service}</p>
+                  <div className="flex items-center gap-2 mb-1">
+                    <p className="text-sm font-bold text-slate-100">{kit.service || caseFile.service}</p>
+                    <CaseStatusBadge status={caseFile.status} />
+                  </div>
                   <p className="text-xs text-slate-500 mt-1">{kit.riskLine || 'Saved consumer action kit.'}</p>
                 </div>
                 <div className="sm:text-right shrink-0">
@@ -183,6 +285,29 @@ function CaseFileVault({ cases, auth, onAuthRequest, onSync, onCopy, copied }) {
                   </button>
                 ))}
               </div>
+              {signedIn && (caseFile.status === 'draft' || caseFile.status === 'sent' || caseFile.status === 'awaiting') && (
+                <div className="mt-2 flex flex-col sm:flex-row gap-2">
+                  {(!caseFile.status || caseFile.status === 'draft') && (
+                    <button
+                      onClick={() => onStatusChange?.(caseFile, 'sent')}
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-[#171217] border border-[rgba(201,164,106,0.3)] text-[11px] font-bold text-[#C9A46A] hover:bg-[#1C1C2A] cursor-pointer">
+                      Mark as sent
+                    </button>
+                  )}
+                  {(caseFile.status === 'sent' || caseFile.status === 'awaiting') && (
+                    <button
+                      onClick={() => onStatusChange?.(caseFile, 'escalated')}
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-[#171217] border border-orange-800/40 text-[11px] font-bold text-orange-300 hover:bg-[#1C1C2A] cursor-pointer">
+                      No reply — escalate
+                    </button>
+                  )}
+                </div>
+              )}
+              {/* Outcome capture feeds the Refund Intelligence Graph — open to
+                  every signed-in user regardless of paid status (plan §3). */}
+              {signedIn && caseFile.status !== 'won' && caseFile.status !== 'lost' && caseFile.status !== 'abandoned' && (
+                <CaseOutcomePrompt caseFile={caseFile} onReport={onReportOutcome} />
+              )}
             </article>
           );
         })}
@@ -769,6 +894,53 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
     }
   };
 
+  const handleCaseStatusChange = async (caseFile, nextStatus) => {
+    if (auth?.status !== 'authenticated') {
+      onAuthRequest?.('case_file_vault');
+      return;
+    }
+    const updates = nextStatus === 'sent'
+      ? { status: 'sent', next_action_at: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString() }
+      : { status: 'escalated', current_step: (caseFile.currentStep || 0) + 1 };
+    try {
+      await patchCase(caseFile.id, updates);
+      track('case_status_changed', { status: nextStatus, issue_type: caseFile.issueType });
+      setCaseFiles((prev) => prev.map((c) => (c.id === caseFile.id ? { ...c, ...updates, status: updates.status, currentStep: updates.current_step ?? c.currentStep, nextActionAt: updates.next_action_at ?? c.nextActionAt } : c)));
+      onAuthRefresh?.();
+    } catch {
+      /* keep vault usable even if the PATCH fails */
+    }
+  };
+
+  // Outcome capture: closes the Refund Intelligence Graph loop (plan §4 step
+  // 5). Deliberately free for any authenticated user — no isPro()/kit-unlock
+  // check — the data moat can't accumulate samples if it's paywalled.
+  const handleReportOutcome = async (caseFile, won, amountNum) => {
+    if (auth?.status !== 'authenticated') {
+      onAuthRequest?.('case_file_vault');
+      return { error: 'not_authenticated' };
+    }
+    const chargeType = mapIssueTypeToChargeType(caseFile.issueType);
+    const service = caseFile?.kit?.service || caseFile?.service || 'Subscription';
+    const payload = {
+      service,
+      charge_type: chargeType,
+      won,
+      amount: won ? amountNum : undefined,
+      path_used: inferPathUsed(caseFile.currentStep),
+      case_id: caseFile.id,
+    };
+    const res = await reportOutcome(payload);
+    track('case_outcome_reported', { won, charge_type: chargeType, already_reported: res?.error === 'already_reported' });
+    if (res?.ok) {
+      const nextStatus = won ? 'won' : 'lost';
+      setCaseFiles((prev) => prev.map((c) => (c.id === caseFile.id
+        ? { ...c, status: nextStatus, amountRecovered: won ? amountNum : 0 }
+        : c)));
+    }
+    return res;
+  };
+
   const enableChargeNotifs = async () => {
     track('notif_permission_requested');
     const result = await requestNotificationPermission();
@@ -1017,6 +1189,8 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
               onSync={onAuthRefresh}
               onCopy={copyCaseText}
               copied={caseCopied}
+              onStatusChange={handleCaseStatusChange}
+              onReportOutcome={handleReportOutcome}
             />
 
             {/* Tabs */}

@@ -85,6 +85,10 @@ export function applyCloudSnapshot(snapshot) {
       amount: c.amount || c.kit?.amount || '',
       rawInputExcerpt: c.rawInputExcerpt || c.raw_input_excerpt || '',
       kit: c.kit || null,
+      status: c.status || 'draft',
+      currentStep: c.currentStep ?? c.current_step ?? 0,
+      amountRecovered: c.amountRecovered ?? c.amount_recovered ?? 0,
+      nextActionAt: c.nextActionAt || c.next_action_at || null,
       createdAt: c.createdAt || c.created_at || new Date().toISOString(),
     })).filter(c => c.kit));
   }
@@ -125,6 +129,30 @@ export async function fetchCloudSnapshot() {
   const cloud = await api('/api/subscriptions/sync');
   applyCloudSnapshot(cloud);
   return cloud;
+}
+
+export async function patchCase(id, updates) {
+  return api(`/api/cases/${encodeURIComponent(id)}`, {
+    method: 'PATCH',
+    body: JSON.stringify(updates),
+  });
+}
+
+// Outcome capture: the write side of the Refund Intelligence Graph data moat.
+// Open to any authenticated user (no paid-tier check) per plan §3 — the graph
+// never accumulates enough samples if reporting sits behind a paywall.
+// Returns the parsed JSON body even on non-2xx so callers can branch on
+// res.error === 'already_reported' (409) without a try/catch.
+export async function reportOutcome(payload) {
+  try {
+    return await api('/api/case-outcomes', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
+  } catch (err) {
+    if (err?.data) return err.data;
+    return { error: err?.message || 'request_failed' };
+  }
 }
 
 export async function saveEmergencyCase({ kit, issueType, rawInputExcerpt }) {

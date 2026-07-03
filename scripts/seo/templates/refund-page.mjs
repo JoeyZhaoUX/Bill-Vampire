@@ -1,4 +1,49 @@
+import { readFileSync } from 'fs'
+import { dirname, join } from 'path'
+import { fileURLToPath } from 'url'
 import { absoluteUrl } from '../url-policy.mjs'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const ROOT = join(__dirname, '../../..')
+const REFUND_INTELLIGENCE_PATH = join(ROOT, 'content/refund/intelligence.seed.json')
+
+// Suffix words like "Pro"/"Plus"/"Super" get stripped so "Canva Pro" (this
+// guide's service) can loosely match "Canva Pro" (refund-stats seed entry)
+// or "Duolingo Super" against "Duolingo Plus" — same brand, no exact string.
+const SERVICE_SUFFIX_STOPWORDS = new Set(['pro', 'plus', 'premium', 'super', 'max'])
+
+function coreServiceKey(name = '') {
+  return String(name)
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, '')
+    .split(/\s+/)
+    .filter((word) => word && !SERVICE_SUFFIX_STOPWORDS.has(word))
+    .join(' ')
+    .trim()
+}
+
+function refundStatsSlugFor(entry) {
+  const slugify = (value) =>
+    String(value)
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+  return `${slugify(entry.service)}-${slugify(entry.charge_type)}-success-rate`
+}
+
+let cachedRefundIntelligence = null
+function findMatchingRefundStatsEntry(guide) {
+  if (cachedRefundIntelligence === null) {
+    try {
+      cachedRefundIntelligence = JSON.parse(readFileSync(REFUND_INTELLIGENCE_PATH, 'utf-8'))
+    } catch {
+      cachedRefundIntelligence = []
+    }
+  }
+  const key = coreServiceKey(guide.service)
+  if (!key) return null
+  return cachedRefundIntelligence.find((entry) => coreServiceKey(entry.service) === key) || null
+}
 
 function escapeHtml(value = '') {
   return String(value)
@@ -168,6 +213,8 @@ function basicTemplateFor(guide) {
 export function renderRefundPage(guide, services, guides = []) {
   const service = services.find((item) => item.id === guide.serviceId)
   const cancelUrl = service ? `/cancel/${service.slug}` : '/tools/cancel-subscription-guide'
+  const matchingRefundStatsEntry = findMatchingRefundStatsEntry(guide)
+  const refundStatsUrl = matchingRefundStatsEntry ? `/refund-stats/${refundStatsSlugFor(matchingRefundStatsEntry)}` : null
   const appIssueType = appIssueTypeFor(guide)
   const scanUrl = `/?service=${encodeURIComponent(guide.service)}&issue=${encodeURIComponent(appIssueType)}&source=seo_refund_page#scan`
   const canonical = absoluteUrl(`/refund/${guide.slug}`)
@@ -329,6 +376,7 @@ export function renderRefundPage(guide, services, guides = []) {
         <a class="source-link" href="${escapeHtml(guide.officialSourceUrl)}" rel="noopener noreferrer" target="_blank">Official account or policy source</a>
         <a class="cta" href="${scanUrl}" onclick="bvTrack('refund_cta_clicked', { placement: 'side_card' })">${escapeHtml(ctaLabel)}</a>
         <a class="secondary" href="${cancelUrl}">Open ${escapeHtml(guide.service)} cancel guide</a>
+        ${refundStatsUrl ? `<a class="secondary" href="${refundStatsUrl}">See ${escapeHtml(guide.service)} refund success-rate data</a>` : ''}
         <p class="disclaimer">Bill Vampire provides consumer communication templates and organization help. It is not legal, financial, or banking advice.</p>
       </aside>
     </section>

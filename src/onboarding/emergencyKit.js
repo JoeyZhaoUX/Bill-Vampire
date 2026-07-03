@@ -74,7 +74,31 @@ function pickPrimary(subscriptions) {
   return [...subscriptions].sort((a, b) => (parseFloat(b.price) || 0) - (parseFloat(a.price) || 0))[0];
 }
 
-export function generateEmergencyKit({ subscriptions = [], issueType = 'surprise_charge', rawText = '' } = {}) {
+function formatPathLabel(path) {
+  if (!path) return 'the best available channel';
+  return String(path).replace(/_/g, ' ');
+}
+
+function buildEscalationLetter({ serviceLabel, amount, alreadyCharged, refundWindow, renewalCopy }) {
+  const today = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  return `Hi ${serviceLabel} team,\n\nI am escalating this because my initial request on ${today} did not resolve the issue. I was charged ${amount} for ${serviceLabel}${alreadyCharged ? ' and requested a refund' : ` ahead of the renewal ${renewalCopy}`}, and I have not received a resolution.\n\nPlease escalate this to a supervisor or account specialist who can make a final decision. ${refundWindow}\n\nI am asking for one of the following within 5 business days: a full refund, a documented policy exception, or a written explanation citing the exact policy clause that applies to my case. If this cannot be resolved at this level, please tell me how to reach the next tier of support.\n\nThank you for escalating this promptly.`;
+}
+
+export function applyRefundIntelligence(kit, intelligence) {
+  if (!kit || !intelligence) return kit;
+  const { sample_count: sampleCount, is_seed_estimate: isSeedEstimate, success_rate: successRate, best_path: bestPath, avg_days_to_refund: avgDays } = intelligence;
+  if (isSeedEstimate || !Number.isFinite(sampleCount) || sampleCount < 10) return kit;
+  if (!Number.isFinite(successRate)) return kit;
+  const pct = Math.round(successRate * 100);
+  const pathLabel = formatPathLabel(bestPath);
+  const daysLine = Number.isFinite(avgDays) ? `, averaging ${avgDays} day${avgDays === 1 ? '' : 's'}` : '';
+  return {
+    ...kit,
+    refundWindow: `Based on ${sampleCount} similar cases, refunds succeeded ${pct}% of the time via ${pathLabel}${daysLine}.`,
+  };
+}
+
+export function generateEmergencyKit({ subscriptions = [], issueType = 'surprise_charge', rawText = '', intelligence } = {}) {
   const issue = getIssueType(issueType);
   const primary = pickPrimary(subscriptions);
   const service = primary.name || 'this subscription';
@@ -115,7 +139,46 @@ export function generateEmergencyKit({ subscriptions = [], issueType = 'surprise
     ...(serviceData?.evidence || []),
   ];
 
-  return {
+  const refundWindow = serviceData?.refundWindow || 'Refund eligibility depends on timing, billing platform, and the service policy.';
+
+  const escalationLetter = buildEscalationLetter({ serviceLabel, amount, alreadyCharged, refundWindow, renewalCopy });
+
+  const chargebackIntro = `If ${serviceLabel} still will not refund ${amount}, you can dispute the charge with your bank or card issuer. Gather the checklist below before you call — the timeline and evidence matter more than the story.`;
+
+  const ladder = [
+    {
+      stepIndex: 0,
+      title: 'Refund email',
+      channel: 'email',
+      body: refundScript,
+      unlockLabel: 'Available now',
+    },
+    {
+      stepIndex: 1,
+      title: 'Support chat script',
+      channel: 'chat',
+      body: chatScript,
+      unlockLabel: 'Use if email gets no reply in 2-3 days',
+    },
+    {
+      stepIndex: 2,
+      title: 'Escalation letter',
+      channel: 'email_escalation',
+      body: escalationLetter,
+      unlockLabel: 'Unlocks after the first request stalls',
+    },
+    {
+      stepIndex: 3,
+      title: 'Chargeback packet',
+      channel: 'chargeback',
+      body: chargebackIntro,
+      checklist: chargebackChecklist,
+      evidence: evidenceChecklist,
+      unlockLabel: 'Last resort if the merchant refuses to refund',
+    },
+  ];
+
+  const kit = {
     issue,
     primary,
     service: serviceLabel,
@@ -123,7 +186,7 @@ export function generateEmergencyKit({ subscriptions = [], issueType = 'surprise
     renewalDate,
     cancelUrl,
     serviceData,
-    refundWindow: serviceData?.refundWindow || 'Refund eligibility depends on timing, billing platform, and the service policy.',
+    refundWindow,
     cancelPath: serviceData?.cancelPath || (cancelUrl ? `Open the known ${serviceLabel} cancellation page.` : `Open ${serviceLabel} billing or account settings.`),
     supportHint: serviceData?.supportHint || 'Keep the request short, specific, and tied to the charge date and amount.',
     context,
@@ -140,5 +203,8 @@ export function generateEmergencyKit({ subscriptions = [], issueType = 'surprise
     evidenceChecklist,
     reminderText: `Cancel ${serviceLabel} ${renewalCopy}`,
     disclaimer: 'Consumer-assistance templates only. This is not legal, financial, or banking advice.',
+    ladder,
   };
+
+  return intelligence ? applyRefundIntelligence(kit, intelligence) : kit;
 }

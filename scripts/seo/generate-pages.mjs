@@ -5,6 +5,7 @@ import { SERVICES } from './services.mjs';
 import { renderCancelPage } from './templates/cancel-page.mjs';
 import { renderCancelHub } from './templates/cancel-hub.mjs';
 import { generateRefundPages } from './generate-refund-pages.mjs';
+import { generateRefundStatsPages } from './generate-refund-stats-pages.mjs';
 import { generateSurvivalPages } from './generate-survival-pages.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -37,6 +38,7 @@ writeFileSync(join(OUTPUT_DIR, 'index.html'), hubHtml);
 console.log(`\n✓ Generated ${generated} cancel guide pages (${skipped} skipped — no content)`);
 console.log(`✓ Generated hub page at /cancel/index.html`);
 generateRefundPages();
+generateRefundStatsPages();
 generateSurvivalPages();
 
 // Regenerate sitemap

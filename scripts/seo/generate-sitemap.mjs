@@ -8,6 +8,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '../..');
 const CONTENT_DIR = join(ROOT, 'content/cancel');
 const REFUND_CONTENT_PATH = join(ROOT, 'content/refund/guides.json');
+const REFUND_STATS_CONTENT_PATH = join(ROOT, 'content/refund/intelligence.seed.json');
 const SURVIVAL_CONTENT_PATH = join(ROOT, 'content/survival/guides.json');
 const SITEMAP_PATH = join(ROOT, 'public/sitemap.xml');
 
@@ -31,6 +32,15 @@ function sitemapEntry(path, lastmod = SEO_STRUCTURE_UPDATE) {
 
 function latestDate(...dates) {
   return dates.filter(Boolean).sort().at(-1) || SEO_STRUCTURE_UPDATE;
+}
+
+function refundStatsSlugFor(entry) {
+  const slugify = (value) =>
+    String(value)
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  return `${slugify(entry.service)}-${slugify(entry.charge_type)}-success-rate`;
 }
 
 export function generateSitemap() {
@@ -57,6 +67,14 @@ export function generateSitemap() {
     const refundGuides = JSON.parse(readFileSync(REFUND_CONTENT_PATH, 'utf-8'));
     for (const guide of refundGuides) {
       urls.push(sitemapEntry(`/refund/${guide.slug}`, guide.lastVerified || SEO_STRUCTURE_UPDATE));
+    }
+  }
+
+  if (existsSync(REFUND_STATS_CONTENT_PATH)) {
+    const refundStatsEntries = JSON.parse(readFileSync(REFUND_STATS_CONTENT_PATH, 'utf-8'));
+    urls.push(sitemapEntry('/refund-stats/'));
+    for (const entry of refundStatsEntries) {
+      urls.push(sitemapEntry(`/refund-stats/${refundStatsSlugFor(entry)}`));
     }
   }
 

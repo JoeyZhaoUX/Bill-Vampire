@@ -1,0 +1,119 @@
+[
+  {
+    "service": "Adobe Creative Cloud",
+    "charge_type": "hard_cancel",
+    "best_path": "support_chat",
+    "success_rate": 0.45,
+    "avg_days_to_refund": 7,
+    "refund_window_days": 14,
+    "working_contacts_json": { "cancel_url": "https://account.adobe.com/plans" }
+  },
+  {
+    "service": "Grammarly",
+    "charge_type": "surprise_charge",
+    "best_path": "support_email",
+    "success_rate": 0.4,
+    "avg_days_to_refund": 5,
+    "refund_window_days": null,
+    "working_contacts_json": { "cancel_url": "https://account.grammarly.com/subscription" }
+  },
+  {
+    "service": "NordVPN",
+    "charge_type": "refund_denied",
+    "best_path": "live_chat",
+    "success_rate": 0.5,
+    "avg_days_to_refund": 5,
+    "refund_window_days": 30,
+    "working_contacts_json": { "cancel_url": "https://my.nordaccount.com" }
+  },
+  {
+    "service": "Canva Pro",
+    "charge_type": "trial_refund",
+    "best_path": "support_chat",
+    "success_rate": 0.5,
+    "avg_days_to_refund": 5,
+    "refund_window_days": 14,
+    "working_contacts_json": { "cancel_url": "https://www.canva.com/settings/billing" }
+  },
+  {
+    "service": "ChatGPT Plus",
+    "charge_type": "surprise_charge",
+    "best_path": "support_email",
+    "success_rate": 0.35,
+    "avg_days_to_refund": 7,
+    "refund_window_days": null,
+    "working_contacts_json": { "cancel_url": "https://chat.openai.com" }
+  },
+  {
+    "service": "Amazon Prime",
+    "charge_type": "surprise_charge",
+    "best_path": "self_service",
+    "success_rate": 0.6,
+    "avg_days_to_refund": 3,
+    "refund_window_days": null,
+    "working_contacts_json": { "cancel_url": "https://www.amazon.com/mc/pipelines/cancelPrime" }
+  },
+  {
+    "service": "LinkedIn Premium",
+    "charge_type": "trial_refund",
+    "best_path": "support_email",
+    "success_rate": 0.4,
+    "avg_days_to_refund": 7,
+    "refund_window_days": null,
+    "working_contacts_json": {}
+  },
+  {
+    "service": "Duolingo Super",
+    "charge_type": "surprise_charge",
+    "best_path": "support_email",
+    "success_rate": 0.35,
+    "avg_days_to_refund": 7,
+    "refund_window_days": null,
+    "working_contacts_json": {}
+  },
+  {
+    "service": "ExpressVPN",
+    "charge_type": "refund_denied",
+    "best_path": "live_chat",
+    "success_rate": 0.45,
+    "avg_days_to_refund": 5,
+    "refund_window_days": 30,
+    "working_contacts_json": {}
+  },
+  {
+    "service": "Microsoft 365",
+    "charge_type": "surprise_charge",
+    "best_path": "support_chat",
+    "success_rate": 0.4,
+    "avg_days_to_refund": 7,
+    "refund_window_days": null,
+    "working_contacts_json": {}
+  },
+  {
+    "service": "Dropbox",
+    "charge_type": "refund_denied",
+    "best_path": "support_email",
+    "success_rate": 0.35,
+    "avg_days_to_refund": 7,
+    "refund_window_days": null,
+    "working_contacts_json": {}
+  },
+  {
+    "service": "New York Times",
+    "charge_type": "hard_cancel",
+    "best_path": "live_chat",
+    "success_rate": 0.4,
+    "avg_days_to_refund": 5,
+    "refund_window_days": null,
+    "working_contacts_json": {}
+  },
+  {
+    "service": "Tinder",
+    "charge_type": "trial_refund",
+    "best_path": "app_store_platform",
+    "success_rate": 0.4,
+    "avg_days_to_refund": 7,
+    "refund_window_days": null,
+    "working_contacts_json": { "note": "App Store/Google Play billed purchases route through the platform, not Tinder support." }
+  }
+]

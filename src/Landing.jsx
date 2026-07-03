@@ -464,7 +464,7 @@ export default function Landing({ onEnterApp, onOpenApp, onLegal, onAuthRequest,
               <div className="inline-flex items-center gap-2 bg-rose-950/40 border border-rose-800/30 px-4 py-1.5 rounded-full mb-8 landing-fade-in">
                 <FontAwesomeIcon icon={faFireFlameCurved} className="w-3 h-3 text-rose-400" />
                 <span className="text-[11px] font-medium text-rose-300">
-                  {EMERGENCY_KIT_PRICE.label} one-time · No bank login · Cancel and refund scripts
+                  No bank login · Get your money back · Cancel and refund scripts
                 </span>
               </div>
 
