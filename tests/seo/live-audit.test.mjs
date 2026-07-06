@@ -13,6 +13,8 @@ test('live audit accepts clean pages and one-hop legacy redirects', async () => 
     [`${origin}/sitemap.xml`, response(`<?xml version="1.0"?><urlset><url><loc>${origin}/guide</loc></url></urlset>`, { status: 200 })],
     [`${origin}/guide`, response(`<link rel="canonical" href="${origin}/guide"><meta property="og:url" content="${origin}/guide">`, { status: 200 })],
     [`${origin}/guide.html?seo_audit=1`, response('', { status: 308, headers: { location: '/guide?seo_audit=1' } })],
+    [`${origin}/refund`, response('', { status: 301, headers: { location: '/refund-policy' } })],
+    [`${origin}/refund.html`, response('', { status: 301, headers: { location: '/refund-policy' } })],
   ])
   const fetchImpl = async (url) => routes.get(String(url)) ?? response('', { status: 404 })
 

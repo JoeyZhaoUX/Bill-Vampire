@@ -17,7 +17,7 @@ const STATIC_URLS = [
   '/', '/about/', '/tools/', '/tools/subscription-cost-calculator',
   '/tools/cancel-subscription-guide', '/tools/free-trial-refund-helper',
   '/tools/cancel-subscription-script-generator', '/tools/rocket-money-alternative-no-bank-login',
-  '/refund/', '/terms', '/privacy', '/refund', '/cases/',
+  '/refund/', '/terms', '/privacy', '/refund-policy', '/cases/',
   '/cases/how-i-got-119-back-from-forgotten-canva-pro-trial',
   '/cases/how-to-negotiate-adobe-early-termination-fee-refund',
   '/cases/getting-refunded-for-99-dollar-microsoft-365-accidental-renewal',

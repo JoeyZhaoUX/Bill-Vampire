@@ -1072,6 +1072,25 @@ export default function Landing({ onEnterApp, onOpenApp, onLegal, onAuthRequest,
                 </a>
               </div>
             </div>
+
+            {/* Column 5: Refund Success Rates */}
+            <div className="glass-card rounded-2xl p-6 border-slate-800/40">
+              <h3 className="text-sm font-bold text-slate-100 mb-4 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-sky-500" /> Refund Success Rates
+              </h3>
+              <ul className="space-y-3 text-xs text-slate-400">
+                <li><a href="/refund-stats/canva-pro-trial-refund-success-rate" className="hover:text-sky-400 transition-colors">Canva Pro Trial Refund Rate</a></li>
+                <li><a href="/refund-stats/adobe-creative-cloud-hard-cancel-success-rate" className="hover:text-sky-400 transition-colors">Adobe Hard-Cancel Rate</a></li>
+                <li><a href="/refund-stats/amazon-prime-surprise-charge-success-rate" className="hover:text-sky-400 transition-colors">Amazon Prime Refund Rate</a></li>
+                <li><a href="/refund-stats/chatgpt-plus-surprise-charge-success-rate" className="hover:text-sky-400 transition-colors">ChatGPT Plus Refund Rate</a></li>
+                <li><a href="/refund-stats/microsoft-365-surprise-charge-success-rate" className="hover:text-sky-400 transition-colors">Microsoft 365 Refund Rate</a></li>
+              </ul>
+              <div className="mt-5 pt-4 border-t border-slate-800/40">
+                <a href="/refund-stats/" className="text-xs font-semibold text-sky-300 hover:text-sky-200 transition-colors">
+                  View all refund success rates &rarr;
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1286,7 +1305,7 @@ export default function Landing({ onEnterApp, onOpenApp, onLegal, onAuthRequest,
               <a href="/tools/" className="text-[11px] text-slate-600 hover:text-slate-400 transition-colors no-underline">Free Tools</a>
               <a href="/terms" onClick={(e) => { e.preventDefault(); onLegal('terms'); }} className="text-[11px] text-slate-600 hover:text-slate-400 transition-colors cursor-pointer no-underline">Terms</a>
               <a href="/privacy" onClick={(e) => { e.preventDefault(); onLegal('privacy'); }} className="text-[11px] text-slate-600 hover:text-slate-400 transition-colors cursor-pointer no-underline">Privacy</a>
-              <a href="/refund" onClick={(e) => { e.preventDefault(); onLegal('refund'); }} className="text-[11px] text-slate-600 hover:text-slate-400 transition-colors cursor-pointer no-underline">Refund</a>
+              <a href="/refund-policy" onClick={(e) => { e.preventDefault(); onLegal('refund'); }} className="text-[11px] text-slate-600 hover:text-slate-400 transition-colors cursor-pointer no-underline">Refund</a>
             </div>
           </div>
           <p className="text-[10px] text-slate-800 mt-6 text-center">&copy; {new Date().getFullYear()} Bill Vampire. All rights reserved.</p>

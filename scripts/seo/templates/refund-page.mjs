@@ -488,6 +488,7 @@ export function renderRefundHub(guides) {
       <a href="/"><img src="/icons/icon.png" alt="Bill Vampire" /></a>
       <a href="/">Back to Bill Vampire</a>
       <a href="/tools/">Free tools</a>
+      <a href="/refund-stats/">Refund success rates</a>
     </nav>
     <h1>Subscription refund guides</h1>
     <p class="subtitle">Pages built around specific refund and cancellation pain: annual renewals, trial charges, hard cancellation fees, and support scripts.</p>

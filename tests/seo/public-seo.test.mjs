@@ -111,9 +111,17 @@ test('structured data uses clean URLs and no unsupported aggregate rating', () =
 })
 
 test('refund policy and refund guide hub remain distinct canonical routes', () => {
-  const policy = readFileSync(new URL('../../public/refund.html', import.meta.url), 'utf8')
+  const policy = readFileSync(new URL('../../public/refund-policy.html', import.meta.url), 'utf8')
   const hub = readFileSync(new URL('../../public/refund/index.html', import.meta.url), 'utf8')
 
-  assert.match(policy, /rel=["']canonical["'][^>]*href=["']https:\/\/billvampire\.com\/refund["']/)
+  assert.match(policy, /rel=["']canonical["'][^>]*href=["']https:\/\/billvampire\.com\/refund-policy["']/)
   assert.match(hub, /rel=["']canonical["'][^>]*href=["']https:\/\/billvampire\.com\/refund\/["']/)
+})
+
+test('legacy /refund URL is not present in sitemap and only reachable via redirect', () => {
+  const sitemap = readFileSync(new URL('../../public/sitemap.xml', import.meta.url), 'utf8')
+  assert.doesNotMatch(sitemap, /<loc>https:\/\/billvampire\.com\/refund<\/loc>/)
+
+  const redirects = readFileSync(new URL('../../public/_redirects', import.meta.url), 'utf8')
+  assert.match(redirects, /^\/refund\s+\/refund-policy\s+301/m)
 })

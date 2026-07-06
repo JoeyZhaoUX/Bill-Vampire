@@ -1132,7 +1132,7 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
               <div className="flex gap-3 pt-2">
                 <a href={`${import.meta.env.BASE_URL}terms.html`} onClick={(e) => { e.preventDefault(); onLegal('terms'); }} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer no-underline">Terms</a>
                 <a href={`${import.meta.env.BASE_URL}privacy.html`} onClick={(e) => { e.preventDefault(); onLegal('privacy'); }} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer no-underline">Privacy</a>
-                <a href={`${import.meta.env.BASE_URL}refund.html`} onClick={(e) => { e.preventDefault(); onLegal('refund'); }} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer no-underline">Refund</a>
+                <a href={`${import.meta.env.BASE_URL}refund-policy`} onClick={(e) => { e.preventDefault(); onLegal('refund'); }} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer no-underline">Refund</a>
               </div>
               <p className="text-[9px] text-slate-700 font-light tracking-wider">{_('footer')}</p>
             </div>
@@ -1523,7 +1523,7 @@ export default function App({ onLegal, onGoToLanding, auth, onAuthRequest, onAut
                 <div className="flex justify-center gap-3">
                   <a href={`${import.meta.env.BASE_URL}terms.html`} onClick={(e) => { e.preventDefault(); onLegal('terms'); }} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer no-underline">Terms</a>
                   <a href={`${import.meta.env.BASE_URL}privacy.html`} onClick={(e) => { e.preventDefault(); onLegal('privacy'); }} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer no-underline">Privacy</a>
-                  <a href={`${import.meta.env.BASE_URL}refund.html`} onClick={(e) => { e.preventDefault(); onLegal('refund'); }} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer no-underline">Refund</a>
+                  <a href={`${import.meta.env.BASE_URL}refund-policy`} onClick={(e) => { e.preventDefault(); onLegal('refund'); }} className="text-[10px] text-slate-700 hover:text-slate-400 transition-colors cursor-pointer no-underline">Refund</a>
                 </div>
               </footer>
             </div>

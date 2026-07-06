@@ -59,6 +59,26 @@ async function inBatches(items, size, task) {
   return results.flat()
 }
 
+const EXTRA_REDIRECTS = [
+  ['/refund', '/refund-policy'],
+  ['/refund.html', '/refund-policy'],
+]
+
+async function checkExtraRedirect(base, [from, to], fetchImpl) {
+  const source = new URL(`${base}${from}`)
+  const expected = new URL(`${base}${to}`)
+  const response = await fetchImpl(source, { redirect: 'manual', headers: { 'user-agent': 'BillVampireSeoAudit/1.0' } })
+  const location = response.headers.get('location')
+  const destination = location ? new URL(location, source) : null
+  if (![301, 308].includes(response.status)) {
+    return [`${source} must redirect once to ${expected}, received ${response.status}`]
+  }
+  if (destination?.href !== expected.href) {
+    return [`${source} must redirect to ${expected}, received ${destination?.href ?? 'no location'}`]
+  }
+  return []
+}
+
 export async function auditLiveSite(origin = 'https://billvampire.com', fetchImpl = fetch) {
   const base = origin.replace(/\/+$/, '')
   const errors = []
@@ -83,6 +103,7 @@ export async function auditLiveSite(origin = 'https://billvampire.com', fetchImp
 
   errors.push(...await inBatches(urls, 12, (url) => checkPage(url, fetchImpl)))
   errors.push(...await inBatches(urls.filter((url) => !new URL(url).pathname.endsWith('.html')), 12, (url) => checkLegacyRedirect(url, fetchImpl)))
+  errors.push(...await inBatches(EXTRA_REDIRECTS, 12, (pair) => checkExtraRedirect(base, pair, fetchImpl)))
 
   return { urlsChecked: urls.length, errors }
 }
