@@ -1,67 +1,104 @@
 {
-  "title": "How to Cancel NordVPN — Step-by-Step Guide (2026)",
-  "metaDescription": "Cancel NordVPN subscription and get a refund within 30 days. Stop auto-renewal and avoid being charged again. Complete guide with refund steps.",
-  "intro": "NordVPN has a 30-day money-back guarantee, so if you're within that window you can get a full refund. Even after 30 days, you can stop auto-renewal so you won't be charged again when your plan expires.",
+  "title": "How to Cancel NordVPN and Check Refund Eligibility (2026)",
+  "metaDescription": "Turn off NordVPN auto-renewal in Nord Account and check the 30-day refund rule. Renewals and third-party purchases follow different rules.",
+  "intro": "Stopping renewal and requesting a refund are two separate actions. A direct NordVPN purchase is cancelled in Nord Account. The 30-day money-back guarantee applies to an eligible first purchase, not an ordinary renewal.",
   "steps": [
     {
-      "title": "Log in to your Nord Account",
-      "text": "Go to my.nordaccount.com and sign in with your NordVPN credentials. Click on \"Services\" or navigate to the NordVPN section.",
-      "tip": null
+      "title": "Check where the subscription was purchased",
+      "text": "Open the receipt and identify NordVPN, Apple, Google Play, Amazon, or another retailer as the billing provider. The provider determines where the renewal and refund are handled.",
+      "tip": "A long-term plan may have plenty of paid time left. Turning off renewal prevents the next charge and does not create a refund for the unused months."
     },
     {
-      "title": "Go to Subscription settings",
-      "text": "Find your NordVPN subscription and click \"Change plan\" or navigate to the billing/subscription section. Look for \"Auto-renewal\" settings.",
-      "tip": null
+      "title": "Turn off a direct NordVPN renewal",
+      "text": "Sign in to Nord Account and open Billing. Select Cancel next to Auto-renewal, then choose Cancel auto-renewal. The status should change to Off.",
+      "tip": "Save the confirmation email. It is the clearest proof that the next renewal was stopped.",
+      "image": {
+        "src": "/images/editorial/nordvpn-cancel-steps-official-2026-08.jpg",
+        "alt": "NordVPN Support page showing direct and store-billed cancellation routes",
+        "width": 3452,
+        "height": 1630,
+        "caption": "NordVPN's current support page first separates direct Nord Account billing from Apple, Google Play, Amazon, and reseller purchases.",
+        "sourceUrl": "https://support.nordvpn.com/hc/en-us/articles/19556844985489-How-to-cancel-auto-renewal-for-your-NordVPN-subscription",
+        "sourceLabel": "NordVPN Support",
+        "attribution": "Official support-page screenshot captured August 25, 2026."
+      }
     },
     {
-      "title": "Turn off auto-renewal",
-      "text": "Click \"Cancel automatic payments\" or toggle off auto-renewal. This prevents future charges. Your VPN access continues until your current plan expires.",
-      "tip": "If you're within 30 days of purchase, skip this step and go straight to support for a full refund instead."
+      "title": "Use the store for a store-billed plan",
+      "text": "Apple, Google Play, and Amazon subscriptions are cancelled through the matching store account. A retailer or reseller purchase follows that seller's terms.",
+      "tip": "Use the account shown on the receipt. A different Apple or Google account will not display the subscription."
     },
     {
-      "title": "Request a refund (if within 30 days)",
-      "text": "If you're within the 30-day money-back period: click the chat bubble for live support, tell them you want to cancel and request a refund. They'll process it within 5-10 business days.",
-      "tip": "Be direct: 'I'd like to cancel my subscription and request a refund under the 30-day guarantee.' Don't explain too much — they're required to honor it."
-    },
-    {
-      "title": "Confirm cancellation via email",
-      "text": "Check your email for a cancellation/refund confirmation from NordVPN. If paying via PayPal, the refund appears in 5-10 days. Credit card refunds take 5-10 business days.",
-      "tip": null
+      "title": "Request a refund only when the payment qualifies",
+      "text": "For an eligible direct first purchase within 30 days, contact NordVPN support and use the verification link it provides. Choose the eligible payment, select Refund, provide the requested reason, and confirm the request.",
+      "tip": "A completed refund can take up to 10 business days to reach the original payment method."
     }
   ],
   "warnings": [
-    "If you purchased through Apple App Store or Google Play, you must cancel through their subscription settings and request refund through them.",
-    "After the 30-day window, you cannot get a refund — but you can stop auto-renewal so you keep access until expiry without being re-charged.",
-    "NordVPN often sells 1-year or 2-year plans. Turning off auto-renewal means you keep the full remaining time but won't be charged again.",
-    "Third-party purchases (StackSocial, etc.) have different refund policies — contact that vendor instead."
+    "NordVPN's 30-day guarantee applies to the initial subscription purchase. A normal renewal is excluded unless local law requires otherwise.",
+    "Apple decides refunds for Apple App Store purchases. Amazon handles Amazon Appstore purchases.",
+    "NordVPN says eligible Google Play payments can be requested through its support, while payments from the last 48 hours can also be requested in Google Play.",
+    "A retailer or reseller purchase must be taken back to that seller."
   ],
   "faqs": [
     {
-      "q": "Can I get a refund from NordVPN?",
-      "a": "Yes, within 30 days of purchase under their money-back guarantee. Contact live chat support and request a refund. After 30 days, no refund is available but you can cancel auto-renewal."
+      "q": "Does NordVPN offer a refund for a renewed subscription?",
+      "a": "Its current refund policy says the 30-day guarantee covers the initial purchase and does not cover a renewed subscription period, unless applicable law requires otherwise."
     },
     {
-      "q": "How long does a NordVPN refund take?",
-      "a": "Refunds are processed within 5-10 business days. PayPal refunds may be faster (2-3 days). Credit card refunds depend on your bank."
+      "q": "How do I know auto-renewal is off?",
+      "a": "Nord Account should show the auto-renewal status as Off, and NordVPN says it sends a confirmation email after a successful cancellation."
     },
     {
-      "q": "Will my NordVPN account be deleted when I cancel?",
-      "a": "No. Your account remains active but without VPN access after your plan expires. You can reactivate anytime by purchasing a new plan."
+      "q": "How long can a NordVPN refund take?",
+      "a": "NordVPN says its processing can take a few hours, and the completed refund may take up to 10 business days to reach the account depending on the payment method."
     },
     {
-      "q": "What's a good free alternative to NordVPN?",
-      "a": "ProtonVPN offers a free tier with unlimited data (3 server locations). Windscribe offers 10GB/month free. Built-in browser VPNs (Opera) work for basic browsing privacy."
+      "q": "Can NordVPN refund an Apple purchase?",
+      "a": "No. NordVPN's policy directs Apple App Store refund requests to Apple."
     }
   ],
   "refund": {
     "eligible": true,
-    "details": "NordVPN offers a full 30-day money-back guarantee with no questions asked. Contact live chat support to request it. After 30 days, no refund is available but you keep access through your plan expiration."
+    "details": "An eligible initial subscription purchase can be refunded within 30 days. Renewed periods are excluded from that guarantee. Store and reseller purchases follow the billing provider's route, and local consumer law may add rights."
   },
-  "retentionTactics": [
-    "Live chat agents may offer an extended subscription at a discount.",
-    "They may suggest pausing your account or switching to a cheaper plan.",
-    "They'll ask why you're leaving and try to address your concern before processing cancellation."
+  "policyImages": [
+    {
+      "src": "/images/editorial/nordvpn-refund-policy-official-2026-08.jpg",
+      "alt": "NordVPN refund policy stating the initial-purchase and renewal rules",
+      "width": 3452,
+      "height": 1630,
+      "caption": "NordVPN's current refund page limits its 30-day guarantee to an eligible initial subscription purchase and excludes an ordinary renewal.",
+      "sourceUrl": "https://support.nordvpn.com/hc/en-us/articles/19476991311121-What-is-your-refund-policy",
+      "sourceLabel": "NordVPN refund policy",
+      "attribution": "Official support-page screenshot captured August 25, 2026."
+    },
+    {
+      "src": "/images/editorial/nordvpn-refund-exceptions-official-2026-08.jpg",
+      "alt": "NordVPN Support list of reasons a payment may not show a refund button",
+      "width": 3452,
+      "height": 1630,
+      "caption": "If the Refund button is missing, NordVPN lists the expired 30-day window, a prior refund, and a renewed subscription period among the reasons.",
+      "sourceUrl": "https://support.nordvpn.com/hc/en-us/articles/19476991311121-What-is-your-refund-policy",
+      "sourceLabel": "NordVPN refund policy",
+      "attribution": "Official support-page screenshot captured August 25, 2026."
+    }
   ],
-  "timeEstimate": "3-5 minutes",
-  "lastVerified": "2026-05-21"
+  "retentionTactics": [
+    "Support asks for a reason during the refund request.",
+    "Check the refund status in Billing history instead of relying on the chat transcript alone."
+  ],
+  "timeEstimate": "5 minutes",
+  "sourceNote": "We checked NordVPN's current auto-renewal and refund instructions on August 25, 2026. The refund route changes with the billing provider.",
+  "sources": [
+    {
+      "title": "NordVPN instructions for cancelling auto-renewal",
+      "url": "https://support.nordvpn.com/hc/en-us/articles/19556844985489-How-to-cancel-auto-renewal-for-your-NordVPN-subscription"
+    },
+    {
+      "title": "NordVPN refund policy",
+      "url": "https://support.nordvpn.com/hc/en-us/articles/19476991311121-What-is-your-refund-policy"
+    }
+  ],
+  "lastVerified": "2026-08-25"
 }

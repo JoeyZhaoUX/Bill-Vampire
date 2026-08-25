@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Subscription Cost Calculator — See Your 10-Year Waste | Bill Vampire</title>
-  <meta name="description" content="Calculate how much your subscriptions cost over 10 years. Enter your monthly bills and see the shocking total before signup." />
+  <title>Subscription Cost Calculator | Monthly, Yearly, and 10-Year Total</title>
+  <meta name="description" content="Add the subscription prices you pay and calculate the monthly, yearly, and 10-year total at today's rates. No signup or bank connection." />
   <meta name="keywords" content="subscription cost calculator, 10 year subscription cost, how much do subscriptions cost, subscription spending calculator" />
   <link rel="canonical" href="https://billvampire.com/tools/subscription-cost-calculator" />
-  <meta property="og:title" content="Subscription Cost Calculator — 10-Year Total" />
-  <meta property="og:description" content="Enter your subscriptions. See the 10-year damage before signup." />
+  <meta property="og:title" content="Subscription Cost Calculator | Bill Vampire" />
+  <meta property="og:description" content="Use your current prices to see monthly, yearly, and 10-year subscription totals." />
   <meta property="og:url" content="https://billvampire.com/tools/subscription-cost-calculator" />
-  <meta property="og:image" content="https://billvampire.com/og-image.svg" />
+  <meta property="og:image" content="https://billvampire.com/images/editorial/subscription-bills-yasmine-shal.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" href="/icons/icon.png" type="image/png" />
   <link rel="stylesheet" href="/tools/gothic-tools.css" />
@@ -25,7 +25,7 @@
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "Web",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-        "description": "Calculate how much your subscriptions will cost over 10 years. Enter monthly amounts and see the shocking total."
+        "description": "Calculate monthly, yearly, and 10-year subscription totals using the prices you enter."
       },
       {
         "@type": "BreadcrumbList",
@@ -55,6 +55,7 @@
     .results { margin-top: 32px; padding: 24px; background: linear-gradient(135deg, #1a0a1a 0%, #141420 100%); border: 1px solid #881337; border-radius: 16px; display: none; }
     .results.show { display: block; }
     .result-monthly { color: #FB7185; font-size: 1.5rem; font-weight: 800; margin-bottom: 4px; }
+    .result-yearly { color: #F1F5F9; font-size: 1.25rem; font-weight: 750; margin: 5px 0 16px; }
     .result-10yr { color: #FB7185; font-size: 3rem; font-weight: 900; margin: 8px 0; }
     .result-label { color: #64748B; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
     .sub-list { list-style: none; margin: 16px 0; }
@@ -73,6 +74,11 @@
     .seo-content p { line-height: 1.7; margin-bottom: 12px; font-size: 0.9rem; }
     .seo-content ul { padding-left: 20px; margin-bottom: 16px; }
     .seo-content li { line-height: 1.7; margin-bottom: 4px; }
+    .method-note { margin-top: 16px; color: #64748B; font-size: .78rem; line-height: 1.6; }
+    .editorial-figure { overflow: hidden; margin: 26px 0 0; border: 1px solid #1E293B; border-radius: 16px; background: #141420; }
+    .editorial-figure img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+    .editorial-figure figcaption { padding: 10px 13px; color: #64748B; font-size: .7rem; line-height: 1.5; }
+    .editorial-figure a { color: #94A3B8; }
   </style>
 </head>
 <body>
@@ -83,7 +89,7 @@
     </nav>
 
     <h1>Subscription Cost Calculator</h1>
-    <p class="subtitle">Enter your monthly subscriptions below. We'll show you the 10-year total.</p>
+    <p class="subtitle">Add the monthly prices you actually pay. The calculator keeps everything in this page and does not connect to a bank.</p>
 
     <div id="inputs">
       <div class="input-row">
@@ -108,47 +114,42 @@
     <div class="results" id="results">
       <p class="result-label">Monthly total</p>
       <p class="result-monthly" id="monthly-total">$0</p>
-      <p class="result-label">Over 10 years, you'll spend</p>
+      <p class="result-label">Yearly total at today's prices</p>
+      <p class="result-yearly" id="yearly-total">$0</p>
+      <p class="result-label">10-year total at today's prices</p>
       <p class="result-10yr" id="ten-year-total">$0</p>
       <ul class="sub-list" id="sub-list"></ul>
+      <p class="method-note">This is a straight-line estimate. It does not predict price changes, taxes, annual-plan discounts, free months, or interest you might earn on the money.</p>
       <div class="cta">
-        <p>Have a real charge, renewal, or free trial deadline?</p>
-        <a href="/">Build a cancel/refund Emergency Kit on billvampire.com →</a>
+        <p>Found one subscription you want to stop?</p>
+        <a href="/tools/cancel-subscription-guide">Open the cancellation directory →</a>
       </div>
     </div>
 
     <div style="margin-top:24px;text-align:center;">
-      <a href="/tools/cancel-subscription-guide" style="color:#FB7185;font-size:0.85rem;text-decoration:none;">Need the cancel link? → How to Cancel Any Subscription (60+ direct links)</a>
+      <a href="/tools/cancel-subscription-guide" style="color:#FB7185;font-size:0.85rem;text-decoration:none;">Need the cancel link? → Search 47 services</a>
     </div>
 
+    <figure class="editorial-figure">
+      <img src="/images/editorial/subscription-bills-yasmine-shal.jpg" alt="Printed receipts spread across a table with a pencil" width="1280" height="1280" loading="lazy" />
+      <figcaption>Use the price on your latest receipt or account page. Image resized for web use. Photo by <a href="https://commons.wikimedia.org/wiki/File:Bills_3.jpg" target="_blank" rel="noopener noreferrer">Yasmine.shal</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>.</figcaption>
+    </figure>
+
     <div class="seo-content">
-      <h2>How Much Do Subscriptions Really Cost?</h2>
-      <p>The average American spends $219 per month on subscriptions — that's $2,628 per year and <strong>$26,280 over a decade</strong>. Most people underestimate their subscription spending by 2-3x because each individual charge feels small.</p>
+      <h2>What the total tells you</h2>
+      <p>The monthly number is useful for budgeting. The yearly number is better for comparing a subscription with an annual plan or another expense. The 10-year number shows what would happen if today's price continued for 120 months.</p>
+      <p>A $9.99 monthly plan comes to $119.88 in one year and $1,198.80 over 10 years. The arithmetic is simple. The useful part is putting every small charge in the same list.</p>
 
-      <h3>The $9.99 Illusion</h3>
-      <p>A single $9.99/month subscription seems harmless. But over 10 years, that's $1,199. If you have 5 similar subscriptions, that's nearly $6,000 — enough for a vacation, an emergency fund, or a year of car payments.</p>
+      <h3>Use the price you really pay</h3>
+      <p>Open the latest receipt or account page and enter the amount charged each month. For an annual plan, divide the annual price by 12 before adding it. Leave out a service you already cancelled unless you are still inside a paid period and want to compare it.</p>
 
-      <h3>Common Subscription Costs Over 10 Years</h3>
+      <h3>Choose what to review first</h3>
       <ul>
-        <li><strong>Netflix Premium ($22.99/mo)</strong> → $2,759 over 10 years</li>
-        <li><strong>Spotify Premium ($11.99/mo)</strong> → $1,439 over 10 years</li>
-        <li><strong>ChatGPT Plus ($20/mo)</strong> → $2,400 over 10 years</li>
-        <li><strong>Adobe Creative Cloud ($59.99/mo)</strong> → $7,199 over 10 years</li>
-        <li><strong>iCloud+ 2TB ($9.99/mo)</strong> → $1,199 over 10 years</li>
-        <li><strong>YouTube Premium ($13.99/mo)</strong> → $1,679 over 10 years</li>
+        <li>Start with the highest annual total, especially if the next renewal is close.</li>
+        <li>Check the account that pays for each service before opening a cancellation link.</li>
+        <li>Save the final confirmation page and the date your access will end.</li>
       </ul>
-
-      <h3>How to Use This Calculator</h3>
-      <p>Enter each subscription name and its monthly cost. Click "Calculate" to see your 10-year total. If you are dealing with a surprise charge, free trial renewal, or hard-to-cancel subscription, try <a href="/" style="color:#FB7185;">Bill Vampire's Emergency Kit</a> — it builds refund scripts, cancel paths, reminders, and evidence checklists without a bank login.</p>
-
-      <h3>Tips to Reduce Subscription Waste</h3>
-      <ul>
-        <li>Audit your subscriptions every 3 months — the ones you forgot about are the most expensive</li>
-        <li>Use the "cancel and see if you miss it" test — cancel anything you haven't used in 30 days</li>
-        <li>Watch for price increases — services regularly raise prices by $1-3/mo hoping you won't notice</li>
-        <li>Share family plans where possible — Netflix, Spotify, and Apple One all offer family tiers</li>
-        <li>Use free alternatives — many paid tools have capable free versions (Notion, Canva, etc.)</li>
-      </ul>
+      <p>If a charge already happened, use the <a href="/tools/free-trial-refund-helper" style="color:#FB7185;">refund helper</a> to organize the receipt, account region, usage, and merchant policy before contacting support.</p>
     </div>
   </div>
 
@@ -180,12 +181,13 @@
 
       const tenYear = total * 12 * 10;
       document.getElementById('monthly-total').textContent = '$' + total.toFixed(2);
-      document.getElementById('ten-year-total').textContent = '$' + Math.round(tenYear).toLocaleString();
+      document.getElementById('yearly-total').textContent = '$' + (total * 12).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      document.getElementById('ten-year-total').textContent = '$' + tenYear.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
       const list = document.getElementById('sub-list');
       list.innerHTML = subs
         .sort((a, b) => b.price - a.price)
-        .map(s => `<li><span>${s.name}</span><span>$${(s.price * 120).toLocaleString()} over 10yr</span></li>`)
+        .map(s => `<li><span>${s.name}</span><span>$${(s.price * 120).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} over 10 years</span></li>`)
         .join('');
 
       document.getElementById('results').classList.add('show');

@@ -1,61 +1,107 @@
 {
-  "title": "How to Cancel Nintendo Switch Online — Step-by-Step Guide (2026)",
-  "metaDescription": "Cancel Nintendo Switch Online subscription. Turn off auto-renewal from your Switch console or Nintendo website. Keep playing offline games.",
-  "intro": "Nintendo Switch Online cancellation simply turns off auto-renewal. Your membership stays active until the expiration date. You can do it from the Switch console or Nintendo's website.",
+  "title": "How to Cancel Nintendo Switch Online Before It Renews (2026)",
+  "metaDescription": "Turn off Nintendo Switch Online auto-renewal on a console or Nintendo Account. Note the 48-hour deadline and current no-refund rule.",
+  "intro": "Nintendo treats cancellation as turning off automatic renewal. The membership keeps working until its expiration date, but Nintendo says automatic renewal must be stopped at least 48 hours before that date.",
+  "heroImage": {
+    "src": "/images/editorial/nintendo-switch-kk-in-hk.jpg",
+    "alt": "A Nintendo Switch console with red Joy-Con controllers",
+    "width": 1280,
+    "height": 961,
+    "caption": "A Nintendo Switch console. Automatic renewal can be turned off on the console or in the purchasing Nintendo Account. Image resized for web use.",
+    "credit": "KK IN HK",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Switch_console.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+  },
   "steps": [
     {
-      "title": "Go to Nintendo eShop or website",
-      "text": "On Switch: Open Nintendo eShop → click your profile icon → Nintendo Switch Online. On web: ec.nintendo.com/my/membership.",
-      "tip": null
+      "title": "Confirm which Nintendo Account bought the plan",
+      "text": "Check the membership receipt and sign in with the Nintendo Account that purchased the individual or family membership. Other family-group accounts cannot change that payment.",
+      "tip": "Do this before the final two days. Nintendo's US support page says automatic renewal must be turned off at least 48 hours before expiration."
     },
     {
-      "title": "Find auto-renewal settings",
-      "text": "Navigate to your membership settings. Look for \"Turn Off Automatic Renewal\" option.",
-      "tip": null
+      "title": "Turn off renewal on the Switch console",
+      "text": "Open Nintendo eShop with the purchasing account. Select the user icon in the upper-right corner, open Account Information, choose Nintendo Switch Online, and turn off automatic renewal.",
+      "tip": "The membership remains active until the expiration date shown in the account."
     },
     {
-      "title": "Turn off auto-renewal",
-      "text": "Click \"Turn Off Automatic Renewal\" and confirm. Your membership continues until the current period expires.",
-      "tip": "If you have a family plan, only the family group admin can manage the subscription."
+      "title": "Or cancel from the Nintendo Account website",
+      "text": "Sign in at accounts.nintendo.com/portal. Open Nintendo Switch Online, choose the active plan, select Cancel pass by turning off automatic renewal, and confirm.",
+      "tip": "If no plan appears, check whether the receipt belongs to another Nintendo Account.",
+      "image": {
+        "src": "/images/editorial/nintendo-cancel-steps-official-2026-08.jpg",
+        "alt": "Nintendo Support page showing the four website steps to turn off automatic renewal",
+        "width": 3452,
+        "height": 1630,
+        "caption": "Nintendo's Account Home instructions show the sign-in, plan selection, turn-off, and confirmation sequence in one place.",
+        "sourceUrl": "https://en-americas-support.nintendo.com/app/answers/detail/a_id/41196/p/1096/c/976",
+        "sourceLabel": "Nintendo Support",
+        "attribution": "Official support-page screenshot captured August 25, 2026."
+      }
     },
     {
-      "title": "Confirm via email",
-      "text": "Nintendo sends a confirmation email. Your online features (multiplayer, cloud saves, classic game library) remain active until the expiration date.",
-      "tip": null
+      "title": "Record the expiration date",
+      "text": "Make sure the account shows automatic renewal as off and save the confirmation. Check any online play, cloud backup, or game-library feature you rely on before the membership expires.",
+      "tip": "Turning off renewal stops the next payment. It does not shorten the time already paid for."
     }
   ],
   "warnings": [
-    "Cloud save data may be deleted after a period without an active subscription — download important saves.",
-    "Online multiplayer stops working after your membership expires.",
-    "NES/SNES/N64/Game Boy games (included with membership) become inaccessible.",
-    "Family plan members all lose access if the admin cancels.",
-    "The Expansion Pack (N64, Sega Genesis games) is part of the higher tier — it's removed with cancellation."
+    "Nintendo says automatic renewal must be stopped at least 48 hours before the membership expires.",
+    "The current US support policy does not provide refunds or credits for time remaining after cancellation.",
+    "Save Data Cloud backup stops after expiration. Nintendo says a new membership started within 180 days can restore access to the cloud backups, while saves stored on the console remain available.",
+    "When a family membership ends, the other members of the family group also lose the service.",
+    "A seven-day free trial changes to a paid membership unless automatic renewal is stopped before the trial ends.",
+    "For a family membership, use the Nintendo Account that purchased the plan."
   ],
   "faqs": [
     {
-      "q": "Can I play online without Nintendo Switch Online?",
-      "a": "Most games require NSO for online multiplayer. Free-to-play games (Fortnite, Apex, Rocket League) do NOT require NSO."
+      "q": "Does Nintendo Switch Online stop immediately when I cancel?",
+      "a": "No. Nintendo says the membership remains active through its expiration date after automatic renewal is turned off."
     },
     {
-      "q": "What happens to my cloud saves?",
-      "a": "Cloud saves are preserved for a period (around 6 months) after membership expires. After that, they may be deleted. Download saves locally as backup."
+      "q": "Can I get a refund for unused Nintendo Switch Online time?",
+      "a": "Nintendo's current US cancellation page says no refund or credit is provided for the remaining time. Local law may provide additional rights in some regions."
     },
     {
-      "q": "Can I get a refund from Nintendo?",
-      "a": "Nintendo's refund policy is strict. Contact Nintendo customer support for requests within a few days of purchase. They rarely offer refunds after the membership has been active."
+      "q": "How do I stop a seven-day free trial from charging me?",
+      "a": "Turn off automatic renewal before the trial ends. Nintendo says the trial otherwise converts to the individual one-month membership selected at signup."
     },
     {
-      "q": "Is the Expansion Pack worth keeping?",
-      "a": "The base NSO ($3.99/mo or $19.99/year) gets you cloud saves and basic online. Expansion Pack ($49.99/year) adds N64, Sega, and GBA games. Cancel Expansion Pack and keep base to save money."
+      "q": "Why can I not turn off renewal from my account?",
+      "a": "The plan may have been purchased by a different Nintendo Account, including another member of a family group. Match the account to the receipt."
     }
   ],
   "refund": {
     "eligible": false,
-    "details": "Nintendo rarely offers refunds for Switch Online memberships. Contact Nintendo support to request — success varies by region and timing."
+    "details": "Nintendo's current US support page says it does not provide refunds or credits for remaining membership time. If the charge was unauthorized or local law applies, contact Nintendo support with the receipt and account details."
   },
-  "retentionTactics": [
-    "Nintendo doesn't use aggressive retention tactics. The process is clean."
+  "policyImages": [
+    {
+      "src": "/images/editorial/nintendo-expiry-policy-official-2026-08.jpg",
+      "alt": "Nintendo Support notes about the 48-hour deadline, refunds, cloud saves, and family memberships",
+      "width": 3452,
+      "height": 1630,
+      "caption": "Nintendo's support notes place the 48-hour cutoff, no-refund rule, cloud-save window, and family-membership effect together.",
+      "sourceUrl": "https://en-americas-support.nintendo.com/app/answers/detail/a_id/41196/p/1096/c/976",
+      "sourceLabel": "Nintendo Support",
+      "attribution": "Official support-page screenshot captured August 25, 2026."
+    }
   ],
-  "timeEstimate": "2-3 minutes",
-  "lastVerified": "2026-05-22"
+  "retentionTactics": [
+    "Nintendo presents the current expiration date and the features attached to the plan.",
+    "The cancellation action is described as turning off automatic renewal."
+  ],
+  "timeEstimate": "3 minutes",
+  "sourceNote": "We checked Nintendo of America's current cancellation and free-trial pages on August 25, 2026. Menu names and consumer rights can differ by region.",
+  "sources": [
+    {
+      "title": "Nintendo support for cancelling Nintendo Switch Online",
+      "url": "https://en-americas-support.nintendo.com/app/answers/detail/a_id/41196/p/1096/c/976"
+    },
+    {
+      "title": "Nintendo support for the seven-day free trial",
+      "url": "https://en-americas-support.nintendo.com/app/answers/detail/a_id/41197/p/1096/c/975"
+    }
+  ],
+  "lastVerified": "2026-08-25"
 }

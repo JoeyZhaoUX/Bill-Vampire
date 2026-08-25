@@ -1,61 +1,108 @@
 {
-  "title": "How to Cancel YouTube Premium — Step-by-Step Guide (2026)",
-  "metaDescription": "Cancel YouTube Premium in 60 seconds. Stop the $13.99/mo charge and go back to the free ad-supported tier. Web and mobile steps included.",
-  "intro": "YouTube Premium cancellation is straightforward — done in under a minute. You'll go back to the ad-supported free tier but keep all your uploads, playlists, and subscriptions.",
+  "title": "How to Cancel YouTube Premium and Check Who Bills You (2026)",
+  "metaDescription": "Cancel YouTube Premium through YouTube, Apple, or Google Play. Confirm the end date and use the correct refund channel for your payment.",
+  "intro": "The important first step is finding the company that took the payment. A YouTube-billed membership can be cancelled on the paid memberships page. Apple and Google Play purchases stay under the app-store account that processed the charge.",
   "steps": [
     {
-      "title": "Go to your YouTube memberships page",
-      "text": "Navigate to youtube.com/paid_memberships in your browser. Or in the YouTube app: tap your profile picture → Purchases and memberships → Manage memberships.",
-      "tip": null
+      "title": "Open the paid memberships page",
+      "text": "Sign in to the Google account that pays for Premium and open youtube.com/paid_memberships. Check the membership details for the plan, renewal date, and billing provider.",
+      "tip": "If no paid membership appears, check another Google account and the receipt email before contacting support. The account watching videos may not be the account paying the bill."
     },
     {
-      "title": "Click \"Manage membership\" next to YouTube Premium",
-      "text": "Find your YouTube Premium membership in the list and click \"Manage membership\" or the gear icon next to it.",
-      "tip": null
+      "title": "Cancel a membership billed by YouTube",
+      "text": "Choose Manage membership, then Deactivate. Select Continue to cancel, choose a reason, select Next, and finish with Yes, cancel.",
+      "tip": "A paid membership normally keeps its benefits until the end of the current billing period. The displayed end date is the date worth saving.",
+      "image": {
+        "src": "/images/editorial/youtube-cancel-steps-official-2026-08.jpg",
+        "alt": "YouTube Help page showing the numbered steps to cancel a paid membership",
+        "width": 3452,
+        "height": 1630,
+        "caption": "YouTube's current computer instructions list Manage membership, Deactivate, Continue to cancel, a reason, and Yes, cancel.",
+        "sourceUrl": "https://support.google.com/youtube/answer/6308278?hl=en-GB",
+        "sourceLabel": "YouTube Help",
+        "attribution": "Official help-page screenshot captured August 25, 2026."
+      }
     },
     {
-      "title": "Click \"Deactivate\" or \"Cancel membership\"",
-      "text": "Select \"Deactivate\" and then choose \"Cancel subscription\". YouTube may show you what you'll lose (ad-free, background play, YouTube Music).",
-      "tip": "If you mostly use YouTube Music, consider switching to YouTube Music Premium ($10.99/mo) instead of full Premium ($13.99/mo)."
+      "title": "Use the app store when it handled the payment",
+      "text": "For an Apple-billed membership, manage the subscription in Apple Subscriptions. For a Google Play-billed membership, use the subscriptions area of the matching Google Play account.",
+      "tip": "The merchant name on the receipt tells you who can change the subscription and who decides a refund request.",
+      "image": {
+        "src": "/images/editorial/youtube-billing-provider-official-2026-08.jpg",
+        "alt": "YouTube Help cancellation troubleshooting for Apple and Google Play billing",
+        "width": 3452,
+        "height": 1630,
+        "caption": "YouTube's help page routes Apple- and Google Play-billed memberships back to the store that processed the payment.",
+        "sourceUrl": "https://support.google.com/youtube/answer/6308278?hl=en-GB",
+        "sourceLabel": "YouTube Help",
+        "attribution": "Official help-page screenshot captured August 25, 2026."
+      }
     },
     {
-      "title": "Confirm cancellation",
-      "text": "Click \"Continue to cancel\" and then \"Yes, cancel\" on the final confirmation. Your Premium features remain active until the end of your billing period.",
-      "tip": "Any downloaded videos for offline viewing will become unavailable after your Premium expires."
+      "title": "Keep the cancellation proof",
+      "text": "Check for the cancellation notification in YouTube and the confirmation email. Save the end date and make sure the membership page no longer shows a future renewal.",
+      "tip": "If the page still shows an active renewal, repeat the process in the billing account shown on the receipt."
     }
   ],
   "warnings": [
-    "If you subscribed through Apple App Store (iOS), you must cancel through Settings → Apple ID → Subscriptions.",
-    "YouTube Music Premium is included with YouTube Premium. Canceling Premium cancels Music access too.",
-    "If you're on a Family plan, only the family manager can cancel. All family members lose Premium features.",
-    "Background playback and picture-in-picture on mobile will stop working on the free tier."
+    "Premium benefits continue until the end of a normal paid billing period, then ad-free viewing, background play, and offline downloads end.",
+    "Apple handles cancellation and refund requests for memberships purchased through Apple billing.",
+    "Only the family manager can cancel a YouTube Premium family membership.",
+    "YouTube says annual memberships are prepaid and do not receive a partial refund after cancellation."
   ],
   "faqs": [
     {
-      "q": "Will I see ads again after canceling YouTube Premium?",
-      "a": "Yes. Once your Premium expires, you'll see ads before and during videos, lose background playback, and lose offline downloads. Your content and subscriptions are unchanged."
+      "q": "Will my playlists and channel disappear after I cancel?",
+      "a": "Cancelling Premium ends the paid benefits. It does not delete the Google account, channel, subscriptions, or playlists attached to that account."
     },
     {
-      "q": "Can I get a refund for YouTube Premium?",
-      "a": "Google does not offer refunds for YouTube Premium. Your access continues through the end of your billing period. For billing errors, contact Google support."
+      "q": "When will ads return?",
+      "a": "For a normal paid cancellation, Premium remains active through the date shown on the membership page. The free YouTube experience resumes after that date."
     },
     {
-      "q": "What happens to my YouTube Music library?",
-      "a": "Your library, playlists, and liked songs are preserved. You can still use YouTube Music free with ads and shuffle-only playback on mobile."
+      "q": "Can I get a YouTube Premium refund?",
+      "a": "Refund handling depends on the billing provider and the reason for the request. YouTube directs Apple purchases to Apple. For a YouTube-billed active membership, sign in on YouTube's refund page to see the available request route. Approval follows the provider's refund policy."
     },
     {
-      "q": "Can I cancel YouTube Premium but keep YouTube Music?",
-      "a": "Yes. After canceling Premium, you can subscribe to YouTube Music Premium separately ($10.99/mo) for ad-free music without the full YouTube Premium features."
+      "q": "Why can I not find the membership I am being charged for?",
+      "a": "The usual cause is a different Google or Apple account. Match the receipt email, merchant name, and account address before opening a support case."
     }
   ],
   "refund": {
-    "eligible": false,
-    "details": "Google does not offer refunds for YouTube Premium subscriptions. Your Premium benefits continue until the end of your current billing cycle."
+    "eligible": true,
+    "details": "A refund may be available for a billing problem or when the paid service did not work as expected, subject to YouTube's policy. Apple decides refunds for Apple-billed purchases. Annual memberships do not receive a partial refund simply because they were cancelled early."
   },
-  "retentionTactics": [
-    "YouTube may offer a discounted rate (often 1-3 months at a reduced price).",
-    "They'll remind you of features you'll lose: ad-free, background play, offline downloads, YouTube Music."
+  "policyImages": [
+    {
+      "src": "/images/editorial/youtube-refund-help-official-2026-08.jpg",
+      "alt": "YouTube Help page showing refund troubleshooting and billing-provider routes",
+      "width": 3452,
+      "height": 1630,
+      "caption": "YouTube's refund troubleshooting page separates YouTube-handled requests from Apple-billed purchases and other payment problems.",
+      "sourceUrl": "https://support.google.com/youtube/answer/12015913?hl=en",
+      "sourceLabel": "YouTube refund help",
+      "attribution": "Official help-page screenshot captured August 25, 2026."
+    }
   ],
-  "timeEstimate": "1-2 minutes",
-  "lastVerified": "2026-05-21"
+  "retentionTactics": [
+    "The cancellation flow may offer a pause before the final cancel option.",
+    "The confirmation screens list the Premium features that will end."
+  ],
+  "timeEstimate": "3 minutes",
+  "sourceNote": "We checked YouTube's current cancellation, troubleshooting, and refund pages on August 25, 2026. Button labels can differ by device and billing provider.",
+  "sources": [
+    {
+      "title": "YouTube instructions for cancelling Premium",
+      "url": "https://support.google.com/youtube/answer/6308278?hl=en-GB"
+    },
+    {
+      "title": "YouTube cancellation troubleshooting",
+      "url": "https://support.google.com/youtube/answer/9852128?co=GENIE.Platform%3DDesktop&hl=en-EN"
+    },
+    {
+      "title": "YouTube Premium refund help",
+      "url": "https://support.google.com/youtube/answer/12015913?hl=en"
+    }
+  ],
+  "lastVerified": "2026-08-25"
 }

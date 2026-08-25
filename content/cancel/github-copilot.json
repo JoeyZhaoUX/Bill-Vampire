@@ -1,55 +1,108 @@
 {
-  "title": "How to Cancel GitHub Copilot — Step-by-Step Guide (2026)",
-  "metaDescription": "Cancel GitHub Copilot subscription in 60 seconds. Stop the $10/mo charge and use the free tier. Steps for Individual and Business plans.",
-  "intro": "GitHub Copilot Individual can be canceled directly from your GitHub settings. The free tier now includes limited completions, so you don't lose AI assistance entirely.",
+  "title": "How to Cancel GitHub Copilot and Return to Copilot Free (2026)",
+  "metaDescription": "Cancel a personal GitHub Copilot plan in Billing and licensing. Access continues to the billing-cycle end, then changes to Copilot Free.",
+  "intro": "A personal Copilot Pro, Pro+, or Max plan is cancelled from GitHub billing settings. The paid features remain available until the billing cycle ends, then GitHub moves the account to Copilot Free.",
   "steps": [
     {
-      "title": "Go to GitHub Copilot settings",
-      "text": "Visit github.com/settings/copilot while signed in to your GitHub account. Or: click your avatar → Settings → Copilot.",
-      "tip": null
+      "title": "Confirm that the plan is personal",
+      "text": "Open GitHub Settings and check whether Copilot is billed to your personal account or supplied by an organization or enterprise.",
+      "tip": "An organization-provided seat cannot be cancelled from personal billing. Ask the organization owner to remove the seat if that is the charge you need to stop."
     },
     {
-      "title": "Click \"Cancel\" or \"Manage subscription\"",
-      "text": "In the Copilot settings page, find your subscription details and click \"Cancel\" or navigate to the billing section.",
-      "tip": "If Copilot was provided by your organization, you cannot cancel it yourself — contact your org admin."
+      "title": "Open Billing and licensing",
+      "text": "In Settings, open Billing and licensing. Choose Licensing on the new billing platform or Plans and usage on the original platform, then find the GitHub Copilot section.",
+      "tip": "GitHub currently documents both billing interfaces because accounts can be on different versions.",
+      "image": {
+        "src": "/images/editorial/github-copilot-billing-settings-official-2026-08.jpg",
+        "alt": "GitHub Docs showing the Billing and licensing routes for a personal Copilot plan",
+        "width": 3452,
+        "height": 1630,
+        "caption": "GitHub documents both Licensing on the new billing platform and Plans and usage on the original platform.",
+        "sourceUrl": "https://docs.github.com/en/copilot/how-tos/manage-your-account/view-and-change-your-copilot-plan",
+        "sourceLabel": "GitHub Docs",
+        "attribution": "Official documentation screenshot captured August 25, 2026."
+      }
     },
     {
-      "title": "Confirm cancellation",
-      "text": "Select a reason for canceling and confirm. Your Copilot access continues until the end of your current billing period.",
-      "tip": "GitHub Copilot Free gives you limited completions per month — it may be enough if you're not coding full-time."
+      "title": "Cancel the paid plan",
+      "text": "Open Manage subscription and select Cancel subscription. Confirm the cancellation for the Copilot Pro, Pro+, or Max plan shown in the dialog.",
+      "tip": "A downgrade to another paid level is a different action. Choose Cancel subscription if the goal is to stop the paid plan entirely.",
+      "image": {
+        "src": "/images/editorial/github-copilot-cancel-steps-official-2026-08.jpg",
+        "alt": "GitHub Docs showing the steps to cancel Copilot Pro, Pro Plus, or Max",
+        "width": 3452,
+        "height": 1630,
+        "caption": "GitHub's current cancellation section shows Manage subscription, Cancel subscription, and the final plan confirmation.",
+        "sourceUrl": "https://docs.github.com/en/copilot/how-tos/manage-your-account/view-and-change-your-copilot-plan",
+        "sourceLabel": "GitHub Docs",
+        "attribution": "Official documentation screenshot captured August 25, 2026."
+      }
+    },
+    {
+      "title": "Check the effective date",
+      "text": "Save the billing-cycle end date and the cancellation confirmation. Paid access remains until that date, after which the account is downgraded to Copilot Free.",
+      "tip": "If you enabled paid usage beyond the plan allowance, review the usage budget in billing settings as a separate check."
     }
   ],
   "warnings": [
-    "If Copilot is provided through a GitHub Organization or Enterprise plan, only an admin can remove your seat.",
-    "GitHub Copilot Free still offers limited AI completions — you don't lose all AI assistance.",
-    "Your code suggestions history and settings are preserved if you re-subscribe.",
-    "Student/teacher accounts get Copilot free through GitHub Education — check eligibility before paying."
+    "GitHub says cancellation takes effect at the end of the current billing cycle and does not refund unused time.",
+    "Organization and enterprise seats are managed by the account owner, not through a personal Copilot subscription.",
+    "Verified students can use Copilot Student. Verified teachers and maintainers of popular open-source projects may qualify for free Copilot access.",
+    "Copilot Free has limits. Check the current plan page before assuming it covers the same models or usage as a paid plan."
   ],
   "faqs": [
     {
-      "q": "Is GitHub Copilot free for students?",
-      "a": "Yes. Verified students and teachers get GitHub Copilot free through GitHub Education (education.github.com). If you're eligible, you don't need a paid subscription."
+      "q": "Does GitHub Copilot stop immediately after cancellation?",
+      "a": "No. GitHub says the paid features remain available until the current billing cycle ends. The account then moves to Copilot Free."
     },
     {
-      "q": "What's the difference between Copilot Free and Pro?",
-      "a": "Free gives you limited completions per month. Pro ($10/mo) gives unlimited completions, chat, and access to multiple models. Business ($19/mo) adds org management and policy controls."
+      "q": "Will GitHub refund unused Copilot time?",
+      "a": "GitHub's current license-change policy says no refund is issued for unused time after a cancellation or downgrade."
     },
     {
-      "q": "Can I get a refund for GitHub Copilot?",
-      "a": "GitHub handles refunds on a case-by-case basis. Contact GitHub support through their help portal for refund requests."
+      "q": "Why is there no cancel button in my personal account?",
+      "a": "The seat may belong to an organization or enterprise, or the account may have free access as an eligible student, teacher, or open-source maintainer. Those plans are not cancelled like a personal paid subscription."
     },
     {
-      "q": "What are good free alternatives to GitHub Copilot?",
-      "a": "Codeium (free AI completions), Cody by Sourcegraph (free tier), and Amazon CodeWhisperer (free for individual use) are solid alternatives."
+      "q": "Can I keep using Copilot after cancelling Pro?",
+      "a": "GitHub automatically downgrades a cancelled personal paid plan to Copilot Free at the end of the billing cycle. Free has lower allowances and a more limited plan than the paid tiers."
     }
   ],
   "refund": {
-    "eligible": true,
-    "details": "Contact GitHub support for refund requests. They handle these case-by-case. No automatic refunds for unused portions."
+    "eligible": false,
+    "details": "GitHub's current policy does not issue a refund for unused time when a Copilot plan is cancelled. Paid access continues through the billing-cycle end. Local consumer law may provide additional rights."
   },
-  "retentionTactics": [
-    "GitHub doesn't use aggressive retention tactics for Copilot. Cancellation is clean."
+  "policyImages": [
+    {
+      "src": "/images/editorial/github-copilot-refund-policy-official-2026-08.jpg",
+      "alt": "GitHub Docs personal-account policy stating no refund for unused Copilot time",
+      "width": 3452,
+      "height": 1630,
+      "caption": "GitHub's license-change policy says personal-plan access remains until the billing-cycle end and unused time is not refunded.",
+      "sourceUrl": "https://docs.github.com/en/copilot/reference/copilot-billing/license-changes",
+      "sourceLabel": "GitHub Copilot billing documentation",
+      "attribution": "Official documentation screenshot captured August 25, 2026."
+    }
   ],
-  "timeEstimate": "1 minute",
-  "lastVerified": "2026-05-22"
+  "retentionTactics": [
+    "The Manage subscription menu also shows downgrade choices for eligible plans.",
+    "Read the confirmation dialog carefully so a paid downgrade is not mistaken for a full cancellation."
+  ],
+  "timeEstimate": "3 minutes",
+  "sourceNote": "We checked GitHub's current personal Copilot plan and license-change documentation on August 25, 2026. GitHub currently lists two billing interfaces.",
+  "sources": [
+    {
+      "title": "GitHub guide to viewing and changing a Copilot plan",
+      "url": "https://docs.github.com/en/copilot/how-tos/manage-your-account/view-and-change-your-copilot-plan"
+    },
+    {
+      "title": "GitHub rules for Copilot license changes and refunds",
+      "url": "https://docs.github.com/en/copilot/reference/copilot-billing/license-changes"
+    },
+    {
+      "title": "Current GitHub Copilot plans",
+      "url": "https://docs.github.com/en/copilot/get-started/plans"
+    }
+  ],
+  "lastVerified": "2026-08-25"
 }

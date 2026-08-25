@@ -1,66 +1,113 @@
 {
-  "title": "How to Cancel PlayStation Plus & Stop Auto-Renewal (Updated 2026)",
-  "metaDescription": "Cancel PlayStation Plus Essential, Extra, or Premium and stop auto-renewal immediately. Step-by-step guide for PS4, PS5, and web. Updated 2026.",
-  "intro": "Cancelling PlayStation Plus turns off the next renewal; paid access normally continues until the end of the current billing period. You can manage it from PS5 subscription settings or the PlayStation subscription page on the web.",
+  "title": "How to Cancel PlayStation Plus on Web, PS5, or PS4 (2026)",
+  "metaDescription": "Turn off PlayStation Plus renewal on web, PS5, or PS4. Check what happens to monthly games, cloud storage, and refund eligibility first.",
+  "intro": "The cancel button stops the next PlayStation Plus payment. Your current Essential, Extra, or Premium benefits continue until the end of the period you already paid for, so you do not need to wait until the last day to cancel.",
+  "heroImage": {
+    "src": "/images/editorial/playstation-5-ryan-bennett.jpg",
+    "alt": "A white PlayStation 5 console standing vertically",
+    "width": 1280,
+    "height": 1993,
+    "caption": "A PlayStation 5 console. The subscription controls are inside your PlayStation account and console settings. Image resized for web use.",
+    "credit": "Ryan Bennett",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Playstation_5.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+  },
   "steps": [
     {
-      "title": "Go to PlayStation subscription management",
-      "text": "On PS5: Settings → Users and Accounts → Account → Payment and Subscriptions → Subscriptions. On web: store.playstation.com/subscriptions. Sign in with your PSN account.",
-      "tip": null
+      "title": "Cancel on the web",
+      "text": "Sign in to PlayStation Account Management. Choose Subscription from the menu on the left, then choose Cancel Subscription next to PlayStation Plus.",
+      "tip": "Check that you signed in with the account that pays for PlayStation Plus. A family member's account may be using benefits purchased by someone else on the console.",
+      "image": {
+        "src": "/images/editorial/ps-plus-cancel-official-2026-08.jpg",
+        "alt": "PlayStation Support page showing the web steps for cancelling PlayStation Plus",
+        "width": 3452,
+        "height": 1630,
+        "caption": "PlayStation's current web path is Account Management, Subscription, then Cancel Subscription beside PlayStation Plus.",
+        "sourceUrl": "https://www.playstation.com/en-us/support/subscriptions/cancel-playstation-plus/",
+        "sourceLabel": "PlayStation Support",
+        "attribution": "Official support-page screenshot captured August 25, 2026."
+      }
     },
     {
-      "title": "Select PlayStation Plus",
-      "text": "Click or tap on your PlayStation Plus subscription (Essential, Extra, or Premium). You'll see your renewal date and plan details.",
-      "tip": null
+      "title": "Cancel on PS5",
+      "text": "Open Settings, then Users and Accounts. Choose Account, Payment and Subscriptions, Subscriptions, PlayStation Plus, and Cancel Subscription.",
+      "tip": "The screen should show the date your benefits end. Cancelling does not remove the remaining paid time."
     },
     {
-      "title": "Turn off auto-renewal",
-      "text": "Click \"Turn Off Auto-Renew\" or \"Cancel Subscription\". Confirm when prompted.",
-      "tip": "This keeps your current access until the plan expires — you don't lose it immediately."
+      "title": "Cancel on PS4",
+      "text": "Open PlayStation Plus, then Manage Membership and Subscription. Choose Cancel Subscription and follow the confirmation screen.",
+      "tip": "Some regional screens still use the wording Turn Off Auto-Renewal. It serves the same purpose and stops the next payment."
     },
     {
-      "title": "Confirm",
-      "text": "Confirm your choice. Your PS Plus benefits continue until the expiration date. After that, you lose access to the game catalog, cloud saves (on Essential), and online multiplayer.",
-      "tip": "Download your cloud saves locally before your plan expires if you're on Essential (cloud saves require PS Plus)."
+      "title": "Save the confirmation",
+      "text": "Confirm the cancellation, note the end date, and save a screenshot or email. If the page now offers Reactivate Subscription, the renewal has been turned off.",
+      "tip": "Copy any cloud saves you need before the membership ends. Online storage is a PlayStation Plus benefit."
     }
   ],
   "warnings": [
-    "PS Plus Essential members: cloud saves become inaccessible without a subscription. Download saves locally before expiry.",
-    "Monthly free games (claimed while subscribed) remain in your library but are locked until you re-subscribe.",
-    "Online multiplayer for paid games requires PS Plus Essential at minimum.",
-    "Game Catalog titles (Extra/Premium) become unplayable after cancellation.",
-    "If you purchased a yearly plan, you cannot get a partial refund in most regions."
+    "Your benefits remain available until the paid period ends. The cancellation only stops the next payment.",
+    "Monthly games obtained through the membership stop working after the membership ends. Redeemed packs, avatars, and games bought with a PlayStation Plus discount remain yours.",
+    "Online storage and online multiplayer are PlayStation Plus benefits. Copy saves you need before the end date.",
+    "Extra and Premium catalog games require an active eligible membership and can also leave the catalog separately."
   ],
   "faqs": [
     {
       "q": "What happens to PS Plus Extra or Premium catalog games after cancellation?",
-      "a": "Catalog games require an active eligible membership and can also leave the catalog independently. Check the current PlayStation catalog and your subscription end date before cancelling."
+      "a": "They remain playable until your membership end date, provided the title is still in the catalog. After the membership ends, catalog access stops."
     },
     {
       "q": "Will I lose my free PS Plus games?",
-      "a": "They stay in your library but are locked. If you re-subscribe, they immediately become playable again. You don't need to re-claim them."
+      "a": "Monthly games obtained through the membership become unavailable when the membership ends. PlayStation says redeemed packs and avatars, along with games bought at a member discount, remain yours."
     },
     {
       "q": "Can I play online without PS Plus?",
-      "a": "Free-to-play games (Fortnite, Apex Legends, Genshin Impact) don't require PS Plus for online play. Paid games do require at least PS Plus Essential."
+      "a": "Most paid PS4 and PS5 games require PlayStation Plus for online multiplayer. Some games do not. Check the game's PlayStation Store listing before cancelling if online play matters to you."
     },
     {
       "q": "Can I get a refund for PlayStation Plus?",
-      "a": "Sony offers refunds within 14 days of purchase in most regions, provided you haven't streamed or downloaded content from the service. Contact PlayStation Support."
+      "a": "For US accounts, PlayStation's current policy allows a request within 14 days of signing up. The standard subscription refund covers the first payment and excludes an ordinary recurring charge. Use of online play, monthly games, or cloud storage may reduce the refund. Other regions and local consumer laws can differ."
     },
     {
       "q": "What happens to my cloud saves?",
-      "a": "Cloud saves become inaccessible without PS Plus Essential. However, they're preserved on Sony's servers. Re-subscribing restores access. Download saves locally as backup."
+      "a": "Online storage is a PlayStation Plus benefit, so access ends with the membership. Copy any save data you need to your console before the displayed end date."
     }
   ],
   "refund": {
     "eligible": true,
-    "details": "Sony offers refunds within 14 days of purchase (if service hasn't been significantly used). Contact PlayStation Support via chat or phone. Regional policies vary."
+    "details": "For US accounts, the standard subscription refund window is 14 days from signing up and applies to the first payment, not an ordinary recurring charge. PlayStation may reduce the refund if you used membership benefits. Check the policy for your account region before submitting a request."
   },
-  "retentionTactics": [
-    "Sony doesn't typically use aggressive retention tactics. The cancellation process is relatively clean.",
-    "They may show which games from your library will become locked."
+  "policyImages": [
+    {
+      "src": "/images/editorial/ps-plus-refund-official-2026-08.jpg",
+      "alt": "PlayStation Support refund page showing the Transaction History and Request Refund process",
+      "width": 3452,
+      "height": 1630,
+      "caption": "PlayStation's refund page directs eligible purchases through Transaction History and Request Refund; eligibility still depends on the account region and policy.",
+      "sourceUrl": "https://www.playstation.com/en-us/support/store/ps-store-refund-request/",
+      "sourceLabel": "PlayStation Store refund support",
+      "attribution": "Official support-page screenshot captured August 25, 2026."
+    }
   ],
-  "timeEstimate": "2-3 minutes",
-  "lastVerified": "2026-06-28"
+  "retentionTactics": [
+    "The confirmation screen may show benefits that will end with the membership.",
+    "You can reactivate the subscription before the next payment date if you change your mind."
+  ],
+  "timeEstimate": "3 minutes",
+  "sourceNote": "We checked PlayStation's current US cancellation guide, subscription support page, and refund rules on August 25, 2026. Account wording and refund rights can vary by region.",
+  "sources": [
+    {
+      "title": "PlayStation guide to cancelling PlayStation Plus",
+      "url": "https://www.playstation.com/en-us/support/subscriptions/cancel-playstation-plus/"
+    },
+    {
+      "title": "PlayStation Plus support and current membership benefits",
+      "url": "https://www.playstation.com/en-us/support/subscriptions/playstation-plus-support/"
+    },
+    {
+      "title": "PlayStation Store subscription refund rules for US accounts",
+      "url": "https://www.playstation.com/en-us/support/store/ps-store-refund-request/"
+    }
+  ],
+  "lastVerified": "2026-08-25"
 }

@@ -15,7 +15,7 @@ export function renderCancelHub(services) {
         `<a class="service-card" href="/cancel/${s.slug}" data-name="${esc(s.name.toLowerCase())}">
           <div>
             <span class="name">${esc(s.name)}</span>
-            ${s.price !== 'varies' ? `<span class="price">${esc(s.price)}</span>` : ''}
+            ${s.price !== 'varies' ? `<span class="price">${esc(s.price)}</span>` : '<!-- Price varies by plan or region -->'}
           </div>
           <span class="arrow">&rarr;</span>
         </a>`

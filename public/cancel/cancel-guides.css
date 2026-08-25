@@ -30,6 +30,29 @@ h3 { color: #E7D9CF; font-size: 1rem; margin: 0 0 6px; }
 .step p { font-size: 0.88rem; }
 .step .tip { margin-top: 8px; padding: 8px 12px; background: rgba(139,92,246,0.08); border-left: 3px solid #8b5cf6; border-radius: 4px; font-size: 0.82rem; color: #a78bfa; }
 
+/* Editorial evidence */
+.editorial-image { margin: 24px 0 28px; overflow: hidden; border: 1px solid rgba(201,164,106,0.2); border-radius: 18px; background: #141420; }
+.editorial-image img { display: block; width: 100%; max-height: 520px; object-fit: cover; object-position: center; }
+.editorial-image figcaption { padding: 11px 14px; color: #64748B; font-size: 0.72rem; line-height: 1.55; }
+.editorial-image figcaption a { color: #94A3B8; }
+.step-image,
+.policy-image { margin: 16px 0 2px; overflow: hidden; border: 1px solid rgba(148,163,184,0.2); border-radius: 12px; background: #0D0B0E; }
+.step-image img,
+.policy-image img { display: block; width: 100%; height: auto; object-fit: contain; background: #fff; }
+.step-image figcaption,
+.policy-image figcaption { padding: 10px 12px; color: #7F8CA6; font-size: 0.72rem; line-height: 1.55; }
+.step-image figcaption a,
+.policy-image figcaption a { color: #C9A46A; }
+.policy-evidence { margin: 30px 0; }
+.policy-evidence > h2 { margin-bottom: 6px; }
+.policy-evidence > p { margin-bottom: 16px; color: #7F8CA6; font-size: 0.84rem; }
+.source-notes { margin: 32px 0; padding: 20px; border: 1px solid rgba(148,163,184,0.16); border-radius: 14px; background: rgba(20,20,32,0.72); }
+.source-notes h2 { margin: 0 0 8px; font-size: 1.05rem; }
+.source-notes p { margin-bottom: 10px; font-size: 0.84rem; }
+.source-notes ul { padding-left: 18px; }
+.source-notes li { margin: 5px 0; font-size: 0.84rem; }
+.source-notes a { color: #C9A46A; }
+
 /* CTA Banners */
 .cta-top { margin-bottom: 28px; padding: 16px 20px; background: linear-gradient(135deg, rgba(201,164,106,0.12), rgba(142,29,44,0.12)); border: 1px solid rgba(201,164,106,0.28); border-radius: 16px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; box-shadow: 0 18px 54px rgba(0,0,0,0.24); }
 .cta-top p { flex: 1; color: #FDE68A; font-size: 0.88rem; min-width: 200px; }

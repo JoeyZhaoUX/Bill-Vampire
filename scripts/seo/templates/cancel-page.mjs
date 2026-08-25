@@ -6,20 +6,26 @@ export function renderCancelPage(service, content, allServices) {
     .filter(Boolean);
 
   const diffBadge = `<span class="badge badge-${service.difficulty}">${service.difficulty}</span>`;
+  const priceHtml = service.price !== 'varies'
+    ? `<span>${esc(service.price)}</span>`
+    : '<!-- Price varies by plan or region -->';
   const scanUrl = `/?service=${encodeURIComponent(service.name)}&issue=hard_cancel&source=seo_cancel_page#scan`;
+  const socialImage = content.heroImage?.src
+    ? absoluteUrl(content.heroImage.src)
+    : 'https://billvampire.com/og-image.svg';
 
   const stepsHtml = content.steps.map((step, i) => {
-    const tipHtml = step.tip ? `<div class="tip">${esc(step.tip)}</div>` : '';
-    const html = `<div class="step">
+    const tipHtml = step.tip ? `\n      <div class="tip">${esc(step.tip)}</div>` : '';
+    const imageHtml = step.image ? `\n      ${renderEditorialImage(step.image, 'step-image')}` : '';
+    const html = `<div class="step" id="step-${i + 1}">
       <h3>${esc(step.title)}</h3>
-      <p>${esc(step.text)}</p>
-      ${tipHtml}
+      <p>${esc(step.text)}</p>${tipHtml}${imageHtml}
     </div>`;
     if (i === 2) {
       return html + `
     <div class="cta-inline">
-      <p>Need the exact words to say if they try to keep you?</p>
-      <a href="${scanUrl}" onclick="trackCancelGuide('cancel_inline_preview_clicked')">Build your ${esc(service.name)} preview free &rarr;</a>
+      <p>Already charged? Keep the receipt and the cancellation confirmation. They are the useful part of a refund request.</p>
+      <a href="${scanUrl}" onclick="trackCancelGuide('cancel_inline_preview_clicked')">Check my ${esc(service.name)} refund options &rarr;</a>
     </div>`;
     }
     return html;
@@ -39,6 +45,14 @@ export function renderCancelPage(service, content, allServices) {
     </div>`
     : '';
 
+  const policyImagesHtml = content.policyImages && content.policyImages.length > 0
+    ? `<section class="policy-evidence">
+      <h2>Official screens behind the policy notes</h2>
+      <p>These current support screens are included so you can compare the wording on your own account before acting.</p>
+      ${content.policyImages.map(image => renderEditorialImage(image, 'policy-image')).join('\n      ')}
+    </section>`
+    : '<!-- No additional policy screenshots for this guide -->';
+
   const faqHtml = content.faqs && content.faqs.length > 0
     ? `<div class="faq">
       <h2>Frequently Asked Questions</h2>
@@ -57,6 +71,16 @@ export function renderCancelPage(service, content, allServices) {
       </div>
     </div>`
     : '';
+  const heroHtml = content.heroImage
+    ? renderEditorialImage(content.heroImage, 'editorial-image', true)
+    : '<!-- No editorial image for this guide -->';
+  const sourcesHtml = content.sources && content.sources.length > 0
+    ? `<section class="source-notes">
+      <h2>Sources checked for this guide</h2>
+      <p>${esc(content.sourceNote || 'We checked the current account path and policy before updating this page.')}</p>
+      <ul>${content.sources.map(source => `<li><a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(source.title)}</a></li>`).join('')}</ul>
+    </section>`
+    : '<!-- No source list for this guide -->';
   const serviceJson = JSON.stringify(service.name);
 
   const schema = JSON.stringify({
@@ -66,6 +90,8 @@ export function renderCancelPage(service, content, allServices) {
         "@type": "HowTo",
         "name": content.title,
         "description": content.metaDescription,
+        "image": socialImage,
+        "dateModified": content.lastVerified,
         "totalTime": `PT${parseInt(content.timeEstimate) || 5}M`,
         "step": content.steps.map((s, i) => ({
           "@type": "HowToStep",
@@ -106,11 +132,12 @@ export function renderCancelPage(service, content, allServices) {
   <meta property="og:description" content="${esc(content.metaDescription)}" />
   <meta property="og:url" content="${absoluteUrl(`/cancel/${service.slug}`)}" />
   <meta property="og:type" content="article" />
-  <meta property="og:image" content="https://billvampire.com/og-image.svg" />
+  <meta property="og:image" content="${socialImage}" />
   <meta property="og:site_name" content="Bill Vampire" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${esc(content.title)}" />
   <meta name="twitter:description" content="${esc(content.metaDescription)}" />
+  <meta name="twitter:image" content="${socialImage}" />
   <link rel="icon" href="/icons/icon.png" type="image/png" />
   <link rel="stylesheet" href="/cancel/cancel-guides.css" />
   <script type="application/ld+json">
@@ -129,8 +156,8 @@ ${schema}
     </nav>
 
     <div class="cta-top">
-      <p>Tired of canceling one by one? Upload your bill and let Bill Vampire find ALL hidden charges.</p>
-      <a href="${scanUrl}" onclick="trackCancelGuide('cancel_top_scan_clicked')">Build my ${esc(service.name)} preview free &rarr;</a>
+      <p>Already charged? Stop the renewal first, then use the receipt to check the refund window and support path.</p>
+      <a href="${scanUrl}" onclick="trackCancelGuide('cancel_top_scan_clicked')">Check this ${esc(service.name)} charge &rarr;</a>
     </div>
 
     <h1>${esc(content.title)}</h1>
@@ -138,12 +165,14 @@ ${schema}
       <span>&#9200; ${esc(content.timeEstimate)}</span>
       ${diffBadge}
       <span>Last Updated: ${esc(content.lastVerified)}</span>
-      ${service.price !== 'varies' ? `<span>${esc(service.price)}</span>` : ''}
+      ${priceHtml}
       <a class="author-badge" href="/about/" style="background:rgba(16,185,129,0.1); color:#10b981; padding:3px 10px; border-radius:12px; font-weight:600; font-size:10px; border:1px solid rgba(16,185,129,0.2); text-decoration:none;">Reviewed by Bill Vampire Editorial Team</a>
     </div>
 
     ${content.intro ? `<p style="margin-bottom:24px">${esc(content.intro)}</p>` : ''}
-    <p style="margin:-12px 0 24px; font-size:12px; color:#64748B;">Official account or cancellation path: <a href="${esc(service.cancelUrl)}" target="_blank" rel="noopener noreferrer" style="color:#10b981;">${esc(service.name)}</a></p>
+    <p style="margin:-12px 0 24px; font-size:12px; color:#64748B;">Official account or cancellation path <a href="${esc(service.cancelUrl)}" target="_blank" rel="noopener noreferrer" style="color:#10b981;">${esc(service.name)}</a></p>
+
+    ${heroHtml}
 
     <div class="steps">
     ${stepsHtml}
@@ -151,12 +180,14 @@ ${schema}
 
     ${warningsHtml}
     ${refundHtml}
+    ${policyImagesHtml}
     ${faqHtml}
+    ${sourcesHtml}
     ${relatedHtml}
 
     <div class="cta-bottom">
-      <h3>Still stuck? Build your ${esc(service.name)} case preview</h3>
-      <p>Free: refund window, cancel path, support angle, next moves, download, and optional account save. Upgrade only if you want the exact scripts and dispute checklist.</p>
+      <h3>Already charged for ${esc(service.name)}?</h3>
+      <p>Enter the amount and what happened. The free preview organizes the known cancel path, likely refund window, and the evidence to keep before you contact support.</p>
       <form class="kit-form" onsubmit="return startBillVampireKit(event)">
         <label>
           <span>How much are they charging?</span>
@@ -170,9 +201,9 @@ ${schema}
             <option value="trial_ending">Trial ending soon</option>
           </select>
         </label>
-        <button class="btn" type="submit">Build my ${esc(service.name)} preview &rarr;</button>
+        <button class="btn" type="submit">Check my ${esc(service.name)} charge &rarr;</button>
       </form>
-      <p class="fine">Or <a href="/">scan your entire bill free</a> to find every subscription draining your account.</p>
+      <p class="fine">Or <a href="/">review a bill</a> if you are unsure which charge to handle first.</p>
     </div>
 
     <script>
@@ -205,8 +236,8 @@ ${schema}
     </script>
 
     <div class="legal-disclaimer" style="margin: 40px 0 20px; padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; font-size: 11px; color: #64748B; line-height: 1.6;">
-      <p style="margin: 0 0 8px 0; font-weight: 600; color: #94A3B8;">⚖️ Legal & Financial Disclaimer</p>
-      <p style="margin: 0;">Bill Vampire is an independent consumer advocacy service and does not constitute a bank, financial institution, or legal counsel. The information, cancel scripts, and refund guides provided are for educational and consumer communication assistance purposes only. While we make every effort to verify cancel paths and merchant refund policies, terms change frequently. For complex legal dispute situations, cardholder disputes, or fraudulent credit card charges, we highly recommend consulting with your card issuing bank directly or contacting a certified legal professional.</p>
+      <p style="margin: 0 0 8px 0; font-weight: 600; color:#94A3B8;">Independent guidance</p>
+      <p style="margin: 0;">Bill Vampire is not a bank or law firm. Cancel paths and merchant policies can change. Contact the merchant first for an ordinary billing problem. Contact your card issuer promptly if you do not recognize a charge or believe it is fraudulent.</p>
     </div>
 
     <footer class="footer">
@@ -218,6 +249,26 @@ ${schema}
   </div>
 </body>
 </html>`;
+}
+
+function renderEditorialImage(image, className, eager = false) {
+  const loading = eager
+    ? 'loading="eager" fetchpriority="high"'
+    : 'loading="lazy"';
+  const creditHtml = image.credit && image.license
+    ? ` Photo by <a href="${esc(image.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(image.credit)}</a>, <a href="${esc(image.licenseUrl)}" target="_blank" rel="noopener noreferrer">${esc(image.license)}</a>.`
+    : '';
+  const attributionHtml = image.attribution
+    ? ` ${esc(image.attribution)}`
+    : '';
+  const sourceHtml = image.sourceUrl && !image.credit
+    ? ` Source: <a href="${esc(image.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(image.sourceLabel || 'official support page')}</a>.`
+    : '';
+
+  return `<figure class="${esc(className)}">
+      <img src="${esc(image.src)}" alt="${esc(image.alt)}" width="${esc(image.width || 1280)}" height="${esc(image.height || 853)}" ${loading} decoding="async" />
+      <figcaption>${esc(image.caption)}${creditHtml}${attributionHtml}${sourceHtml}</figcaption>
+    </figure>`;
 }
 
 function esc(str) {
