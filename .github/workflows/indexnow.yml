@@ -1,0 +1,27 @@
+name: Notify IndexNow after production updates
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/**'
+      - 'public/**'
+      - 'scripts/seo/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  notify-indexnow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Wait for the Pages deployment and submit changed URLs
+        env:
+          INDEXNOW_KEY_CHECK_ATTEMPTS: '30'
+        run: node scripts/seo/submit-indexnow.mjs

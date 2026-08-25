@@ -12,18 +12,29 @@ const REFUND_STATS_CONTENT_PATH = join(ROOT, 'content/refund/intelligence.seed.j
 const SURVIVAL_CONTENT_PATH = join(ROOT, 'content/survival/guides.json');
 const SITEMAP_PATH = join(ROOT, 'public/sitemap.xml');
 
-const SEO_STRUCTURE_UPDATE = '2026-06-28';
+const BASELINE_LASTMOD = '2026-06-28';
+const CANCEL_TEMPLATE_UPDATE = '2026-08-25';
+const TOOL_CONTENT_UPDATE = '2026-08-25';
 const STATIC_URLS = [
-  '/', '/about/', '/tools/', '/tools/subscription-cost-calculator',
-  '/tools/cancel-subscription-guide', '/tools/free-trial-refund-helper',
-  '/tools/cancel-subscription-script-generator', '/tools/rocket-money-alternative-no-bank-login',
-  '/refund/', '/terms', '/privacy', '/refund-policy', '/cases/',
-  '/cases/how-i-got-119-back-from-forgotten-canva-pro-trial',
-  '/cases/how-to-negotiate-adobe-early-termination-fee-refund',
-  '/cases/getting-refunded-for-99-dollar-microsoft-365-accidental-renewal',
+  { path: '/' },
+  { path: '/about/' },
+  { path: '/tools/', lastmod: TOOL_CONTENT_UPDATE },
+  { path: '/tools/subscription-cost-calculator', lastmod: TOOL_CONTENT_UPDATE },
+  { path: '/tools/cancel-subscription-guide', lastmod: TOOL_CONTENT_UPDATE },
+  { path: '/tools/free-trial-refund-helper', lastmod: TOOL_CONTENT_UPDATE },
+  { path: '/tools/cancel-subscription-script-generator', lastmod: TOOL_CONTENT_UPDATE },
+  { path: '/tools/rocket-money-alternative-no-bank-login', lastmod: TOOL_CONTENT_UPDATE },
+  { path: '/refund/' },
+  { path: '/terms' },
+  { path: '/privacy' },
+  { path: '/refund-policy' },
+  { path: '/cases/' },
+  { path: '/cases/how-i-got-119-back-from-forgotten-canva-pro-trial' },
+  { path: '/cases/how-to-negotiate-adobe-early-termination-fee-refund' },
+  { path: '/cases/getting-refunded-for-99-dollar-microsoft-365-accidental-renewal' },
 ];
 
-function sitemapEntry(path, lastmod = SEO_STRUCTURE_UPDATE) {
+function sitemapEntry(path, lastmod = BASELINE_LASTMOD) {
   return `  <url>
     <loc>${absoluteUrl(path)}</loc>
     <lastmod>${lastmod}</lastmod>
@@ -31,7 +42,7 @@ function sitemapEntry(path, lastmod = SEO_STRUCTURE_UPDATE) {
 }
 
 function latestDate(...dates) {
-  return dates.filter(Boolean).sort().at(-1) || SEO_STRUCTURE_UPDATE;
+  return dates.filter(Boolean).sort().at(-1) || BASELINE_LASTMOD;
 }
 
 function refundStatsSlugFor(entry) {
@@ -44,20 +55,20 @@ function refundStatsSlugFor(entry) {
 }
 
 export function generateSitemap() {
-  let urls = STATIC_URLS.map((path) => sitemapEntry(path));
+  let urls = STATIC_URLS.map((entry) => sitemapEntry(entry.path, entry.lastmod));
 
   // Add cancel hub
-  urls.push(sitemapEntry('/cancel/'));
+  urls.push(sitemapEntry('/cancel/', CANCEL_TEMPLATE_UPDATE));
 
   // Add individual cancel guide pages
   for (const service of SERVICES) {
     const contentPath = join(CONTENT_DIR, `${service.id}.json`);
     if (!existsSync(contentPath)) continue;
 
-    let lastmod = SEO_STRUCTURE_UPDATE;
+    let lastmod = CANCEL_TEMPLATE_UPDATE;
     try {
       const content = JSON.parse(readFileSync(contentPath, 'utf-8'));
-      lastmod = latestDate(content.lastVerified, SEO_STRUCTURE_UPDATE);
+      lastmod = latestDate(content.lastVerified, CANCEL_TEMPLATE_UPDATE);
     } catch {}
 
     urls.push(sitemapEntry(`/cancel/${service.slug}`, lastmod));
@@ -66,7 +77,7 @@ export function generateSitemap() {
   if (existsSync(REFUND_CONTENT_PATH)) {
     const refundGuides = JSON.parse(readFileSync(REFUND_CONTENT_PATH, 'utf-8'));
     for (const guide of refundGuides) {
-      urls.push(sitemapEntry(`/refund/${guide.slug}`, guide.lastVerified || SEO_STRUCTURE_UPDATE));
+      urls.push(sitemapEntry(`/refund/${guide.slug}`, guide.lastVerified || BASELINE_LASTMOD));
     }
   }
 

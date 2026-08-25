@@ -11,6 +11,7 @@
     "seo:build": "node scripts/seo/generate-pages.mjs",
     "seo:audit": "node --test tests/seo/*.test.mjs",
     "seo:audit:live": "node scripts/seo/audit-live.mjs",
+    "seo:indexnow": "node scripts/seo/submit-indexnow.mjs",
     "growth:queue": "node scripts/growth/generate-growth-queue.mjs",
     "growth:reddit": "node scripts/growth/generate-growth-queue.mjs --platform=reddit --status=needs_review",
     "growth:open": "node scripts/growth/generate-growth-queue.mjs --status=needs_review",
