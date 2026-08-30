@@ -10,13 +10,16 @@ export default defineConfig({
     react(),
     tailwindcss(),
     VitePWA({
-      registerType: 'prompt',
+      registerType: 'autoUpdate',
       includeAssets: ['icons/icon.png', 'icons/icon-192x192.png', 'icons/icon-512x512.png'],
       manifest: false,
       workbox: {
         cleanupOutdatedCaches: true,
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,woff2}'],
-        navigateFallbackDenylist: [/^\/api\//],
+        // Keep the interactive app lightweight without pinning SEO pages in
+        // visitors' browsers. Guides must always come from the network so
+        // corrections, offer copy, and sourced images publish immediately.
+        globPatterns: ['assets/**/*.{js,css,woff2}'],
+        navigateFallback: null,
       },
     }),
   ],
