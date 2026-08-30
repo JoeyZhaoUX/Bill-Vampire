@@ -13,10 +13,12 @@ const SURVIVAL_CONTENT_PATH = join(ROOT, 'content/survival/guides.json');
 const SITEMAP_PATH = join(ROOT, 'public/sitemap.xml');
 
 const BASELINE_LASTMOD = '2026-06-28';
-const CANCEL_TEMPLATE_UPDATE = '2026-08-25';
+const SITE_CONTENT_UPDATE = '2026-08-30';
+const CANCEL_TEMPLATE_UPDATE = SITE_CONTENT_UPDATE;
+const SURVIVAL_TEMPLATE_UPDATE = SITE_CONTENT_UPDATE;
 const TOOL_CONTENT_UPDATE = '2026-08-25';
 const STATIC_URLS = [
-  { path: '/' },
+  { path: '/', lastmod: SITE_CONTENT_UPDATE },
   { path: '/about/' },
   { path: '/tools/', lastmod: TOOL_CONTENT_UPDATE },
   { path: '/tools/subscription-cost-calculator', lastmod: TOOL_CONTENT_UPDATE },
@@ -91,14 +93,14 @@ export function generateSitemap() {
 
   if (existsSync(SURVIVAL_CONTENT_PATH)) {
     const survivalThemes = JSON.parse(readFileSync(SURVIVAL_CONTENT_PATH, 'utf-8')).themes || [];
-    urls.push(sitemapEntry('/survival/'));
+    urls.push(sitemapEntry('/survival/', SURVIVAL_TEMPLATE_UPDATE));
 
     for (const theme of survivalThemes) {
-      urls.push(sitemapEntry(`/survival/${theme.slug}/`));
+      urls.push(sitemapEntry(`/survival/${theme.slug}/`, SURVIVAL_TEMPLATE_UPDATE));
 
       for (const item of theme.articles || []) {
         const article = Array.isArray(item) ? { slug: item[0] } : item
-        urls.push(sitemapEntry(`/survival/${theme.slug}/${article.slug}`));
+        urls.push(sitemapEntry(`/survival/${theme.slug}/${article.slug}`, SURVIVAL_TEMPLATE_UPDATE));
       }
     }
   }

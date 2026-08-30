@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -55,6 +55,59 @@ async function waitForPublishedKey() {
   throw new Error(`IndexNow key was not available at ${KEY_LOCATION}.`);
 }
 
+export function localHtmlPathFor(url) {
+  const pathname = new URL(url).pathname;
+  if (pathname === '/') return null;
+
+  const relativePath = pathname.replace(/^\/+|\/+$/g, '');
+  const candidates = pathname.endsWith('/')
+    ? [join(ROOT, 'public', relativePath, 'index.html')]
+    : [
+        join(ROOT, 'public', `${relativePath}.html`),
+        join(ROOT, 'public', relativePath, 'index.html'),
+      ];
+  return candidates.find((candidate) => existsSync(candidate)) || null;
+}
+
+export function publicationChecks(urls, limit = 5) {
+  return urls
+    .map((url) => {
+      const localPath = localHtmlPathFor(url);
+      if (!localPath) return null;
+      return { url, localPath, expected: readFileSync(localPath, 'utf8').trim() };
+    })
+    .filter(Boolean)
+    .slice(0, limit);
+}
+
+async function waitForPublishedContent(urls) {
+  const checks = publicationChecks(urls);
+  if (checks.length === 0) return;
+
+  const attempts = Number(process.env.INDEXNOW_KEY_CHECK_ATTEMPTS || 30);
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    const results = await Promise.all(checks.map(async (check) => {
+      try {
+        const response = await fetch(check.url, {
+          cache: 'no-store',
+          headers: { 'cache-control': 'no-cache' },
+        });
+        return response.ok && (await response.text()).trim() === check.expected;
+      } catch {
+        return false;
+      }
+    }));
+
+    if (results.every(Boolean)) {
+      console.log(`Published content verified on ${checks.length} changed page${checks.length === 1 ? '' : 's'}.`);
+      return;
+    }
+    if (attempt < attempts) await new Promise((resolve) => setTimeout(resolve, 10_000));
+  }
+
+  throw new Error(`Changed content was not live before the IndexNow timeout: ${checks.map((check) => check.url).join(', ')}`);
+}
+
 export async function submitIndexNow() {
   const localKey = readFileSync(KEY_PATH, 'utf8').trim();
   if (localKey !== INDEXNOW_KEY) throw new Error('The hosted IndexNow key file does not match the configured key.');
@@ -73,6 +126,7 @@ export async function submitIndexNow() {
   }
 
   await waitForPublishedKey();
+  await waitForPublishedContent(urls);
   const response = await fetch(API_URL, {
     method: 'POST',
     headers: { 'content-type': 'application/json; charset=utf-8' },
