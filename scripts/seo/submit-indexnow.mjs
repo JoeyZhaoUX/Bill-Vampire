@@ -80,6 +80,15 @@ export function publicationChecks(urls, limit = 5) {
     .slice(0, limit);
 }
 
+export function normalizePublishedHtml(html) {
+  return html
+    .trim()
+    .replace(
+      /<script>\(function\(\)\{function c\(\)\{[\s\S]*?\/cdn-cgi\/challenge-platform\/scripts\/jsd\/main\.js[\s\S]*?<\/script>(?=<\/body>)/,
+      '',
+    );
+}
+
 async function waitForPublishedContent(urls) {
   const checks = publicationChecks(urls);
   if (checks.length === 0) return;
@@ -92,7 +101,8 @@ async function waitForPublishedContent(urls) {
           cache: 'no-store',
           headers: { 'cache-control': 'no-cache' },
         });
-        return response.ok && (await response.text()).trim() === check.expected;
+        const published = normalizePublishedHtml(await response.text());
+        return response.ok && published === normalizePublishedHtml(check.expected);
       } catch {
         return false;
       }
