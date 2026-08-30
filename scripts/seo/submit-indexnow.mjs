@@ -8,6 +8,7 @@ const INDEXNOW_KEY = 'd4e479da8255e328e9c528d50fb5a975';
 const KEY_PATH = join(ROOT, `public/${INDEXNOW_KEY}.txt`);
 const SITEMAP_PATH = join(ROOT, 'public/sitemap.xml');
 const KEY_LOCATION = `https://${SITE_HOST}/${INDEXNOW_KEY}.txt`;
+const DEPLOYMENT_ORIGIN = process.env.INDEXNOW_DEPLOYMENT_ORIGIN || 'https://bill-vampire.pages.dev';
 const API_URL = 'https://api.indexnow.org/indexnow';
 
 function argumentValue(name) {
@@ -89,6 +90,11 @@ export function normalizePublishedHtml(html) {
     );
 }
 
+export function deploymentUrlFor(url, origin = DEPLOYMENT_ORIGIN) {
+  const canonical = new URL(url);
+  return new URL(`${canonical.pathname}${canonical.search}`, `${origin.replace(/\/+$/, '')}/`).href;
+}
+
 async function waitForPublishedContent(urls) {
   const checks = publicationChecks(urls);
   if (checks.length === 0) return;
@@ -97,7 +103,7 @@ async function waitForPublishedContent(urls) {
   for (let attempt = 1; attempt <= attempts; attempt++) {
     const results = await Promise.all(checks.map(async (check) => {
       try {
-        const response = await fetch(check.url, {
+        const response = await fetch(deploymentUrlFor(check.url), {
           cache: 'no-store',
           headers: { 'cache-control': 'no-cache' },
         });
@@ -109,7 +115,7 @@ async function waitForPublishedContent(urls) {
     }));
 
     if (results.every(Boolean)) {
-      console.log(`Published content verified on ${checks.length} changed page${checks.length === 1 ? '' : 's'}.`);
+      console.log(`Published content verified on ${checks.length} changed page${checks.length === 1 ? '' : 's'} at ${DEPLOYMENT_ORIGIN}.`);
       return;
     }
     if (attempt < attempts) await new Promise((resolve) => setTimeout(resolve, 10_000));
