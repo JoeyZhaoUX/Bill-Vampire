@@ -110,6 +110,15 @@ h3 { color: #E7D9CF; font-size: 1rem; margin: 0 0 6px; }
 
 /* Hub page specifics */
 .hub-intro { margin-bottom: 28px; font-size: 0.92rem; }
+.priority-guides { margin: 0 0 28px; padding: 22px; border: 1px solid rgba(201,164,106,0.26); border-radius: 18px; background: linear-gradient(145deg, rgba(201,164,106,0.1), rgba(20,20,32,0.9)); }
+.priority-guides h2 { margin: 2px 0 7px; font-size: 1.22rem; }
+.priority-guides > p:not(.priority-kicker) { color: #94A3B8; font-size: 0.86rem; }
+.priority-kicker { color: #C9A46A; font-size: 0.7rem; font-weight: 900; letter-spacing: 0.09em; text-transform: uppercase; }
+.priority-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 16px; }
+.priority-grid a { display: grid; gap: 2px; padding: 12px 14px; border: 1px solid rgba(148,163,184,0.16); border-radius: 11px; background: rgba(13,11,14,0.5); text-decoration: none; }
+.priority-grid a:hover { border-color: #C9A46A; }
+.priority-grid span { color: #F7EFE6; font-size: 0.88rem; font-weight: 750; }
+.priority-grid strong { color: #C9A46A; font-size: 0.72rem; }
 .search-box { width: 100%; padding: 14px 18px; background: #141420; border: 1px solid #334155; border-radius: 12px; color: #F1F5F9; font-size: 1rem; outline: none; margin-bottom: 24px; }
 .search-box:focus { border-color: #FB7185; }
 .category-section { margin-bottom: 32px; }
@@ -134,4 +143,5 @@ h3 { color: #E7D9CF; font-size: 1rem; margin: 0 0 6px; }
   .cta-top { flex-direction: column; text-align: center; }
   .kit-form { grid-template-columns: 1fr; }
   .related-grid { grid-template-columns: 1fr; }
+  .priority-grid { grid-template-columns: 1fr; }
 }

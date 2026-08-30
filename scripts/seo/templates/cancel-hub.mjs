@@ -2,6 +2,17 @@ import { CATEGORIES } from '../services.mjs';
 import { absoluteUrl } from '../url-policy.mjs';
 
 export function renderCancelHub(services) {
+  const priorityIds = [
+    'playstation-plus',
+    'youtube-premium',
+    'the-athletic',
+    'nintendo-switch-online',
+    'nordvpn',
+    'github-copilot',
+  ];
+  const priorityServices = priorityIds
+    .map(id => services.find(service => service.id === id))
+    .filter(Boolean);
   const grouped = {};
   for (const s of services) {
     if (!grouped[s.category]) grouped[s.category] = [];
@@ -92,7 +103,19 @@ ${schema}
     </div>
 
     <h1>How to Cancel Any Subscription</h1>
-    <p class="hub-intro">No-BS, step-by-step cancellation guides for ${totalServices}+ popular services. Each guide includes the direct cancel link, exact steps, refund info, and what to watch out for.</p>
+    <p class="hub-intro">Choose the service that actually billed you. Each guide separates the cancellation path from the refund question, shows the current official route, and tells you what proof to keep.</p>
+
+    <section class="priority-guides" aria-labelledby="priority-guides-title">
+      <p class="priority-kicker">Recently checked · common search questions</p>
+      <h2 id="priority-guides-title">Start with these cancellation guides</h2>
+      <p>These pages match the questions people are currently finding Bill Vampire for, and each one includes current official-source evidence.</p>
+      <div class="priority-grid">
+        ${priorityServices.map(service => `<a href="/cancel/${service.slug}">
+          <span>${esc(service.name)}</span>
+          <strong>Open verified guide &rarr;</strong>
+        </a>`).join('\n        ')}
+      </div>
+    </section>
 
     <input type="text" class="search-box" placeholder="Search services (e.g. Netflix, Adobe, ChatGPT)..." id="search" autocomplete="off" />
     <div class="no-results" id="no-results">No matching services found.</div>
@@ -101,7 +124,7 @@ ${schema}
 
     <div class="cta-bottom">
       <h3>Found all the subscriptions draining your wallet?</h3>
-      <p>Upload a billing email or screenshot. Bill Vampire scans it and builds your cancel + refund plan in 60 seconds.</p>
+      <p>Upload a billing email or screenshot. The free preview identifies the service, billing route, useful evidence, and the next cancellation or refund step.</p>
       <a class="btn" href="/">Scan my bill free &rarr;</a>
       <p class="fine">Or try our <a href="/tools/cancel-subscription-script-generator">cancel script generator</a> for the exact words to say.</p>
     </div>

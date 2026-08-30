@@ -311,7 +311,7 @@ export const SERVICES = [
     id: 'headspace',
     name: 'Headspace',
     slug: 'how-to-cancel-headspace',
-    cancelUrl: 'https://www.headspace.com/settings/subscription',
+    cancelUrl: 'https://www.headspace.com/subscription/manage',
     category: 'lifestyle',
     price: '$12.99/mo',
     difficulty: 'medium',

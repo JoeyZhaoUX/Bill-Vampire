@@ -252,32 +252,83 @@
     ]
   },
   "ai-layoffs/recurring-payments-after-income-drop": {
-    "whatsHappening": "An income drop doesn't have to come from a layoff. Reduced hours, a lost client, a partner's job change, the math still shifts the same way. Recurring payments are the first thing to revisit because they were set up assuming the old income, and they'll keep charging the new, smaller one until you intervene.",
-    "firstMove": "Add up your recurring payments as a single monthly number, then compare it to how much your income actually dropped. Ten minutes of that comparison usually shows that trimming subscriptions covers a real slice of the gap before you touch anything bigger.",
+    "whatsHappening": "A pay cut changes immediately; subscriptions do not. The streaming plan, software renewal, cloud storage, and annual membership keep the dates and prices you agreed to when income was steadier. That makes recurring payments a useful first place to look: each decision is contained, reversible, and easier to verify than a vague promise to spend less.",
+    "firstMove": "Open the last two card or bank statements and search your email for receipt, renewal, and subscription. Make a four-column list: service, amount, next renewal date, and who bills it. Convert annual plans to a monthly equivalent, then total the list. You do not need to connect a bank account or finish a perfect household budget before you can stop the next avoidable charge.",
     "cutFirst": [
-      "Recurring charges sized for your old income (premium tiers, larger storage plans)",
-      "Subscriptions you share or could share to split the cost instead of cancelling",
-      "Auto-pay donations or memberships you can pause without guilt for now",
-      "Overlapping services where one covers the other",
-      "Keep: tools tied to the income you still have or are rebuilding",
-      "Keep: essential utilities and any health-related coverage"
+      "Cancel services you did not use during either statement period.",
+      "Remove duplicate tools that solve the same job, such as two music apps or two cloud-storage plans.",
+      "Downgrade premium tiers when the base plan keeps the feature you actually use.",
+      "Pause seasonal memberships and voluntary recurring payments when the pause is confirmed in writing.",
+      "Keep tools that directly protect current income, active job applications, health, housing, or essential communication.",
+      "Check annual renewals separately: stopping renewal prevents the next charge but may not refund the period already paid for."
     ],
-    "exactWords": "Hi, my income recently dropped and I need to adjust my [service name] plan under [email]. Could you move me to a cheaper tier, a pause, or a hardship rate? If none of those exist, please cancel and confirm there are no further charges.",
-    "keepWatch": "An income dip is often temporary, so favor pausing and downgrading over hard cancellation where it's offered. Just don't keep paying full premium prices on the assumption income bounces back next month, hope is not a budget.",
+    "exactWords": "Hi, my income has changed and I need to reduce recurring costs. Please move the account under [email] to the lowest available paid tier or pause it before the next renewal on [date]. If neither option is available, cancel the subscription and confirm the date after which no further charges will be made.",
+    "keepWatch": "Save the cancellation screen or email and check the next statement. The FTC recommends keeping the cancellation request and watching for later charges. If a merchant continues charging after a confirmed cancellation, contact the merchant first and keep the records you may need for a card dispute.",
     "faqs": [
       {
-        "q": "My income dropped but I wasn't fired, do the same cancellation rules apply?",
-        "a": "Yes. Support teams don't need your life story; \"I need to reduce costs\" is reason enough to cancel, pause, or downgrade. The mechanics are identical whether the income drop came from a layoff or fewer hours."
+        "q": "Do I need to explain why my income dropped?",
+        "a": "No. A short request to cancel, pause, or downgrade is enough. Include the account email and the renewal date; only add personal details if you are asking about a documented hardship program."
       },
       {
         "q": "Should I cancel or just downgrade when my income falls?",
-        "a": "Downgrade or pause when the drop might be temporary and you'd miss the service; cancel when you wouldn't. Pausing keeps your data and habits intact while still stopping the full charge."
+        "a": "Downgrade when the lower tier still does a job you use. Pause when the provider clearly states the pause length and restart date. Cancel when you would not choose the service again at today's income."
       },
       {
         "q": "How do I find every recurring payment without linking my accounts?",
-        "a": "Your receipts and statements already list them. A free case preview can sort them into cancel, pause, or refund without a bank login, so you keep control of your financial info while you decide."
+        "a": "Review two or three statements, then search your inbox for receipt, renewal, trial, membership, and subscription. Also check Apple, Google Play, PayPal, and any employer-benefit account that may bill separately."
       }
-    ]
+    ],
+    "images": [
+      {
+        "src": "/images/editorial/subscription-bills-yasmine-shal.jpg",
+        "alt": "Paper bills and receipts arranged on a desk",
+        "width": 1280,
+        "height": 1280,
+        "caption": "Start with the evidence you already have: recent statements, renewal emails, and receipts.",
+        "credit": "Yasmine.shal",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bills_3.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      },
+      {
+        "src": "/images/editorial/recurring-payments-credit-card-bill-lcb.jpg",
+        "alt": "Credit cards placed over a printed bank statement",
+        "width": 960,
+        "height": 720,
+        "caption": "Use the statement to capture the merchant, amount, and billing date before deciding what to cut.",
+        "credit": "lcb",
+        "sourceUrl": "https://pixabay.com/photos/credit-card-bill-bank-statement-1104961/",
+        "license": "Pixabay Content License",
+        "licenseUrl": "https://pixabay.com/service/license-summary/"
+      },
+      {
+        "src": "/images/editorial/recurring-payments-house-budget-alexander-stein.jpg",
+        "alt": "Calculator, model house, coins, and euro banknotes used for budgeting",
+        "width": 960,
+        "height": 640,
+        "caption": "Protect housing and other essentials first; recurring entertainment and overlapping tools belong lower in the queue.",
+        "credit": "AlexanderStein",
+        "sourceUrl": "https://pixabay.com/photos/house-money-euro-calculator-366927/",
+        "license": "Pixabay Content License",
+        "licenseUrl": "https://pixabay.com/service/license-summary/"
+      }
+    ],
+    "sourceNote": "Reviewed August 30, 2026 against current FTC subscription guidance and CFPB guidance on statements, spending, and automatic payments.",
+    "sources": [
+      {
+        "title": "FTC: Getting in and out of free trials, auto-renewals, and subscriptions",
+        "url": "https://consumer.ftc.gov/articles/getting-and-out-free-trials-auto-renewals-and-negative-option-subscriptions"
+      },
+      {
+        "title": "CFPB: How automatic payments from a bank account work",
+        "url": "https://www.consumerfinance.gov/ask-cfpb/how-do-automatic-payments-from-a-bank-account-work-en-2021/"
+      },
+      {
+        "title": "CFPB: Assess your spending",
+        "url": "https://www.consumerfinance.gov/owning-a-home/prepare/assess-your-spending/"
+      }
+    ],
+    "lastVerified": "2026-08-30"
   },
   "consumer-downgrade/consumer-downgrade-subscription-cuts": {
     "whatsHappening": "Households are quietly downgrading instead of fully canceling. People keep the services they actually use but drop to lower tiers, kill the ad-free upcharge, and trim duplicate streaming apps. The pattern shows up as a wave of consumer downgrade subscriptions decisions made in one sitting, usually after a card statement lands bigger than expected.",

@@ -1,62 +1,101 @@
 {
-  "title": "How to Cancel Headspace — Step-by-Step Guide (2026)",
-  "metaDescription": "Cancel Headspace subscription on iPhone, Android, or web. Stop the $12.99/mo charge and keep access to free content.",
-  "intro": "Headspace cancellation depends on where you subscribed — Apple, Google, or directly through Headspace. You keep access to some free content (basics course) after canceling.",
+  "title": "How to Cancel Headspace on Web, iPhone, or Android (2026)",
+  "metaDescription": "Cancel Headspace through the correct billing provider, verify the end date, and read the current direct, Apple, and Google refund rules.",
+  "intro": "Headspace does not have one universal cancel button. The correct route depends on who took the payment: Headspace, Apple, or Google Play. Find the receipt first, because cancelling in the wrong place leaves the real subscription untouched.",
+  "heroImage": {
+    "src": "/images/editorial/subscription-bills-yasmine-shal.jpg",
+    "alt": "Paper bills and receipts arranged on a desk",
+    "width": 1280,
+    "height": 1280,
+    "caption": "The receipt tells you who controls the subscription. Match the billing provider before following a cancel path.",
+    "credit": "Yasmine.shal",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bills_3.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+  },
   "steps": [
     {
-      "title": "Determine where you subscribed",
-      "text": "Check your billing: Apple subscription shows in iOS Settings → Subscriptions. Google shows in Play Store → Subscriptions. If neither, you subscribed on headspace.com directly.",
-      "tip": "Most mobile users subscribed through Apple or Google, even if they don't remember doing so."
+      "title": "Identify the billing provider",
+      "text": "Check the latest receipt or the subscription list on your phone. If Headspace appears in Apple Settings or Google Play, use that store. If neither store lists it, sign in to Headspace in a browser.",
+      "tip": "Do this before opening a support request. The store that collected the payment normally controls cancellation and refund decisions."
     },
     {
-      "title": "Cancel through the correct platform",
-      "text": "For Apple: Settings → Apple ID → Subscriptions → Headspace → Cancel. For Google: Play Store → Payments & subscriptions → Subscriptions → Headspace → Cancel. For web: headspace.com/settings/subscription → Cancel.",
-      "tip": null
+      "title": "For a direct Headspace subscription, use the manage page",
+      "text": "Sign in at headspace.com from a desktop or mobile browser, open headspace.com/subscription/manage, and choose Cancel Membership. If the button is missing, Headspace directs users to help@headspace.com.",
+      "tip": "The current help page says to use a browser, not the mobile app, for a subscription purchased directly from Headspace.",
+      "image": {
+        "src": "/images/editorial/headspace-cancel-web-official-2026-08.jpg",
+        "alt": "Headspace Help Center showing the direct web cancellation route",
+        "width": 1800,
+        "height": 767,
+        "caption": "Headspace's current web route is the subscription manage page, followed by Cancel Membership.",
+        "sourceUrl": "https://help.headspace.com/hc/en-us/articles/115008364988-How-do-I-cancel-my-subscription",
+        "sourceLabel": "Headspace Help Center",
+        "attribution": "Official help-page screenshot captured August 30, 2026."
+      }
     },
     {
-      "title": "Confirm cancellation",
-      "text": "Tap \"Confirm\" or \"Cancel subscription\" on the confirmation dialog. Your Premium access continues until the end of your billing period.",
-      "tip": null
+      "title": "For Apple or Google Play, cancel in the store",
+      "text": "On iPhone or iPad, open Settings, choose your name, Subscriptions, Headspace, and Cancel Subscription. On Android, open Google Play, choose Subscriptions, Headspace, and Cancel subscription.",
+      "tip": "Cancelling a store-billed plan on headspace.com does not stop the store renewal."
     },
     {
-      "title": "Verify cancellation",
-      "text": "Check for a confirmation email or verify in your subscription settings that the renewal is turned off. Your next billing date should show as the end date.",
-      "tip": "After cancellation, Headspace's free tier still offers a limited Basics course and some sleep content."
+      "title": "Verify the end date",
+      "text": "Return to the same subscription screen and confirm that renewal is off or an expiration date is shown. Save a screenshot or confirmation email and check the next statement.",
+      "tip": "If you received Headspace through an organization, the official help page says that access expires according to that agreement and does not need to be cancelled."
     }
   ],
   "warnings": [
-    "The cancellation method depends entirely on where you originally subscribed (Apple, Google, or web).",
-    "Canceling on headspace.com does NOT cancel Apple/Google subscriptions — you'll still be charged.",
-    "Your meditation stats and favorites are preserved if you re-subscribe.",
-    "If you have a corporate/employee wellness benefit, check with HR before paying out of pocket."
+    "A direct Headspace subscription, an Apple subscription, and a Google Play subscription have different cancellation routes.",
+    "Headspace's current help page describes direct subscriptions as non-refundable, while allowing users with special circumstances to ask help@headspace.com for an individual review.",
+    "The same help page describes Apple and Google Play purchases as final and non-refundable, subject to each store's payment policy.",
+    "A Headspace Mental Health Coaching subscription has a separate cancellation process."
   ],
   "faqs": [
     {
-      "q": "Will I lose my meditation progress if I cancel?",
-      "a": "No. Your stats, streaks, favorites, and completed courses are all preserved. You can access them again if you re-subscribe."
+      "q": "Why can I not see Headspace in my iPhone subscriptions?",
+      "a": "The plan may have been purchased directly from Headspace, through Google Play, or under a different Apple ID. Match the account and provider to the receipt before trying another cancel path."
     },
     {
-      "q": "Is there free content on Headspace?",
-      "a": "Yes. The free tier includes the Basics course (introductory meditations), some sleep sounds, and limited content. It's enough to maintain a basic practice."
+      "q": "Can I get a Headspace refund after renewal?",
+      "a": "Headspace describes direct subscriptions as non-refundable but says special circumstances can be reviewed by its support team. Apple and Google purchases follow the store's payment and refund process."
     },
     {
-      "q": "Can I get a refund from Headspace?",
-      "a": "For Apple/Google subscriptions, request refunds through their platforms. For direct web subscriptions, contact Headspace support within a few days of the charge."
+      "q": "What if the Cancel Membership button is missing?",
+      "a": "First verify that the account email matches the receipt. For a direct purchase, Headspace says to email help@headspace.com if the button is not available."
     },
     {
-      "q": "What's a free alternative to Headspace?",
-      "a": "Insight Timer (free with 100k+ meditations), YouTube meditation channels, and the built-in Breathe app on Apple Watch are excellent free alternatives."
+      "q": "Do employer-provided Headspace plans need cancellation?",
+      "a": "Headspace says a free subscription provided by an organization expires according to the agreement. Check the benefit terms before buying a separate plan."
     }
   ],
   "refund": {
-    "eligible": true,
-    "details": "Refunds depend on your billing platform. Apple: reportaproblem.apple.com. Google: Play Store refund request. Direct: contact Headspace support within a few days of charge."
+    "eligible": false,
+    "details": "Headspace's current help page says direct subscriptions are non-refundable, though special circumstances may be reviewed individually at help@headspace.com. Apple and Google purchases are subject to the relevant store policy."
   },
-  "retentionTactics": [
-    "Headspace may offer a discounted annual rate.",
-    "They show your meditation streak and total minutes practiced.",
-    "They may offer a free month to continue."
+  "policyImages": [
+    {
+      "src": "/images/editorial/headspace-cancel-stores-official-2026-08.jpg",
+      "alt": "Headspace Help Center showing Apple and Google Play cancellation and refund notes",
+      "width": 1800,
+      "height": 767,
+      "caption": "Headspace publishes separate Apple and Google Play steps and directs refund questions to the billing provider's policy.",
+      "sourceUrl": "https://help.headspace.com/hc/en-us/articles/115008364988-How-do-I-cancel-my-subscription",
+      "sourceLabel": "Headspace Help Center",
+      "attribution": "Official help-page screenshot captured August 30, 2026."
+    }
   ],
-  "timeEstimate": "2-3 minutes",
-  "lastVerified": "2026-05-22"
+  "timeEstimate": "3 minutes",
+  "sourceNote": "We checked Headspace's current cancellation and refund notes on August 30, 2026. Store wording and consumer rights can vary by account region.",
+  "sources": [
+    {
+      "title": "Headspace: How do I cancel my subscription?",
+      "url": "https://help.headspace.com/hc/en-us/articles/115008364988-How-do-I-cancel-my-subscription"
+    },
+    {
+      "title": "Headspace subscriptions and billing help",
+      "url": "https://help.headspace.com/hc/en-us/categories/202463337-Subscriptions-Billing"
+    }
+  ],
+  "lastVerified": "2026-08-30"
 }

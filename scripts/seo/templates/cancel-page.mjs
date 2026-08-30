@@ -203,7 +203,7 @@ ${schema}
         </label>
         <button class="btn" type="submit">Check my ${esc(service.name)} charge &rarr;</button>
       </form>
-      <p class="fine">Or <a href="/">review a bill</a> if you are unsure which charge to handle first.</p>
+      <p class="fine">The preview is free. The optional personalized Emergency Kit is a one-time $4.99 purchase. Or <a href="/">review a bill</a> if you are unsure which charge to handle first.</p>
     </div>
 
     <script>

@@ -58,9 +58,32 @@ function renderChecklist(items) {
   return items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')
 }
 
+function renderEditorialImage(image, eager = false) {
+  if (!image?.src) return '<!-- No editorial image for this section -->'
+  const loading = eager ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'
+  const photoCredit = image.credit && image.license
+    ? ` Photo by <a href="${escapeHtml(image.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(image.credit)}</a>, <a href="${escapeHtml(image.licenseUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(image.license)}</a>.`
+    : ''
+  return `<figure class="survival-image">
+      <img src="${escapeHtml(image.src)}" alt="${escapeHtml(image.alt)}" width="${escapeHtml(image.width || 1280)}" height="${escapeHtml(image.height || 853)}" ${loading} decoding="async" />
+      <figcaption>${escapeHtml(image.caption)}${photoCredit}</figcaption>
+    </figure>`
+}
+
+function renderSourceNotes(article) {
+  const sources = article.body?.sources || []
+  if (!sources.length) return '<!-- No source notes for this guide -->'
+  return `<section class="source-notes">
+      <h2>Sources checked for this guide</h2>
+      <p>${escapeHtml(article.body.sourceNote || 'We checked current consumer guidance before updating this page.')}</p>
+      <ul>${sources.map((source) => `<li><a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.title)}</a></li>`).join('')}</ul>
+    </section>`
+}
+
 function renderArticleBody(article) {
   const body = article.body
   if (!body) return ''
+  const images = body.images || []
   const cutItems = (body.cutFirst || []).map((item) => `<li>${escapeHtml(item)}</li>`).join('')
   const faqHtml = (body.faqs || [])
     .map(
@@ -73,10 +96,13 @@ function renderArticleBody(article) {
   return `<section class="article-body">
       <h2>What's happening</h2>
       <p>${escapeHtml(body.whatsHappening)}</p>
+      ${renderEditorialImage(images[0], true)}
       <h2>Your first move in the next 10 minutes</h2>
       <p>${escapeHtml(body.firstMove)}</p>
+      ${renderEditorialImage(images[1])}
       <h2>What to cut or check first</h2>
       <ul class="cut-list">${cutItems}</ul>
+      ${renderEditorialImage(images[2])}
       <h2>The exact words to use</h2>
       <p class="exact-words">${escapeHtml(body.exactWords)}</p>
       <p class="exact-note">Adapt the bracketed parts. <a href="/refund/">Refund templates</a> and <a href="/cancel/">cancel guides</a> cover specific services.</p>
@@ -178,6 +204,14 @@ function renderShell({ title, description, canonical, structuredData, body }) {
     .article-body .exact-note { font-size: 13px; color: #a99a91; }
     .article-body .exact-note a { color: #c9a46a; }
     .article-body .faq { margin-top: 6px; }
+    .survival-image { margin: 22px 0 28px; overflow: hidden; border: 1px solid rgba(201,164,106,.2); border-radius: 18px; background: #171217; }
+    .survival-image img { display: block; width: 100%; max-height: 540px; object-fit: cover; object-position: center; }
+    .survival-image figcaption { padding: 11px 14px; color: #7f716a; font-size: 12px; line-height: 1.55; }
+    .survival-image figcaption a, .source-notes a { color: #c9a46a; }
+    .source-notes { max-width: 820px; margin: 32px 0; padding: 20px; border: 1px solid rgba(247,239,230,.12); border-radius: 16px; background: rgba(23,18,23,.84); }
+    .source-notes h2 { color: #f7efe6; font-size: 20px; margin-bottom: 8px; }
+    .source-notes p, .source-notes li { color: #a99a91; font-size: 14px; line-height: 1.6; }
+    .source-notes ul { padding-left: 20px; margin-top: 8px; }
     .faq-item { border-top: 1px solid rgba(247,239,230,.12); padding: 14px 0; }
     .faq-item:first-of-type { border-top: 0; }
     .faq-item summary { color: #f7efe6; cursor: pointer; font-weight: 800; font-size: 16px; }
@@ -303,6 +337,8 @@ export function renderSurvivalArticle(theme, article) {
       mainEntityOfPage: canonical,
       author: { '@type': 'Organization', name: 'Bill Vampire' },
       publisher: { '@type': 'Organization', name: 'Bill Vampire' },
+      ...(article.body?.lastVerified ? { dateModified: article.body.lastVerified } : {}),
+      ...(article.body?.images?.[0]?.src ? { image: absoluteUrl(article.body.images[0].src) } : {}),
     },
     {
       '@context': 'https://schema.org',
@@ -359,11 +395,13 @@ export function renderSurvivalArticle(theme, article) {
           <strong>${escapeHtml(article.keyword)}</strong>
           <p>Use this page as a starting point, then generate a preview based on your exact charge, service, date, and urgency.</p>
           <a class="cta" href="${scanUrl}">Build my survival preview</a>
+          <p class="disclaimer">The preview is free. The optional personalized Emergency Kit is $4.99 once, with no subscription.</p>
           <p class="disclaimer">Bill Vampire provides consumer communication templates and organization help. It is not legal, financial, or banking advice.</p>
         </aside>
       </section>
       ${renderArticleBody(article)}
-      <p class="disclaimer">Reviewed by the <a href="/about/">Bill Vampire Editorial Team</a>. General guidance only; verify service-specific terms before acting.</p>
+      ${renderSourceNotes(article)}
+      <p class="disclaimer">Reviewed by the <a href="/about/">Bill Vampire Editorial Team</a>${article.body?.lastVerified ? ` on ${escapeHtml(article.body.lastVerified)}` : ''}. General guidance only; verify service-specific terms before acting.</p>
       <section class="mini-form">
         <h2>Case-preview starter</h2>
         <p>Edit this with the service names, dates, and amounts you can remember.</p>

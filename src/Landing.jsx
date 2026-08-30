@@ -999,18 +999,18 @@ export default function Landing({ onEnterApp, onOpenApp, onLegal, onAuthRequest,
                 <span className="w-2 h-2 rounded-full bg-rose-500" /> Popular Cancel Guides
               </h3>
               <ul className="space-y-3 text-xs text-slate-400">
-                <li><a href="/cancel/how-to-cancel-netflix" className="hover:text-rose-400 transition-colors">How to Cancel Netflix</a></li>
-                <li><a href="/cancel/how-to-cancel-adobe-creative-cloud" className="hover:text-rose-400 transition-colors">How to Cancel Adobe</a></li>
-                <li><a href="/cancel/how-to-cancel-canva-pro" className="hover:text-rose-400 transition-colors">How to Cancel Canva Pro</a></li>
-                <li><a href="/cancel/how-to-cancel-chatgpt-plus" className="hover:text-rose-400 transition-colors">How to Cancel ChatGPT Plus</a></li>
-                <li><a href="/cancel/how-to-cancel-nordvpn" className="hover:text-rose-400 transition-colors">How to Cancel NordVPN</a></li>
-                <li><a href="/cancel/how-to-cancel-amazon-prime" className="hover:text-rose-400 transition-colors">How to Cancel Amazon Prime</a></li>
-                <li><a href="/cancel/how-to-cancel-spotify" className="hover:text-rose-400 transition-colors">How to Cancel Spotify</a></li>
+                <li><a href="/cancel/how-to-cancel-playstation-plus" className="hover:text-rose-400 transition-colors">How to Cancel PlayStation Plus</a></li>
                 <li><a href="/cancel/how-to-cancel-youtube-premium" className="hover:text-rose-400 transition-colors">How to Cancel YouTube Premium</a></li>
+                <li><a href="/cancel/how-to-cancel-the-athletic" className="hover:text-rose-400 transition-colors">How to Cancel The Athletic</a></li>
+                <li><a href="/cancel/how-to-cancel-nintendo-switch-online" className="hover:text-rose-400 transition-colors">How to Cancel Nintendo Switch Online</a></li>
+                <li><a href="/cancel/how-to-cancel-nordvpn" className="hover:text-rose-400 transition-colors">How to Cancel NordVPN</a></li>
+                <li><a href="/cancel/how-to-cancel-github-copilot" className="hover:text-rose-400 transition-colors">How to Cancel GitHub Copilot</a></li>
+                <li><a href="/cancel/how-to-cancel-grammarly" className="hover:text-rose-400 transition-colors">How to Cancel Grammarly</a></li>
+                <li><a href="/cancel/how-to-cancel-headspace" className="hover:text-rose-400 transition-colors">How to Cancel Headspace</a></li>
               </ul>
               <div className="mt-5 pt-4 border-t border-slate-800/40">
                 <a href="/cancel/" className="text-xs font-semibold text-rose-300 hover:text-rose-200 transition-colors">
-                  View all 47+ cancel guides &rarr;
+                  View all 49 cancel guides &rarr;
                 </a>
               </div>
             </div>
